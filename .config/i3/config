@@ -21,7 +21,10 @@ gaps outer 5
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
-set $terminal i3-sensible-terminal
+# set $terminal i3-sensible-terminal
+set $terminal alacritty
+# set $editor i3-sensible-editor
+set $editor kate
 set $notify exec notify-send --expire-time=1500
 
 # I use Firefox as default browser
@@ -185,7 +188,7 @@ bindsym $mod+Shift+Print --release exec --no-startup-id spectacle -r
 
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
-# focus_follows_mouse no
+focus_follows_mouse no
 
 # change focus
 bindsym $mod+j focus left
@@ -250,7 +253,7 @@ bindsym $mod+minus scratchpad show
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-bindsym $mod+Ctrl+c exec "kate ~/.gitignore  ~/.config/i3/config ~/.config/dunst/dunstrc ~/i3install.sh;$notify 'Konfiguration geöffnet'"
+bindsym $mod+Ctrl+c exec "$editor ~/.gitignore  ~/.config/i3/config ~/.config/dunst/dunstrc ~/i3install.sh;$notify 'Konfiguration geöffnet'"
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
@@ -351,6 +354,7 @@ for_window [title="File Transfer*"] floating enable
 for_window [class="fpakman"] floating enable
 for_window [class="Galculator"] floating enable border pixel 1
 for_window [class="GParted"] floating enable border normal
+for_window [title="Grub Customizer"] floating enable border normal
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lightdm-gtk-greeter-settings"] floating enable
@@ -438,7 +442,7 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 exec --no-startup-id dunst -startup_notification
 
-exec --no-startup-id start_conky_green
+exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_maia
 
 # exec --no-startup-id blueman-applet
