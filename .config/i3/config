@@ -42,18 +42,17 @@ floating_minimum_size 400 x 200
 ######################
 # Set Monitor layout #
 ######################
-set $monitor1 DP2
-set $monitor2 DP3
+set $monitor1 DP-3
+set $monitor2 DP-1
 
-exec --no-startup-id xrandr --output $monitor1 --primary
-exec --no-startup-id xrandr --output $monitor2 --right-of $monitor1
+exec --no-startup-id ~/.screenlayout/screenlayout.sh
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
 exec --no-startup-id xset -b
-exec --no-startup-id volumeicon
+# exec --no-startup-id volumeicon
 # exec --no-startup-id pulseaudio
 exec --no-startup-id pa-applet
 
@@ -76,10 +75,10 @@ bar {
     id main-top-bar
     
     position top
-    output $monitor1
+    output primary
     
     status_command bumblebee-status --markup pango \
-    -m title git progress pomodoro \
+    -m title progress pomodoro pasource pasink  \
     -t iceberg-rainbow 
     
     tray_output primary
@@ -90,10 +89,10 @@ bar {
     id main-bar
 
     position bottom
-    output $monitor1
+    output primary
     
     status_command bumblebee-status --markup pango \
-    -m hostname kernel git cpu2 sensors memory pasource pasink dunst layout-xkbswitch indicator datetime system \
+    -m hostname kernel git memory dunst layout-xkbswitch indicator datetime system \
     -t iceberg-rainbow 
     
     tray_output none
@@ -110,8 +109,8 @@ bar {
     output $monitor2
     
     status_command bumblebee-status --markup pango \
-    -m disk \
-    -a disk \
+    -m network_traffic disk:disk_root disk:disk_bigdata disk:disk_vm disk:disk_workspace weather:brakel weather:höxter  \
+    -a .disk_root .disk_bigdata .disk_vm .disk_workspace \
     -t gruvbox-powerline-light 
     
     tray_output none
@@ -124,12 +123,11 @@ bar {
     output $monitor2
 
     status_command bumblebee-status --markup pango \
-    -m network_traffic sensors2 weather \
+    -m sensors2 cpu2 \
     -t gruvbox-powerline-light
     
     tray_output none    
 }
-
 
 ####################
 # Key Combinations #
@@ -145,7 +143,7 @@ bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:URWGothic-Book 11
+font xft:Clear-Sans 12
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -162,6 +160,7 @@ bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
+bindsym $mod+Escape exec --no-startup-id rofi -show window
 
 # terminal applications
 bindsym $mod+Ctrl+b exec $terminal -e 'bmenu'
@@ -253,7 +252,7 @@ bindsym $mod+minus scratchpad show
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-bindsym $mod+Ctrl+c exec "$editor ~/.gitignore  ~/.config/i3/config ~/.config/dunst/dunstrc ~/i3install.sh;$notify 'Konfiguration geöffnet'"
+bindsym $mod+Ctrl+c exec "$editor ~/.config/i3/config ~/.config/bumblebee-status.conf ~/.config/dunst/dunstrc ~/i3install.sh ~/.gitignore;$notify 'Konfiguration geöffnet'"
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
@@ -280,14 +279,19 @@ set $ws4 4
 set $ws5 5
 set $ws6 6
 set $ws7 7
-set $ws8 8
+set $ws8 8:  Admin
 set $ws9 9:  Status
 
 # Workspace on specific screen 
-workspace 1 output primary
-workspace 2 output primary
-workspace 3 output primary
-workspace 9 output $monitor2
+workspace "$ws1" output primary
+workspace "$ws2" output primary
+workspace "$ws3" output primary
+workspace "$ws4" output primary
+workspace "$ws5" output primary
+workspace "$ws6" output primary
+workspace "$ws7" output primary
+workspace "$ws8" output $monitor2
+workspace "$ws9" output $monitor2
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -435,7 +439,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
 
 exec --no-startup-id nitrogen --restore; sleep 1; compton --config ~/.config/compton.conf -b
-exec --no-startup-id manjaro-hello
+# exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray

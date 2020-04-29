@@ -1,6 +1,14 @@
+# Alle ignorieren
 *
+
+# Ausnahmen im home folder
 !.dir_colors
 !.dmenurc
+!bumblebee-status.conf
+!.gvimrc
+!i3install.sh
+
+# Ausnahmen im .config folder
 !.config
 !.config/compton.conf
 !.config/alacritty
@@ -21,11 +29,7 @@
 !.config/i3status/*
 !.config/morc_menu
 !.config/morc_menu/*
-!.config/nitrogen
-!.config/nitrogen/*
 !.config/omf
 !.config/omf/*
 !.config/xsettingsd
 !.config/xsettingsd/*
-!.gvimrc
-!i3install.sh
