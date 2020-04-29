@@ -4,16 +4,16 @@
 ####################
 # i3-gaps settings #
 ####################
-hide_edge_borders smart
+
+new_window pixel 1
+new_float normal
+
+hide_edge_borders none
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border normal
 default_floating_border normal
 # for_window [class="^.*"] border pixel 0
-
-# You can change this values according to your preference
-gaps inner 5
-gaps outer 5
 
 ##########
 # Basics #
@@ -31,7 +31,12 @@ set $notify exec notify-send --expire-time=1500
 set $browser firefox
 # Your default mail client
 set $mail thunderbird
-font pango:envypn 11
+
+set $font_text xft:Clear Sans Medium 11
+set $font_symbol pango:Hack 10
+
+set $bumble_theme gruvbox-powerline-light
+#set $bumble_theme infoniqa-time
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
@@ -39,22 +44,22 @@ font pango:envypn 11
 floating_minimum_size 400 x 200
 # floating_maximum_size <width> x <height>
 
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font $font_text
+# font xft:Source Code Pro 10
+
+
 ######################
 # Set Monitor layout #
 ######################
-set $monitor1 DP-3
-set $monitor2 DP-1
+set_from_resource $monitor1 i3wm.monitor1 DP-1
+set_from_resource $monitor2 i3wm.monitor2 DP-2
+
+# set $monitor1 DP-3
+# set $monitor2 DP-1
 
 exec --no-startup-id ~/.screenlayout/screenlayout.sh
-
-################################################################################################
-## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
-################################################################################################
-
-exec --no-startup-id xset -b
-# exec --no-startup-id volumeicon
-# exec --no-startup-id pulseaudio
-exec --no-startup-id pa-applet
 
 bindsym $mod+Ctrl+m exec $terminal -e 'alsamixer'
 
@@ -64,22 +69,20 @@ bindsym $mod+Ctrl+m exec $terminal -e 'alsamixer'
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; $notify 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; $notify 'brightness down'"
 
-########################################
-# Status bar (replaces default i3-bar) #
-########################################
-############################
-# status bar configuration 
-############################
+#########################################
+# Bumblee Bar (replaces default i3-bar) #
+#########################################
 
 bar {
     id main-top-bar
+    font $font_symbol
     
     position top
     output primary
     
-    status_command bumblebee-status --markup pango \
-    -m title progress pomodoro pasource pasink  \
-    -t iceberg-rainbow 
+    status_command bumblebee-status --markup=pango \
+    -m title progress spotify pomodoro pasource pasink system  \
+    -t $bumble_theme
     
     tray_output primary
     workspace_buttons no
@@ -87,31 +90,29 @@ bar {
 
 bar {
     id main-bar
+    font $font_symbol
 
     position bottom
     output primary
     
-    status_command bumblebee-status --markup pango \
-    -m hostname kernel git memory dunst layout-xkbswitch indicator datetime system \
-    -t iceberg-rainbow 
+    status_command bumblebee-status --markup=pango \
+    -m hostname kernel git memory dunst layout-xkbswitch indicator datetime \
+    -t $bumble_theme
     
     tray_output none
-    
-    colors {
-        # background $term_color3
-    }
 }
 
 bar {
     id second-top-bar
+    font $font_symbol
     
     position top
     output $monitor2
     
-    status_command bumblebee-status --markup pango \
+    status_command bumblebee-status --markup=pango \
     -m network_traffic disk:disk_root disk:disk_bigdata disk:disk_vm disk:disk_workspace weather:brakel weather:höxter  \
     -a .disk_root .disk_bigdata .disk_vm .disk_workspace \
-    -t gruvbox-powerline-light 
+    -t $bumble_theme
     
     tray_output none
     workspace_buttons no
@@ -119,12 +120,14 @@ bar {
 
 bar {
     id second-bar
+    font $font_symbol
+
     position bottom
     output $monitor2
 
-    status_command bumblebee-status --markup pango \
+    status_command bumblebee-status --markup=pango \
     -m sensors2 cpu2 \
-    -t gruvbox-powerline-light
+    -t $bumble_theme
     
     tray_output none    
 }
@@ -141,10 +144,6 @@ bindsym $mod+u border none
 bindsym $mod+y border pixel 10
 bindsym $mod+n border normal
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font xft:Clear-Sans 12
-
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
@@ -155,12 +154,12 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+Shift+q kill
 
 # start program launcher
-# bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id "rofi -show drun -location 2"
 
 # launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
-bindsym $mod+Escape exec --no-startup-id rofi -show window
+bindsym $mod+z exec --no-startup-id "rofi -show combi"
+bindsym $mod+Shift+z exec --no-startup-id "rofi -combi-modi windowcd,keys,ssh,run -show combi"
+bindsym $mod+Ctrl+F2 exec --no-startup-id "rofi -combi-modi window,drun,keys,ssh,run -show combi -location 2"
 
 # terminal applications
 bindsym $mod+Ctrl+b exec $terminal -e 'bmenu'
@@ -174,9 +173,9 @@ bindsym $mod+Shift+F3 exec gksu krusader
 
 # compton grafic effects
 bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id "pkill compton; sleep 1;compton -b; $notify 'restart compton'"
-bindsym $mod+Ctrl+d --release exec "killall dunst; sleep 1; dunst -startup_notification; $notify 'restart dunst'"
-bindsym $mod+Shift+d --release $notify ' <b>Dunst Test Message</b>:\nLabber... '
+bindsym $mod+Ctrl+t exec --no-startup-id "pkill compton; sleep 1;compton --config ~/.config/compton.conf -b; $notify 'restart compton'"
+bindsym $mod+Ctrl+d --release exec "killall dunst; sleep 1; dunst; $notify 'restart dunst'"
+bindsym $mod+Shift+d --release $notify ' Dunst Test Message... '
 
 # screenshots
 bindsym Print exec --no-startup-id spectacle 
@@ -252,17 +251,13 @@ bindsym $mod+minus scratchpad show
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-bindsym $mod+Ctrl+c exec "$editor ~/.config/i3/config ~/.config/bumblebee-status.conf ~/.config/dunst/dunstrc ~/i3install.sh ~/.gitignore;$notify 'Konfiguration geöffnet'"
+bindsym $mod+Ctrl+c exec --no-startup-id "$editor ~/.config/i3/config ~/.Xresources ~/.config/compton.conf ~/.config/bumblebee-status/bumblebee-status.conf ~/.config/rofi/config.rasi ~/.config/dunst/dunstrc ~/i3install.sh ~/.gitignore;$notify 'Konfiguration geöffnet'"
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# exit i3 (logs you out of your X session)
-# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Du hast den Shortcut zum beenden gedrückt. Willst du wirklich raus hier? Das wird die Session beenden.' -b 'Ja, exit i3' 'i3-msg exit'"
-
 # Lock screen
 bindsym $mod+Ctrl+l exec --no-startup-id blurlock
-
 
 ############################
 # Workspaces configuration #
@@ -276,11 +271,18 @@ set $ws1 1:  Develop
 set $ws2 2:  DotNet
 set $ws3 3:  App
 set $ws4 4
-set $ws5 5
-set $ws6 6
-set $ws7 7
+set $ws5 5:  VirtualBox
+set $ws6 6:  Web
+set $ws7 7:  Audio  Video
 set $ws8 8:  Admin
 set $ws9 9:  Status
+
+# Open applications on specific workspaces
+assign [title="(?i)(webstorm|rider)"] $ws1
+assign [title="(?i)virtualbox"] $ws5
+assign [class="firefox"] $ws6
+assign [class="Spotify"] $ws7
+assign [title="bashtop"] $ws9
 
 # Workspace on specific screen 
 workspace "$ws1" output primary
@@ -288,9 +290,9 @@ workspace "$ws2" output primary
 workspace "$ws3" output primary
 workspace "$ws4" output primary
 workspace "$ws5" output primary
-workspace "$ws6" output primary
-workspace "$ws7" output primary
-workspace "$ws8" output $monitor2
+workspace "$ws8" output primary
+workspace "$ws6" output $monitor2
+workspace "$ws7" output $monitor2
 workspace "$ws9" output $monitor2
 
 # switch to workspace
@@ -340,12 +342,6 @@ bindsym $mod+Shift+Next     move container to workspace next
 #bindsym $mod+Ctrl+Right workspace next
 #bindsym $mod+Ctrl+Left workspace prev
 
-
-# Open applications on specific workspaces
-# assign [class="firefox"] $ws2
-# assign [class="Pale moon"] $ws2
-# assign [class="Skype"] $ws5
-
 ####################
 # Default floating #
 ####################
@@ -377,6 +373,7 @@ for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [class="Skype"] floating enable border normal
+for_window [class="Spotify"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 # for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
@@ -392,15 +389,15 @@ for_window [urgent=latest] focus
 # Set shut down, restart and locking features
 bindsym $mod+Shift+e mode "$mode_system"
 
-set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+set $mode_system (S)perren, (A)bmelden, Ben(u)tzerwechsel, Be(r)eitschaft, (H)ibernate, (N)eustart, (Shift+R)unterfahren
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym s exec --no-startup-id i3exit lock, mode "default"
+    bindsym a exec --no-startup-id i3exit logout, mode "default"
     bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym r exec --no-startup-id i3exit suspend, mode "default"
     bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym n exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+r exec --no-startup-id i3exit shutdown, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -431,28 +428,43 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-###############################
-####  Autostart applications
+##########################
+# Autostart applications #
+##########################
+################################################################################################
+# sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later!  ##
+################################################################################################
+
+exec --no-startup-id xset -b
+# exec --no-startup-id volumeicon
+# exec --no-startup-id pa-applet
+
 
 # polkits
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
 
+# Desktop
+exec --no-startup-id xautolock -time 10 -locker blurlock
 exec --no-startup-id nitrogen --restore; sleep 1; compton --config ~/.config/compton.conf -b
-# exec --no-startup-id manjaro-hello
-exec --no-startup-id nm-applet
+exec --no-startup-id dunst
+
+# Tools
+exec_always --no-startup-id nm-applet
+exec_always --no-startup-id nm-tray
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
-exec --no-startup-id dunst -startup_notification
 
-exec --no-startup-id start_conky_maia
+# exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_maia
 
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 
-exec --no-startup-id xautolock -time 10 -locker blurlock
+# Status
+exec $terminal -t bashtop -e bashtop
+# exec --no-startup-id manjaro-hello
 
 #############################
 ### settings for i3-gaps: ###
@@ -462,6 +474,9 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 # gaps inner|outer current|all set|plus|minus <px>
 # gaps inner all set 10
 # gaps outer all plus 5
+
+gaps inner 10
+gaps outer -4
 
 # Smart gaps (gaps used if only more than one container on the workspace)
 smart_gaps on
@@ -512,18 +527,7 @@ mode "$mode_gaps_outer" {
 # Colorising #
 ##############
 
-# Color palette used for the terminal ( ~/.Xresources file )
-# Colors are gathered based on the documentation:
-# https://i3wm.org/docs/userguide.html#xresources
-# Change the variable name at the place you want to match the color
-# of your terminal like this:
-# [example]
-# If you want your bar to have the same background color as your 
-# terminal background change the line 362 from:
-# background #14191D
-# to:
-# background $term_background
-# Same logic applied to everything else.
+# This is the color palette for your default terminal emulator. You can set the colors in your ~/.Xresources file.
 set_from_resource $term_background background
 set_from_resource $term_foreground foreground
 set_from_resource $term_color0     color0
@@ -570,13 +574,10 @@ set $i3_color16         #ffffff
 set $i3_color17         #0c0c0c
 
 # Theme colors
-# class                   border  backgr. text    indic.   child_border
-# client.focused          #556064 #556064 #80FFF9 #FDF6E3
-client.focused          #556064 #FF0000 #80FFF9 #FDF6E3
-client.focused_inactive #2F3D44 #FF8080 #1ABC9C #454948
-client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-client.placeholder      #000000 #0c0c0c #ffffff #000000 
-
-client.background       $i3_background
-
+# class                  border  backgr. text    indic.   child_border
+client.background       #1d1e26
+client.focused          #b0b287 #b0b287 #fbf1c7 #789073 #789073
+client.unfocused        #b0b287 #1d1e26 #fbf1c7 #789073 #789073
+client.focused_inactive #b0b287 #1d1e26 #b0b287 #789073 #789073
+client.urgent           #b0b287 #1d1e26 #b0b287 #789073 #789073
+client.placeholder      #b0b287 #1d1e26 #b0b287 #789073 #789073

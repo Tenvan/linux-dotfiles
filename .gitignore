@@ -4,15 +4,18 @@
 # Ausnahmen im home folder
 !.dir_colors
 !.dmenurc
-!bumblebee-status.conf
 !.gvimrc
+!.Xresources.sample
 !i3install.sh
+!README.MD
 
 # Ausnahmen im .config folder
 !.config
 !.config/compton.conf
 !.config/alacritty
 !.config/alacritty/*
+!.config/bumblebee-status
+!.config/bumblebee-status/*
 !.config/clipit
 !.config/clipit/*
 !.config/dunst
@@ -31,5 +34,7 @@
 !.config/morc_menu/*
 !.config/omf
 !.config/omf/*
+!.config/rofi
+!.config/rofi/*
 !.config/xsettingsd
 !.config/xsettingsd/*
