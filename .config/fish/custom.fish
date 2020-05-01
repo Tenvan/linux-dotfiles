@@ -39,12 +39,6 @@ set -g theme_project_dir_length 0
 # -------------------------------------------------
 
 set -g NODE_OPTIONS --max-old-space-size=8192
-set WORK_DIR /media/WORKSPACE/Node/EagleWeb/
-
-# fenv source ~/.profile
-# fenv source /etc/profile
-
-# set PATH "$HOME/.yarn/bin" $PATH
 
 echo "PATH:" $PATH
 

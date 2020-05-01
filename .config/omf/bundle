@@ -1,1 +1,8 @@
+package colored-man-pages
+package colorman
+package fish_logo
+package fonts
+package foreign-env
+package title
+theme bobthefish
 theme default

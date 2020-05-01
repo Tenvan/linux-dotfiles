@@ -26,7 +26,7 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # intern actions
-set $notify exec notify-send --expire-time=1500
+set $notify exec notify-send --no-startup-id --expire-time=1500
 
 # extern apps definition
 set $terminal alacritty
@@ -60,7 +60,7 @@ set_from_resource $monitor2 i3wm.monitor2 DP-2
 # set $monitor1 DP-3
 # set $monitor2 DP-1
 
-exec --no-startup-id ~/.screenlayout/screenlayout.sh
+exec --no-startup-id /opt/screenlayout.sh
 
 bindsym $mod+Ctrl+m exec $terminal -e 'alsamixer'
 
@@ -79,13 +79,13 @@ bar {
     font $font_symbol
     
     position top
-    output primary
+    output $monitor1
     
     status_command bumblebee-status --markup=pango \
     -m title progress spotify pomodoro pasource pasink system  \
     -t $bumble_theme
     
-    tray_output primary
+    tray_output $monitor1
     workspace_buttons no
 }
 
@@ -94,7 +94,7 @@ bar {
     font $font_symbol
 
     position bottom
-    output primary
+    output $monitor1
     
     status_command bumblebee-status --markup=pango \
     -m hostname kernel git memory dunst layout-xkbswitch indicator datetime \
@@ -163,14 +163,14 @@ bindsym $mod+Shift+z exec --no-startup-id "rofi -combi-modi windowcd,keys,ssh,ru
 bindsym $mod+Ctrl+F2 exec --no-startup-id "rofi -combi-modi window,drun,keys,ssh,run -show combi -location 2"
 
 # terminal applications
-bindsym $mod+Ctrl+b exec $terminal -e 'bmenu'
+bindsym $mod+Ctrl+b exec --no-startup-id $terminal -e 'bmenu'
 
-bindsym $mod+F2 exec $browser 
+bindsym $mod+F2 exec --no-startup-id $browser 
 
 # file manager
-bindsym $mod+F3 exec $filemanager
+bindsym $mod+F3 exec --no-startup-id $filemanager
 # bindsym $mod+F3 exec ranger
-bindsym $mod+Shift+F3 exec gksu $filemanager
+bindsym $mod+Shift+F3 exec --no-startup-id gksu $filemanager
 
 # compton grafic effects
 bindsym $mod+t exec --no-startup-id pkill compton
@@ -286,12 +286,12 @@ assign [class="Spotify"] $ws7
 assign [title="bashtop"] $ws9
 
 # Workspace on specific screen 
-workspace "$ws1" output primary
-workspace "$ws2" output primary
-workspace "$ws3" output primary
-workspace "$ws4" output primary
-workspace "$ws5" output primary
-workspace "$ws8" output primary
+workspace "$ws1" output $monitor1
+workspace "$ws2" output $monitor1
+workspace "$ws3" output $monitor1
+workspace "$ws4" output $monitor1
+workspace "$ws5" output $monitor1
+workspace "$ws8" output $monitor1
 workspace "$ws6" output $monitor2
 workspace "$ws7" output $monitor2
 workspace "$ws9" output $monitor2
@@ -438,7 +438,7 @@ mode "resize" {
 
 exec --no-startup-id xset -b
 # exec --no-startup-id volumeicon
-# exec --no-startup-id pa-applet
+exec --no-startup-id pa-applet
 
 
 # polkits
@@ -451,22 +451,23 @@ exec --no-startup-id nitrogen --restore; sleep 1; compton --config ~/.config/com
 exec --no-startup-id dunst
 
 # Tools
-exec_always --no-startup-id nm-applet
-exec_always --no-startup-id nm-tray
+exec --no-startup-id nm-applet
+exec --no-startup-id nm-tray
 exec --no-startup-id xfce4-power-manager
 # exec --no-startup-id pamac-tray
-exec_alway --no-startup-id octopi-notifier
+exec --no-startup-id octopi-notifier
 exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
+
+# exec_always --no-startup-id ff-theme-util
+# exec_always --no-startup-id fix_xcursor
 
 # Status
-exec $terminal -t bashtop -e bashtop
+exec --no-startup-id $terminal -t bashtop -e bashtop
 # exec --no-startup-id manjaro-hello
 
 #############################

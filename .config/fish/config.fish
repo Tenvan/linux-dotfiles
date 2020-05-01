@@ -1,6 +1,14 @@
-# screenfetch
+screenfetch
 fish_logo
 fish -v
+
+##################################################
+# Custom Environment Variables:
+if test -e ~/.env.fish
+  source ~/.env.fish
+end
+#
+##################################################
 
 ##################################################
 # Function Definitions
