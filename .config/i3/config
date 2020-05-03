@@ -111,8 +111,9 @@ bar {
     output $monitor2
     
     status_command bumblebee-status --markup=pango \
-    -m network_traffic disk:disk_root disk:disk_bigdata disk:disk_vm disk:disk_workspace weather:brakel weather:höxter  \
-    -a .disk_root .disk_bigdata .disk_vm .disk_workspace \
+    -m network_traffic disk:disk_root disk:disk_bigdata disk:disk_vm disk:disk_workspace weather:br weather:hx cpu2 \
+    -p weather.right-click="notify-send {instance}" \
+    -a disk_root disk_bigdata disk_vm disk_workspace \
     -t $bumble_theme
     
     tray_output none
@@ -127,7 +128,7 @@ bar {
     output $monitor2
 
     status_command bumblebee-status --markup=pango \
-    -m sensors2 cpu2 \
+    -m sensors2 \
     -t $bumble_theme
     
     tray_output none    
@@ -159,7 +160,7 @@ bindsym $mod+d exec --no-startup-id "rofi -show drun -location 2"
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id "rofi -show combi"
-bindsym $mod+Shift+z exec --no-startup-id "rofi -combi-modi windowcd,keys,ssh,run -show combi"
+bindsym $mod+Shift+z exec --no-startup-id "rofi -dmenu"
 bindsym $mod+Ctrl+F2 exec --no-startup-id "rofi -combi-modi window,drun,keys,ssh,run -show combi -location 2"
 
 # terminal applications
@@ -252,7 +253,7 @@ bindsym $mod+minus scratchpad show
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-bindsym $mod+Ctrl+c exec --no-startup-id "$editor ~/.config/i3/config ~/.Xresources ~/.config/compton.conf ~/.config/bumblebee-status/bumblebee-status.conf ~/.config/rofi/config.rasi ~/.config/dunst/dunstrc ~/i3install.sh ~/.gitignore;$notify 'Konfiguration geöffnet'"
+bindsym $mod+Ctrl+c exec --no-startup-id "$editor ~/.config/i3/config ~/.Xresources ~/.config/compton.conf ~/.bumblebee-status.conf ~/.config/rofi/config.rasi ~/.config/dunst/dunstrc ~/i3install.sh ~/.config/alacritty/alacritty.yml ~/.gitignore;$notify 'Konfiguration geöffnet'"
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
@@ -265,75 +266,75 @@ bindsym $mod+Ctrl+l exec --no-startup-id blurlock
 ############################
 
 # to display names or symbols instead of plain workspace numbers you can use
-# something like: set $ws1 1:mail
-#                 set $ws2 2:9
+# something like: set $ws_Develop 1:mail
+#                 set $ws_Pool2 2:9
 
-set $ws1 1:  Develop
-set $ws2 2:  DotNet
-set $ws3 3:  App
-set $ws4 4:  Teams
-set $ws5 5:  VirtualBox
-set $ws6 6:  Web
-set $ws7 7:  Audio  Video
-set $ws8 8:  Admin
-set $ws9 9:  Status
+set $ws_Develop 1:  Develop
+set $ws_Pool2   2:  Pool 2
+set $ws_Pool3   3:  Pool 3
+set $ws_Teams   4:  Teams
+set $ws_VM      5:  VirtualBox
+set $ws_Web     6:  Web
+set $ws_Media   7:  Audio /  Video
+set $ws_Admin   8:  Admin
+set $ws_Status  9:  Status
 
 # Open applications on specific workspaces
-assign [title="(?i)(webstorm|rider)"] $ws1
-assign [title="(?i)virtualbox"] $ws5
-assign [class="firefox"] $ws6
-assign [class="Spotify"] $ws7
-assign [title="bashtop"] $ws9
+assign [title="(?i)(webstorm|rider)"] $ws_Develop
+assign [title="(?i)virtualbox"] $ws_VM
+assign [class="firefox"] $ws_Web
+assign [class="Spotify"] $ws_Media
+assign [title="bashtop"] $ws_Status
 
 # Workspace on specific screen 
-workspace "$ws1" output $monitor1
-workspace "$ws2" output $monitor1
-workspace "$ws3" output $monitor1
-workspace "$ws4" output $monitor1
-workspace "$ws5" output $monitor1
-workspace "$ws8" output $monitor1
-workspace "$ws6" output $monitor2
-workspace "$ws7" output $monitor2
-workspace "$ws9" output $monitor2
+workspace "$ws_Develop" output $monitor1
+workspace "$ws_Pool2" output $monitor1
+workspace "$ws_Pool3" output $monitor1
+workspace "$ws_Teams" output $monitor1
+workspace "$ws_VM" output $monitor1
+workspace "$ws_Admin" output $monitor1
+workspace "$ws_Web" output $monitor2
+workspace "$ws_Media" output $monitor2
+workspace "$ws_Status" output $monitor2
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
+bindsym $mod+1 workspace $ws_Develop
+bindsym $mod+2 workspace $ws_Pool2
+bindsym $mod+3 workspace $ws_Pool3
+bindsym $mod+4 workspace $ws_Teams
+bindsym $mod+5 workspace $ws_VM
+bindsym $mod+6 workspace $ws_Web
+bindsym $mod+7 workspace $ws_Media
+bindsym $mod+8 workspace $ws_Admin
+bindsym $mod+9 workspace $ws_Status
 
 # Move focused container to workspace
-bindsym $mod+Ctrl+1 move container to workspace $ws1
-bindsym $mod+Ctrl+2 move container to workspace $ws2
-bindsym $mod+Ctrl+3 move container to workspace $ws3
-bindsym $mod+Ctrl+4 move container to workspace $ws4
-bindsym $mod+Ctrl+5 move container to workspace $ws5
-bindsym $mod+Ctrl+6 move container to workspace $ws6
-bindsym $mod+Ctrl+7 move container to workspace $ws7
-bindsym $mod+Ctrl+8 move container to workspace $ws8
-bindsym $mod+Ctrl+9 move container to workspace $ws9
+bindsym $mod+Ctrl+1 move container to workspace $ws_Develop
+bindsym $mod+Ctrl+2 move container to workspace $ws_Pool2
+bindsym $mod+Ctrl+3 move container to workspace $ws_Pool3
+bindsym $mod+Ctrl+4 move container to workspace $ws_Teams
+bindsym $mod+Ctrl+5 move container to workspace $ws_VM
+bindsym $mod+Ctrl+6 move container to workspace $ws_Web
+bindsym $mod+Ctrl+7 move container to workspace $ws_Media
+bindsym $mod+Ctrl+8 move container to workspace $ws_Admin
+bindsym $mod+Ctrl+9 move container to workspace $ws_Status
 
 # Move to workspace with focused container
-bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws8; workspace $ws9
+bindsym $mod+Shift+1 move container to workspace $ws_Develop; workspace $ws_Develop
+bindsym $mod+Shift+2 move container to workspace $ws_Pool2; workspace $ws_Pool2
+bindsym $mod+Shift+3 move container to workspace $ws_Pool3; workspace $ws_Pool3
+bindsym $mod+Shift+4 move container to workspace $ws_Teams; workspace $ws_Teams
+bindsym $mod+Shift+5 move container to workspace $ws_VM; workspace $ws_VM
+bindsym $mod+Shift+6 move container to workspace $ws_Web; workspace $ws_Web
+bindsym $mod+Shift+7 move container to workspace $ws_Media; workspace $ws_Media
+bindsym $mod+Shift+8 move container to workspace $ws_Admin; workspace $ws_Admin
+bindsym $mod+Shift+9 move container to workspace $ws_Admin; workspace $ws_Status
 
 # More useful workspaces key combinations
-bindsym $mod+Home           workspace $ws1
-bindsym $mod+Shift+Home     move container to workspace $ws1
-bindsym $mod+End            workspace $ws9
-bindsym $mod+Shift+End      move container to workspace $ws9
+bindsym $mod+Home           workspace $ws_Develop
+bindsym $mod+Shift+Home     move container to workspace $ws_Develop
+bindsym $mod+End            workspace $ws_Status
+bindsym $mod+Shift+End      move container to workspace $ws_Status
 bindsym $mod+Prior          workspace prev
 bindsym $mod+Shift+Prior    move container to workspace prev
 bindsym $mod+Next           workspace next
@@ -453,7 +454,8 @@ exec --no-startup-id dunst
 # Tools
 exec --no-startup-id nm-applet
 exec --no-startup-id nm-tray
-exec --no-startup-id xfce4-power-manager
+exec_always xfce4-power-manager
+exec_always system-config-printer-applet
 # exec --no-startup-id pamac-tray
 exec --no-startup-id octopi-notifier
 exec --no-startup-id clipit

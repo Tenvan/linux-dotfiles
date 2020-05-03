@@ -1,5 +1,5 @@
 yay -S bmenu rofi zenity compton dunst i3exit spectacle polkit-gnome polkit-kde-agent \
-	pamac-tray-appindicator clipit xautolock conky conky-i3 bumblebee-status pavucontrol pa-applet volumeicon \
+	pamac-tray-appindicator clipit xautolock conky conky-i3 bumblebee-status pavucontrol pa-applet dmenu-manjaro \
 	checkupdates-aur python-i3ipc python-psutil xcwd-git python-pygit2 python-xkbgroup xkb-switch-i3 progress python-taskw python-requests octopi octopi-notifier-qt5 \
 	xautolock alacritty xorg-xfontsel
 

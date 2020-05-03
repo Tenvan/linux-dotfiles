@@ -2,6 +2,7 @@
 *
 
 # Ausnahmen im home folder
+!.bumblebee-status.conf
 !.dir_colors
 !.dmenurc
 !.gvimrc
@@ -14,8 +15,6 @@
 !.config/compton.conf
 !.config/alacritty
 !.config/alacritty/*
-!.config/bumblebee-status
-!.config/bumblebee-status/*
 !.config/clipit
 !.config/clipit/*
 !.config/dunst
