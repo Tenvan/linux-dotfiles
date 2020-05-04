@@ -17,6 +17,8 @@
 !.config/alacritty/*
 !.config/clipit
 !.config/clipit/*
+!.config/conky
+!.config/conky/*
 !.config/dunst
 !.config/dunst/*
 !.config/fish

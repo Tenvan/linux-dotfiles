@@ -38,9 +38,27 @@ set $filemanager krusader
 set $font_text xft:Clear Sans Medium 11
 set $font_symbol pango:Hack 10
 
-#set $bumble_theme iceberg-powerline
-set $bumble_theme solarized-powerline
-#set $bumble_theme infoniqa-time
+#set $bumble_theme  default
+#*set $bumble_theme  dracula-powerline
+#*set $bumble_theme  firefox-dark-powerline
+#set $bumble_theme  greyish-powerline
+#set $bumble_theme  gruvbox
+#set $bumble_theme  gruvbox-light
+#set $bumble_theme  gruvbox-powerline
+#set $bumble_theme  gruvbox-powerline-light
+#*set $bumble_theme  iceberg-dark-powerline
+#set $bumble_theme  iceberg
+#*set $bumble_theme  iceberg-powerline
+set $bumble_theme  iceberg-rainbow
+#set $bumble_theme  onedark-powerline
+#set $bumble_theme  powerline
+#set $bumble_theme  sac_red
+#set $bumble_theme  solarized-dark-awesome
+#set $bumble_theme  solarized
+#* set $bumble_theme  solarized-powerline
+#set $bumble_theme  test_cycle
+#set $bumble_theme  test_invalid
+#set $bumble_theme  test
 
 floating_minimum_size 400 x 200
 # floating_maximum_size <width> x <height>
@@ -54,8 +72,8 @@ font $font_text
 ######################
 # Set Monitor layout #
 ######################
-set_from_resource $monitor1 i3wm.monitor1 DP-1
-set_from_resource $monitor2 i3wm.monitor2 DP-2
+set_from_resource $monitor1 monitor1 DP-1
+set_from_resource $monitor2 monitor2 DP-2
 
 # set $monitor1 DP-3
 # set $monitor2 DP-1
@@ -92,6 +110,12 @@ bar {
     
     tray_output $monitor1
     workspace_buttons no
+
+    colors {
+        background $background
+        statusline $foreground
+        separator $foreground
+    }
 }
 
 bar {
@@ -106,6 +130,12 @@ bar {
     -t $bumble_theme
     
     tray_output none
+
+    colors {
+        background $background
+        statusline $foreground
+        separator $foreground
+    }
 }
 
 bar {
@@ -123,6 +153,12 @@ bar {
     
     tray_output none
     workspace_buttons no
+
+    colors {
+        background $background
+        statusline $foreground
+        separator $foreground
+    }
 }
 
 bar {
@@ -137,6 +173,12 @@ bar {
     -t $bumble_theme
     
     tray_output none    
+
+    colors {
+        background $background
+        statusline $foreground
+        separator $foreground
+    }
 }
 
 ####################
@@ -179,7 +221,7 @@ bindsym $mod+F3 exec --no-startup-id gksu $filemanager
 
 # compton grafic effects
 bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id "pkill compton; sleep 1;compton --config ~/.config/compton.conf -b; $notify 'restart compton'"
+bindsym $mod+Ctrl+t exec --no-startup-id "pkill compton; sleep 1;compton --config ~/.config/compton.conf -b;"; $notify 'restart compton'
 bindsym $mod+Ctrl+d --release exec "killall dunst; sleep 1; dunst; $notify 'restart dunst'"
 bindsym $mod+Shift+d --release $notify ' Dunst Test Message... '
 
@@ -436,9 +478,6 @@ mode "resize" {
 ##########################
 # Autostart applications #
 ##########################
-################################################################################################
-# sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later!  ##
-################################################################################################
 
 exec --no-startup-id xset -b
 # exec --no-startup-id volumeicon
@@ -464,8 +503,9 @@ exec --no-startup-id octopi-notifier
 exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
-exec --no-startup-id start_conky_maia
+# exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
+exec --no-startup-id conky3
 exec --no-startup-id xautolock -time 10 -locker blurlock
 
 # exec_always --no-startup-id ff-theme-util
@@ -474,9 +514,6 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 # Status
 exec --no-startup-id $terminal -t bashtop -e bashtop
 # exec --no-startup-id manjaro-hello
-
-# Teams
-
 
 #############################
 ### settings for i3-gaps: ###
@@ -572,6 +609,10 @@ set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
 # Theme colors
+set_from_resource $background background
+set_from_resource $tbackground tbackground
+set_from_resource $foreground foreground
+
 # class                   border  backgr. text    indic.   child_border
   client.focused          #556064 #556064 #80FFF9 #FDF6E3
   client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
@@ -579,6 +620,6 @@ set_from_resource $term_color15    color15
   client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
   client.placeholder      #000000 #0c0c0c #ffffff #000000 
 
-  client.background       #2B2C2B
+#  client.background       $term_background
 
 
