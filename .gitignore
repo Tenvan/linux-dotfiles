@@ -33,6 +33,8 @@
 !.config/morc_menu/*
 !.config/omf
 !.config/omf/*
+!.config/polybar
+!.config/polybar/*
 !.config/rofi
 !.config/rofi/*
 !.config/xsettingsd

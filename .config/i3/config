@@ -26,7 +26,7 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # intern actions
-set $notify exec notify-send --no-startup-id --expire-time=1500
+set $notify exec --no-startup-id notify-send --expire-time=2500
 
 # extern apps definition
 set $terminal alacritty
@@ -70,6 +70,11 @@ bindsym $mod+Ctrl+m exec $terminal -e 'alsamixer'
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; $notify 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; $notify 'brightness down'"
 
+#####################################
+# Polybar (replaces default i3-bar) #
+#####################################
+# exec_always sh ~/.config/polybar/launch.sh
+
 #########################################
 # Bumblee Bar (replaces default i3-bar) #
 #########################################
@@ -97,7 +102,7 @@ bar {
     output $monitor1
     
     status_command bumblebee-status --markup=pango \
-    -m hostname kernel git memory dunst layout-xkbswitch indicator datetime \
+    -m hostname kernel git memory layout-xkbswitch indicator dunst datetime \
     -t $bumble_theme
     
     tray_output none
@@ -166,12 +171,11 @@ bindsym $mod+Ctrl+F2 exec --no-startup-id "rofi -combi-modi window,drun,keys,ssh
 # terminal applications
 bindsym $mod+Ctrl+b exec --no-startup-id $terminal -e 'bmenu'
 
-bindsym $mod+F2 exec --no-startup-id $browser 
+bindsym $mod+F6 exec --no-startup-id $browser 
 
 # file manager
-bindsym $mod+F3 exec --no-startup-id $filemanager
-# bindsym $mod+F3 exec ranger
-bindsym $mod+Shift+F3 exec --no-startup-id gksu $filemanager
+bindsym $mod+F2 exec --no-startup-id $filemanager
+bindsym $mod+F3 exec --no-startup-id gksu $filemanager
 
 # compton grafic effects
 bindsym $mod+t exec --no-startup-id pkill compton
@@ -266,41 +270,42 @@ bindsym $mod+Ctrl+l exec --no-startup-id blurlock
 ############################
 
 # to display names or symbols instead of plain workspace numbers you can use
-# something like: set $ws_Develop 1:mail
-#                 set $ws_Pool2 2:9
+# something like: set $ws1 1:mail
+#                 set $ws2 2:9
 
-set $ws_Develop 1:  Develop
-set $ws_Pool2   2:  Pool 2
-set $ws_Pool3   3:  Pool 3
-set $ws_Teams   4:  Teams
-set $ws_VM      5:  VirtualBox
-set $ws_Web     6:  Web
-set $ws_Media   7:  Audio /  Video
-set $ws_Admin   8:  Admin
-set $ws_Status  9:  Status
+set $ws_Develop     1:  Develop
+set $ws_DevConsole  2:  Develop Consolen
+set $ws_Divers      3:  Sonstiges
+set $ws_Teams       4:  Teams
+set $ws_VM          5:  VirtualBox
+set $ws_Web         6:  Web
+set $ws_Media       7:  Audio /  Video
+set $ws_Admin       8:  Admin
+set $ws_Status      9:  Status
 
 # Open applications on specific workspaces
 assign [title="(?i)(webstorm|rider)"] $ws_Develop
+assign [class="(?i)microsoft teams - preview"] $ws_Teams 
 assign [title="(?i)virtualbox"] $ws_VM
-assign [class="firefox"] $ws_Web
+assign [class="(?i)(navigator|firefox|chrome|chromium|opera)"] $ws_Web
 assign [class="Spotify"] $ws_Media
 assign [title="bashtop"] $ws_Status
 
 # Workspace on specific screen 
-workspace "$ws_Develop" output $monitor1
-workspace "$ws_Pool2" output $monitor1
-workspace "$ws_Pool3" output $monitor1
-workspace "$ws_Teams" output $monitor1
-workspace "$ws_VM" output $monitor1
-workspace "$ws_Admin" output $monitor1
-workspace "$ws_Web" output $monitor2
-workspace "$ws_Media" output $monitor2
-workspace "$ws_Status" output $monitor2
+workspace "$ws_Develop"     output $monitor1
+workspace "$ws_DevConsole"  output $monitor2
+workspace "$ws_Divers"      output $monitor1
+workspace "$ws_Teams"       output $monitor1
+workspace "$ws_VM"          output $monitor1
+workspace "$ws_Admin"       output $monitor1
+workspace "$ws_Web"         output $monitor2
+workspace "$ws_Media"       output $monitor2
+workspace "$ws_Status"      output $monitor2
 
 # switch to workspace
 bindsym $mod+1 workspace $ws_Develop
-bindsym $mod+2 workspace $ws_Pool2
-bindsym $mod+3 workspace $ws_Pool3
+bindsym $mod+2 workspace $ws_DevConsole
+bindsym $mod+3 workspace $ws_Divers
 bindsym $mod+4 workspace $ws_Teams
 bindsym $mod+5 workspace $ws_VM
 bindsym $mod+6 workspace $ws_Web
@@ -310,8 +315,8 @@ bindsym $mod+9 workspace $ws_Status
 
 # Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws_Develop
-bindsym $mod+Ctrl+2 move container to workspace $ws_Pool2
-bindsym $mod+Ctrl+3 move container to workspace $ws_Pool3
+bindsym $mod+Ctrl+2 move container to workspace $ws_DevConsole
+bindsym $mod+Ctrl+3 move container to workspace $ws_Divers
 bindsym $mod+Ctrl+4 move container to workspace $ws_Teams
 bindsym $mod+Ctrl+5 move container to workspace $ws_VM
 bindsym $mod+Ctrl+6 move container to workspace $ws_Web
@@ -321,8 +326,8 @@ bindsym $mod+Ctrl+9 move container to workspace $ws_Status
 
 # Move to workspace with focused container
 bindsym $mod+Shift+1 move container to workspace $ws_Develop; workspace $ws_Develop
-bindsym $mod+Shift+2 move container to workspace $ws_Pool2; workspace $ws_Pool2
-bindsym $mod+Shift+3 move container to workspace $ws_Pool3; workspace $ws_Pool3
+bindsym $mod+Shift+2 move container to workspace $ws_DevConsole; workspace $ws_DevConsole
+bindsym $mod+Shift+3 move container to workspace $ws_Divers; workspace $ws_Divers
 bindsym $mod+Shift+4 move container to workspace $ws_Teams; workspace $ws_Teams
 bindsym $mod+Shift+5 move container to workspace $ws_VM; workspace $ws_VM
 bindsym $mod+Shift+6 move container to workspace $ws_Web; workspace $ws_Web
@@ -365,9 +370,7 @@ for_window [class="Manjaro-hello"] floating enable
 for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
-for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
-for_window [title="About Pale Moon"] floating enable
 for_window [class="Pamac-manager"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
@@ -379,7 +382,7 @@ for_window [class="Spotify"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
-for_window [class="(?i)teams"] floating enable
+# for_window [class="(?i)teams"] fullscreen enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -454,8 +457,8 @@ exec --no-startup-id dunst
 # Tools
 exec --no-startup-id nm-applet
 exec --no-startup-id nm-tray
-exec_always xfce4-power-manager
-exec_always system-config-printer-applet
+exec xfce4-power-manager
+exec system-config-printer-applet
 # exec --no-startup-id pamac-tray
 exec --no-startup-id octopi-notifier
 exec --no-startup-id clipit
@@ -471,6 +474,9 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 # Status
 exec --no-startup-id $terminal -t bashtop -e bashtop
 # exec --no-startup-id manjaro-hello
+
+# Teams
+
 
 #############################
 ### settings for i3-gaps: ###
