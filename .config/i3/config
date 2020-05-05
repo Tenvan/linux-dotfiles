@@ -30,10 +30,12 @@ set $notify exec --no-startup-id notify-send --expire-time=2500
 
 # extern apps definition
 set $terminal alacritty
-set $editor kate
+set $editor geany
+set $composite picom
 set $browser firefox
 set $mail thunderbird
 set $filemanager krusader
+set $filemanager_root gksu krusader
 
 set $font_text xft:Clear Sans Medium 11
 set $font_symbol pango:Hack 10
@@ -196,39 +198,49 @@ bindsym $mod+n border normal
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
+################
+# main actions #
+################
+
 # start a terminal
 bindsym $mod+Return exec $terminal
-
 # kill focused window
 bindsym $mod+Shift+q kill
+# Set shut down, restart and locking features
+bindsym $mod+Shift+e mode "$mode_system"
 
-# start program launcher
+# split orientation
+bindsym $mod+q split toggle;$notify 'tile toggle'
+bindsym $mod+v split v;$notify 'tile vertikal'
+bindsym $mod+h split h;$notify 'tile horizontal'
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking;$notify 'Layout Geschachtelt'
+bindsym $mod+w layout tabbed;$notify 'Layout Tabs'
+bindsym $mod+e layout toggle split;$notify 'Layout Split'
+
+# start applications
+bindsym $mod+Ctrl+b exec --no-startup-id $terminal -e 'bmenu'
+bindsym $mod+F6 exec --no-startup-id $browser 
+bindsym $mod+F2 exec --no-startup-id $filemanager
+bindsym $mod+F3 exec --no-startup-id $filemanager_root
+
+# launch categorized menus
 bindsym $mod+d exec --no-startup-id "rofi -show drun -location 2"
-
-# launch categorized menu
 bindsym $mod+z exec --no-startup-id "rofi -show combi"
-bindsym $mod+Shift+z exec --no-startup-id "rofi -dmenu"
 bindsym $mod+Ctrl+F2 exec --no-startup-id "rofi -combi-modi window,drun,keys,ssh,run -show combi -location 2"
 
-# terminal applications
-bindsym $mod+Ctrl+b exec --no-startup-id $terminal -e 'bmenu'
-
-bindsym $mod+F6 exec --no-startup-id $browser 
-
-# file manager
-bindsym $mod+F2 exec --no-startup-id $filemanager
-bindsym $mod+F3 exec --no-startup-id gksu $filemanager
-
 # compton grafic effects
-bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id "pkill compton; sleep 1;compton --config ~/.config/compton.conf -b;"; $notify 'restart compton'
+bindsym $mod+t exec --no-startup-id pkill $composite
+bindsym $mod+Ctrl+t exec --no-startup-id "pkill $composite; sleep 1;$composite --config ~/.config/compton.conf -b;"; $notify 'restart $composite'
 bindsym $mod+Ctrl+d --release exec "killall dunst; sleep 1; dunst; $notify 'restart dunst'"
 bindsym $mod+Shift+d --release $notify ' Dunst Test Message... '
 
 # screenshots
 bindsym Print exec --no-startup-id spectacle 
-bindsym $mod+Print --release exec --no-startup-id spectacle -a
-bindsym $mod+Shift+Print --release exec --no-startup-id spectacle -r
+bindsym $mod+Print --release exec --no-startup-id spectacle -m
+bindsym $mod+Shift+Print --release exec --no-startup-id spectacle -a -g
+bindsym $mod+Ctrl+Print --release exec --no-startup-id spectacle -r
 
 # bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 
@@ -265,28 +277,14 @@ workspace_auto_back_and_forth yes
 bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
-# split orientation
-bindsym $mod+h split h;$notify 'tile horizontal'
-bindsym $mod+v split v;$notify 'tile vertikal'
-bindsym $mod+q split toggle;$notify 'tile toggle'
-
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking;$notify 'Layout Geschachtelt'
-bindsym $mod+w layout tabbed;$notify 'Layout Tabs'
-bindsym $mod+e layout toggle split;$notify 'Layout Split'
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle;$notify 'Floating Toggle'
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# toggle sticky
-bindsym $mod+Shift+s sticky toggle;$notify 'Sticky Toggle'
-
 # focus the parent container
 bindsym $mod+a focus parent
 
@@ -297,15 +295,19 @@ bindsym $mod+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
 
+# Lock screen
+bindsym $mod+Ctrl+l exec --no-startup-id blurlock
+
+#
+# helper actions
+#
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
-bindsym $mod+Ctrl+c exec --no-startup-id "$editor ~/.config/i3/config ~/.Xresources ~/.config/compton.conf ~/.bumblebee-status.conf ~/.config/rofi/config.rasi ~/.config/dunst/dunstrc ~/i3install.sh ~/.config/alacritty/alacritty.yml ~/.gitignore;$notify 'Konfiguration geöffnet'"
+bindsym $mod+Ctrl+c exec --no-startup-id "$editor ~/i3install.sh ~/.gitignore ~/.config/i3/* ~/.Xresources ~/.config/compton.conf ~/.bumblebee-status.conf ~/.config/rofi/* ~/.config/dunst/* ~/.config/alacritty/* ~/.config/conky/*;$notify 'Konfiguration geöffnet'"
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-
-# Lock screen
-bindsym $mod+Ctrl+l exec --no-startup-id blurlock
 
 ############################
 # Workspaces configuration #
@@ -433,9 +435,6 @@ for_window [urgent=latest] focus
 # i3 and power management #
 ###########################
 
-# Set shut down, restart and locking features
-bindsym $mod+Shift+e mode "$mode_system"
-
 set $mode_system (S)perren, (A)bmelden, Ben(u)tzerwechsel, Be(r)eitschaft, (H)ibernate, (N)eustart, (Shift+R)unterfahren
 mode "$mode_system" {
     bindsym s exec --no-startup-id i3exit lock, mode "default"
@@ -490,7 +489,7 @@ exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
 
 # Desktop
 exec --no-startup-id xautolock -time 10 -locker blurlock
-exec --no-startup-id nitrogen --restore; sleep 1; compton --config ~/.config/compton.conf -b
+exec --no-startup-id nitrogen --restore; sleep 1; $composite --config ~/.config/compton.conf -b
 exec --no-startup-id dunst
 
 # Tools
@@ -505,7 +504,9 @@ exec --no-startup-id clipit
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id conky3
+# exec_always "killall conky; sleep 1;conky -c ~/.config/conky/conky-main.conf;conky -c ~/.config/conky/conky-help.conf"
+bindsym $mod+Shift+o exec --no-startup-id "killall conky; sleep 1;conky -c ~/.config/conky/conky-main.conf;conky -c ~/.config/conky/conky-help.conf";$notify "conkey restarted!"
+
 exec --no-startup-id xautolock -time 10 -locker blurlock
 
 # exec_always --no-startup-id ff-theme-util
@@ -613,12 +614,12 @@ set_from_resource $background background
 set_from_resource $tbackground tbackground
 set_from_resource $foreground foreground
 
-# class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #556064 #80FFF9 #FDF6E3
-  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-  client.placeholder      #000000 #0c0c0c #ffffff #000000 
+# class                 border  backgr. text    indic.   child_border
+client.focused          #556064 #556064 #80FFF9 #FDF6E3
+client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
+client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
+client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
+client.placeholder      #000000 #0c0c0c #ffffff #000000 
 
 #  client.background       $term_background
 
