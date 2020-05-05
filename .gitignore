@@ -1,0 +1,44 @@
+# Alle ignorieren
+*
+
+# Ausnahmen im home folder
+!.bumblebee-status.conf
+!.dir_colors
+!.dmenurc
+!.gvimrc
+!.gtkrc-2.0
+!.Xresources.sample
+!i3install.sh
+!README.MD
+
+# Ausnahmen im .config folder
+!.config
+!.config/compton.conf
+!.config/alacritty
+!.config/alacritty/*
+!.config/clipit
+!.config/clipit/*
+!.config/conky
+!.config/conky/*
+!.config/dunst
+!.config/dunst/*
+!.config/fish
+!.config/fish/*
+!.config/gtk-3.0
+!.config/gtk-3.0/*
+!.config/gtk-4.0
+!.config/gtk-4.0/*
+!.config/i3
+!.config/i3/*
+!.config/i3status
+!.config/i3status/*
+!.config/morc_menu
+!.config/morc_menu/*
+!.config/omf
+!.config/omf/*
+!.config/polybar
+!.config/polybar/*
+!.config/rofi
+!.config/rofi/*
+!.config/xsettingsd
+!.config/xsettingsd/*
