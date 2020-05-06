@@ -1,21 +1,6 @@
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-####################
-# i3-gaps settings #
-####################
-
-new_window pixel 1
-new_float normal
-
-# Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border normal
-default_floating_border normal
-
-# Hide borders
-hide_edge_borders none
-
-
 ##########
 # Basics #
 ##########
@@ -26,11 +11,12 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # intern actions
-set $notify exec --no-startup-id notify-send --expire-time=2500
+set $notify exec --no-startup-id notify-send --expire-time=5000
+set $notify_always exec_always --no-startup-id notify-send --expire-time=5000
 
 # extern apps definition
 set $terminal alacritty
-set $editor geany
+set $editor kate
 set $composite picom
 set $browser firefox
 set $mail thunderbird
@@ -74,11 +60,11 @@ font $font_text
 ######################
 # Set Monitor layout #
 ######################
+$notify_always "Monitor 1: $monitor1"
+$notify_always "Monitor 2: $monitor2"
+
 set_from_resource $monitor1 monitor1 DP-1
 set_from_resource $monitor2 monitor2 DP-2
-
-# set $monitor1 DP-3
-# set $monitor2 DP-1
 
 exec --no-startup-id /opt/screenlayout.sh
 
@@ -89,11 +75,6 @@ bindsym $mod+Ctrl+m exec $terminal -e 'alsamixer'
 # Screen brightness controls
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; $notify 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; $notify 'brightness down'"
-
-#####################################
-# Polybar (replaces default i3-bar) #
-#####################################
-# exec_always sh ~/.config/polybar/launch.sh
 
 #########################################
 # Bumblee Bar (replaces default i3-bar) #
@@ -107,7 +88,7 @@ bar {
     output $monitor1
     
     status_command bumblebee-status --markup=pango \
-    -m title progress spotify pomodoro pasource pasink system  \
+    -m title progress spotify pomodoro:timer5 pomodoro:timer10 pomodoro:timer20  pasource pasink \
     -t $bumble_theme
     
     tray_output $monitor1
@@ -304,7 +285,7 @@ bindsym $mod+Ctrl+l exec --no-startup-id blurlock
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-bindsym $mod+Ctrl+c exec --no-startup-id "$editor ~/i3install.sh ~/.gitignore ~/.config/i3/* ~/.Xresources ~/.config/compton.conf ~/.bumblebee-status.conf ~/.config/rofi/* ~/.config/dunst/* ~/.config/alacritty/* ~/.config/conky/*;$notify 'Konfiguration geöffnet'"
+bindsym $mod+Ctrl+c exec --no-startup-id "$editor ~/i3install.sh ~/.gitignore ~/.config/i3/* ~/.Xresources ~/.config/compton.conf ~/.bumblebee-status.conf ~/.config/rofi/* ~/.config/dunst/* ~/.config/alacritty/* ~/.config/conky/*"; $notify 'Konfiguration geöffnet'
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
@@ -502,10 +483,11 @@ exec --no-startup-id octopi-notifier
 exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
-# exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
-# exec_always "killall conky; sleep 1;conky -c ~/.config/conky/conky-main.conf;conky -c ~/.config/conky/conky-help.conf"
-bindsym $mod+Shift+o exec --no-startup-id "killall conky; sleep 1;conky -c ~/.config/conky/conky-main.conf;conky -c ~/.config/conky/conky-help.conf";$notify "conkey restarted!"
+
+set $conky "killall conky; sleep 1;conky -c ~/.config/conky/conky-main.conf;conky -c ~/.config/conky/conky-help.conf;notify-send 'conky started!'"
+
+exec_always --no-startup-id $conky
+bindsym $mod+Shift+o exec --no-startup-id $conky
 
 exec --no-startup-id xautolock -time 10 -locker blurlock
 
@@ -521,8 +503,8 @@ exec --no-startup-id $terminal -t bashtop -e bashtop
 #############################
 
 # Set inner/outer gaps
-gaps inner 14
-gaps outer -2
+gaps inner 8
+gaps outer 0
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
@@ -535,6 +517,17 @@ smart_gaps on
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
+
+# Set defaults
+new_window pixel 1
+new_float normal
+
+# Configure border style <normal|1pixel|pixel xx|none|pixel>
+default_border normal
+default_floating_border normal
+
+# Hide borders
+hide_edge_borders none
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
