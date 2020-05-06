@@ -607,10 +607,10 @@ set_from_resource $tbackground tbackground
 set_from_resource $foreground foreground
 
 # class                 border  backgr. text    indic.   child_border
-client.focused          #556064 #DEAC89 #2F3D44 #FDF6E3
-client.focused_inactive #2F3D44 #ADADAD #2F3D44 #454948
-client.unfocused        #2F3D44 #E0E0E0 #2F3D44 #454948
-client.urgent           #CB4B16 #E6BEBE #2F3D44 #268BD2
+client.focused          #556064 #556064 #80FFF9 #FDF6E3
+client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
+client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
+client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
 client.placeholder      #000000 #0c0c0c #ffffff #000000 
 
 #  client.background       $term_background
