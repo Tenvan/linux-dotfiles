@@ -117,10 +117,9 @@ alias trizenskip='trizen -S --skipinteg'
 alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
 
 #get fastest mirrors in your neighborhood
-alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
+alias mirror="sudo pacman-mirrors -i"
+alias mirrord="sudo pacman-mirrors -c Germany"
+alias mirrors="sudo pacman-mirrors -a"
 
 #mounting the folder Public for exchange between host and guest on virtualbox
 alias vbm="sudo /usr/local/bin/arcolinux-vbox-share"
@@ -216,8 +215,8 @@ if [ "$TERM" = "linux" ]; then
 fi
 
 ### COLOR SCRIPTS ###
-/opt/shell-color-scripts/colorscript.sh -e 3
-/opt/shell-color-scripts/colorscript.sh -e 23
+test -f /opt/shell-color-scripts/colorscript.sh && /opt/shell-color-scripts/colorscript.sh -e 3
+test -f /opt/shell-color-scripts/colorscript.sh && /opt/shell-color-scripts/colorscript.sh -e 23
 
 PATH="$HOME/.doom.d/bin:$HOME/.emacs.d/bin:$HOME/.local/bin${PATH:+:${PATH}}"
 
@@ -225,15 +224,15 @@ colors() {
   clear
   # /opt/shell-color-scripts/colorscript.sh -e 34
   echo Script 1
-  /opt/shell-color-scripts/colorscript.sh -e 1
+  test -f /opt/shell-color-scripts/colorscript.sh && /opt/shell-color-scripts/colorscript.sh -e 1
   echo Script 8
-  /opt/shell-color-scripts/colorscript.sh -e 9
+  test -f /opt/shell-color-scripts/colorscript.sh && /opt/shell-color-scripts/colorscript.sh -e 9
   echo Script 11
-  /opt/shell-color-scripts/colorscript.sh -e 11
+  test -f /opt/shell-color-scripts/colorscript.sh && /opt/shell-color-scripts/colorscript.sh -e 11
   echo Script 10
-  /opt/shell-color-scripts/colorscript.sh -e 10
+  test -f /opt/shell-color-scripts/colorscript.sh && /opt/shell-color-scripts/colorscript.sh -e 10
   echo Script 23
-  /opt/shell-color-scripts/colorscript.sh -e 23
+  test -f /opt/shell-color-scripts/colorscript.sh && /opt/shell-color-scripts/colorscript.sh -e 23
 }
 
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
@@ -317,4 +316,6 @@ fi
 
 [[ -f ~/.bashrc-personal.sh ]] && . ~/.bashrc-personal.sh
 
-neofetch
+if test -f "/usr/bin/neofetch"; then
+	neofetch
+fi

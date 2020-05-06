@@ -1,7 +1,6 @@
 configuration {
   modi: "window,drun,ssh,run,keys";
 	combi-modi: "window,ssh,drun";
-	font: "Sans 24";
 	location: 0;
 	lines: 24;
 	show-icons: true;

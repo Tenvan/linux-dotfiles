@@ -51,7 +51,7 @@ fi
 errorCheck "installation yay/pamac"
 
 # Rust repaprieren/installieren
-yay -Syy --needed --noconfirm rustup
+yay -S --needed --noconfirm rustup
 errorCheck "installation rustup"
 
 rustup install stable
@@ -68,7 +68,7 @@ inst exa
 inst ripgrep
 inst timeshift
 inst timeset-gui
-inst termite 
+inst termite
 inst alacritty
 inst ark
 inst arj
@@ -88,10 +88,10 @@ inst iftop
 inst iotop
 inst iptraf-ng
 inst s-tui
-inst shell-color-scripts 
+inst shell-color-scripts
 inst powerline-rs
 inst find-the-command
-inst hstr-git 
+inst hstr
 inst qfc-git
 inst kindd
 inst multitail
@@ -100,14 +100,13 @@ inst openconnect
 # Manjaro
 if $IS_MANJARO == true; then
     # manjaro only packages
-    
     inst lightdm-gtk-greeter-settings
     inst manjaro-settings-samba
     inst manjaro-pulse
-    
+
     # gimicks
     inst cmatrix
-    inst hollywood 
+    inst hollywood
     inst cowsay
 fi
 
@@ -143,8 +142,8 @@ inst jdk-openjdk
 if $IS_MANJARO == true; then
     inst dmenu-manjaro
     # current used settings
-    # inst manjaro-awesome-settings
-    inst manjaro-cinnamon-settings
+    inst manjaro-awesome-settings
+    # inst manjaro-cinnamon-settings
 fi
 
 # awesome packages
@@ -179,15 +178,14 @@ inst pm-utils
 inst gnome-system-monitor
 inst gnome-system-log
 inst polkit-gnome
-inst polkit-kde-agent
+#inst polkit-kde-agent
 inst seahorse
 inst gnome-keyring
 inst checkupdates-aur
 inst lxappearance
 inst alttab-git
 inst xautolock
-inst systemdgenie 
-inst etcher
+inst systemdgenie
 inst python
 inst python-psutil
 inst python-pygit2
@@ -210,20 +208,7 @@ inst xscreensaver
 inst qt-logout
 
 # file manager
-inst nemo
-inst nemo-share
-inst folder-color-switcher
-inst nemo-fileroller
-inst nemo-image-converter
-inst nemo-preview
-inst nemo-seahorse
-inst nemo-compare
-inst nemo-emblems
-inst nemo-media-columns
-inst nemo-pdf-tools
-inst nemo-meld-compare
-inst nemo-audio-tab
-inst nemo-mediainfo-tab
+inst pcmanfm
 inst mc
 inst ranger
 
@@ -248,7 +233,7 @@ inst libreoffice-fresh
 inst libreoffice-fresh-de
 
 # optional application packages
-inst evolution
+#inst evolution
 inst bitwarden-bin
 inst bitwarden-cli-bin
 inst bitwarden-rofi
@@ -258,10 +243,10 @@ inst firefox-developer-edition
 inst firefox-developer-edition-i18n-de
 inst google-chrome
 inst chromium
-inst opera
+#inst opera
 inst docker
 inst docker-compose
-inst foxitreader
+#inst foxitreader
 inst gparted
 inst partitionmanager
 inst grub-customizer
@@ -282,7 +267,6 @@ inst nitrogen
 inst python-lxml
 inst python-numpy
 inst teams
-inst transmission-qt
 inst qbittorrent
 
 # remmina
@@ -295,20 +279,20 @@ inst remmina-plugin-open
 inst freerdp
 
 # virtualbox 
-inst virtualbox
+# inst virtualbox
 
-if $IS_ARCO == true; then
-    inst virtualbox-host-modules-arch
+#if $IS_ARCO == true; then
+    # inst virtualbox-host-modules-arch
     # inst linux-headers
     # inst virtualbox-host-dkms
     # inst linux-lts-headers
     # inst virtualbox-host-modules-lts
-fi
+#fi
 
-if $IS_MANJARO == true; then
-    inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-headers
-    inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-virtualbox-host-modules
-fi
+#if $IS_MANJARO == true; then
+#    inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-headers
+#    inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-virtualbox-host-modules
+#fi
 
 # libvirt service and manager
 inst virt-manager
@@ -435,7 +419,15 @@ inst sardi-icons
 # fonts
 inst font-manager
 inst awesome-terminal-fonts
-inst nerd-fonts-complete
+
+# inst nerd-fonts-complete
+inst nerd-fonts-mononoki
+inst nerd-fonts-iosevka
+
+inst noto-fonts-emoji
+inst noto-fonts-extra
+
+inst ttf-droid
 inst ttf-nerd-fonts-symbols
 inst ttf-font-awesome
 inst ttf-cascadia-code

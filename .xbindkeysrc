@@ -98,15 +98,15 @@
   mod4 + F2
 
 # File Manager
-"nemo" 
+"pcmanfm" 
   mod4 + F8
 
 # Rofi Default Menü
-"rofi -show combi" 
+"sh $HOME/Scripts/menu/rofi.sh -show combi"
   mod4 + z
 
 # Rofi Run Menü
-"rofi -show run" 
+"sh $HOME/Scripts/menu/rofi.sh -show run"
   mod4 + shift + z
 
 #

@@ -1,0 +1,1 @@
+rofi -font "$ROFI_FONT" $@

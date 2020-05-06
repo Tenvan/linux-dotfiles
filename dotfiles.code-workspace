@@ -11,6 +11,12 @@
 		},
 		{
 			"path": "Scripts"
+		},
+		{
+			"path": ".xdg_menu_cache"
+		},
+		{
+			"path": ".xonotic"
 		}
 	],
 	"settings": {

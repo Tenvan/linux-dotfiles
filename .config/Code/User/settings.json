@@ -3,6 +3,8 @@
     "cSpell.allowCompoundWords": true,
     "diffEditor.codeLens": true,
     "editor.fontFamily": "monospace, Twemoji",
+    "editor.fontSize": 16,
+    "editor.fontWeight": "normal",
     "editor.tabSize": 2,
     "editor.renameOnType": true,
     "editor.renderControlCharacters": true,
@@ -32,4 +34,5 @@
     "[typescript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "editor.fontLigatures": true,
   }
