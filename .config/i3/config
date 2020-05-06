@@ -284,7 +284,7 @@ bindsym $mod+Ctrl+l exec --no-startup-id blurlock
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-bindsym $mod+Ctrl+c exec --no-startup-id "$editor ~/i3install.sh ~/.gitignore ~/.config/i3/* ~/.Xresources ~/.config/compton.conf ~/.bumblebee-status.conf ~/.config/rofi/* ~/.config/dunst/* ~/.config/alacritty/* ~/.config/conky/*"; exec $notify 'Konfiguration geöffnet'
+bindsym $mod+Ctrl+c exec --no-startup-id "$editor ~/.config/i3/*"; exec $notify 'Konfiguration geöffnet'
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
