@@ -33,6 +33,8 @@
 !.config/i3/*
 !.config/i3status
 !.config/i3status/*
+!.config/Kvantum
+!.config/Kvantum/*
 !.config/morc_menu
 !.config/morc_menu/*
 !.config/nitrogen
