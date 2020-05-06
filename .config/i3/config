@@ -11,8 +11,7 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # intern actions
-set $notify exec --no-startup-id notify-send --expire-time=5000
-set $notify_always exec_always --no-startup-id notify-send --expire-time=5000
+set $notify --no-startup-id notify-send --expire-time=2500
 
 # extern apps definition
 set $terminal alacritty
@@ -60,8 +59,8 @@ font $font_text
 ######################
 # Set Monitor layout #
 ######################
-$notify_always "Monitor 1: $monitor1"
-$notify_always "Monitor 2: $monitor2"
+exec_always $notify "Monitor 1: $monitor1"
+exec_always $notify "Monitor 2: $monitor2"
 
 set_from_resource $monitor1 monitor1 DP-1
 set_from_resource $monitor2 monitor2 DP-2
@@ -73,8 +72,8 @@ bindsym $mod+Ctrl+m exec $terminal -e 'alsamixer'
 ################################################################################################
 
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; $notify 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; $notify 'brightness down'"
+# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; exec $notify 'brightness up'"
+# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; exec $notify 'brightness down'"
 
 #########################################
 # Bumblee Bar (replaces default i3-bar) #
@@ -191,14 +190,14 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Shift+e mode "$mode_system"
 
 # split orientation
-bindsym $mod+q split toggle;$notify 'tile toggle'
-bindsym $mod+v split v;$notify 'tile vertikal'
-bindsym $mod+h split h;$notify 'tile horizontal'
+bindsym $mod+q split toggle;exec $notify 'tile toggle'
+bindsym $mod+v split v;exec $notify 'tile vertikal'
+bindsym $mod+h split h;exec $notify 'tile horizontal'
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking;$notify 'Layout Geschachtelt'
-bindsym $mod+w layout tabbed;$notify 'Layout Tabs'
-bindsym $mod+e layout toggle split;$notify 'Layout Split'
+bindsym $mod+s layout stacking;exec $notify 'Layout Geschachtelt'
+bindsym $mod+w layout tabbed;exec $notify 'Layout Tabs'
+bindsym $mod+e layout toggle split;exec $notify 'Layout Split'
 
 # start applications
 bindsym $mod+Ctrl+b exec --no-startup-id $terminal -e 'bmenu'
@@ -213,9 +212,9 @@ bindsym $mod+Ctrl+F2 exec --no-startup-id "rofi -combi-modi window,drun,keys,ssh
 
 # compton grafic effects
 bindsym $mod+t exec --no-startup-id pkill $composite
-bindsym $mod+Ctrl+t exec --no-startup-id "pkill $composite; sleep 1;$composite --config ~/.config/compton.conf -b;"; $notify 'restart $composite'
-bindsym $mod+Ctrl+d --release exec "killall dunst; sleep 1; dunst; $notify 'restart dunst'"
-bindsym $mod+Shift+d --release $notify ' Dunst Test Message... '
+bindsym $mod+Ctrl+t exec --no-startup-id "pkill $composite; sleep 1;$composite --config ~/.config/compton.conf -b;"; exec $notify 'restart $composite'
+bindsym $mod+Ctrl+d --release exec "killall dunst; sleep 1; dunst;exec $notify 'restart dunst'"
+bindsym $mod+Shift+d exec $notify ' Normal Dunst Test Message...';exec $notify -u low 'Low  Dunst Test Message... ';exec $notify -u critical ' Critical Dunst Test Message... '
 
 # screenshots
 bindsym Print exec --no-startup-id spectacle 
@@ -262,7 +261,7 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 bindsym $mod+f fullscreen toggle
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle;$notify 'Floating Toggle'
+bindsym $mod+Shift+space floating toggle;exec $notify 'Floating Toggle'
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -285,7 +284,7 @@ bindsym $mod+Ctrl+l exec --no-startup-id blurlock
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-bindsym $mod+Ctrl+c exec --no-startup-id "$editor ~/i3install.sh ~/.gitignore ~/.config/i3/* ~/.Xresources ~/.config/compton.conf ~/.bumblebee-status.conf ~/.config/rofi/* ~/.config/dunst/* ~/.config/alacritty/* ~/.config/conky/*"; $notify 'Konfiguration geöffnet'
+bindsym $mod+Ctrl+c exec --no-startup-id "$editor ~/i3install.sh ~/.gitignore ~/.config/i3/* ~/.Xresources ~/.config/compton.conf ~/.bumblebee-status.conf ~/.config/rofi/* ~/.config/dunst/* ~/.config/alacritty/* ~/.config/conky/*"; exec $notify 'Konfiguration geöffnet'
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
@@ -608,10 +607,10 @@ set_from_resource $tbackground tbackground
 set_from_resource $foreground foreground
 
 # class                 border  backgr. text    indic.   child_border
-client.focused          #556064 #556064 #80FFF9 #FDF6E3
-client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
+client.focused          #556064 #DEAC89 #2F3D44 #FDF6E3
+client.focused_inactive #2F3D44 #ADADAD #2F3D44 #454948
+client.unfocused        #2F3D44 #E0E0E0 #2F3D44 #454948
+client.urgent           #CB4B16 #E6BEBE #2F3D44 #268BD2
 client.placeholder      #000000 #0c0c0c #ffffff #000000 
 
 #  client.background       $term_background

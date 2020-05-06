@@ -4,5 +4,7 @@ package fish_logo
 package fonts
 package foreign-env
 package title
+theme agnoster
+theme aight
 theme bobthefish
 theme default
