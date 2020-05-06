@@ -615,4 +615,19 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000
 
 #  client.background       $term_background
 
+#######################
+# Theme Switcher Mode #
+#######################
 
+set $mode_theme Theme wählen: (D)ark, (L)ight [ Achtung: Automatische Abmeldung und nur mit aktiven GIT-Repository möglich !! ]
+bindsym $mod+Shift+t mode "$mode_theme"
+
+mode "$mode_theme" {
+        bindsym d   exec --no-startup-id git checkout dark-theme; exec $notify -u critical "Auf Dark-Theme gewechselt..."; exec --no-startup-id i3exit logout; mode "default"
+        bindsym l   exec --no-startup-id git checkout light-theme; exec $notify -u critical "Auf Light-Theme gewechselt..."; exec --no-startup-id i3exit logout; mode "default"
+#        bindsym d      exec $notify -u critical "Auf Dark-Theme gewechselt... bitte neu anmelden"
+#        bindsym l      exec $notify -u critical "Auf Light-Theme gewechselt... bitte neu anmelden"
+        
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
