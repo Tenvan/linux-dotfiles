@@ -21,9 +21,12 @@ set $browser firefox
 set $mail thunderbird
 set $filemanager krusader
 set $filemanager_root kdesu krusader
+set $guard ksysguard
 
 set $font_text xft:Clear Sans Medium 11
 set $font_symbol pango:Hack 10
+
+set $border pixel 5
 
 #set $bumble_theme  default
 #*set $bumble_theme  dracula-powerline
@@ -172,7 +175,7 @@ bindsym $mod+m bar mode toggle
 
 # change borders
 bindsym $mod+u border none
-bindsym $mod+y border pixel 10
+bindsym $mod+y border $border
 bindsym $mod+n border normal
 
 # Use Mouse+$mod to drag floating windows
@@ -204,6 +207,7 @@ bindsym $mod+Ctrl+b exec --no-startup-id $terminal -e 'bmenu'
 bindsym $mod+F6 exec --no-startup-id $browser 
 bindsym $mod+F2 exec --no-startup-id $filemanager
 bindsym $mod+F3 exec --no-startup-id $filemanager_root
+bindsym Ctrl+Escape exec $guard
 
 # launch categorized menus
 bindsym $mod+d exec --no-startup-id "rofi -show drun -location 2"
@@ -314,6 +318,7 @@ assign [title="(?i)virtualbox"] $ws_VM
 assign [class="(?i)(navigator|firefox|chrome|chromium|opera)"] $ws_Web
 assign [class="Spotify"] $ws_Media
 assign [title="bashtop"] $ws_Status
+assign [class="ksysguard"] $ws_Status
 
 # Workspace on specific screen 
 workspace "$ws_Develop"     output $monitor1
@@ -378,14 +383,14 @@ bindsym $mod+Shift+Next     move container to workspace next
 ####################
 
 # Open specific applications in floating mode
-for_window [title="alsamixer"] floating enable border pixel 1
+for_window [title="alsamixer"] floating enable border $border
 for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
 for_window [class="fpakman"] floating enable
-for_window [class="Galculator"] floating enable border pixel 1
+for_window [class="Galculator"] floating enable border $border
 for_window [class="GParted"] floating enable border normal
-for_window [title="Grub Customizer"] floating enable border normal
+for_window [title="Grub Customizer"] floating enable border $border
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lightdm-gtk-greeter-settings"] floating enable
@@ -494,8 +499,7 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 # exec_always --no-startup-id fix_xcursor
 
 # Status
-exec --no-startup-id $terminal -t bashtop -e bashtop
-# exec --no-startup-id manjaro-hello
+exec --no-startup-id $guard
 
 #############################
 ### settings for i3-gaps: ###
@@ -518,15 +522,15 @@ smart_gaps on
 smart_borders on
 
 # Set defaults
-new_window pixel 1
+new_window $border
 new_float normal
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border normal
+default_border $border
 default_floating_border normal
 
 # Hide borders
-hide_edge_borders none
+hide_edge_borders smart
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
