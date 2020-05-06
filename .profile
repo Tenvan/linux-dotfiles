@@ -4,7 +4,7 @@ export EDITOR=$(which nvim)
 export TERM=alacritty
 
 # fix "xdg-open fork-bomb" export your preferred browser from here
-export BROWSER=$(which firefox-developer-edition)
+# export BROWSER=$(which firefox-developer-edition)
 
 [ -r $HOME/.profile.custom ] && . $HOME/.profile.custom
 

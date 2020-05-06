@@ -461,7 +461,7 @@ sudo systemctl start libvirtd.service
 errorCheck "libvirtd service"
 
 # Default Browser setzen (vorher $BROWSER Variable entfernen)
-xdg-settings set default-web-browser firefox.desktop
+xdg-settings set default-web-browser firefox-developer-edition.desktop
 
 sudo fc-cache -fv
 errorCheck "fontcache"

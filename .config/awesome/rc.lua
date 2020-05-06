@@ -1200,7 +1200,10 @@ awful.rules.rules = {
     -- System Monitor Consolen auf Screen 2 tag 9 schieben
     {
         rule_any = {
-            name = {"SysMon:*"},
+            name = {
+                "SysMon:*",
+                "Sys:*"
+            },
             class = {"Gnome-system-monitor"}
         },
         properties = {

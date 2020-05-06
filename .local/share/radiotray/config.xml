@@ -1,6 +1,6 @@
 <config>
   <option name="volume_increment" value="0.05"/>
-  <option name="volume_level" value="1.0"/>
+  <option name="volume_level" value="0.17"/>
   <option name="url_timeout" value="100"/>
   <option name="enable_application_indicator_support" value="false"/>
   <!-- valid options are 'appindicator', 'systray' and 'chooser' -->
