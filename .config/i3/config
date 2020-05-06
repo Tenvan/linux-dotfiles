@@ -501,6 +501,10 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 # Status
 exec --no-startup-id $guard
 
+# Landing Workspaces
+exec_always i3-msg "workspace $ws_DevConsole"
+exec_always i3-msg "workspace $ws_Develop"
+
 #############################
 ### settings for i3-gaps: ###
 #############################
