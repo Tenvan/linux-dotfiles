@@ -35,6 +35,7 @@ function fish_reload_config
 end
 
 function start_task_1
+  title "Task 1 => Dev Server"
   clear
   echo "Start Task 1"
   change_to_work
@@ -42,6 +43,7 @@ function start_task_1
 end
 
 function start_task_2
+  title "Task 2 => Pug Watch"
   clear
   echo "Start Task 2"
   change_to_work
@@ -50,6 +52,7 @@ function start_task_2
 end
 
 function start_task_3
+  title "Task 3 => Compiler"
   clear
   echo "Start Task 3"
   change_to_work
@@ -58,6 +61,7 @@ function start_task_3
 end
 
 function start_task_4
+  title "Task 4 => Compiler (HMR)"
   clear
   echo "Start Task 4"
   change_to_work
@@ -66,6 +70,7 @@ function start_task_4
 end
 
 function start_task_5
+  title "Task 5 => Compiler (AOT)"
   clear
   echo "Start Task 5"
   change_to_work

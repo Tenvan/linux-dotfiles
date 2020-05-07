@@ -500,7 +500,7 @@ cursor:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # at once.
-key_bindings:
+#key_bindings:
   # (Windows, Linux, and BSD only)
   #- { key: V,        mods: Control|Shift, action: Paste            }
   #- { key: C,        mods: Control|Shift, action: Copy             }
@@ -530,9 +530,9 @@ key_bindings:
   #- { key: F,      mods: Command|Control, action: ToggleFullscreen }
 
   #- { key: Paste,                    action: Paste                            }
-  - { key: V,      mods: Control,   action: Paste }
+  #- { key: V,      mods: Control,   action: Paste }
   #- { key: Copy,                     action: Copy                             }
-  - { key: C,      mods: Control,   action: Copy  }
+  #- { key: C,      mods: Control,   action: Copy  }
   #- { key: L,         mods: Control, action: ClearLogNotice                   }
   #- { key: L,         mods: Control, chars: "\x0c"                            }
   #- { key: PageUp,    mods: Shift,   action: ScrollPageUp,   mode: ~Alt       }

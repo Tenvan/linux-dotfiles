@@ -21,7 +21,7 @@ set $browser firefox
 set $mail thunderbird
 set $filemanager krusader
 set $filemanager_root kdesu krusader
-set $guard ksysguard
+set $guard systemmonitor
 
 set $font_text xft:Clear Sans Medium 11
 set $font_symbol pango:Hack 10
@@ -465,6 +465,7 @@ mode "resize" {
 exec --no-startup-id xset -b
 # exec --no-startup-id volumeicon
 exec --no-startup-id pa-applet
+exec --no-startup-id kwalletd5
 
 
 # polkits
