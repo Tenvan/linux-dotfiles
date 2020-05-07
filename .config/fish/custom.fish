@@ -40,9 +40,6 @@ set -g theme_project_dir_length 0
 
 set -g NODE_OPTIONS --max-old-space-size=8192
 
-echo "WORKDIR:" $WORK_DIR
-echo "PATH...:" $PATH
-
 #
 ##################################################
 

@@ -1,5 +1,4 @@
 package colored-man-pages
-package colorman
 package fonts
 package title
 theme agnoster
