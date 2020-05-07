@@ -21,7 +21,8 @@ set $browser firefox
 set $mail thunderbird
 set $filemanager krusader
 set $filemanager_root kdesu krusader
-set $guard systemmonitor
+set $guard gnome-system-monitor
+set $tasks systemmonitor
 
 set $font_text xft:Clear Sans Medium 11
 set $font_symbol pango:Hack 10
@@ -206,12 +207,13 @@ bindsym $mod+Ctrl+b exec --no-startup-id $terminal -e 'bmenu'
 bindsym $mod+F6 exec --no-startup-id $browser 
 bindsym $mod+F2 exec --no-startup-id $filemanager
 bindsym $mod+F3 exec --no-startup-id $filemanager_root
-bindsym Ctrl+Escape exec $guard
+bindsym Ctrl+Escape exec $tasks
 
 # launch categorized menus
 bindsym $mod+d exec --no-startup-id "rofi -show drun -location 2"
 bindsym $mod+z exec --no-startup-id "rofi -show combi"
 bindsym $mod+Ctrl+F2 exec --no-startup-id "rofi -combi-modi window,drun,keys,ssh,run -show combi -location 2"
+bindsym $mod+Shift+w exec --no-startup-id "bwmenu --show-password -- -location 2"
 
 # compton grafic effects
 bindsym $mod+t exec --no-startup-id pkill $composite
@@ -318,6 +320,7 @@ assign [class="(?i)(navigator|firefox|chrome|chromium|opera)"] $ws_Web
 assign [class="Spotify"] $ws_Media
 assign [title="bashtop"] $ws_Status
 assign [class="ksysguard"] $ws_Status
+assign [class="gnome-system-monitor"] $ws_Status
 
 # Workspace on specific screen 
 workspace "$ws_Develop"     output $monitor1
@@ -465,8 +468,6 @@ mode "resize" {
 exec --no-startup-id xset -b
 # exec --no-startup-id volumeicon
 exec --no-startup-id pa-applet
-exec --no-startup-id kwalletd5
-
 
 # polkits
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
