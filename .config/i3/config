@@ -314,13 +314,13 @@ set $ws_Status      9:  Status
 
 # Open applications on specific workspaces
 assign [title="(?i)(webstorm|rider)"] $ws_Develop
+assign [class="(?i)gnome-system-monitor"] $ws_Status
 assign [class="(?i)microsoft teams - preview"] $ws_Teams 
 assign [title="(?i)virtualbox"] $ws_VM
 assign [class="(?i)(navigator|firefox|chrome|chromium|opera)"] $ws_Web
 assign [class="Spotify"] $ws_Media
 assign [title="bashtop"] $ws_Status
 assign [class="ksysguard"] $ws_Status
-assign [class="gnome-system-monitor"] $ws_Status
 
 # Workspace on specific screen 
 workspace "$ws_Develop"     output $monitor1
