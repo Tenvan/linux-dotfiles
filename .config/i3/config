@@ -22,7 +22,7 @@ set $mail thunderbird
 set $filemanager krusader
 set $filemanager_root kdesu krusader
 set $guard gnome-system-monitor
-set $tasks systemmonitor
+set $tasks xfce4-taskmanager
 
 set $font_text xft:Clear Sans Medium 11
 set $font_symbol pango:Hack 10
@@ -312,16 +312,6 @@ set $ws_Media       7:  Audio /  Video
 set $ws_Admin       8:  Admin
 set $ws_Status      9:  Status
 
-# Open applications on specific workspaces
-assign [title="(?i)(webstorm|rider)"] $ws_Develop
-assign [class="(?i)gnome-system-monitor"] $ws_Status
-assign [class="(?i)microsoft teams - preview"] $ws_Teams 
-assign [title="(?i)virtualbox"] $ws_VM
-assign [class="(?i)(navigator|firefox|chrome|chromium|opera)"] $ws_Web
-assign [class="Spotify"] $ws_Media
-assign [title="bashtop"] $ws_Status
-assign [class="ksysguard"] $ws_Status
-
 # Workspace on specific screen 
 workspace "$ws_Develop"     output $monitor1
 workspace "$ws_DevConsole"  output $monitor2
@@ -385,38 +375,52 @@ bindsym $mod+Shift+Next     move container to workspace next
 ####################
 
 # Open specific applications in floating mode
-for_window [title="alsamixer"] floating enable border $border
-for_window [class="calamares"] floating enable border normal
-for_window [class="Clipgrab"] floating enable
-for_window [title="File Transfer*"] floating enable
-for_window [class="fpakman"] floating enable
-for_window [class="Galculator"] floating enable border $border
+# used apps
+for_window [title="JetBrains Toolbox"] floating enable border normal
 for_window [class="GParted"] floating enable border normal
 for_window [title="Grub Customizer"] floating enable border $border
-for_window [title="i3_help"] floating enable sticky enable border normal
-for_window [class="Lightdm-settings"] floating enable
-for_window [class="Lightdm-gtk-greeter-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="Manjaro-hello"] floating enable
-for_window [class="Manjaro Settings Manager"] floating enable border normal
-for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="octopi"] floating enable
 for_window [class="Pamac-manager"] floating enable
-for_window [class="Pavucontrol"] floating enable
+for_window [class="Galculator"] floating enable border $border
+for_window [class="Manjaro-hello"] floating enable
+for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [class="qt5ct"] floating enable sticky enable border normal
-for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
-for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Skype"] floating enable border normal
 for_window [class="Spotify"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
-for_window [class="Xfburn"] floating enable
+for_window [class="Lightdm-settings"] floating enable
+for_window [class="Lightdm-gtk-greeter-settings"] floating enable
 # for_window [class="(?i)teams"] fullscreen enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="(?i)xfce4-taskmanager"] floating enable border normal
+
+# unknow apps
+for_window [title="alsamixer"] floating enable border $border
+for_window [class="Clipgrab"] floating enable
+for_window [title="File Transfer*"] floating enable
+for_window [class="fpakman"] floating enable
+for_window [class="Simple-scan"] floating enable border normal
+for_window [class="Xfburn"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
+
+############################################
+# Open applications on specific workspaces #
+############################################
+assign [title="(?i)(webstorm|rider)"] $ws_Develop
+assign [title="(?i)jetbrains toolbox"] $ws_Develop
+assign [class="(?i)gnome-system-monitor"] $ws_Status
+assign [class="(?i)microsoft teams - preview"] $ws_Teams
+assign [title="(?i)virtualbox"] $ws_VM
+assign [class="(?i)(navigator|firefox|chrome|chromium|opera)"] $ws_Web
+assign [class="Spotify"] $ws_Media
+assign [title="bashtop"] $ws_Status
+assign [class="ksysguard"] $ws_Status
+
 
 ###########################
 # i3 and power management #
