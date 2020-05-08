@@ -15,3 +15,6 @@ yay -S --noconfirm canon-cque samsung-printers cups-pdf foxitreader system-confi
  
 chmod +x ~/100-user-monitors.sh
 sudo cp ~/100-user-monitors.sh /etc/X11/xinit/xinitrc.d
+
+# Default Browser setzen (vorher $BROWSER Variable entfernen)
+xdg-settings set default-web-browser firefox.desktop
