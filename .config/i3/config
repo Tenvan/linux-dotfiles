@@ -63,8 +63,8 @@ font $font_text
 ######################
 # Set Monitor layout #
 ######################
-exec_always $notify "Monitor 1: $monitor1"
-exec_always $notify "Monitor 2: $monitor2"
+exec_always $notify " Monitor 1: $monitor1"
+exec_always $notify " Monitor 2: $monitor2"
 
 set_from_resource $monitor1 monitor1 DP-1
 set_from_resource $monitor2 monitor2 DP-2
@@ -489,12 +489,15 @@ exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 
-set $conky "killall conky; sleep 1;conky -c ~/.config/conky/conky-main.conf;conky -c ~/.config/conky/conky-help.conf;notify-send 'conky started!'"
+set $conky "killall conky; sleep 1;conky -c ~/.config/conky/conky-main.conf;conky -c ~/.config/conky/conky-help.conf;notify-send ' conky started!'"
 
 exec_always --no-startup-id $conky
 bindsym $mod+Shift+o exec --no-startup-id $conky
 
 exec --no-startup-id xautolock -time 10 -locker blurlock
+
+# Services
+exec_always --no-startup-id "ungit --no-launchBrowser; notify-send ' ungit started!'"
 
 # exec_always --no-startup-id ff-theme-util
 # exec_always --no-startup-id fix_xcursor
