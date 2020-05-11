@@ -411,15 +411,23 @@ for_window [urgent=latest] focus
 ############################################
 # Open applications on specific workspaces #
 ############################################
+# Develop workspace
 assign [title="(?i)(webstorm|rider)"] $ws_Develop
 assign [title="(?i)jetbrains toolbox"] $ws_Develop
+assign [class="(?i)jetbrains-webstorm"] $ws_Develop
+assign [class="(?i)jetbrains"] $ws_Develop
+# Status workspace
 assign [class="(?i)gnome-system-monitor"] $ws_Status
-assign [class="(?i)microsoft teams - preview"] $ws_Teams
-assign [title="(?i)virtualbox"] $ws_VM
-assign [class="(?i)(navigator|firefox|chrome|chromium|opera)"] $ws_Web
-assign [class="Spotify"] $ws_Media
 assign [title="bashtop"] $ws_Status
 assign [class="ksysguard"] $ws_Status
+# Teams workspace
+assign [class="(?i)microsoft teams - preview"] $ws_Teams
+# VirtualBox workspace
+assign [title="(?i)virtualbox"] $ws_VM
+# Web workspace
+assign [class="(?i)(navigator|firefox|chrome|chromium|opera)"] $ws_Web
+# Media workspace
+assign [class="Spotify"] $ws_Media
 
 
 ###########################
