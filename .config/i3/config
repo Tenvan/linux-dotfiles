@@ -513,7 +513,7 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id "ungit --no-launchBrowser; notify-send ' ungit started!'"
 
 # exec_always --no-startup-id ff-theme-util
-# exec_always --no-startup-id fix_xcursor
+exec_always --no-startup-id fix_xcursor
 
 # Status
 exec --no-startup-id $guard
