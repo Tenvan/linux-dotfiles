@@ -431,7 +431,6 @@ assign [class="(?i)(navigator|firefox|chrome|chromium|opera)"] $ws_Web
 # Media workspace
 assign [class="Spotify"] $ws_Media
 
-
 ###########################
 # i3 and power management #
 ###########################
@@ -649,8 +648,8 @@ set $mode_theme Theme wählen: (D)ark, (L)ight [ Achtung: Automatische Abmeldung
 bindsym $mod+Shift+t mode "$mode_theme"
 
 mode "$mode_theme" {
-        bindsym d   exec --no-startup-id git checkout dark-theme -f; exec $notify -u critical "Auf Dark-Theme gewechselt..."; exec --no-startup-id i3exit logout; mode "default"
-        bindsym l   exec --no-startup-id git checkout light-theme -f; exec $notify -u critical "Auf Light-Theme gewechselt..."; exec --no-startup-id i3exit logout; mode "default"
+        bindsym d exec --no-startup-id "git checkout dark-theme -f; xrdb -merge ~/.Xresources; nitrogen --restore; sleep 1;  $composite --config ~/.config/compton.conf -b; notif-send -u critical 'Auf Dark-Theme gewechselt. QT5 Anwendung neu starten.'; i3-msg restart"
+        bindsym l exec --no-startup-id "git checkout light-theme -f; xrdb -merge ~/.Xresources; nitrogen --restore; sleep 1; $composite --config ~/.config/compton.conf -b; notif-send -u critical 'Auf Light-Theme gewechselt. QT5 Anwendung neu starten.'; i3-msg restart
         
         bindsym Return mode "default"
         bindsym Escape mode "default"

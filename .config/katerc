@@ -104,7 +104,7 @@ Word Completion Minimal Word Length=3
 Word Completion Remove Tail=true
 
 [KTextEditor::Search]
-Search History=ungit,$tasks,$ws_Teams
+Search History=+r,ungit,$tasks,$ws_Teams
 
 [Konsole]
 AutoSyncronize=true
@@ -113,11 +113,11 @@ RunPrefix=
 SetEditor=false
 
 [MainWindow]
-Height 1080=1010
-State=AAAA/wAAAAD9AAAAAAAABOoAAAPUAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
+Height 1080=928
+State=AAAA/wAAAAD9AAAAAAAABDcAAAOCAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
 ToolBarsMovable=Disabled
 Width 1920=1920
-Width 2560=1258
+Width 2560=1079
 
 [filetree]
 editShade=179,218,246
