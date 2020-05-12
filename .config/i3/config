@@ -14,15 +14,16 @@ set $mod Mod4
 set $notify --no-startup-id notify-send --expire-time=2500
 
 # extern apps definition
-set $terminal alacritty
-set $editor kate
-set $composite picom
 set $browser firefox
-set $mail thunderbird
+set $clipboard copyq
+set $composite picom
+set $editor kate
 set $filemanager krusader
 set $filemanager_root kdesu krusader
 set $guard gnome-system-monitor
+set $mail thunderbird
 set $tasks xfce4-taskmanager
+set $terminal alacritty
 
 set $font_text xft:Clear Sans Medium 11
 set $font_symbol pango:Hack 10
@@ -393,9 +394,10 @@ for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lightdm-gtk-greeter-settings"] floating enable
-# for_window [class="(?i)teams"] fullscreen enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="(?i)xfce4-taskmanager"] floating enable border normal
+for_window [class="(?i)teams"] fullscreen enable
+for_window [class="(?i)copyq"] floating enable border normal
 
 # unknow apps
 for_window [title="alsamixer"] floating enable border $border
@@ -497,7 +499,7 @@ exec xfce4-power-manager
 exec system-config-printer-applet
 # exec --no-startup-id pamac-tray
 exec --no-startup-id octopi-notifier
-exec --no-startup-id clipit
+exec_always --no-startup-id $clipboard
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 

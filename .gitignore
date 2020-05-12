@@ -17,8 +17,10 @@
 !.config/compton.conf
 !.config/alacritty
 !.config/alacritty/*
-!.config/clipit
-!.config/clipit/*
+!.config/copyq
+!.config/copyq/copyq.conf
+!.config/copyq/themes
+!.config/copyq/themes/*
 !.config/conky
 !.config/conky/*
 !.config/dunst
