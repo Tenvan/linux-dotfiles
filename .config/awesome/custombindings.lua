@@ -50,7 +50,7 @@ mycustomkeys        = gears.table.join(
 
   awful.key({ modkey }, "b",
             function()
-              myscreen = awful.screen.focused()
+              myscreen                 = awful.screen.focused()
               myscreen.mywibox.visible = not myscreen.mywibox.visible
             end,
             { description = "toggle statusbas", group = "awesome" }
@@ -138,9 +138,17 @@ mycustomkeys        = gears.table.join(
 
   awful.key({ modkey, "Control" }, "t",
             function()
-              awful.spawn(editor_cmd .. " " .. themefile)
-            end,
-            { description = "edit theme", group = "expert" }
+              awful.spawn.easy_async_with_shell(
+                "killall " .. composite,
+                function()
+                  naughty.notify({
+                                   preset = naughty.config.presets.normal,
+                                   title  = "Info!",
+                                   text   = " picom killed.."
+                                 })
+                end
+              )
+            end
   ),
 
   awful.key({ modkey }, "t",
@@ -149,12 +157,12 @@ mycustomkeys        = gears.table.join(
                 "killall " .. composite .. "; sleep 1;",
                 function()
                   awful.spawn.easy_async_with_shell(
-                    composite .. " --config ~/.config/compton.conf -b",
+                    composite .. " --config ~/.config/compton-awesome.conf -b",
                     function()
                       naughty.notify({
                                        preset = naughty.config.presets.normal,
                                        title  = "Info!",
-                                       text   = " picom restarted.."
+                                       text   = " picom restarted.."
                                      })
 
                     end)

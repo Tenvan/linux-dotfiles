@@ -18,7 +18,7 @@
 
 # Ausnahmen im .config folder
 !.config
-!.config/compton.conf
+!.config/compton-i3.conf
 !.config/alacritty
 !.config/alacritty/*
 !.config/awesome

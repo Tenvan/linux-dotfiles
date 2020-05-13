@@ -218,7 +218,7 @@ bindsym $mod+Shift+w exec --no-startup-id "bwmenu --show-password -- -location 2
 
 # compton grafic effects
 bindsym $mod+t exec --no-startup-id pkill $composite
-bindsym $mod+Ctrl+t exec --no-startup-id "pkill $composite; sleep 1;$composite --config ~/.config/compton.conf -b;"; exec $notify 'restart $composite'
+bindsym $mod+Ctrl+t exec --no-startup-id "pkill $composite; sleep 1;$composite --config ~/.config/compton-i3.conf -b;"; exec $notify 'restart $composite'
 bindsym $mod+Ctrl+d --release exec "killall dunst; sleep 1; dunst;exec $notify 'restart dunst'"
 bindsym $mod+Shift+d exec $notify ' Normal Dunst Test Message...';exec $notify -u low 'Low  Dunst Test Message... ';exec $notify -u critical ' Critical Dunst Test Message... '
 
@@ -488,7 +488,7 @@ exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
 
 # Desktop
 exec --no-startup-id xautolock -time 10 -locker blurlock
-exec --no-startup-id nitrogen --restore; sleep 1; $composite --config ~/.config/compton.conf -b
+exec --no-startup-id nitrogen --restore; sleep 1; $composite --config ~/.config/compton-i3.conf -b
 exec --no-startup-id dunst
 
 # Tools
@@ -648,8 +648,8 @@ set $mode_theme Theme wählen: (D)ark, (L)ight [ Achtung: Automatische Abmeldung
 bindsym $mod+Shift+t mode "$mode_theme"
 
 mode "$mode_theme" {
-        bindsym d exec --no-startup-id "git checkout dark-theme -f; xrdb -merge ~/.Xresources; nitrogen --restore; sleep 1;  $composite --config ~/.config/compton.conf -b; notif-send -u critical 'Auf Dark-Theme gewechselt. QT5 Anwendung neu starten.'; i3-msg restart"
-        bindsym l exec --no-startup-id "git checkout light-theme -f; xrdb -merge ~/.Xresources; nitrogen --restore; sleep 1; $composite --config ~/.config/compton.conf -b; notif-send -u critical 'Auf Light-Theme gewechselt. QT5 Anwendung neu starten.'; i3-msg restart
+        bindsym d exec --no-startup-id "git checkout dark-theme -f; xrdb -merge ~/.Xresources; nitrogen --restore; sleep 1;  $composite --config ~/.config/compton-i3.conf -b; notif-send -u critical 'Auf Dark-Theme gewechselt. QT5 Anwendung neu starten.'; i3-msg restart"
+        bindsym l exec --no-startup-id "git checkout light-theme -f; xrdb -merge ~/.Xresources; nitrogen --restore; sleep 1; $composite --config ~/.config/compton-i3.conf -b; notif-send -u critical 'Auf Light-Theme gewechselt. QT5 Anwendung neu starten.'; i3-msg restart
 
         bindsym Return mode "default"
         bindsym Escape mode "default"

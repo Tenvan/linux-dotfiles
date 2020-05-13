@@ -31,7 +31,9 @@ run /usr/lib/polkit-kde-authentication-agent-1
 ## Desktop
 run xautolock -time 10 -locker blurlock
 run nitrogen --restore
-run picom --config ~/.config/compton.conf -b
+
+killall picom
+run picom --config ~/.config/compton-awesome.conf -b
 
 ## TODO noch nötig ?
 ## run dunst

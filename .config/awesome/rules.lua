@@ -29,7 +29,8 @@ awful.rules.rules = {
       buttons          = clientbuttons,
       screen           = awful.screen.preferred,
       placement        = awful.placement.no_overlap + awful.placement.no_offscreen,
-      size_hints_honor = true
+      size_hints_honor = true,
+      opacity          = 1
     }
   },
 
@@ -74,7 +75,35 @@ awful.rules.rules = {
         "pop-up" -- e.g. Google Chrome's (detached) Developer Tools.
       }
     },
-    properties = { floating = true }
+    properties = {
+      floating = true
+    }
+  },
+
+  -- opacity clients.
+  {
+    rule_any   = {
+      instance = {
+        "copyq",
+      },
+      class    = {
+        "JetBrains Toolbox",
+        "Alacritty"
+      },
+
+      -- Note that the name property shown in xprop might be set slightly after creation of the client
+      -- and the name shown there might not match defined rules here.
+      name     = {
+        "Taskmanager",
+        "Taschenrechner"
+        -- xev.
+      },
+      role     = {
+        "pop-up" -- e.g. Google Chrome's (detached) Developer Tools.
+      }
+    },
+    properties = {
+      opacity  = 0.7 }
   },
 
   -- Add titlebars to normal clients and dialogs

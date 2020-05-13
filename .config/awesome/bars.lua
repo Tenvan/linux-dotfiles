@@ -8,25 +8,39 @@
 require("definitions")
 
 -- awesome-wm-widgets
-local battery_widget   = require("awesome-wm-widgets.battery-widget.battery")
-local cpu_widget       = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+local battery_widget  = require("awesome-wm-widgets.battery-widget.battery")
+local cpu_widget      = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
+--local storage_widget  = require("awesome-wm-widgets.storage-widget.storage-widget")
 
 -- Standard awesome library
-local gears            = require("gears")
-local awful            = require("awful")
+local gears           = require("gears")
+local awful           = require("awful")
 
 -- Widget and layout library
-local wibox            = require("wibox")
+local wibox           = require("wibox")
 
 -- Theme handling library
-local beautiful        = require("beautiful")
+local beautiful       = require("beautiful")
 
 -- Keyboard map indicator and switcher
-myKeyboardLayout       = awful.widget.keyboardlayout()
+myKeyboardLayout      = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock            = wibox.widget.textclock()
+
+local cw              = calendar_widget({
+                                          theme     = 'nord',
+                                          placement = 'top_right'
+                                        })
+
+mytextclock           = wibox.widget.textclock()
+mytextclock:connect_signal("button::press",
+                           function(_, _, _, button)
+                             if button == 1 then
+                               cw.toggle()
+                             end
+                           end)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons  = gears.table.join(
@@ -149,6 +163,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist, -- Middle widget
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
+      --storage_widget(),
       cpu_widget({
                    width        = 120,
                    step_width   = 2,
@@ -158,7 +173,7 @@ awful.screen.connect_for_each_screen(function(s)
       myKeyboardLayout,
       wibox.widget.systray(),
       mytextclock,
-      --battery_widget(),
+      battery_widget(),
       s.mylayoutbox
     }
   }
