@@ -11,7 +11,7 @@ require("definitions")
 local battery_widget  = require("awesome-wm-widgets.battery-widget.battery")
 local cpu_widget      = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
---local storage_widget  = require("awesome-wm-widgets.storage-widget.storage-widget")
+local storage_widget  = require("awesome-wm-widgets.fs-widget.fs-widget")
 
 -- Standard awesome library
 local gears           = require("gears")
@@ -31,7 +31,7 @@ myKeyboardLayout      = awful.widget.keyboardlayout()
 
 local cw              = calendar_widget({
                                           theme     = 'nord',
-                                          placement = 'top_right'
+                                          placement = 'bottom_right'
                                         })
 
 mytextclock           = wibox.widget.textclock()
@@ -135,47 +135,86 @@ awful.screen.connect_for_each_screen(function(s)
                    awful.layout.inc(-1)
                  end)))
   -- Create a taglist widget
-  s.mytaglist  = awful.widget.taglist {
+  s.mytaglist     = awful.widget.taglist {
     screen  = s,
     filter  = awful.widget.taglist.filter.all,
     buttons = taglist_buttons
   }
 
   -- Create a tasklist widget
-  s.mytasklist = awful.widget.tasklist {
+  s.mytasklist    = awful.widget.tasklist {
     screen  = s,
     filter  = awful.widget.tasklist.filter.currenttags,
     buttons = tasklist_buttons
   }
 
   -- Create the wibox
-  s.mywibox    = awful.wibar({ position = "top", screen = s })
+  s.mywiboxtop    = awful.wibar({ position = "top", screen = s, opacity = 0.7 })
+  s.mywiboxbottom = awful.wibar({ position = "bottom", screen = s, opacity = 0.7, height = 24 })
+  --s.mywiboxright = awful.wibar({ position = "right", screen = s, width = 200, opacity = 0.7 })
 
-  -- Add widgets to the wibox
-  s.mywibox:setup {
+  -- Add widgets to the wibox (second right)
+  s.mywiboxtop:setup {
     layout = wibox.layout.align.horizontal,
     { -- Left widgets
       layout = wibox.layout.fixed.horizontal,
-      mylauncher,
       s.mytaglist,
-      s.mypromptbox
     },
-    s.mytasklist, -- Middle widget
+    { -- Left widgets
+      layout = wibox.layout.fixed.horizontal,
+    },
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
-      --storage_widget(),
+      storage_widget({ mounts = { '/', '/media/BIGDATA', '/media/VM', '/media/WORKSPACE' } }),
       cpu_widget({
                    width        = 120,
                    step_width   = 2,
                    step_spacing = 0,
                    color        = '#434c5e'
                  }),
+      mytextclock,
+    }
+  }
+
+  -- Add widgets to the wibox (main top)
+  s.mywiboxbottom:setup {
+    layout  = wibox.layout.align.horizontal,
+    { -- Left widgets
+      layout = wibox.layout.fixed.horizontal,
+      mylauncher,
+      s.mypromptbox
+    },
+    s.mytasklist, -- Middle widget
+    { -- Right widgets
+      layout = wibox.layout.fixed.horizontal,
       myKeyboardLayout,
       wibox.widget.systray(),
       mytextclock,
-      battery_widget(),
       s.mylayoutbox
     }
   }
+
+  -- Add widgets to the wibox (second right)
+  --s.mywiboxright:setup {
+  --  layout = wibox.layout.align.vertical,
+  --  { -- Left widgets
+  --    layout = wibox.layout.fixed.vertical,
+  --  },
+  --  { -- Left widgets
+  --    layout = wibox.layout.fixed.vertical,
+  --  },
+  --  { -- Right widgets
+  --    layout = wibox.layout.fixed.vertical,
+  --    storage_widget({ mounts = { '/', '/media/BIGDATA', '/media/VM', '/media/WORKSPACE' } }),
+  --    cpu_widget({
+  --                 width        = 120,
+  --                 step_width   = 2,
+  --                 step_spacing = 0,
+  --                 color        = '#434c5e'
+  --               }),
+  --    mytextclock,
+  --  }
+  --}
+
 end)
 -- }}}
