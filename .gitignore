@@ -12,11 +12,19 @@
 !i3install.sh
 !README.MD
 
+# Ausnahmen Script Folder
+!Scripts
+!Scripts/*
+
 # Ausnahmen im .config folder
 !.config
 !.config/compton.conf
 !.config/alacritty
 !.config/alacritty/*
+!.config/awesome
+!.config/awesome/*
+!.config/awesome/themes/**
+!.config/awesome/themes/**/*
 !.config/copyq
 !.config/copyq/copyq.conf
 !.config/copyq/themes

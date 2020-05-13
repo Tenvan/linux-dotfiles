@@ -87,14 +87,14 @@ bindsym $mod+Ctrl+m exec $terminal -e 'alsamixer'
 bar {
     id main-top-bar
     font $font_symbol
-    
+
     position top
     output $monitor1
-    
+
     status_command bumblebee-status --markup=pango \
     -m title progress spotify pomodoro:timer5 pomodoro:timer10 pomodoro:timer20  pasource pasink \
     -t $bumble_theme
-    
+
     tray_output $monitor1
     workspace_buttons no
 
@@ -111,11 +111,11 @@ bar {
 
     position bottom
     output $monitor1
-    
+
     status_command bumblebee-status --markup=pango \
     -m hostname kernel git memory layout-xkbswitch indicator dunst datetime \
     -t $bumble_theme
-    
+
     tray_output none
 
     colors {
@@ -128,15 +128,15 @@ bar {
 bar {
     id second-top-bar
     font $font_symbol
-    
+
     position top
     output $monitor2
-    
+
     status_command bumblebee-status --markup=pango \
     -m network_traffic disk:disk_root disk:disk_bigdata disk:disk_vm disk:disk_workspace weather:br weather:hx \
     -p weather.right-click="notify-send {instance}" \
     -t $bumble_theme
-    
+
     tray_output none
     workspace_buttons no
 
@@ -157,8 +157,8 @@ bar {
     status_command bumblebee-status --markup=pango \
     -m sensors2  cpu2 \
     -t $bumble_theme
-    
-    tray_output none    
+
+    tray_output none
 
     colors {
         background $background
@@ -205,7 +205,7 @@ bindsym $mod+e layout toggle split;exec $notify 'Layout Split'
 
 # start applications
 bindsym $mod+Ctrl+b exec --no-startup-id $terminal -e 'bmenu'
-bindsym $mod+F6 exec --no-startup-id $browser 
+bindsym $mod+F6 exec --no-startup-id $browser
 bindsym $mod+F2 exec --no-startup-id $filemanager
 bindsym $mod+F3 exec --no-startup-id $filemanager_root
 bindsym Ctrl+Escape exec $tasks
@@ -223,7 +223,7 @@ bindsym $mod+Ctrl+d --release exec "killall dunst; sleep 1; dunst;exec $notify '
 bindsym $mod+Shift+d exec $notify ' Normal Dunst Test Message...';exec $notify -u low 'Low  Dunst Test Message... ';exec $notify -u critical ' Critical Dunst Test Message... '
 
 # screenshots
-bindsym Print exec --no-startup-id spectacle 
+bindsym Print exec --no-startup-id spectacle
 bindsym $mod+Print --release exec --no-startup-id spectacle -m
 bindsym $mod+Shift+Print --release exec --no-startup-id spectacle -a -g
 bindsym $mod+Ctrl+Print --release exec --no-startup-id spectacle -r
@@ -313,7 +313,7 @@ set $ws_Media       7:  Audio /  Video
 set $ws_Admin       8:  Admin
 set $ws_Status      9:  Status
 
-# Workspace on specific screen 
+# Workspace on specific screen
 workspace "$ws_Develop"     output $monitor1
 workspace "$ws_DevConsole"  output $monitor2
 workspace "$ws_Divers"      output $monitor1
@@ -377,27 +377,27 @@ bindsym $mod+Shift+Next     move container to workspace next
 
 # Open specific applications in floating mode
 # used apps
-for_window [title="JetBrains Toolbox"] floating enable border normal
-for_window [class="GParted"] floating enable border normal
-for_window [title="Grub Customizer"] floating enable border $border
-for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="Nitrogen"] floating enable sticky enable border normal
-for_window [class="octopi"] floating enable
-for_window [class="Pamac-manager"] floating enable
-for_window [class="Galculator"] floating enable border $border
-for_window [class="Manjaro-hello"] floating enable
-for_window [class="Manjaro Settings Manager"] floating enable border normal
-for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
+for_window [class="(?i)copyq"] floating enable border normal
+for_window [class="(?i)teams"] fullscreen enable
+for_window [class="(?i)virtualbox"] floating enable border normal
+for_window [class="(?i)xfce4-taskmanager"] floating enable border normal
+for_window [class="GParted"] floating enable border normal
+for_window [class="Galculator"] floating enable border $border
+for_window [class="Lightdm-gtk-greeter-settings"] floating enable
+for_window [class="Lightdm-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Manjaro Settings Manager"] floating enable border normal
+for_window [class="Manjaro-hello"] floating enable
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+for_window [class="Pamac-manager"] floating enable
+for_window [class="Pavucontrol"] floating enable
 for_window [class="Spotify"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
-for_window [class="(?i)virtualbox"] floating enable border normal
-for_window [class="Lightdm-settings"] floating enable
-for_window [class="Lightdm-gtk-greeter-settings"] floating enable
-for_window [class="Pavucontrol"] floating enable
-for_window [class="(?i)xfce4-taskmanager"] floating enable border normal
-for_window [class="(?i)teams"] fullscreen enable
-for_window [class="(?i)copyq"] floating enable border normal
+for_window [class="octopi"] floating enable
+for_window [class="qt5ct"] floating enable sticky enable border normal
+for_window [title="Grub Customizer"] floating enable border $border
+for_window [title="JetBrains Toolbox"] floating enable border normal
 
 # unknow apps
 for_window [title="alsamixer"] floating enable border $border
@@ -538,7 +538,7 @@ gaps outer 0
 # Smart gaps (gaps used if only more than one container on the workspace)
 smart_gaps on
 
-# Smart borders (draw borders around container only if it is not the only container on this workspace) 
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
 
@@ -601,7 +601,7 @@ mode "$mode_gaps_outer" {
 # Change the variable name at the place you want to match the color
 # of your terminal like this:
 # [example]
-# If you want your bar to have the same background color as your 
+# If you want your bar to have the same background color as your
 # terminal background change the line 362 from:
 # background #14191D
 # to:
@@ -636,7 +636,7 @@ client.focused          #556064 #556064 #80FFF9 #FDF6E3
 client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
 client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
 client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-client.placeholder      #000000 #0c0c0c #ffffff #000000 
+client.placeholder      #000000 #0c0c0c #ffffff #000000
 
 #  client.background       $term_background
 
@@ -650,7 +650,7 @@ bindsym $mod+Shift+t mode "$mode_theme"
 mode "$mode_theme" {
         bindsym d exec --no-startup-id "git checkout dark-theme -f; xrdb -merge ~/.Xresources; nitrogen --restore; sleep 1;  $composite --config ~/.config/compton.conf -b; notif-send -u critical 'Auf Dark-Theme gewechselt. QT5 Anwendung neu starten.'; i3-msg restart"
         bindsym l exec --no-startup-id "git checkout light-theme -f; xrdb -merge ~/.Xresources; nitrogen --restore; sleep 1; $composite --config ~/.config/compton.conf -b; notif-send -u critical 'Auf Light-Theme gewechselt. QT5 Anwendung neu starten.'; i3-msg restart
-        
+
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
