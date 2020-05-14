@@ -21,16 +21,16 @@ awful.rules.rules = {
   {
     rule       = {},
     properties = {
-      border_width     = beautiful.border_width,
-      border_color     = beautiful.border_normal,
-      focus            = awful.client.focus.filter,
-      raise            = true,
-      keys             = clientkeys,
-      buttons          = clientbuttons,
-      screen           = awful.screen.preferred,
-      placement        = awful.placement.no_overlap + awful.placement.no_offscreen,
-      size_hints_honor = true,
-      opacity          = 1
+      border_width = beautiful.border_width,
+      border_color = beautiful.border_normal,
+      focus        = awful.client.focus.filter,
+      raise        = true,
+      keys         = clientkeys,
+      buttons      = clientbuttons,
+      screen       = awful.screen.preferred,
+      placement    = awful.placement.no_overlap + awful.placement.no_offscreen,
+      --size_hints_honor = true,
+      --opacity          = 1
     }
   },
 
@@ -39,8 +39,6 @@ awful.rules.rules = {
     rule_any   = {
       instance = {
         "copyq",
-        -- Includes session name in class.
-        "pinentry"
       },
       class    = {
         "Pamac-manager",
@@ -88,8 +86,7 @@ awful.rules.rules = {
         "copyq",
       },
       class    = {
-        "JetBrains Toolbox",
-        "Alacritty"
+        "Alacritty",
       },
 
       -- Note that the name property shown in xprop might be set slightly after creation of the client
@@ -97,7 +94,9 @@ awful.rules.rules = {
       name     = {
         "Taskmanager",
         "Taschenrechner",
-        "BMenu"
+        "BMenu",
+        "Rofi",
+        "rofi"
         -- xev.
       },
       role     = {
@@ -105,7 +104,7 @@ awful.rules.rules = {
       }
     },
     properties = {
-      opacity  = 0.7 }
+      opacity = 0.7 }
   },
 
   -- Add titlebars to normal clients and dialogs

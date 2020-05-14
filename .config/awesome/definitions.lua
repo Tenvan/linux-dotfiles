@@ -5,8 +5,10 @@
 ---
 
 -- Standard awesome library
-local gears      = require("gears")
-local awful      = require("awful")
+local gears          = require("gears")
+local awful          = require("awful")
+
+gdebug         = require("gears.debug")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
@@ -18,29 +20,29 @@ editor           = "kate" -- default editor
 editor_cmd       = editor
 
 -- extern apps definition
-browser          = "firefox"
-clipboard        = "copyq"
-composite        = "picom"
-filemanager      = "krusader"
-filemanager_root = "kdesu krusader"
-guard            = "gnome-system-monitor"
-mail             = "thunderbird"
-screenlook       = "blurlock"
-tasks            = "xfce4-taskmanager"
+browser              = "firefox"
+clipboard            = "copyq"
+composite            = "picom"
+filemanager          = "krusader"
+filemanager_root     = "kdesu krusader"
+guard                = "gnome-system-monitor"
+mail                 = "thunderbird"
+screenlook           = "blurlock"
+tasks                = "xfce4-taskmanager"
 
-themepath        = gears.filesystem.get_xdg_config_home() .. "awesome/themes/"
-themefile        = themepath .. themename .. "/theme.lua"
+themepath            = gears.filesystem.get_xdg_config_home() .. "awesome/themes/"
+themefile            = themepath .. themename .. "/theme.lua"
 
 -- {{{ tag definitions
-tag_Develop    = " Develop"
-tag_DevConsole = " Develop Consolen"
-tag_Divers     = " Sonstiges"
-tag_Teams      = " Teams"
-tag_VM         = " VirtualBox"
-tag_Web        = " Web"
-tag_Media      = " Audio /  Video"
-tag_Admin      = " Admin"
-tag_Status     = " Status"
+tag_Develop          = " Develop"
+tag_DevConsole       = " Develop Consolen"
+tag_Divers           = " Sonstiges"
+tag_Teams            = " Teams"
+tag_VM               = " VirtualBox"
+tag_Web              = " Web"
+tag_Media            = " Audio /  Video"
+tag_Admin            = " Admin"
+tag_Status           = " Status"
 -- }}}
 
 -- Default modkey.

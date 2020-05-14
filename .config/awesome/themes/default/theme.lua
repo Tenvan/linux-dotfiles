@@ -16,21 +16,21 @@ local theme                                     = {}
 
 theme.font                                      = "sans 8"
 
-theme.bg_normal                                 = "#222222"
-theme.bg_focus                                  = "#535d6c"
-theme.bg_urgent                                 = "#ff0000"
+theme.bg_normal                                 = "#f8f8f8"
+theme.bg_focus                                  = "#a8a8a8"
+theme.bg_urgent                                 = "#AB4642"
 theme.bg_minimize                               = "#444444"
 theme.bg_systray                                = theme.bg_normal
 
-theme.fg_normal                                 = "#aaaaaa"
-theme.fg_focus                                  = "#ffffff"
+theme.fg_normal                                 = "#222D31"
+theme.fg_focus                                  = "#222D31"
 theme.fg_urgent                                 = "#ffffff"
-theme.fg_minimize                               = "#ffffff"
+theme.fg_minimize                               = "#222D31"
 
-theme.useless_gap                               = dpi(0)
-theme.border_width                              = dpi(1)
-theme.border_normal                             = "#000000"
-theme.border_focus                              = "#535d6c"
+theme.useless_gap                               = dpi(4)
+theme.border_width                              = dpi(2)
+theme.border_normal                             = "#2F3D44"
+theme.border_focus                              = "#556064"
 theme.border_marked                             = "#91231c"
 
 -- There are other variable sets

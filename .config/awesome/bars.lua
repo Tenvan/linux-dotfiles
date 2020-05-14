@@ -8,36 +8,37 @@
 require("definitions")
 
 -- awesome-wm-widgets
-local battery_widget  = require("awesome-wm-widgets.battery-widget.battery")
-local cpu_widget      = require("awesome-wm-widgets.cpu-widget.cpu-widget")
-local ram_widget      = require("awesome-wm-widgets.ram-widget.ram-widget")
-local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
-local storage_widget  = require("awesome-wm-widgets.fs-widget.fs-widget")
+local battery_widget   = require("awesome-wm-widgets.battery-widget.battery")
+local cpu_widget       = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+local ram_widget       = require("awesome-wm-widgets.ram-widget.ram-widget")
+local calendar_widget  = require("awesome-wm-widgets.calendar-widget.calendar")
+local storage_widget   = require("awesome-wm-widgets.fs-widget.fs-widget")
 local volumearc_widget = require("awesome-wm-widgets.volumearc-widget.volumearc")
 
 -- Standard awesome library
-local gears           = require("gears")
-local awful           = require("awful")
+local gears            = require("gears")
+local awful            = require("awful")
 
 -- Widget and layout library
-local wibox           = require("wibox")
+local wibox            = require("wibox")
 
 -- Theme handling library
-local beautiful       = require("beautiful")
+local beautiful        = require("beautiful")
 
 -- Keyboard map indicator and switcher
-myKeyboardLayout      = awful.widget.keyboardlayout()
+myKeyboardLayout       = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-local bar_opacity     = 0.7
+local bar_opacity      = 0.7
+local bar_height       = 24
 
-local cw              = calendar_widget({
-                                          theme     = 'nord',
-                                          placement = 'bottom_right'
-                                        })
+local cw               = calendar_widget({
+                                           theme     = 'nord',
+                                           placement = 'bottom_right'
+                                         })
 
-mytextclock           = wibox.widget.textclock()
+mytextclock            = wibox.widget.textclock()
 mytextclock:connect_signal("button::press",
                            function(_, _, _, button)
                              if button == 1 then
@@ -82,13 +83,13 @@ local tasklist_buttons = gears.table.join(
     awful.client.focus.byidx(-1)
   end))
 
-local function set_wallpaper(s,n)
+local function set_wallpaper(s, n)
   -- Wallpaper
   if beautiful.wallpaper then
     local wallpaper = beautiful.wallpaper
     -- If wallpaper is a function, call it with the screen
     if type(wallpaper) == "function" then
-      wallpaper = wallpaper(s,n)
+      wallpaper = wallpaper(s, n)
     end
     gears.wallpaper.maximized(wallpaper, s, true)
   end
@@ -173,7 +174,7 @@ awful.screen.connect_for_each_screen(function(s)
               margins = 0,
               widget  = wibox.container.margin,
             },
-            bg     = '#C8C8C8',
+            --bg     = beautiful.bg_focus,
             shape  = gears.shape.circle,
             widget = wibox.container.background,
           },
@@ -182,7 +183,8 @@ awful.screen.connect_for_each_screen(function(s)
               id     = 'icon_role',
               widget = wibox.widget.imagebox,
             },
-            margins = 2,
+            left    = 1,
+            right   = 3,
             widget  = wibox.container.margin,
           },
           {
@@ -197,22 +199,39 @@ awful.screen.connect_for_each_screen(function(s)
       },
       id              = 'background_role',
       widget          = wibox.container.background,
+
       -- Add support for hover colors and an index label
       create_callback = function(self, c3, index, objects)
         --luacheck: no unused args
         self:get_children_by_id('index_role')[1].markup = '<b> ' .. c3.index .. ' </b>'
         self:connect_signal('mouse::enter', function()
-          if self.bg ~= '#ff0000' then
-            self.backup     = self.bg
+
+          gdebug.dump(self.selected)
+
+          if not self.has_backup then
+            self.backup_bg     = self.bg
+            self.backup_fg     = self.fg
             self.has_backup = true
           end
-          self.bg = '#ff0000'
+
+          self.bg = beautiful.bg_urgent
+          self.fg = beautiful.fg_urgent
         end)
+
         self:connect_signal('mouse::leave', function()
           if self.has_backup then
-            self.bg = self.backup
+            self.bg = self.backup_bg
+            self.fg = self.backup_fg
           end
+          self.has_backup = false
         end)
+
+        self:connect_signal('button::press', function()
+          gdebug.print_warning("button pressed")
+          self.backup_bg = beautiful.bg_focus
+          self.backup_fg = beautiful.fg_focus
+        end)
+
       end,
       update_callback = function(self, c3, index, objects)
         --luacheck: no unused args
@@ -235,8 +254,8 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   -- Create the wibox
-  s.mywiboxtop    = awful.wibar({ position = "top", screen = s, opacity = bar_opacity })
-  s.mywiboxbottom = awful.wibar({ position = "bottom", screen = s, opacity = bar_opacity, height = 24 })
+  s.mywiboxtop    = awful.wibar({ position = "top", screen = s, opacity = bar_opacity, height = bar_height })
+  s.mywiboxbottom = awful.wibar({ position = "bottom", screen = s, opacity = bar_opacity, height = bar_height })
   --s.mywiboxright = awful.wibar({ position = "right", screen = s, width = 200, opacity = 0.7 })
 
   -- Add widgets to the wibox (second right)
