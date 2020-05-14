@@ -12,7 +12,7 @@ local awful      = require("awful")
 -- Themes define colours, icons, font and wallpapers.
 
 themename        = "default" -- theme name
-themetype        = "light"
+themetype        = "dark"
 terminal         = "alacritty" -- default terminal
 editor           = "kate" -- default editor
 editor_cmd       = editor
