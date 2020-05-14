@@ -82,13 +82,13 @@ local tasklist_buttons = gears.table.join(
     awful.client.focus.byidx(-1)
   end))
 
-local function set_wallpaper(s)
+local function set_wallpaper(s,n)
   -- Wallpaper
   if beautiful.wallpaper then
     local wallpaper = beautiful.wallpaper
     -- If wallpaper is a function, call it with the screen
     if type(wallpaper) == "function" then
-      wallpaper = wallpaper(s)
+      wallpaper = wallpaper(s,n)
     end
     gears.wallpaper.maximized(wallpaper, s, true)
   end
@@ -103,7 +103,7 @@ awful.screen.connect_for_each_screen(function(s)
   scounter = scounter + 1
 
   -- Wallpaper
-  set_wallpaper(s)
+  set_wallpaper(s, scounter)
 
   tag_Develop    = " Develop"
   tag_DevConsole = " Develop Consolen"

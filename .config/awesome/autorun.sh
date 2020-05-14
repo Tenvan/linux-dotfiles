@@ -35,9 +35,6 @@ run nitrogen --restore
 killall picom
 run picom --config ~/.config/compton-awesome.conf -b
 
-## TODO noch nötig ?
-## run dunst
-
 ## Tools
 run copyq
 
@@ -54,7 +51,6 @@ run ungit --no-launchBrowser
 notify-send ' ungit started!'
 
 ## utils
-run fix_xcursor
 sh /opt/screenlayout.sh
 
 ## Apps

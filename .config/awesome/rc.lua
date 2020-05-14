@@ -11,9 +11,14 @@ local awful      = require("awful")
 -- Notification library
 local naughty       = require("naughty")
 
+-- Theme handling library
+local beautiful  = require("beautiful")
+
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+
+beautiful.init(themefile)
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to

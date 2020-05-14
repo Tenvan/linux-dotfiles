@@ -8,13 +8,11 @@
 local gears      = require("gears")
 local awful      = require("awful")
 
--- Theme handling library
-local beautiful  = require("beautiful")
-
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 
 themename        = "default" -- theme name
+themetype        = "light"
 terminal         = "alacritty" -- default terminal
 editor           = "kate" -- default editor
 editor_cmd       = editor
@@ -30,9 +28,8 @@ mail             = "thunderbird"
 screenlook       = "blurlock"
 tasks            = "xfce4-taskmanager"
 
-themefile        = gears.filesystem.get_xdg_config_home() .. "awesome/themes/" .. themename .. "/theme.lua"
-
-beautiful.init(themefile)
+themepath        = gears.filesystem.get_xdg_config_home() .. "awesome/themes/"
+themefile        = themepath .. themename .. "/theme.lua"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
