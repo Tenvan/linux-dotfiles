@@ -10,8 +10,10 @@ require("definitions")
 -- awesome-wm-widgets
 local battery_widget  = require("awesome-wm-widgets.battery-widget.battery")
 local cpu_widget      = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+local ram_widget      = require("awesome-wm-widgets.ram-widget.ram-widget")
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
 local storage_widget  = require("awesome-wm-widgets.fs-widget.fs-widget")
+local volumearc_widget = require("awesome-wm-widgets.volumearc-widget.volumearc")
 
 -- Standard awesome library
 local gears           = require("gears")
@@ -28,6 +30,7 @@ myKeyboardLayout      = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
+local bar_opacity     = 0.7
 
 local cw              = calendar_widget({
                                           theme     = 'nord',
@@ -94,28 +97,43 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+local scounter = 0
+
 awful.screen.connect_for_each_screen(function(s)
+  scounter = scounter + 1
+
   -- Wallpaper
   set_wallpaper(s)
 
-  tag_Develop    = "1:  Develop"
-  tag_DevConsole = "2:  Develop Consolen"
-  tag_Divers     = "3:  Sonstiges"
-  tag_Teams      = "4:  Teams"
-  tag_VM         = "5:  VirtualBox"
-  tag_Web        = "6:  Web"
-  tag_Media      = "7:  Audio /  Video"
-  tag_Admin      = "8:  Admin"
-  tag_Status     = "9:  Status"
+  tag_Develop    = " Develop"
+  tag_DevConsole = " Develop Consolen"
+  tag_Divers     = " Sonstiges"
+  tag_Teams      = " Teams"
+  tag_VM         = " VirtualBox"
+  tag_Web        = " Web"
+  tag_Media      = " Audio /  Video"
+  tag_Admin      = " Admin"
+  tag_Status     = " Status"
 
   -- Each screen has its own tag table.
   awful.tag({
-              tag_Develop, tag_DevConsole, tag_Divers, tag_Teams, tag_VM, tag_Web,
-              tag_Media, tag_Admin, tag_Status
+              tag_Develop, tag_DevConsole, tag_Divers, tag_Teams,
+              tag_VM, tag_Web, tag_Media, tag_Admin, tag_Status
             }, s, awful.layout.layouts[2])
+
+  --if scounter == 1 then
+  --  awful.tag({
+  --              tag_Develop, tag_Divers, tag_Teams, tag_Admin, tag_Status
+  --            }, s, awful.layout.layouts[2])
+  --else
+  --  awful.tag({
+  --              tag_DevConsole, tag_VM, tag_Web, tag_Media
+  --            }, s, awful.layout.layouts[7])
+  --end
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()
+
   -- Create an imagebox widget which will contain an icon indicating which layout we're using.
   -- We need one layoutbox per screen.
   s.mylayoutbox = awful.widget.layoutbox(s)
@@ -127,19 +145,97 @@ awful.screen.connect_for_each_screen(function(s)
     awful.button({}, 3,
                  function()
                    awful.layout.inc(-1)
-                 end), awful.button({}, 4, function()
-      awful.layout.inc(1)
-    end),
+                 end),
+    awful.button({}, 4,
+                 function()
+                   awful.layout.inc(1)
+                 end),
     awful.button({}, 5,
                  function()
                    awful.layout.inc(-1)
                  end)))
+
   -- Create a taglist widget
   s.mytaglist     = awful.widget.taglist {
-    screen  = s,
-    filter  = awful.widget.taglist.filter.all,
-    buttons = taglist_buttons
+    screen          = s,
+    filter          = awful.widget.taglist.filter.all,
+    style           = {
+      shape = gears.shape.powerline
+    },
+    layout          = {
+      spacing        = 0,
+      spacing_widget = {
+        color  = '#dddddd',
+        shape  = gears.shape.powerline,
+        widget = wibox.widget.separator,
+      },
+      layout         = wibox.layout.fixed.horizontal
+    },
+    widget_template = {
+      {
+        {
+          {
+            {
+              {
+                id     = 'index_role',
+                widget = wibox.widget.textbox,
+              },
+              margins = 0,
+              widget  = wibox.container.margin,
+            },
+            bg     = '#C8C8C8',
+            shape  = gears.shape.circle,
+            widget = wibox.container.background,
+          },
+          {
+            {
+              id     = 'icon_role',
+              widget = wibox.widget.imagebox,
+            },
+            margins = 2,
+            widget  = wibox.container.margin,
+          },
+          {
+            id     = 'text_role',
+            widget = wibox.widget.textbox,
+          },
+          layout = wibox.layout.fixed.horizontal,
+        },
+        left   = 18,
+        right  = 18,
+        widget = wibox.container.margin
+      },
+      id              = 'background_role',
+      widget          = wibox.container.background,
+      -- Add support for hover colors and an index label
+      create_callback = function(self, c3, index, objects)
+        --luacheck: no unused args
+        self:get_children_by_id('index_role')[1].markup = '<b> ' .. c3.index .. ' </b>'
+        self:connect_signal('mouse::enter', function()
+          if self.bg ~= '#ff0000' then
+            self.backup     = self.bg
+            self.has_backup = true
+          end
+          self.bg = '#ff0000'
+        end)
+        self:connect_signal('mouse::leave', function()
+          if self.has_backup then
+            self.bg = self.backup
+          end
+        end)
+      end,
+      update_callback = function(self, c3, index, objects)
+        --luacheck: no unused args
+        self:get_children_by_id('index_role')[1].markup = '<b> ' .. c3.index .. ' </b>'
+      end,
+    },
+    buttons         = taglist_buttons
   }
+
+  --s.mytaglist = {
+  --  tag_Develop,
+  --  tag_Admin
+  --}
 
   -- Create a tasklist widget
   s.mytasklist    = awful.widget.tasklist {
@@ -149,8 +245,8 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   -- Create the wibox
-  s.mywiboxtop    = awful.wibar({ position = "top", screen = s, opacity = 0.7 })
-  s.mywiboxbottom = awful.wibar({ position = "bottom", screen = s, opacity = 0.7, height = 24 })
+  s.mywiboxtop    = awful.wibar({ position = "top", screen = s, opacity = bar_opacity })
+  s.mywiboxbottom = awful.wibar({ position = "bottom", screen = s, opacity = bar_opacity, height = 24 })
   --s.mywiboxright = awful.wibar({ position = "right", screen = s, width = 200, opacity = 0.7 })
 
   -- Add widgets to the wibox (second right)
@@ -166,6 +262,7 @@ awful.screen.connect_for_each_screen(function(s)
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
       storage_widget({ mounts = { '/', '/media/BIGDATA', '/media/VM', '/media/WORKSPACE' } }),
+      ram_widget(),
       cpu_widget({
                    width        = 120,
                    step_width   = 2,
@@ -178,7 +275,7 @@ awful.screen.connect_for_each_screen(function(s)
 
   -- Add widgets to the wibox (main top)
   s.mywiboxbottom:setup {
-    layout  = wibox.layout.align.horizontal,
+    layout = wibox.layout.align.horizontal,
     { -- Left widgets
       layout = wibox.layout.fixed.horizontal,
       mylauncher,
@@ -189,6 +286,7 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.fixed.horizontal,
       myKeyboardLayout,
       wibox.widget.systray(),
+      volumearc_widget(),
       mytextclock,
       s.mylayoutbox
     }

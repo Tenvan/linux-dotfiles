@@ -4,12 +4,10 @@
 # Ausnahmen im home folder
 !.bumblebee-status.conf
 !.dir_colors
-!.dmenurc
 !.gvimrc
 !.gtkrc-2.0
 !.Xresources
 !.Xresources.sample
-!i3install.sh
 !README.MD
 
 # Ausnahmen Script Folder
@@ -18,17 +16,15 @@
 
 # Ausnahmen im .config folder
 !.config
-!.config/compton-i3.conf
+!.config/compton*.conf
 !.config/alacritty
 !.config/alacritty/*
-!.config/awesome
-!.config/awesome/*
-!.config/awesome/themes/**
-!.config/awesome/themes/**/*
+!.config/awesome/**
+!.config/awesome/**/*
 !.config/copyq
 !.config/copyq/copyq.conf
-!.config/copyq/themes
-!.config/copyq/themes/*
+!.config/copyq/themes/**
+!.config/copyq/themes/**/*
 !.config/conky
 !.config/conky/*
 !.config/dunst
@@ -41,19 +37,16 @@
 !.config/gtk-4.0/*
 !.config/i3
 !.config/i3/*
-!.config/i3status
-!.config/i3status/*
 !.config/Kvantum
 !.config/Kvantum/*
-!.config/morc_menu
-!.config/morc_menu/*
 !.config/nitrogen
 !.config/nitrogen/*
 !.config/omf
 !.config/omf/*
-!.config/polybar
-!.config/polybar/*
 !.config/rofi
 !.config/rofi/*
 !.config/xsettingsd
 !.config/xsettingsd/*
+
+.cache/**/*
+.locale/**/*

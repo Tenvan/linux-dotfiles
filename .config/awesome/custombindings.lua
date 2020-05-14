@@ -48,6 +48,13 @@ mycustomkeys        = gears.table.join(
             { description = "kill app", group = "system" }
   ),
 
+  awful.key({ modkey, "Control" }, "b",
+            function()
+              awful.spawn(terminal .. " --title='BMenu' -e bmenu")
+            end,
+            { description = "start BMenu", group = "system" }
+  ),
+
   awful.key({ modkey }, "b",
             function()
               myscreen                 = awful.screen.focused()
@@ -78,21 +85,21 @@ mycustomkeys        = gears.table.join(
             { description = "bitwarden", group = "apps" }
   ),
 
-  awful.key({ modkey }, "F2",
+  awful.key({ modkey }, "F6",
             function()
               awful.spawn(browser)
             end,
             { description = "browser", group = "apps" }
   ),
 
-  awful.key({ modkey }, "F3",
+  awful.key({ modkey }, "F2",
             function()
               awful.spawn(filemanager)
             end,
             { description = "filemanager", group = "apps" }
   ),
 
-  awful.key({ modkey, "Control" }, "F3",
+  awful.key({ modkey }, "F3",
             function()
               awful.spawn(filemanager_root)
             end,

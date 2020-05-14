@@ -66,7 +66,8 @@ awful.rules.rules = {
       -- and the name shown there might not match defined rules here.
       name     = {
         "Taskmanager",
-        "Taschenrechner"
+        "Taschenrechner",
+        "BMenu"
         -- xev.
       },
       role     = {
@@ -95,7 +96,8 @@ awful.rules.rules = {
       -- and the name shown there might not match defined rules here.
       name     = {
         "Taskmanager",
-        "Taschenrechner"
+        "Taschenrechner",
+        "BMenu"
         -- xev.
       },
       role     = {
@@ -166,6 +168,16 @@ awful.rules.rules = {
       }
     },
     properties = { screen = 1, tag = tag_VM }
+  },
+
+  -- Set Apps for Admin Tag.
+  {
+    rule_any   = {
+      name = {
+        "BMenu"
+      }
+    },
+    properties = { screen = 1, tag = tag_Admin }
   },
 
   -- Set Apps for Media Tag.
