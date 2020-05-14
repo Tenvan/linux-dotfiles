@@ -5,7 +5,7 @@
 ---
 
 -- Standard Definitions
---require("definitions")
+require("definitions")
 
 -- Standard awesome library
 local awful       = require("awful")
@@ -120,7 +120,6 @@ awful.rules.rules = {
       class = {
         "Firefox",
         "Google-chrome",
-        "Chromium",
         "Opera"
       }
     },
@@ -137,6 +136,16 @@ awful.rules.rules = {
       }
     },
     properties = { screen = 1, tag = tag_Develop }
+  },
+
+  -- Set Apps for Developer Console Tag.
+  {
+    rule_any   = {
+      class = {
+        "Chromium"
+      }
+    },
+    properties = { screen = 2, tag = tag_DevConsole }
   },
 
   -- Set Apps for Status Tag.

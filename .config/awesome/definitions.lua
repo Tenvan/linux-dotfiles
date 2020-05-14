@@ -31,6 +31,18 @@ tasks            = "xfce4-taskmanager"
 themepath        = gears.filesystem.get_xdg_config_home() .. "awesome/themes/"
 themefile        = themepath .. themename .. "/theme.lua"
 
+-- {{{ tag definitions
+tag_Develop    = " Develop"
+tag_DevConsole = " Develop Consolen"
+tag_Divers     = " Sonstiges"
+tag_Teams      = " Teams"
+tag_VM         = " VirtualBox"
+tag_Web        = " Web"
+tag_Media      = " Audio /  Video"
+tag_Admin      = " Admin"
+tag_Status     = " Status"
+-- }}}
+
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,

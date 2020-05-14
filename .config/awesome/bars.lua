@@ -105,16 +105,6 @@ awful.screen.connect_for_each_screen(function(s)
   -- Wallpaper
   set_wallpaper(s, scounter)
 
-  tag_Develop    = " Develop"
-  tag_DevConsole = " Develop Consolen"
-  tag_Divers     = " Sonstiges"
-  tag_Teams      = " Teams"
-  tag_VM         = " VirtualBox"
-  tag_Web        = " Web"
-  tag_Media      = " Audio /  Video"
-  tag_Admin      = " Admin"
-  tag_Status     = " Status"
-
   -- Each screen has its own tag table.
   awful.tag({
               tag_Develop, tag_DevConsole, tag_Divers, tag_Teams,
