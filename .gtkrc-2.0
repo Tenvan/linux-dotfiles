@@ -3,7 +3,7 @@
 
 include "/home/stira/.gtkrc-2.0.mine"
 gtk-theme-name="Adapta-Nokto-Eta-Maia"
-gtk-icon-theme-name="Papirus-Adapta-Nokto-Maia"
+gtk-icon-theme-name="Papirus-Dark-Maia"
 gtk-font-name="Sans 10"
 gtk-cursor-theme-name="xcursor-breeze-snow"
 gtk-cursor-theme-size=0
