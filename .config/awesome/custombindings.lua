@@ -17,6 +17,9 @@ local naughty       = require("naughty")
 -- Notification library
 local hotkeys_popup = require("awful.hotkeys_popup")
 
+-- awesome-cyclefocus, see: https://github.com/blueyed/awesome-cyclefocus/
+local cyclefocus    = require('awesome-cyclefocus')
+
 -- {{{ Key bindings
 mycustomkeys        = gears.table.join(
 --- system tools
@@ -62,6 +65,21 @@ mycustomkeys        = gears.table.join(
             end,
             { description = "toggle statusbas", group = "awesome" }
   ),
+
+--- cyclefocus
+-- modkey+Tab: cycle through all clients.
+  awful.key({ modkey }, "Tab",
+            function(c)
+              cyclefocus.cycle({ modifier = "Super_L" })
+            end,
+            { description = "cycle through all clients", group = "awesome" }),
+
+-- modkey+Shift+Tab: backwards
+  awful.key({ modkey, "Shift" }, "Tab",
+            function(c)
+              cyclefocus.cycle({ modifier = "Super_L" })
+            end,
+            { description = "cycle through all clients backwards", group = "awesome" }),
 
 --- applications
   awful.key({ modkey }, "z",

@@ -17,6 +17,9 @@ local utils          = require("utils")
 
 local colors         = utils.get_current_theme()
 
+local machi          = require("layout-machi")
+require("beautiful").layout_machi = machi.get_icon()
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 
@@ -81,6 +84,8 @@ modkey               = "Mod4"
 awful.layout.layouts = {
   awful.layout.suit.floating,
   awful.layout.suit.tile,
+  -- TODO implment layout editor, see: https://github.com/xinhaoyuan/layout-machi
+  --machi.default_layout,
   awful.layout.suit.tile.left,
   awful.layout.suit.tile.bottom,
   awful.layout.suit.tile.top,

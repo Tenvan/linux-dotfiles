@@ -183,9 +183,9 @@ awful.screen.connect_for_each_screen(function(s)
               id     = 'icon_role',
               widget = wibox.widget.imagebox,
             },
-            left    = 1,
-            right   = 3,
-            widget  = wibox.container.margin,
+            left   = 1,
+            right  = 3,
+            widget = wibox.container.margin,
           },
           {
             id     = 'text_role',
@@ -209,8 +209,8 @@ awful.screen.connect_for_each_screen(function(s)
           gdebug.dump(self.selected)
 
           if not self.has_backup then
-            self.backup_bg     = self.bg
-            self.backup_fg     = self.fg
+            self.backup_bg  = self.bg
+            self.backup_fg  = self.fg
             self.has_backup = true
           end
 
