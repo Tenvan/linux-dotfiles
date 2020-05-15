@@ -18,27 +18,35 @@ local volumearc_widget = require("awesome-wm-widgets.volumearc-widget.volumearc"
 -- Standard awesome library
 local gears            = require("gears")
 local awful            = require("awful")
+awful.rules            = require("awful.rules")
+
+local tyrannical       = require("tyrannical")
+
+-- {{{ Wibar
+require("tags")
+-- }}}
+
 
 -- Widget and layout library
-local wibox            = require("wibox")
+local wibox       = require("wibox")
 
 -- Theme handling library
-local beautiful        = require("beautiful")
+local beautiful   = require("beautiful")
 
 -- Keyboard map indicator and switcher
-myKeyboardLayout       = awful.widget.keyboardlayout()
+myKeyboardLayout  = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-local bar_opacity      = 0.7
-local bar_height       = 24
+local bar_opacity = 0.7
+local bar_height  = 24
 
-local cw               = calendar_widget({
-                                           theme     = 'nord',
-                                           placement = 'bottom_right'
-                                         })
+local cw          = calendar_widget({
+                                      theme     = 'nord',
+                                      placement = 'bottom_right'
+                                    })
 
-mytextclock            = wibox.widget.textclock()
+mytextclock       = wibox.widget.textclock()
 mytextclock:connect_signal("button::press",
                            function(_, _, _, button)
                              if button == 1 then
@@ -83,13 +91,13 @@ local tasklist_buttons = gears.table.join(
     awful.client.focus.byidx(-1)
   end))
 
-local function set_wallpaper(s, n)
+local function set_wallpaper(s)
   -- Wallpaper
   if beautiful.wallpaper then
     local wallpaper = beautiful.wallpaper
     -- If wallpaper is a function, call it with the screen
     if type(wallpaper) == "function" then
-      wallpaper = wallpaper(s, n)
+      wallpaper = wallpaper(s)
     end
     gears.wallpaper.maximized(wallpaper, s, true)
   end
@@ -104,23 +112,7 @@ awful.screen.connect_for_each_screen(function(s)
   scounter = scounter + 1
 
   -- Wallpaper
-  set_wallpaper(s, scounter)
-
-  -- Each screen has its own tag table.
-  awful.tag({
-              tag_Develop, tag_DevConsole, tag_Divers, tag_Teams,
-              tag_VM, tag_Web, tag_Media, tag_Admin, tag_Status
-            }, s, awful.layout.layouts[2])
-
-  --if scounter == 1 then
-  --  awful.tag({
-  --              tag_Develop, tag_Divers, tag_Teams, tag_Admin, tag_Status
-  --            }, s, awful.layout.layouts[2])
-  --else
-  --  awful.tag({
-  --              tag_DevConsole, tag_VM, tag_Web, tag_Media
-  --            }, s, awful.layout.layouts[7])
-  --end
+  set_wallpaper(s, s.index)
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()
@@ -153,10 +145,10 @@ awful.screen.connect_for_each_screen(function(s)
     style           = {
       shape = gears.shape.powerline
     },
-    layout          = {
-      spacing        = 0,
+    _layout          = {
+      spacing        = 10,
       spacing_widget = {
-        color  = '#dddddd',
+        color  = '#ff0000',
         shape  = gears.shape.powerline,
         widget = wibox.widget.separator,
       },
@@ -220,10 +212,10 @@ awful.screen.connect_for_each_screen(function(s)
 
         self:connect_signal('mouse::leave', function()
           if self.has_backup then
-            self.bg = self.backup_bg
-            self.fg = self.backup_fg
+            self.bg         = self.backup_bg
+            self.fg         = self.backup_fg
+            self.has_backup = false
           end
-          self.has_backup = false
         end)
 
         self:connect_signal('button::press', function()
@@ -300,28 +292,5 @@ awful.screen.connect_for_each_screen(function(s)
       s.mylayoutbox
     }
   }
-
-  -- Add widgets to the wibox (second right)
-  --s.mywiboxright:setup {
-  --  layout = wibox.layout.align.vertical,
-  --  { -- Left widgets
-  --    layout = wibox.layout.fixed.vertical,
-  --  },
-  --  { -- Left widgets
-  --    layout = wibox.layout.fixed.vertical,
-  --  },
-  --  { -- Right widgets
-  --    layout = wibox.layout.fixed.vertical,
-  --    storage_widget({ mounts = { '/', '/media/BIGDATA', '/media/VM', '/media/WORKSPACE' } }),
-  --    cpu_widget({
-  --                 width        = 120,
-  --                 step_width   = 2,
-  --                 step_spacing = 0,
-  --                 color        = '#434c5e'
-  --               }),
-  --    mytextclock,
-  --  }
-  --}
-
 end)
 -- }}}

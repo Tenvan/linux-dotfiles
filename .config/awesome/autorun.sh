@@ -52,6 +52,3 @@ notify-send ' ungit started!'
 
 ## utils
 sh /opt/screenlayout.sh
-
-## Apps
-run teams

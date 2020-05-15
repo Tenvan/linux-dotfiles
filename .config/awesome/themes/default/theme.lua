@@ -101,8 +101,8 @@ theme.titlebar_maximized_button_focus_inactive  = themes_path .. "default/titleb
 theme.titlebar_maximized_button_normal_active   = themes_path .. "default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = themes_path .. "default/titlebar/maximized_focus_active.png"
 
-theme.wallpaper                                 = function(s, n)
-  return themes_path .. "default/background" .. n .. "_" .. themetype .. ".jpg"
+theme.wallpaper                                 = function(s)
+  return themes_path .. "default/background" .. s.index .. "_" .. themetype .. ".jpg"
 end
 
 -- You can use your own layout icons like this:
