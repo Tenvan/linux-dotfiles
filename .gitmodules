@@ -1,3 +1,12 @@
 [submodule ".config/awesome/awesome-wm-widgets"]
 	path = .config/awesome/awesome-wm-widgets
 	url = https://github.com/streetturtle/awesome-wm-widgets.git
+[submodule ".config/awesome/tyrannical"]
+	path = .config/awesome/tyrannical
+	url = https://github.com/Elv13/tyrannical.git
+[submodule ".config/awesome/layout-machi"]
+	path = .config/awesome/layout-machi
+	url = https://github.com/xinhaoyuan/layout-machi.git
+[submodule ".config/awesome/awesome-cyclefocus"]
+	path = .config/awesome/awesome-cyclefocus
+	url = https://github.com/blueyed/awesome-cyclefocus.git
