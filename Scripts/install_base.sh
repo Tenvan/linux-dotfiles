@@ -6,10 +6,10 @@ yay -S --noconfirm bmenu rofi zenity spectacle polkit-gnome pamac-gtk pamac-cli 
 copyq xautolock conky pavucontrol pa-applet checkupdates-aur python-psutil xcwd-git \
 python-pygit2 python-xkbgroup progress python-taskw python-requests octopi octopi-notifier-qt5 \
 xfce4-taskmanager gnome-system-monitor gnome-system-log xclip xsel xdotool wedder-git \
-bitwarden-bin bitwarden-cli-bin bitwarden-rofi lightdm-gtk-greeter-settings foxitreader
+bitwarden-bin bitwarden-cli-bin bitwarden-rofi lightdm-gtk-greeter-settings foxitreader pfetch
 
 # from kde (replace if possible)
-yay -S --noconfirm polkit-kde-agent kate krusader kde-cli-tools ksystemlog ksysguard
+yay -S --noconfirm polkit-kde-agent kate krusader kde-cli-tools ksystemlog ksysguard kruler
 
 # applications
 yay -S --noconfirm ungit gitahead-bin timeset-gui

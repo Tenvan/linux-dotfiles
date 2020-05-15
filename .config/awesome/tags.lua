@@ -37,6 +37,7 @@ tyrannical.tags                         = {
       "DDD",
       "kate4",
       "geany",
+      "kruler"
     }
 
   },

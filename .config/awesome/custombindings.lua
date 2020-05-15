@@ -110,14 +110,14 @@ mycustomkeys        = gears.table.join(
             { description = "browser", group = "apps" }
   ),
 
-  awful.key({ modkey }, "F2",
+  awful.key({ modkey }, "F3",
             function()
               awful.spawn(filemanager)
             end,
             { description = "filemanager", group = "apps" }
   ),
 
-  awful.key({ modkey }, "F3",
+  awful.key({ modkey, "Control" }, "F3",
             function()
               awful.spawn(filemanager_root)
             end,

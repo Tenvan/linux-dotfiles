@@ -20,12 +20,6 @@ local gears            = require("gears")
 local awful            = require("awful")
 awful.rules            = require("awful.rules")
 
-local tyrannical       = require("tyrannical")
-
--- {{{ Wibar
-require("tags")
--- }}}
-
 
 -- Widget and layout library
 local wibox       = require("wibox")
@@ -106,6 +100,20 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+--layouts = awful.layout.layouts
+--tags = {
+--  settings = {
+--    { names  = {  tag_Develop, tag_Divers, tag_Teams, tag_Admin, tag_Status },
+--      layout = { layouts[2], layouts[1], layouts[1], layouts[4] , layouts[4] }
+--    },
+--    { names  = { tag_DevConsole, tag_VM, tag_Web, tag_Media },
+--      layout = { layouts[3], layouts[2], layouts[2], layouts[5] }
+--    }}}
+
+-- {{{ tyrannical tags
+require("tags")
+-- }}}
+
 local scounter = 0
 
 awful.screen.connect_for_each_screen(function(s)
@@ -113,6 +121,9 @@ awful.screen.connect_for_each_screen(function(s)
 
   -- Wallpaper
   set_wallpaper(s, s.index)
+
+  -- Each screen has its own tag table.
+  --tags[s] = awful.tag(tags.settings[s.index].names, s, tags.settings[s.index].layout)
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()

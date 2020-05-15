@@ -1,7 +1,6 @@
-screenfetch
+pfetch
 
 # Dump Farbpalette
-echo "Simple ColorTest (ausführlicher mit sh ~/colortest.sh)"
 echo -e "\033[0mNC (No color)"
 echo -e "\033[1;37mWHITE\t\033[0;30mBLACK"
 echo -e "\033[0;34mBLUE\t\033[1;34mLIGHT_BLUE"

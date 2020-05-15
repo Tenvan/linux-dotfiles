@@ -52,3 +52,4 @@ notify-send ' ungit started!'
 
 ## utils
 sh /opt/screenlayout.sh
+
