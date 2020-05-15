@@ -30,10 +30,10 @@ run /usr/lib/polkit-kde-authentication-agent-1
 
 ## Desktop
 run xautolock -time 10 -locker blurlock
-# run nitrogen --restore
+run nitrogen --restore
 
 killall picom
-# run picom --config ~/.config/compton-awesome.conf -b
+run picom --config ~/.config/compton-awesome.conf -b
 
 ## Tools
 run copyq

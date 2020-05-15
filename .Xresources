@@ -16,6 +16,13 @@ XTerm*selectToClipboard: true
 
 *background:                      #222D31
 *foreground:                      #d8d8d8
+
+*focused_background:              #556064
+*focused_foreground:              #80FFF9
+
+*inactive_background:             #2F3D44
+*inactive_foreground:             #1ABC9C
+
 *fading:                          8
 *fadeColor:                       black
 *cursorColor:                     #1ABB9B
@@ -28,7 +35,7 @@ XTerm*selectToClipboard: true
 
 !! red dark/light
 *color1:                          #ab4642
-*color9:                          #ab4642
+*color9:                          #C24F4B
 
 !! green dark/light
 *color2:                          #7E807E

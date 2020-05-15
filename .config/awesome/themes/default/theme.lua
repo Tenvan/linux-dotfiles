@@ -16,22 +16,23 @@ local theme                                     = {}
 
 theme.font                                      = "sans 8"
 
-theme.bg_normal                                 = "#f8f8f8"
-theme.bg_focus                                  = "#a8a8a8"
-theme.bg_urgent                                 = "#AB4642"
-theme.bg_minimize                               = "#444444"
-theme.bg_systray                                = theme.bg_normal
+theme.bg_normal                                 = my_bg_normal
+theme.bg_focus                                  = my_bg_focus
+theme.bg_urgent                                 = my_bg_urgent
+theme.bg_minimize                               = my_bg_minimize
+theme.bg_systray                                = my_bg_systray
 
-theme.fg_normal                                 = "#222D31"
-theme.fg_focus                                  = "#222D31"
-theme.fg_urgent                                 = "#ffffff"
-theme.fg_minimize                               = "#222D31"
+theme.fg_normal                                 = my_fg_normal
+theme.fg_focus                                  = my_fg_focus
+theme.fg_urgent                                 = my_fg_urgent
+theme.fg_minimize                               = my_fg_minimize
 
-theme.useless_gap                               = dpi(4)
-theme.border_width                              = dpi(2)
-theme.border_normal                             = "#2F3D44"
-theme.border_focus                              = "#556064"
-theme.border_marked                             = "#91231c"
+theme.useless_gap                               = my_useless_gap
+theme.border_width                              = my_border_width
+
+theme.border_normal                             = my_border_normal
+theme.border_focus                              = my_border_focus
+theme.border_marked                             = my_border_marked
 
 -- There are other variable sets
 -- overriding the default one when
@@ -65,8 +66,8 @@ theme.taglist_squares_unsel                     = theme_assets.taglist_squares_u
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon                         = themes_path .. "default/submenu.png"
-theme.menu_height                               = dpi(15)
-theme.menu_width                                = dpi(100)
+theme.menu_height                               = dpi(24)
+theme.menu_width                                = dpi(160)
 
 -- You can add as many variables as
 -- you wish and access them by using

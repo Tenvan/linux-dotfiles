@@ -8,16 +8,23 @@
 local gears          = require("gears")
 local awful          = require("awful")
 
-gdebug         = require("gears.debug")
+gdebug               = require("gears.debug")
+
+local xresources     = require("beautiful.xresources")
+local dpi            = xresources.apply_dpi
+
+local utils          = require("utils")
+
+local colors         = utils.get_current_theme()
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 
-themename        = "default" -- theme name
-themetype        = "dark"
-terminal         = "alacritty" -- default terminal
-editor           = "kate" -- default editor
-editor_cmd       = editor
+themename            = "default" -- theme name
+themetype            = "dark"
+terminal             = "alacritty" -- default terminal
+editor               = "kate" -- default editor
+editor_cmd           = editor
 
 -- extern apps definition
 browser              = "firefox"
@@ -30,10 +37,29 @@ mail                 = "thunderbird"
 screenlook           = "blurlock"
 tasks                = "xfce4-taskmanager"
 
+-- themes
 themepath            = gears.filesystem.get_xdg_config_home() .. "awesome/themes/"
 themefile            = themepath .. themename .. "/theme.lua"
 
--- {{{ tag definitions
+my_bg_normal         = colors.background
+my_bg_focus          = colors.focused_background
+my_bg_urgent         = colors.color1
+my_bg_minimize       = colors.inactive_background
+my_bg_systray        = my_bg_normal
+
+my_fg_normal         = colors.foreground
+my_fg_focus          = colors.focused_foreground
+my_fg_urgent         = colors.color15
+my_fg_minimize       = colors.inactive_foreground
+
+my_useless_gap       = dpi(3)
+my_border_width      = dpi(1)
+
+my_border_normal     = my_fg_normal
+my_border_focus      = my_fg_focus
+my_border_marked     = "#00FF00"
+
+-- tag definitions
 tag_Develop          = " Develop"
 tag_DevConsole       = " Develop Consolen"
 tag_Divers           = " Sonstiges"
@@ -43,7 +69,6 @@ tag_Web              = " Web"
 tag_Media            = " Audio /  Video"
 tag_Admin            = " Admin"
 tag_Status           = " Status"
--- }}}
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
