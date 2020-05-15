@@ -19,10 +19,12 @@
 !.config/compton*.conf
 !.config/alacritty
 !.config/alacritty/*
+!.config/awesome
 !.config/awesome/**
 !.config/awesome/**/*
 !.config/copyq
 !.config/copyq/copyq.conf
+!.config/copyq/themes
 !.config/copyq/themes/**
 !.config/copyq/themes/**/*
 !.config/conky
