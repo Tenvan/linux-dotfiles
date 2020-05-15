@@ -6,7 +6,7 @@
 
 -- Standard awesome library
 local awful         = require("awful")
-local wibox         = require("wibox")
+local naughty       = require("naughty")
 
 -- Theme handling library
 local beautiful     = require("beautiful")
@@ -30,25 +30,12 @@ mymenu                 = {
   { "switch to light theme",
     function()
       awful.spawn.easy_async_with_shell(
-        "~/Scripts/lightheme.sh",
+        "sh ~/Scripts/lighttheme.sh",
         function()
           naughty.notify({
                            preset = naughty.config.presets.normal,
                            title  = "Info!",
                            text   = " Light Theme gewechselt.."
-                         })
-          awesome.restart()
-        end)
-    end },
-  { "switch to dark theme",
-    function()
-      awful.spawn.easy_async_with_shell(
-        "~/Scripts/darktheme.sh",
-        function()
-          naughty.notify({
-                           preset = naughty.config.presets.normal,
-                           title  = "Info!",
-                           text   = " Dark Theme gewechselt.."
                          })
           awesome.restart()
         end)
