@@ -23,7 +23,7 @@ require("beautiful").layout_machi = machi.get_icon()
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 
-themename            = "default" -- theme name
+themename            = "gtk" -- theme name
 themetype            = "dark"
 terminal             = "alacritty" -- default terminal
 editor               = "kate" -- default editor
