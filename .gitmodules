@@ -10,3 +10,6 @@
 [submodule ".config/awesome/awesome-cyclefocus"]
 	path = .config/awesome/awesome-cyclefocus
 	url = https://github.com/blueyed/awesome-cyclefocus.git
+[submodule ".config/awesome/collision"]
+	path = .config/awesome/collision
+	url = https://github.com/Elv13/collision

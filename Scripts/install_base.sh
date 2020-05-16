@@ -5,7 +5,7 @@ yay -S picom-ibhagwan-git
 yay -S --noconfirm bmenu rofi zenity spectacle polkit-gnome pamac-gtk pamac-cli pamac-tray-appindicator \
 copyq xautolock conky pavucontrol pa-applet checkupdates-aur python-psutil xcwd-git \
 python-pygit2 python-xkbgroup progress python-taskw python-requests octopi octopi-notifier-qt5 \
-xfce4-taskmanager gnome-system-monitor gnome-system-log xclip xsel xdotool wedder-git \
+xfce4-taskmanager gnome-system-monitor gnome-system-log xclip xsel xdotool \
 bitwarden-bin bitwarden-cli-bin bitwarden-rofi lightdm-gtk-greeter-settings foxitreader pfetch
 
 # from kde (replace if possible)

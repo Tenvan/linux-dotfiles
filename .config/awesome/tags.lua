@@ -42,44 +42,55 @@ tyrannical.tags                         = {
 
   },
   {
+    name         = tag_Teams,
+    init         = true,
+    exclusive    = true,
+    screen       = 2,
+    force_screen = true,
+    layout       = awful.layout.suit.max, -- Use the max layout
+    class        = {
+      "Microsoft Teams - Preview",
+    }
+  },
+  {
     name      = tag_DevConsole,
     init      = true, -- Load the tag on startup
     exclusive = false, -- Refuse any other type of clients (by classes)
     screen    = 2,
     layout    = awful.layout.suit.tile, -- Use the tile layout
     selected  = true,
-    exec_once = {  },
     class     = { --Accept the following classes, refuse everything else (because of "exclusive=true")
     }
   },
   {
-    name      = tag_Teams,
-    init      = true,
-    exclusive = true,
-    screen    = 1,
-    layout    = awful.layout.suit.max, -- Use the max layout
-    exec_once = { "teams" },
-    class     = {
-      "Microsoft Teams - Preview",
+    name         = tag_Git,
+    init         = true,
+    exclusive    = true,
+    screen       = 2,
+    force_screen = true,
+    layout       = awful.layout.suit.max, -- Use the max layout
+    class        = {
+      "SmartGit",
     }
   },
   {
-    name      = tag_Web,
-    init      = true,
-    exclusive = false,
-    --icon        = "~net.png",                 -- Use this icon for the tag (uncomment with a real path)
-    screen    = 2,
-    layout    = awful.layout.suit.max, -- Use the max layout
-    class     = {
-      "Opera",
-      "Firefox",
-      "Rekonq",
-      "Dillo",
+    name         = tag_Web,
+    init         = true,
+    exclusive    = true,
+    screen       = 2,
+    force_screen = true,
+    layout       = awful.layout.suit.tile, -- Use the max layout
+    class        = {
       "Arora",
       "Chromium",
+      "Dillo",
       "Google-chrome",
-      "nightly",
+      "Navigator",
+      "Opera",
+      "Rekonq",
+      "firefox",
       "minefield",
+      "nightly",
     }
   },
   {
@@ -107,7 +118,6 @@ tyrannical.tags                         = {
     --icon      = "~net.png", -- Use this icon for the tag (uncomment with a real path)
     screen    = 2, -- Setup on screen 2 if there is more than 1 screen, else on screen 1
     layout    = awful.layout.suit.tile,
-    exec_once = { "dolphin" }, --When the tag is accessed for the first time, execute this command
     class     = {
       "Thunar",
       "Konqueror",
@@ -122,6 +132,7 @@ tyrannical.tags                         = {
     name      = tag_Divers,
     init      = false,
     exclusive = false,
+    fallback  = true,
     layout    = awful.layout.suit.max,
     class     = {
       "Assistant",
@@ -180,15 +191,21 @@ tyrannical.properties.floating          = {
 
 -- Make the matching clients (by classes) on top of the default layout
 tyrannical.properties.ontop             = {
-  --"Xephyr", "ksnapshot", "kruler"
+  --"Xephyr", "ksnapshot", "kruler", "spectacle"
 }
 
 -- Force the matching clients (by classes) to be centered on the screen on init
 tyrannical.properties.centered          = {
-  --"kcalc"
+  --"kcalc", "spectacle"
 }
 
 -- Do not honor size hints request for those classes
-tyrannical.properties.size_hints_honor  = { xterm = false, URxvt = false, aterm = false, sauer_client = false, mythfrontend = false }
+tyrannical.properties.size_hints_honor  = {
+  xterm        = false,
+  URxvt        = false,
+  aterm        = false,
+  sauer_client = false,
+  mythfrontend = false
+}
 
 return tyrannical

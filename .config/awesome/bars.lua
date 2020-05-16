@@ -22,25 +22,25 @@ awful.rules            = require("awful.rules")
 
 
 -- Widget and layout library
-local wibox       = require("wibox")
+local wibox            = require("wibox")
 
 -- Theme handling library
-local beautiful   = require("beautiful")
+local beautiful        = require("beautiful")
 
 -- Keyboard map indicator and switcher
-myKeyboardLayout  = awful.widget.keyboardlayout()
+myKeyboardLayout       = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-local bar_opacity = 0.7
-local bar_height  = 24
+local bar_opacity      = 0.7
+local bar_height       = 24
 
-local cw          = calendar_widget({
-                                      theme     = 'nord',
-                                      placement = 'bottom_right'
-                                    })
+local cw               = calendar_widget({
+                                           theme     = 'nord',
+                                           placement = 'bottom_right'
+                                         })
 
-mytextclock       = wibox.widget.textclock()
+mytextclock            = wibox.widget.textclock()
 mytextclock:connect_signal("button::press",
                            function(_, _, _, button)
                              if button == 1 then
@@ -100,16 +100,6 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
---layouts = awful.layout.layouts
---tags = {
---  settings = {
---    { names  = {  tag_Develop, tag_Divers, tag_Teams, tag_Admin, tag_Status },
---      layout = { layouts[2], layouts[1], layouts[1], layouts[4] , layouts[4] }
---    },
---    { names  = { tag_DevConsole, tag_VM, tag_Web, tag_Media },
---      layout = { layouts[3], layouts[2], layouts[2], layouts[5] }
---    }}}
-
 -- {{{ tyrannical tags
 require("tags")
 -- }}}
@@ -150,13 +140,13 @@ awful.screen.connect_for_each_screen(function(s)
                  end)))
 
   -- Create a taglist widget
-  s.mytaglist     = awful.widget.taglist {
+  s.mytaglist = awful.widget.taglist {
     screen          = s,
     filter          = awful.widget.taglist.filter.all,
-    style           = {
+    _style           = {
       shape = gears.shape.powerline
     },
-    _layout          = {
+    _layout         = {
       spacing        = 10,
       spacing_widget = {
         color  = '#ff0000',
@@ -165,7 +155,7 @@ awful.screen.connect_for_each_screen(function(s)
       },
       layout         = wibox.layout.fixed.horizontal
     },
-    widget_template = {
+    _widget_template = {
       {
         {
           {
@@ -244,16 +234,23 @@ awful.screen.connect_for_each_screen(function(s)
     buttons         = taglist_buttons
   }
 
-  --s.mytaglist = {
-  --  tag_Develop,
-  --  tag_Admin
-  --}
+  if beautiful.taglist_shape_container then
+    local background_shape_wrapper                  = wibox.container.background(s.mytaglist)
+    background_shape_wrapper._do_taglist_update_now = s.mytaglist._do_taglist_update_now
+    background_shape_wrapper._do_taglist_update     = s.mytaglist._do_taglist_update
+    background_shape_wrapper.shape                  = beautiful.taglist_shape_container
+    background_shape_wrapper.shape_clip             = beautiful.taglist_shape_clip_container
+    background_shape_wrapper.shape_border_width     = beautiful.taglist_shape_border_width_container
+    background_shape_wrapper.shape_border_color     = beautiful.taglist_shape_border_color_container
+    s.mytaglist                                     = background_shape_wrapper
+  end
 
   -- Create a tasklist widget
   s.mytasklist    = awful.widget.tasklist {
-    screen  = s,
-    filter  = awful.widget.tasklist.filter.currenttags,
-    buttons = tasklist_buttons
+    screen          = s,
+    filter          = awful.widget.tasklist.filter.currenttags,
+    buttons         = tasklist_buttons,
+    widget_template = beautiful.tasklist_widget_template
   }
 
   -- Create the wibox

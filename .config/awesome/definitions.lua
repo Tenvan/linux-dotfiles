@@ -5,19 +5,19 @@
 ---
 
 -- Standard awesome library
-local gears          = require("gears")
-local awful          = require("awful")
+local gears                       = require("gears")
+local awful                       = require("awful")
 
-gdebug               = require("gears.debug")
+gdebug                            = require("gears.debug")
 
-local xresources     = require("beautiful.xresources")
-local dpi            = xresources.apply_dpi
+local xresources                  = require("beautiful.xresources")
+local dpi                         = xresources.apply_dpi
 
-local utils          = require("utils")
+local utils                       = require("utils")
 
-local colors         = utils.get_current_theme()
+local colors                      = utils.get_current_theme()
 
-local machi          = require("layout-machi")
+local machi                       = require("layout-machi")
 require("beautiful").layout_machi = machi.get_icon()
 
 -- {{{ Variable definitions
@@ -30,59 +30,60 @@ editor               = "kate" -- default editor
 editor_cmd           = editor
 
 -- extern apps definition
-browser              = "firefox"
-clipboard            = "copyq"
-composite            = "picom"
-filemanager          = "krusader"
-filemanager_root     = "kdesu krusader"
-guard                = "gnome-system-monitor"
-mail                 = "thunderbird"
-screenlook           = "blurlock"
-tasks                = "xfce4-taskmanager"
+browser                           = "firefox"
+clipboard                         = "copyq"
+composite                         = "picom"
+filemanager                       = "krusader"
+filemanager_root                  = "kdesu krusader"
+guard                             = "gnome-system-monitor"
+mail                              = "thunderbird"
+screenlook                        = "blurlock"
+tasks                             = "xfce4-taskmanager"
 
 -- themes
-themepath            = gears.filesystem.get_xdg_config_home() .. "awesome/themes/"
-themefile            = themepath .. themename .. "/theme.lua"
+themepath                         = gears.filesystem.get_xdg_config_home() .. "awesome/themes/"
+themefile                         = themepath .. themename .. "/theme.lua"
 
-my_bg_normal         = colors.background
-my_bg_focus          = colors.focused_background
-my_bg_urgent         = colors.color1
-my_bg_minimize       = colors.inactive_background
-my_bg_systray        = my_bg_normal
+my_bg_normal                      = colors.background
+my_bg_focus                       = colors.focused_background
+my_bg_urgent                      = colors.color1
+my_bg_minimize                    = colors.inactive_background
+my_bg_systray                     = my_bg_normal
 
-my_fg_normal         = colors.foreground
-my_fg_focus          = colors.focused_foreground
-my_fg_urgent         = colors.color15
-my_fg_minimize       = colors.inactive_foreground
+my_fg_normal                      = colors.foreground
+my_fg_focus                       = colors.focused_foreground
+my_fg_urgent                      = colors.color15
+my_fg_minimize                    = colors.inactive_foreground
 
-my_useless_gap       = dpi(3)
-my_border_width      = dpi(1)
+my_useless_gap                    = dpi(3)
+my_border_width                   = dpi(1)
 
-my_border_normal     = my_fg_normal
-my_border_focus      = my_fg_focus
-my_border_marked     = "#00FF00"
+my_border_normal                  = my_fg_normal
+my_border_focus                   = my_fg_focus
+my_border_marked                  = "#00FF00"
 
 -- tag definitions
-tag_Develop          = " Develop"
-tag_DevConsole       = " Develop Consolen"
-tag_Divers           = " Sonstiges"
-tag_Files            = " Dateien"
-tag_Teams            = " Teams"
-tag_VM               = " VirtualBox"
-tag_Web              = " Web"
-tag_Media            = " Audio /  Video"
-tag_Admin            = " Admin"
-tag_Status           = " Status"
+tag_Develop                       = " Develop"
+tag_DevConsole                    = " Develop Consolen"
+tag_Git                           = " Git"
+tag_Divers                        = " Sonstiges"
+tag_Files                         = " Dateien"
+tag_Teams                         = " Teams"
+tag_VM                            = " VirtualBox"
+tag_Web                           = " Web"
+tag_Media                         = " Audio /  Video"
+tag_Admin                         = " Admin"
+tag_Status                        = " Status"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
-modkey               = "Mod4"
+modkey                            = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
-awful.layout.layouts = {
+awful.layout.layouts              = {
   awful.layout.suit.floating,
   awful.layout.suit.tile,
   -- TODO implment layout editor, see: https://github.com/xinhaoyuan/layout-machi

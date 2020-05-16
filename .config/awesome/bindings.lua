@@ -24,14 +24,6 @@ myglobalkeys        = gears.table.join(
                   end,
                   { description = "show help", group = "awesome" }),
 
-        awful.key({ modkey }, "Left",
-                  awful.tag.viewprev,
-                  { description = "view previous", group = "tag" }),
-
-        awful.key({ modkey }, "Right",
-                  awful.tag.viewnext,
-                  { description = "view next", group = "tag" }),
-
         awful.key({ modkey }, "Escape",
                   awful.tag.history.restore,
                   { description = "go back", group = "tag" }),
@@ -55,29 +47,29 @@ myglobalkeys        = gears.table.join(
                   { description = "show main menu", group = "awesome" }),
 
 -- Layout manipulation
-        awful.key({ modkey, "Shift" }, "Right",
-                  function()
-                    awful.client.swap.byidx(1)
-                  end,
-                  { description = "swap with next client by index", group = "client" }),
+--         awful.key({ modkey, "Shift" }, "Right",
+--                   function()
+--                     awful.client.swap.byidx(1)
+--                   end,
+--                   { description = "swap with next client by index", group = "client" }),
+-- 
+--         awful.key({ modkey, "Shift" }, "Left",
+--                   function()
+--                     awful.client.swap.byidx(-1)
+--                   end,
+--                   { description = "swap with previous client by index", group = "client" }),
 
-        awful.key({ modkey, "Shift" }, "Left",
-                  function()
-                    awful.client.swap.byidx(-1)
-                  end,
-                  { description = "swap with previous client by index", group = "client" }),
-
-        awful.key({ modkey, "Control" }, "Right",
-                  function()
-                    awful.screen.focus_relative(1)
-                  end,
-                  { description = "focus the next screen", group = "screen" }),
-
-        awful.key({ modkey, "Control" }, "Left",
-                  function()
-                    awful.screen.focus_relative(-1)
-                  end,
-                  { description = "focus the previous screen", group = "screen" }),
+--         awful.key({ modkey, "Control" }, "Right",
+--                   function()
+--                     awful.screen.focus_relative(1)
+--                   end,
+--                   { description = "focus the next screen", group = "screen" }),
+-- 
+--         awful.key({ modkey, "Control" }, "Left",
+--                   function()
+--                     awful.screen.focus_relative(-1)
+--                   end,
+--                   { description = "focus the previous screen", group = "screen" }),
 
         awful.key({ modkey }, "u",
                   awful.client.urgent.jumpto,
@@ -363,4 +355,3 @@ root.buttons(gears.table.join(
         awful.button({}, 5,
                      awful.tag.viewprev)))
 -- }}}
-

@@ -62,6 +62,7 @@ require("bars")
 
 -- {{{ Key bindings
 require("bindings")
+require("collision")()
 -- }}}
 
 -- {{{ Rules
