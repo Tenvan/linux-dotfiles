@@ -143,57 +143,72 @@ awful.screen.connect_for_each_screen(function(s)
   s.mytaglist = awful.widget.taglist {
     screen          = s,
     filter          = awful.widget.taglist.filter.all,
-    _style           = {
+    style           = {
       shape = gears.shape.powerline
     },
-    _layout         = {
-      spacing        = 10,
+    layout          = {
+      spacing        = 20,
+      forced_width = nil,
       spacing_widget = {
-        color  = '#ff0000',
+        color  = beautiful.fg_focus,
         shape  = gears.shape.powerline,
         widget = wibox.widget.separator,
       },
       layout         = wibox.layout.fixed.horizontal
     },
-    _widget_template = {
+    widget_template = {
       {
         {
+          -- {{{ Index Block
           {
             {
               {
                 id     = 'index_role',
                 widget = wibox.widget.textbox,
               },
-              margins = 0,
+              margins = 4,
               widget  = wibox.container.margin,
             },
-            --bg     = beautiful.bg_focus,
+            bg     = "#dddddd",
             shape  = gears.shape.circle,
             widget = wibox.container.background,
           },
+          -- }}}
+
+          --  {{{ icon block
           {
             {
               id     = 'icon_role',
               widget = wibox.widget.imagebox,
             },
-            left   = 1,
-            right  = 3,
+            margins = 0,
+            forced_width = 0,
             widget = wibox.container.margin,
           },
+          -- }}
+
+          -- {{ text block
           {
             id     = 'text_role',
             widget = wibox.widget.textbox,
           },
+          --}
+
           layout = wibox.layout.fixed.horizontal,
         },
         left   = 18,
         right  = 18,
         widget = wibox.container.margin
       },
+
+      -- {{{ widget configuration
       id              = 'background_role',
       widget          = wibox.container.background,
+      -- }}}
 
+      -- {{{ widget events
       -- Add support for hover colors and an index label
+
       create_callback = function(self, c3, index, objects)
         --luacheck: no unused args
         self:get_children_by_id('index_role')[1].markup = '<b> ' .. c3.index .. ' </b>'
@@ -230,6 +245,7 @@ awful.screen.connect_for_each_screen(function(s)
         --luacheck: no unused args
         self:get_children_by_id('index_role')[1].markup = '<b> ' .. c3.index .. ' </b>'
       end,
+      -- }}}
     },
     buttons         = taglist_buttons
   }
