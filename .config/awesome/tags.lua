@@ -156,13 +156,25 @@ tyrannical.tags                         = {
     name      = tag_VM,
     init      = false,
     exclusive = false,
-    screen    = 2, -- Setup on screen 2 if there is more than 1 screen, else on screen 1
+    screen    = 1,
+    force_screen = true,
     layout    = awful.layout.suit.tile,
     class     = {
       "VirtualBox Manager",
+    }
+  }, 
+  {
+    name      = tag_VM,
+    init      = false,
+    exclusive = true,
+    screen    = 2,
+    force_screen = true,
+    layout    = awful.layout.suit.max,
+    class     = {
       "VirtualBox Machine",
     }
-  }, {
+  }, 
+  {
     name      = tag_Status,
     init      = false,
     exclusive = false,

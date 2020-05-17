@@ -2,15 +2,11 @@
 # Alias Definitions
 
 alias rc="kate ~/.config/fish/*.fish ~/.env.fish"
-# alias rc="vim -p -c 'set mouse=a' ~/.config/fish/*.fish"
 
 alias sys-update="yay -S --noconfirm "
 alias sys-install="yay -S --noconfirm "
 alias sys-remove="yay -Rnsu "
 alias sys-search="yay -Ss "
-
-alias vim="vim -p -c 'set mouse=a' "
-alias gvim="gvim -p "
 
 alias killx="sudo systemctl restart lightdm; sudo systemctl restart sddm"
 

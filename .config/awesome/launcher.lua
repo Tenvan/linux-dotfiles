@@ -41,7 +41,9 @@ mymenu                 = {
         end)
     end },
   { "restart", awesome.restart },
-  { "logoff", awesome.quit },
+  { "logoff", function() awesome.quit() end },
+  { "lock user", terminal .. " -e dm-tool lock" },
+  { "switch user", terminal .. " -e dm-tool switch-to-greeter" }
 }
 
 mymainmenu             = awful.menu(
