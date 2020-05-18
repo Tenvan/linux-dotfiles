@@ -3,16 +3,17 @@
 require("definitions")
 
 -- Standard awesome library
-local gears              = require("gears")
-local awful              = require("awful")
+local gears         = require("gears")
+local awful         = require("awful")
 
 -- Notification library
-local naughty            = require("naughty")
+local naughty       = require("naughty")
 
 -- Notification library
-local hotkeys_popup      = require("awful.hotkeys_popup")
+local hotkeys_popup = require("awful.hotkeys_popup")
 
-local workdir            = "/media/WORKSPACE/Node/OneTime"
+local workdir       = os.getenv("WORK_DIR")
+gdebug.print_warning("===> WORK_DIR: " .. workdir);
 
 local shell_cmd          = terminal .. " --title='OneTimeConsole' --working-directory " .. workdir
 
@@ -32,13 +33,13 @@ mydevelop.mydevelopitems = {
   { " yarn update", shell_cmd .. " --hold -e yarn run update:all" },
 }
 
-mydevelop.mydevelopmenu      = awful.menu(
+mydevelop.mydevelopmenu  = awful.menu(
   {
     items = mydevelop.mydevelopitems
   })
 
 -- {{{ Key bindings
-mydevelop.mydevkeys          = gears.table.join(
+mydevelop.mydevkeys      = gears.table.join(
 --- system tools
   awful.key({ modkey, "Shift" }, "d",
             function()
