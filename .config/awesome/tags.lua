@@ -10,7 +10,7 @@ require("definitions")
 -- Standard awesome library
 local awful                             = require("awful")
 awful.rules                             = require("awful.rules")
-local tyrannical                        = require("tyrannical")
+local tyrannical                        = require("tyrannical") -- https://github.com/Elv13/tyrannical
 
 -- First, set some settings
 tyrannical.settings.default_layout      = awful.layout.suit.tile.left
@@ -19,14 +19,15 @@ tyrannical.settings.master_width_factor = 0.66
 -- Setup some tags
 tyrannical.tags                         = {
   {
-    name      = tag_Develop,
-    init      = true,
-    exclusive = false,
-    screen    = 1,
-    -- clone_on  = 2, -- Create a single instance of this tag on screen 1, but also show it on screen 2
-    -- The tag can be used on both screen, but only one at once
-    layout    = awful.layout.suit.max,
-    class     = {
+    name                  = tag_Develop,
+    init                  = true,
+    exclusive             = true,
+    screen                = 1,
+    force_screen          = true,
+    no_tag_deselect       = true,
+    no_focus_stealing_out = true,
+    layout                = awful.layout.suit.max,
+    class                 = {
       "jetbrains-webstorm",
       "jetbrains-rider",
       "jetbrains-datagrip",
@@ -130,7 +131,7 @@ tyrannical.tags                         = {
   },
   {
     name      = tag_Divers,
-    init      = false,
+    init      = true,
     exclusive = false,
     fallback  = true,
     layout    = awful.layout.suit.max,
@@ -153,27 +154,27 @@ tyrannical.tags                         = {
     }
   },
   {
-    name      = tag_VM,
-    init      = false,
-    exclusive = false,
-    screen    = 1,
+    name         = tag_VM,
+    init         = false,
+    exclusive    = false,
+    screen       = 1,
     force_screen = true,
-    layout    = awful.layout.suit.tile,
-    class     = {
+    layout       = awful.layout.suit.tile,
+    class        = {
       "VirtualBox Manager",
     }
-  }, 
+  },
   {
-    name      = tag_VM,
-    init      = false,
-    exclusive = true,
-    screen    = 2,
+    name         = tag_VM,
+    init         = false,
+    exclusive    = true,
+    screen       = 2,
     force_screen = true,
-    layout    = awful.layout.suit.max,
-    class     = {
+    layout       = awful.layout.suit.max,
+    class        = {
       "VirtualBox Machine",
     }
-  }, 
+  },
   {
     name      = tag_Status,
     init      = false,
@@ -188,9 +189,9 @@ tyrannical.tags                         = {
 
 -- Ignore the tag "exclusive" property for the following clients (matched by classes)
 tyrannical.properties.intrusive         = {
-  --"ksnapshot", "pinentry", "gtksu", "kcalc", "xcalc",
-  --"feh", "Gradient editor", "About KDE", "Paste Special", "Background color",
-  --"kcolorchooser", "plasmoidviewer", "Xephyr", "kruler", "plasmaengineexplorer",
+  spectacle = true,
+  copyq     = false,
+  "copyq", "spectacle", "gtksu", "Xephyr", "kruler", "kcolorchooser"
 }
 
 -- Ignore the tiled layout for the matching clients
@@ -199,6 +200,12 @@ tyrannical.properties.floating          = {
   --"xine", "feh", "kmix", "kcalc", "xcalc",
   --"yakuake", "Select Color$", "kruler", "kcolorchooser", "Paste Special",
   --"New Form", "Insert Picture", "kcharselect", "mythfrontend", "plasmoidviewer"
+}
+
+tyrannical.properties.maximized         = {
+  --"jetbrains-webstorm",
+  --"jetbrains-rider",
+  --"jetbrains-datagrip",
 }
 
 -- Make the matching clients (by classes) on top of the default layout

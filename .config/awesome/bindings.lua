@@ -52,7 +52,7 @@ myglobalkeys        = gears.table.join(
 --                     awful.client.swap.byidx(1)
 --                   end,
 --                   { description = "swap with next client by index", group = "client" }),
--- 
+--
 --         awful.key({ modkey, "Shift" }, "Left",
 --                   function()
 --                     awful.client.swap.byidx(-1)
@@ -64,7 +64,7 @@ myglobalkeys        = gears.table.join(
 --                     awful.screen.focus_relative(1)
 --                   end,
 --                   { description = "focus the next screen", group = "screen" }),
--- 
+--
 --         awful.key({ modkey, "Control" }, "Left",
 --                   function()
 --                     awful.screen.focus_relative(-1)

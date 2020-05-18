@@ -101,19 +101,24 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 -- {{{ tyrannical tags
-require("tags")
+--require("tags")
 -- }}}
 
-local scounter = 0
+layouts = awful.layout.layouts
+tags    = {
+  settings = {
+    { names  = { tag_Develop, tag_Git, tag_Divers, tag_Files, tag_Admin },
+      layout = { layouts[2], layouts[1], layouts[1], layouts[4] }
+    },
+    { names  = { tag_DevConsole, tag_Web, tag_Teams, tag_VM, tag_Media, tag_Status },
+      layout = { layouts[3], layouts[2], layouts[2], layouts[5] }
+    } } }
 
 awful.screen.connect_for_each_screen(function(s)
-  scounter = scounter + 1
-
   -- Wallpaper
   set_wallpaper(s, s.index)
 
-  -- Each screen has its own tag table.
-  --tags[s] = awful.tag(tags.settings[s.index].names, s, tags.settings[s.index].layout)
+  tags[s]       = awful.tag(tags.settings[s.index].names, s, tags.settings[s.index].layout)
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()
@@ -121,6 +126,7 @@ awful.screen.connect_for_each_screen(function(s)
   -- Create an imagebox widget which will contain an icon indicating which layout we're using.
   -- We need one layoutbox per screen.
   s.mylayoutbox = awful.widget.layoutbox(s)
+
   s.mylayoutbox:buttons(gears.table.join(
     awful.button({}, 1,
                  function()
@@ -148,7 +154,7 @@ awful.screen.connect_for_each_screen(function(s)
     },
     layout          = {
       spacing        = 20,
-      forced_width = nil,
+      forced_width   = nil,
       spacing_widget = {
         color  = beautiful.fg_focus,
         shape  = gears.shape.powerline,
@@ -181,9 +187,9 @@ awful.screen.connect_for_each_screen(function(s)
               id     = 'icon_role',
               widget = wibox.widget.imagebox,
             },
-            margins = 0,
+            margins      = 0,
             forced_width = 0,
-            widget = wibox.container.margin,
+            widget       = wibox.container.margin,
           },
           -- }}
 
@@ -262,7 +268,7 @@ awful.screen.connect_for_each_screen(function(s)
   end
 
   -- Create a tasklist widget
-  s.mytasklist    = awful.widget.tasklist {
+  s.mytasklist = awful.widget.tasklist {
     screen          = s,
     filter          = awful.widget.tasklist.filter.currenttags,
     buttons         = tasklist_buttons,
@@ -270,19 +276,21 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   -- Create the wibox
-  s.mywiboxtop    = awful.wibar({ position = "top", screen = s, opacity = bar_opacity, height = bar_height })
-  s.mywiboxbottom = awful.wibar({ position = "bottom", screen = s, opacity = bar_opacity, height = bar_height })
+  s.mywiboxbar = awful.wibar({ position = "top", screen = s, opacity = bar_opacity, height = bar_height })
   --s.mywiboxright = awful.wibar({ position = "right", screen = s, width = 200, opacity = 0.7 })
 
   -- Add widgets to the wibox (second right)
-  s.mywiboxtop:setup {
+  s.mywiboxbar:setup {
     layout = wibox.layout.align.horizontal,
     { -- Left widgets
       layout = wibox.layout.fixed.horizontal,
+      mylauncher,
+      s.mypromptbox,
       s.mytaglist,
     },
-    { -- Left widgets
+    { -- Middle widgets
       layout = wibox.layout.fixed.horizontal,
+      s.mytasklist, -- Middle widget
     },
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
@@ -294,21 +302,6 @@ awful.screen.connect_for_each_screen(function(s)
                    step_spacing = 0,
                    color        = '#434c5e'
                  }),
-      mytextclock,
-    }
-  }
-
-  -- Add widgets to the wibox (main top)
-  s.mywiboxbottom:setup {
-    layout = wibox.layout.align.horizontal,
-    { -- Left widgets
-      layout = wibox.layout.fixed.horizontal,
-      mylauncher,
-      s.mypromptbox
-    },
-    s.mytasklist, -- Middle widget
-    { -- Right widgets
-      layout = wibox.layout.fixed.horizontal,
       myKeyboardLayout,
       wibox.widget.systray(),
       volumearc_widget(),

@@ -6,13 +6,13 @@ pcall(require, "luarocks.loader")
 require("definitions")
 
 -- Standard awesome library
-local awful      = require("awful")
+local awful     = require("awful")
 
 -- Notification library
-local naughty       = require("naughty")
+local naughty   = require("naughty")
 
 -- Theme handling library
-local beautiful  = require("beautiful")
+local beautiful = require("beautiful")
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -50,6 +50,37 @@ do
   end)
 end
 -- }}}
+
+--client.connect_signal("unmanage", function(c)
+--  if client.focus == c and c.transient_for then
+--    client.focus = c.transient_for
+--    c.transient_for:raise()
+--  end
+--end)
+
+local last_focus
+client.connect_signal("unfocus",
+                      function(c)
+                        gdebug.print_warning("call unfocus")
+                        gdebug.dump(c)
+                        last_focus = c
+                      end)
+client.connect_signal("focus",
+                      function(c)
+                        gdebug.print_warning("call focus")
+                        gdebug.dump(c)
+                        last_focus = nil
+                      end)
+client.connect_signal("unmanage",
+                      function(c)
+                        gdebug.print_warning("call unmanaged")
+                        gdebug.dump(c)
+                        if last_focus == c and c.transient_for then
+                          client.focus = c.transient_for
+                          c.transient_for:raise()
+                          gdebug.print_warning("call raised")
+                        end
+                      end)
 
 -- {{{ Menu
 -- Standard Definitions

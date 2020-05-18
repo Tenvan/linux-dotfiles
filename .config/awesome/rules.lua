@@ -113,5 +113,81 @@ awful.rules.rules = {
     rule_any   = { type = { "normal", "dialog" } },
     properties = { titlebars_enabled = true }
   },
+
+  -- Set Apps for Web Tag.
+  {
+    rule_any   = {
+      class = {
+        "Firefox",
+        "Google-chrome",
+        "Chromium",
+        "Opera"
+      }
+    },
+    properties = { screen = 2, tag = tag_Web }
+  },
+
+  -- Set Apps for Developer Tag.
+  {
+    rule_any   = {
+      class = {
+        "jetbrains-webstorm",
+        "jetbrains-rider",
+        "jetbrains-datagrip"
+      }
+    },
+    properties = { screen = 1, tag = tag_Develop }
+  },
+
+  -- Set Apps for Status Tag.
+  {
+    rule_any   = {
+      class = {
+        "Gnome-system-monitor"
+      }
+    },
+    properties = { screen = 2, tag = tag_Status }
+  },
+
+  -- Set Apps for Teams Tag.
+  {
+    rule_any   = {
+      class = {
+        "Microsoft Teams - Preview"
+      }
+    },
+    properties = { screen = 2, tag = tag_Teams }
+  },
+
+  -- Set Apps for VM Tag.
+  {
+    rule_any   = {
+      class = {
+        "VirtualBox Manager",
+        "VirtualBox Machine",
+      }
+    },
+    properties = { screen = 1, tag = tag_VM }
+  },
+
+  -- Set Apps for Admin Tag.
+  {
+    rule_any   = {
+      name = {
+        "BMenu"
+      }
+    },
+    properties = { screen = 1, tag = tag_Admin }
+  },
+
+  -- Set Apps for Media Tag.
+  {
+    rule_any   = {
+      class = {
+        "Spotify"
+      }
+    },
+    properties = { screen = 2, tag = tag_Media }
+  }
 }
 -- }}}
