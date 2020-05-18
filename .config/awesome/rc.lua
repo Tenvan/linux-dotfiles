@@ -61,13 +61,13 @@ end
 local last_focus
 client.connect_signal("unfocus",
                       function(c)
-                        gdebug.print_warning("call unfocus")
+                        gdebug.print_warning(string.format("call unfocus: %s", c))
                         gdebug.dump(c)
                         last_focus = c
                       end)
 client.connect_signal("focus",
                       function(c)
-                        gdebug.print_warning("call focus")
+                        gdebug.print_warning(string.format("call focus: %s", c))
                         gdebug.dump(c)
                         last_focus = nil
                       end)

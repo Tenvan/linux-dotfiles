@@ -108,10 +108,10 @@ layouts = awful.layout.layouts
 tags    = {
   settings = {
     { names  = { tag_Develop, tag_Git, tag_Divers, tag_Files, tag_Admin },
-      layout = { layouts[2], layouts[1], layouts[1], layouts[4] }
+      layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
     },
     { names  = { tag_DevConsole, tag_Web, tag_Teams, tag_VM, tag_Media, tag_Status },
-      layout = { layouts[3], layouts[2], layouts[2], layouts[5] }
+      layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
     } } }
 
 awful.screen.connect_for_each_screen(function(s)

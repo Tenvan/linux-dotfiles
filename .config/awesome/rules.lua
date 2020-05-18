@@ -136,7 +136,7 @@ awful.rules.rules = {
         "jetbrains-datagrip"
       }
     },
-    properties = { screen = 1, tag = tag_Develop }
+    properties = { tag = tag_Develop }
   },
 
   -- Set Apps for Status Tag.
@@ -146,7 +146,17 @@ awful.rules.rules = {
         "Gnome-system-monitor"
       }
     },
-    properties = { screen = 2, tag = tag_Status }
+    properties = { tag = tag_Status }
+  },
+
+  -- Set Apps for Git Tag.
+  {
+    rule_any   = {
+      class = {
+        "SmartGit"
+      }
+    },
+    properties = { tag = tag_Git }
   },
 
   -- Set Apps for Teams Tag.
