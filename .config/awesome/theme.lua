@@ -134,10 +134,11 @@ theme.border_normal                         = theme.gtk.wm_border_unfocused_colo
 theme.border_focus                          = theme.gtk.wm_border_focused_color
 theme.border_marked                         = theme.gtk.success_color
 
-theme.border_width                          = dpi(theme.gtk.button_border_width or 1)
+--theme.border_width                          = dpi(theme.gtk.button_border_width or 10)
+theme.border_width                          = dpi(5)
 theme.border_radius                         = theme.gtk.button_border_radius
 
-theme.useless_gap                           = dpi(3)
+theme.useless_gap                           = dpi(0)
 
 local rounded_rect_shape                    = function(cr, w, h)
   gears_shape.rounded_rect(
@@ -232,6 +233,99 @@ theme.tasklist_widget_template              = {
   create_callback = function(self, c)
     self:get_children_by_id('clienticon')[1].client = c
   end,
+}
+
+theme.tag_widget_template                   = {
+  {
+    {
+      -- {{{ Index Block
+      {
+        {
+          {
+            id     = 'index_role',
+            widget = wibox.widget.textbox,
+          },
+          margins = 4,
+          widget  = wibox.container.margin,
+
+        },
+        bg     = theme.bg_normal,
+        shape  = gears.shape.circle,
+        widget = wibox.container.background,
+      },
+      -- }}}
+
+      --  {{{ icon block
+      {
+        {
+          id     = 'icon_role',
+          widget = wibox.widget.imagebox,
+        },
+        margins      = 0,
+        forced_width = 0,
+        widget       = wibox.container.margin,
+      },
+      -- }}
+
+      -- {{ text block
+      {
+        id     = 'text_role',
+        widget = wibox.widget.textbox,
+        --left   = 0,
+      },
+      --}
+      layout = wibox.layout.fixed.horizontal,
+    },
+    left   = 10,
+    right  = 10,
+    widget = wibox.container.margin
+  },
+
+  -- {{{ widget configuration
+  id              = 'background_role',
+  widget          = wibox.container.background,
+  -- }}}
+
+  -- {{{ widget events
+  -- Add support for hover colors and an index label
+
+  create_callback = function(self, c3, index, objects)
+    --luacheck: no unused args
+    self:get_children_by_id('index_role')[1].markup = '<b> ' .. c3.index .. ' </b>'
+    self:connect_signal('mouse::enter', function()
+
+      gdebug.dump(self.selected)
+
+      if not self.has_backup then
+        self.backup_bg  = self.bg
+        self.backup_fg  = self.fg
+        self.has_backup = true
+      end
+
+      self.bg = theme.bg_urgent
+      self.fg = theme.fg_urgent
+    end)
+
+    self:connect_signal('mouse::leave', function()
+      if self.has_backup then
+        self.bg         = self.backup_bg
+        self.fg         = self.backup_fg
+        self.has_backup = false
+      end
+    end)
+
+    self:connect_signal('button::press', function()
+      gdebug.print_warning("button pressed")
+      self.backup_bg = theme.bg_focus
+      self.backup_fg = theme.fg_focus
+    end)
+
+  end,
+  update_callback = function(self, c3, index, objects)
+    --luacheck: no unused args
+    self:get_children_by_id('index_role')[1].markup = '<b> ' .. c3.index .. ' </b>'
+  end,
+  -- }}}
 }
 
 theme.taglist_shape_container               = rounded_rect_shape
@@ -351,10 +445,7 @@ wallpaper_bg     = reduce_contrast(wallpaper_bg, 50)
 wallpaper_fg     = reduce_contrast(wallpaper_fg, 30)
 wallpaper_fg     = mix(wallpaper_fg, wallpaper_bg, 0.4)
 wallpaper_alt_fg = mix(wallpaper_alt_fg, wallpaper_fg, 0.4)
---theme.wallpaper = function(s)
---    return theme_assets.wallpaper(wallpaper_bg, wallpaper_fg, wallpaper_alt_fg, s)
---end
---
+
 theme.wallpaper  = function(s)
   return gears.filesystem.get_xdg_config_home() .. "awesome/background" .. s.index .. "_" .. themetype .. ".jpg"
 end

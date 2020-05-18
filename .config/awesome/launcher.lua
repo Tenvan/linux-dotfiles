@@ -18,9 +18,11 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Standard Definitions
 require("definitions")
 
+local mydevmenu = require("developbindings").mydevelopitems
+
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-mymenu                 = {
+mymenu                     = {
   { "hotkeys", function()
     hotkeys_popup.show_help(nil, awful.screen.focused())
   end },
@@ -41,22 +43,26 @@ mymenu                 = {
         end)
     end },
   { " restart", awesome.restart },
-  { " logoff", function() awesome.quit() end },
+  { " logoff", function()
+    awesome.quit()
+  end },
   { "lock user", terminal .. " -e dm-tool lock" },
   { " switch user", terminal .. " -e dm-tool switch-to-greeter" }
 }
 
-mymainmenu             = awful.menu(
-  { items = { { "awesome", mymenu, beautiful.awesome_icon },
-              { "open terminal", terminal }
+mymainmenu                 = awful.menu(
+  { items = {
+    { "awesome", mymenu, beautiful.awesome_icon },
+    { "OneTime", mydevmenu },
+    { "open terminal", terminal }
   }
   })
 
-mylauncher             = awful.widget.launcher(
+mylauncher                 = awful.widget.launcher(
   { image = beautiful.awesome_icon,
     menu  = mymainmenu })
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+menubar.utils.terminal     = terminal -- Set the terminal for applications that require it
 
 -- }}}

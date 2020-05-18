@@ -54,7 +54,7 @@ Fallback Encoding=ISO 8859-15
 
 [KTextEditor Renderer]
 Animate Bracket Matching=false
-Schema=Solarized (dark)
+Schema=Vim (dark)
 Show Indentation Lines=false
 Show Whole Bracket Expression=false
 Word Wrap Marker=false
@@ -104,7 +104,7 @@ Word Completion Minimal Word Length=3
 Word Completion Remove Tail=true
 
 [KTextEditor::Search]
-Search History=+r,ungit,$tasks,$ws_Teams
+Search History=editor_cmd,+r,ungit,$tasks,$ws_Teams
 
 [Konsole]
 AutoSyncronize=true
@@ -113,17 +113,11 @@ RunPrefix=
 SetEditor=false
 
 [MainWindow]
-Height 1080=1038
-State=AAAA/wAAAAD9AAAAAAAAB34AAAPyAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
+Height 1080=1022
+State=AAAA/wAAAAD9AAAAAAAACfYAAAPgAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
 ToolBarsMovable=Disabled
-Width 1920=1918
-Width 2560=1079
-
-[MainWindow]
-Height 1080=992
-State=AAAA/wAAAAD9AAAAAAAAA7AAAAPEAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
-ToolBarsMovable=Disabled
-Width 1920=944
+Width 1920=950
+Width 2560=2550
 
 [filetree]
 editShade=179,218,246

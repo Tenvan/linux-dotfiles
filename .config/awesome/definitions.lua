@@ -26,7 +26,7 @@ require("beautiful").layout_machi = machi.get_icon()
 themename            = "gtk" -- theme name
 themetype            = "dark"
 terminal             = "alacritty" -- default terminal
-editor               = "kate" -- default editor
+editor               = "code" -- default editor
 editor_cmd           = editor
 
 -- extern apps definition
@@ -41,26 +41,8 @@ screenlook                        = "blurlock"
 tasks                             = "xfce4-taskmanager"
 
 -- themes
-themepath                         = gears.filesystem.get_xdg_config_home() .. "awesome/themes/"
-themefile                         = themepath .. themename .. "/theme.lua"
-
-my_bg_normal                      = colors.background
-my_bg_focus                       = colors.focused_background
-my_bg_urgent                      = colors.color1
-my_bg_minimize                    = colors.inactive_background
-my_bg_systray                     = my_bg_normal
-
-my_fg_normal                      = colors.foreground
-my_fg_focus                       = colors.focused_foreground
-my_fg_urgent                      = colors.color15
-my_fg_minimize                    = colors.inactive_foreground
-
-my_useless_gap                    = dpi(3)
-my_border_width                   = dpi(1)
-
-my_border_normal                  = my_fg_normal
-my_border_focus                   = my_fg_focus
-my_border_marked                  = "#00FF00"
+themepath                         = gears.filesystem.get_xdg_config_home() .. "awesome/"
+themefile                         = themepath .. "/theme.lua"
 
 -- tag definitions
 tag_Develop                       = " Develop"

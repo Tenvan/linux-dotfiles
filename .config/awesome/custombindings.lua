@@ -8,20 +8,17 @@ require("definitions")
 require("launcher")
 
 -- Standard awesome library
-local gears         = require("gears")
-local awful         = require("awful")
+local gears        = require("gears")
+local awful        = require("awful")
 
 -- Notification library
-local naughty       = require("naughty")
-
--- Notification library
-local hotkeys_popup = require("awful.hotkeys_popup")
+local naughty      = require("naughty")
 
 -- awesome-cyclefocus, see: https://github.com/blueyed/awesome-cyclefocus/
-local cyclefocus    = require('awesome-cyclefocus')
+local cyclefocus   = require('awesome-cyclefocus')
 
 -- {{{ Key bindings
-mycustomkeys        = gears.table.join(
+local mycustomkeys = gears.table.join(
 --- system tools
   awful.key({ "Control", "Shift" }, "Escape",
             function()
@@ -200,3 +197,4 @@ mycustomkeys        = gears.table.join(
 
 -- }}}
 
+return mycustomkeys

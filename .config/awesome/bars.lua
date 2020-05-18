@@ -104,14 +104,14 @@ screen.connect_signal("property::geometry", set_wallpaper)
 --require("tags")
 -- }}}
 
-layouts = awful.layout.layouts
-tags    = {
+local layouts = awful.layout.layouts
+local tags    = {
   settings = {
     { names  = { tag_Develop, tag_Git, tag_Divers, tag_Files, tag_Admin },
-      layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
+      layout = { awful.layout.suit.max, awful.layout.suit.tile, awful.layout.suit.tile, awful.layout.suit.tile, awful.layout.suit.tile }
     },
     { names  = { tag_DevConsole, tag_Web, tag_Teams, tag_VM, tag_Media, tag_Status },
-      layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
+      layout = { awful.layout.suit.corner.nw, awful.layout.suit.tile, awful.layout.suit.tile, awful.layout.suit.max, awful.layout.suit.tile, awful.layout.suit.tile }
     } } }
 
 awful.screen.connect_for_each_screen(function(s)
@@ -149,110 +149,14 @@ awful.screen.connect_for_each_screen(function(s)
   s.mytaglist = awful.widget.taglist {
     screen          = s,
     filter          = awful.widget.taglist.filter.all,
-    style           = {
-      shape = gears.shape.powerline
-    },
-    layout          = {
-      spacing        = 20,
-      forced_width   = nil,
-      spacing_widget = {
-        color  = beautiful.fg_focus,
-        shape  = gears.shape.powerline,
-        widget = wibox.widget.separator,
-      },
-      layout         = wibox.layout.fixed.horizontal
-    },
-    widget_template = {
-      {
-        {
-          -- {{{ Index Block
-          {
-            {
-              {
-                id     = 'index_role',
-                widget = wibox.widget.textbox,
-              },
-              margins = 4,
-              widget  = wibox.container.margin,
-            },
-            bg     = "#dddddd",
-            shape  = gears.shape.circle,
-            widget = wibox.container.background,
-          },
-          -- }}}
-
-          --  {{{ icon block
-          {
-            {
-              id     = 'icon_role',
-              widget = wibox.widget.imagebox,
-            },
-            margins      = 0,
-            forced_width = 0,
-            widget       = wibox.container.margin,
-          },
-          -- }}
-
-          -- {{ text block
-          {
-            id     = 'text_role',
-            widget = wibox.widget.textbox,
-          },
-          --}
-
-          layout = wibox.layout.fixed.horizontal,
-        },
-        left   = 18,
-        right  = 18,
-        widget = wibox.container.margin
-      },
-
-      -- {{{ widget configuration
-      id              = 'background_role',
-      widget          = wibox.container.background,
-      -- }}}
-
-      -- {{{ widget events
-      -- Add support for hover colors and an index label
-
-      create_callback = function(self, c3, index, objects)
-        --luacheck: no unused args
-        self:get_children_by_id('index_role')[1].markup = '<b> ' .. c3.index .. ' </b>'
-        self:connect_signal('mouse::enter', function()
-
-          gdebug.dump(self.selected)
-
-          if not self.has_backup then
-            self.backup_bg  = self.bg
-            self.backup_fg  = self.fg
-            self.has_backup = true
-          end
-
-          self.bg = beautiful.bg_urgent
-          self.fg = beautiful.fg_urgent
-        end)
-
-        self:connect_signal('mouse::leave', function()
-          if self.has_backup then
-            self.bg         = self.backup_bg
-            self.fg         = self.backup_fg
-            self.has_backup = false
-          end
-        end)
-
-        self:connect_signal('button::press', function()
-          gdebug.print_warning("button pressed")
-          self.backup_bg = beautiful.bg_focus
-          self.backup_fg = beautiful.fg_focus
-        end)
-
-      end,
-      update_callback = function(self, c3, index, objects)
-        --luacheck: no unused args
-        self:get_children_by_id('index_role')[1].markup = '<b> ' .. c3.index .. ' </b>'
-      end,
-      -- }}}
-    },
+    --style           = {
+    --  shape = gears.shape.powerline
+    --},
+    --layout          = {
+    --  spacing         = 20,
+    --  layout          = wibox.layout.fixed.horizontal
+    --},
+    widget_template = beautiful.tag_widget_template,
     buttons         = taglist_buttons
   }
 

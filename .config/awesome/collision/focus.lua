@@ -124,10 +124,10 @@ local function floating_clients()
 end
 
 local function bydirection(dir, c, swap, max)
-  gdebug.print_warning("dir:" .. dir)
-  gdebug.print_warning(string.format("swap: %s", swap))
-  --gdebug.print_warning(string.format("max: %s", max))
-  --gdebug.print_warning(string.format("c: %s", type(c)))
+  debug.print_warning("dir:" .. dir)
+  debug.print_warning(string.format("swap: %s", swap))
+  --debug.print_warning(string.format("max: %s", max))
+  --debug.print_warning(string.format("c: %s", type(c)))
 
   if not c then
     c = emulate_client(capi.mouse.screen)
@@ -205,13 +205,16 @@ local function bydirection(dir, c, swap, max)
       end
     else
       if target then
-        gdebug.print_warning(string.format("found client target: %s", type(target)))
+        debug.print_warning(string.format("found client target: %s", type(target)))
 
         -- We found a client to swap
         local other = cltbl[((not cltbl[target] and #cltbl == 1) and 1 or target)]
         if capi.screen[other.screen] == capi.screen[c.screen] or col_utils.settings.swap_across_screen then
           --BUG swap doesn't work if the screen is not the same
-          if c ~= nil and c.tags ~= nil then
+
+          debug.print_warning(string.format("c type: %s", type(c)))
+
+          if c ~= nil and type(c) == "client" and c.tags ~= nil then
             c:swap(other)
           end
         else
@@ -229,7 +232,7 @@ local function bydirection(dir, c, swap, max)
         end
         target = grect.get_in_direction(dir, screen_geom, c:geometry())
 
-        gdebug.print_warning(string.format("no client target: %s", type(target)))
+        debug.print_warning(string.format("no client target: %s", type(target)))
 
         if type(target) == "string" then
           if target and target ~= c.screen then

@@ -85,11 +85,9 @@ awful.rules.rules = {
     rule_any   = {
       instance = {
         "copyq",
-        "rofi"
       },
       class    = {
-        "Alacritty",
-        "Rofi",
+        "rofi",
       },
 
       -- Note that the name property shown in xprop might be set slightly after creation of the client
@@ -137,6 +135,16 @@ awful.rules.rules = {
       }
     },
     properties = { tag = tag_Develop }
+  },
+
+  -- Set Apps for DevConsole Tag.
+  {
+    rule_any   = {
+      name = {
+        "OneTimeConsole"
+      }
+    },
+    properties = { tag = tag_DevConsole, screen = 2 }
   },
 
   -- Set Apps for Status Tag.
