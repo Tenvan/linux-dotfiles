@@ -9,9 +9,17 @@
 !.Xresources
 !README.MD
 
+!.dmenu
+!.dmenu/*
+!.xmonad
+!.xmonad/*.hs
+!.xmonad/xpm
+!.xmonad/xpm/*
+
 # Ausnahmen Script Folder
 !Scripts
 !Scripts/*
+
 
 # Ausnahmen im .config folder
 !.config
@@ -20,7 +28,7 @@
 !.config/alacritty/*
 !.config/awesome
 !.config/awesome/**
-!.config/awesome/**/*
+!.config/awesome/**/*0
 !.config/copyq
 !.config/copyq/copyq.conf
 !.config/copyq/themes
@@ -42,12 +50,16 @@
 !.config/Kvantum/*
 !.config/nitrogen
 !.config/nitrogen/*
+!.config/nvim
+!.config/nvim/*.vim
 !.config/omf
 !.config/omf/*
 !.config/rofi
 !.config/rofi/*
 !.config/xsettingsd
 !.config/xsettingsd/*
+!.config/xmobar
+!.config/xmobar/*
 
 .cache/**/*
 .locale/**/*

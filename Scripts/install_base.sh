@@ -2,17 +2,21 @@
 # base i3 with bumblebee-status
 yay -S picom-ibhagwan-git
 
-yay -S --noconfirm bmenu rofi zenity spectacle polkit-gnome pamac-gtk pamac-cli pamac-tray-appindicator \
+yay -S --noconfirm nitrogen dmenu bmenu rofi zenity spectacle polkit-gnome pamac-gtk pamac-cli pamac-tray-appindicator \
 copyq xautolock conky pavucontrol pa-applet checkupdates-aur python-psutil xcwd-git \
 python-pygit2 python-xkbgroup progress python-taskw python-requests octopi octopi-notifier-qt5 \
-xfce4-taskmanager gnome-system-monitor gnome-system-log xclip xsel xdotool \
+xfce4-taskmanager gnome-system-monitor gnome-system-log xclip xsel xdotool xorg-xfd \
 bitwarden-bin bitwarden-cli-bin bitwarden-rofi lightdm-gtk-greeter-settings foxitreader pfetch
 
 # from kde (replace if possible)
 yay -S --noconfirm polkit-kde-agent kate krusader kde-cli-tools ksystemlog ksysguard kruler
 
 # applications
-yay -S --noconfirm ungit gitahead-bin timeset-gui
+yay -S --noconfirm ungit gitahead-bin timeset-gui python \
+neovim vim-plugins vundle vim-vimwiki vifm vim-nerdtree vim-instant-markdown
+
+pip install --user neovim
+
 
 # arts
 yay -S --noconfirm manjaro-artwork manjaro-artwork-extra \
