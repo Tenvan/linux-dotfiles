@@ -95,13 +95,14 @@ shellCmd        = myTerminal ++ " --title='OneTimeConsole' --working-directory "
 ------------------------------------------------------------------------
 main = do
   -- Launching three instances of xmobar on their monitors.
-  xmproc0 <- spawnPipe "xmobar -x 0 ~/.config/xmobar/xmobarrc1"
-  xmproc1 <- spawnPipe "xmobar -x 1 ~/.config/xmobar/xmobarrc2"
+  -- xmprocXf <- spawnPipe "killall xfce4-panel; sleep 2; xfce4-panel"
+  xmprocMo0 <- spawnPipe "xmobar -x 0 ~/.config/xmobar/xmobarrc1"
+  xmprocMo1 <- spawnPipe "xmobar -x 1 ~/.config/xmobar/xmobarrc1"
 
   xmonad $ ewmh desktopConfig
         { manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageHook desktopConfig <+> manageDocks
         , logHook = dynamicLogWithPP xmobarPP
-            { ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x
+            { ppOutput = \x -> hPutStrLn xmprocMo0 x >> hPutStrLn xmprocMo1 x
             , ppCurrent = xmobarColor "#c3e88d" "" . wrap "[" "]" -- Current workspace in xmobar
             , ppVisible = xmobarColor "#c3e88d" ""                -- Visible but not current workspace
             , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" ""   -- Hidden workspaces in xmobar
@@ -129,11 +130,12 @@ main = do
 ------------------------------------------------------------------------
 myStartupHook = do
   spawnOnce "nitrogen --restore &"
-  spawnOnce "picom --config ~/.config/compton-awesome.conf &"
+  spawnOnce "picom --config ~/.config/picom/xmonad.conf &"
   spawnOnce "copyq &"
   spawnOnce "nm-applet &"
-  spawnOnce "volumeicon &"
-  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --iconspacing 4 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 --tint 0x292d3e --height 18 &"
+  spawnOnce "pa-applet &"
+  spawnOnce "xfce4-panel &"
+  -- spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --iconspacing 4 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 --tint 0x292d3e --height 18 &"
   -- setWMName "LG3D"
 
 ------------------------------------------------------------------------
@@ -174,8 +176,10 @@ myPowerGrid = [
 
 myApplicationGrid = [
                         ("JetBrains Toolsbox", "jetbrains-toolbox")
+                        , ("SmartGit", "/opt/smartgit/bin/smartgit.sh")
                         , ("Krusader", "krusader")
                         , ("Firefox", "firefox")
+                        , ("Teams", "teams")
                     ]
 
 myDevelopGrid = [
@@ -197,9 +201,11 @@ myDevelopGrid = [
 ------------------------------------------------------------------------
 myKeys =
     -- Xmonad
-        [ ("M-C-r", spawn "xmonad --recompile")             -- Recompiles xmonad
-        , ("M-S-r", spawn "xmonad --restart")               -- Restarts xmonad
+        [ ("M-q", spawn "killall xfce4-panel; xmonad --recompile; xmonad --restart; xfce4-panel")             -- Recompiles and Restarts xmonad
+        , ("M-C-r", spawn "xmonad --recompile")             -- Recompiles xmonad
+        , ("M-S-r", spawn "killall xfce4-panel; xmonad --restart; xfce4-panel")               -- Restarts xmonad
         , ("M-S-q", spawnSelected' myPowerGrid)             -- Quits xmonad
+        , ("M-C-x", spawn "xkill")             -- Recompiles and Restarts xmonad
 
     -- Windows
         , ("M-S-c", kill1)                                  -- Kill the currently focused client
@@ -305,7 +311,7 @@ xmobarEscape = concatMap doubleLts
 
 tagDev      = "1:\x00e753 Dev"
 tagDevCon   = "2:\x00e795 DevCon"
-tagScratch  = "3:\x00f0c3 Scratch"
+tagGit      = "3:\x00f0c3 Git"
 tagTeams    = "4:\x00f0c0 Teams"
 tagVM       = "5:\x00e62b VM"
 tagWeb      = "6:\x00e745 Web"
@@ -318,7 +324,7 @@ myWorkspaces = clickable . map xmobarEscape
                $ [
                    tagDev,
                    tagDevCon,
-                   tagScratch,
+                   tagGit,
                    tagTeams,
                    tagVM,
                    tagWeb,
@@ -348,10 +354,20 @@ myManageHook = composeAll
       , className =? "Opera"        --> doShift ("<action=xdotool key super+6>" ++ tagWeb ++ "</action>")
       , className =? "mpv"          --> doShift ("<action=xdotool key super+7>" ++ tagMedia ++ "</action>")
       , className =? "vlc"          --> doShift ("<action=xdotool key super+7>" ++ tagWeb ++ "</action>")
+      -- XFCE Panels
+      , className =? "Wrapper-2.0"              --> doFloat
+      , className =? "Xfce4-panel"              --> doFloat
+      , className =? "Xfwm4-workspace-settings" --> doFloat
+      , className =? "Xfce4-panel-profiles.py"  --> doFloat
+      -- Teams
+      , className =? "Microsoft Teams - Preview" --> doShift ("<action=xdotool key super+4>" ++ tagTeams ++ "</action>")
+      -- SmartGit
+      , className =? "SmartGit"            --> doShift ("<action=xdotool key super+3>" ++ tagGit ++ "</action>")
+      -- VirtualBox
       , className =? "VirtualBox Manager"  --> doFloat
       , className =? "VirtualBox Manager"  --> doShift ("<action=xdotool key super+5>" ++ tagVM ++ "</action>")
       , className =? "Gimp"        --> doFloat
-      , className =? "Gimp"        --> doShift ("<action=xdotool key super+3>" ++ tagScratch ++ "</action>")
+      , className =? "Gimp"        --> doShift ("<action=xdotool key super+3>" ++ tagMedia ++ "</action>")
      ]
 
 ------------------------------------------------------------------------

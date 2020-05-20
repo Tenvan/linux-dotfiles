@@ -7,8 +7,15 @@ polkit-gnome polkit-kde-agent \
 pamac-gtk pamac-cli pamac-tray-appindicator checkupdates-aur \
 copyq xautolock oblogout-blurlock conky pavucontrol pa-applet \
 python-psutil python-pygit2 python-xkbgroup python-taskw python-requests octopi octopi-notifier-qt5 \
-xfce4-taskmanager gnome-system-monitor gnome-system-log xclip xsel xdotool xorg-xfd xcwd-git progress \
+gnome-system-monitor gnome-system-log xclip xsel xdotool xorg-xfd xcwd-git progress \
 bitwarden-bin bitwarden-cli-bin bitwarden-rofi foxitreader pfetch surf
+
+# from XFCE4 (Tools, Panels, etc.)
+yay -S xfce4 manjaro-xfce-settings xfce4-panel
+
+yay -S xfce4-taskmanager xfce4-panel xfce4-panel-profiles xfce4-whiskermenu-plugin \
+xfce4-cpugraph-plugin xfce4-datetime-plugin xfce4-diskperf-plugin xfce4-mount-plugin xfce4-sensors-plugin \
+xfce4-taskmanager xfce4-systemload-plugin xfce4-weather-plugin xfce4-timer-plugin xfce4-indicator-plugin-git xfce4-calculator-plugin
 
 # from kde (replace if possible)
 yay -S kate krusader kde-cli-tools ksystemlog ksysguard kruler
