@@ -8,7 +8,7 @@ pamac-gtk pamac-cli pamac-tray-appindicator checkupdates-aur \
 copyq xautolock oblogout-blurlock conky pavucontrol pa-applet \
 python-psutil python-pygit2 python-xkbgroup python-taskw python-requests octopi octopi-notifier-qt5 \
 xfce4-taskmanager gnome-system-monitor gnome-system-log xclip xsel xdotool xorg-xfd xcwd-git progress \
-bitwarden-bin bitwarden-cli-bin bitwarden-rofi foxitreader pfetch
+bitwarden-bin bitwarden-cli-bin bitwarden-rofi foxitreader pfetch surf
 
 # from kde (replace if possible)
 yay -S kate krusader kde-cli-tools ksystemlog ksysguard kruler
