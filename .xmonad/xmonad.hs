@@ -5,8 +5,8 @@
 ------------------------------------------------------------------------
     -- Base
 import           Data.Char
-import qualified Data.Map              as M
 import           Data.Maybe            (isJust)
+import qualified Data.Map              as M
 import           Data.Monoid
 import           System.Exit           (exitSuccess)
 import           System.IO             (hPutStrLn)
@@ -69,7 +69,6 @@ import XMonad.Layout.ZoomRow       (ZoomMessage (ZoomFullToggle), zoomIn, zoomOu
 import XMonad.Prompt (Direction1D (..), XPConfig (..), XPPosition (Top), defaultXPConfig)
 
 -- rest
-import System.Exit
 import System.Environment
 
 ------------------------------------------------------------------------
@@ -89,8 +88,8 @@ myTextEditor    = "nvim"     -- Sets default text editor
 myBorderWidth   = 5         -- Sets border width for windows
 windowCount     = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
-workdir =  "/media/WORKSPACE/Node/OneTime" -- os.getenv("WORK_DIR")
-shell_cmd        = myTerminal ++ " --title='OneTimeConsole' --working-directory " ++ workdir
+workDir         = "/media/WORKSPACE/Node/OneTime" -- os.getenv("WORK_DIR")
+shellCmd        = myTerminal ++ " --title='OneTimeConsole' --working-directory " ++ workDir
 
 ------------------------------------------------------------------------
 ---MAIN
@@ -99,8 +98,7 @@ main = do
   -- Launching three instances of xmobar on their monitors.
   xmproc0 <- spawnPipe "xmobar -x 0 ~/.config/xmobar/xmobarrc1"
   xmproc1 <- spawnPipe "xmobar -x 1 ~/.config/xmobar/xmobarrc2"
-  -- the xmonad, ya know...what the WM is named after!
-  --  xmonad $ docks defaults
+
   xmonad $ ewmh desktopConfig
         { manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageHook desktopConfig <+> manageDocks
         , logHook = dynamicLogWithPP xmobarPP
@@ -164,6 +162,16 @@ spawnSelected' :: [(String, String)] -> X ()
 spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
     where conf = defaultGSConfig
 
+myExitGrid = [
+                         ("Sperren", "sh ./Scripts/session_lock.sh")
+                         , ("Bildschirm sperren", "./Scripts/session_lock_screen.sh")
+                         , ("Abmelden", "./Scripts/session_logout.sh")
+                         , ("Benutzerwechsel", "./Scripts/session_switch_user.sh")
+                         , ("Bereitschaft", "./Scripts/session_suspend.sh")
+                         , ("Hibernate", "./Scripts/session_hibernate.sh")
+                         , ("Neustart", "./Scripts/session_reboot.sh")
+                         , ("Runterfahren", "./Scripts/session_shutdown.sh")
+                     ]
 
 ------------------------------------------------------------------------
 ---KEYBINDINGS
@@ -172,7 +180,8 @@ myKeys =
     -- Xmonad
         [ ("M-C-r", spawn "xmonad --recompile")      -- Recompiles xmonad
         , ("M-S-r", spawn "xmonad --restart")        -- Restarts xmonad
-        , ("M-S-q", io exitSuccess)                  -- Quits xmonad
+        , ("M-S-q", spawnSelected' myExitGrid)                  -- Quits xmonad
+        , ("M-C-q", io exitSuccess)                  -- Quits xmonad
 
     -- Windows
         , ("M-S-c", kill1)                           -- Kill the currently focused client
@@ -200,17 +209,17 @@ myKeys =
 
         -- Develop Processes
         , ("M-d", spawnSelected'
-            [("Shell",  shell_cmd ++ " --hold")
-            , ("yarn", shell_cmd ++ " --hold -e yarn")
-            , ("Generate", shell_cmd ++ " --hold -e yarn generate")
-            , ("Check updates", shell_cmd ++ " --hold -e yarn outdated")
-            , ("Start Server", shell_cmd ++ " --hold -e yarn server:dev")
-            , ("Pug watch", shell_cmd ++ "/src/client --hold -e yarn pug:watch")
-            , ("\x00e753 Start", shell_cmd ++ "/src/client --hold -e yarn start")
-            , ("\x00e753 Start hmr", shell_cmd ++ "/src/client --hold -e yarn start:client:hmr --port 4201")
-            , ("\x00e753 Start AOT", shell_cmd ++ "/src/client --hold -e yarn start:client:dev --aot --port 4202")
-            , ("Yarn install", shell_cmd ++ " --hold -e yarn install --ignore-scripts")
-            , ("Yarn update", shell_cmd ++ " --hold -e yarn run update:all")
+            [("Shell",  shellCmd ++ " --hold")
+            , ("yarn", shellCmd ++ " --hold -e yarn")
+            , ("Generate", shellCmd ++ " --hold -e yarn generate")
+            , ("Check updates", shellCmd ++ " --hold -e yarn outdated")
+            , ("Start Server", shellCmd ++ " --hold -e yarn server:dev")
+            , ("Pug watch", shellCmd ++ "/src/client --hold -e yarn pug:watch")
+            , ("\x00e753 Start", shellCmd ++ "/src/client --hold -e yarn start")
+            , ("\x00e753 Start hmr", shellCmd ++ "/src/client --hold -e yarn start:client:hmr --port 4201")
+            , ("\x00e753 Start AOT", shellCmd ++ "/src/client --hold -e yarn start:client:dev --aot --port 4202")
+            , ("Yarn install", shellCmd ++ " --hold -e yarn install --ignore-scripts")
+            , ("Yarn update", shellCmd ++ " --hold -e yarn run update:all")
             ])
 
         , ("M-S-g", goToSelected $ mygridConfig myColorizer)
@@ -222,8 +231,6 @@ myKeys =
         , ("M-<Down>", windows W.swapMaster)         -- Swap the focused window and the master window
 
         , ("M-m", windows W.focusMaster)             -- Move focus to the master window
-        , ("M-j", windows W.focusDown)               -- Move focus to the next window
-        , ("M-k", windows W.focusUp)                 -- Move focus to the prev window
         , ("M-<Backspace>", promote)                 -- Moves focused window to master, all others maintain order
         , ("M1-S-<Tab>", rotSlavesDown)              -- Rotate all windows except master and keep focus in place
         , ("M1-C-<Tab>", rotAllDown)                 -- Rotate all the windows in the current stack
@@ -277,14 +284,14 @@ myKeys =
 
     -- Open My Preferred Terminal. I also run the FISH shell. Setting FISH as my default shell
     -- breaks some things so I prefer to just launch "fish" when I open a terminal.
-        , ("M-<Return>", spawn (myTerminal))
+        , ("M-<Return>", spawn myTerminal)
 
     --- Dmenu Scripts (Alt+Ctr+Key)
         , ("M-z", spawn "rofi -show combi")
 
     --- My Applications (Super+Alt+Key)
         , ("M-M1-a", spawn (myTerminal ++ " -e ncpamixer"))
-        , ("M-M1-b", spawn ("surf www.youtube.com/c/DistroTube/"))
+        , ("M-M1-b", spawn "surf www.youtube.com/c/DistroTube/")
         , ("M-M1-c", spawn (myTerminal ++ " -e cmus"))
         , ("M-M1-e", spawn (myTerminal ++ " -e neomutt"))
         , ("M-M1-f", spawn (myTerminal ++ " -e sh ./.config/vifm/scripts/vifmrun"))
@@ -326,11 +333,10 @@ xmobarEscape = concatMap doubleLts
         doubleLts x   = [x]
 
 myWorkspaces :: [String]
-myWorkspaces = clickable . (map xmobarEscape)
+myWorkspaces = clickable . map xmobarEscape
                $ [
                "1:\x00e753 Dev",
                "2:\x00e795 DevCon",
-               "vbox",
                "3:\x00f0c3 Scratch",
                "4:\x00f0c0 Teams",
                "5:\x00e62b VM",
@@ -339,7 +345,7 @@ myWorkspaces = clickable . (map xmobarEscape)
                "8:\x00e20f Admin",
                "9:\x00f080 Status"]
   where
-        clickable l = [ "<action=xdotool key super+" ++ show (n) ++ ">" ++ ws ++ "</action>" |
+        clickable l = [ "<action=xdotool key super+" ++ show n ++ ">" ++ ws ++ "</action>" |
                       (i,ws) <- zip [1..9] l,
                       let n = i ]
 
@@ -399,22 +405,3 @@ myScratchPads = [
                  w = 0.9
                  t = 0.95 -h
                  l = 0.95 -w
-
-------------------------------------------------------------------------
--- Mouse bindings: default actions bound to mouse events
---
-myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
-
-    -- mod-button1, Set the window to floating mode and move by dragging
-    [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
-                                       >> windows W.shiftMaster))
-
-    -- mod-button2, Raise the window to the top of the stack
-    , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
-
-    -- mod-button3, Set the window to floating mode and resize by dragging
-    , ((modm, button3), (\w -> focus w >> mouseResizeWindow w
-                                       >> windows W.shiftMaster))
-
-    -- you may also bind events to the mouse scroll wheel (button4 and button5)
-    ]
