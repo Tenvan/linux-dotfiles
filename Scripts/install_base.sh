@@ -2,12 +2,12 @@
 # base i3 with bumblebee-status
 yay -S picom-ibhagwan-git
 
-yay -S nitrogen dmenu bmenu rofi zenity spectacle lightdm-gtk-greeter-settings pm-utils \
+yay -S termite  termite-style-git nitrogen dmenu bmenu rofi zenity spectacle lightdm-gtk-greeter-settings pm-utils \
 polkit-gnome polkit-kde-agent \
 pamac-gtk pamac-cli pamac-tray-appindicator checkupdates-aur \
-copyq xautolock oblogout-blurlock conky pavucontrol pa-applet \
-python-psutil python-pygit2 python-xkbgroup python-taskw python-requests octopi octopi-notifier-qt5 \
-gnome-system-monitor gnome-system-log xclip xsel xdotool xorg-xfd xcwd-git progress \
+copyq oblogout-manjaro xautolock conky pavucontrol pa-applet \
+python-psutil python-pygit2 python-xkbgroup python-taskw python-requests pygtk python2-distutils-extra \
+octopi octopi-notifier-qt5 gnome-system-monitor gnome-system-log xclip xsel xdotool xorg-xfd xcwd-git progress \
 bitwarden-bin bitwarden-cli-bin bitwarden-rofi foxitreader pfetch surf
 
 # from XFCE4 (Tools, Panels, etc.)
@@ -43,6 +43,9 @@ yay -S manjaro-artwork-icons papirus-icon-theme arc-icon-theme ttf-weather-icons
 breath-icon-theme breath2-icon-themes \
 maia-icon-theme papirus-maia-icon-theme vertex-maia-icon-theme \
 ultraflatorange-icon-theme masalla-icon-theme nitrux-icon-theme nouvegnomegray-icon-theme
+
+#fonts
+yay -S nerd-fonts-mononoki ttf-mononoki ttf-joypixels
 
 # printer setup
 yay -S canon-cque samsung-printers cups-pdf system-config-printer manjaro-settings-samba

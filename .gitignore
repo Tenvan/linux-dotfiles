@@ -58,6 +58,8 @@
 !.config/picom/*
 !.config/rofi
 !.config/rofi/*
+!.config/termite
+!.config/termite/*
 !.config/xsettingsd
 !.config/xsettingsd/*
 !.config/xmobar

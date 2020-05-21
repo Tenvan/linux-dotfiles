@@ -80,8 +80,8 @@ myFont          = "xft:Mononoki Nerd Font:regular:pixelsize=12"
 -- "windows key" is usually mod4Mask.
 --
 myModMask       = mod4Mask  -- Sets modkey to super/windows key
-myTerminal      = "alacritty"      -- Sets default terminal
-myTextEditor    = "nvim"     -- Sets default text editor
+myTerminal      = "termite" -- Sets default terminal
+myTextEditor    = "geany"   -- Sets default text editor
 -- Width of the window border in pixels.
 --
 myBorderWidth   = 5         -- Sets border width for windows
@@ -205,7 +205,8 @@ myKeys =
         , ("M-C-r", spawn "xmonad --recompile")             -- Recompiles xmonad
         , ("M-S-r", spawn "killall xfce4-panel; xmonad --restart; xfce4-panel")               -- Restarts xmonad
         , ("M-S-q", spawnSelected' myPowerGrid)             -- Quits xmonad
-        , ("M-C-x", spawn "xkill")             -- Recompiles and Restarts xmonad
+        , ("M-C-x", spawn "xkill")
+        , ("M-C-c", spawn (myTextEditor ++ " ~"))
 
     -- Windows
         , ("M-S-c", kill1)                                  -- Kill the currently focused client
