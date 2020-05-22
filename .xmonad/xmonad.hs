@@ -3,76 +3,83 @@
 ------------------------------------------------------------------------
 ---IMPORTS
 ------------------------------------------------------------------------
-    -- Base
+import System.Environment
+import System.Exit
+import System.IO
+
+import qualified Data.ByteString as B
 import           Data.Char
-import           Data.Maybe            (isJust)
-import qualified Data.Map              as M
+import qualified Data.Map        as M
+import           Data.Maybe      (isJust)
 import           Data.Monoid
-import           System.Exit           (exitSuccess)
-import           System.IO             (hPutStrLn)
+
+import           Control.Monad (liftM2)
+import qualified DBus          as D
+import qualified DBus.Client   as D
+
+import Graphics.X11.ExtraTypes.XF86
+
 import           XMonad
-import           XMonad.Config.Desktop
-import qualified XMonad.StackSet       as W
-
-    -- Utilities
-import XMonad.Util.EZConfig        (additionalKeysP, additionalMouseBindings)
-import XMonad.Util.Loggers
-import XMonad.Util.Run             (runInTerm, safeSpawn, spawnPipe, unsafeSpawn)
-import XMonad.Util.SpawnOnce
-
-    -- Hooks
-import XMonad.Hooks.DynamicLog    (PP (..), defaultPP, dynamicLogWithPP, pad, shorten, wrap, xmobarColor, xmobarPP)
-import XMonad.Hooks.EwmhDesktops
-import XMonad.Hooks.ManageDocks   (ToggleStruts (..), avoidStruts, docks, docksStartupHook, manageDocks)
-import XMonad.Hooks.ManageHelpers (doCenterFloat, doFullFloat, isDialog, isFullscreen)
-import XMonad.Hooks.Place         (placeHook, smart, withGaps)
-import XMonad.Hooks.SetWMName
-
-    -- Actions
-import qualified XMonad.Actions.ConstrainedResize as Sqr
-import           XMonad.Actions.CopyWindow        (copyToAll, kill1, killAllOtherCopies, runOrCopy)
-import           XMonad.Actions.CycleWS           (WSType (..), moveTo, nextScreen, prevScreen, shiftNextScreen,
-                                                   shiftPrevScreen, shiftTo)
-import           XMonad.Actions.DynamicWorkspaces (addWorkspacePrompt, removeEmptyWorkspace)
+import qualified XMonad.Actions.ConstrainedResize    as Sqr
+import           XMonad.Actions.CopyWindow           (copyToAll, kill1, killAllOtherCopies, runOrCopy)
+import           XMonad.Actions.CycleWS
+import           XMonad.Actions.DynamicWorkspaces    (addWorkspacePrompt, removeEmptyWorkspace)
 import           XMonad.Actions.GridSelect
-import           XMonad.Actions.Minimize          (minimizeWindow)
+import           XMonad.Actions.Minimize             (minimizeWindow)
 import           XMonad.Actions.MouseResize
 import           XMonad.Actions.Promote
-import           XMonad.Actions.RotSlaves         (rotAllDown, rotSlavesDown)
-import           XMonad.Actions.WindowGo          (raiseMaybe, runOrRaise)
-import           XMonad.Actions.WithAll           (killAll, sinkAll)
-
-    -- Layouts modifiers
+import           XMonad.Actions.RotSlaves            (rotAllDown, rotSlavesDown)
+import           XMonad.Actions.SpawnOn
+import           XMonad.Actions.WindowGo             (raiseMaybe, runOrRaise)
+import           XMonad.Actions.WithAll              (killAll, sinkAll)
+import           XMonad.Config.Desktop
+import           XMonad.Hooks.DynamicLog             (PP (..), defaultPP, dynamicLogWithPP, pad, shorten, wrap, xmobarColor, xmobarPP)
+import           XMonad.Hooks.EwmhDesktops
+import           XMonad.Hooks.ManageDocks            (ToggleStruts (..), avoidStruts, docks, docksStartupHook, manageDocks)
+import           XMonad.Hooks.ManageHelpers          (doCenterFloat, doFullFloat, isDialog, isFullscreen)
+import           XMonad.Hooks.Place                  (placeHook, smart, withGaps)
+import           XMonad.Hooks.SetWMName
+import           XMonad.Layout.Cross                 (simpleCross)
+import           XMonad.Layout.Fullscreen            (fullscreenFull)
+import           XMonad.Layout.Gaps
+import           XMonad.Layout.GridVariants          (Grid (Grid))
+import           XMonad.Layout.IM                    (Property (Role), withIM)
+import           XMonad.Layout.IndependentScreens
 import           XMonad.Layout.LimitWindows          (decreaseLimit, increaseLimit, limitWindows)
 import           XMonad.Layout.MultiToggle           (EOT (EOT), Toggle (..), mkToggle, single, (??))
 import           XMonad.Layout.MultiToggle.Instances (StdTransformers (MIRROR, NBFULL, NOBORDERS))
 import           XMonad.Layout.NoBorders
+import           XMonad.Layout.OneBig
 import           XMonad.Layout.PerWorkspace          (onWorkspace)
 import           XMonad.Layout.Reflect               (REFLECTX (..), REFLECTY (..), reflectHoriz, reflectVert)
 import           XMonad.Layout.Renamed               (Rename (CutWordsLeft, Replace), renamed)
-import           XMonad.Layout.Spacing               (spacing)
+import           XMonad.Layout.ResizableTile
+import           XMonad.Layout.SimplestFloat
+import           XMonad.Layout.Spacing
+import           XMonad.Layout.Spiral
+import           XMonad.Layout.ThreeColumns
 import qualified XMonad.Layout.ToggleLayouts         as T (ToggleLayout (Toggle), toggleLayouts)
 import           XMonad.Layout.WindowArranger        (WindowArrangerMsg (..), windowArrange)
 import           XMonad.Layout.WorkspaceDir
-
-    -- Layouts
-import XMonad.Layout.GridVariants  (Grid (Grid))
-import XMonad.Layout.IM            (Property (Role), withIM)
-import XMonad.Layout.OneBig
-import XMonad.Layout.ResizableTile
-import XMonad.Layout.SimplestFloat
-import XMonad.Layout.ThreeColumns
-import XMonad.Layout.ZoomRow       (ZoomMessage (ZoomFullToggle), zoomIn, zoomOut, zoomReset, zoomRow)
-
-    -- Prompts
-import XMonad.Prompt (Direction1D (..), XPConfig (..), XPPosition (Top), defaultXPConfig)
-
--- rest
-import System.Environment
+import           XMonad.Layout.ZoomRow               (ZoomMessage (ZoomFullToggle), zoomIn, zoomOut, zoomReset, zoomRow)
+import           XMonad.Prompt                       (Direction1D (..), XPConfig (..), XPPosition (Top), defaultXPConfig)
+import qualified XMonad.StackSet                     as W
+import           XMonad.Util.EZConfig                (additionalKeysP, additionalMouseBindings)
+import           XMonad.Util.Loggers
+import           XMonad.Util.Run                     (runInTerm, safeSpawn, spawnPipe, unsafeSpawn)
+import           XMonad.Util.SpawnOnce
 
 ------------------------------------------------------------------------
 ---VARIABLES
 ------------------------------------------------------------------------
+
+-- colours
+normBord = "#4c566a"
+focdBord = "#5e81ac"
+fore     = "#DEE3E0"
+back     = "#282c34"
+winType  = "#c678dd"
+
 myFont          = "xft:Mononoki Nerd Font:regular:pixelsize=12"
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -85,58 +92,47 @@ myTextEditor    = "geany"   -- Sets default text editor
 -- Width of the window border in pixels.
 --
 myBorderWidth   = 5         -- Sets border width for windows
-windowCount     = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
-workDir         = "/media/WORKSPACE/Node/OneTime" -- os.getenv("WORK_DIR")
-shellCmd        = myTerminal ++ " --title='OneTimeConsole' --working-directory " ++ workDir
+workDir         = "$WORK_DIR" -- os.getenv("WORK_DIR")
+shellCmd        = myTerminal ++ " --title='OneTimeConsole' --directory " ++ workDir
+
 
 ------------------------------------------------------------------------
 ---MAIN
 ------------------------------------------------------------------------
-main = do
-  -- Launching three instances of xmobar on their monitors.
-  -- xmprocXf <- spawnPipe "killall xfce4-panel; sleep 2; xfce4-panel"
-  xmprocMo0 <- spawnPipe "xmobar -x 0 ~/.config/xmobar/xmobarrc1"
-  xmprocMo1 <- spawnPipe "xmobar -x 1 ~/.config/xmobar/xmobarrc1"
+myBaseConfig = desktopConfig
 
-  xmonad $ ewmh desktopConfig
-        { manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageHook desktopConfig <+> manageDocks
-        , logHook = dynamicLogWithPP xmobarPP
-            { ppOutput = \x -> hPutStrLn xmprocMo0 x >> hPutStrLn xmprocMo1 x
-            , ppCurrent = xmobarColor "#c3e88d" "" . wrap "[" "]" -- Current workspace in xmobar
-            , ppVisible = xmobarColor "#c3e88d" ""                -- Visible but not current workspace
-            , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" ""   -- Hidden workspaces in xmobar
-            , ppHiddenNoWindows = xmobarColor "#F07178" ""        -- Hidden workspaces (no windows)
-            , ppTitle = xmobarColor "#d0d0d0" "" . shorten 60     -- Title of active window in xmobar
-            , ppSep =  "<fc=#666666> | </fc>"                     -- Separators in xmobar
-            , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"  -- Urgent workspace
-            , ppExtras  = [windowCount]                           -- # of windows current workspace
-            , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
-            }
-        , modMask            = myModMask
-        , terminal           = myTerminal
-        , startupHook        = myStartupHook
-        , layoutHook         = myLayoutHook
-        , workspaces         = myWorkspaces
-        , borderWidth        = myBorderWidth
-        , normalBorderColor  = "#292d3e"
-        , focusedBorderColor = "#bbc5ff"
-        , focusFollowsMouse  = False
-        , clickJustFocuses   = True
-        } `additionalKeysP` myKeys
+main = do
+
+    dbus <- D.connectSession
+    -- Request access to the DBus name
+    D.requestName dbus (D.busName_ "org.xmonad.Log")
+        [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
+
+    xmonad . ewmh $
+        myBaseConfig
+            {
+            startupHook        = myStartupHook
+            , layoutHook         = gaps [(U,35), (D,5), (R,5), (L,5)] $ archoLayout ||| layoutHook myBaseConfig
+            , manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageHook desktopConfig <+> manageDocks
+            , modMask            = myModMask
+            , borderWidth        = myBorderWidth
+            , handleEventHook    = handleEventHook myBaseConfig <+> fullscreenEventHook
+            , focusFollowsMouse  = False
+            , clickJustFocuses   = True
+            , workspaces         = myWorkspaces
+            , focusedBorderColor = focdBord
+            , normalBorderColor  = normBord
+            -- , keys               = myKeys
+            , terminal           = myTerminal
+            }  `additionalKeysP` myKeys
 
 ------------------------------------------------------------------------
 ---AUTOSTART
 ------------------------------------------------------------------------
 myStartupHook = do
-  spawnOnce "nitrogen --restore &"
-  spawnOnce "picom --config ~/.config/picom/xmonad.conf &"
-  spawnOnce "copyq &"
-  spawnOnce "nm-applet &"
-  spawnOnce "pa-applet &"
-  spawnOnce "xfce4-panel &"
-  -- spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --iconspacing 4 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 --tint 0x292d3e --height 18 &"
-  -- setWMName "LG3D"
+  spawn "sh $HOME/Scripts/autostart.sh"
+  setWMName "LG3D"
 
 ------------------------------------------------------------------------
 ---GRID SELECT
@@ -201,12 +197,16 @@ myDevelopGrid = [
 ------------------------------------------------------------------------
 myKeys =
     -- Xmonad
-        [ ("M-q", spawn "killall xfce4-panel; xmonad --recompile; xmonad --restart; xfce4-panel")             -- Recompiles and Restarts xmonad
-        , ("M-C-r", spawn "xmonad --recompile")             -- Recompiles xmonad
-        , ("M-S-r", spawn "killall xfce4-panel; xmonad --restart; xfce4-panel")               -- Restarts xmonad
-        , ("M-S-q", spawnSelected' myPowerGrid)             -- Quits xmonad
+        [ ("M-q", spawn "xmonad --recompile; xmonad --restart;")    -- Recompiles and Restarts xmonad
+        , ("M-C-r", spawn "xmonad --recompile")                     -- Recompiles xmonad
+        , ("M-S-r", spawn "xmonad --restart;")                      -- Restarts xmonad
+        , ("M-S-q", spawnSelected' myPowerGrid)                     -- Quits xmonad
         , ("M-C-x", spawn "xkill")
         , ("M-C-c", spawn (myTextEditor ++ " ~"))
+
+    -- System
+        , ("C-<Escape>", spawn "xfce4-taskmanager")
+        , ("M-C-t", spawn "sh ./Scripts/picom-toggle.sh")
 
     -- Windows
         , ("M-S-c", kill1)                                  -- Kill the currently focused client
@@ -231,6 +231,9 @@ myKeys =
     -- Windows navigation
         , ("M-<Right>", windows W.focusDown)        -- Swap the focused window with the next window
         , ("M-<Left>", windows W.focusUp)           -- Swap the focused window with the prev window
+
+        , ("M-S-<Right>", nextWS)        -- Swap the focused window with the next window
+        , ("M-S-<Left>", prevWS)           -- Swap the focused window with the prev window
 
         , ("M-m", windows W.focusMaster)            -- Move focus to the master window
 
@@ -305,24 +308,19 @@ myKeys =
 -- My workspaces are clickable meaning that the mouse can be used to switch
 -- workspaces. This requires xdotool.
 
-xmobarEscape = concatMap doubleLts
-  where
-        doubleLts '<' = "<<"
-        doubleLts x   = [x]
-
-tagDev      = "1:\x00e753 Dev"
-tagDevCon   = "2:\x00e795 DevCon"
-tagGit      = "3:\x00f0c3 Git"
-tagTeams    = "4:\x00f0c0 Teams"
-tagVM       = "5:\x00e62b VM"
-tagWeb      = "6:\x00e745 Web"
-tagMedia    = "7:\x00f001 Media"
-tagAdmin    = "8:\x00e20f Admin"
-tagStatus   = "9:\x00f080 Status"
+tagDev      = "\x1F170" -- "\x1F170 Dev"
+tagDevCon   = "\x1F5A5" -- "\x1F5A5 DevCon"
+tagGit      = "\x1F9E0" -- "\x1F9E0 Git"
+tagTeams    = "\x1F4E8" -- "\x1F4E8 Teams"
+tagVM       = "\x1F4FA" -- "\x1F4FA VM"
+tagWeb      = "\x1F30D" -- "\x1F30D Web"
+tagMedia    = "\x1F3B5" -- "\x1F4FD Media"
+tagAdmin    = "\x02699" -- "\x02699 Admin"
+tagStatus   = "\x1F4C8" -- "\x1F4C8 Status"
+tagScratch  = "\x1F4DD" -- "\x1F4DD Scratch"
 
 myWorkspaces :: [String]
-myWorkspaces = clickable . map xmobarEscape
-               $ [
+myWorkspaces =  [
                    tagDev,
                    tagDevCon,
                    tagGit,
@@ -330,13 +328,12 @@ myWorkspaces = clickable . map xmobarEscape
                    tagVM,
                    tagWeb,
                    tagMedia,
-                   tagAdmin,
-                   tagStatus
+                   tagStatus,
+                   tagAdmin
                  ]
-  where
-        clickable l = [ "<action=xdotool key super+" ++ show n ++ ">" ++ ws ++ "</action>" |
-                      (i,ws) <- zip [1..9] l,
-                      let n = i ]
+
+arcWorkspaces    = ["\61612","\61899","\61947","\61635","\61502","\61501","\61705","\61564","\62150","\61872"]
+
 
 ------------------------------------------------------------------------
 -- MANAGEHOOK
@@ -346,39 +343,72 @@ myWorkspaces = clickable . map xmobarEscape
 -- Forcing programs to a certain workspace with a doShift requires xdotool.
 -- You need the className or title of the program. Use xprop to get this info.
 
-myManageHook :: Query (Data.Monoid.Endo WindowSet)
-myManageHook = composeAll
-     [
-      title =? "JetBrains Toolbox"  --> doFloat
-      , className =? "firefox"      --> doShift ("<action=xdotool key super+6>" ++ tagWeb ++ "</action>")
-      , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
-      , className =? "Opera"        --> doShift ("<action=xdotool key super+6>" ++ tagWeb ++ "</action>")
-      , className =? "mpv"          --> doShift ("<action=xdotool key super+7>" ++ tagMedia ++ "</action>")
-      , className =? "vlc"          --> doShift ("<action=xdotool key super+7>" ++ tagWeb ++ "</action>")
-      -- XFCE Panels
-      , className =? "Wrapper-2.0"              --> doFloat
-      , className =? "Xfce4-panel"              --> doFloat
-      , className =? "Xfwm4-workspace-settings" --> doFloat
-      , className =? "Xfce4-panel-profiles.py"  --> doFloat
-      -- Teams
-      , className =? "Microsoft Teams - Preview" --> doShift ("<action=xdotool key super+4>" ++ tagTeams ++ "</action>")
-      -- SmartGit
-      , className =? "SmartGit"            --> doShift ("<action=xdotool key super+3>" ++ tagGit ++ "</action>")
-      -- VirtualBox
-      , className =? "VirtualBox Manager"  --> doFloat
-      , className =? "VirtualBox Manager"  --> doShift ("<action=xdotool key super+5>" ++ tagVM ++ "</action>")
-      , className =? "Gimp"        --> doFloat
-      , className =? "Gimp"        --> doShift ("<action=xdotool key super+3>" ++ tagMedia ++ "</action>")
-     ]
+-- window manipulations
+-- myManageHook :: Query (Data.Monoid.Endo WindowSet)
+myManageHook = composeAll . concat $
+    [ [isDialog --> doCenterFloat]
+    , [className =? c --> doCenterFloat | c <- myCFloats]
+    , [title =? t --> doFloat | t <- myTFloats]
+    , [resource =? r --> doFloat | r <- myRFloats]
+    , [resource =? i --> doIgnore | i <- myIgnores]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagDev | x <- myDevShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagDevCon | x <- myDevConShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagGit | x <- myGitShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagTeams | x <- myTeamsShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagVM | x <- myVmShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagWeb | x <- myWebShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagMedia | x <- myMediaShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagAdmin | x <- myAdminShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagStatus | x <- myStatusShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagScratch | x <- myScratchShifts]
+    ]
+    where
+        doShiftAndGo    = doF . liftM2 (.) W.greedyView W.shift
+        myCFloats       = [
+            "JetBrains Toolbox",
+            "Xfce4-taskmanager",
+            "Arandr",
+            "Galculator",
+            "feh",
+            "mpv",
+            "VirtualBox Manager",
+            "Pavucontrol"
+            ]
+        myTFloats       = [
+            "Downloads", "Save As...",
+            -- XFCE Panels
+            "Wrapper-2.0", "Xfce4-panel", "Xfwm4-workspace-settings", "Xfce4-panel-profiles.py"
+            ]
+        myRFloats       = []
+        myIgnores       = ["desktop_window"]
+        -- Shifts
+        myDevShifts     = []
+        myDevConShifts  = []
+        myGitShifts     = ["SmartGit"]
+        myTeamsShifts   = ["Microsoft Teams - Preview"]
+        myVmShifts      = ["Virtualbox", "VirtualBox Manager"]
+        myWebShifts     = ["firefox", "Chromium", "Vivaldi-stable", "Firefox"]
+        myMediaShifts   = ["vlc", "mpv", "Gimp", "feh", "Inkscape"]
+        myAdminShifts   = []
+        myStatusShifts  = []
+        myScratchShifts = []
 
 ------------------------------------------------------------------------
 -- LAYOUTS
 ------------------------------------------------------------------------
+archoLayout = spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True $ avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ tiled ||| Mirror tiled ||| spiral (6/7)  ||| ThreeColMid 1 (3/100) (1/2) ||| Full
+    where
+        tiled = Tall nmaster delta tiled_ratio
+        nmaster = 1
+        delta = 3/100
+        tiled_ratio = 1/2
+
 myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts floats $
                mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
              where
                  myDefaultLayout = tall ||| grid ||| threeCol ||| threeRow ||| oneBig ||| noBorders monocle ||| space ||| floats
 
+-- tiled       = Tall nmaster delta tiled_ratio
 tall       = renamed [Replace "tall"]     $ limitWindows 12 $ spacing 6 $ ResizableTall 1 (3/100) (1/2) []
 grid       = renamed [Replace "grid"]     $ limitWindows 12 $ spacing 6 $ mkToggle (single MIRROR) $ Grid (16/10)
 threeCol   = renamed [Replace "threeCol"] $ limitWindows 3  $ ThreeCol 1 (3/100) (1/2)

@@ -10,6 +10,9 @@ python-psutil python-pygit2 python-xkbgroup python-taskw python-requests pygtk p
 octopi octopi-notifier-qt5 gnome-system-monitor gnome-system-log xclip xsel xdotool xorg-xfd xcwd-git progress \
 bitwarden-bin bitwarden-cli-bin bitwarden-rofi foxitreader pfetch surf
 
+# main editors (emacs, vim, neovim, etc)
+yay -S geany ripgrep emcas neovim
+
 # from XFCE4 (Tools, Panels, etc.)
 yay -S xfce4 manjaro-xfce-settings xfce4-panel
 
@@ -45,7 +48,7 @@ maia-icon-theme papirus-maia-icon-theme vertex-maia-icon-theme \
 ultraflatorange-icon-theme masalla-icon-theme nitrux-icon-theme nouvegnomegray-icon-theme
 
 #fonts
-yay -S nerd-fonts-mononoki ttf-mononoki ttf-joypixels
+yay -S gucharmap kcharselect charmap.app nerd-fonts-mononoki ttf-mononoki ttf-joypixels
 
 # printer setup
 yay -S canon-cque samsung-printers cups-pdf system-config-printer manjaro-settings-samba
