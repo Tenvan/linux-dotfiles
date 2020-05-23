@@ -367,6 +367,8 @@ myManageHook = composeAll . concat $
         myCFloats       = [
             "JetBrains Toolbox",
             "Xfce4-taskmanager",
+            "Viewnior",
+            "Libfm-pref-apps",
             "Arandr",
             "Galculator",
             "feh",

@@ -2,7 +2,8 @@
 # base i3 with bumblebee-status
 yay -S picom-ibhagwan-git
 
-yay -S termite  termite-style-git nitrogen dmenu bmenu rofi zenity spectacle lightdm-gtk-greeter-settings pm-utils \
+yay -S termite termite-style-git nitrogen dmenu bmenu rofi zenity ripgrep \
+nushell broot broom spectacle lightdm-gtk-greeter-settings pm-utils \
 polkit-gnome polkit-kde-agent \
 pamac-gtk pamac-cli pamac-tray-appindicator checkupdates-aur \
 copyq oblogout-manjaro xautolock conky pavucontrol pa-applet \
@@ -11,7 +12,10 @@ octopi octopi-notifier-qt5 gnome-system-monitor gnome-system-log xclip xsel xdot
 bitwarden-bin bitwarden-cli-bin bitwarden-rofi foxitreader pfetch surf
 
 # main editors (emacs, vim, neovim, etc)
-yay -S geany ripgrep emcas neovim
+yay -S geany emcas neovim
+
+# main shell
+yay -S zsh zsh-completions zsh-completion-generator-git
 
 # from XFCE4 (Tools, Panels, etc.)
 yay -S xfce4 manjaro-xfce-settings xfce4-panel

@@ -18,6 +18,7 @@ abbr --add --global sys-se yay -Ss
 alias ll="ls -lh --color=always"
 alias la="ll --almost-all"
 alias dir="la -g --no-group --classify --human-readable"
+alias lf="br -dgip"
 
 #
 ##################################################
