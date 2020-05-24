@@ -56,6 +56,8 @@
 !.config/omf/*
 !.config/picom
 !.config/picom/*
+!.config/polybar
+!.config/polybar/*
 !.config/rofi
 !.config/rofi/*
 !.config/termite
