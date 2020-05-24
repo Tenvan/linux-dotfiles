@@ -3,7 +3,7 @@
 # base i3 with bumblebee-status
 yay -S picom-ibhagwan-git
 
-yay -S termite termite-style-git nitrogen dmenu bmenu rofi zenity ripgrep \
+yay -S termite termite-style-git nitrogen dmenu bmenu rofi zenity ripgrep exa \
 nushell broot broom spectacle lightdm-gtk-greeter-settings pm-utils \
 polkit-gnome polkit-kde-agent \
 pamac-gtk pamac-cli pamac-tray-appindicator checkupdates-aur \
@@ -37,8 +37,7 @@ yay -S manjaro-artwork manjaro-artwork-extra \
 manjaro-wallpapers-17.0 manjaro-wallpapers-18.0 wallpapers-juhraya \
 cinnamon-wallpapers manjaro-wallpapers-by-lunix-cinnamon yaru-colors-wallpapers-git \
 manjaro-users-artwork-wallpapers muser-wallpapers illyria-wallpaper \
-awesome-wallpapers awesome-themes-git \
-artwork-i3 i3-default-artwork manjaro-wallpapers-by-lunix-i3
+awesome-wallpapers awesome-themes-git
 
 # cursor
 yay -S xcursor-chameleon-pearl xcursor-chameleon-darkskyblue xcursor-chameleon-skyblue xcursor-chameleon-anthracite xcursor-chameleon-white
