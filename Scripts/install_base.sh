@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # base i3 with bumblebee-status
 yay -S picom-ibhagwan-git
 
@@ -12,17 +13,15 @@ octopi octopi-notifier-qt5 gnome-system-monitor gnome-system-log xclip xsel xdot
 bitwarden-bin bitwarden-cli-bin bitwarden-rofi foxitreader pfetch surf
 
 # main editors (emacs, vim, neovim, etc)
-yay -S geany emcas neovim
-
-# main shell
-yay -S zsh zsh-completions zsh-completion-generator-git
+yay -S geany neovim vundle
 
 # from XFCE4 (Tools, Panels, etc.)
 yay -S xfce4 manjaro-xfce-settings xfce4-panel
 
 yay -S xfce4-taskmanager xfce4-panel xfce4-panel-profiles xfce4-whiskermenu-plugin \
-xfce4-cpugraph-plugin xfce4-datetime-plugin xfce4-diskperf-plugin xfce4-mount-plugin xfce4-sensors-plugin \
-xfce4-taskmanager xfce4-systemload-plugin xfce4-weather-plugin xfce4-timer-plugin xfce4-indicator-plugin-git xfce4-calculator-plugin
+xfce4-cpugraph-plugin xfce4-datetime-plugin xfce4-diskperf-plugin xfce4-mount-plugin \ 
+xfce4-sensors-plugin xfce4-taskmanager xfce4-systemload-plugin xfce4-weather-plugin \
+xfce4-timer-plugin xfce4-indicator-plugin-git xfce4-calculator-plugin
 
 # from kde (replace if possible)
 yay -S kate krusader kde-cli-tools ksystemlog ksysguard kruler
@@ -32,7 +31,6 @@ yay -S ungit gitahead-bin timeset-gui python \
 neovim vim-plugins vundle vim-vimwiki vifm vim-nerdtree vim-instant-markdown
 
 pip install --user neovim
-
 
 # arts
 yay -S manjaro-artwork manjaro-artwork-extra \
