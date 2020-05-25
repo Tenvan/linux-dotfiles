@@ -1,7 +1,7 @@
 ##################################################
 # Alias Definitions
 
-alias rc="nvim ~/.config/fish"
+alias rc="kate ~/.config/fish/*.fish"
 
 alias sys-update="yay -S --noconfirm "
 alias sys-install="yay -S --noconfirm "
@@ -17,8 +17,8 @@ abbr --add --global sys-se yay -Ss
 
 alias ll="exa -lh"
 alias la="exa -lha"
-alias dir="exa -g --no-group --classify --human-readable"
-alias lf="br -dgip"
+alias dir="exa -lh -gGalg --classify"
+alias lf="br -dgiph"
 
 #
 ##################################################

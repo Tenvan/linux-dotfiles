@@ -16,24 +16,23 @@ function run {
 xsetroot -cursor_name left_ptr &
 
 #start the conky to learn the shortcuts
-(conky -c $HOME/.xmonad/scripts/system-overview) &
+# (conky -c $HOME/.xmonad/scripts/system-overview) &
 
 # Xfce4 Panel
 (killall xfce4-panel; xfce4-panel) &
 
 #starting utility applications at boot time
-run variety &
 run nm-applet &
 run pamac-tray &
 run xfce4-power-manager &
-run pa-applet &
+# run pa-applet &
 run volumeicon &
 run copyq &
 
 numlockx on &
 blueberry-tray &
 
-picom --config $HOME/.config/picom/picom.conf &
+# picom --config $HOME/.config/picom/picom.conf &
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &

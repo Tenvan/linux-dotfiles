@@ -80,7 +80,12 @@ fore     = "#DEE3E0"
 back     = "#282c34"
 winType  = "#c678dd"
 
-myFont          = "xft:Mononoki Nerd Font:regular:pixelsize=12"
+myFont          = "xft:MononokiNerdFont:sizeregular:pixelsize=16"
+--myFont          = "xft:NotoSans:size=15"
+--myFont            = "xft:NotoEmoji:scale=9"
+
+-- xft:NotoSans:size=15,xft:NotoEmoji:scale=9
+
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
 -- ("right alt"), which does not conflict with emacs keybindings. The
@@ -88,14 +93,15 @@ myFont          = "xft:Mononoki Nerd Font:regular:pixelsize=12"
 --
 myModMask       = mod4Mask  -- Sets modkey to super/windows key
 myTerminal      = "termite" -- Sets default terminal
-myTextEditor    = "geany"   -- Sets default text editor
+myTextEditor    = "kate"   -- Sets default text editor
 -- Width of the window border in pixels.
 --
+
 myBorderWidth   = 5         -- Sets border width for windows
+myGapsWidth     = 5         -- Sets border width for windows
 
 workDir         = "$WORK_DIR" -- os.getenv("WORK_DIR")
 shellCmd        = myTerminal ++ " --title='OneTimeConsole' --directory " ++ workDir
-
 
 ------------------------------------------------------------------------
 ---MAIN
@@ -113,7 +119,7 @@ main = do
         myBaseConfig
             {
             startupHook        = myStartupHook
-            , layoutHook         = gaps [(U,35), (D,5), (R,5), (L,5)] $ archoLayout ||| layoutHook myBaseConfig
+            , layoutHook         = gaps [(U,(30 + myGapsWidth)), (D,(30 + myGapsWidth)), (R,myGapsWidth), (L,myGapsWidth)] $ archoLayout ||| layoutHook myBaseConfig
             , manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageHook desktopConfig <+> manageDocks
             , modMask            = myModMask
             , borderWidth        = myBorderWidth
@@ -155,9 +161,12 @@ mygridConfig colorizer = (buildDefaultGSConfig myColorizer)
     , gs_font         = myFont
     }
 
+spawnGridConfig = defaultGSConfig {
+                gs_font         = myFont
+            }
+            
 spawnSelected' :: [(String, String)] -> X ()
-spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
-    where conf = defaultGSConfig
+spawnSelected' lst = gridselect spawnGridConfig lst >>= flip whenJust spawn
 
 myPowerGrid = [
                  ("Sperren", "sh ./Scripts/session_lock.sh")
@@ -174,22 +183,26 @@ myApplicationGrid = [
                         ("JetBrains Toolsbox", "jetbrains-toolbox")
                         , ("SmartGit", "/opt/smartgit/bin/smartgit.sh")
                         , ("Krusader", "krusader")
-                        , ("Firefox", "firefox")
+                        , ("\x00e745 Firefox", "firefox")
                         , ("Teams", "teams")
                     ]
 
+yarnChar    = "\x00e71a"
+angularChar = "\x00e753"
+tsChar      = "\x00fbe4"
+                    
 myDevelopGrid = [
-                    ("Shell",  shellCmd ++ " --hold")
-                    , ("yarn", shellCmd ++ " --hold -e yarn")
-                    , ("Generate", shellCmd ++ " --hold -e yarn generate")
-                    , ("Check updates", shellCmd ++ " --hold -e yarn outdated")
-                    , ("Start Server", shellCmd ++ " --hold -e yarn server:dev")
-                    , ("Pug watch", shellCmd ++ "/src/client --hold -e yarn pug:watch")
-                    , ("\x00e753 Start", shellCmd ++ "/src/client --hold -e yarn start")
-                    , ("\x00e753 Start hmr", shellCmd ++ "/src/client --hold -e yarn start:client:hmr --port 4201")
-                    , ("\x00e753 Start AOT", shellCmd ++ "/src/client --hold -e yarn start:client:dev --aot --port 4202")
-                    , ("Yarn install", shellCmd ++ " --hold -e yarn install --ignore-scripts")
-                    , ("Yarn update", shellCmd ++ " --hold -e yarn run update:all")
+                    ("\x00e795 Shell",  shellCmd ++ " --hold")
+                    , (yarnChar ++ " yarn", shellCmd ++ " --hold -e yarn")
+                    , (yarnChar ++ " Generate", shellCmd ++ " --hold -e yarn generate")
+                    , (yarnChar ++ " Check updates", shellCmd ++ " --hold -e 'yarn outdated'")
+                    , ("\x00f1c0 Start Server", shellCmd ++ " --hold -e 'yarn server:dev'")
+                    , ("\x00e718 Pug watch", shellCmd ++ "/src/client --hold -e 'yarn pug:watch'")
+                    , (angularChar ++ " Start", shellCmd ++ "/src/client --hold -e 'yarn start'")
+                    , (angularChar ++ " Start hmr", shellCmd ++ "/src/client --hold -e 'yarn start:client:hmr --port 4201'")
+                    , (angularChar ++ " Start AOT", shellCmd ++ "/src/client --hold -e 'yarn start:client:dev --aot --port 4202'")
+                    , (yarnChar ++ " Yarn install", shellCmd ++ " --hold -e 'yarn install --ignore-scripts'")
+                    , (yarnChar ++ " Yarn update", shellCmd ++ " --hold -e 'yarn run update:all'")
                 ]
 
 ------------------------------------------------------------------------
@@ -202,7 +215,7 @@ myKeys =
         , ("M-S-r", spawn "xmonad --restart;")                      -- Restarts xmonad
         , ("M-S-q", spawnSelected' myPowerGrid)                     -- Quits xmonad
         , ("M-C-x", spawn "xkill")
-        , ("M-C-c", spawn (myTextEditor ++ " ~"))
+        , ("M-C-c", spawn (myTextEditor ++ " $HOME/.xmonad/xmonad.hs"))
 
     -- System
         , ("C-<Escape>", spawn "xfce4-taskmanager")
@@ -377,6 +390,7 @@ myManageHook = composeAll . concat $
             "Pavucontrol"
             ]
         myTFloats       = [
+            "JetBrains Toolbox",
             "Downloads", "Save As...",
             -- XFCE Panels
             "Wrapper-2.0", "Xfce4-panel", "Xfwm4-workspace-settings", "Xfce4-panel-profiles.py"
@@ -384,7 +398,7 @@ myManageHook = composeAll . concat $
         myRFloats       = []
         myIgnores       = ["desktop_window"]
         -- Shifts
-        myDevShifts     = []
+        myDevShifts     = ["JetBrains Toolbox"]
         myDevConShifts  = []
         myGitShifts     = ["SmartGit"]
         myTeamsShifts   = ["Microsoft Teams - Preview"]
