@@ -16,12 +16,15 @@ XTerm*selectToClipboard: true
 
 *background:                      #222D31
 *foreground:                      #d8d8d8
+*tbackground:                     #A0222D31
 
 *focused_background:              #556064
 *focused_foreground:              #80FFF9
 
 *inactive_background:             #2F3D44
 *inactive_foreground:             #1ABC9C
+
+*border:                          #222D31
 
 *fading:                          8
 *fadeColor:                       black

@@ -119,7 +119,7 @@ main = do
         myBaseConfig
             {
             startupHook        = myStartupHook
-            , layoutHook         = gaps [(U,(30 + myGapsWidth)), (D,(30 + myGapsWidth)), (R,myGapsWidth), (L,myGapsWidth)] $ archoLayout ||| layoutHook myBaseConfig
+            , layoutHook         = gaps [(U,(30 + myGapsWidth)), (D,myGapsWidth), (R,myGapsWidth), (L,myGapsWidth)] $ archoLayout ||| layoutHook myBaseConfig
             , manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageHook desktopConfig <+> manageDocks
             , modMask            = myModMask
             , borderWidth        = myBorderWidth
