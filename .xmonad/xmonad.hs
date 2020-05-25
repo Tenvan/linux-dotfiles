@@ -170,13 +170,13 @@ spawnSelected' lst = gridselect spawnGridConfig lst >>= flip whenJust spawn
 
 myPowerGrid = [
                  ("Sperren", "sh ./Scripts/session_lock.sh")
-                 , ("Bildschirm sperren", "./Scripts/session_lock_screen.sh")
-                 , ("Abmelden", "./Scripts/session_logout.sh")
-                 , ("Benutzerwechsel", "./Scripts/session_switch_user.sh")
-                 , ("Bereitschaft", "./Scripts/session_suspend.sh")
-                 , ("Hibernate", "./Scripts/session_hibernate.sh")
-                 , ("Neustart", "./Scripts/session_reboot.sh")
-                 , ("Runterfahren", "./Scripts/session_shutdown.sh")
+                 , ("Bildschirm sperren", "sh ./Scripts/session_lock_screen.sh")
+                 , ("Abmelden", "sh ./Scripts/session_logout.sh")
+                 , ("Benutzerwechsel", "sh ./Scripts/session_switch_user.sh")
+                 , ("Bereitschaft", "sh ./Scripts/session_suspend.sh")
+                 , ("Hibernate", "sh ./Scripts/session_hibernate.sh")
+                 , ("Neustart", "sh ./Scripts/session_reboot.sh")
+                 , ("Runterfahren", "sh ./Scripts/session_shutdown.sh")
              ]
 
 myApplicationGrid = [
@@ -185,6 +185,8 @@ myApplicationGrid = [
                         , ("Krusader", "krusader")
                         , ("\x00e745 Firefox", "firefox")
                         , ("Teams", "teams")
+                        , ("Emoji Test", shellCmd ++ " --hold -e 'curl https://unicode.org/Public/emoji/5.0/emoji-test.txt'")
+                        , ("UTF8 Test", shellCmd ++ " --hold -e 'curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html'")
                     ]
 
 yarnChar    = "\x00e71a"
