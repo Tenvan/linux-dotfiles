@@ -169,9 +169,10 @@ spawnSelected' :: [(String, String)] -> X ()
 spawnSelected' lst = gridselect spawnGridConfig lst >>= flip whenJust spawn
 
 myPowerGrid = [
-                 ("Sperren", "sh ./Scripts/session_lock.sh")
+                 ("Abmelden", "sh ./Scripts/session_logout.sh")
+                 , ("Light Theme", "sh ./Scripts/lighttheme.sh")
+                 , ("Sperren", "sh ./Scripts/session_lock.sh")
                  , ("Bildschirm sperren", "sh ./Scripts/session_lock_screen.sh")
-                 , ("Abmelden", "sh ./Scripts/session_logout.sh")
                  , ("Benutzerwechsel", "sh ./Scripts/session_switch_user.sh")
                  , ("Bereitschaft", "sh ./Scripts/session_suspend.sh")
                  , ("Hibernate", "sh ./Scripts/session_hibernate.sh")

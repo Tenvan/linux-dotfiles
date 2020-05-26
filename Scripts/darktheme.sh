@@ -2,3 +2,5 @@
 cd ~
 git checkout dark-theme -f
 xrdb -merge ~/.Xresources
+xmonad --recompile
+xmonad --restart
