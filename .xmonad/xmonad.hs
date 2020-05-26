@@ -298,8 +298,7 @@ myKeys =
         , ("M-z", spawn "rofi -show combi")
 
     --- My Applications (Super+Alt+Key)
-        , ("M-M1-a", spawn (myTerminal ++ " -e ncpamixer"))
-        , ("M-M1-b", spawn "surf www.youtube.com/c/DistroTube/")
+        , ("M-M1-d", spawn "firefox www.youtube.com/c/DistroTube/")
 
     -- Multimedia Keys
         , ("<XF86AudioPlay>", spawn "cmus toggle")
@@ -393,7 +392,9 @@ myManageHook = composeAll . concat $
             ]
         myTFloats       = [
             "JetBrains Toolbox",
-            "Downloads", "Save As...",
+            "Microsoft Teams-Benachrichtigung",
+            "Downloads", 
+            "Save As...",
             -- XFCE Panels
             "Wrapper-2.0", "Xfce4-panel", "Xfwm4-workspace-settings", "Xfce4-panel-profiles.py"
             ]

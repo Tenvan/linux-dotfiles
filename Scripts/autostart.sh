@@ -32,14 +32,12 @@ run copyq &
 numlockx on &
 blueberry-tray &
 
-killall picom
+killall picom -s 9;sleep 1
 
 if [ -f $HOME/.config/picom/picom-private.conf ] ; then
     picom --config $HOME/.config/picom/picom-private.conf &
-else 
-    if [ -f $HOME/.config/picom/picom.conf ] ; then
+elif [ -f $HOME/.config/picom/picom.conf ] ; then
         picom --config $HOME/.config/picom/picom.conf &
-    fi
 fi
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &

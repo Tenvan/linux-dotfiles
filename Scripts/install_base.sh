@@ -10,11 +10,10 @@ pamac-gtk pamac-cli pamac-tray-appindicator checkupdates-aur \
 copyq oblogout-manjaro xautolock conky pavucontrol pa-applet \
 python-psutil python-pygit2 python-xkbgroup python-taskw python-requests pygtk python2-distutils-extra \
 octopi octopi-notifier-qt5 gnome-system-monitor gnome-system-log xclip xsel xdotool xorg-xfd xcwd-git progress \
-bitwarden-bin bitwarden-cli-bin bitwarden-rofi foxitreader pfetch surf
+bitwarden-bin bitwarden-cli-bin bitwarden-rofi foxitreader pfetch wedder-git
 
 # main editors
-yay -S geany geany-plugins geany-themes editorconfig-geany \
-gvim clang tar fd
+yay -S kate geany geany-plugins geany-themes editorconfig-geany neovim vundle
 
 # from XFCE4 (Tools, Panels, etc.)
 yay -S xfce4 manjaro-xfce-settings xfce4-panel
@@ -25,7 +24,7 @@ xfce4-sensors-plugin xfce4-taskmanager xfce4-systemload-plugin xfce4-weather-plu
 xfce4-timer-plugin xfce4-indicator-plugin-git xfce4-calculator-plugin
 
 # from kde (replace if possible)
-yay -S kate krusader kde-cli-tools ksystemlog ksysguard kruler
+yay -S krusader kde-cli-tools ksystemlog ksysguard kruler
 
 # applications
 yay -S ungit gitahead-bin timeset-gui python \
