@@ -7,6 +7,8 @@ import System.Environment
 import System.Exit
 import System.IO
 
+import GHC.Word
+
 import qualified Data.ByteString as B
 import           Data.Char
 import qualified Data.Map        as M
@@ -97,9 +99,6 @@ myTextEditor    = "kate"   -- Sets default text editor
 -- Width of the window border in pixels.
 --
 
-myBorderWidth   = 5         -- Sets border width for windows
-myGapsWidth     = 5         -- Sets border width for windows
-
 workDir         = "$WORK_DIR" -- os.getenv("WORK_DIR")
 shellCmd        = myTerminal ++ " --title='OneTimeConsole' --directory " ++ workDir
 
@@ -119,10 +118,10 @@ main = do
         myBaseConfig
             {
             startupHook        = myStartupHook
-            , layoutHook         = gaps [(U,(30 + myGapsWidth)), (D,myGapsWidth), (R,myGapsWidth), (L,myGapsWidth)] $ archoLayout ||| layoutHook myBaseConfig
+            , layoutHook         = gaps [(U,35), (D,5), (R,5), (L,5)] $ archoLayout ||| layoutHook myBaseConfig
             , manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageHook desktopConfig <+> manageDocks
             , modMask            = myModMask
-            , borderWidth        = myBorderWidth
+            , borderWidth        = 5
             , handleEventHook    = handleEventHook myBaseConfig <+> fullscreenEventHook
             , focusFollowsMouse  = False
             , clickJustFocuses   = True
@@ -154,15 +153,16 @@ myColorizer = colorRangeFromClassName
 -- gridSelect menu layout
 mygridConfig colorizer = (buildDefaultGSConfig myColorizer)
     { gs_cellheight   = 30
-    , gs_cellwidth    = 200
+    , gs_cellwidth    = 240
     , gs_cellpadding  = 8
-    , gs_originFractX = 0.5
-    , gs_originFractY = 0.5
+    , gs_originFractY = 0.7
     , gs_font         = myFont
     }
 
 spawnGridConfig = defaultGSConfig {
                 gs_font         = myFont
+                , gs_cellheight   = 40
+                , gs_cellwidth  = 240
             }
             
 spawnSelected' :: [(String, String)] -> X ()
@@ -182,7 +182,7 @@ myPowerGrid = [
 
 myApplicationGrid = [
                         ("JetBrains Toolsbox", "jetbrains-toolbox")
-                        , ("SmartGit", "/opt/smartgit/bin/smartgit.sh")
+                        , (gitChar ++ "SmartGit", "/opt/smartgit/bin/smartgit.sh")
                         , ("Krusader", "krusader")
                         , ("\x00e745 Firefox", "firefox")
                         , ("Teams", "teams")
@@ -190,6 +190,7 @@ myApplicationGrid = [
                         , ("UTF8 Test", shellCmd ++ " --hold -e 'curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html'")
                     ]
 
+gitChar     = "\x00e725"                    
 yarnChar    = "\x00e71a"
 angularChar = "\x00e753"
 tsChar      = "\x00fbe4"
@@ -323,15 +324,15 @@ myKeys =
 -- My workspaces are clickable meaning that the mouse can be used to switch
 -- workspaces. This requires xdotool.
 
-tagDev      = "\x1F170" -- "\x1F170 Dev"
-tagDevCon   = "\x1F5A5" -- "\x1F5A5 DevCon"
-tagGit      = "\x1F9E0" -- "\x1F9E0 Git"
-tagTeams    = "\x1F4E8" -- "\x1F4E8 Teams"
-tagVM       = "\x1F4FA" -- "\x1F4FA VM"
-tagWeb      = "\x1F30D" -- "\x1F30D Web"
-tagMedia    = "\x1F3B5" -- "\x1F4FD Media"
-tagAdmin    = "\x02699" -- "\x02699 Admin"
-tagStatus   = "\x1F4C8" -- "\x1F4C8 Status"
+tagDev      = "\x00e753" -- "\x1F170 Dev"
+tagDevCon   = "\x00e23c" -- "\x1F5A5 DevCon"
+tagGit      = gitChar -- "\x1F9E0 Git"
+tagTeams    = "\x00e70f" -- "\x1F4E8 Teams"
+tagVM       = "\x00e62b" -- "\x1F4FA VM"
+tagWeb      = "\x00f484" -- "\x1F30D Web"
+tagMedia    = "\x00f447" -- "\x1F4FD Media"
+tagAdmin    = "\x00e615" -- "\x02699 Admin"
+tagStatus   = "\x00f626" -- "\x1F4C8 Status"
 tagScratch  = "\x1F4DD" -- "\x1F4DD Scratch"
 
 myWorkspaces :: [String]
@@ -416,7 +417,7 @@ myManageHook = composeAll . concat $
 ------------------------------------------------------------------------
 -- LAYOUTS
 ------------------------------------------------------------------------
-archoLayout = spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True $ avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ tiled ||| Mirror tiled ||| spiral (6/7)  ||| ThreeColMid 1 (3/100) (1/2) ||| Full
+archoLayout = spacingRaw True (Border 0 50 50 50) True (Border 20 20 20 20) True $ avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ tiled ||| Mirror tiled ||| spiral (6/7)  ||| ThreeColMid 1 (3/100) (1/2) ||| Full
     where
         tiled = Tall nmaster delta tiled_ratio
         nmaster = 1
@@ -429,8 +430,8 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts float
                  myDefaultLayout = tall ||| grid ||| threeCol ||| threeRow ||| oneBig ||| noBorders monocle ||| space ||| floats
 
 -- tiled       = Tall nmaster delta tiled_ratio
-tall       = renamed [Replace "tall"]     $ limitWindows 12 $ spacing 6 $ ResizableTall 1 (3/100) (1/2) []
-grid       = renamed [Replace "grid"]     $ limitWindows 12 $ spacing 6 $ mkToggle (single MIRROR) $ Grid (16/10)
+tall       = renamed [Replace "tall"]     $ limitWindows 12 $ spacing 4 $ ResizableTall 1 (3/100) (1/2) []
+grid       = renamed [Replace "grid"]     $ limitWindows 12 $ spacing 4 $ mkToggle (single MIRROR) $ Grid (16/10)
 threeCol   = renamed [Replace "threeCol"] $ limitWindows 3  $ ThreeCol 1 (3/100) (1/2)
 threeRow   = renamed [Replace "threeRow"] $ limitWindows 3  $ Mirror $ mkToggle (single MIRROR) zoomRow
 oneBig     = renamed [Replace "oneBig"]   $ limitWindows 6  $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (5/9) (8/12)
