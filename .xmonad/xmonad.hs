@@ -119,7 +119,7 @@ workDir :: [Char]
 workDir         = "$WORK_DIR" -- os.getenv("WORK_DIR")
 
 shellCmd :: [Char]
-shellCmd        = myTerminal ++ " --title='OneTimeConsole' --directory " ++ workDir
+shellCmd = myTerminal ++ " --title='OneTimeConsole' --directory " ++ workDir
 
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
@@ -179,8 +179,8 @@ myApplicationGrid = [
                         , ("Krusader", "krusader")
                         , ("\x00e745 Firefox", "firefox")
                         , ("Teams", "teams")
-                        , ("Emoji Test", shellCmd ++ " --hold -e 'curl https://unicode.org/Public/emoji/5.0/emoji-test.txt'")
-                        , ("UTF8 Test", shellCmd ++ " --hold -e 'curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html'")
+                        , ("Emoji Test", myTerminal ++ " --hold -e 'curl https://unicode.org/Public/emoji/5.0/emoji-test.txt'")
+                        , ("UTF8 Test", myTerminal ++ " --hold -e 'curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html'")
                     ]
 
 gitChar     = "\x00e725"                    
@@ -431,15 +431,14 @@ myManageHook = composeAll . concat $
     , [resource =? r --> doFloat | r <- myRFloats]
     , [resource =? i --> doIgnore | i <- myIgnores]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagDev | x <- myDevShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagDevCon | x <- myDevConShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagDevCon | x <- myDevConShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagGit | x <- myGitShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagTeams | x <- myTeamsShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagVM | x <- myVmShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagWeb | x <- myWebShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagMedia | x <- myMediaShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagAdmin | x <- myAdminShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagVM | x <- myVmShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagWeb | x <- myWebShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagMedia | x <- myMediaShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagAdmin | x <- myAdminShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagStatus | x <- myStatusShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagScratch | x <- myScratchShifts]
     ]
     where
         doShiftAndGo    = doF . liftM2 (.) W.greedyView W.shift
@@ -467,11 +466,11 @@ myManageHook = composeAll . concat $
         myIgnores       = ["desktop_window"]
         -- Shifts
         myDevShifts     = ["JetBrains Toolbox"]
-        myDevConShifts  = []
+        myDevConShifts  = ["Chromium", "OneTimeConsole"]
         myGitShifts     = ["SmartGit"]
         myTeamsShifts   = ["Microsoft Teams - Preview"]
         myVmShifts      = ["Virtualbox", "VirtualBox Manager"]
-        myWebShifts     = ["firefox", "Chromium", "Vivaldi-stable", "Firefox"]
+        myWebShifts     = ["firefox", "Vivaldi-stable", "Firefox"]
         myMediaShifts   = ["vlc", "mpv", "Gimp", "feh", "Inkscape"]
         myAdminShifts   = []
         myStatusShifts  = []
