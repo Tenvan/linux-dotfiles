@@ -7,15 +7,16 @@ import System.Environment
 import System.Exit
 import System.IO
 
-import GHC.Word
-
 import qualified Data.ByteString as B
 import           Data.Char
+import           Data.List
 import qualified Data.Map        as M
 import           Data.Maybe      (isJust)
 import           Data.Monoid
 
+import           Control.Arrow (first)
 import           Control.Monad (liftM2)
+
 import qualified DBus          as D
 import qualified DBus.Client   as D
 
@@ -64,7 +65,12 @@ import qualified XMonad.Layout.ToggleLayouts         as T (ToggleLayout (Toggle)
 import           XMonad.Layout.WindowArranger        (WindowArrangerMsg (..), windowArrange)
 import           XMonad.Layout.WorkspaceDir
 import           XMonad.Layout.ZoomRow               (ZoomMessage (ZoomFullToggle), zoomIn, zoomOut, zoomReset, zoomRow)
-import           XMonad.Prompt                       (Direction1D (..), XPConfig (..), XPPosition (Top), defaultXPConfig)
+import           XMonad.Prompt
+import           XMonad.Prompt.Man
+import           XMonad.Prompt.Pass
+import           XMonad.Prompt.Shell (shellPrompt)
+import           XMonad.Prompt.Ssh
+import           XMonad.Prompt.XMonad
 import qualified XMonad.StackSet                     as W
 import           XMonad.Util.EZConfig                (additionalKeysP, additionalMouseBindings)
 import           XMonad.Util.Loggers
@@ -75,62 +81,48 @@ import           XMonad.Util.SpawnOnce
 ---VARIABLES
 ------------------------------------------------------------------------
 
--- colours
-normBord = "#4c566a"
-focdBord = "#5e81ac"
+myFont :: [Char]
+myFont = "xft:MononokiNerdFont:sizeregular:pixelsize=16"
+
+myModMask :: KeyMask
+myModMask       = mod4Mask  -- Sets modkey to super/windows key
+
+myTerminal :: [Char]
+myTerminal      = "termite" -- Sets default terminal
+
+myTextEditor :: [Char]
+myTextEditor    = "kate"   -- Sets default text editor
+
+myBorderWidth :: Dimension
+myBorderWidth = 2          -- Sets border width for windows
+
+myNormColor :: [Char]
+myNormColor   = "#4c566a"  -- Border color of normal windows
+
+myFocusColor :: [Char]
+myFocusColor  = "#5e81ac"  -- Border color of focused windows
+
+fore :: [Char]
 fore     = "#DEE3E0"
+
+back :: [Char]
 back     = "#282c34"
+
+winType :: [Char]
 winType  = "#c678dd"
 
-myFont          = "xft:MononokiNerdFont:sizeregular:pixelsize=16"
---myFont          = "xft:NotoSans:size=15"
---myFont            = "xft:NotoEmoji:scale=9"
+altMask :: KeyMask
+altMask = mod1Mask         -- Setting this for use in xprompts
 
--- xft:NotoSans:size=15,xft:NotoEmoji:scale=9
 
--- modMask lets you specify which modkey you want to use. The default
--- is mod1Mask ("left alt").  You may also consider using mod3Mask
--- ("right alt"), which does not conflict with emacs keybindings. The
--- "windows key" is usually mod4Mask.
---
-myModMask       = mod4Mask  -- Sets modkey to super/windows key
-myTerminal      = "termite" -- Sets default terminal
-myTextEditor    = "kate"   -- Sets default text editor
--- Width of the window border in pixels.
---
-
+workDir :: [Char]
 workDir         = "$WORK_DIR" -- os.getenv("WORK_DIR")
+
+shellCmd :: [Char]
 shellCmd        = myTerminal ++ " --title='OneTimeConsole' --directory " ++ workDir
 
-------------------------------------------------------------------------
----MAIN
-------------------------------------------------------------------------
-myBaseConfig = desktopConfig
-
-main = do
-
-    dbus <- D.connectSession
-    -- Request access to the DBus name
-    D.requestName dbus (D.busName_ "org.xmonad.Log")
-        [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
-
-    xmonad . ewmh $
-        myBaseConfig
-            {
-            startupHook        = myStartupHook
-            , layoutHook         = gaps [(U,35), (D,5), (R,5), (L,5)] $ archoLayout ||| layoutHook myBaseConfig
-            , manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageHook desktopConfig <+> manageDocks
-            , modMask            = myModMask
-            , borderWidth        = 5
-            , handleEventHook    = handleEventHook myBaseConfig <+> fullscreenEventHook
-            , focusFollowsMouse  = False
-            , clickJustFocuses   = True
-            , workspaces         = myWorkspaces
-            , focusedBorderColor = focdBord
-            , normalBorderColor  = normBord
-            -- , keys               = myKeys
-            , terminal           = myTerminal
-            }  `additionalKeysP` myKeys
+windowCount :: X (Maybe String)
+windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
 ------------------------------------------------------------------------
 ---AUTOSTART
@@ -151,6 +143,7 @@ myColorizer = colorRangeFromClassName
                   (0xff,0xff,0xff) -- active fg
 
 -- gridSelect menu layout
+mygridConfig :: p -> GSConfig Window
 mygridConfig colorizer = (buildDefaultGSConfig myColorizer)
     { gs_cellheight   = 30
     , gs_cellwidth    = 240
@@ -221,6 +214,12 @@ myKeys =
         , ("M-C-x", spawn "xkill")
         , ("M-C-c", spawn (myTextEditor ++ " $HOME/.xmonad/xmonad.hs"))
 
+        -- Prompts
+        , ("M-C-<Return>", shellPrompt dtXPConfig)   -- Shell Prompt
+        , ("M-S-o", xmonadPrompt dtXPConfig)         -- Xmonad Prompt
+        , ("M-S-s", sshPrompt dtXPConfig)            -- Ssh Prompt
+        , ("M-S-m", manPrompt dtXPConfig)            -- Manpage Prompt
+    
     -- System
         , ("C-<Escape>", spawn "xfce4-taskmanager")
         , ("M-C-t", spawn "sh ./Scripts/picom-toggle.sh")
@@ -260,9 +259,6 @@ myKeys =
         , ("M-S-<Down>", rotAllDown)                -- Rotate all the windows in the current stack
         , ("M-<Down>", rotSlavesDown)               -- Rotate all windows except master and keep focus in place
 
-        , ("M-S-s", windows copyToAll)
-        , ("M-C-s", killAllOtherCopies)
-
         , ("M-C-<Up>", sendMessage Arrange)
         , ("M-C-<Down>", sendMessage DeArrange)
 
@@ -275,7 +271,6 @@ myKeys =
         , ("M-S-f", sendMessage (T.Toggle "float"))
         , ("M-S-x", sendMessage $ Toggle REFLECTX)
         , ("M-S-y", sendMessage $ Toggle REFLECTY)
-        , ("M-S-m", sendMessage $ Toggle MIRROR)
         , ("M-<KP_Multiply>", sendMessage (IncMasterN 1))   -- Increase number of clients in the master pane
         , ("M-<KP_Divide>", sendMessage (IncMasterN (-1)))  -- Decrease number of clients in the master pane
         , ("M-S-<KP_Multiply>", increaseLimit)              -- Increase number of windows that can be shown
@@ -318,6 +313,74 @@ myKeys =
         ] where nonNSP          = WSIs (return (\ws -> W.tag ws /= "nsp"))
                 nonEmptyNonNSP  = WSIs (return (\ws -> isJust (W.stack ws) && W.tag ws /= "nsp"))
 
+------------------------------------------------------------------------
+-- XPROMPT KEYMAP (emacs-like key bindings)
+------------------------------------------------------------------------
+dtXPKeymap :: M.Map (KeyMask,KeySym) (XP ())
+dtXPKeymap = M.fromList $
+     map (first $ (,) controlMask)   -- control + <key>
+     [ (xK_z, killBefore)            -- kill line backwards
+     , (xK_k, killAfter)             -- kill line fowards
+     , (xK_a, startOfLine)           -- move to the beginning of the line
+     , (xK_e, endOfLine)             -- move to the end of the line
+     , (xK_m, deleteString Next)     -- delete a character foward
+     , (xK_b, moveCursor Prev)       -- move cursor forward
+     , (xK_f, moveCursor Next)       -- move cursor backward
+     , (xK_BackSpace, killWord Prev) -- kill the previous word
+     , (xK_y, pasteString)           -- paste a string
+     , (xK_g, quit)                  -- quit out of prompt
+     , (xK_bracketleft, quit)
+     ] 
+     ++
+     map (first $ (,) altMask)       -- meta key + <key>
+     [ (xK_BackSpace, killWord Prev) -- kill the prev word
+     , (xK_f, moveWord Next)         -- move a word forward
+     , (xK_b, moveWord Prev)         -- move a word backward
+     , (xK_d, killWord Next)         -- kill the next word
+     , (xK_n, moveHistory W.focusUp')   -- move up thru history
+     , (xK_p, moveHistory W.focusDown') -- move down thru history
+     ]
+     ++
+     map (first $ (,) 0) -- <key>
+     [ (xK_Return, setSuccess True >> setDone True)
+     , (xK_KP_Enter, setSuccess True >> setDone True)
+     , (xK_BackSpace, deleteString Prev)
+     , (xK_Delete, deleteString Next)
+     , (xK_Left, moveCursor Prev)
+     , (xK_Right, moveCursor Next)
+     , (xK_Home, startOfLine)
+     , (xK_End, endOfLine)
+     , (xK_Down, moveHistory W.focusUp')
+     , (xK_Up, moveHistory W.focusDown')
+     , (xK_Escape, quit)
+     ]
+
+------------------------------------------------------------------------
+-- XPROMPT SETTINGS
+------------------------------------------------------------------------
+dtXPConfig :: XPConfig
+dtXPConfig = def
+      { font                  = "xft:Mononoki Nerd Font:size=9"
+      , bgColor             = "#292d3e"
+      , fgColor             = "#d0d0d0"
+      , bgHLight            = "#c792ea"
+      , fgHLight            = "#000000"
+      , borderColor         = "#535974"
+      , promptBorderWidth   = 1
+      , promptKeymap        = dtXPKeymap
+      , position            = Top
+--    , position            = CenteredAt { xpCenterY = 0.3, xpWidth = 0.3 }
+      , height              = 20
+      , historySize         = 256
+      , historyFilter       = id
+      , defaultText         = []
+      , autoComplete        = Just 100000    -- set Just 100000 for .1 sec
+      , showCompletionOnTab = False
+      , searchPredicate     = isPrefixOf
+      , alwaysHighlight     = True
+      , maxComplRows        = Nothing        -- set to Just 5 for 5 rows
+      }
+                
 ------------------------------------------------------------------------
 ---WORKSPACES
 ------------------------------------------------------------------------
@@ -417,24 +480,46 @@ myManageHook = composeAll . concat $
 ------------------------------------------------------------------------
 -- LAYOUTS
 ------------------------------------------------------------------------
-archoLayout = spacingRaw True (Border 0 50 50 50) True (Border 20 20 20 20) True $ avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ tiled ||| Mirror tiled ||| spiral (6/7)  ||| ThreeColMid 1 (3/100) (1/2) ||| Full
-    where
-        tiled = Tall nmaster delta tiled_ratio
-        nmaster = 1
-        delta = 3/100
-        tiled_ratio = 1/2
-
 myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts floats $
                mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
              where
                  myDefaultLayout = tall ||| grid ||| threeCol ||| threeRow ||| oneBig ||| noBorders monocle ||| space ||| floats
 
--- tiled       = Tall nmaster delta tiled_ratio
-tall       = renamed [Replace "tall"]     $ limitWindows 12 $ spacing 4 $ ResizableTall 1 (3/100) (1/2) []
-grid       = renamed [Replace "grid"]     $ limitWindows 12 $ spacing 4 $ mkToggle (single MIRROR) $ Grid (16/10)
-threeCol   = renamed [Replace "threeCol"] $ limitWindows 3  $ ThreeCol 1 (3/100) (1/2)
-threeRow   = renamed [Replace "threeRow"] $ limitWindows 3  $ Mirror $ mkToggle (single MIRROR) zoomRow
-oneBig     = renamed [Replace "oneBig"]   $ limitWindows 6  $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (5/9) (8/12)
-monocle    = renamed [Replace "monocle"]  $ limitWindows 20 Full
-space      = renamed [Replace "space"]    $ limitWindows 4  $ spacing 12 $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (2/3) (2/3)
-floats     = renamed [Replace "floats"]   $ limitWindows 20 simplestFloat
+tall     = renamed [Replace "tall"]     $ limitWindows 12 $ spacing 6 $ ResizableTall 1 (3/100) (1/2) []
+grid     = renamed [Replace "grid"]     $ limitWindows 12 $ spacing 6 $ mkToggle (single MIRROR) $ Grid (16/10)
+threeCol = renamed [Replace "threeCol"] $ limitWindows 3  $ ThreeCol 1 (3/100) (1/2) 
+threeRow = renamed [Replace "threeRow"] $ limitWindows 3  $ Mirror $ mkToggle (single MIRROR) zoomRow
+oneBig   = renamed [Replace "oneBig"]   $ limitWindows 6  $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (5/9) (8/12)
+monocle  = renamed [Replace "monocle"]  $ limitWindows 20 $ Full
+space    = renamed [Replace "space"]    $ limitWindows 4  $ spacing 12 $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (2/3) (2/3)
+floats   = renamed [Replace "floats"]   $ limitWindows 20 $ simplestFloat
+
+------------------------------------------------------------------------
+---MAIN
+------------------------------------------------------------------------
+myBaseConfig = desktopConfig
+
+main :: IO ()
+main = do
+
+    dbus <- D.connectSession
+    -- Request access to the DBus name
+    D.requestName dbus (D.busName_ "org.xmonad.Log")
+        [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
+
+    xmonad . ewmh $
+        myBaseConfig
+            { manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageHook desktopConfig <+> manageDocks
+            , modMask            = myModMask
+            , terminal           = myTerminal
+            , startupHook        = myStartupHook
+            , layoutHook         = myLayoutHook
+            , workspaces         = myWorkspaces
+            , borderWidth        = myBorderWidth
+            , normalBorderColor  = myNormColor
+            , focusedBorderColor = myFocusColor
+            , handleEventHook    = handleEventHook myBaseConfig <+> fullscreenEventHook
+            , focusFollowsMouse  = False
+            , clickJustFocuses   = True
+            -- , keys               = myKeys
+            }  `additionalKeysP` myKeys
