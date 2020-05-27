@@ -8,41 +8,23 @@
 # Dmenu script for editing some of my more frequently edited config files.
 
 
-declare options=("alacritty
-awesome
+declare options=(
+"xmonad
+alacritty
 bash
 broot
-bspwm
-doom.d/config.el
-doom.d/init.el
-dunst
-dwm
-emacs.d/init.el
-herbstluftwm
-i3
+menu-edit
+menu-sysmon
 neovim
 picom
 polybar
-qtile
-quickmarks
-qutebrowser
-spectrwm
-st
-stumpwm
-surf
-sxhkd
-tabbed
+install-base
 termite
-vifm
-vim
-vimb
-xmobar
-xmonad
 xresources
-zsh
-quit")
+quit"
+)
 
-choice=$(echo -e "${options[@]}" | dmenu -i -p 'Edit config file: ')
+choice=$(echo -e "${options[@]}" | rofi -dmenu -i -p 'Edit config file: ')
 
 case "$choice" in
 	quit)
@@ -51,38 +33,17 @@ case "$choice" in
 	alacritty)
 		choice="$HOME/.config/alacritty/alacritty.yml"
 	;;
-	awesome)
-		choice="$HOME/.config/awesome/rc.lua"
-	;;
 	bash)
 		choice="$HOME/.bashrc"
 	;;
 	broot)
 		choice="$HOME/.config/broot/conf.toml"
 	;;
-	bspwm)
-		choice="$HOME/.config/bspwm/bspwmrc"
+	menu-edit)
+		choice="$HOME/.dmenu/dmenu-edit-configs.sh"
 	;;
-    doom.d/config.el)
-		choice="$HOME/.doom.d/config.el"
-	;;
-    doom.d/init.el)
-		choice="$HOME/.doom.d/init.el"
-	;;
-	dunst)
-		choice="$HOME/.config/dunst/dunstrc"
-	;;
-	dwm)
-		choice="$HOME/dwm-distrotube/config.h"
-	;;
-	emacs.d/init.el)
-		choice="$HOME/.emacs.d/init.el"
-	;;
-	herbstluftwm)
-		choice="$HOME/.config/herbstluftwm/autostart"
-	;;
-	i3)
-		choice="$HOME/.i3/config"
+	menu-sysmon)
+		choice="$HOME/.dmenu/dmenu-sysmon.sh"
 	;;
 	neovim)
 		choice="$HOME/.config/nvim/init.vim"
@@ -91,49 +52,13 @@ case "$choice" in
 		choice="$HOME/.config/picom/picom.conf"
 	;;
 	polybar)
-		choice="$HOME/.config/polybar/config"
+		choice="$HOME/.config/polybar/config.ini"
 	;;
-	qtile)
-		choice="$HOME/.config/qtile/config.py"
-	;;
-	quickmarks)
-		choice="$HOME/.config/qutebrowser/quickmarks"
-	;;
-	qutebrowser)
-		choice="$HOME/.config/qutebrowser/autoconfig.yml"
-	;;
-	spectrwm)
-		choice="$HOME/.spectrwm.conf"
-	;;
-	st)
-		choice="$HOME/st-distrotube/config.h"
-	;;
-	stumpwm)
-		choice="$HOME/.config/stumpwm/config"
-	;;
-	surf)
-		choice="$HOME/surf-distrotube/config.h"
-	;;
-	sxhkd)
-		choice="$HOME/.config/sxhkd/sxhkdrc"
-	;;
-	tabbed)
-		choice="$HOME/tabbed-distrotube/config.h"
+	install-base)
+		choice="$HOME/Scripts/install_base.sh"
 	;;
 	termite)
 		choice="$HOME/.config/termite/config"
-	;;
-	vifm)
-		choice="$HOME/.config/vifm/vifmrc"
-	;;
-	vim)
-		choice="$HOME/.vimrc"
-	;;
-	vimb)
-		choice="$HOME/.config/vimb/config"
-	;;
-	xmobar)
-		choice="$HOME/.config/xmobar/xmobarrc2"
 	;;
 	xmonad)
 		choice="$HOME/.xmonad/xmonad.hs"
@@ -141,11 +66,8 @@ case "$choice" in
 	xresources)
 		choice="$HOME/.Xresources"
 	;;
-	zsh)
-		choice="$HOME/.zshrc"
-	;;
 	*)
 		exit 1
 	;;
 esac
-alacritty -e nvim "$choice"
+kate "$choice"

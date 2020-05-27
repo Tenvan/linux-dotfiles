@@ -3,7 +3,8 @@
 # base i3 with bumblebee-status
 yay -S picom-ibhagwan-git
 
-yay -S termite termite-style-git nitrogen dmenu bmenu rofi zenity ripgrep exa \
+yay -S termite termite-style-git nitrogen dmenu bmenu rofi zenity ripgrep \
+exa glances bashtop gtop htop iftop iotop iptraf-ng s-tui \
 nushell broot broom spectacle lightdm-gtk-greeter-settings pm-utils \
 polkit-gnome polkit-kde-agent \
 pamac-gtk pamac-cli pamac-tray-appindicator checkupdates-aur \

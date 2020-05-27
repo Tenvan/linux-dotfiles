@@ -8,18 +8,20 @@
 # Dmenu script for launching system monitoring programs.
 
 
-declare -a options=("bashtop
+declare -a options=(
+"s-tui
+bashtop
 glances
 gtop
 htop
 iftop
 iotop
 iptraf-ng
-nmon
-s-tui
 quit")
 
-choice=$(echo -e "${options[@]}" | dmenu -l -i -p 'System monitors: ')
+choice=$(echo -e "${options[@]}" | rofi -dmenu -i -p 'System monitors: ')
+
+terminal=alacritty
 
 case $choice in
 	quit)
@@ -29,14 +31,13 @@ case $choice in
 	glances| \
 	gtop| \
 	htop| \
-	nmon| \
 	s-tui)
-        exec st -e $choice
+        exec $terminal -t $choice -e $choice 
 	;;
 	iftop| \
 	iotop| \
 	iptraf-ng)
-        exec st -e gksu $choice
+        exec $terminal -t $choice -e sudo $choice
 	;;
 	*)
 		exit 1

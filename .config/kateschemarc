@@ -2,6 +2,9 @@
 Font=mononoki Nerd Font,11,-1,5,75,0,0,0,0,0,Bold
 dummy=prevent-empty-group
 
+[Normal]
+dummy=prevent-empty-group
+
 [Solarized (dark)]
 Color Background[$d]
 Color Code Folding[$d]

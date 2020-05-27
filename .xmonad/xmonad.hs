@@ -31,7 +31,7 @@ import           XMonad.Actions.GridSelect
 import           XMonad.Actions.Minimize             (minimizeWindow)
 import           XMonad.Actions.MouseResize
 import           XMonad.Actions.Promote
-import           XMonad.Actions.RotSlaves            (rotAllDown, rotSlavesDown)
+import           XMonad.Actions.RotSlaves
 import           XMonad.Actions.SpawnOn
 import           XMonad.Actions.WindowGo             (raiseMaybe, runOrRaise)
 import           XMonad.Actions.WithAll              (killAll, sinkAll)
@@ -91,7 +91,7 @@ myTerminal :: [Char]
 myTerminal      = "termite" -- Sets default terminal
 
 myTextEditor :: [Char]
-myTextEditor    = "kate"   -- Sets default text editor
+myTextEditor    = "kate"    -- Sets default text editor
 
 myBorderWidth :: Dimension
 myBorderWidth = 2          -- Sets border width for windows
@@ -212,7 +212,6 @@ myKeys =
         , ("M-C-r", spawn "xmonad --restart;")                      -- Restarts xmonad
         , ("M-S-q", spawnSelected' myPowerGrid)                     -- Quits xmonad
         , ("M-C-x", spawn "xkill")
-        , ("M-C-c", spawn (myTextEditor ++ " $HOME/.xmonad/xmonad.hs"))
 
         -- Prompts
         , ("M-C-<Return>", shellPrompt dtXPConfig)   -- Shell Prompt
@@ -263,8 +262,10 @@ myKeys =
         , ("M-<Backspace>", promote)                -- Moves focused window to master, all others maintain order
         , ("M-S-<Return>", promote)                 -- Moves focused window to master, all others maintain order
 
-        , ("M-S-<Down>", rotAllDown)                -- Rotate all the windows in the current stack
         , ("M-<Down>", rotSlavesDown)               -- Rotate all windows except master and keep focus in place
+        , ("M-<Up>", rotSlavesUp)                   -- Rotate all windows except master and keep focus in place
+        , ("M-S-<Down>", rotAllDown)                -- Rotate all the windows in the current stack
+        , ("M-S-<Up>", rotAllUp)                    -- Rotate all the windows in the current stack
 
         , ("M-C-<Up>", sendMessage Arrange)
         , ("M-C-<Down>", sendMessage DeArrange)
@@ -292,6 +293,12 @@ myKeys =
 
     --- Rofi Menu
         , ("M-z", spawn "rofi -show combi")
+        
+    --- Dmenu Scripts (Alt+Ctr+Key)
+        --, ("M-S-<Return>", spawn "dmenu_run")
+        , ("M1-C-e", spawn "./.dmenu/dmenu-edit-configs.sh")
+        , ("M1-C-m", spawn "./.dmenu/dmenu-sysmon.sh")
+
 
     --- My Applications (Super+Alt+Key)
         , ("M-M1-d", spawn "firefox www.youtube.com/c/DistroTube/")
@@ -426,15 +433,15 @@ myManageHook = composeAll . concat $
     , [title =? t --> doFloat | t <- myTFloats]
     , [resource =? r --> doFloat | r <- myRFloats]
     , [resource =? i --> doIgnore | i <- myIgnores]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagDev | x <- myDevShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagDevCon | x <- myDevConShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagGit | x <- myGitShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagTeams | x <- myTeamsShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagVM | x <- myVmShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagWeb | x <- myWebShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagMedia | x <- myMediaShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagAdmin | x <- myAdminShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagStatus | x <- myStatusShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagDev |    x <- myDevShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift      tagDevCon | x <- myDevConShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift      tagGit |    x <- myGitShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift      tagTeams |  x <- myTeamsShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift      tagVM |     x <- myVmShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift      tagWeb |    x <- myWebShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift      tagMedia |  x <- myMediaShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagAdmin |  x <- myAdminShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagStatus | x <- myStatusShifts]
     ]
     where
         doShiftAndGo    = doF . liftM2 (.) W.greedyView W.shift
@@ -442,6 +449,7 @@ myManageHook = composeAll . concat $
             "JetBrains Toolbox",
             "Xfce4-taskmanager",
             "Viewnior",
+            "copyq",
             "Libfm-pref-apps",
             "Arandr",
             "Galculator",
@@ -469,8 +477,16 @@ myManageHook = composeAll . concat $
         myWebShifts     = ["firefox", "Vivaldi-stable", "Firefox"]
         myMediaShifts   = ["vlc", "mpv", "Gimp", "feh", "Inkscape"]
         myAdminShifts   = []
-        myStatusShifts  = []
-        myScratchShifts = []
+        myStatusShifts  = [
+            "s-tui", 
+            "bashtop", 
+            "glances", 
+            "gtop", 
+            "htop", 
+            "iftop", 
+            "iotop", 
+            "iptraf-ng"
+            ]
 
 ------------------------------------------------------------------------
 -- LAYOUTS
