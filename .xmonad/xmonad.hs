@@ -119,7 +119,7 @@ workDir :: [Char]
 workDir         = "$WORK_DIR" -- os.getenv("WORK_DIR")
 
 shellCmd :: [Char]
-shellCmd = myTerminal ++ " --title='OneTimeConsole' --directory " ++ workDir
+shellCmd = myTerminal ++ " -t 'OneTimeConsole' --directory " ++ workDir
 
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
@@ -191,7 +191,7 @@ tsChar      = "\x00fbe4"
 myDevelopGrid = [
                     ("\x00e795 Shell",  shellCmd ++ " --hold")
                     , (yarnChar ++ " yarn", shellCmd ++ " --hold -e yarn")
-                    , (yarnChar ++ " Generate", shellCmd ++ " --hold -e yarn generate")
+                    , (yarnChar ++ " Generate", shellCmd ++ " --hold -e 'yarn generate'")
                     , (yarnChar ++ " Check updates", shellCmd ++ " --hold -e 'yarn outdated'")
                     , ("\x00f1c0 Start Server", shellCmd ++ " --hold -e 'yarn server:dev'")
                     , ("\x00e718 Pug watch", shellCmd ++ "/src/client --hold -e 'yarn pug:watch'")
