@@ -208,8 +208,8 @@ myDevelopGrid = [
 myKeys =
     -- Xmonad
         [ ("M-q", spawn "xmonad --recompile; xmonad --restart;")    -- Recompiles and Restarts xmonad
-        , ("M-C-r", spawn "xmonad --recompile")                     -- Recompiles xmonad
-        , ("M-S-r", spawn "xmonad --restart;")                      -- Restarts xmonad
+        , ("M-S-r", spawn "xmonad --recompile")                     -- Recompiles xmonad
+        , ("M-C-r", spawn "xmonad --restart;")                      -- Restarts xmonad
         , ("M-S-q", spawnSelected' myPowerGrid)                     -- Quits xmonad
         , ("M-C-x", spawn "xkill")
         , ("M-C-c", spawn (myTextEditor ++ " $HOME/.xmonad/xmonad.hs"))
@@ -244,12 +244,19 @@ myKeys =
         -- Pull running
         , ("M-S-b", bringSelected $ mygridConfig myColorizer)
 
+    -- Workspaces navigation
+        , ("M-,", nextScreen)            -- View next screen
+        , ("M-.", swapNextScreen)        -- Swap current screen with next screen
+        , ("M-S-<Right>", nextWS)        -- Swap the focused window with the next window
+        , ("M-S-<Left>", prevWS)         -- Swap the focused window with the prev window
+        , ("M-S-<KP_Add>", shiftTo Next nonNSP >> moveTo Next nonNSP)       -- Shifts focused window to next workspace
+        , ("M-S-<KP_Subtract>", shiftTo Prev nonNSP >> moveTo Prev nonNSP)  -- Shifts focused window to previous workspace
+
+        , ("M-<Return>", spawn myTerminal)
+
     -- Windows navigation
         , ("M-<Right>", windows W.focusDown)        -- Swap the focused window with the next window
         , ("M-<Left>", windows W.focusUp)           -- Swap the focused window with the prev window
-
-        , ("M-S-<Right>", nextWS)        -- Swap the focused window with the next window
-        , ("M-S-<Left>", prevWS)           -- Swap the focused window with the prev window
 
         , ("M-m", windows W.focusMaster)            -- Move focus to the master window
 
@@ -282,14 +289,6 @@ myKeys =
         , ("M-C-k", sendMessage MirrorExpand)
         , ("M-S-ö", sendMessage zoomReset)
         , ("M-ö", sendMessage ZoomFullToggle)
-
-    -- Workspaces
-        , ("M-.", nextScreen)                           -- Switch focus to next monitor
-        , ("M-,", prevScreen)                           -- Switch focus to prev monitor
-        , ("M-S-<KP_Add>", shiftTo Next nonNSP >> moveTo Next nonNSP)       -- Shifts focused window to next workspace
-        , ("M-S-<KP_Subtract>", shiftTo Prev nonNSP >> moveTo Prev nonNSP)  -- Shifts focused window to previous workspace
-
-        , ("M-<Return>", spawn myTerminal)
 
     --- Rofi Menu
         , ("M-z", spawn "rofi -show combi")
@@ -387,16 +386,16 @@ dtXPConfig = def
 -- My workspaces are clickable meaning that the mouse can be used to switch
 -- workspaces. This requires xdotool.
 
-tagDev      = "\x00e753" -- "\x1F170 Dev"
-tagDevCon   = "\x00e23c" -- "\x1F5A5 DevCon"
-tagGit      = gitChar -- "\x1F9E0 Git"
-tagTeams    = "\x00e70f" -- "\x1F4E8 Teams"
-tagVM       = "\x00e62b" -- "\x1F4FA VM"
-tagWeb      = "\x00f484" -- "\x1F30D Web"
-tagMedia    = "\x00f447" -- "\x1F4FD Media"
-tagAdmin    = "\x00e615" -- "\x02699 Admin"
-tagStatus   = "\x00f626" -- "\x1F4C8 Status"
-tagScratch  = "\x1F4DD" -- "\x1F4DD Scratch"
+tagDev      = "wsDev"
+tagDevCon   = "wsDevCon"
+tagGit      = "wsGit"
+tagTeams    = "wsTeams"
+tagVM       = "wsVM"
+tagWeb      = "wsWeb"
+tagMedia    = "wsMedia"
+tagAdmin    = "wsAdmin"
+tagStatus   = "wsStatus"
+tagScratch  = "wsScratch"
 
 myWorkspaces :: [String]
 myWorkspaces =  [
@@ -410,9 +409,6 @@ myWorkspaces =  [
                    tagStatus,
                    tagAdmin
                  ]
-
-arcWorkspaces    = ["\61612","\61899","\61947","\61635","\61502","\61501","\61705","\61564","\62150","\61872"]
-
 
 ------------------------------------------------------------------------
 -- MANAGEHOOK
@@ -432,13 +428,13 @@ myManageHook = composeAll . concat $
     , [resource =? i --> doIgnore | i <- myIgnores]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagDev | x <- myDevShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagDevCon | x <- myDevConShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagGit | x <- myGitShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagTeams | x <- myTeamsShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagGit | x <- myGitShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagTeams | x <- myTeamsShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagVM | x <- myVmShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagWeb | x <- myWebShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagMedia | x <- myMediaShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagAdmin | x <- myAdminShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagStatus | x <- myStatusShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagStatus | x <- myStatusShifts]
     ]
     where
         doShiftAndGo    = doF . liftM2 (.) W.greedyView W.shift
