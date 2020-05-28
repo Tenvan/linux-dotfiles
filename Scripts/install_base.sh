@@ -36,6 +36,9 @@ pip install --user neovim
 # printer setup
 yay -S canon-cque samsung-printers cups-pdf system-config-printer manjaro-settings-samba
 
+# sound
+yay -S manjaro-pulse paprefs pulseaudio-ctl pulseaudio-qt pulseaudio-equalizer-ladspa pasystray sound-theme-elementary yaru-sound-theme sound-theme-smooth sound-theme-kayo sound-theme-sakura sound-theme-lbr-impress
+
 chmod +x ~/Scripts/100-user-monitors.sh
 sudo cp ~/Scripts/100-user-monitors.sh /etc/X11/xinit/xinitrc.d
 

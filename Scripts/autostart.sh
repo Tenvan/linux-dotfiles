@@ -21,12 +21,13 @@ xsetroot -cursor_name left_ptr &
 # Xfce4 Panel
 # (killall xfce4-panel; xfce4-panel) &
 
+killall pasystray
+
 #starting utility applications at boot time
 run nm-applet &
 run pamac-tray &
 run xfce4-power-manager &
-# run pa-applet &
-run volumeicon &
+run pasystray &
 run copyq &
 
 numlockx on &
