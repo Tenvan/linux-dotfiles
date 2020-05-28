@@ -3,79 +3,102 @@
 ------------------------------------------------------------------------
 ---IMPORTS
 ------------------------------------------------------------------------
-import System.Environment
-import System.Exit
-import System.IO
+    -- Base
+import XMonad
+import XMonad.Config.Desktop
+import System.IO (hPutStrLn)
+import System.Exit (exitSuccess)
+import qualified XMonad.StackSet as W
 
+    -- Prompt
+import XMonad.Prompt
+import XMonad.Prompt.Input
+import XMonad.Prompt.Man
+import XMonad.Prompt.Pass
+import XMonad.Prompt.Shell (shellPrompt)
+import XMonad.Prompt.Ssh
+import XMonad.Prompt.XMonad
+
+    -- Data
+import Data.Char
+import Data.List
+import Data.Monoid
+import Data.Maybe (isJust)
+import qualified Data.Map as M
 import qualified Data.ByteString as B
-import           Data.Char
-import           Data.List
-import qualified Data.Map        as M
-import           Data.Maybe      (isJust)
-import           Data.Monoid
 
-import           Control.Arrow (first)
-import           Control.Monad (liftM2)
+    -- Utilities
+import XMonad.Util.EZConfig
+import XMonad.Util.Loggers
+import XMonad.Util.NamedScratchpad
+import XMonad.Util.Run
+import XMonad.Util.SpawnOnce
+
+    -- Hooks
+import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
+import XMonad.Hooks.ManageDocks (avoidStruts, docks, docksStartupHook, manageDocks, ToggleStruts(..))
+import XMonad.Hooks.ManageHelpers (doCenterFloat, doFullFloat, isDialog, isFullscreen)
+import XMonad.Hooks.SetWMName
+import XMonad.Hooks.EwmhDesktops   -- required for xcomposite in obs to work
+import XMonad.Hooks.Place                  (placeHook, smart, withGaps)
+import XMonad.Hooks.UrgencyHook
+
+    -- Actions
+import XMonad.Actions.Promote
+import XMonad.Actions.RotSlaves (rotSlavesDown, rotAllDown)
+import XMonad.Actions.CopyWindow (kill1, killAllOtherCopies)
+import XMonad.Actions.WindowGo (runOrRaise)
+import XMonad.Actions.WithAll (sinkAll, killAll)
+import XMonad.Actions.CycleWS
+import XMonad.Actions.GridSelect
+import XMonad.Actions.MouseResize
+import qualified XMonad.Actions.ConstrainedResize as Sqr
+import XMonad.Actions.DynamicWorkspaces
+import XMonad.Actions.DynamicProjects
+import XMonad.Actions.Minimize             (minimizeWindow)
+import XMonad.Actions.RotSlaves
+import XMonad.Actions.SpawnOn
+
+    -- Layouts modifiers
+import XMonad.Layout.Gaps
+import XMonad.Layout.Renamed (renamed, Rename(Replace))
+import XMonad.Layout.Spacing (spacing) 
+import XMonad.Layout.NoBorders
+import XMonad.Layout.LimitWindows (limitWindows, increaseLimit, decreaseLimit)
+import XMonad.Layout.WindowArranger (windowArrange, WindowArrangerMsg(..))
+import XMonad.Layout.Reflect (REFLECTX(..), REFLECTY(..))
+import XMonad.Layout.MultiToggle (mkToggle, single, EOT(EOT), Toggle(..), (??))
+import XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
+import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
+
+    -- Layouts modifiers
+import XMonad.Layout.Gaps
+import XMonad.Layout.Renamed (renamed, Rename(Replace))
+import XMonad.Layout.Spacing (spacing) 
+import XMonad.Layout.NoBorders
+import XMonad.Layout.LimitWindows (limitWindows, increaseLimit, decreaseLimit)
+import XMonad.Layout.WindowArranger (windowArrange, WindowArrangerMsg(..))
+import XMonad.Layout.Reflect (REFLECTX(..), REFLECTY(..))
+import XMonad.Layout.MultiToggle (mkToggle, single, EOT(EOT), Toggle(..), (??))
+import XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
+import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
+
+    -- Layouts
+import XMonad.Layout.GridVariants (Grid(Grid))
+import XMonad.Layout.SimplestFloat
+import XMonad.Layout.OneBig
+import XMonad.Layout.ThreeColumns
+import XMonad.Layout.ResizableTile
+import XMonad.Layout.ZoomRow (zoomRow, zoomReset, ZoomMessage(ZoomFullToggle))
+
+import Control.Arrow (first)
+import Control.Monad (liftM2)
 
 import qualified DBus          as D
 import qualified DBus.Client   as D
+import qualified Codec.Binary.UTF8.String as UTF8
 
 import Graphics.X11.ExtraTypes.XF86
-
-import           XMonad
-import qualified XMonad.Actions.ConstrainedResize    as Sqr
-import           XMonad.Actions.CopyWindow           (copyToAll, kill1, killAllOtherCopies, runOrCopy)
-import           XMonad.Actions.CycleWS
-import           XMonad.Actions.DynamicWorkspaces    (addWorkspacePrompt, removeEmptyWorkspace)
-import           XMonad.Actions.GridSelect
-import           XMonad.Actions.Minimize             (minimizeWindow)
-import           XMonad.Actions.MouseResize
-import           XMonad.Actions.Promote
-import           XMonad.Actions.RotSlaves
-import           XMonad.Actions.SpawnOn
-import           XMonad.Actions.WindowGo             (raiseMaybe, runOrRaise)
-import           XMonad.Actions.WithAll              (killAll, sinkAll)
-import           XMonad.Config.Desktop
-import           XMonad.Hooks.DynamicLog             (PP (..), defaultPP, dynamicLogWithPP, pad, shorten, wrap, xmobarColor, xmobarPP)
-import           XMonad.Hooks.EwmhDesktops
-import           XMonad.Hooks.ManageDocks            (ToggleStruts (..), avoidStruts, docks, docksStartupHook, manageDocks)
-import           XMonad.Hooks.ManageHelpers          (doCenterFloat, doFullFloat, isDialog, isFullscreen)
-import           XMonad.Hooks.Place                  (placeHook, smart, withGaps)
-import           XMonad.Hooks.SetWMName
-import           XMonad.Layout.Cross                 (simpleCross)
-import           XMonad.Layout.Fullscreen            (fullscreenFull)
-import           XMonad.Layout.Gaps
-import           XMonad.Layout.GridVariants          (Grid (Grid))
-import           XMonad.Layout.IM                    (Property (Role), withIM)
-import           XMonad.Layout.IndependentScreens
-import           XMonad.Layout.LimitWindows          (decreaseLimit, increaseLimit, limitWindows)
-import           XMonad.Layout.MultiToggle           (EOT (EOT), Toggle (..), mkToggle, single, (??))
-import           XMonad.Layout.MultiToggle.Instances (StdTransformers (MIRROR, NBFULL, NOBORDERS))
-import           XMonad.Layout.NoBorders
-import           XMonad.Layout.OneBig
-import           XMonad.Layout.PerWorkspace          (onWorkspace)
-import           XMonad.Layout.Reflect               (REFLECTX (..), REFLECTY (..), reflectHoriz, reflectVert)
-import           XMonad.Layout.Renamed               (Rename (CutWordsLeft, Replace), renamed)
-import           XMonad.Layout.ResizableTile
-import           XMonad.Layout.SimplestFloat
-import           XMonad.Layout.Spacing
-import           XMonad.Layout.Spiral
-import           XMonad.Layout.ThreeColumns
-import qualified XMonad.Layout.ToggleLayouts         as T (ToggleLayout (Toggle), toggleLayouts)
-import           XMonad.Layout.WindowArranger        (WindowArrangerMsg (..), windowArrange)
-import           XMonad.Layout.WorkspaceDir
-import           XMonad.Layout.ZoomRow               (ZoomMessage (ZoomFullToggle), zoomIn, zoomOut, zoomReset, zoomRow)
-import           XMonad.Prompt
-import           XMonad.Prompt.Man
-import           XMonad.Prompt.Pass
-import           XMonad.Prompt.Shell (shellPrompt)
-import           XMonad.Prompt.Ssh
-import           XMonad.Prompt.XMonad
-import qualified XMonad.StackSet                     as W
-import           XMonad.Util.EZConfig                (additionalKeysP, additionalMouseBindings)
-import           XMonad.Util.Loggers
-import           XMonad.Util.Run                     (runInTerm, safeSpawn, spawnPipe, unsafeSpawn)
-import           XMonad.Util.SpawnOnce
 
 ------------------------------------------------------------------------
 ---VARIABLES
@@ -101,6 +124,40 @@ myNormColor   = "#4c566a"  -- Border color of normal windows
 
 myFocusColor :: [Char]
 myFocusColor  = "#5e81ac"  -- Border color of focused windows
+
+myGaps :: Int
+myGaps = 5                 -- Sets layout gaps and window spacing
+
+mySpacing :: Int
+mySpacing      = 5
+
+myLargeSpacing :: Int
+myLargeSpacing = 30
+
+noSpacing :: Int
+noSpacing      = 0
+
+-- Colours
+fg        = "#ebdbb2"
+bg        = "#282828"
+gray      = "#a89984"
+bg1       = "#3c3836"
+bg2       = "#505050"
+bg3       = "#665c54"
+bg4       = "#7c6f64"
+
+green     = "#b8bb26"
+darkgreen = "#98971a"
+red       = "#fb4934"
+darkred   = "#cc241d"
+yellow    = "#fabd2f"
+blue      = "#83a598"
+purple    = "#d3869b"
+aqua      = "#8ec07c"
+white     = "#eeeeee"
+
+pur2      = "#5b51c9"
+blue2     = "#2266d0"
 
 fore :: [Char]
 fore     = "#DEE3E0"
@@ -218,7 +275,9 @@ myKeys =
         , ("M-S-o", xmonadPrompt dtXPConfig)         -- Xmonad Prompt
         , ("M-S-s", sshPrompt dtXPConfig)            -- Ssh Prompt
         , ("M-S-m", manPrompt dtXPConfig)            -- Manpage Prompt
-    
+        -- Calculator prompt
+        , ("M1-C-c", calcPrompt dtXPConfig "qalc")   -- Requires qalculate-gtk
+     
     -- System
         , ("C-<Escape>", spawn "xfce4-taskmanager")
         , ("M-C-t", spawn "sh ./Scripts/picom-toggle.sh")
@@ -366,13 +425,13 @@ dtXPKeymap = M.fromList $
 ------------------------------------------------------------------------
 dtXPConfig :: XPConfig
 dtXPConfig = def
-      { font                  = "xft:Mononoki Nerd Font:size=9"
+      { font                = "xft:Mononoki Nerd Font:size=9"
       , bgColor             = "#292d3e"
       , fgColor             = "#d0d0d0"
       , bgHLight            = "#c792ea"
       , fgHLight            = "#000000"
       , borderColor         = "#535974"
-      , promptBorderWidth   = 1
+      , promptBorderWidth   = 0
       , promptKeymap        = dtXPKeymap
       , position            = Top
 --    , position            = CenteredAt { xpCenterY = 0.3, xpWidth = 0.3 }
@@ -387,6 +446,14 @@ dtXPConfig = def
       , maxComplRows        = Nothing        -- set to Just 5 for 5 rows
       }
                 
+calcPrompt :: XPConfig -> String -> X () 
+calcPrompt c ans =
+    inputPrompt c (trim ans) ?+ \input -> 
+        liftIO(runProcessWithInput "qalc" [input] "") >>= calcPrompt c 
+    where
+        trim  = f . f
+            where f = reverse . dropWhile isSpace
+                  
 ------------------------------------------------------------------------
 ---WORKSPACES
 ------------------------------------------------------------------------
@@ -496,15 +563,47 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts float
              where
                  myDefaultLayout = tall ||| grid ||| threeCol ||| threeRow ||| oneBig ||| noBorders monocle ||| space ||| floats
 
-tall     = renamed [Replace "tall"]     $ limitWindows 12 $ spacing 6 $ ResizableTall 1 (3/100) (1/2) []
-grid     = renamed [Replace "grid"]     $ limitWindows 12 $ spacing 6 $ mkToggle (single MIRROR) $ Grid (16/10)
+tall     = renamed [Replace "tall"]     $ limitWindows 12 $ gaps [(U,myGaps), (D,myGaps), (L,myGaps), (R,myGaps)] $ spacing myGaps $ ResizableTall 1 (3/100) (1/2) []
+grid     = renamed [Replace "grid"]     $ limitWindows 12 $ spacing mySpacing $ mkToggle (single MIRROR) $ Grid (16/10)
 threeCol = renamed [Replace "threeCol"] $ limitWindows 3  $ ThreeCol 1 (3/100) (1/2) 
 threeRow = renamed [Replace "threeRow"] $ limitWindows 3  $ Mirror $ mkToggle (single MIRROR) zoomRow
 oneBig   = renamed [Replace "oneBig"]   $ limitWindows 6  $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (5/9) (8/12)
 monocle  = renamed [Replace "monocle"]  $ limitWindows 20 $ Full
-space    = renamed [Replace "space"]    $ limitWindows 4  $ spacing 12 $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (2/3) (2/3)
+space    = renamed [Replace "space"]    $ limitWindows 4  $ spacing myLargeSpacing $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (2/3) (2/3)
 floats   = renamed [Replace "floats"]   $ limitWindows 20 $ simplestFloat
 
+-----------------------------------------------------------------------------}}}
+-- LOGHOOK                                                                   {{{
+--------------------------------------------------------------------------------
+myLogHook :: D.Client -> PP
+myLogHook dbus = def
+    { ppOutput = dbusOutput dbus
+    , ppCurrent = wrap ("C:%{F" ++ blue2 ++ "} ") " %{F-}"
+    , ppVisible = wrap ("V:%{F" ++ blue ++ "} ") " %{F-}"
+    , ppUrgent = wrap ("U:%{F" ++ red ++ "} ") " %{F-}"
+    , ppHidden = wrap " " " "
+    , ppWsSep = ""
+    , ppSep = " | "
+    , ppTitle = myAddSpaces 25
+    }
+
+-- Emit a DBus signal on log updates
+dbusOutput :: D.Client -> String -> IO ()
+dbusOutput dbus str = do
+    let signal = (D.signal objectPath interfaceName memberName) {
+            D.signalBody = [D.toVariant $ UTF8.decodeString str]
+        }
+    D.emit dbus signal
+  where
+    objectPath = D.objectPath_ "/org/xmonad/Log"
+    interfaceName = D.interfaceName_ "org.xmonad.Log"
+    memberName = D.memberName_ "Update"
+
+myAddSpaces :: Int -> String -> String
+myAddSpaces len str = sstr ++ replicate (len - length sstr) ' '
+  where
+    sstr = shorten len str
+    
 ------------------------------------------------------------------------
 ---MAIN
 ------------------------------------------------------------------------
@@ -518,9 +617,12 @@ main = do
     D.requestName dbus (D.busName_ "org.xmonad.Log")
         [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
 
-    xmonad . ewmh $
-        myBaseConfig
+    xmonad 
+        $ withUrgencyHook NoUrgencyHook
+        $ ewmh 
+        $ myBaseConfig
             { manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageHook desktopConfig <+> manageDocks
+            , logHook = dynamicLogWithPP (myLogHook dbus)
             , modMask            = myModMask
             , terminal           = myTerminal
             , startupHook        = myStartupHook
