@@ -352,6 +352,7 @@ myKeys =
 
     --- Rofi Menu
         , ("M-z", spawn "rofi -show combi")
+        , ("M-w", spawn "bwmenu -- -location 2")
         
     --- Dmenu Scripts (Alt+Ctr+Key)
         --, ("M-S-<Return>", spawn "dmenu_run")
@@ -523,6 +524,7 @@ myManageHook = composeAll . concat $
             "feh",
             "mpv",
             "VirtualBox Manager",
+            "org.remmina.Remmina",    
             "Pavucontrol"
             ]
         myTFloats       = [
@@ -537,12 +539,12 @@ myManageHook = composeAll . concat $
         myIgnores       = ["desktop_window"]
         -- Shifts
         myDevShifts     = ["JetBrains Toolbox"]
-        myDevConShifts  = ["Chromium", "OneTimeConsole"]
+        myDevConShifts  = ["Chromium", "Google-chrome", "OneTimeConsole"]
         myGitShifts     = ["SmartGit"]
         myTeamsShifts   = ["Microsoft Teams - Preview"]
         myVmShifts      = ["Virtualbox", "VirtualBox Manager"]
         myWebShifts     = ["firefox", "Vivaldi-stable", "Firefox"]
-        myMediaShifts   = ["vlc", "mpv", "Gimp", "feh", "Inkscape"]
+        myMediaShifts   = ["Spotify", "vlc", "mpv", "Gimp", "feh", "Inkscape"]
         myAdminShifts   = []
         myStatusShifts  = [
             "s-tui", 
