@@ -13,6 +13,7 @@ declare options=(
 alacritty
 bash
 broot
+gitignore
 menu-edit
 menu-sysmon
 neovim
@@ -39,6 +40,9 @@ case "$choice" in
 	broot)
 		choice="$HOME/.config/broot/conf.toml"
 	;;
+	gitignore)
+		choice="$HOME/.gitignore"
+	;;
 	menu-edit)
 		choice="$HOME/.dmenu/dmenu-edit-configs.sh"
 	;;
@@ -61,7 +65,7 @@ case "$choice" in
 		choice="$HOME/.config/termite/config"
 	;;
 	xmonad)
-		choice="$HOME/.xmonad/xmonad.hs"
+		choice="$HOME/.xmonad/xmonad.hs $HOME/Scripts/install_xmonad.sh"
 	;;
 	xresources)
 		choice="$HOME/.Xresources"
@@ -70,4 +74,4 @@ case "$choice" in
 		exit 1
 	;;
 esac
-kate "$choice"
+kate $choice

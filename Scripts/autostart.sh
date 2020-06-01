@@ -7,6 +7,8 @@ function run {
   fi
 }
 
+xrdb -merge ~/.Xresources
+
 (sleep 2; sh $HOME/.config/polybar/launch.sh) &
 
 #change your keyboard if you need it
@@ -29,6 +31,8 @@ run pamac-tray &
 run xfce4-power-manager &
 run pasystray &
 run copyq &
+run alttab &
+run nitrogen --restore &
 
 numlockx on &
 blueberry-tray &
@@ -43,18 +47,3 @@ fi
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
-
-#starting user applications at boot time
-nitrogen --restore &
-#run caffeine &
-#run vivaldi-stable &
-#run firefox &
-#run thunar &
-#run spotify &
-#run atom &
-
-#run telegram-desktop &
-#run discord &
-#run dropbox &
-#run insync start &
-#run ckb-next -b &

@@ -129,9 +129,6 @@ myFocusColor  = "#5e81ac"  -- Border color of focused windows
 myGaps :: Int
 myGaps = 5                 -- Sets layout gaps and window spacing
 
-mySpacing :: Int
-mySpacing      = 5
-
 myLargeSpacing :: Int
 myLargeSpacing = 30
 

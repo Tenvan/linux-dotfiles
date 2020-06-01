@@ -14,8 +14,15 @@ XTerm*faceSize:          11
 XTerm*reverseVideo:      on
 XTerm*selectToClipboard: true
 
+alttab*background:       #292d3e
+alttab*foreground:       #d8d8d8
+alttab*windowmanager:    1
+alttab*desktops:         1
+alttab*screens:          0
+
 *background:                      #292d3e
 *foreground:                      #d8d8d8
+
 *tbackground:                     #A0292d3e
 
 *focused_background:              #556064
