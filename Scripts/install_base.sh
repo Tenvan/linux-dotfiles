@@ -8,11 +8,11 @@ yay -S picom-ibhagwan-git
 
 yay -S --noconfirm termite termite-style-git nitrogen dmenu bmenu rofi zenity ripgrep \
 exa glances bashtop gtop htop iftop iotop iptraf-ng s-tui \
-polybar broot broom spectacle lightdm-gtk-greeter-settings pm-utils \
+polybar broot broom lightdm-gtk-greeter-settings pm-utils \
 polkit-gnome polkit-kde-agent \
 pamac-gtk pamac-cli pamac-tray-appindicator checkupdates-aur \
 copyq oblogout-manjaro xautolock conky pavucontrol pa-applet \
-python-psutil python-pygit2 python-xkbgroup python-taskw python-requests pygtk python2-distutils-extra \
+python python-psutil python-pygit2 python-xkbgroup python-taskw python-requests pygtk python2-distutils-extra \
 octopi octopi-notifier-qt5 gnome-system-monitor gnome-system-log xclip xsel xdotool xorg-xfd xcwd-git progress \
 bitwarden-bin bitwarden-cli-bin bitwarden-rofi foxitreader pfetch wedder-git alttab-git
 
@@ -22,16 +22,19 @@ yay -S --noconfirm kate geany geany-plugins geany-themes editorconfig-geany neov
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
+pip install --user neovim
+       
 # from XFCE4 (Tools, Panels, etc.)
 yay -S --noconfirm xfce4-taskmanager
 
 # from kde (replace if possible)
-yay -S --noconfirm krusader kde-cli-tools ksystemlog ksysguard kruler
+yay -S --noconfirm spectacle
 
 # applications
-yay -S --noconfirm ungit gitahead-bin timeset-gui python
+yay -S --noconfirm gitahead-bin timeset-gui
 
-pip install --user neovim
+# file manager
+yay -S nemo nemo-share folder-color-switcher nemo-bulk-rename nemo-fileroller nemo-image-converter nemo-preview nemo-seahorse nemo-terminal nemo-compare nemo-megasync nemo-emblems nemo-media-columns nemo-media-columns nemo-pdf-tools
 
 # printer setup
 yay -S --noconfirm canon-cque samsung-printers cups-pdf system-config-printer manjaro-settings-samba

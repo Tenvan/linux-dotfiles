@@ -117,6 +117,9 @@ myTerminal      = "termite" -- Sets default terminal
 myTextEditor :: [Char]
 myTextEditor    = "kate"    -- Sets default text editor
 
+myFileManager :: [Char]
+myFileManager = "nemo"    -- Sets default text editor
+
 myBorderWidth :: Dimension
 myBorderWidth = 2          -- Sets border width for windows
 
@@ -232,9 +235,11 @@ myPowerGrid = [
 myApplicationGrid = [
                         ("JetBrains Toolsbox", "jetbrains-toolbox")
                         , (gitChar ++ "SmartGit", "/opt/smartgit/bin/smartgit.sh")
-                        , ("Krusader", "krusader")
+                        , ("Dateien", myFileManager)
+                        , ("xmonad Errors",  myTerminal ++ " --hold -t 'xmonad errors' -e 'multitail -i ./.xmonad/xmonad.errors'")
                         , ("\x00e745 Firefox", "firefox")
                         , ("Teams", "teams")
+                        , ("BMenu", myTerminal ++ " -e bmenu")
                         , ("Emoji Test", myTerminal ++ " --hold -e 'curl https://unicode.org/Public/emoji/5.0/emoji-test.txt'")
                         , ("UTF8 Test", myTerminal ++ " --hold -e 'curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html'")
                     ]
@@ -246,6 +251,7 @@ tsChar      = "\x00fbe4"
                     
 myDevelopGrid = [
                     ("\x00e795 Shell",  shellCmd ++ " --hold")
+                    , ("Dateien", myFileManager ++ " " ++ workDir)
                     , (yarnChar ++ " yarn", shellCmd ++ " --hold -e yarn")
                     , (yarnChar ++ " Generate", shellCmd ++ " --hold -e 'yarn generate'")
                     , (yarnChar ++ " Check updates", shellCmd ++ " --hold -e 'yarn outdated'")
@@ -522,17 +528,20 @@ myManageHook = composeAll . concat $
             "Galculator",
             "feh",
             "mpv",
+            "smb4k",
             "VirtualBox Manager",
             "org.remmina.Remmina",    
-            "Pavucontrol"
+            "Pavucontrol",
+            "imagewriter",
+            "Nemo-terminal-prefs"
             ]
         myTFloats       = [
             "JetBrains Toolbox",
             "Microsoft Teams-Benachrichtigung",
             "Downloads", 
             "Save As...",
-            -- XFCE Panels
-            "Wrapper-2.0", "Xfce4-panel", "Xfwm4-workspace-settings", "Xfce4-panel-profiles.py"
+            "bmenu",
+            "xmonad errors"    
             ]
         myRFloats       = []
         myIgnores       = ["desktop_window"]
@@ -541,7 +550,7 @@ myManageHook = composeAll . concat $
         myDevConShifts  = ["Chromium", "Google-chrome", "OneTimeConsole"]
         myGitShifts     = ["SmartGit"]
         myTeamsShifts   = ["Microsoft Teams - Preview"]
-        myVmShifts      = ["Virtualbox", "VirtualBox Manager"]
+        myVmShifts      = ["Virtualbox", "VirtualBox Manager", "org.remmina.Remmina"]
         myWebShifts     = ["firefox", "Vivaldi-stable", "Firefox"]
         myMediaShifts   = ["Spotify", "vlc", "mpv", "Gimp", "feh", "Inkscape"]
         myAdminShifts   = []

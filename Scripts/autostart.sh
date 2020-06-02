@@ -33,6 +33,7 @@ run pasystray &
 run copyq &
 run alttab &
 run nitrogen --restore &
+run teams &
 
 numlockx on &
 blueberry-tray &
