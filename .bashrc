@@ -169,14 +169,6 @@ alias lt='exa -aT --color=always --group-directories-first' # tree listing
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
-alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
-alias vifm='./.config/vifm/scripts/vifmrun'
-
-# the terminal rickroll
-alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
-
-# bare git repo alias for dotfiles
-alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 
 ### SET VI MODE IN BASH SHELL
 set -o vi
@@ -193,8 +185,8 @@ fi
 source ~/.config/broot/launcher/bash/br
 
 ### BASH INSULTER ###
-if [ -f /etc/bash.command-not-found ]; then
-    . /etc/bash.command-not-found
+if [ -f /usr/share/doc/find-the-command/ftc.bash ]; then
+    source /usr/share/doc/find-the-command/ftc.bash
 fi
 
 pfetch

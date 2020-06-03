@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-yay -Syy
+yay -Syy --noconfirm rustup
+rustup install stable
 
 #yay -S picom
 yay -S picom-ibhagwan-git
@@ -14,7 +15,7 @@ pamac-gtk pamac-cli pamac-tray-appindicator checkupdates-aur \
 copyq oblogout-manjaro xautolock conky pavucontrol pa-applet \
 python python-psutil python-pygit2 python-xkbgroup python-taskw python-requests pygtk python2-distutils-extra \
 octopi octopi-notifier-qt5 gnome-system-monitor gnome-system-log xclip xsel xdotool xorg-xfd xcwd-git progress \
-bitwarden-bin bitwarden-cli-bin bitwarden-rofi foxitreader pfetch wedder-git alttab-git shell-color-scripts powerline-shell
+bitwarden-bin bitwarden-cli-bin bitwarden-rofi foxitreader pfetch wedder-git alttab-git shell-color-scripts powerline-rs find-the-command
 
 # main editors
 yay -S --noconfirm kate geany geany-plugins geany-themes editorconfig-geany neovim vim-plugins
@@ -39,7 +40,7 @@ yay -S --noconfirm spectacle
 yay -S --noconfirm gitahead-bin timeset-gui
 
 # file manager
-yay -S nemo nemo-share folder-color-switcher nemo-bulk-rename nemo-fileroller nemo-image-converter nemo-preview nemo-seahorse nemo-terminal nemo-compare nemo-megasync nemo-emblems nemo-media-columns nemo-media-columns nemo-pdf-tools
+yay -S --noconfirm nemo nemo-share folder-color-switcher nemo-bulk-rename nemo-fileroller nemo-image-converter nemo-preview nemo-seahorse nemo-terminal nemo-compare nemo-megasync nemo-emblems nemo-media-columns nemo-media-columns nemo-pdf-tools
 
 # printer setup
 yay -S --noconfirm canon-cque samsung-printers cups-pdf system-config-printer manjaro-settings-samba
