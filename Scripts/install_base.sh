@@ -14,7 +14,7 @@ pamac-gtk pamac-cli pamac-tray-appindicator checkupdates-aur \
 copyq oblogout-manjaro xautolock conky pavucontrol pa-applet \
 python python-psutil python-pygit2 python-xkbgroup python-taskw python-requests pygtk python2-distutils-extra \
 octopi octopi-notifier-qt5 gnome-system-monitor gnome-system-log xclip xsel xdotool xorg-xfd xcwd-git progress \
-bitwarden-bin bitwarden-cli-bin bitwarden-rofi foxitreader pfetch wedder-git alttab-git
+bitwarden-bin bitwarden-cli-bin bitwarden-rofi foxitreader pfetch wedder-git alttab-git shell-color-scripts powerline-shell
 
 # main editors
 yay -S --noconfirm kate geany geany-plugins geany-themes editorconfig-geany neovim vim-plugins
@@ -23,7 +23,12 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 pip install --user neovim
-       
+
+# emacs doom
+yay -S --noconfirm emms
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+~/.emacs.d/bin/doom install
+
 # from XFCE4 (Tools, Panels, etc.)
 yay -S --noconfirm xfce4-taskmanager
 
