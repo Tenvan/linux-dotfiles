@@ -112,7 +112,7 @@ myModMask :: KeyMask
 myModMask       = mod4Mask  -- Sets modkey to super/windows key
 
 myTerminal :: [Char]
-myTerminal      = "termite" -- Sets default terminal
+myTerminal      = "alacritty" -- Sets default terminal
 
 myTextEditor :: [Char]
 myTextEditor    = "kate"    -- Sets default text editor
@@ -177,7 +177,7 @@ workDir :: [Char]
 workDir         = "$WORK_DIR" -- os.getenv("WORK_DIR")
 
 shellCmd :: [Char]
-shellCmd = myTerminal ++ " -t 'OneTimeConsole' --directory " ++ workDir
+shellCmd = myTerminal ++ " -t 'OneTimeConsole' --working-directory " ++ workDir
 
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
@@ -253,15 +253,15 @@ myDevelopGrid = [
                     ("\x00e795 Shell",  shellCmd ++ " --hold")
                     , ("Dateien", myFileManager ++ " " ++ workDir)
                     , (yarnChar ++ " yarn", shellCmd ++ " --hold -e yarn")
-                    , (yarnChar ++ " Generate", shellCmd ++ " --hold -e 'yarn generate'")
-                    , (yarnChar ++ " Check updates", shellCmd ++ " --hold -e 'yarn outdated'")
-                    , ("\x00f1c0 Start Server", shellCmd ++ " --hold -e 'yarn server:dev'")
-                    , ("\x00e718 Pug watch", shellCmd ++ "/src/client --hold -e 'yarn pug:watch'")
-                    , (angularChar ++ " Start", shellCmd ++ "/src/client --hold -e 'yarn start'")
-                    , (angularChar ++ " Start hmr", shellCmd ++ "/src/client --hold -e 'yarn start:client:hmr --port 4201'")
-                    , (angularChar ++ " Start AOT", shellCmd ++ "/src/client --hold -e 'yarn start:client:dev --aot --port 4202'")
-                    , (yarnChar ++ " Yarn install", shellCmd ++ " --hold -e 'yarn install --ignore-scripts'")
-                    , (yarnChar ++ " Yarn update", shellCmd ++ " --hold -e 'yarn run update:all'")
+                    , (yarnChar ++ " Generate", shellCmd ++ " --hold -e yarn generate")
+                    , (yarnChar ++ " Check updates", shellCmd ++ " --hold -e yarn outdated")
+                    , ("\x00f1c0 Start Server", shellCmd ++ " --hold -e yarn server:dev")
+                    , ("\x00e718 Pug watch", shellCmd ++ "/src/client --hold -e yarn pug:watch")
+                    , (angularChar ++ " Start", shellCmd ++ "/src/client --hold -e yarn start")
+                    , (angularChar ++ " Start hmr", shellCmd ++ "/src/client --hold -e yarn start:client:hmr --port 4201")
+                    , (angularChar ++ " Start AOT", shellCmd ++ "/src/client --hold -e yarn start:client:dev --aot --port 4202")
+                    , (yarnChar ++ " Yarn install", shellCmd ++ " --hold -e yarn install --ignore-scripts")
+                    , (yarnChar ++ " Yarn update", shellCmd ++ " --hold -e yarn run update:all")
                 ]
 
 ------------------------------------------------------------------------

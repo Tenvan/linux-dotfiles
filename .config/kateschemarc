@@ -3,6 +3,7 @@ Font=mononoki Nerd Font,11,-1,5,75,0,0,0,0,0,Bold
 dummy=prevent-empty-group
 
 [Normal]
+Font=mononoki Nerd Font Mono,10,-1,5,75,0,0,0,0,0,Bold
 dummy=prevent-empty-group
 
 [Solarized (dark)]
