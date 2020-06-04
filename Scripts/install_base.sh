@@ -15,7 +15,7 @@ pamac-gtk pamac-cli pamac-tray-appindicator checkupdates-aur \
 copyq oblogout-manjaro xautolock conky pavucontrol pa-applet \
 python python-psutil python-pygit2 python-xkbgroup python-taskw python-requests pygtk python2-distutils-extra \
 octopi octopi-notifier-qt5 gnome-system-monitor gnome-system-log xclip xsel xdotool xorg-xfd xcwd-git progress \
-bitwarden-bin bitwarden-cli-bin bitwarden-rofi foxitreader pfetch wedder-git alttab-git shell-color-scripts powerline-rs find-the-command
+bitwarden-bin bitwarden-cli-bin bitwarden-rofi foxitreader pfetch wedder-git alttab-git shell-color-scripts powerline-rs find-the-command hstr-git qfc-git
 
 # from XFCE4 (Tools, Panels, etc.)
 yay -S --noconfirm xfce4-taskmanager

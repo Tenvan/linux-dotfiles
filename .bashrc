@@ -8,6 +8,7 @@
 
 PATH="$HOME/.emacs.d/bin:$HOME/.local/bin${PATH:+:${PATH}}"
 EDITOR="doom"
+
 export TERM="termite"
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 
@@ -154,6 +155,7 @@ alias ~='cd $HOME'
 
 # vim
 alias vim=nvim
+alias ed=$EDITOR
 
 # broot
 alias br='br -dhp'
@@ -171,7 +173,7 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 
 ### SET VI MODE IN BASH SHELL
-set -o vi
+# set -o vi
 
 ### SET VIM AS MANPAGER ###
 export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
@@ -189,7 +191,28 @@ if [ -f /usr/share/doc/find-the-command/ftc.bash ]; then
     source /usr/share/doc/find-the-command/ftc.bash
 fi
 
-pfetch
-
 ### RANDOM COLOR SCRIPT ###
 /opt/shell-color-scripts/colorscript.sh random
+
+## QFC Quick Complete (Ctrl-f)
+source /usr/share/qfc/qfc.sh
+
+# HSTR configuration - add this to ~/.bashrc
+alias hh=hstr                    # hh to be alias for hstr
+export HSTR_CONFIG=hicolor       # get more colors
+shopt -s histappend              # append new history items to .bash_history
+export HISTCONTROL=ignorespace   # leading space hides commands from history
+export HISTFILESIZE=10000        # increase history file size (default is 500)
+export HISTSIZE=${HISTFILESIZE}  # increase history size (default is 500)
+
+# ensure synchronization between bash memory and history file
+export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
+
+# if this is interactive shell, then bind hstr to Ctrl-r (for Vi mode check doc)
+if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hstr -- \C-j"'; fi
+
+# if this is interactive shell, then bind 'kill last command' to Ctrl-x k
+if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "\C-a hstr -k \C-j"'; fi
+
+pfetch
+
