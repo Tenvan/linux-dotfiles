@@ -1,20 +1,46 @@
 #!/usr/bin/env bash
 
+yay -Syy
+
 # arts
-yay -S manjaro-artwork manjaro-artwork-extra \
-manjaro-wallpapers-17.0 manjaro-wallpapers-18.0 wallpapers-juhraya \
-cinnamon-wallpapers manjaro-wallpapers-by-lunix-cinnamon yaru-colors-wallpapers-git \
-manjaro-users-artwork-wallpapers muser-wallpapers illyria-wallpaper \
-awesome-wallpapers awesome-themes-git
+yay -S --needed --noconfirm \
+adapta-backgrounds \
+cinnamon-wallpapers \
+gnome-backgrounds \
+illyria-wallpaper \
+manjaro-artwork \
+manjaro-artwork-extra \
+manjaro-backgrounds \
+manjaro-users-artwork-wallpapers \
+manjaro-wallpapers-by-lunix-cinnamon \
+muser-wallpapers
 
 # cursor
-yay -S xcursor-chameleon-pearl xcursor-chameleon-darkskyblue xcursor-chameleon-skyblue xcursor-chameleon-anthracite xcursor-chameleon-white
+yay -S --needed --noconfirm \
+xcursor-chameleon-anthracite \
+xcursor-chameleon-darkskyblue \
+xcursor-chameleon-pearl \
+xcursor-chameleon-skyblue \
+xcursor-chameleon-white
 
 # icons
-yay -S manjaro-artwork-icons papirus-icon-theme arc-icon-theme ttf-weather-icons \
-breath-icon-theme breath2-icon-themes \
-maia-icon-theme papirus-maia-icon-theme vertex-maia-icon-theme \
-ultraflatorange-icon-theme masalla-icon-theme nitrux-icon-theme nouvegnomegray-icon-theme
+yay -S --needed --noconfirm \
+adwaita-icon-theme \
+arc-icon-theme \
+arc-maia-icon-theme \
+breath-icon-theme \
+breath2-icon-themes \
+breeze-maia-icon-themes \
+faba-icon-theme \
+hicolor-icon-theme \
+maia-icon-theme \
+manjaro-artwork-icons \
+masalla-icon-theme \
+moka-icon-theme \
+papirus-icon-theme \
+papirus-maia-icon-theme \
+ttf-weather-icons \
+vertex-maia-icon-theme
 
 #fonts
-yay -S gucharmap kcharselect charmap.app nerd-fonts-mononoki ttf-mononoki ttf-joypixels
+yay -S --needed --noconfirm gucharmap nerd-fonts-mononoki ttf-mononoki ttf-joypixels
