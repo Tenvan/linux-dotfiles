@@ -1,31 +1,29 @@
--- IMPORTS
-
 ------------------------------------------------------------------------
 ---IMPORTS
 ------------------------------------------------------------------------
     -- Base
-import XMonad
-import XMonad.Config.Desktop
-import System.IO (hPutStrLn)
-import System.Exit (exitSuccess)
-import qualified XMonad.StackSet as W
+import           System.Exit           (exitSuccess)
+import           System.IO             (hPutStrLn)
+import           XMonad
+import           XMonad.Config.Desktop
+import qualified XMonad.StackSet       as W
 
     -- Prompt
 import XMonad.Prompt
 import XMonad.Prompt.Input
 import XMonad.Prompt.Man
 import XMonad.Prompt.Pass
-import XMonad.Prompt.Shell (shellPrompt)
+import XMonad.Prompt.Shell  (shellPrompt)
 import XMonad.Prompt.Ssh
 import XMonad.Prompt.XMonad
 
     -- Data
-import Data.Char
-import Data.List
-import Data.Monoid
-import Data.Maybe (isJust)
-import qualified Data.Map as M
 import qualified Data.ByteString as B
+import           Data.Char
+import           Data.List
+import qualified Data.Map        as M
+import           Data.Maybe      (isJust)
+import           Data.Monoid
 
     -- Utilities
 import XMonad.Util.EZConfig
@@ -35,69 +33,53 @@ import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
 
     -- Hooks
-import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
-import XMonad.Hooks.ManageDocks (avoidStruts, docks, docksStartupHook, manageDocks, ToggleStruts(..))
-import XMonad.Hooks.ManageHelpers (doCenterFloat, doFullFloat, isDialog, isFullscreen)
+import XMonad.Hooks.DynamicLog      (PP (..), dynamicLogWithPP, shorten, wrap, xmobarColor, xmobarPP)
+import XMonad.Hooks.DynamicProperty
+import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.ManageDocks     (ToggleStruts (..), avoidStruts, docks, docksStartupHook, manageDocks)
+import XMonad.Hooks.ManageHelpers   (doCenterFloat, doFullFloat, isDialog, isFullscreen)
+import XMonad.Hooks.Place           (placeHook, smart, withGaps)
 import XMonad.Hooks.SetWMName
-import XMonad.Hooks.EwmhDesktops  -- for some fullscreen events, also for xcomposite in obs.
-import XMonad.Hooks.Place                  (placeHook, smart, withGaps)
 import XMonad.Hooks.UrgencyHook
 
     -- Actions
-import XMonad.Actions.Promote
-import XMonad.Actions.RotSlaves (rotSlavesDown, rotAllDown)
-import XMonad.Actions.CopyWindow (kill1, killAllOtherCopies)
-import XMonad.Actions.WindowGo (runOrRaise)
-import XMonad.Actions.WithAll (sinkAll, killAll)
+import XMonad.Actions.CopyWindow  (kill1, killAllOtherCopies)
 import XMonad.Actions.CycleWS
 import XMonad.Actions.GridSelect
 import XMonad.Actions.MouseResize
-import qualified XMonad.Actions.ConstrainedResize as Sqr
-import XMonad.Actions.DynamicWorkspaces
-import XMonad.Actions.DynamicProjects
-import XMonad.Actions.Minimize             (minimizeWindow)
+import XMonad.Actions.Promote
+import XMonad.Actions.RotSlaves   (rotAllDown, rotSlavesDown)
 import XMonad.Actions.RotSlaves
-import XMonad.Actions.SpawnOn
+import XMonad.Actions.WindowGo    (runOrRaise)
+import XMonad.Actions.WithAll     (killAll, sinkAll)
 
     -- Layouts modifiers
-import XMonad.Layout.Renamed (renamed, Rename(Replace))
-import XMonad.Layout.Spacing (spacing) 
-import XMonad.Layout.NoBorders
-import XMonad.Layout.LayoutModifier
-import XMonad.Layout.LimitWindows (limitWindows, increaseLimit, decreaseLimit)
-import XMonad.Layout.WindowArranger (windowArrange, WindowArrangerMsg(..))
-import XMonad.Layout.Reflect (REFLECTX(..), REFLECTY(..))
-import XMonad.Layout.MultiToggle (mkToggle, single, EOT(EOT), Toggle(..), (??))
-import XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
-import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
-
-    -- Layouts modifiers
-import XMonad.Layout.LayoutModifier
-import XMonad.Layout.LimitWindows (limitWindows, increaseLimit, decreaseLimit)
-import XMonad.Layout.MultiToggle (mkToggle, single, EOT(EOT), Toggle(..), (??))
-import XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
-import XMonad.Layout.NoBorders
-import XMonad.Layout.Reflect (REFLECTX(..), REFLECTY(..))
-import XMonad.Layout.Renamed (renamed, Rename(Replace))
-import XMonad.Layout.Spacing
-import XMonad.Layout.WindowArranger (windowArrange, WindowArrangerMsg(..))
-import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
+import           XMonad.Layout.LayoutModifier
+import           XMonad.Layout.LimitWindows          (decreaseLimit, increaseLimit, limitWindows)
+import           XMonad.Layout.MultiToggle           (EOT (EOT), Toggle (..), mkToggle, single, (??))
+import           XMonad.Layout.MultiToggle.Instances (StdTransformers (MIRROR, NBFULL, NOBORDERS))
+import           XMonad.Layout.NoBorders
+import           XMonad.Layout.Reflect               (REFLECTX (..), REFLECTY (..))
+import           XMonad.Layout.Renamed               (Rename (Replace), renamed)
+import           XMonad.Layout.Spacing
+import qualified XMonad.Layout.ToggleLayouts         as T (ToggleLayout (Toggle), toggleLayouts)
+import           XMonad.Layout.WindowArranger        (WindowArrangerMsg (..), windowArrange)
 
     -- Layouts
-import XMonad.Layout.GridVariants (Grid(Grid))
+import XMonad.Layout.GridVariants  (Grid (Grid))
 import XMonad.Layout.OneBig
+import XMonad.Layout.ResizableTile
 import XMonad.Layout.SimplestFloat
 import XMonad.Layout.Spiral
-import XMonad.Layout.ResizableTile
 import XMonad.Layout.ThreeColumns
-import XMonad.Layout.ZoomRow (zoomRow, zoomReset, ZoomMessage(ZoomFullToggle))
+import XMonad.Layout.ZoomRow       (ZoomMessage (ZoomFullToggle), zoomReset, zoomRow)
 
 import Control.Arrow (first)
 import Control.Monad (liftM2)
 
-import qualified DBus          as D
-import qualified DBus.Client   as D
 import qualified Codec.Binary.UTF8.String as UTF8
+import qualified DBus                     as D
+import qualified DBus.Client              as D
 
 import Graphics.X11.ExtraTypes.XF86
 
@@ -216,7 +198,7 @@ spawnGridConfig = defaultGSConfig {
                 , gs_cellheight   = 40
                 , gs_cellwidth  = 240
             }
-            
+
 spawnSelected' :: [(String, String)] -> X ()
 spawnSelected' lst = gridselect spawnGridConfig lst >>= flip whenJust spawn
 
@@ -235,6 +217,7 @@ myPowerGrid = [
 myApplicationGrid = [
                         ("JetBrains Toolsbox", "jetbrains-toolbox")
                         , (gitChar ++ "SmartGit", "/opt/smartgit/bin/smartgit.sh")
+                        , ("Krusader", "krusader")
                         , ("Dateien", myFileManager)
                         , ("xmonad Errors",  myTerminal ++ " --hold -t 'xmonad errors' -e 'multitail -i ./.xmonad/xmonad.errors'")
                         , ("\x00e745 Firefox", "firefox")
@@ -244,24 +227,30 @@ myApplicationGrid = [
                         , ("UTF8 Test", myTerminal ++ " --hold -e 'curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html'")
                     ]
 
-gitChar     = "\x00e725"                    
-yarnChar    = "\x00e71a"
-angularChar = "\x00e753"
-tsChar      = "\x00fbe4"
-                    
+gitChar     = "\x00e725 "
+yarnChar    = "\x00e71a "
+angularChar = "\x00e753 "
+tsChar      = "\x00fbe4 "
+serverChar  = "\x00f1c0 "
+watchChar   = "\x00e00a "
+shellChar   = "\x00e795 "
+
 myDevelopGrid = [
-                    ("\x00e795 Shell",  shellCmd ++ " --hold")
+                    (shellChar ++ "Shell",  shellCmd ++ " --hold")
                     , ("Dateien", myFileManager ++ " " ++ workDir)
-                    , (yarnChar ++ " yarn", shellCmd ++ " --hold -e yarn")
-                    , (yarnChar ++ " Generate", shellCmd ++ " --hold -e yarn generate")
-                    , (yarnChar ++ " Check updates", shellCmd ++ " --hold -e yarn outdated")
-                    , ("\x00f1c0 Start Server", shellCmd ++ " --hold -e yarn server:dev")
-                    , ("\x00e718 Pug watch", shellCmd ++ "/src/client --hold -e yarn pug:watch")
-                    , (angularChar ++ " Start", shellCmd ++ "/src/client --hold -e yarn start")
-                    , (angularChar ++ " Start hmr", shellCmd ++ "/src/client --hold -e yarn start:client:hmr --port 4201")
-                    , (angularChar ++ " Start AOT", shellCmd ++ "/src/client --hold -e yarn start:client:dev --aot --port 4202")
-                    , (yarnChar ++ " Yarn install", shellCmd ++ " --hold -e yarn install --ignore-scripts")
-                    , (yarnChar ++ " Yarn update", shellCmd ++ " --hold -e yarn run update:all")
+                    , (yarnChar ++ "Yarn", shellCmd ++ " --hold -e yarn")
+                    , (yarnChar ++ "Yarn install", shellCmd ++ " --hold -e yarn install --ignore-scripts")
+                    , (yarnChar ++ "Check Client Updates", shellCmd ++ " --hold -e yarn outdated")
+                    , (yarnChar ++ "Client update", shellCmd ++ " --hold -e yarn upgrade")
+                    , (yarnChar ++ "Generate", shellCmd ++ " --hold -e yarn generate")
+                    , (serverChar ++ "Check Server Updates", shellCmd ++ " --hold -e yarn --cwd src/server4 outdated")
+                    , (serverChar ++ "Start Server", shellCmd ++ " --hold -e yarn server:dev")
+                    , (serverChar ++ "Server update", shellCmd ++ " --hold -e yarn --cwd src/server4 upgrade")
+                    , (watchChar ++ "Pug watch", shellCmd ++ "/src/client --hold -e yarn pug:watch")
+                    , (angularChar ++ "Angular Update", shellCmd ++ " --hold -e yarn run update:all")
+                    , (angularChar ++ "Start", shellCmd ++ "/src/client --hold -e yarn start")
+                    , (angularChar ++ "Start hmr", shellCmd ++ "/src/client --hold -e yarn start:client:hmr --port 4201")
+                    , (angularChar ++ "Start AOT", shellCmd ++ "/src/client --hold -e yarn start:client:dev --aot --port 4202")
                 ]
 
 ------------------------------------------------------------------------
@@ -276,13 +265,8 @@ myKeys =
         , ("M-C-x", spawn "xkill")
 
         -- Prompts
-        , ("M-C-<Return>", shellPrompt dtXPConfig)   -- Shell Prompt
-        , ("M-S-o", xmonadPrompt dtXPConfig)         -- Xmonad Prompt
-        , ("M-S-s", sshPrompt dtXPConfig)            -- Ssh Prompt
         , ("M-S-m", manPrompt dtXPConfig)            -- Manpage Prompt
-        -- Calculator prompt
-        , ("M1-C-c", calcPrompt dtXPConfig "qalc")   -- Requires qalculate-gtk
-     
+
     -- System
         , ("C-<Escape>", spawn "xfce4-taskmanager")
         , ("M-C-t", spawn "sh ./Scripts/picom-toggle.sh")
@@ -317,6 +301,12 @@ myKeys =
 
         , ("M-<Return>", spawn myTerminal)
 
+    -- Scratchpads
+        , ("M-C-<Return>", namedScratchpadAction myScratchPads "terminal")
+        , ("M-C-k", namedScratchpadAction myScratchPads "krusader")
+        , ("M-C-s", namedScratchpadAction myScratchPads "spotify")
+
+
     -- Windows navigation
         , ("M-<Right>", windows W.focusDown)        -- Swap the focused window with the next window
         , ("M-<Left>", windows W.focusUp)           -- Swap the focused window with the prev window
@@ -350,15 +340,11 @@ myKeys =
 
         , ("M-h", sendMessage Shrink)
         , ("M-l", sendMessage Expand)
-        , ("M-C-j", sendMessage MirrorShrink)
-        , ("M-C-k", sendMessage MirrorExpand)
-        , ("M-S-ö", sendMessage zoomReset)
-        , ("M-ö", sendMessage ZoomFullToggle)
 
     --- Rofi Menu
         , ("M-z", spawn "rofi -show combi")
         , ("M-w", spawn "bwmenu -- -location 2")
-        
+
     --- Dmenu Scripts (Alt+Ctr+Key)
         --, ("M-S-<Return>", spawn "dmenu_run")
         , ("M1-C-e", spawn "./.dmenu/dmenu-edit-configs.sh")
@@ -401,7 +387,7 @@ dtXPKeymap = M.fromList $
      , (xK_y, pasteString)           -- paste a string
      , (xK_g, quit)                  -- quit out of prompt
      , (xK_bracketleft, quit)
-     ] 
+     ]
      ++
      map (first $ (,) altMask)       -- meta key + <key>
      [ (xK_BackSpace, killWord Prev) -- kill the prev word
@@ -451,15 +437,15 @@ dtXPConfig = def
       , alwaysHighlight     = True
       , maxComplRows        = Nothing        -- set to Just 5 for 5 rows
       }
-                
-calcPrompt :: XPConfig -> String -> X () 
+
+calcPrompt :: XPConfig -> String -> X ()
 calcPrompt c ans =
-    inputPrompt c (trim ans) ?+ \input -> 
-        liftIO(runProcessWithInput "qalc" [input] "") >>= calcPrompt c 
+    inputPrompt c (trim ans) ?+ \input ->
+        liftIO(runProcessWithInput "qalc" [input] "") >>= calcPrompt c
     where
         trim  = f . f
             where f = reverse . dropWhile isSpace
-                  
+
 ------------------------------------------------------------------------
 ---WORKSPACES
 ------------------------------------------------------------------------
@@ -499,7 +485,7 @@ myWorkspaces =  [
 -- You need the className or title of the program. Use xprop to get this info.
 
 -- window manipulations
--- myManageHook :: Query (Data.Monoid.Endo WindowSet)
+myManageHook :: Query (Data.Monoid.Endo WindowSet)
 myManageHook = composeAll . concat $
     [ [isDialog --> doCenterFloat]
     , [className =? c --> doCenterFloat | c <- myCFloats]
@@ -515,6 +501,7 @@ myManageHook = composeAll . concat $
     , [(className =? x <||> title =? x <||> resource =? x) --> doShift      tagMedia |  x <- myMediaShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagAdmin |  x <- myAdminShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagStatus | x <- myStatusShifts]
+    , [namedScratchpadManageHook myScratchPads]
     ]
     where
         doShiftAndGo    = doF . liftM2 (.) W.greedyView W.shift
@@ -530,7 +517,7 @@ myManageHook = composeAll . concat $
             "mpv",
             "smb4k",
             "VirtualBox Manager",
-            "org.remmina.Remmina",    
+            "org.remmina.Remmina",
             "Pavucontrol",
             "imagewriter",
             "Nemo-terminal-prefs"
@@ -538,10 +525,10 @@ myManageHook = composeAll . concat $
         myTFloats       = [
             "JetBrains Toolbox",
             "Microsoft Teams-Benachrichtigung",
-            "Downloads", 
+            "Downloads",
             "Save As...",
             "bmenu",
-            "xmonad errors"    
+            "xmonad errors"
             ]
         myRFloats       = []
         myIgnores       = ["desktop_window"]
@@ -552,16 +539,16 @@ myManageHook = composeAll . concat $
         myTeamsShifts   = ["Microsoft Teams - Preview"]
         myVmShifts      = ["Virtualbox", "VirtualBox Manager", "org.remmina.Remmina"]
         myWebShifts     = ["firefox", "Vivaldi-stable", "Firefox"]
-        myMediaShifts   = ["Spotify", "vlc", "mpv", "Gimp", "feh", "Inkscape"]
+        myMediaShifts   = ["vlc", "mpv", "Gimp", "feh", "Inkscape"]
         myAdminShifts   = []
         myStatusShifts  = [
-            "s-tui", 
-            "bashtop", 
-            "glances", 
-            "gtop", 
-            "htop", 
-            "iftop", 
-            "iotop", 
+            "s-tui",
+            "bashtop",
+            "glances",
+            "gtop",
+            "htop",
+            "iftop",
+            "iotop",
             "iptraf-ng"
             ]
 
@@ -613,10 +600,13 @@ threeRow = renamed [Replace "threeRow"]
            $ ThreeCol 1 (3/100) (1/2)
 
 
-myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts floats $
-               mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ myDefaultLayout
-             where
-               myDefaultLayout = tall ||| noBorders monocle ||| floats ||| grid ||| spirals ||| threeCol ||| threeRow
+myLayoutHook = avoidStruts $
+                mouseResize $
+                windowArrange $
+                T.toggleLayouts floats $
+                mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ myDefaultLayout
+                    where
+                        myDefaultLayout = tall ||| noBorders monocle ||| floats ||| grid ||| spirals ||| threeCol ||| threeRow
 
 -----------------------------------------------------------------------------}}}
 -- LOGHOOK                                                                   {{{
@@ -649,7 +639,52 @@ myAddSpaces :: Int -> String -> String
 myAddSpaces len str = sstr ++ replicate (len - length sstr) ' '
   where
     sstr = shorten len str
-    
+
+------------------------------------------------------------------------
+-- SCRATCHPADS
+------------------------------------------------------------------------
+myScratchPads :: [NamedScratchpad]
+myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
+                , NS "krusader" spawnKrus findKrus manageKrus
+                , NS "spotify" spawnSpoty findSpoty manageSpoty
+                ]
+    where
+        spawnTerm  = myTerminal ++  " --class scratchpad"
+        findTerm   = resource =? "scratchpad"
+        manageTerm = customFloating $ W.RationalRect l t w h
+                    where
+                        h = 0.8
+                        w = 0.9
+                        t = 0.03
+                        l = (1 -w) / 2
+
+        spawnKrus  = "krusader"
+        findKrus   = resource =? "krusader"
+        manageKrus = customFloating $ W.RationalRect l t w h
+                    where
+                        h = 0.8
+                        w = 0.9
+                        t = 0.2
+                        l = (1 -w) / 2
+
+        spawnSpoty  = "spotify"
+        findSpoty   = className =? "Spotify"
+        manageSpoty = customFloating $ W.RationalRect l t w h
+                    where
+                        h = 0.8
+                        w = 0.9
+                        t = 0.03
+                        l = (1 -w) / 2
+
+mySpotifyHook :: Event -> X All
+mySpotifyHook = dynamicPropertyChange "WM_NAME" (title =? "Spotify" --> floating)
+    where floating  = customFloating $ W.RationalRect l t w h
+                    where
+                        h = 0.8
+                        w = 0.9
+                        t = 0.03
+                        l = (1 -w) / 2
+
 ------------------------------------------------------------------------
 ---MAIN
 ------------------------------------------------------------------------
@@ -663,9 +698,9 @@ main = do
     D.requestName dbus (D.busName_ "org.xmonad.Log")
         [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
 
-    xmonad 
+    xmonad
         $ withUrgencyHook NoUrgencyHook
-        $ ewmh 
+        $ ewmh
         $ myBaseConfig
             { manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageHook desktopConfig <+> manageDocks
             , logHook = dynamicLogWithPP (myLogHook dbus)
@@ -677,7 +712,7 @@ main = do
             , borderWidth        = myBorderWidth
             , normalBorderColor  = myNormColor
             , focusedBorderColor = myFocusColor
-            , handleEventHook    = handleEventHook myBaseConfig <+> fullscreenEventHook
+            , handleEventHook    = handleEventHook myBaseConfig <+> fullscreenEventHook <+> mySpotifyHook
             , focusFollowsMouse  = False
             , clickJustFocuses   = True
             -- , keys               = myKeys
