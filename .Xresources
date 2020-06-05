@@ -6,70 +6,65 @@ Xft.autohint:  false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
-XTerm*background:        #292d3e
-XTerm*foreground:        #d8d8d8
+XTerm*background:        #1a1a1a
+XTerm*foreground:        #d6d6d6
 XTerm*pointerColor:      #1ABB9B
 XTerm*faceName:          Fixed
 XTerm*faceSize:          11
 XTerm*reverseVideo:      on
 XTerm*selectToClipboard: true
 
-alttab*background:       #292d3e
-alttab*foreground:       #d8d8d8
+alttab*background:       #1a1a1a
+alttab*foreground:       #d6d6d6
 alttab*windowmanager:    1
 alttab*desktops:         1
 alttab*screens:          0
 
-*background:                      #292d3e
-*foreground:                      #d8d8d8
+!! Theme Ten
+!! https://web.archive.org/web/20090130061234/http://phraktured.net/terminal-colors/
+*background:    #2a2a2a
+*foreground:    #d6d6d6
+*tbackground:   #a02a2a2a
 
-*tbackground:                     #A0292d3e
+!! black dark/light
+*color0:     #000000
+!! red dark/light
+*color1:     #98565e
+!! green dark/light
+*color2:     #66825d
+!! yellow dark/light
+*color3:     #969176
+!! blue dark/light
+*color4:     #4d6585
+!! magenta dark/light
+*color5:     #967395
+!! cyan dark/light
+*color6:     #5f7f7b
+!! white dark/light
+*color7:     #b3b3b3
 
-*focused_background:              #556064
-*focused_foreground:              #80FFF9
+*color8:     #737373
+*color9:     #cfa3a9
+*color10:    #caf7bb
+*color11:    #fff8bc
+*color12:    #83a3be
+*color13:    #bba9cf
+*color14:    #96cccc
+*color15:    #ffffff
 
-*inactive_background:             #2F3D44
-*inactive_foreground:             #1ABC9C
+*focused_background:              #3a3a3a
+*focused_foreground:              #f6f6f6
 
-*border:                          #292d3e
+*inactive_background:             #0a0a0a
+*inactive_foreground:             #b6b6b6
+
+*border:                          #1a1a1a
 
 *fading:                          8
-*fadeColor:                       black
+*fadeColor:                       #000000
 *cursorColor:                     #1ABB9B
 *pointerColorBackground:          #2B2C2B
 *pointerColorForeground:          #16A085
-
-!! black dark/light
-*color0:                          #292d3e
-*color8:                          #585858
-
-!! red dark/light
-*color1:                          #ab4642
-*color9:                          #C24F4B
-
-!! green dark/light
-*color2:                          #7E807E
-*color10:                         #8D8F8D
-
-!! yellow dark/light
-*color3:                          #f7ca88
-*color11:                         #f7ca88
-
-!! blue dark/light
-*color4:                          #7cafc2
-*color12:                         #7cafc2
-
-!! magenta dark/light
-*color5:                          #ba8baf
-*color13:                         #ba8baf
-
-!! cyan dark/light
-*color6:                          #1ABB9B
-*color14:                         #1ABB9B
-
-!! white dark/light
-*color7:                          #d8d8d8
-*color15:                         #f8f8f8
 
 Xcursor.theme: xcursor-breeze-snow
 Xcursor.size:                     0
