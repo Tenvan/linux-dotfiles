@@ -17,8 +17,8 @@ python python-psutil python-pygit2 python-xkbgroup python-taskw python-requests 
 octopi octopi-notifier-qt5 gnome-system-monitor gnome-system-log xclip xsel xdotool xorg-xfd xcwd-git progress \
 bitwarden-bin bitwarden-cli-bin bitwarden-rofi foxitreader pfetch wedder-git alttab-git shell-color-scripts powerline-rs find-the-command hstr-git qfc-git
 
-# from XFCE4 (Tools, Panels, etc.)
-yay -S --noconfirm xfce4-taskmanager
+# some tools
+yay -S --noconfirm xfce4-taskmanager lxappearance-gtk3
 
 # from kde (replace if possible)
 yay -S --noconfirm spectacle

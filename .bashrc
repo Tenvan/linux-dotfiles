@@ -6,6 +6,29 @@
 #
 # My bash config. Not much to see here. Some pretty standard stuff.
 
+if [ "$TERM" = "linux" ]; then
+    _SEDCMD='s/.*\*color\([0-9]\{1,\}\).*#\([0-9a-fA-F]\{6\}\).*/\1 \2/p'
+    for i in $(sed -n "$_SEDCMD" $HOME/.Xresources | awk '$1 < 16 {printf "\\e]P%X%s", $1, $2}'); do
+        echo -en "$i"
+    done
+    clear
+fi
+
+if [ "$TERM" = "linux" ]; then
+    ### ScreenFetch
+    neofetch
+
+    ### RANDOM COLOR SCRIPT ###
+    /opt/shell-color-scripts/colorscript.sh -e 3
+    /opt/shell-color-scripts/colorscript.sh -e 23
+else
+    ### ScreenFetch
+    pfetch
+
+    ### RANDOM COLOR SCRIPT ###
+    /opt/shell-color-scripts/colorscript.sh random
+fi
+
 PATH="$HOME/.emacs.d/bin:$HOME/.local/bin${PATH:+:${PATH}}"
 EDITOR="doom"
 
@@ -15,30 +38,18 @@ export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 [[ $- != *i* ]] && return
 
 colors() {
-	local fgc bgc vals seq0
-
-	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
-	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
-	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
-	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
-
-	# foreground colors
-	for fgc in {30..37}; do
-		# background colors
-		for bgc in {40..47}; do
-			fgc=${fgc#37} # white
-			bgc=${bgc#40} # black
-
-			vals="${fgc:+$fgc;}${bgc}"
-			vals=${vals%%;}
-
-			seq0="${vals:+\e[${vals}m}"
-			printf "  %-9s" "${seq0:-(default)}"
-			printf " ${seq0}TEXT\e[m"
-			printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
-		done
-		echo; echo
-	done
+    clear
+    # /opt/shell-color-scripts/colorscript.sh -e 34
+    echo Script 1
+    /opt/shell-color-scripts/colorscript.sh -e 1
+    echo Script 8
+    /opt/shell-color-scripts/colorscript.sh -e 9
+    echo Script 11
+    /opt/shell-color-scripts/colorscript.sh -e 11
+    echo Script 10
+    /opt/shell-color-scripts/colorscript.sh -e 10
+    echo Script 23
+    /opt/shell-color-scripts/colorscript.sh -e 23
 }
 
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
@@ -191,9 +202,6 @@ if [ -f /usr/share/doc/find-the-command/ftc.bash ]; then
     source /usr/share/doc/find-the-command/ftc.bash
 fi
 
-### RANDOM COLOR SCRIPT ###
-/opt/shell-color-scripts/colorscript.sh random
-
 ## QFC Quick Complete (Ctrl-f)
 source /usr/share/qfc/qfc.sh
 
@@ -213,6 +221,3 @@ if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hstr -- \C-j"'; fi
 
 # if this is interactive shell, then bind 'kill last command' to Ctrl-x k
 if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "\C-a hstr -k \C-j"'; fi
-
-pfetch
-
