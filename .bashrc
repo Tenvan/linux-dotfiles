@@ -183,6 +183,10 @@ alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 
+# weather
+alias wh="curl -H 'Accept-Language: de' wttr.in/37671"
+alias wb="curl -H 'Accept-Language: de' wttr.in/33034"
+
 ### SET VI MODE IN BASH SHELL
 # set -o vi
 
