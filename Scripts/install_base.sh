@@ -7,7 +7,7 @@ rustup install stable
 yay -S picom-ibhagwan-git
 #yay -S picom-tryone-git
 
-yay -S --noconfirm termite termite-style-git nitrogen dmenu bmenu rofi zenity ripgrep \
+yay -S --noconfirm termite termite-style-git nitrogen dmenu-manjaro bmenu rofi zenity ripgrep \
 exa glances bashtop gtop htop iftop iotop iptraf-ng s-tui \
 polybar broot broom lightdm-gtk-greeter-settings pm-utils \
 polkit-gnome polkit-kde-agent \
