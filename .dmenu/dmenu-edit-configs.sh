@@ -7,87 +7,42 @@
 #
 # Dmenu script for editing some of my more frequently edited config files.
 
+# Function create a scale dialog
+get_config_list () {
+    zenity --list \
+    --checklist \
+    --width=600 \
+    --height=600 \
+    --title="Edit Konfiguation" \
+    --text="Konfig file" \
+    --column=Check \
+    --column=Option \
+    --column="Datei" \
+    --separator=" " \
+    --print-column=3 \
+    true xmonad             "$HOME/.xmonad/xmonad.hs" \
+    false bash              "$HOME/.bashrc" \
+    false alacritty         "$HOME/.config/alacritty/alacritty.yml" \
+    false broot             "$HOME/.config/broot/conf.toml" \
+    false gitignore         "$HOME/.gitignore" \
+    false menu-edit         "$HOME/.dmenu/dmenu-edit-configs.sh" \
+    false menu-sysmon       "$HOME/.dmenu/dmenu-sysmon.sh" \
+    false neovim            "$HOME/.config/nvim/init.vim" \
+    false picom             "$HOME/.config/picom/picom.conf" \
+    false polybar           "$HOME/.config/polybar/config.ini" \
+    false install-arts      "$HOME/Scripts/install_arts.sh" \
+    false install-desktop   "$HOME/Scripts/install_desktop.sh" \
+    false install-editors   "$HOME/Scripts/install_editors.sh" \
+    true install-system     "$HOME/Scripts/install_system.sh" \
+    false install-wm        "$HOME/Scripts/install_wm.sh" \
+    false termite           "$HOME/.config/termite/config" \
+    false xresources        "$HOME/.Xresources"
+}
 
-declare options=(
-"xmonad
-bash
-alacritty
-termite
-broot
-gitignore
-menu-edit
-menu-sysmon
-neovim
-picom
-polybar
-install-arts
-install-desktop
-install-editors
-install-system
-install-wm
-xresources
-quit"
-)
+choice=$(get_config_list)
 
-choice=$(echo -e "${options[@]}" | rofi -dmenu -i -p 'Edit config file: ')
-
-case "$choice" in
-	quit)
-		echo "Program terminated." && exit 1
-	;;
-	alacritty)
-		choice="$HOME/.config/alacritty/alacritty.yml"
-	;;
-	bash)
-		choice="$HOME/.bashrc"
-	;;
-	broot)
-		choice="$HOME/.config/broot/conf.toml"
-	;;
-	gitignore)
-		choice="$HOME/.gitignore"
-	;;
-	menu-edit)
-		choice="$HOME/.dmenu/dmenu-edit-configs.sh"
-	;;
-	menu-sysmon)
-		choice="$HOME/.dmenu/dmenu-sysmon.sh"
-	;;
-	neovim)
-		choice="$HOME/.config/nvim/init.vim"
-	;;
-	picom)
-		choice="$HOME/.config/picom/picom.conf"
-	;;
-	polybar)
-		choice="$HOME/.config/polybar/config.ini"
-	;;
-	install-arts)
-		choice="$HOME/Scripts/install_arts.sh"
-	;;
-	install-desktop)
-		choice="$HOME/Scripts/install_desktop.sh"
-	;;
-	install-editors)
-		choice="$HOME/Scripts/install_editors.sh"
-	;;
-	install-system)
-		choice="$HOME/Scripts/install_system.sh"
-	;;
-	install-wm)
-		choice="$HOME/Scripts/install_wm.sh"
-	;;
-	termite)
-		choice="$HOME/.config/termite/config"
-	;;
-	xmonad)
-		choice="$HOME/.xmonad/xmonad.hs $HOME/Scripts/install_xmonad.sh"
-	;;
-	xresources)
-		choice="$HOME/.Xresources"
-	;;
-	*)
-		exit 1
-	;;
-esac
-kate $choice
+if [ -z "$choice" ]; then
+  echo "abort choice"
+else
+  kate $choice
+fi

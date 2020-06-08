@@ -17,6 +17,9 @@ muser-wallpapers
 
 # cursor
 yay -S --needed --noconfirm \
+xcursor-breeze \
+xcursor-breeze-adapta \
+xcursor-breeze-serie-obsidian \
 xcursor-chameleon-anthracite \
 xcursor-chameleon-darkskyblue \
 xcursor-chameleon-pearl \

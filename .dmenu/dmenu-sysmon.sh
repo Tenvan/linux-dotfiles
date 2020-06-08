@@ -16,10 +16,9 @@ gtop
 htop
 iftop
 iotop
-iptraf-ng
-quit")
+iptraf-ng")
 
-choice=$(echo -e "${options[@]}" | rofi -dmenu -i -p 'System monitors: ')
+choice=$(echo -e "${options[@]}" | zenity --text='System monitors: ' --list --width=300 --height=400 --column="Auswahl" )
 
 terminal=alacritty
 
