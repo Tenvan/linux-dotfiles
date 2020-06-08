@@ -1,3 +1,10 @@
+-- Quelle:
+
+-- The xmonad configuration of Derek Taylor (DistroTube)
+-- My YouTube: http://www.youtube.com/c/DistroTube
+-- My GitLab:  http://www.gitlab.com/dwt1/
+-- For more information on Xmonad, visit: https://xmonad.org
+
 ------------------------------------------------------------------------
 ---IMPORTS
 ------------------------------------------------------------------------
@@ -36,9 +43,10 @@ import XMonad.Util.SpawnOnce
 import XMonad.Hooks.DynamicLog      (PP (..), dynamicLogWithPP, shorten, wrap, xmobarColor, xmobarPP)
 import XMonad.Hooks.DynamicProperty
 import XMonad.Hooks.EwmhDesktops
-import XMonad.Hooks.ManageDocks     (ToggleStruts (..), avoidStruts, docks, docksStartupHook, manageDocks)
+import XMonad.Hooks.ManageDocks     (ToggleStruts (..), avoidStruts, docksEventHook, manageDocks)
 import XMonad.Hooks.ManageHelpers   (doCenterFloat, doFullFloat, isDialog, isFullscreen)
 import XMonad.Hooks.Place           (placeHook, smart, withGaps)
+import XMonad.Hooks.ServerMode
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.UrgencyHook
 
@@ -54,25 +62,37 @@ import XMonad.Actions.WindowGo    (runOrRaise)
 import XMonad.Actions.WithAll     (killAll, sinkAll)
 
     -- Layouts modifiers
+import           XMonad.Layout.Decoration
 import           XMonad.Layout.LayoutModifier
 import           XMonad.Layout.LimitWindows          (decreaseLimit, increaseLimit, limitWindows)
 import           XMonad.Layout.MultiToggle           (EOT (EOT), Toggle (..), mkToggle, single, (??))
 import           XMonad.Layout.MultiToggle.Instances (StdTransformers (MIRROR, NBFULL, NOBORDERS))
 import           XMonad.Layout.NoBorders
-import           XMonad.Layout.Reflect               (REFLECTX (..), REFLECTY (..))
+import           XMonad.Layout.PerWorkspace
+import           XMonad.Layout.Reflect
 import           XMonad.Layout.Renamed               (Rename (Replace), renamed)
 import           XMonad.Layout.Spacing
+import           XMonad.Layout.Tabbed
 import qualified XMonad.Layout.ToggleLayouts         as T (ToggleLayout (Toggle), toggleLayouts)
 import           XMonad.Layout.WindowArranger        (WindowArrangerMsg (..), windowArrange)
 
     -- Layouts
-import XMonad.Layout.GridVariants  (Grid (Grid))
+import XMonad.Layout.Gaps
+import XMonad.Layout.GridVariants
+import XMonad.Layout.IM
+import XMonad.Layout.Master
+import XMonad.Layout.Minimize
+import XMonad.Layout.MosaicAlt
+import XMonad.Layout.MultiToggle
+import XMonad.Layout.MultiToggle.Instances
+import XMonad.Layout.Named
 import XMonad.Layout.OneBig
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.SimplestFloat
 import XMonad.Layout.Spiral
+import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
-import XMonad.Layout.ZoomRow       (ZoomMessage (ZoomFullToggle), zoomReset, zoomRow)
+import XMonad.Layout.ZoomRow
 
 import Control.Arrow (first)
 import Control.Monad (liftM2)
@@ -116,9 +136,6 @@ myGaps = 5                 -- Sets layout gaps and window spacing
 
 myLargeSpacing :: Int
 myLargeSpacing = 30
-
-noSpacing :: Int
-noSpacing      = 0
 
 -- Colours
 fg        = "#ebdbb2"
@@ -193,14 +210,13 @@ mygridConfig colorizer = (buildDefaultGSConfig myColorizer)
     , gs_font         = myFont
     }
 
-spawnGridConfig = defaultGSConfig {
-                gs_font         = myFont
-                , gs_cellheight   = 40
-                , gs_cellwidth  = 240
-            }
-
 spawnSelected' :: [(String, String)] -> X ()
-spawnSelected' lst = gridselect spawnGridConfig lst >>= flip whenJust spawn
+spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
+  where conf = def {
+    gs_font         = myFont
+    , gs_cellheight = 40
+    , gs_cellwidth  = 240
+  }
 
 myPowerGrid = [
                  ("Abmelden", "sh ./Scripts/session_logout.sh")
@@ -280,6 +296,7 @@ myKeys =
     -- Floating windows
         , ("M-<Delete>", withFocused $ windows . W.sink)    -- Push floating window back to tile.
         , ("M-S-<Delete>", sinkAll)                         -- Push ALL floating windows back to tile.
+        , ("M-S-f", sendMessage (T.Toggle "floats"))        -- Toggles my 'floats' layout
 
     -- Grid Select
         -- Applications
@@ -327,11 +344,12 @@ myKeys =
         , ("M-C-<Down>", sendMessage DeArrange)
 
     -- Layouts
-        , ("M-<Tab>", sendMessage NextLayout)                              -- Switch to next layout
-        , ("M-S-<Space>", sendMessage ToggleStruts)                          -- Toggles struts
+        , ("M-<Tab>", sendMessage NextLayout)                               -- Switch to next layout
+        , ("M-S-<Tab>", sendMessage FirstLayout)                            -- Switch to next layout
+        , ("M-S-<Space>", sendMessage ToggleStruts)                         -- Toggles struts
 
-        , ("M-S-n", sendMessage $ Toggle NOBORDERS)                          -- Toggles noborder
-        , ("M-f", sendMessage (Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
+        , ("M-S-n", sendMessage $ Toggle NOBORDERS)                         -- Toggles noborder
+        , ("M-f", sendMessage (Toggle NBFULL) >> sendMessage ToggleStruts)  -- Toggles noborder/full
         , ("M-S-f", sendMessage (T.Toggle "float"))
         , ("M-S-x", sendMessage $ Toggle REFLECTX)
         , ("M-S-y", sendMessage $ Toggle REFLECTY)
@@ -345,7 +363,7 @@ myKeys =
 
     --- Rofi Menu
         , ("M-z", spawn "rofi -show combi")
-        , ("M-S-z", spawn "morc_menu")
+        , ("M-S-z", spawn "xfce4-appfinder")
         , ("M-w", spawn "bwmenu -- -location 2")
 
     --- Dmenu Scripts (Alt+Ctr+Key)
@@ -510,6 +528,7 @@ myManageHook = composeAll . concat $
         doShiftAndGo    = doF . liftM2 (.) W.greedyView W.shift
         myCFloats       = [
             "JetBrains Toolbox",
+            "Xfce4-appfinder",
             "Xfce4-taskmanager",
             "Viewnior",
             "copyq",
@@ -563,17 +582,17 @@ myManageHook = composeAll . concat $
 -- module adds a configurable amount of space around windows.
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
--- This is a variation of the above except no borders are applied
+
+-- Below is a variation of the above except no borders are applied
 -- if fewer than two windows. So a single window has no gaps.
+mySpacing' :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing' i = spacingRaw False (Border i i i i) True (Border i i i i) True
 
 tall     = renamed [Replace "tall"]
            $ limitWindows 12
-           $ mySpacing 8
-           $ ResizableTall 1 (3/100) (1/2) []
+           $ ResizableTall 1 0.03 0.5 []
 
 monocle  = renamed [Replace "monocle"]
-           $ limitWindows 20
            $ Full
 
 floats   = renamed [Replace "floats"]
@@ -582,35 +601,66 @@ floats   = renamed [Replace "floats"]
 
 grid     = renamed [Replace "grid"]
            $ limitWindows 12
-           $ mySpacing 8
            $ mkToggle (single MIRROR)
            $ Grid (16/10)
 
 spirals  = renamed [Replace "spirals"]
-           $ mySpacing' 8
+           $ limitWindows 8
            $ spiral (6/7)
 
 threeCol = renamed [Replace "threeCol"]
            $ limitWindows 7
-           $ mySpacing' 4
-           $ ThreeCol 1 (3/100) (1/2)
+           $ ThreeCol 1 0.03 0.5
 
 threeRow = renamed [Replace "threeRow"]
            $ limitWindows 7
-           $ mySpacing' 4
            -- Mirror takes a layout and rotates it by 90 degrees.
            -- So we are applying Mirror to the ThreeCol layout.
            $ Mirror
-           $ ThreeCol 1 (3/100) (1/2)
+           $ ThreeCol 1 0.03 0.5
+
+tabs     = renamed [Replace "tabs"]
+           -- I cannot add spacing to this layout because it will
+           -- add spacing between window and tabs which looks bad.
+           $ tabbed shrinkText myTabConfig
+  where
+    myTabConfig = def { fontName            = "xft:Mononoki Nerd Font:regular:pixelsize=11"
+                      , activeColor         = "#292d3e"
+                      , inactiveColor       = "#3e445e"
+                      , activeBorderColor   = "#292d3e"
+                      , inactiveBorderColor = "#292d3e"
+                      , activeTextColor     = "#ffffff"
+                      , inactiveTextColor   = "#d0d0d0"
+                      }
+
+mosaic   = renamed [Replace "mosaic"]
+           $ limitWindows 12
+           $ MosaicAlt M.empty
+
+oneBig   = renamed [Replace "oneBig"]
+           $ limitWindows 20
+           $ OneBig 0.75 0.65
 
 
-myLayoutHook = avoidStruts $
-                mouseResize $
-                windowArrange $
-                T.toggleLayouts floats $
+noSpacing       = mySpacing 0
+smallSpacing    = mySpacing 3
+defaultSpacing  = mySpacing 5
+largeSpacing    = mySpacing 8
+
+myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts floats $
                 mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ myDefaultLayout
-                    where
-                        myDefaultLayout = tall ||| noBorders monocle ||| floats ||| grid ||| spirals ||| threeCol ||| threeRow
+            where
+                myDefaultLayout =
+                  smallSpacing ( smartBorders tall )
+                  ||| smallSpacing ( smartBorders oneBig )
+                  ||| smallSpacing ( smartBorders mosaic )
+                  ||| smallSpacing ( smartBorders grid )
+                  ||| noBorders monocle
+                  ||| noBorders tabs
+                  ||| smallSpacing ( smartBorders spirals )
+                  ||| smallSpacing ( smartBorders threeCol )
+                  ||| smallSpacing ( smartBorders threeRow )
+                  ||| floats
 
 -----------------------------------------------------------------------------}}}
 -- LOGHOOK                                                                   {{{
@@ -706,8 +756,11 @@ main = do
         $ withUrgencyHook NoUrgencyHook
         $ ewmh
         $ myBaseConfig
-            { manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageHook desktopConfig <+> manageDocks
-            , logHook = dynamicLogWithPP (myLogHook dbus)
+            { manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageDocks
+            , handleEventHook    = handleEventHook myBaseConfig
+                                    <+> fullscreenEventHook
+                                    <+> mySpotifyHook
+                                    <+> docksEventHook
             , modMask            = myModMask
             , terminal           = myTerminal
             , startupHook        = myStartupHook
@@ -716,8 +769,8 @@ main = do
             , borderWidth        = myBorderWidth
             , normalBorderColor  = myNormColor
             , focusedBorderColor = myFocusColor
-            , handleEventHook    = handleEventHook myBaseConfig <+> fullscreenEventHook <+> mySpotifyHook
             , focusFollowsMouse  = False
             , clickJustFocuses   = True
+            , logHook = dynamicLogWithPP (myLogHook dbus)
             -- , keys               = myKeys
             }  `additionalKeysP` myKeys

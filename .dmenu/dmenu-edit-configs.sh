@@ -10,8 +10,9 @@
 
 declare options=(
 "xmonad
-alacritty
 bash
+alacritty
+termite
 broot
 gitignore
 menu-edit
@@ -19,8 +20,11 @@ menu-sysmon
 neovim
 picom
 polybar
-install-base
-termite
+install-arts
+install-desktop
+install-editors
+install-system
+install-wm
 xresources
 quit"
 )
@@ -58,8 +62,20 @@ case "$choice" in
 	polybar)
 		choice="$HOME/.config/polybar/config.ini"
 	;;
-	install-base)
-		choice="$HOME/Scripts/install_base.sh"
+	install-arts)
+		choice="$HOME/Scripts/install_arts.sh"
+	;;
+	install-desktop)
+		choice="$HOME/Scripts/install_desktop.sh"
+	;;
+	install-editors)
+		choice="$HOME/Scripts/install_editors.sh"
+	;;
+	install-system)
+		choice="$HOME/Scripts/install_system.sh"
+	;;
+	install-wm)
+		choice="$HOME/Scripts/install_wm.sh"
 	;;
 	termite)
 		choice="$HOME/.config/termite/config"
