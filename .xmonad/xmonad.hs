@@ -345,6 +345,7 @@ myKeys =
 
     --- Rofi Menu
         , ("M-z", spawn "rofi -show combi")
+        , ("M-S-z", spawn "morc_menu")
         , ("M-w", spawn "bwmenu -- -location 2")
 
     --- Dmenu Scripts (Alt+Ctr+Key)
