@@ -1,0 +1,11 @@
+{
+  "editor.fontFamily": "'mononoki Nerd Font Mono','mononoki','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.tabSize": 2,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "window.zoomLevel": 0,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "languageServerHaskell.hieVariant": "haskell-language-server"
+}

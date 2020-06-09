@@ -20,7 +20,6 @@
 !Scripts
 !Scripts/*
 
-
 # Ausnahmen im .config folder
 !.config
 !.config/compton*.conf

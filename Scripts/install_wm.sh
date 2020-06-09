@@ -6,16 +6,17 @@
 
 # xmonad
 yay -Syy --noconfirm --needed \
-xmonad xmonad-contrib xmonad-log xmonad-utils haskell-dbus gmrun stylish-haskell hlint hoogle
+  xmonad xmonad-contrib xmonad-log xmonad-utils haskell-dbus haskell-language-server-git gmrun stack hoogle
+
 hoogle generate
 
 # awesome
 yay -S --needed --noconfirm \
-awesome xorg-server-xephyr luacheck luarocks lua-luajson lua-socket awmtt
+  awesome xorg-server-xephyr luacheck luarocks lua-luajson lua-socket awmtt
 
 # i3
 yay -S --noconfirm --needed \
-perl-anyevent-i3 dunst i3exit conky-i3 python-i3ipc xkb-switch-i3
+  perl-anyevent-i3 dunst i3exit conky-i3 python-i3ipc xkb-switch-i3
 
 # qtile
 yay -S --noconfirm --needed qtile
@@ -28,5 +29,5 @@ yay -S --noconfirm --needed bspwm-manjaro
 
 # current used settings
 yay -S --noconfirm --needed \
-manjaro-xfce-settings
-# manjaro-awesome-settings 
+  manjaro-xfce-settings
+# manjaro-awesome-settings
