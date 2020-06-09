@@ -6,7 +6,7 @@
 
 # xmonad
 yay -Syy --noconfirm --needed \
-  xmonad xmonad-contrib xmonad-log xmonad-utils haskell-dbus haskell-language-server-git gmrun stack hoogle
+  xmonad xmonad-contrib xmonad-log xmonad-utils haskell-dbus stack hoogle
 
 hoogle generate
 
