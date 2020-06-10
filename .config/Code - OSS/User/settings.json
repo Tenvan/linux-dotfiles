@@ -8,5 +8,6 @@
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "languageServerHaskell.hieVariant": "haskell-language-server",
-  "todo-tree.tree.showScanModeButton": false
+  "todo-tree.tree.showScanModeButton": false,
+  "files.autoSave": "onFocusChange"
 }

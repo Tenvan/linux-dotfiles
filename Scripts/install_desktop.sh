@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-yay -Syy --noconfirm rustup
-rustup install stable
-
 #yay -S picom
 yay -S picom-ibhagwan-git
 #yay -S picom-tryone-git
