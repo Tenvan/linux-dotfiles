@@ -1,5 +1,5 @@
 {
-  "editor.fontFamily": "'mononoki Nerd Font Mono','mononoki','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.fontFamily": "'mononoki Nerd Font Mono', 'mononoki', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
   "editor.tabSize": 2,
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
@@ -7,5 +7,6 @@
   "window.zoomLevel": 0,
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "languageServerHaskell.hieVariant": "haskell-language-server"
+  "languageServerHaskell.hieVariant": "haskell-language-server",
+  "todo-tree.tree.showScanModeButton": false
 }

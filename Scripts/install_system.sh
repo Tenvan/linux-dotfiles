@@ -7,6 +7,10 @@
 # Yay installieren
 sudo pacman -S --noconfirm --needed yay pamac-gtk pamac-cli
 
+# Rust repaprieren/installieren
+yay -Syy --noconfirm rustup
+rustup install stable
+
 # Erforderliche Pakete
 yay -S --noconfirm --needed \
   git gitflow-avh ungit gitahead-bin bazel \
@@ -24,8 +28,7 @@ yay -S --noconfirm --needed \
   spectacle krita pinta blender gimp gimp-help-de aspell imagemagick pstoedit \
   inkscape python-lxml python-numpy transfig \
   virtualbox virt-manager qemu qemu-arch-extra libvirt \
-  teams \
-  x2goserver x2goclient \
+  teams x2goserver x2goclient \
   remmina remmina-plugin-open remmina-plugin-rdesktop remmina-plugin-url remmina-plugin-folder remmina-plugin-open remmina-plugin-ultravnc
 
 # Optionale aber System Pakete
@@ -52,6 +55,10 @@ yay -S --noconfirm --needed \
 # sound
 yay -S --noconfirm --needed \
   manjaro-pulse paprefs pulseaudio-ctl pulseaudio-qt pulseaudio-equalizer-ladspa pasystray sound-theme-elementary yaru-sound-theme sound-theme-smooth sound-theme-kayo sound-theme-sakura sound-theme-lbr-impress
+
+# gimicks
+yay -S --noconfirm --needed \
+  cmatrix
 
 # LibreOffice Fresh installieren
 yay -R --noconfirm libreoffice-still

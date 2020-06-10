@@ -153,6 +153,13 @@ ex() {
 }
 
 ### ALIASES ###
+# system
+alias yayup="yay -Syyu --noconfirm --needed "
+alias yayin="yay -Sy --noconfirm  --needed "
+alias yayrm="yay -Rnsu "
+alias yayquery="yay -Ss "
+
+alias killx="sudo systemctl restart lightdm"
 
 # root privileges
 alias doas="doas --"
@@ -185,6 +192,10 @@ alias free='free -m' # show sizes in MB
 # weather
 alias wh="curl -H 'Accept-Language: de' wttr.in/37671"
 alias wb="curl -H 'Accept-Language: de' wttr.in/33034"
+
+# tests
+alias sys-emoji="curl https://unicode.org/Public/emoji/5.0/emoji-test.txt"
+alias sys-utf8="curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html"
 
 ### SET VI MODE IN BASH SHELL
 # set -o vi

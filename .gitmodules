@@ -1,6 +1,0 @@
-[submodule ".config/awesome/tyrannical"]
-	path = .config/awesome/tyrannical
-	url = https://github.com/Elv13/tyrannical.git
-[submodule ".config/awesome/collision"]
-	path = .config/awesome/collision
-	url = https://github.com/Elv13/collision

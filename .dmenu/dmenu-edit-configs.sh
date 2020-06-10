@@ -23,21 +23,18 @@ get_config_list() {
     --print-column=3 \
     true xmonad "$HOME/.xmonad/xmonad.hs" \
     true bash "$HOME/.bashrc" \
+    true menus "$HOME/.dmenu/*.*" \
     false alacritty "$HOME/.config/alacritty/alacritty.yml" \
-    true broot "$HOME/.config/broot/conf.toml" \
+    false broot "$HOME/.config/broot/conf.toml" \
     true gitignore "$HOME/.gitignore" \
-    true menu-edit "$HOME/.dmenu/dmenu-edit-configs.sh" \
     false menu-sysmon "$HOME/.dmenu/dmenu-sysmon.sh" \
     false neovim "$HOME/.config/nvim/init.vim" \
     false picom "$HOME/.config/picom/picom.conf" \
-    true polybar "$HOME/.config/polybar/config.ini" \
-    true install-arts "$HOME/Scripts/install_arts.sh" \
-    true install-desktop "$HOME/Scripts/install_desktop.sh" \
-    true install-editors "$HOME/Scripts/install_editors.sh" \
-    true install-system "$HOME/Scripts/install_system.sh" \
-    true install-wm "$HOME/Scripts/install_wm.sh" \
+    false polybar "$HOME/.config/polybar/config.ini" \
+    false Scripts "$HOME/Scripts/*.*" \
     false termite "$HOME/.config/termite/config" \
-    true xresources "$HOME/.Xresources"
+    false xresources "$HOME/.Xresources" \
+    false xinitrc "$HOME/.xinitrc"
 }
 
 choice=$(get_config_list)
@@ -45,5 +42,5 @@ choice=$(get_config_list)
 if [ -z "$choice" ]; then
   echo "abort choice"
 else
-  code dotfiles.code-workspace --file-uri $choice &
+  code --folder-uri ~ --file-uri $choice &
 fi
