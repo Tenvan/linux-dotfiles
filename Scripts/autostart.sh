@@ -1,15 +1,17 @@
 #!/bin/bash
 
-function run {
-  if ! pgrep $1 ;
-  then
-    $@&
+function run() {
+  if ! pgrep $1; then
+    $@ &
   fi
 }
 
 xrdb -merge ~/.Xresources
 
-(sleep 2; sh $HOME/.config/polybar/launch.sh) &
+(
+  sleep 2
+  sh $HOME/.config/polybar/launch.sh
+) &
 
 #change your keyboard if you need it
 #setxkbmap -layout be
@@ -27,7 +29,7 @@ killall pasystray
 
 #starting utility applications at boot time
 run nm-applet &
-run pamac-tray &
+# run pamac-tray &
 run xfce4-power-manager &
 run pasystray &
 run copyq &
@@ -38,12 +40,13 @@ run teams &
 numlockx on &
 blueberry-tray &
 
-killall picom -s 9;sleep 1
+killall picom -s 9
+sleep 1
 
-if [ -f $HOME/.config/picom/picom-private.conf ] ; then
-    picom --config $HOME/.config/picom/picom-private.conf &
-elif [ -f $HOME/.config/picom/picom.conf ] ; then
-        picom --config $HOME/.config/picom/picom.conf &
+if [ -f $HOME/.config/picom/picom-private.conf ]; then
+  picom --config $HOME/.config/picom/picom-private.conf &
+elif [ -f $HOME/.config/picom/picom.conf ]; then
+  picom --config $HOME/.config/picom/picom.conf &
 fi
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &

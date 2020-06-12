@@ -114,7 +114,7 @@ myTextEditor :: [Char]
 myTextEditor = "kate"    -- Sets default text editor
 
 myFileManager :: [Char]
-myFileManager = "nemo"    -- Sets default text editor
+myFileManager = "pcmanfm"    -- Sets default text editor
 
 myBorderWidth :: Dimension
 myBorderWidth = 2          -- Sets border width for windows

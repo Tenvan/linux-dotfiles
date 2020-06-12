@@ -41,12 +41,13 @@ yay -S --noconfirm --needed \
   glances bashtop gtop htop iftop iotop iptraf-ng s-tui \
   lightdm-gtk-greeter-settings \
   gnome-system-monitor gnome-system-log \
-  shell-color-scripts powerline-rs find-the-command hstr-git qfc-git
+  shell-color-scripts powerline-rs find-the-command hstr-git qfc-git \
+  kindd etcher
 
 # file manager
 yay -S --noconfirm --needed \
   nemo nemo-share folder-color-switcher nemo-bulk-rename nemo-fileroller nemo-image-converter nemo-preview nemo-seahorse nemo-terminal nemo-compare nemo-megasync nemo-emblems nemo-media-columns nemo-media-columns nemo-pdf-tools \
-  mc krusader ark arj dpkg kget lhasa unrar p7zip kdiff3 kompare krename
+  pcmanfm-gtk3 mc krusader ark arj dpkg kget lhasa unrar p7zip kdiff3 kompare krename
 
 # printer setup
 yay -S --noconfirm --needed \
