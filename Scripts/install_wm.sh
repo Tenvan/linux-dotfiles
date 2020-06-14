@@ -2,6 +2,8 @@
 
 #######################################
 # Installing all used Window Managers #
+# Nur mit Manajaro verwenden !!!      #
+# Unter ArcoLinux besser TweakTool !! #
 #######################################
 
 # xmonad

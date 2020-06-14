@@ -3,12 +3,6 @@
 ##################
 # main editors
 
-# kate
-yay -S --noconfirm --needed kate
-
-# geany
-yay -S --noconfirm --needed geany geany-plugins geany-themes editorconfig-geany
-
 # vim/neovim
 yay -S --noconfirm --needed neovim vim-plugins
 

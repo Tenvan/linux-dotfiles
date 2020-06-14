@@ -117,7 +117,7 @@ myFileManager :: [Char]
 myFileManager = "pcmanfm"   -- Sets default text editor
 
 myBorderWidth :: Dimension
-myBorderWidth = 8           -- Sets border width for windows
+myBorderWidth = 2           -- Sets border width for windows
 
 myNormColor :: [Char]
 myNormColor = "#4c566a"  -- Border color of normal windows
