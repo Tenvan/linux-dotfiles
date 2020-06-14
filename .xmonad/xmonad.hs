@@ -105,19 +105,19 @@ myFont :: [Char]
 myFont = "xft:MononokiNerdFont:sizeregular:pixelsize=16"
 
 myModMask :: KeyMask
-myModMask = mod4Mask  -- Sets modkey to super/windows key
+myModMask = mod4Mask        -- Sets modkey to super/windows key
 
 myTerminal :: [Char]
-myTerminal = "alacritty" -- Sets default terminal
+myTerminal = "alacritty"    -- Sets default terminal
 
 myTextEditor :: [Char]
-myTextEditor = "kate"    -- Sets default text editor
+myTextEditor = "kate"       -- Sets default text editor
 
 myFileManager :: [Char]
-myFileManager = "pcmanfm"    -- Sets default text editor
+myFileManager = "pcmanfm"   -- Sets default text editor
 
 myBorderWidth :: Dimension
-myBorderWidth = 2          -- Sets border width for windows
+myBorderWidth = 8           -- Sets border width for windows
 
 myNormColor :: [Char]
 myNormColor = "#4c566a"  -- Border color of normal windows
@@ -126,7 +126,7 @@ myFocusColor :: [Char]
 myFocusColor = "#5e81ac"  -- Border color of focused windows
 
 myGaps :: Int
-myGaps = 5                 -- Sets layout gaps and window spacing
+myGaps = 5                  -- Sets layout gaps and window spacing
 
 myLargeSpacing :: Int
 myLargeSpacing = 30
@@ -623,14 +623,12 @@ myManageHook = composeAll . concat
 ------------------------------------------------------------------------
 -- Makes setting the spacingRaw simpler to write. The spacingRaw
 -- module adds a configurable amount of space around windows.
-mySpacing
-  :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
+mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 
 -- Below is a variation of the above except no borders are applied
 -- if fewer than two windows. So a single window has no gaps.
-mySpacing'
-  :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
+mySpacing' :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing' i = spacingRaw False (Border i i i i) True (Border i i i i) True
 
 tall = renamed [Replace "tall"] $ limitWindows 12 $ ResizableTall 1 0.03 0.5 []
@@ -751,11 +749,8 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
     manageTerm = customFloating $ W.RationalRect l t w h
       where
         h = 0.8
-
         w = 0.9
-
         t = 0.03
-
         l = (1 - w) / 2
 
     spawnKrus = "krusader"
@@ -765,11 +760,8 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
     manageKrus = customFloating $ W.RationalRect l t w h
       where
         h = 0.8
-
         w = 0.9
-
         t = 0.2
-
         l = (1 - w) / 2
 
     spawnSpoty = "spotify"
@@ -779,11 +771,8 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
     manageSpoty = customFloating $ W.RationalRect l t w h
       where
         h = 0.8
-
         w = 0.9
-
         t = 0.03
-
         l = (1 - w) / 2
 
 mySpotifyHook :: Event -> X All
@@ -793,11 +782,8 @@ mySpotifyHook =
     floating = customFloating $ W.RationalRect l t w h
       where
         h = 0.8
-
         w = 0.9
-
         t = 0.03
-
         l = (1 - w) / 2
 
 ------------------------------------------------------------------------

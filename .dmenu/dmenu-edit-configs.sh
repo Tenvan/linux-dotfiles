@@ -29,7 +29,7 @@ get_config_list() {
     true gitignore "$HOME/.gitignore" \
     false menu-sysmon "$HOME/.dmenu/dmenu-sysmon.sh" \
     false neovim "$HOME/.config/nvim/init.vim" \
-    false picom "$HOME/.config/picom/picom.conf" \
+    false picom "$HOME/.config/picom/*.*" \
     false polybar "$HOME/.config/polybar/config.ini" \
     false Scripts "$HOME/Scripts/*.*" \
     false termite "$HOME/.config/termite/config" \
