@@ -7,10 +7,11 @@
 ---IMPORTS
 ------------------------------------------------------------------------
     -- Base
-import           System.Exit (exitSuccess)
-import           System.IO (hPutStrLn)
+import           System.Exit
+import           System.IO
 import           XMonad
 import           XMonad.Config.Desktop
+import           XMonad.Config.Azerty
 import qualified XMonad.StackSet as W
     -- Prompt
 import           XMonad.Prompt
@@ -55,7 +56,7 @@ import           XMonad.Actions.Promote
 import           XMonad.Actions.RotSlaves (rotAllDown, rotSlavesDown)
 import           XMonad.Actions.RotSlaves
 import           XMonad.Actions.WindowGo (runOrRaise)
-import           XMonad.Actions.WithAll (killAll, sinkAll)
+import           XMonad.Actions.WithAll
     -- Layouts modifiers
 import           XMonad.Layout.Decoration
 import           XMonad.Layout.LayoutModifier
@@ -110,20 +111,24 @@ myModMask = mod4Mask        -- Sets modkey to super/windows key
 myTerminal :: [Char]
 myTerminal = "alacritty"    -- Sets default terminal
 
+myBrowser :: [Char]
+myBrowser = "firefox"       -- Sets default browser
+
 myTextEditor :: [Char]
-myTextEditor = "kate"       -- Sets default text editor
+myTextEditor = "code"       -- Sets default text editor
 
 myFileManager :: [Char]
-myFileManager = "pcmanfm"   -- Sets default text editor
+myFileManager = "thunar"    -- Sets default text editor
+--myFileManager = "pcmanfm"   -- Sets default text editor
 
 myBorderWidth :: Dimension
 myBorderWidth = 2           -- Sets border width for windows
 
 myNormColor :: [Char]
-myNormColor = "#4c566a"  -- Border color of normal windows
+myNormColor = "#4c566a"     -- Border color of normal windows
 
 myFocusColor :: [Char]
-myFocusColor = "#5e81ac"  -- Border color of focused windows
+myFocusColor = "#5e81ac"    -- Border color of focused windows
 
 myGaps :: Int
 myGaps = 5                  -- Sets layout gaps and window spacing
@@ -132,47 +137,31 @@ myLargeSpacing :: Int
 myLargeSpacing = 30
 
 -- Colours
-fg = "#ebdbb2"
-
-bg = "#282828"
-
+fg = "#DEE3E0"
+bg = "#282c34"
 gray = "#a89984"
-
 bg1 = "#3c3836"
-
 bg2 = "#505050"
-
 bg3 = "#665c54"
-
 bg4 = "#7c6f64"
 
 green = "#b8bb26"
-
 darkgreen = "#98971a"
-
 red = "#fb4934"
-
 darkred = "#cc241d"
-
 yellow = "#fabd2f"
-
 blue = "#83a598"
-
 purple = "#d3869b"
-
 aqua = "#8ec07c"
-
 white = "#eeeeee"
-
 pur2 = "#5b51c9"
-
 blue2 = "#2266d0"
 
 fore :: String
-fore = "#DEE3E0"
+fore = fg
 
 back :: String
-back = "#282c34"
+back = bg
 
 winType :: [Char]
 winType = "#c678dd"
@@ -184,7 +173,7 @@ workDir :: [Char]
 workDir = "$WORK_DIR" -- os.getenv("WORK_DIR")
 
 shellCmd :: [Char]
-shellCmd = myTerminal ++ " -t 'OneTimeConsole' --working-directory " ++ workDir
+shellCmd = myTerminal ++ " -t 'OneTimeConsole' -d " ++ workDir
 
 windowCount :: X (Maybe String)
 windowCount = gets
@@ -248,24 +237,14 @@ myApplicationGrid =
   , (gitChar ++ "SmartGit", "/opt/smartgit/bin/smartgit.sh")
   , ("Krusader", "krusader")
   , ("Dateien", myFileManager)
-  , ( "xmonad Errors"
-      , myTerminal
-        ++ " --hold -t 'xmonad errors' -e multitail -i ./.xmonad/xmonad.errors")
-  , ("\x00e745 Firefox", "firefox")
+  , ( "xmonad Errors", myTerminal ++ " -t 'xmonad errors' -d 140 44 -e multitail -i ./.xmonad/xmonad.errors")
+  , ( "xsession Errors", myTerminal ++ " -t 'xsession errors' -d 140 44 -e multitail -i ./.xsession-errors")
+  , ("\x00e745 Browser", myBrowser)
   , ("Teams", "teams")
-  , ("BMenu", myTerminal ++ " -e bmenu")
-  , ( "Emoji Test"
-      , myTerminal
-        ++ " --hold -e curl https://unicode.org/Public/emoji/5.0/emoji-test.txt")
-  , ( "UTF8 Test"
-      , myTerminal
-        ++ " --hold -e curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html")
-  , ( "Wetter Brakel"
-      , myTerminal
-        ++ " --hold -d 140 44 -t wetter -e curl wttr.in/33034?lang=de")
-  , ( "Wetter Höxter"
-      , myTerminal
-        ++ " --hold -d 140 44 -t wetter -e curl wttr.in/37671?lang=de")]
+  , ( "Emoji Test", myTerminal ++ " --hold -e curl https://unicode.org/Public/emoji/5.0/emoji-test.txt")
+  , ( "UTF8 Test", myTerminal ++ " --hold -e curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html")
+  , ( "Wetter Brakel", myTerminal ++ " --hold -d 140 44 -t wetter -e curl wttr.in/33034?lang=de")
+  , ( "Wetter Höxter", myTerminal ++ " --hold -d 140 44 -t wetter -e curl wttr.in/37671?lang=de")]
 
 gitChar = "\x00e725 "
 
@@ -285,50 +264,190 @@ myDevelopGrid =
   [ (shellChar ++ "Shell", shellCmd ++ " --hold")
   , ("Dateien", myFileManager ++ " " ++ workDir)
   , (yarnChar ++ "Yarn", shellCmd ++ " --hold -e yarn")
-  , ( yarnChar ++ "Yarn install"
-      , shellCmd ++ " --hold -e yarn install --ignore-scripts")
-  , ( yarnChar ++ "Check Client Updates"
-      , shellCmd ++ " --hold -e yarn outdated")
+  , ( yarnChar ++ "Yarn install", shellCmd ++ " --hold -e yarn install --ignore-scripts")
+  , ( yarnChar ++ "Check Client Updates", shellCmd ++ " --hold -e yarn outdated")
   , (yarnChar ++ "Client update", shellCmd ++ " --hold -e yarn upgrade")
   , (yarnChar ++ "Generate", shellCmd ++ " --hold -e yarn generate")
-  , ( serverChar ++ "Check Server Updates"
-      , shellCmd ++ " --hold -e yarn --cwd src/server4 outdated")
+  , ( serverChar ++ "Check Server Updates", shellCmd ++ " --hold -e yarn --cwd src/server4 outdated")
   , (serverChar ++ "Start Server", shellCmd ++ " --hold -e yarn server:dev")
-  , ( serverChar ++ "Server update"
-      , shellCmd ++ " --hold -e yarn --cwd src/server4 upgrade")
-  , ( watchChar ++ "Pug watch"
-      , shellCmd ++ "/src/client --hold -e yarn pug:watch")
-  , ( angularChar ++ "Angular Update"
-      , shellCmd ++ " --hold -e yarn run update:all")
+  , ( serverChar ++ "Server update", shellCmd ++ " --hold -e yarn --cwd src/server4 upgrade")
+  , ( watchChar ++ "Pug watch", shellCmd ++ "/src/client --hold -e yarn pug:watch")
+  , ( angularChar ++ "Angular Update", shellCmd ++ " --hold -e yarn run update:all")
   , (angularChar ++ "Start", shellCmd ++ "/src/client --hold -e yarn start")
-  , ( angularChar ++ "Start hmr"
-      , shellCmd ++ "/src/client --hold -e yarn start:client:hmr --port 4201")
-  , ( angularChar ++ "Start AOT"
-      , shellCmd
-        ++ "/src/client --hold -e yarn start:client:dev --aot --port 4202")]
+  , ( angularChar ++ "Start hmr", shellCmd ++ "/src/client --hold -e yarn start:client:hmr --port 4201")
+  , ( angularChar ++ "Start AOT", shellCmd ++ "/src/client --hold -e yarn start:client:dev --aot --port 4202")]
+
+------------------------------------------------------------------------
+---MOUSE BINDINGS
+------------------------------------------------------------------------
+myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
+
+    -- mod-button1, Set the window to floating mode and move by dragging
+    [ ((modMask, 1), (\w -> focus w >> mouseMoveWindow w >> windows W.shiftMaster))
+
+    -- mod-button2, Raise the window to the top of the stack
+    , ((modMask, 2), (\w -> focus w >> windows W.shiftMaster))
+
+    -- mod-button3, Set the window to floating mode and resize by dragging
+    , ((modMask, 3), (\w -> focus w >> mouseResizeWindow w >> windows W.shiftMaster))
+
+    ]
 
 ------------------------------------------------------------------------
 ---KEYBINDINGS
 ------------------------------------------------------------------------
 myKeys =
   -- Xmonad
-  [ ("M-q", spawn "xmonad --recompile; xmonad --restart;")    -- Recompiles and Restarts xmonad
-  , ("M-S-r", spawn "xmonad --recompile")                     -- Recompiles xmonad
-  , ("M-C-r", spawn "xmonad --restart;")                      -- Restarts xmonad
-  , ("M-S-q", spawnSelected' myPowerGrid)                     -- Quits xmonad
-  , ("M-C-x", spawn "xkill")
-      -- Prompts
-  , ("M-S-m", manPrompt dtXPConfig)            -- Manpage Prompt
-    -- System
-  , ("C-<Escape>", spawn "xfce4-taskmanager")
+  [ 
+  ("M-e", spawn $ myTextEditor )
+  , ("M-c", spawn $ "conky-toggle" )
+  , ("M-f", sendMessage $ Toggle NBFULL)
+  , ("M-m", spawn $ "pragha" )
+  , ("M-r", spawn $ "rofi-theme-selector" )
+  , ("M-t", spawn $ myTerminal )
+  , ("M-v", spawn $ "pavucontrol" )
+  , ("M-y", spawn $ "polybar-msg cmd toggle" )
+  , ("M-x", spawn $ "arcolinux-logout" )
+  , ("M-<Escape>", spawn $ "xkill" )
+  , ("M-<Return>", spawn $ myTerminal)
+  , ("M-F1", spawn $ "vivaldi-stable" )
+  , ("M-F2", spawn $ "gmrun" )
+  , ("M-F3", spawn $ "xfce4-appfinder" )
+  , ("M-F4", spawn $ "gimp" )
+  , ("M-F5", spawn $ "meld" )
+  , ("M-F6", spawn $ "vlc --video-on-top" )
+  , ("M-F7", spawn $ "virtualbox" )
+  , ("M-F8", spawn $ myFileManager )
+  , ("M-F9", spawn $ "evolution" )
+  , ("M-F10", spawn $ "spotify" )
+  , ("M-F11", spawn $ "rofi -show run -fullscreen" )
+  , ("M-F12", spawn $ "rofi -show run" )
+
+  -- SUPER + SHIFT KEYS
+  , ("M-S-<Return>", spawn $ myFileManager)
+  , ("M-S-s", spawn $ "dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'")
+  , ("M-S-r", spawn $ "xmonad --recompile; xmonad --restart")
+  , ("M-S-q", spawnSelected' myPowerGrid)
+  , ("M-S-x", io (exitWith ExitSuccess))
+
+  -- SUPER + CONTROL KEYS
   , ("M-C-t", spawn "sh ./Scripts/picom-toggle.sh")
+
+  -- CONTROL + ALT KEYS
+  , ("M1-C-Next", spawn $ "conky-rotate -n")
+  , ("M1-C-Prior", spawn $ "conky-rotate -p")
+  , ("M1-C-b", spawn $ myFileManager)
+  , ("M1-C-c", spawn $ "catfish")
+  , ("M1-C-e", spawn $ "arcolinux-tweak-tool")
+  , ("M1-C-f", spawn $ myBrowser)
+  , ("M1-C-g", spawn $ "chromium -no-default-browser-check")
+  , ("M1-C-i", spawn $ "nitrogen")
+  , ("M1-C-k", spawn $ "arcolinux-logout")
+  , ("M1-C-l", spawn $ "arcolinux-logout")
+  , ("M1-C-m", spawn $ "xfce4-settings-manager")
+  , ("M1-C-o", spawn $ "$HOME/.xmonad/scripts/picom-toggle.sh")
+  , ("M1-C-p", spawn $ "pamac-manager")
+  , ("M1-C-r", spawn $ "rofi-theme-selector")
+  , ("M1-C-s", spawn $ "spotify")
+  , ("M1-C-t", spawn $ myTerminal)
+  , ("M1-C-u", spawn $ "pavucontrol")
+  , ("M1-C-v", spawn $ "vivaldi-stable")
+  , ("M1-C-w", spawn $ "arcolinux-welcome-app")
+  , ("M1-C-<Return>", spawn $ myTerminal)
+
+    -- ALT + ... KEYS
+  , ("M1-f", spawn $ "variety -f" )
+  , ("M1-n", spawn $ "variety -n" )
+  , ("M1-p", spawn $ "variety -p" )
+  , ("M1-r", spawn $ "xmonad --restart" )
+  , ("M1-t", spawn $ "variety -t" )
+  , ("M1-<Up>", spawn $ "variety --pause" )
+  , ("M1-<Down>", spawn $ "variety --resume" )
+  , ("M1-<Left>", spawn $ "variety -p" )
+  , ("M1-<Right>", spawn $ "variety -n" )
+
+  --VARIETY KEYS WITH PYWAL
+  , ("M1-S-f", spawn $ "variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
+  , ("M1-S-n", spawn $ "variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
+  , ("M1-S-p", spawn $ "variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
+  , ("M1-S-t", spawn $ "variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
+  , ("M1-S-u", spawn $ "wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
+
+  --CONTROL + SHIFT KEYS
+  , ("C-S-<Escape>", spawn $ "xfce4-taskmanager")
+
+  --SCREENSHOTS
+  , ("<Print>", spawn $ "spectacle")
+  , ("C-<Print>", spawn $ "spectacle" )
+  , ("C-S-<Print>", spawn $ "spectacle")
+
+  --MULTIMEDIA KEYS
+
+  -- Mute volume
+  , ("<XF86XK_AudioMute>", spawn $ "amixer -q set Master toggle")
+
+  -- Decrease volume
+  , ("<XF86XK_AudioLowerVolume>", spawn $ "amixer -q set Master 5%-")
+
+  -- Increase volume
+  , ("<XF86XK_AudioRaiseVolume>", spawn $ "amixer -q set Master 5%+")
+
+  -- Increase brightness
+  , ("<XF86XK_MonBrightnessUp>",  spawn $ "xbacklight -inc 5")
+
+  -- Decrease brightness
+  , ("<XF86XK_MonBrightnessDown>", spawn $ "xbacklight -dec 5")
+
+      -- Multimedia Keys
+--  , ("<XF86AudioPlay>", spawn "mpc toggle")
+--  , ("<XF86AudioNext>", spawn "mpc next")
+--  , ("<XF86AudioPrev>", spawn "mpc prev")
+--  , ("<XF86AudioStop>", spawn "mpc stop")
+
+  , ("<XF86AudioPlay>", spawn "playerctl play-pause")
+  , ("<XF86AudioNext>", spawn "playerctl next")
+  , ("<XF86AudioPrev>", spawn "playerctl previous")
+  , ("<XF86AudioStop>", spawn "playerctl stop")
+  
+  , ("<XF86HomePage>", spawn myBrowser)
+  , ("<XF86Search>", safeSpawn myBrowser ["https://www.google.com/"])
+  , ("<XF86Mail>", runOrRaise "geary" (resource =? "thunderbird"))
+  , ("<XF86Calculator>", runOrRaise "gcalctool" (resource =? "gcalctool"))
+  , ("<XF86Eject>", spawn "toggleeject")
+
+  --------------------------------------------------------------------
+  --  XMONAD LAYOUT KEYS
+
+  -- Cycle through the available layout algorithms.
+  , ("M-<Space>", sendMessage NextLayout)
+
+  --  Reset the layouts on the current workspace to default.
+  , ("M-S-<Space>", sendMessage FirstLayout)
+
+  -- Swap the focused window with the next window.
+  , ("M-C-<Down>", windows W.swapDown  )
+
+  -- Swap the focused window with the previous window.
+  , ("M-C-<Up>", windows W.swapUp  )
+
+  -- Shrink the master area.
+  , ("C-S-h", sendMessage Shrink)
+
+  -- Expand the master area.
+  , ("C-S-l", sendMessage Expand)
+
     -- Windows
-  , ("M-S-c", kill1)                                  -- Kill the currently focused client
+  , ("M-q", kill1)                                    -- Kill the currently focused client
   , ("M-S-a", killAll)                                -- Kill all the windows on current workspace
+
+      -- Prompts
+  , ("M-S-m", manPrompt dtXPConfig)                   -- Manpage Prompt
+
     -- Floating windows
   , ("M-<Delete>", withFocused $ windows . W.sink)    -- Push floating window back to tile.
   , ("M-S-<Delete>", sinkAll)                         -- Push ALL floating windows back to tile.
   , ("M-S-f", sendMessage (T.Toggle "floats"))        -- Toggles my 'floats' layout
+
     -- Grid Select
       -- Applications
   , ("M-S-t", spawnSelected' myApplicationGrid)
@@ -338,18 +457,21 @@ myKeys =
   , ("M-S-g", goToSelected $ mygridConfig myColorizer)
       -- Pull running
   , ("M-S-b", bringSelected $ mygridConfig myColorizer)
+
     -- Workspaces navigation
   , ("M-,", nextScreen)            -- View next screen
   , ("M-.", swapNextScreen)        -- Swap current screen with next screen
+  
   , ("M-S-<Right>", nextWS)        -- Swap the focused window with the next window
   , ("M-S-<Left>", prevWS)         -- Swap the focused window with the prev window
   , ("M-S-<KP_Add>", shiftTo Next nonNSP >> moveTo Next nonNSP)       -- Shifts focused window to next workspace
   , ("M-S-<KP_Subtract>", shiftTo Prev nonNSP >> moveTo Prev nonNSP)  -- Shifts focused window to previous workspace
-  , ("M-<Return>", spawn myTerminal)
+
     -- Scratchpads
   , ("M-C-<Return>", namedScratchpadAction myScratchPads "terminal")
   , ("M-C-k", namedScratchpadAction myScratchPads "krusader")
   , ("M-C-s", namedScratchpadAction myScratchPads "spotify")
+
     -- Windows navigation
   , ("M-<Right>", windows W.focusDown)        -- Swap the focused window with the next window
   , ("M-<Left>", windows W.focusUp)           -- Swap the focused window with the prev window
@@ -360,8 +482,7 @@ myKeys =
   , ("M-<Up>", rotSlavesUp)                   -- Rotate all windows except master and keep focus in place
   , ("M-S-<Down>", rotAllDown)                -- Rotate all the windows in the current stack
   , ("M-S-<Up>", rotAllUp)                    -- Rotate all the windows in the current stack
-  , ("M-C-<Up>", sendMessage Arrange)
-  , ("M-C-<Down>", sendMessage DeArrange)
+
     -- Layouts
   , ("M-<Tab>", sendMessage NextLayout)                               -- Switch to next layout
   , ("M-S-<Tab>", sendMessage FirstLayout)                            -- Switch to next layout
@@ -375,31 +496,20 @@ myKeys =
   , ("M-<KP_Divide>", sendMessage (IncMasterN (-1)))  -- Decrease number of clients in the master pane
   , ("M-S-<KP_Multiply>", increaseLimit)              -- Increase number of windows that can be shown
   , ("M-S-<KP_Divide>", decreaseLimit)                -- Decrease number of windows that can be shown
-  , ("M-h", sendMessage Shrink)
-  , ("M-l", sendMessage Expand)
+
     --- Rofi Menu
   , ("M-z", spawn "rofi -show combi")
   , ("M-S-z", spawn "xfce4-appfinder")
   , ("M-w", spawn "bwmenu -- -location 2")
+  , ("M-F2", spawn $ "gmrun" )
+
     --- Dmenu Scripts (Alt+Ctr+Key)
-      --, ("M-S-<Return>", spawn "dmenu_run")
-  , ("M1-C-e", spawn "./.dmenu/dmenu-edit-configs.sh")
-  , ("M1-C-m", spawn "./.dmenu/dmenu-sysmon.sh")
+  , ("M-C-e", spawn "./.dmenu/dmenu-edit-configs.sh")
+  , ("M-C-m", spawn "./.dmenu/dmenu-sysmon.sh")
+
     --- My Applications (Super+Alt+Key)
-  , ("M-M1-d", spawn "firefox www.youtube.com/c/DistroTube/")
-    -- Multimedia Keys
-  , ("<XF86AudioPlay>", spawn "cmus toggle")
-  , ("<XF86AudioPrev>", spawn "cmus prev")
-  , ("<XF86AudioNext>", spawn "cmus next")
-      -- , ("<XF86AudioMute>",   spawn "amixer set Master toggle")  -- Bug prevents it from toggling correctly in 12.04.
-  , ("<XF86AudioLowerVolume>", spawn "amixer set Master 5%- unmute")
-  , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
-  , ("<XF86HomePage>", spawn "firefox")
-  , ("<XF86Search>", safeSpawn "firefox" ["https://www.google.com/"])
-  , ("<XF86Mail>", runOrRaise "geary" (resource =? "thunderbird"))
-  , ("<XF86Calculator>", runOrRaise "gcalctool" (resource =? "gcalctool"))
-  , ("<XF86Eject>", spawn "toggleeject")
-  , ("<Print>", spawn "scrotd 0")]
+  , ("M-M1-d", spawn $ myBrowser ++ " www.youtube.com/c/DistroTube/")
+  ]
   where
     nonNSP = WSIs (return (\ws -> W.tag ws /= "nsp"))
 
@@ -560,32 +670,40 @@ myManageHook = composeAll . concat
     doShiftAndGo = doF . liftM2 (.) W.greedyView W.shift
 
     myCFloats =
-      [ "JetBrains Toolbox"
-      , "Xfce4-appfinder"
-      , "Xfce4-taskmanager"
-      , "Viewnior"
-      , "copyq"
-      , "Libfm-pref-apps"
-      , "Lxappearance"
-      , "Arandr"
-      , "Galculator"
-      , "feh"
-      , "mpv"
-      , "smb4k"
-      , "qt5ct"
-      , "VirtualBox Manager"
-      , "org.remmina.Remmina"
-      , "Pavucontrol"
-      , "imagewriter"
-      , "Nemo-terminal-prefs"]
+      [ 
+        "Arandr", 
+        "Arandr", 
+        "Arcolinux-tweak-tool.py", 
+        "Arcolinux-welcome-app.py", 
+        "copyq", 
+        "feh", 
+        "Galculator", 
+        "imagewriter", 
+        "JetBrains Toolbox",
+        "Libfm-pref-apps", 
+        "Lxappearance", 
+        "mpv", 
+        "Nemo-terminal-prefs",
+        "org.remmina.Remmina", 
+        "Pavucontrol", 
+        "qt5ct", 
+        "smb4k", 
+        "Viewnior", 
+        "VirtualBox Manager", 
+        "Xfce4-appfinder", 
+        "Xfce4-taskmanager", 
+        "Xfce4-terminal"
+        ]
 
-    myTFloats = [ "JetBrains Toolbox"
-                , "Microsoft Teams-Benachrichtigung"
-                , "Downloads"
-                , "Save As..."
-                , "bmenu"
-                , "wetter"
-                , "xmonad errors"]
+    myTFloats = [ 
+      "bmenu", 
+      "Downloads",
+      "JetBrains Toolbox", 
+      "Microsoft Teams-Benachrichtigung", 
+      "Save As...", 
+      "wetter", 
+      "xmonad errors"
+      ]
 
     myRFloats = []
 
@@ -793,12 +911,14 @@ myBaseConfig = desktopConfig
 
 main :: IO ()
 main = do
+
   dbus <- D.connectSession
   -- Request access to the DBus name
   D.requestName
     dbus
     (D.busName_ "org.xmonad.Log")
     [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
+
   xmonad
     $ withUrgencyHook NoUrgencyHook
     $ ewmh
@@ -819,6 +939,7 @@ main = do
                    , focusedBorderColor = myFocusColor
                    , focusFollowsMouse = False
                    , clickJustFocuses = True
+                   , mouseBindings = myMouseBindings
                    , logHook = dynamicLogWithPP (myLogHook dbus)
                    }
         -- , keys               = myKeys

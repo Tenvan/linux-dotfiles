@@ -1,82 +1,26 @@
-#  ____ _____
-# |  _ \_   _|  Derek Taylor (DistroTube)
-# | | | || |    http://www.youtube.com/c/DistroTube
-# | |_| || |    http://www.gitlab.com/dwt1/
-# |____/ |_|
-
 [options]
+#https://github.com/thestinger/termite/blob/master/config
 allow_bold = true
-#audible_bell = false
+audible_bell = false
+browser = xdg-open
 clickable_url = true
-#dynamic_title = true
-font = Noto Color Emoji 12
-font = Mononoki Nerd Font 12
-#fullscreen = true
-geometry = 700x520
+cursor_blink = system
+cursor_shape = block
+dynamic_title = true
+filter_unmatched_urls = true
+font = Monospace 11
+#font = Hack Bold 10
+geometry = 900x650
+highlight = #2f2f2f
 icon_name = terminal
-#mouse_autohide = false
-#scroll_on_output = false
-#scroll_on_keystroke = true
-# Length of the scrollback buffer, 0 disabled the scrollback buffer
-# and setting it to a negative value means "infinite scrollback"
-scrollback_lines = 10000
-#search_wrap = true
-#urgent_on_bell = true
-
-# $BROWSER is used by default if set, with xdg-open as a fallback
-browser = lynx
-
-# "system", "on" or "off"
-#cursor_blink = system
-
-# "block", "underline" or "ibeam"
-#cursor_shape = block
-
-# Hide links that are no longer valid in url select overlay mode
-#filter_unmatched_urls = true
-
-# Emit escape sequences for extra modified keys
-#modify_other_keys = false
-
-# set size hints for the window
-#size_hints = false
-
-# "off", "left" or "right"
-scrollbar = right
-
-[colors]
-# If both of these are unset, cursor falls back to the foreground color,
-# and cursor_foreground falls back to the background color.
-#cursor = #dcdccc
-#cursor_foreground = #dcdccc
-
-[colors]
-foreground = #bbc5ff
-foreground_bold = #bbc5ff
-cursor = #bbc5ff
-# background transparency (requires a compositor)
-background = rgba(41, 45, 62, 0.80)
-
-# if unset, will reverse foreground and background
-#highlight = #839496
-
-# colors from color0 to color254 can be set
-color0 = #101010
-color1 = #f07178
-color2 = #c3e88d
-color3 = #ffcb6b
-color4 = #82aaff
-color5 = #c792ea
-color6 = #89ddff
-color7 = #d0d0d0
-color8 = #434758
-color9 = #ff8b92
-color10 = #ddffa7
-color11 = #ffe585
-color12 = #9cc4ff
-color13 = #e1acff
-color14 = #a3f7ff
-color15 = #ffffff
+modify_other_keys = false
+mouse_autohide = false
+scroll_on_output = false
+scroll_on_keystroke = true
+scrollback_lines = 15000
+size_hints = false
+search_wrap = true
+urgent_on_bell = true
 
 [hints]
 #font = Monospace 12
@@ -86,7 +30,57 @@ color15 = #ffffff
 #active_background = #3f3f3f
 #padding = 2
 #border = #3f3f3f
-#border_width = 0.5
+#border_width = 10
 #roundness = 2.0
 
-# vim: ft=dosini cms=#%s
+############################################################
+#### You can change the color coding to your liking
+#### There is a folder themes in ~/config/termite/themes
+#### Copy/paste the colors from one of the 79+ templates to this one
+#### A backup of the original config termite is present
+############################################################
+#### Use websites to make the terminal your own
+#### https://terminal.sexy
+#### https://critical.ch/xterm/
+############################################################
+
+[colors]
+# ArcoLinux Default Theme
+background = rgba(40, 42, 54, 0.8)
+
+# special
+foreground      = #f8f8f2
+foreground_bold = #f8f8f2
+cursor          = #f8f8f2
+
+# black
+color0  = #000000
+color8  = #79A9FF
+
+# red
+color1  = #ff5555
+color9  = #ff6e67
+
+# green
+color2  = #50fa7b
+color10 = #5af78e
+
+# yellow
+color3  = #f1fa8c
+color11 = #f4f99d
+
+# blue
+color4  = #6790EB
+color12 = #79A9FF
+
+# magenta
+color5  = #ff79c6
+color13 = #ff92d0
+
+# cyan
+color6  = #8be9fd
+color14 = #9aedfe
+
+# white
+color7  = #bfbfbf
+color15 = #e6e6e6

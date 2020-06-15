@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 
+#####################
+# init distro check #
+#####################
+LINUX_VERSION_NAME=$(lsb_release -sc)
+if [[ ${LINUX_VERSION_NAME} == "Manjaro" ]]; then
+  IS_MANJARO=true
+else
+  IS_MANJARO=false
+fi
+
+if [[ ${LINUX_VERSION_NAME} == "ArcoLinux" ]]; then
+  IS_ARCO=true
+else
+  IS_ARCO=false
+fi
+
 ##################################################
 # Installation Base Development System (OneTime) #
 ##################################################
@@ -44,12 +60,6 @@ yay -S --noconfirm --needed \
   shell-color-scripts powerline-rs find-the-command hstr-git qfc-git \
   kindd etcher
 
-# Manjaro
-yay -S --noconfirm --needed lightdm-gtk-greeter-settings
-
-# ArchLinux
-yay -S --noconfirm --needed arcolinux-lightdm-gtk-greeter-settings
-
 # file manager
 yay -S --noconfirm --needed \
   nemo nemo-share folder-color-switcher nemo-fileroller nemo-image-converter nemo-preview nemo-seahorse nemo-terminal nemo-compare nemo-megasync nemo-emblems nemo-media-columns nemo-media-columns nemo-pdf-tools \
@@ -58,21 +68,24 @@ yay -S --noconfirm --needed \
 # printer setup
 yay -S --noconfirm --needed canon-cque samsung-printers cups-pdf system-config-printer
 
-# Manjaro
-yay -S --noconfirm --needed manjaro-settings-samba
-
 # sound
 yay -S --noconfirm --needed \
   paprefs pulseaudio-ctl pulseaudio-qt pulseaudio-equalizer-ladspa pasystray sound-theme-elementary yaru-sound-theme sound-theme-smooth sound-theme-kayo sound-theme-sakura sound-theme-lbr-impress
 
-# Manjaro
-yay -S --noconfirm --needed manjaro-pulse
-
-# gimicks
-yay -S --noconfirm --needed cmatrix hollywood cowsay
-
 # LibreOffice Fresh installieren
 yay -S --noconfirm --needed libreoffice-fresh
+
+# Manjaro
+if $IS_MANJARO == true; then
+  yay -S --noconfirm --needed lightdm-gtk-greeter-settings manjaro-settings-samba manjaro-pulse
+  # gimicks
+  yay -S --noconfirm --needed cmatrix hollywood cowsay
+fi
+
+# ArcoLinux
+if $IS_ARCO == true; then
+  yay -S --noconfirm --needed arcolinux-lightdm-gtk-greeter-settings
+fi
 
 sudo systemctl enable libvirtd.service
 sudo systemctl start libvirtd.service

@@ -1,7 +1,24 @@
 #!/usr/bin/env bash
 
-##################
-# main editors
+#####################
+# init distro check #
+#####################
+LINUX_VERSION_NAME=$(lsb_release -sc)
+if [[ ${LINUX_VERSION_NAME} == "Manjaro" ]]; then
+       IS_MANJARO=true
+else
+       IS_MANJARO=false
+fi
+
+if [[ ${LINUX_VERSION_NAME} == "ArcoLinux" ]]; then
+       IS_ARCO=true
+else
+       IS_ARCO=false
+fi
+
+###############################
+# installation of all editors #
+###############################
 
 # vim/neovim
 yay -S --noconfirm --needed neovim vim-plugins

@@ -7,6 +7,8 @@ function run() {
 }
 
 xrdb -merge ~/.Xresources
+xrdb -merge ~/.Xresources.custom
+xrdb -merge ~/.Xresources.personal
 
 (
   sleep 2
@@ -19,35 +21,36 @@ xrdb -merge ~/.Xresources
 #cursor active at boot
 xsetroot -cursor_name left_ptr &
 
+#start ArcoLinux Welcome App
+#run dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
+
+#Some ways to set your wallpaper besides variety or nitrogen
+feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
+
 #start the conky to learn the shortcuts
-# (conky -c $HOME/.xmonad/scripts/system-overview) &
-
-# Xfce4 Panel
-# (killall xfce4-panel; xfce4-panel) &
-
-killall pasystray
+(conky -c $HOME/.xmonad/scripts/system-overview) &
 
 #starting utility applications at boot time
+run variety &
 run nm-applet &
-# run pamac-tray &
+run pamac-tray &
 run xfce4-power-manager &
+run volumeicon &
+numlockx on &
+blueberry-tray &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+/usr/lib/xfce4/notifyd/xfce4-notifyd &
+
+#starting utility applications at boot time
 run pasystray &
 run copyq &
 run alttab &
-run nitrogen --restore &
+#run nitrogen --restore &
 run teams &
 
-numlockx on &
-blueberry-tray &
-
-killall picom -s 9
-sleep 1
-
-if [ -f $HOME/.config/picom/picom-private.conf ]; then
-  picom --config $HOME/.config/picom/picom-private.conf &
-elif [ -f $HOME/.config/picom/picom.conf ]; then
-  picom --config $HOME/.config/picom/picom.conf &
+if pgrep -x "picom" >/dev/null; then
+  killall picom -s 9
+  sleep 1
 fi
 
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-/usr/lib/xfce4/notifyd/xfce4-notifyd &
+sh $HOME/Scripts/picom-toggle.sh

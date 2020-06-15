@@ -25,9 +25,6 @@
 !.config/compton*.conf
 !.config/alacritty
 !.config/alacritty/*
-!.config/awesome
-!.config/awesome/**
-!.config/awesome/**/*0
 !.config/copyq
 !.config/copyq/copyq.conf
 !.config/copyq/themes
@@ -43,8 +40,6 @@
 !.config/gtk-3.0/*
 !.config/gtk-4.0
 !.config/gtk-4.0/*
-!.config/i3
-!.config/i3/*
 !.config/Kvantum
 !.config/Kvantum/*
 !.config/nitrogen

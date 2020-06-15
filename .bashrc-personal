@@ -1,0 +1,118 @@
+if [ "$TERM" = "linux" ]; then
+  _SEDCMD='s/.*\*color\([0-9]\{1,\}\).*#\([0-9a-fA-F]\{6\}\).*/\1 \2/p'
+  for i in $(sed -n "$_SEDCMD" $HOME/.Xresources | awk '$1 < 16 {printf "\\e]P%X%s", $1, $2}'); do
+    echo -en "$i"
+  done
+  clear
+fi
+
+### COLOR SCRIPTS ###
+/opt/shell-color-scripts/colorscript.sh -e 3
+/opt/shell-color-scripts/colorscript.sh -e 23
+
+# PATH="$HOME/.emacs.d/bin:$HOME/.local/bin${PATH:+:${PATH}}"
+export EDITOR="code"
+export TERM="alacritty"
+
+colors() {
+  clear
+  # /opt/shell-color-scripts/colorscript.sh -e 34
+  echo Script 1
+  /opt/shell-color-scripts/colorscript.sh -e 1
+  echo Script 8
+  /opt/shell-color-scripts/colorscript.sh -e 9
+  echo Script 11
+  /opt/shell-color-scripts/colorscript.sh -e 11
+  echo Script 10
+  /opt/shell-color-scripts/colorscript.sh -e 10
+  echo Script 23
+  /opt/shell-color-scripts/colorscript.sh -e 23
+}
+
+[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+
+complete -cf sudo
+
+### ALIASES ###
+
+# system
+alias killx="sudo systemctl restart lightdm"
+
+# navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ~='cd $HOME'
+
+# vim
+alias vim=nvim
+alias ed=$EDITOR
+
+# broot
+alias br='br -dhp'
+alias bs='br --sizes'
+
+# Changing "ls" to "exa"
+alias ls='exa -al --color=always --group-directories-first' # my preferred listing
+alias la='exa -a --color=always --group-directories-first'  # all files and dirs
+alias ll='exa -l --color=always --group-directories-first'  # long format
+alias lt='exa -aT --color=always --group-directories-first' # tree listing
+
+# adding flags
+alias cp="cp -i"     # confirm before overwriting something
+alias df='df -h'     # human-readable sizes
+alias free='free -m' # show sizes in MB
+
+# weather
+alias wh="curl -H 'Accept-Language: de' wttr.in/37671"
+alias wb="curl -H 'Accept-Language: de' wttr.in/33034"
+
+# tests
+alias sys-emoji="curl https://unicode.org/Public/emoji/5.0/emoji-test.txt"
+alias sys-utf8="curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html"
+
+### SET VI MODE IN BASH SHELL
+# set -o vi
+
+### SET VIM AS MANPAGER ###
+export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
+
+### BASH POWERLINE ###
+if [ -f ~/.bash-powerline.sh ]; then
+  source ~/.bash-powerline.sh
+fi
+
+### BROOT ###
+if [ -f ~/.config/broot/launcher/bash/br ]; then
+  source ~/.config/broot/launcher/bash/br
+fi
+
+### BASH INSULTER ###
+if [ -f /usr/share/doc/find-the-command/ftc.bash ]; then
+  source /usr/share/doc/find-the-command/ftc.bash
+fi
+
+## QFC Quick Complete (Ctrl-f)
+if [ -f /usr/share/qfc/qfc.sh ]; then
+  source /usr/share/qfc/qfc.sh
+fi
+
+# HSTR configuration - add this to ~/.bashrc
+alias hh=hstr                   # hh to be alias for hstr
+export HSTR_CONFIG=hicolor      # get more colors
+shopt -s histappend             # append new history items to .bash_history
+export HISTCONTROL=ignorespace  # leading space hides commands from history
+export HISTFILESIZE=10000       # increase history file size (default is 500)
+export HISTSIZE=${HISTFILESIZE} # increase history size (default is 500)
+
+# ensure synchronization between bash memory and history file
+export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
+
+# if this is interactive shell, then bind hstr to Ctrl-r (for Vi mode check doc)
+if [[ $- =~ .*i.* ]]; then 
+  bind '"\C-r": "\C-a hstr -- \C-j"'; 
+fi
+
+# if this is interactive shell, then bind 'kill last command' to Ctrl-x k
+if [[ $- =~ .*i.* ]]; then 
+  bind '"\C-xk": "\C-a hstr -k \C-j"'; 
+fi

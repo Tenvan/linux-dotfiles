@@ -22,7 +22,7 @@ get_config_list() {
     --separator=" " \
     --print-column=3 \
     true xmonad "$HOME/.xmonad/xmonad.hs" \
-    true bash "$HOME/.bashrc" \
+    true bash "$HOME/.bashrc-personal" \
     true menus "$HOME/.dmenu/*.*" \
     false alacritty "$HOME/.config/alacritty/alacritty.yml" \
     false broot "$HOME/.config/broot/conf.toml" \

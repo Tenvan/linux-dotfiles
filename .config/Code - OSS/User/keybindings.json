@@ -52,5 +52,9 @@
   {
     "key": "ctrl+numpad_add",
     "command": "editor.unfoldRecursively"
+  },
+  {
+    "key": "ctrl+shift+l",
+    "command": "editor.action.sortLinesAscending"
   }
 ]

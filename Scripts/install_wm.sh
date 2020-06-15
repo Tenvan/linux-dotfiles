@@ -1,35 +1,59 @@
 #!/usr/bin/env bash
 
+##################################################
+# Installation Base Development System (OneTime) #
+##################################################
+LINUX_VERSION_NAME=$(lsb_release -sc)
+if [[ ${LINUX_VERSION_NAME} == "Manjaro" ]]; then
+  IS_MANJARO=true
+else
+  IS_MANJARO=false
+fi
+
+if [[ ${LINUX_VERSION_NAME} == "ArcoLinux" ]]; then
+  IS_ARCO=true
+else
+  IS_ARCO=false
+fi
+
 #######################################
 # Installing all used Window Managers #
 # Nur mit Manajaro verwenden !!!      #
 # Unter ArcoLinux besser TweakTool !! #
 #######################################
 
-# xmonad
-yay -Syy --noconfirm --needed \
-  xmonad xmonad-contrib xmonad-log xmonad-utils haskell-dbus stack hoogle
+if $IS_ARCO == true; then
+  yay -S --noconfirm --needed hoogle haskell-language-server-git haskell-ide-engine
+  hoogle generate
+fi
 
-hoogle generate
+if $IS_MANJARO == true; then
+  # xmonad
+  yay -S --noconfirm --needed \
+    xmonad xmonad-contrib xmonad-log xmonad-utils haskell-dbus stack hoogle
 
-# awesome
-yay -S --needed --noconfirm \
-  awesome xorg-server-xephyr luacheck luarocks lua-luajson lua-socket awmtt
+  hoogle generate
 
-# i3
-yay -S --noconfirm --needed \
-  perl-anyevent-i3 dunst i3exit conky-i3 python-i3ipc xkb-switch-i3
+  # awesome
+  yay -S --needed --noconfirm \
+    awesome xorg-server-xephyr luacheck luarocks lua-luajson lua-socket awmtt
 
-# qtile
-yay -S --noconfirm --needed qtile
+  # i3
+  yay -S --noconfirm --needed \
+    perl-anyevent-i3 dunst i3exit conky-i3 python-i3ipc xkb-switch-i3
 
-# dwm
-yay -S --noconfirm --needed dwm
+  # qtile
+  yay -S --noconfirm --needed qtile
 
-# bspwm
-yay -S --noconfirm --needed bspwm-manjaro
+  # dwm
+  yay -S --noconfirm --needed dwm
 
-# current used settings
-yay -S --noconfirm --needed \
-  manjaro-xfce-settings
-# manjaro-awesome-settings
+  # bspwm
+  yay -S --noconfirm --needed bspwm-manjaro
+
+  # current used settings
+  yay -S --noconfirm --needed \
+    manjaro-xfce-settings
+  # manjaro-awesome-settings
+
+fi
