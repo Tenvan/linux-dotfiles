@@ -33,7 +33,7 @@ get_config_list() {
     false polybar "$HOME/.config/polybar/config.ini" \
     false Scripts "$HOME/Scripts/*.*" \
     false termite "$HOME/.config/termite/config" \
-    false xresources "$HOME/.Xresources" \
+    false xresources "$HOME/.Xresources*" \
     false xinitrc "$HOME/.xinitrc"
 }
 

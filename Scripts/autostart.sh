@@ -28,9 +28,12 @@ xsetroot -cursor_name left_ptr &
 feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
 
 #start the conky to learn the shortcuts
-(conky -c $HOME/.xmonad/scripts/system-overview) &
+killall conky
+# (conky -c $HOME/.xmonad/scripts/system-overview) &
 
 #starting utility applications at boot time
+run emacs --daemon &
+
 run variety &
 run nm-applet &
 run pamac-tray &

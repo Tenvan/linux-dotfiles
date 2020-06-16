@@ -18,23 +18,16 @@
 #
 default_flags = ""
 
-###############################################################
-# Verbs and shortcuts
-# You can define your own commands which would be applied to
-# the selection.
+# This configuration file lets you define new commands
+# or change the shortcut or triggering keys of built-in verbs.
+# You can change the colors of broot too.
 #
-# Exemple 1: launching `tail -n` on the selected file (leaving broot)
-# [[verbs]]
-# name = "tail_lines"
-# invocation = "tl {lines_count}"
-# execution = "tail -f -n {lines_count} {file}"
+# Configuration documentation is available at https://dystroy.org/broot
 #
-# Exemple 2: creating a new file without leaving broot
-# [[verbs]]
-# name = "touch"
-# invocation = "touch {new_file}"
-# execution = "touch {directory}/{new_file}"
-# leave_broot = false
+
+#####################
+# user defined verbs:
+
 # If $EDITOR isn't set on your computer, you should either set it using
 #  something similar to
 #   export EDITOR=/usr/bin/nvim
@@ -56,11 +49,6 @@ execution = ":quit"
 invocation = "create {subpath}"
 execution = "$EDITOR {directory}/{subpath}"
 
-[[verbs]]
-invocation = "git_diff"
-shortcut = "gd"
-execution = "git diff {file}"
-
 # If $PAGER isn't set on your computer, you should either set it
 #  or just replace it with your viewer of choice in the 'execution'
 #  pattern.
@@ -70,40 +58,20 @@ execution = "git diff {file}"
 name = "view"
 invocation = "view"
 execution = "$PAGER {file}"
-# A popular set of shorctuts for going up and down:
-#
-# [[verbs]]
-# key = "ctrl-j"
-# execution = ":line_down"
-#
-# [[verbs]]
-# key = "ctrl-k"
-# execution = ":line_up"
-#
-# [[verbs]]
-# key = "ctrl-d"
-# execution = ":page_down"
-#
-# [[verbs]]
-# key = "ctrl-u"
-# execution = ":page_up"
-# If you develop using git, you might like to often switch
-# to the "git status" filter:
-# [[verbs]]
-# key = "ctrl-g"
-# execution = ":toggle_git_status"
-###############################################################
+
+#####################
 # Skin
+
 # If you want to change the colors of broot,
 # uncomment the following bloc and start messing
-# with the various values.
+# with the various values
 # Note that some of those colors might not correcly
-# render on terminals with low capabilities.
+# render on terminals with low capabilities
 #
-# [skin]
-# default = "gray(20) gray(1)"
+[skin]
+default = "white None"
 # tree = "rgb(89, 73, 101) none"
-# file = "gray(21) none"
+file = "gray(21) none"
 # directory = "rgb(255, 152, 0) none bold"
 # exe = "rgb(17, 164, 181) none"
 # link = "Magenta none"
@@ -114,18 +82,18 @@ execution = "$PAGER {file}"
 # perm_x = "ansi(65) None"
 # owner = "gray(12) none"
 # group = "gray(12) none"
-# selected_line = "none gray(3)"
-# char_match = "yellow none"
+selected_line = "none black"
+char_match = "ansi(10) none"
 # file_error = "Red none"
 # flag_label = "gray(16) none"
 # flag_value = "rgb(255, 152, 0) none bold"
 # input = "White none"
 # status_error = "Red gray(2)"
-# status_job = "ansi(220) gray(5)"
-# status_normal = "gray(20) gray(3)"
-# status_italic = "rgb(255, 152, 0) None"
-# status_bold = "rgb(255, 152, 0) None bold"
-# status_code = "ansi(229) gray(5)"
+status_job = "ansi(220) ansi(10)"
+status_normal = "ansi(0) ansi(10)"
+status_italic = "ansi(10) ansi(0)"
+status_bold = "rgb(255, 152, 0) None bold"
+status_code = "ansi(229) ansi(10)"
 # status_ellipsis = "gray(19) gray(1)"
 # scrollbar_track = "rgb(80, 50, 0) none"
 # scrollbar_thumb = "rgb(255, 187, 0) none"
@@ -134,6 +102,8 @@ execution = "$PAGER {file}"
 # help_italic = "Magenta rgb(30, 30, 40) italic"
 # help_code = "gray(21) gray(3)"
 # help_headers = "rgb(255, 187, 0) none"
+
 # You may find other skins on
 #  https://dystroy.org/broot/documentation/configuration/#colors
 # for example a skin suitable for white backgrounds
+

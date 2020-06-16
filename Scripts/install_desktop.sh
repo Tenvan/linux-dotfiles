@@ -21,7 +21,7 @@ yay -S --noconfirm --needed \
   polybar broot broom pm-utils \
   polkit-gnome polkit-kde-agent \
   pamac-tray-appindicator checkupdates-aur \
-  xautolock \
+  xautolock trayer \
   python python-psutil python-pygit2 python-xkbgroup python-taskw python-requests pygtk python2-distutils-extra \
   xclip xsel xdotool xorg-xfd xcwd-git progress \
   bitwarden-bin bitwarden-cli-bin bitwarden-rofi
