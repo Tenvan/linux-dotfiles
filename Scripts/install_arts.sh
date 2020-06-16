@@ -23,8 +23,10 @@ yay -Syy
 ######################
 if $IS_ARCO == true; then
   yay -S --needed --noconfirm \
-    xfce4-artwork \
     adapta-backgrounds \
+    adapta-gtk-theme \
+    antergos-wallpapers \
+    arcolinux-arc-themes-nico-git \
     beefy-miracle-backgrounds \
     constantine-backgrounds \
     f32-backgrounds \
@@ -32,30 +34,39 @@ if $IS_ARCO == true; then
     gnome-backgrounds \
     goddard-backgrounds \
     heisenbug-backgrounds \
+    instantwallpaper \
     laughlin-backgrounds \
     leonidas-backgrounds \
+    materia-gtk-theme \
+    numix-gtk-theme-git \
+    oxy-neon \
+    ozunity-wallpapers \
     schroedinger-cat-backgrounds \
+    shimmer-wallpapers \
     solar-backgrounds \
     spherical-cow-backgrounds \
+    system76-wallpapers \
     trougnouf-backgrounds \
     ubuntu-backgrounds-focal \
-    verne-backgrounds \
-    antergos-wallpapers \
-    instantwallpaper \
-    ozunity-wallpapers \
-    shimmer-wallpapers \
-    system76-wallpapers \
     ukui-wallpapers \
+    verne-backgrounds \
     wallpapers-altlinuxclub \
+    xfce4-artwork \
     yaru-colors-wallpapers-git
 
   # cursor
   yay -S --needed --noconfirm \
+    capitaine-cursors \
     xcursor-chameleon-anthracite \
     xcursor-chameleon-darkskyblue \
     xcursor-chameleon-pearl \
     xcursor-chameleon-skyblue \
-    xcursor-chameleon-white
+    xcursor-chameleon-white \
+    xcursor-comix \
+    xcursor-flatbed \
+    xcursor-neutral \
+    xcursor-premium \
+    xcursor-simpleandsoft
 
   # icons
   yay -S --needed --noconfirm \
@@ -65,8 +76,23 @@ if $IS_ARCO == true; then
     hicolor-icon-theme \
     maia-icon-theme \
     moka-icon-theme \
+    numix-circle-arc-icons-git \
+    numix-circle-icon-theme-git \
+    paper-icon-theme \
     papirus-icon-theme \
+    surfn-mint-y-icons-git \
     ttf-weather-icons
+
+  # fonts
+  yay -S --needed --noconfirm \
+    gucharmap \
+    nerd-fonts-mononoki \
+    ttf-mononoki \
+    ttf-joypixels \
+    ttf-bitstream \
+    ttf-fira-code \
+    ttf-inconsolata \
+    ttf-liberation
 
 fi
 
@@ -157,11 +183,11 @@ if $IS_MANJARO == true; then
     ttf-weather-icons \
     vertex-maia-icon-theme
 
-fi
+  # fonts
+  yay -S --needed --noconfirm \
+    gucharmap \
+    nerd-fonts-mononoki \
+    ttf-mononoki \
+    ttf-joypixels
 
-# fonts
-yay -S --needed --noconfirm \
-  gucharmap \
-  nerd-fonts-mononoki \
-  ttf-mononoki \
-  ttf-joypixels
+fi

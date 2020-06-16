@@ -17,7 +17,7 @@ else
 fi
 
 yay -S --noconfirm --needed \
-  alttab-git rofi zenity \
+  rofi zenity \
   polybar broot broom pm-utils \
   polkit-gnome polkit-kde-agent \
   pamac-tray-appindicator checkupdates-aur \
@@ -28,7 +28,7 @@ yay -S --noconfirm --needed \
 
 # some tools
 yay -S --noconfirm --needed \
-  xfce4-taskmanager xfce4-appfinder lxappearance
+  xfce4-taskmanager xfce4-appfinder lxappearance alttab-git
 
 if $IS_MANJARO == true; then
   #yay -S picom

@@ -292,7 +292,6 @@ myKeys =
   , ("M-m", spawn $ "pragha" )
   , ("M-r", spawn $ "rofi-theme-selector" )
   , ("M-t", spawn $ myTerminal )
-  , ("M-v", spawn $ "pavucontrol" )
   , ("M-y", spawn $ "polybar-msg cmd toggle" )
   , ("M-x", spawn $ "arcolinux-logout" )
   , ("M-<Escape>", spawn $ "xkill" )
@@ -305,10 +304,6 @@ myKeys =
   , ("M-F6", spawn $ "vlc --video-on-top" )
   , ("M-F7", spawn $ "virtualbox" )
   , ("M-F8", spawn $ myFileManager )
-  , ("M-F9", spawn $ "evolution" )
-  , ("M-F10", spawn $ "spotify" )
-  , ("M-F11", spawn $ "rofi -show run -fullscreen" )
-  , ("M-F12", spawn $ "rofi -show run" )
 
   -- SUPER + SHIFT KEYS
   , ("M-S-<Return>", spawn $ myFileManager)
@@ -332,13 +327,10 @@ myKeys =
   , ("M1-C-k", spawn $ "arcolinux-logout")
   , ("M1-C-l", spawn $ "arcolinux-logout")
   , ("M1-C-m", spawn $ "xfce4-settings-manager")
-  , ("M1-C-o", spawn $ "$HOME/.xmonad/scripts/picom-toggle.sh")
   , ("M1-C-p", spawn $ "pamac-manager")
   , ("M1-C-r", spawn $ "rofi-theme-selector")
-  , ("M1-C-s", spawn $ "spotify")
   , ("M1-C-t", spawn $ myTerminal)
   , ("M1-C-u", spawn $ "pavucontrol")
-  , ("M1-C-v", spawn $ "vivaldi-stable")
   , ("M1-C-w", spawn $ "arcolinux-welcome-app")
   , ("M1-C-<Return>", spawn $ myTerminal)
 
