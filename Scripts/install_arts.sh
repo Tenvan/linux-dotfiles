@@ -16,11 +16,17 @@ else
   IS_ARCO=false
 fi
 
-yay -Syy
+errorCheck() {
+  retVal=$?
+  if [ $retVal -ne 0 ]; then
+    echo "abort installation script 'install_desktop': " $1
+    exit $retVal
+  fi
+}
 
-######################
-# install wallpapers #
-######################
+###############################################
+# install wallpapers, themes, icons and fonts #
+###############################################
 if $IS_ARCO == true; then
   yay -S --needed --noconfirm \
     adapta-backgrounds \
@@ -54,6 +60,8 @@ if $IS_ARCO == true; then
     xfce4-artwork \
     yaru-colors-wallpapers-git
 
+  errorCheck "ArcoLinux: wallpaers"
+
   # cursor
   yay -S --needed --noconfirm \
     capitaine-cursors \
@@ -67,6 +75,8 @@ if $IS_ARCO == true; then
     xcursor-neutral \
     xcursor-premium \
     xcursor-simpleandsoft
+
+  errorCheck "ArcoLinux: cursor"
 
   # icons
   yay -S --needed --noconfirm \
@@ -83,16 +93,22 @@ if $IS_ARCO == true; then
     surfn-mint-y-icons-git \
     ttf-weather-icons
 
+  errorCheck "ArcoLinux: icons"
+
   # fonts
   yay -S --needed --noconfirm \
     gucharmap \
     nerd-fonts-mononoki \
     ttf-mononoki \
     ttf-joypixels \
-    ttf-bitstream \
+    ttf-bitstream-vera \
     ttf-fira-code \
     ttf-inconsolata \
     ttf-liberation
+
+  # ttf-bitstream-charter \
+
+  errorCheck "ArcoLinux: fonts"
 
 fi
 
@@ -155,6 +171,8 @@ if $IS_MANJARO == true; then
     wallpapers-tuxedo \
     yaru-colors-wallpapers-git
 
+  errorCheck "Manjaro: wallpapers"
+
   yay -S --needed --noconfirm \
     xcursor-breeze \
     xcursor-breeze-adapta \
@@ -164,6 +182,8 @@ if $IS_MANJARO == true; then
     xcursor-chameleon-pearl \
     xcursor-chameleon-skyblue \
     xcursor-chameleon-white
+
+  errorCheck "Manjaro: cursor"
 
   yay -S --needed --noconfirm \
     adwaita-icon-theme \
@@ -183,6 +203,8 @@ if $IS_MANJARO == true; then
     ttf-weather-icons \
     vertex-maia-icon-theme
 
+  errorCheck "Manjaro: icons"
+
   # fonts
   yay -S --needed --noconfirm \
     gucharmap \
@@ -190,4 +212,16 @@ if $IS_MANJARO == true; then
     ttf-mononoki \
     ttf-joypixels
 
+  errorCheck "Manjaro: fonts"
+
+fi
+
+if [-f ~/.local/share/wallpapers/wallpapers-dt ]; then
+  cd ~/.local/share/wallpapers/wallpapers-dt
+  git pull
+  errorCheck "pull dt wallpapers"
+  cd ~
+else
+  git clone https://gitlab.com/dwt1/wallpapers.git ~/.local/share/wallpapers/wallpapers-dt
+  errorCheck "clone dt wallpapers"
 fi

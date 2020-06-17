@@ -16,23 +16,36 @@ else
        IS_ARCO=false
 fi
 
-###############################
-# installation of all editors #
-###############################
+errorCheck() {
+       retVal=$?
+       if [ $retVal -ne 0 ]; then
+              echo "abort installation script 'install_editors': " $1
+              exit $retVal
+       fi
+}
+
+#####################################
+# installation of important editors #
+#####################################
 
 # vim/neovim
-yay -S --noconfirm --needed neovim vim-plugins
+yay -S --noconfirm --needed neovim vim-plugins python-pip
+errorCheck "vim/neovom installation"
 
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 pip install --user neovim
+errorCheck "vim/neovom pip"
 
-# emacs doom
-yay -S --noconfirm --needed emms emacs
-
-git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-~/.emacs.d/bin/doom install
-
-# vs
+# vs code
 yay -S --noconfirm --needed code bash-completion
+errorCheck "vs code installation"
+
+# micro
+yay -S --noconfirm --needed micro
+errorCheck "micro installation"
+
+# atom
+yay -S --noconfirm --needed atom
+errorCheck "atom installation"

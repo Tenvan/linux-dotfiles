@@ -24,8 +24,14 @@ xsetroot -cursor_name left_ptr &
 #start ArcoLinux Welcome App
 #run dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
 
-#Some ways to set your wallpaper besides variety or nitrogen
-feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
+######################
+# Settings wallpaper #
+######################
+
+run nitrogen --restore &
+# run variety &
+# Some ways to set your wallpaper besides variety or nitrogen
+# feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
 
 #start the conky to learn the shortcuts
 killall conky
@@ -34,11 +40,10 @@ killall conky
 #starting utility applications at boot time
 run emacs --daemon &
 
-run variety &
 run nm-applet &
 run pamac-tray &
 run xfce4-power-manager &
-run volumeicon &
+# run volumeicon &
 numlockx on &
 blueberry-tray &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
@@ -48,7 +53,6 @@ blueberry-tray &
 run pasystray &
 run copyq &
 run alttab &
-#run nitrogen --restore &
 run teams &
 
 if pgrep -x "picom" >/dev/null; then

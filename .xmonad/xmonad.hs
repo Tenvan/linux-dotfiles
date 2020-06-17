@@ -657,6 +657,7 @@ myManageHook = composeAll . concat
         "JetBrains Toolbox",
         "Libfm-pref-apps",
         "Lxappearance",
+        "Nitrogen",
         "mpv",
         "Nemo-terminal-prefs",
         "org.remmina.Remmina",

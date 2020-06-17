@@ -16,13 +16,21 @@ else
   IS_ARCO=false
 fi
 
-echo $LINUX_VERSION_NAME
-echo $IS_MANJARO
-echo $IS_ARCO
+errorCheck() {
+  retVal=$?
+  if [ $retVal -ne 0 ]; then
+    echo "abort installation script 'install_system': " $1
+    exit $retVal
+  fi
+}
 
 ###################
 # Test DitroCheck #
 ###################
+
+echo $LINUX_VERSION_NAME
+echo $IS_MANJARO
+echo $IS_ARCO
 
 # Manjaro
 if $IS_MANJARO == true; then
@@ -33,3 +41,9 @@ fi
 if $IS_ARCO == true; then
   echo ArcoLinux entdeckt
 fi
+
+# optional system packages
+yay -S --noconfirm --needed \
+  exa blub
+
+errorCheck "test: optional system packages"

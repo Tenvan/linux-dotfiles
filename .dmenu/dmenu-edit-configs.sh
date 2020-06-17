@@ -42,5 +42,5 @@ choice=$(get_config_list)
 if [ -z "$choice" ]; then
   echo "abort choice"
 else
-  code --folder-uri ~ --file-uri $choice &
+  code --file-uri $choice &
 fi
