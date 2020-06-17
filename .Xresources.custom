@@ -66,5 +66,7 @@ alttab*screens:          0
 *pointerColorBackground:          #2B2C2B
 *pointerColorForeground:          #16A085
 
-Xcursor.theme: xcursor-breeze-snow
+!! Xcursor.theme: xcursor-breeze-snow
+!! Xcursor.theme: Breeze_Snow
+Xcursor.theme: Bibata_Ice
 Xcursor.size:                     0
