@@ -286,7 +286,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 ------------------------------------------------------------------------
 myKeys =
   -- Xmonad
-  [ 
+  [
   ("M-e", spawn $ myTextEditor )
   , ("M-c", spawn $ "conky-toggle" )
   , ("M-m", spawn $ "pragha" )
@@ -387,7 +387,7 @@ myKeys =
   , ("<XF86AudioNext>", spawn "playerctl next")
   , ("<XF86AudioPrev>", spawn "playerctl previous")
   , ("<XF86AudioStop>", spawn "playerctl stop")
-  
+
   , ("<XF86HomePage>", spawn myBrowser)
   , ("<XF86Search>", safeSpawn myBrowser ["https://www.google.com/"])
   , ("<XF86Mail>", runOrRaise "geary" (resource =? "thunderbird"))
@@ -440,7 +440,7 @@ myKeys =
     -- Workspaces navigation
   , ("M-,", nextScreen)            -- View next screen
   , ("M-.", swapNextScreen)        -- Swap current screen with next screen
-  
+
   , ("M-S-<Right>", nextWS)        -- Swap the focused window with the next window
   , ("M-S-<Left>", prevWS)         -- Swap the focused window with the prev window
   , ("M-S-<KP_Add>", shiftTo Next nonNSP >> moveTo Next nonNSP)       -- Shifts focused window to next workspace
@@ -622,12 +622,8 @@ myManageHook = composeAll . concat
     , [title =? t --> doFloat | t <- myTFloats]
     , [resource =? r --> doFloat | r <- myRFloats]
     , [resource =? i --> doIgnore | i <- myIgnores]
-    , [(className =? x <||> title =? x <||> resource =? x)
-        --> doShiftAndGo tagDev
-        | x <- myDevShifts]
-    , [(className =? x <||> title =? x <||> resource =? x)
-        --> doShift tagDevCon
-        | x <- myDevConShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagDev | x <- myDevShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagDevCon | x <- myDevConShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagGit
         | x <- myGitShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagTeams
@@ -649,38 +645,38 @@ myManageHook = composeAll . concat
     doShiftAndGo = doF . liftM2 (.) W.greedyView W.shift
 
     myCFloats =
-      [ 
-        "Arandr", 
-        "Arandr", 
-        "Arcolinux-tweak-tool.py", 
-        "Arcolinux-welcome-app.py", 
-        "copyq", 
-        "feh", 
-        "Galculator", 
-        "imagewriter", 
+      [
+        "Arandr",
+        "Arandr",
+        "Arcolinux-tweak-tool.py",
+        "Arcolinux-welcome-app.py",
+        "copyq",
+        "feh",
+        "Galculator",
+        "imagewriter",
         "JetBrains Toolbox",
-        "Libfm-pref-apps", 
-        "Lxappearance", 
-        "mpv", 
+        "Libfm-pref-apps",
+        "Lxappearance",
+        "mpv",
         "Nemo-terminal-prefs",
-        "org.remmina.Remmina", 
-        "Pavucontrol", 
-        "qt5ct", 
-        "smb4k", 
-        "Viewnior", 
-        "VirtualBox Manager", 
-        "Xfce4-appfinder", 
-        "Xfce4-taskmanager", 
+        "org.remmina.Remmina",
+        "Pavucontrol",
+        "qt5ct",
+        "smb4k",
+        "Viewnior",
+        "VirtualBox Manager",
+        "Xfce4-appfinder",
+        "Xfce4-taskmanager",
         "Xfce4-terminal"
         ]
 
-    myTFloats = [ 
-      "bmenu", 
+    myTFloats = [
+      "bmenu",
       "Downloads",
-      "JetBrains Toolbox", 
-      "Microsoft Teams-Benachrichtigung", 
-      "Save As...", 
-      "wetter", 
+      "JetBrains Toolbox",
+      "Microsoft Teams-Benachrichtigung",
+      "Save As...",
+      "wetter",
       "xmonad errors"
       ]
 
@@ -822,7 +818,7 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts float
       -- ||| floats
 
 -----------------------------------------------------------------------------
--- LOGHOOK                                                                   
+-- LOGHOOK
 -----------------------------------------------------------------------------
 myLogHook :: D.Client -> PP
 myLogHook dbus =

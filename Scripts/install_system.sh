@@ -44,7 +44,7 @@ yay -S --noconfirm --needed \
   gparted partitionmanager grub-customizer hardinfo \
   spectacle krita pinta blender gimp gimp-help-de aspell imagemagick pstoedit \
   inkscape python-lxml python-numpy transfig \
-  virtualbox virt-manager qemu qemu-arch-extra libvirt \
+  virt-manager qemu qemu-arch-extra libvirt \
   teams x2goserver x2goclient \
   remmina remmina-plugin-open remmina-plugin-rdesktop remmina-plugin-url remmina-plugin-folder remmina-plugin-open
 
@@ -77,7 +77,7 @@ yay -S --noconfirm --needed libreoffice-fresh
 
 # Manjaro
 if $IS_MANJARO == true; then
-  yay -S --noconfirm --needed lightdm-gtk-greeter-settings manjaro-settings-samba manjaro-pulse
+  yay -S --noconfirm --needed lightdm-gtk-greeter-settings manjaro-settings-samba manjaro-pulse virtualbox
   # gimicks
   yay -S --noconfirm --needed cmatrix hollywood cowsay
 fi
@@ -85,6 +85,12 @@ fi
 # ArcoLinux
 if $IS_ARCO == true; then
   yay -S --noconfirm --needed arcolinux-lightdm-gtk-greeter-settings
+
+  # virtualbox for lts-kernel
+  yay -S --noconfirm --needed virtualbox
+  yay -S --needed virtualbox-host-dkms
+  yay -S --noconfirm --needed linux-lts-headers
+  sudo grub-mkconfig -o /boot/grub/grub.cfg
 fi
 
 sudo systemctl enable libvirtd.service
