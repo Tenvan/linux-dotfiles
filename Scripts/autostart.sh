@@ -12,7 +12,7 @@ xrdb -merge ~/.Xresources.personal
 
 (
   sleep 2
-  sh $HOME/.config/polybar/launch.sh
+  # sh $HOME/.config/polybar/launch.sh
 ) &
 
 #change your keyboard if you need it

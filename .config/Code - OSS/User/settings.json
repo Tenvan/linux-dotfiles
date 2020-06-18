@@ -7,7 +7,32 @@
   "window.zoomLevel": 0,
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "languageServerHaskell.hieVariant": "haskell-language-server",
   "todo-tree.tree.showScanModeButton": false,
-  "files.autoSave": "onFocusChange"
+  "files.autoSave": "onFocusChange",
+  "cSpell.language": "en,en-GB,en-US,de,de-DE",
+  "cSpell.userWords": [
+    "Derek",
+    "Distro",
+    "Ewmh",
+    "Monoid",
+    "Mononoki",
+    "NBFULL",
+    "alacritty",
+    "pcmanfm",
+    "thunar",
+    "xcomposite",
+    "xmobar",
+    "xmonad"
+  ],
+  "languageTool.language": "de",
+  "cSpell.allowCompoundWords": true,
+  "cSpell.enableFiletypes": ["!haskell"],
+  "languageServerHaskell.hieVariant": "ghcide",
+  "python.languageServer": "Microsoft",
+  "[lua]": {
+    "editor.defaultFormatter": "trixnz.vscode-lua"
+  },
+  "vscode-metalua-formatter.luaPath": "/usr/bin/lua5.1",
+  "lua.format.useTabs": null,
+  "lua.targetVersion": "5.3"
 }

@@ -28,24 +28,10 @@ errorCheck() {
 # installation of important editors #
 #####################################
 
-# vim/neovim
-yay -S --noconfirm --needed neovim vim-plugins python-pip
-errorCheck "vim/neovom installation"
-
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-pip install --user neovim
-errorCheck "vim/neovom pip"
-
 # vs code
-yay -S --noconfirm --needed code bash-completion
+yay -S --noconfirm --needed code bash-completion lua-format
 errorCheck "vs code installation"
 
 # micro
 yay -S --noconfirm --needed micro
 errorCheck "micro installation"
-
-# atom
-yay -S --noconfirm --needed atom
-errorCheck "atom installation"

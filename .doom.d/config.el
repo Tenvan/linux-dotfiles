@@ -42,34 +42,6 @@
 (emms-standard)
 (emms-default-players)
 
-;; Setting up mu4e which is an email client that works within emacs.
-;; You must install mu4e and mbsync through your Linux distribution's
-;; package manager.
-(require 'mu4e)
-(setq mu4e-get-mail-command "mbsync -c ~/.emacs.d/mu4e/.mbsyncrc -a"
-      mu4e-update-interval  300)
-      
-;; Fields that are auto-filled in email such as the full name of the
-;; sender, the salutation and signature.
-(setq
-   user-mail-address "derek@distrotube.com"
-   user-full-name  "Derek Taylor"
-   mu4e-compose-signature
-    (concat
-      "Derek Taylor\n"
-      "http://www.youtube.com/DistroTube\n"))
-
 ;; Setting up smtp for sending mail. Make sure the gnutls command 
 ;; line utils are installed. Package 'gnutls-bin' in Debian/Ubuntu, 
 ;; and 'gnutls' in Arch.
-(require 'smtpmail)
-(setq message-send-mail-function 'smtpmail-send-it
-   starttls-use-gnutls t
-   smtpmail-starttls-credentials '(("smtp.1and1.com" 587 nil nil))
-   smtpmail-auth-credentials
-     '(("smtp.1and1.com" 587 "derek@distrotube.com" nil))
-   smtpmail-default-smtp-server "smtp.1and1.com"
-   smtpmail-smtp-server "smtp.1and1.com"
-   smtpmail-smtp-service 587)
-;; don't keep message buffers around
-(setq message-kill-buffer-on-exit t)

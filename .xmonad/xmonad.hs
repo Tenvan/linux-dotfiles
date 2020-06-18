@@ -95,6 +95,7 @@ import qualified Codec.Binary.UTF8.String as UTF8
 import qualified DBus as D
 import qualified DBus.Client as D
 
+
 ------------------------------------------------------------------------
 -- VARIABLES
 ------------------------------------------------------------------------
@@ -209,62 +210,6 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
   where
     conf = def { gs_font = myFont, gs_cellheight = 40, gs_cellwidth = 240 }
 
-myPowerGrid =
-  [ ("Abmelden", "sh ./Scripts/session_logout.sh")
-  , ("Light Theme", "sh ./Scripts/lighttheme.sh")
-  , ("Sperren", "sh ./Scripts/session_lock.sh")
-  , ("Bildschirm sperren", "sh ./Scripts/session_lock_screen.sh")
-  , ("Benutzerwechsel", "sh ./Scripts/session_switch_user.sh")
-  , ("Bereitschaft", "sh ./Scripts/session_suspend.sh")
-  , ("Hibernate", "sh ./Scripts/session_hibernate.sh")
-  , ("Neustart", "sh ./Scripts/session_reboot.sh")
-  , ("Runterfahren", "sh ./Scripts/session_shutdown.sh")]
-
-myApplicationGrid =
-  [ ("JetBrains Toolsbox", "jetbrains-toolbox")
-  , (gitChar ++ "SmartGit", "/opt/smartgit/bin/smartgit.sh")
-  , ("Krusader", "krusader")
-  , ("Dateien", myFileManager)
-  , ( "xmonad Errors", myTerminal ++ " -t 'xmonad errors' -d 140 44 -e multitail -i ./.xmonad/xmonad.errors")
-  , ( "xsession Errors", myTerminal ++ " -t 'xsession errors' -d 140 44 -e multitail -i ./.xsession-errors")
-  , ("\x00e745 Browser", myBrowser)
-  , ("Teams", "teams")
-  , ( "Emoji Test", myTerminal ++ " --hold -e curl https://unicode.org/Public/emoji/5.0/emoji-test.txt")
-  , ( "UTF8 Test", myTerminal ++ " --hold -e curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html")
-  , ( "Wetter Brakel", myTerminal ++ " --hold -d 140 44 -t wetter -e curl wttr.in/33034?lang=de")
-  , ( "Wetter Höxter", myTerminal ++ " --hold -d 140 44 -t wetter -e curl wttr.in/37671?lang=de")]
-
-gitChar = "\x00e725 "
-
-yarnChar = "\x00e71a "
-
-angularChar = "\x00e753 "
-
-tsChar = "\x00fbe4 "
-
-serverChar = "\x00f1c0 "
-
-watchChar = "\x00e00a "
-
-shellChar = "\x00e795 "
-
-myDevelopGrid =
-  [ (shellChar ++ "Shell", shellCmd ++ " --hold")
-  , ("Dateien", myFileManager ++ " " ++ workDir)
-  , (yarnChar ++ "Yarn", shellCmd ++ " --hold -e yarn")
-  , ( yarnChar ++ "Yarn install", shellCmd ++ " --hold -e yarn install --ignore-scripts")
-  , ( yarnChar ++ "Check Client Updates", shellCmd ++ " --hold -e yarn outdated")
-  , (yarnChar ++ "Client update", shellCmd ++ " --hold -e yarn upgrade")
-  , (yarnChar ++ "Generate", shellCmd ++ " --hold -e yarn generate")
-  , ( serverChar ++ "Check Server Updates", shellCmd ++ " --hold -e yarn --cwd src/server4 outdated")
-  , (serverChar ++ "Start Server", shellCmd ++ " --hold -e yarn server:dev")
-  , ( serverChar ++ "Server update", shellCmd ++ " --hold -e yarn --cwd src/server4 upgrade")
-  , ( watchChar ++ "Pug watch", shellCmd ++ "/src/client --hold -e yarn pug:watch")
-  , ( angularChar ++ "Angular Update", shellCmd ++ " --hold -e yarn run update:all")
-  , (angularChar ++ "Start", shellCmd ++ "/src/client --hold -e yarn start")
-  , ( angularChar ++ "Start hmr", shellCmd ++ "/src/client --hold -e yarn start:client:hmr --port 4201")
-  , ( angularChar ++ "Start AOT", shellCmd ++ "/src/client --hold -e yarn start:client:dev --aot --port 4202")]
-
 ------------------------------------------------------------------------
 ---MOUSE BINDINGS
 ------------------------------------------------------------------------
@@ -287,29 +232,21 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 myKeys =
   -- Xmonad
   [
-  ("M-e", spawn $ myTextEditor )
-  , ("M-c", spawn $ "conky-toggle" )
-  , ("M-m", spawn $ "pragha" )
+  ("M-c", spawn $ "conky-toggle" )
   , ("M-r", spawn $ "rofi-theme-selector" )
   , ("M-t", spawn $ myTerminal )
+  , ("M-v", spawn $ "pavucontrol" )
   , ("M-y", spawn $ "polybar-msg cmd toggle" )
   , ("M-x", spawn $ "arcolinux-logout" )
   , ("M-<Escape>", spawn $ "xkill" )
   , ("M-<Return>", spawn $ myTerminal)
-  , ("M-F1", spawn $ "vivaldi-stable" )
-  , ("M-F2", spawn $ "gmrun" )
-  , ("M-F3", spawn $ "xfce4-appfinder" )
-  , ("M-F4", spawn $ "gimp" )
-  , ("M-F5", spawn $ "meld" )
-  , ("M-F6", spawn $ "vlc --video-on-top" )
+  , ("M-F1", spawn $ myBrowser )
   , ("M-F7", spawn $ "virtualbox" )
   , ("M-F8", spawn $ myFileManager )
 
   -- SUPER + SHIFT KEYS
   , ("M-S-<Return>", spawn $ myFileManager)
-  , ("M-S-s", spawn $ "dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'")
   , ("M-S-r", spawn $ "xmonad --recompile; xmonad --restart")
-  , ("M-S-q", spawnSelected' myPowerGrid)
   , ("M-C-q", io (exitWith ExitSuccess))
 
   -- SUPER + CONTROL KEYS
@@ -409,12 +346,6 @@ myKeys =
   -- Swap the focused window with the previous window.
   , ("M-C-<Up>", windows W.swapUp  )
 
-  -- Shrink the master area.
-  , ("C-S-h", sendMessage Shrink)
-
-  -- Expand the master area.
-  , ("C-S-l", sendMessage Expand)
-
     -- Windows
   , ("M-q", kill1)                                    -- Kill the currently focused client
   , ("M-S-a", killAll)                                -- Kill all the windows on current workspace
@@ -428,10 +359,6 @@ myKeys =
   , ("M-S-f", sendMessage (T.Toggle "floats"))        -- Toggles my 'floats' layout
 
     -- Grid Select
-      -- Applications
-  , ("M-S-t", spawnSelected' myApplicationGrid)
-      -- Develop Processes
-  , ("M-d", spawnSelected' myDevelopGrid)
       -- Goto running
   , ("M-S-g", goToSelected $ mygridConfig myColorizer)
       -- Pull running
@@ -450,6 +377,7 @@ myKeys =
   , ("M-C-<Return>", namedScratchpadAction myScratchPads "terminal")
   , ("M-C-k", namedScratchpadAction myScratchPads "krusader")
   , ("M-C-s", namedScratchpadAction myScratchPads "spotify")
+  , ("M-C-m", namedScratchpadAction myScratchPads "matrix")
 
     -- Windows navigation
   , ("M-<Right>", windows W.focusDown)        -- Swap the focused window with the next window
@@ -482,12 +410,13 @@ myKeys =
   , ("M-w", spawn "bwmenu -- -location 2")
   , ("M-F2", spawn $ "gmrun" )
 
-    --- Dmenu Scripts (Alt+Ctr+Key)
-  , ("M-C-e", spawn "./.dmenu/dmenu-edit-configs.sh")
-  , ("M-C-m", spawn "./.dmenu/dmenu-sysmon.sh")
-
-    --- My Applications (Super+Alt+Key)
-  , ("M-M1-d", spawn $ myBrowser ++ " www.youtube.com/c/DistroTube/")
+    --- Menu Scripts (Super+Alt+Key)
+  , ("M-M1-a", spawn "./Scripts/menu/app-menu.sh")
+  , ("M-M1-d", spawn "./Scripts/menu/develop-menu.sh")
+  , ("M-d", spawn "./Scripts/menu/develop-menu.sh")
+  , ("M-M1-e", spawn "./Scripts/menu/edit-configs.sh")
+  , ("M-M1-m", spawn "./Scripts/menu/system-monitor.sh")
+  , ("M-M1-q", spawn "./Scripts/menu/system-menu.sh")
   ]
   where
     nonNSP = WSIs (return (\ws -> W.tag ws /= "nsp"))
@@ -576,23 +505,14 @@ calcPrompt c ans = inputPrompt c (trim ans)
 -- My workspaces are clickable meaning that the mouse can be used to switch
 -- workspaces. This requires xdotool.
 tagDev = "wsDev"
-
 tagDevCon = "wsDevCon"
-
 tagGit = "wsGit"
-
 tagTeams = "wsTeams"
-
 tagVM = "wsVM"
-
 tagWeb = "wsWeb"
-
 tagMedia = "wsMedia"
-
 tagAdmin = "wsAdmin"
-
 tagStatus = "wsStatus"
-
 tagScratch = "wsScratch"
 
 myWorkspaces :: [String]
@@ -624,22 +544,13 @@ myManageHook = composeAll . concat
     , [resource =? i --> doIgnore | i <- myIgnores]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagDev | x <- myDevShifts]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagDevCon | x <- myDevConShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagGit
-        | x <- myGitShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagTeams
-        | x <- myTeamsShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagVM
-        | x <- myVmShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagWeb
-        | x <- myWebShifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagMedia
-        | x <- myMediaShifts]
-    , [(className =? x <||> title =? x <||> resource =? x)
-        --> doShiftAndGo tagAdmin
-        | x <- myAdminShifts]
-    , [(className =? x <||> title =? x <||> resource =? x)
-        --> doShiftAndGo tagStatus
-        | x <- myStatusShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagGit | x <- myGitShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagTeams | x <- myTeamsShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagVM | x <- myVmShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagWeb | x <- myWebShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShift tagMedia | x <- myMediaShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagAdmin | x <- myAdminShifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo tagStatus | x <- myStatusShifts]
     , [namedScratchpadManageHook myScratchPads]]
   where
     doShiftAndGo = doF . liftM2 (.) W.greedyView W.shift
@@ -678,7 +589,8 @@ myManageHook = composeAll . concat
       "Microsoft Teams-Benachrichtigung",
       "Save As...",
       "wetter",
-      "xmonad errors"
+      "xmonad-errors",
+      "xsession-errors"
       ]
 
     myRFloats = []
@@ -687,19 +599,12 @@ myManageHook = composeAll . concat
 
     -- Shifts
     myDevShifts = ["JetBrains Toolbox"]
-
     myDevConShifts = ["Chromium", "Google-chrome", "OneTimeConsole"]
-
     myGitShifts = ["SmartGit"]
-
     myTeamsShifts = ["Microsoft Teams - Preview"]
-
     myVmShifts = ["Virtualbox", "VirtualBox Manager", "org.remmina.Remmina"]
-
     myWebShifts = ["firefox", "Vivaldi-stable", "Firefox"]
-
     myMediaShifts = ["vlc", "mpv", "Gimp", "feh", "Inkscape"]
-
     myAdminShifts = []
 
     myStatusShifts =
@@ -840,14 +745,13 @@ dbusOutput dbus str = do
         (D.signal
            objectPath
            interfaceName
-           memberName) { D.signalBody = [D.toVariant $ UTF8.decodeString str]
+           memberName) { 
+                          D.signalBody = [D.toVariant $ UTF8.decodeString str]
                        }
   D.emit dbus signal
   where
     objectPath = D.objectPath_ "/org/xmonad/Log"
-
     interfaceName = D.interfaceName_ "org.xmonad.Log"
-
     memberName = D.memberName_ "Update"
 
 myAddSpaces :: Int -> String -> String
@@ -861,12 +765,12 @@ myAddSpaces len str = sstr ++ replicate (len - length sstr) ' '
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                 , NS "krusader" spawnKrus findKrus manageKrus
-                , NS "spotify" spawnSpoty findSpoty manageSpoty]
+                , NS "spotify" spawnSpoty findSpoty manageSpoty
+                , NS "matrix" spawnMatrix findMatrix manageMatrix
+                ]
   where
     spawnTerm = myTerminal ++ " --class scratchpad"
-
     findTerm = resource =? "scratchpad"
-
     manageTerm = customFloating $ W.RationalRect l t w h
       where
         h = 0.8
@@ -875,9 +779,7 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
         l = (1 - w) / 2
 
     spawnKrus = "krusader"
-
     findKrus = resource =? "krusader"
-
     manageKrus = customFloating $ W.RationalRect l t w h
       where
         h = 0.8
@@ -886,15 +788,22 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
         l = (1 - w) / 2
 
     spawnSpoty = "spotify"
-
     findSpoty = className =? "Spotify"
-
     manageSpoty = customFloating $ W.RationalRect l t w h
       where
         h = 0.8
         w = 0.9
         t = 0.03
         l = (1 - w) / 2
+
+    spawnMatrix = myTerminal ++ " --hold -t matrix -e cmatrix -B -C blue"
+    findMatrix = title =? "matrix"
+    manageMatrix = customFloating $ W.RationalRect l t w h
+      where
+        h = 1
+        w = 1
+        t = 0
+        l = 0
 
 mySpotifyHook :: Event -> X All
 mySpotifyHook =
