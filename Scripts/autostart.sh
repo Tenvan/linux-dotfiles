@@ -53,7 +53,7 @@ blueberry-tray &
 run pasystray &
 run copyq &
 run alttab &
-run teams &
+# run teams &
 
 if pgrep -x "picom" >/dev/null; then
   killall picom -s 9

@@ -956,7 +956,7 @@ clientkeys =
       c.ontop = not c.ontop
     end,
     {description = "toggle keep on top", group = "client"}
-  ),
+  )
   -- awful.key(
   --   {modkey},
   --   "n",

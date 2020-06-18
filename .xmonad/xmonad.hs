@@ -181,6 +181,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myStartupHook :: X ()
 myStartupHook = do
   spawn "sh $HOME/Scripts/autostart.sh"
+  spawn "sh $HOME/.xmonad/autostart.sh"
   setWMName "LG3D"
 
 ------------------------------------------------------------------------
