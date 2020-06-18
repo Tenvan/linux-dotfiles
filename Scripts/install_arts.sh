@@ -35,32 +35,19 @@ if $IS_ARCO == true; then
     arcolinux-arc-themes-nico-git \
     beefy-miracle-backgrounds \
     constantine-backgrounds \
-    f32-backgrounds \
-    fedorainfinity-backgrounds \
-    gnome-backgrounds \
     goddard-backgrounds \
     heisenbug-backgrounds \
     instantwallpaper \
     laughlin-backgrounds \
-    leonidas-backgrounds \
     materia-gtk-theme \
     numix-gtk-theme-git \
     oxy-neon \
     ozunity-wallpapers \
-    schroedinger-cat-backgrounds \
     shimmer-wallpapers \
     solar-backgrounds \
-    spherical-cow-backgrounds \
-    system76-wallpapers \
-    trougnouf-backgrounds \
-    ubuntu-backgrounds-focal \
-    ukui-wallpapers \
-    verne-backgrounds \
-    wallpapers-altlinuxclub \
-    xfce4-artwork \
-    yaru-colors-wallpapers-git
+    spherical-cow-backgrounds
 
-  errorCheck "ArcoLinux: wallpaers"
+  errorCheck "ArcoLinux: wallpapers"
 
   # cursor
   yay -S --needed --noconfirm \
@@ -80,12 +67,9 @@ if $IS_ARCO == true; then
 
   # icons
   yay -S --needed --noconfirm \
-    adwaita-icon-theme \
     arc-icon-theme \
     faba-icon-theme \
     hicolor-icon-theme \
-    maia-icon-theme \
-    moka-icon-theme \
     numix-circle-arc-icons-git \
     numix-circle-icon-theme-git \
     paper-icon-theme \
@@ -105,8 +89,6 @@ if $IS_ARCO == true; then
     ttf-fira-code \
     ttf-inconsolata \
     ttf-liberation
-
-  # ttf-bitstream-charter \
 
   errorCheck "ArcoLinux: fonts"
 

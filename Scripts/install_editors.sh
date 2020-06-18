@@ -33,5 +33,5 @@ yay -S --noconfirm --needed code bash-completion lua-format
 errorCheck "vs code installation"
 
 # micro
-yay -S --noconfirm --needed micro
+yay -S --noconfirm --needed micro-bin
 errorCheck "micro installation"

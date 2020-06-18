@@ -31,7 +31,6 @@ errorCheck() {
 #######################################
 
 if $IS_ARCO == true; then
-  yay -S --noconfirm --needed haskell-language-server-git haskell-ide-engine
   errorCheck "ArcoLinux: haskell"
 fi
 

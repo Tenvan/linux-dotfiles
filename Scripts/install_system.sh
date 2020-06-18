@@ -56,7 +56,7 @@ yay -S --noconfirm --needed \
   glances bashtop gtop htop iftop iotop iptraf-ng s-tui \
   gnome-system-monitor gnome-system-log \
   shell-color-scripts powerline-rs find-the-command hstr-git qfc-git \
-  kindd etcher
+  kindd etcher multitail
 
 errorCheck "optional system packages"
 

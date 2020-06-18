@@ -1,23 +1,3 @@
-#!/usr/bin/env bash
-
-# Manjaro
-if $IS_MANJARO == true; then
-  echo Manjaro entdeckt
-fi
-
-# ArcoLinux
-if $IS_ARCO == true; then
-  echo ArcoLinux entdeckt
-fi
-
-errorCheck() {
-
-  retVal=$?
-  if [ $retVal -ne 0 ]; then
-    echo "abort complete installation: " $1
-    exit $retVal
-  fi
-}
 
 #################################
 # install all (needed) packages #
