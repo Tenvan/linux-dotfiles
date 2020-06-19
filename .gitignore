@@ -19,6 +19,7 @@
 # Ausnahmen Script Folder
 !Scripts
 !Scripts/*
+!Scripts/menu/*
 
 # Ausnahmen im .config folder
 !.config

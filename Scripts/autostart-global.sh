@@ -6,9 +6,10 @@ function run() {
   fi
 }
 
-xrdb -merge ~/.Xresources
-xrdb -merge ~/.Xresources.custom
-xrdb -merge ~/.Xresources.personal
+xrdb -merge $HOME/.Xresources
+xrdb -merge $HOME/.Xresources.custom
+xrdb -merge $HOME/.Xresources.monitor
+xrdb -merge $HOME/.Xresources.personal
 
 (
   sleep 2
@@ -53,11 +54,4 @@ blueberry-tray &
 run pasystray &
 run copyq &
 run alttab &
-# run teams &
-
-if pgrep -x "picom" >/dev/null; then
-  killall picom -s 9
-  sleep 1
-fi
-
-sh $HOME/Scripts/picom-toggle.sh
+run teams &

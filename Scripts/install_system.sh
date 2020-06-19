@@ -89,7 +89,7 @@ errorCheck "printer setup"
 # sound setup
 yay -S --noconfirm --needed \
   paprefs pulseaudio-ctl pulseaudio-qt pulseaudio-equalizer-ladspa pasystray \
-  sound-theme-elementary yaru-sound-theme sound-theme-smooth sound-theme-lbr-impress
+  sound-theme-elementary sound-theme-smooth sound-theme-lbr-impress
 
 errorCheck "sound setup"
 

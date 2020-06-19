@@ -28,26 +28,22 @@ errorCheck() {
 # install wallpapers, themes, icons and fonts #
 ###############################################
 if $IS_ARCO == true; then
+  # wallpapers
   yay -S --needed --noconfirm \
-    adapta-backgrounds \
-    adapta-gtk-theme \
-    antergos-wallpapers \
-    arcolinux-arc-themes-nico-git \
-    beefy-miracle-backgrounds \
-    constantine-backgrounds \
-    goddard-backgrounds \
-    heisenbug-backgrounds \
-    instantwallpaper \
-    laughlin-backgrounds \
-    materia-gtk-theme \
-    numix-gtk-theme-git \
-    oxy-neon \
-    ozunity-wallpapers \
-    shimmer-wallpapers \
+    arcolinux-wallpapers-git \
+    arcolinux-wallpapers-lxqt-dual-git \
     solar-backgrounds \
-    spherical-cow-backgrounds
+    ukui-wallpapers
 
   errorCheck "ArcoLinux: wallpapers"
+
+  # themes
+  yay -S --needed --noconfirm \
+    arcolinux-arc-themes-nico-git \
+    materia-gtk-theme \
+    numix-gtk-theme-git
+
+  errorCheck "ArcoLinux: themes"
 
   # cursor
   yay -S --needed --noconfirm \
@@ -72,6 +68,7 @@ if $IS_ARCO == true; then
     hicolor-icon-theme \
     numix-circle-arc-icons-git \
     numix-circle-icon-theme-git \
+    oxy-neon \
     paper-icon-theme \
     papirus-icon-theme \
     surfn-mint-y-icons-git \
@@ -101,24 +98,8 @@ if $IS_MANJARO == true; then
     manjaro-artwork \
     manjaro-artwork-extra \
     manjaro-users-artwork-wallpapers \
-    xfce4-artwork \
-    adapta-backgrounds \
-    beefy-miracle-backgrounds \
-    constantine-backgrounds \
-    f32-backgrounds \
-    fedorainfinity-backgrounds \
-    gnome-backgrounds \
-    goddard-backgrounds \
-    heisenbug-backgrounds \
-    laughlin-backgrounds \
-    leonidas-backgrounds \
     manjaro-backgrounds \
-    schroedinger-cat-backgrounds \
     solar-backgrounds \
-    spherical-cow-backgrounds \
-    trougnouf-backgrounds \
-    ubuntu-backgrounds-focal \
-    verne-backgrounds \
     antergos-wallpapers \
     awesome-wallpapers \
     bspwm-wallpapers \
@@ -135,23 +116,11 @@ if $IS_MANJARO == true; then
     manjaro-wallpapers-by-lunix-deepin \
     manjaro-wallpapers-by-lunix-gnome \
     manjaro-wallpapers-by-lunix-i3 \
-    manjaro-wallpapers-by-lunix-kde-plasma \
     manjaro-wallpapers-by-lunix-manjaro \
     manjaro-wallpapers-by-lunix-openbox \
     manjaro-wallpapers-by-lunix-xfce \
-    matcha-kde-wallpapers \
     muser-wallpapers \
-    ozunity-wallpapers \
-    pantheon-wallpapers \
-    shimmer-wallpapers \
-    system76-wallpapers \
-    ukui-wallpapers \
-    wallpapers-2018 \
-    wallpapers-altlinuxclub \
-    wallpapers-infinity-book \
-    wallpapers-juhraya \
-    wallpapers-tuxedo \
-    yaru-colors-wallpapers-git
+    pantheon-wallpapers
 
   errorCheck "Manjaro: wallpapers"
 
