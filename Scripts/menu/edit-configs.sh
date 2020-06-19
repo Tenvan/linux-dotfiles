@@ -16,7 +16,7 @@ get_config_list() {
     --hide-column=3 \
     --hide-header \
     true autostart "$HOME/Scripts/autostart*.sh" \
-    true awesome "$HOME/.config/awesome/*.lua" \
+    true awesome "$HOME/.config/awesome/rc.lua" \
     false picom "$HOME/.config/picom/*.*" \
     false qtile "$HOME/.config/qtile/*.py" \
     false xmonad "$HOME/.xmonad/*.hs" \
