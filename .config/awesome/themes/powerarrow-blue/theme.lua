@@ -373,17 +373,17 @@ local function pl(widget, bgcolor, padding)
     return wibox.container.background(wibox.container.margin(widget, dpi(16), dpi(16)), bgcolor, theme.powerline_rl)
 end
 
-function theme.at_screen_connect(s)
+function theme.first_screen_connect(s)
     -- Quake application
-    -- s.quake = lain.util.quake({ app = awful.util.terminal })
-    s.quake = lain.util.quake({app = "termite", height = 0.50, argname = "--name %s"})
+    -- s.quake = lain.util.quake({app = awful.util.terminal})
+    s.quake = lain.util.quake({app = "termite", height = 0.50, argname = "--title %s"})
 
     -- If wallpaper is a function, call it with the screen
-    local wallpaper = theme.wallpaper
-    if type(wallpaper) == "function" then
-        wallpaper = wallpaper(s)
-    end
-    gears.wallpaper.maximized(wallpaper, s, true)
+    -- local wallpaper = theme.wallpaper
+    -- if type(wallpaper) == "function" then
+    --     wallpaper = wallpaper(s)
+    -- end
+    -- gears.wallpaper.maximized(wallpaper, s, true)
 
     -- All tags open with layout 1
     awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
@@ -433,7 +433,7 @@ function theme.at_screen_connect(s)
 
     -- Create the wibox
     s.mywibox =
-        awful.wibar({position = "top", screen = s, height = dpi(22), bg = theme.bg_normal, fg = theme.fg_normal})
+        awful.wibar({position = "top", screen = s, height = dpi(30), bg = theme.bg_normal, fg = theme.fg_normal})
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -534,6 +534,101 @@ function theme.at_screen_connect(s)
             --]]
             s.mylayoutbox,
             wibox.widget.systray()
+        }
+    }
+end
+
+function theme.other_screen_connect(s)
+    -- Quake application
+    -- s.quake = lain.util.quake({app = awful.util.terminal})
+    s.quake = lain.util.quake({app = "termite", height = 0.50, argname = "--title %s"})
+
+    -- If wallpaper is a function, call it with the screen
+    -- local wallpaper = theme.wallpaper
+    -- if type(wallpaper) == "function" then
+    --     wallpaper = wallpaper(s)
+    -- end
+    -- gears.wallpaper.maximized(wallpaper, s, true)
+
+    -- All tags open with layout 1
+    awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
+
+    -- Create a promptbox for each screen
+    s.mypromptbox = awful.widget.prompt()
+    -- Create an imagebox widget which will contains an icon indicating which layout we're using.
+    -- We need one layoutbox per screen.
+    s.mylayoutbox = awful.widget.layoutbox(s)
+    s.mylayoutbox:buttons(
+        my_table.join(
+            awful.button(
+                {},
+                1,
+                function()
+                    awful.layout.inc(1)
+                end
+            ),
+            awful.button(
+                {},
+                3,
+                function()
+                    awful.layout.inc(-1)
+                end
+            ),
+            awful.button(
+                {},
+                4,
+                function()
+                    awful.layout.inc(1)
+                end
+            ),
+            awful.button(
+                {},
+                5,
+                function()
+                    awful.layout.inc(-1)
+                end
+            )
+        )
+    )
+    -- Create a taglist widget
+    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
+
+    -- Create a tasklist widget
+    --s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
+
+    -- Create the wibox
+    s.mywibox = awful.wibar({position = "top", screen = s, height = 1, bg = theme.bg_normal, fg = theme.fg_normal})
+
+    -- Add widgets to the wibox
+    s.mywibox:setup {
+        layout = wibox.layout.align.horizontal,
+        {
+            -- Left widgets
+            layout = wibox.layout.fixed.horizontal,
+            --spr,
+            s.mytaglist,
+            s.mypromptbox,
+            spr
+        },
+        s.mytasklist, -- Middle widget
+        {
+            -- Right widgets
+            layout = wibox.layout.fixed.horizontal
+            --[[ using shapes
+            pl(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, "#343434"),
+            pl(task, "#343434"),
+            --pl(wibox.widget { mailicon, mail and theme.mail.widget, layout = wibox.layout.align.horizontal }, "#343434"),
+            pl(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, "#777E76"),
+            pl(wibox.widget { cpuicon, cpu.widget, layout = wibox.layout.align.horizontal }, "#4B696D"),
+            pl(wibox.widget { tempicon, temp.widget, layout = wibox.layout.align.horizontal }, "#4B3B51"),
+            --pl(wibox.widget { fsicon, theme.fs and theme.fs.widget, layout = wibox.layout.align.horizontal }, "#CB755B"),
+            pl(wibox.widget { baticon, bat.widget, layout = wibox.layout.align.horizontal }, "#8DAA9A"),
+            pl(wibox.widget { neticon, net.widget, layout = wibox.layout.align.horizontal }, "#C0C0A2"),
+            pl(binclock.widget, "#777E76"),
+            --]]
+            -- using separators
+            --arrow(theme.bg_normal, "#343434"),
+            -- wibox.container.background(wibox.container.margin(wibox.widget { mailicon, mail and mail.widget, layout = wibox.layout.align.horizontal }, dpi(4), dpi(7)), "#343434"),
         }
     }
 end
