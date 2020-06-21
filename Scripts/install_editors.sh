@@ -35,3 +35,7 @@ errorCheck "vs code installation"
 # micro
 yay -S --noconfirm --needed micro-bin
 errorCheck "micro installation"
+
+# emacs
+yay -S --noconfirm --needed emacs
+

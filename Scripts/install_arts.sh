@@ -167,7 +167,7 @@ if $IS_MANJARO == true; then
 
 fi
 
-if [-f ~/.local/share/wallpapers/wallpapers-dt ]; then
+if [ -f ~/.local/share/wallpapers/wallpapers-dt ]; then
   cd ~/.local/share/wallpapers/wallpapers-dt
   git pull
   errorCheck "pull dt wallpapers"

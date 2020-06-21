@@ -17,6 +17,7 @@ local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, 
 -- Standard awesome library
 local gears = require("gears") -- Utilities such as color parsing and objects
 local awful = require("awful") -- Everything related to window managment
+local gdebug = require("gears.debug")
 
 require("awful.autofocus")
 
@@ -379,7 +380,8 @@ screen.connect_signal(
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(
   function(s)
-    if (s.index == 1) then
+    gdebug.print_warning("Screen: ", s.index)
+    if (s.index == 2) then
       beautiful.first_screen_connect(s)
       s.systray = wibox.widget.systray()
       s.systray.visible = true

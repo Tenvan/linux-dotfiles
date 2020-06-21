@@ -28,6 +28,17 @@ errorCheck() {
 # Installation Base Development Tools #
 #######################################
 
+yay -S --noconfirm --needed \
+  git bazel \
+  nodejs nodejs-emojione npm yarn \
+  dotnet-sdk \
+  mono mono-msbuild \
+  jdk8-openjdk openjdk8-src jdk-openjdk \
+  firefox-developer-edition-i18n-de chromium opera \
+  code bash-completion docker docker-compose
+
+errorCheck "development tools"
+
 # ArcoLinux
 if $IS_ARCO == true; then
   # arco only packages
