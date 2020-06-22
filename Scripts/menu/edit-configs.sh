@@ -16,7 +16,7 @@ get_config_list() {
     --hide-column=3 \
     --hide-header \
     true autostart "$HOME/Scripts/autostart*.sh" \
-    true awesome "$HOME/.config/awesome/rc.lua" \
+    true awesome "$HOME/.config/awesome/rc.lua $HOME/.config/awesome/mytheme.lua" \
     false picom "$HOME/.config/picom/*.*" \
     false qtile "$HOME/.config/qtile/*.py" \
     false xmonad "$HOME/.xmonad/*.hs" \
@@ -38,5 +38,5 @@ choice=$(get_config_list)
 if [ -z "$choice" ]; then
   echo "abort choice"
 else
-  code --folder-uri ~ --file-uri $choice &
+  emacs $choice &
 fi

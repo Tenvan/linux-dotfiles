@@ -39,3 +39,7 @@ errorCheck "micro installation"
 # emacs
 yay -S --noconfirm --needed emacs
 
+if ! [ -f ~/.emacs.de ]; then 
+	echo emacs nicht gefunden, spacemacs wird installiert;
+	git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+fi
