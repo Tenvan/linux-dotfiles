@@ -55,3 +55,4 @@ run pasystray &
 run copyq &
 run alttab &
 run teams &
+run ungit &

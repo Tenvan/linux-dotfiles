@@ -37,6 +37,6 @@ choice=$(select_application)
 if [ -z "$choice" ]; then
   echo "abort choice"
 else
-  echo exceute: $choice
-  $choice &
+    echo exceute: $choice  >>/dev/stderr
+    $choice &
 fi

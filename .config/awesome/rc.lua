@@ -129,7 +129,7 @@ local escapekey = "Escape"
 local browser1 = "firefox"
 local filemanager = "thunar"
 local mediaplayer = "spotify"
-local terminal = "alacritty"
+local terminal = "termite"
 local virtualmachine = "virtualbox"
 
 -- key groups
@@ -148,16 +148,7 @@ local kgTag = "tag"
 awful.util.terminal = terminal
 awful.util.tagnames = {
   -- "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒", "➓"
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  ""
+  "", "", "", "", "", "", "", "", "", ""
 }
 -- awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
 -- awful.util.tagnames = { "⌘", "♐", "⌥", "ℵ" }

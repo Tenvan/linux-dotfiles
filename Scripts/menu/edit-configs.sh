@@ -15,8 +15,9 @@ get_config_list() {
     --print-column=3 \
     --hide-column=3 \
     --hide-header \
-    true autostart "$HOME/Scripts/autostart*.sh" \
-    true awesome "$HOME/.config/awesome/rc.lua $HOME/.config/awesome/mytheme.lua" \
+    true spacemacs "$HOME/.spacemacs" \
+    false autostart "$HOME/Scripts/autostart*.sh" \
+    false awesome "$HOME/.config/awesome/rc.lua $HOME/.config/awesome/mytheme.lua" \
     false picom "$HOME/.config/picom/*.*" \
     false qtile "$HOME/.config/qtile/*.py" \
     false xmonad "$HOME/.xmonad/*.hs" \
@@ -38,5 +39,6 @@ choice=$(get_config_list)
 if [ -z "$choice" ]; then
   echo "abort choice"
 else
-  emacs $choice &
+    echo execute: $choice >>/dev/stderr
+    emacs $choice &
 fi

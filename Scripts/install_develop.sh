@@ -19,7 +19,7 @@ fi
 errorCheck() {
   retVal=$?
   if [ $retVal -ne 0 ]; then
-    echo "abort installation script 'install_system': " $1
+    echo "abort installation script 'install_develop': " $1
     exit $retVal
   fi
 }
@@ -42,8 +42,7 @@ errorCheck "development tools"
 # ArcoLinux
 if $IS_ARCO == true; then
   # arco only packages
-  yay -S --noconfirm --needed \
-    mingw-w64-crt-bin mingw-w64-binutils-bin mingw-w64-winpthreads-bin mingw-w64-headers-bin mingw-w64-gcc-bin mingw-w64-zlib nsis
+  yay -S --noconfirm --needed nsis2
 
   errorCheck "ArcoLinux: nsis"
 fi

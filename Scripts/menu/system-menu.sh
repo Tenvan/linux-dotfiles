@@ -30,5 +30,6 @@ choice=$(select_system_action)
 if [ -z "$choice" ]; then
   echo "abort choice"
 else
-  $choice &
+    echo execute: $choice >>/dev/stderr
+    $choice &
 fi

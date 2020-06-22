@@ -6,6 +6,9 @@
 sh ~/Scripts/install_system.sh
 errorCheck "install_system"
 
+sh ~/Scripts/install_develop.sh
+errorCheck "install_develop"
+
 sh ~/Scripts/install_wm.sh
 errorCheck "install_wm"
 
@@ -18,5 +21,3 @@ errorCheck "install_editors"
 sh ~/Scripts/install_arts.sh
 errorCheck "install_arts"
 
-sh ~/Scripts/install-vs-extensions.sh
-errorCheck "install-vs-extensions"

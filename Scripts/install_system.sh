@@ -71,7 +71,7 @@ yay -S --noconfirm --needed \
   inkscape python-lxml python-numpy transfig \
   virt-manager qemu qemu-arch-extra libvirt \
   teams x2goserver x2goclient \
-  remmina remmina-plugin-open remmina-plugin-rdesktop remmina-plugin-url remmina-plugin-folder remmina-plugin-open
+  remmina remmina-plugin-open remmina-plugin-rdesktop remmina-plugin-url remmina-plugin-folder remmina-plugin-open freerdp
 
 errorCheck "optional application packages"
 
