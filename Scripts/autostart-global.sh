@@ -54,4 +54,4 @@ blueberry-tray &
 run pasystray &
 run copyq &
 run alttab &
-run teams &
+# run teams &
