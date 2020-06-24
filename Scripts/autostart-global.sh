@@ -39,7 +39,7 @@ killall conky
 # (conky -c $HOME/.xmonad/scripts/system-overview) &
 
 #starting utility applications at boot time
-run emacs --daemon &
+# run emacs --daemon &
 
 run nm-applet &
 run pamac-tray &
@@ -55,4 +55,3 @@ run pasystray &
 run copyq &
 run alttab &
 run teams &
-run ungit &

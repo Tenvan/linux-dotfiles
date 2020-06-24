@@ -46,7 +46,6 @@ values."
      html
      ibuffer
      imenu-list
-     javascript
      lua
      markdown
      nginx
