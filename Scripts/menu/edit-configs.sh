@@ -16,6 +16,7 @@ get_config_list() {
     --hide-column=3 \
     --hide-header \
     true spacemacs "$HOME/.spacemacs" \
+    true doom "$HOME/.doom.d/*.*" \
     false autostart "$HOME/Scripts/autostart*.sh" \
     false awesome "$HOME/.config/awesome/rc.lua $HOME/.config/awesome/mytheme.lua" \
     false picom "$HOME/.config/picom/*.*" \

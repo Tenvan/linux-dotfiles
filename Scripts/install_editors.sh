@@ -36,10 +36,12 @@ errorCheck "vs code installation"
 yay -S --noconfirm --needed micro-bin
 errorCheck "micro installation"
 
-# emacs
+# spacemacs
 yay -S --noconfirm --needed emacs
 
 if ! [ -f ~/.emacs.de ]; then 
 	echo emacs nicht gefunden, spacemacs wird installiert;
 	git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 fi
+
+yarn global add tern js-beautify eslint

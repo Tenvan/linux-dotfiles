@@ -31,7 +31,14 @@ errorCheck() {
 #######################################
 
 if $IS_ARCO == true; then
-  errorCheck "ArcoLinux: haskell"
+    yay -S --noconfirm --needed \
+        instantmenu instantconf instantassist instantwm instantshell instantsettings \
+        instantlock instantwallpaper instantthemes instanttools instantdotfiles instantwelcome instantfonts \
+        instantwidgets instantutils
+
+##    inantcursors instantos instantdepend rangerplugins sideload irox islide grub-instantos xdragon pa-applet paperbash inantcursor
+
+    errorCheck "ArcoLinux: InstantOS"
 fi
 
 if $IS_MANJARO == true; then
