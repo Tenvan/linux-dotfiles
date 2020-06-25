@@ -407,13 +407,24 @@ globalkeys =
     my_table.join(
     -- System Functions
     awful.key(
+        {controlkey, modkey},
+        "x",
+        function()
+            awful.spawn.spawn(string.format("%s -t XProp --hold -e %s", terminal, "xprop"))
+        end,
+        {description = "start xprop", group = kgSystem}
+    ), 
+    
+    awful.key(
         {modkey},
         "t",
         function()
             awful.spawn.with_shell("sh $HOME/Scripts/picom-toggle-awesome.sh")
         end,
         {description = "toggle picom", group = kgSystem}
-    ), -- Function keys
+    ), 
+    
+    -- Function keys
     awful.key(
         {modkey},
         "F12",
@@ -421,7 +432,9 @@ globalkeys =
             awful.util.spawn("xfce4-terminal --drop-down")
         end,
         {description = "dropdown terminal", group = kgApplication}
-    ), -- super + ... function keys
+    ), 
+    
+    -- super + ... function keys
     awful.key(
         {modkey},
         "F1",
@@ -1081,8 +1094,8 @@ awful.rules.rules = {
     {
         rule = {},
         properties = {
-            border_width = 5, -- beautiful.border_width,
-            border_color = "#00FF00", -- beautiful.border_normal,
+            border_width = beautiful.border_width,
+            border_color = beautiful.border_normal,
             focus = awful.client.focus.filter,
             raise = true,
             keys = clientkeys,
@@ -1220,7 +1233,9 @@ awful.rules.rules = {
                 "Font-manager",
                 "Kruler",
                 "MessageWin", -- kalarm.
+                "Nm-connection-editor",
                 "arcolinux-logout",
+                "Pavucontrol",
                 "Peek",
                 "Skype",
                 "System-config-printer.py",
@@ -1233,7 +1248,8 @@ awful.rules.rules = {
                 "Xfce4-terminal"
             },
             name = {
-                "Event Tester" -- xev.
+                "Event Tester", -- xev.
+                "XProp"
             },
             role = {
                 "AlarmWindow", -- Thunderbird's calendar.
