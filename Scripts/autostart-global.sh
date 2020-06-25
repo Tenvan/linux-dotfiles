@@ -29,7 +29,7 @@ xsetroot -cursor_name left_ptr &
 # Settings wallpaper #
 ######################
 
-run nitrogen --restore &
+nitrogen --restore
 # run variety &
 # Some ways to set your wallpaper besides variety or nitrogen
 # feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
@@ -46,7 +46,7 @@ run pamac-tray &
 run xfce4-power-manager &
 # run volumeicon &
 numlockx on &
-blueberry-tray &
+# blueberry-tray &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
 

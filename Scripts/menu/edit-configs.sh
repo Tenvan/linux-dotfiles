@@ -31,6 +31,7 @@ get_config_list() {
     false termite "$HOME/.config/termite/config" \
     false xresources "$HOME/.Xresources*" \
     false xinitrc "$HOME/.xinitrc" \
+    false tint2 "$HOME/.config/tint2/*" \
     false spacemacs "$HOME/.spacemacs" \
     false doom "$HOME/.doom.d/*.*"
 }
@@ -41,6 +42,7 @@ if [ -z "$choice" ]; then
   echo "abort choice"
 else
   echo execute: $choice >>/dev/stderr
-  #     emacs $choice &
-  code --file-uri $choice &
+  # emacs $choice &
+  # code --file-uri $choice &
+  geany $choice &
 fi

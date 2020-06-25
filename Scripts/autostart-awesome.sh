@@ -12,4 +12,4 @@ function run() {
   sh $HOME/Scripts/picom-toggle-awesome.sh
 ) &
 
-# sh $HOME/.config/polybar/launch-awesome.sh &
+sh $HOME/.config/polybar/launch-awesome.sh &
