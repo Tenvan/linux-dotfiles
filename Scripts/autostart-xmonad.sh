@@ -6,10 +6,6 @@ function run() {
   fi
 }
 
-(
-  killall picom -s 9
-  sleep 1
-  sh $HOME/Scripts/picom-toggle-xmonad.sh &
-) &
-
-sh $HOME/.config/polybar/launch-xmonad.sh &
+while pgrep -u $UID -x "picom" >/dev/null; do sleep 1; done
+sh $HOME/Scripts/picom-toggle-xmonad.sh
+sh $HOME/.config/polybar/launch-xmonad.sh

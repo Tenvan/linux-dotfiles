@@ -6,10 +6,8 @@ function run() {
   fi
 }
 
-(
-  killall picom -s 9
-  sleep 1
-  sh $HOME/Scripts/picom-toggle-awesome.sh
-) &
+killall -q picom
 
-sh $HOME/.config/polybar/launch-awesome.sh &
+while pgrep -u $UID -x "picom" >/dev/null; do sleep 1; done
+sh $HOME/Scripts/picom-toggle-awesome.sh
+sh $HOME/.config/polybar/launch-awesome.sh
