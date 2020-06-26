@@ -130,7 +130,7 @@ local browser1 = "firefox"
 local browser2 = "firefox"
 local browser3 = "firefox"
 local editor = os.getenv("EDITOR") or "nano"
-local editorgui = "code"
+local editorgui = "Geany"
 local filemanager = "thunar"
 local mailclient = "evolution"
 local mediaplayer = "spotify"
@@ -183,16 +183,16 @@ awful.layout.layouts = {
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
-    awful.layout.suit.corner.ne,
-    awful.layout.suit.corner.sw,
-    awful.layout.suit.corner.se
-    -- lain.layout.cascade,
-    -- lain.layout.cascade.tile,
-    -- lain.layout.centerwork,
-    -- lain.layout.centerwork.horizontal,
-    -- lain.layout.termfair,
-    -- lain.layout.termfair.center,
+    --~ awful.layout.suit.corner.nw,
+    --~ awful.layout.suit.corner.ne,
+    --~ awful.layout.suit.corner.sw,
+    --~ awful.layout.suit.corner.se
+    --~ lain.layout.cascade,
+    --~ lain.layout.cascade.tile,
+    --~ lain.layout.centerwork,
+    --~ lain.layout.centerwork.horizontal,
+    --~ lain.layout.termfair,
+    --~ lain.layout.termfair.center,
 }
 
 awful.util.taglist_buttons =
@@ -413,8 +413,8 @@ globalkeys =
             awful.spawn.spawn(string.format("%s -t XProp --hold -e %s", terminal, "xprop"))
         end,
         {description = "start xprop", group = kgSystem}
-    ), 
-    
+    ),
+
     awful.key(
         {modkey},
         "t",
@@ -422,8 +422,8 @@ globalkeys =
             awful.spawn.with_shell("sh $HOME/Scripts/picom-toggle-awesome.sh")
         end,
         {description = "toggle picom", group = kgSystem}
-    ), 
-    
+    ),
+
     -- Function keys
     awful.key(
         {modkey},
@@ -432,8 +432,8 @@ globalkeys =
             awful.util.spawn("xfce4-terminal --drop-down")
         end,
         {description = "dropdown terminal", group = kgApplication}
-    ), 
-    
+    ),
+
     -- super + ... function keys
     awful.key(
         {modkey},
@@ -1117,12 +1117,14 @@ awful.rules.rules = {
         rule_any = {type = {"dialog"}},
         properties = {maximized = false, floating = true}
     },
+
     -- Set applications to always map on the tag 2 on screen 1.
     -- { rule = { class = "Subl3" },
     -- properties = { screen = 1, tag = awful.util.tagnames[2], switchtotag = true  } },
 
     -- Set applications to always map on the tag 1 on screen 1.
     -- find class or role via xprop command
+
     -- { rule = { class = browser2 },
     -- properties = { screen = 1, tag = awful.util.tagnames[1], switchtotag = true  } },
 
@@ -1142,61 +1144,59 @@ awful.rules.rules = {
     -- { rule = { class = "Subl3" },
     -- properties = { screen = 1, tag = awful.util.tagnames[2],switchtotag = true  } },
 
-    -- { rule = { class = editorgui },
-    -- properties = { screen = 1, tag = awful.util.tagnames[2], switchtotag = true  } },
-
     -- { rule = { class = "Brackets" },
     -- properties = { screen = 1, tag = awful.util.tagnames[2], switchtotag = true  } },
 
     -- { rule = { class = "Code" },
     -- properties = { screen = 1, tag = awful.util.tagnames[2], switchtotag = true  } },
 
-    --    { rule = { class = "Geany" },
+    --  { rule = { class = "Geany" },
     --  properties = { screen = 1, tag = awful.util.tagnames[2], switchtotag = true  } },
 
-    -- Set applications to always map on the tag 3 on screen 1.
-    -- { rule = { class = "Inkscape" },
-    -- properties = { screen = 1, tag = awful.util.tagnames[3], switchtotag = true  } },
+    -- Set applications to always map on the tag 3 (Git)) on screen 1.
+    {
+        rule_any = {
+            class = {
+                "SmartGit"
+            }
+        },
+        properties = { screen = 1, tag = awful.util.tagnames[3] , switchtotag = true  }
+    },
 
     -- Set applications to always map on the tag 4 on screen 1.
     -- { rule = { class = "Gimp" },
     -- properties = { screen = 1, tag = awful.util.tagnames[4], switchtotag = true  } },
 
-    -- Set applications to always map on the tag 5 on screen 1.
-    -- { rule = { class = "Meld" },
-    -- properties = { screen = 1, tag = awful.util.tagnames[5] , switchtotag = true  } },
+    -- Set applications to always map on the tag 5 (Virtual/RDP) on screen 1.
+    {
+        rule_any = {
+            class = {
+                "VirtualBox*"
+            }
+        },
+        properties = { screen = 1, tag = awful.util.tagnames[5] , switchtotag = true  }
+    },
+
+    -- Set applications to always map on the tag 9 (Systemtools) on screen 1.
+    {
+        rule_any = {
+            class = {
+                editorgui
+            }
+        },
+        properties = { screen = 1, tag = awful.util.tagnames[9] , switchtotag = true  }
+    },
+
 
     -- Set applications to be maximized at startup.
     -- find class or role via xprop command
 
-    {rule = {class = editorgui}, properties = {maximized = true}},
     {rule = {class = "Geany"}, properties = {maximized = false, floating = false}},
     {
         rule = {class = "Geany", type = "dialog"},
         properties = {maximized = false, floating = true}
     },
-    -- ~ { rule = {
-    -- ~ class = "Geany",
-    -- ~ name  = "Suchen"
-    -- ~ },
-    -- ~ properties = {  maximized = false, floating = true } },
 
-    -- ~ { rule = {
-    -- ~ class = "Geany",
-    -- ~ name  = "Frage"
-    -- ~ },
-    -- ~ properties = {  maximized = false, floating = true } },
-
-    {
-        rule = {class = "Gimp*", role = "gimp-image-window"},
-        properties = {maximized = true}
-    },
-    {rule = {class = "Gnome-disks"}, properties = {maximized = true}},
-    {rule = {class = "inkscape"}, properties = {maximized = true}},
-    {rule = {class = mediaplayer}, properties = {maximized = true}},
-    {rule = {class = "Vlc"}, properties = {maximized = true}},
-    {rule = {class = "VirtualBox Manager"}, properties = {maximized = true}},
-    {rule = {class = "VirtualBox Machine"}, properties = {maximized = true}},
     {
         rule = {class = "Vivaldi-stable"},
         properties = {maximized = false, floating = false}
@@ -1215,6 +1215,30 @@ awful.rules.rules = {
     --          properties = { callback = function (c) c.maximized = false end } },
 
     {rule = {class = "Xfce4-settings-manager"}, properties = {floating = false}},
+    -- Maximized clients.
+    {
+        rule = {class = "Gimp*", role = "gimp-image-window"},
+        properties = {maximized = true}
+    },
+
+    {
+        rule_any = {
+            instance = {
+            },
+            class = {
+                mediaplayer,
+                "inkscape",
+                "VirtualBox Machine",
+                "Vlc",
+            },
+            name = {
+            },
+            role = {
+            }
+        },
+        properties = {maximized = true}
+    },
+
     -- Floating clients.
     {
         rule_any = {
@@ -1227,6 +1251,7 @@ awful.rules.rules = {
                 "Arcolinux-welcome-app.py",
                 "Blueberry",
                 "Galculator",
+                "Gnome-disks",
                 "Gnome-font-viewer",
                 "Gpick",
                 "Imagewriter",
@@ -1244,6 +1269,7 @@ awful.rules.rules = {
                 "Wpa_gui",
                 "pinentry",
                 "veromix",
+                "VirtualBox Manager",
                 "xtightvncviewer",
                 "Xfce4-terminal"
             },
