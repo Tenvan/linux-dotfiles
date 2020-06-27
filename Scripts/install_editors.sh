@@ -3,8 +3,8 @@
 #####################
 # init distro check #
 #####################
-LINUX_VERSION_NAME=$(lsb_release -sc)
-if [[ ${LINUX_VERSION_NAME} == "Manjaro" ]]; then
+LINUX_VERSION_NAME=$(lsb_release -si)
+if [[ ${LINUX_VERSION_NAME} == "ManjaroLinux" ]]; then
        IS_MANJARO=true
 else
        IS_MANJARO=false
@@ -28,6 +28,10 @@ errorCheck() {
 # installation of important editors #
 #####################################
 
+# geany
+yay -S --noconfirm --needed geany geany-plugins geany-themes
+errorCheck "geany installation"
+
 # vs code
 yay -S --noconfirm --needed code bash-completion lua-format
 errorCheck "vs code installation"
@@ -39,9 +43,9 @@ errorCheck "micro installation"
 # spacemacs
 yay -S --noconfirm --needed emacs
 
-if ! [ -f ~/.emacs.de ]; then 
-	echo emacs nicht gefunden, spacemacs wird installiert;
-	git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+if ! [ -f ~/.emacs.de ]; then
+       echo emacs nicht gefunden, spacemacs wird installiert;
+       git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 fi
 
 yarn global add tern js-beautify eslint

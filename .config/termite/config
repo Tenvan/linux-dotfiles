@@ -10,6 +10,7 @@ dynamic_title = true
 filter_unmatched_urls = true
 font = Noto Color Emoji 12
 font = Mononoki Nerd Font 12
+font = Monospace 12
 geometry = 900x650
 highlight = #2f2f2f
 icon_name = terminal

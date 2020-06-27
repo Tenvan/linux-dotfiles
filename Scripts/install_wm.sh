@@ -3,8 +3,8 @@
 ##################################################
 # Installation Base Development System (OneTime) #
 ##################################################
-LINUX_VERSION_NAME=$(lsb_release -sc)
-if [[ ${LINUX_VERSION_NAME} == "Manjaro" ]]; then
+LINUX_VERSION_NAME=$(lsb_release -si)
+if [[ ${LINUX_VERSION_NAME} == "ManjaroLinux" ]]; then
   IS_MANJARO=true
 else
   IS_MANJARO=false
@@ -31,10 +31,10 @@ errorCheck() {
 #######################################
 
 if $IS_ARCO == true; then
-    yay -S --noconfirm --needed \
-        instantmenu instantconf instantassist instantwm instantshell instantsettings \
-        instantlock instantwallpaper instantthemes instanttools instantdotfiles instantwelcome instantfonts \
-        instantwidgets instantutils
+    #~ yay -S --noconfirm --needed \
+        #~ instantmenu instantconf instantassist instantwm instantshell instantsettings \
+        #~ instantlock instantwallpaper instantthemes instanttools instantdotfiles instantwelcome instantfonts \
+        #~ instantwidgets instantutils
 
 ##    inantcursors instantos instantdepend rangerplugins sideload irox islide grub-instantos xdragon pa-applet paperbash inantcursor
 
@@ -66,7 +66,7 @@ if $IS_MANJARO == true; then
   errorCheck "Manajaro: dwm"
 
   # bspwm
-  yay -S --noconfirm --needed bspwm-manjaro
+  yay -S --needed bspwm-manjaro
   errorCheck "Manajaro: bspwm"
 
   # current used settings

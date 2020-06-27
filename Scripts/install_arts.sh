@@ -3,8 +3,8 @@
 #####################
 # init distro check #
 #####################
-LINUX_VERSION_NAME=$(lsb_release -sc)
-if [[ ${LINUX_VERSION_NAME} == "Manjaro" ]]; then
+LINUX_VERSION_NAME=$(lsb_release -si)
+if [[ ${LINUX_VERSION_NAME} == "ManjaroLinux" ]]; then
   IS_MANJARO=true
 else
   IS_MANJARO=false
@@ -167,12 +167,16 @@ if $IS_MANJARO == true; then
 
 fi
 
-if [ -f ~/.local/share/wallpapers/wallpapers-dt ]; then
-  cd ~/.local/share/wallpapers/wallpapers-dt
+wallpath=$HOME/.local/share/wallpapers/wallpapers-dt
+
+if [ -f $wallpath/README.md ]; then
+  echo DT Wallpaper gefunden. aktualisiere...
+  cd $wallpath
   git pull
   errorCheck "pull dt wallpapers"
   cd ~
 else
-  git clone https://gitlab.com/dwt1/wallpapers.git ~/.local/share/wallpapers/wallpapers-dt
+  echo DT Wallpaper NICHT gefunden. klone...
+  git clone https://gitlab.com/dwt1/wallpapers.git $wallpath
   errorCheck "clone dt wallpapers"
 fi

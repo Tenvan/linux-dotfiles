@@ -3,8 +3,8 @@
 #####################
 # init distro check #
 #####################
-LINUX_VERSION_NAME=$(lsb_release -sc)
-if [[ ${LINUX_VERSION_NAME} == "Manjaro" ]]; then
+LINUX_VERSION_NAME=$(lsb_release -si)
+if [[ ${LINUX_VERSION_NAME} == "ManjaroLinux" ]]; then
   IS_MANJARO=true
 else
   IS_MANJARO=false
