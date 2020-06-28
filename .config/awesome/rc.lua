@@ -365,8 +365,8 @@ screen.connect_signal(
     function(s)
         local only_one = #s.tiled_clients == 1
         for _, c in pairs(s.clients) do
-            -- special Polybar handling
-            if c.class == "Polybar" then
+            -- special Toolbar handling
+            if (c.class == "Polybar") or (c.class == "Plank") then
             elseif only_one and not c.floating or c.maximized then
                 c.border_width = 2
             else
@@ -1106,7 +1106,10 @@ awful.rules.rules = {
         }
     },
     -- Toolbars
-    {rule_any = {class = {"Polybar"}}, properties = {border_width = 0}},
+    {
+        rule_any = { class = { "Polybar", "Plank" }},
+        properties = {border_width = 0}
+    },
     -- Titlebars
     {
         rule_any = {type = {"dialog", "normal"}},

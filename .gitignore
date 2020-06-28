@@ -26,6 +26,8 @@
 !.config/compton*.conf
 !.config/alacritty
 !.config/alacritty/*
+!.config/awesome
+!.config/awesome/**/*
 !.config/copyq
 !.config/copyq/copyq.conf
 !.config/copyq/themes
@@ -51,6 +53,8 @@
 !.config/omf/*
 !.config/picom
 !.config/picom/*
+!.config/plank
+!.config/picom/**/*
 !.config/polybar
 !.config/polybar/**/*
 !.config/rofi

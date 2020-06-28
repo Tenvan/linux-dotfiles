@@ -54,4 +54,5 @@ numlockx on &
 run pasystray &
 run copyq &
 run alttab &
+run plank &
 # run teams &
