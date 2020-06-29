@@ -36,6 +36,11 @@ if $IS_ARCO == true; then
         #~ instantlock instantwallpaper instantthemes instanttools instantdotfiles instantwelcome instantfonts \
         #~ instantwidgets instantutils
 
+    #~ yay -Rsnu --noconfirm \
+        #~ instantmenu instantconf instantassist instantwm instantshell instantsettings \
+        #~ instantlock instantwallpaper instantthemes instanttools instantdotfiles instantwelcome instantfonts \
+        #~ instantwidgets instantutils
+
 ##    inantcursors instantos instantdepend rangerplugins sideload irox islide grub-instantos xdragon pa-applet paperbash inantcursor
 
     errorCheck "ArcoLinux: InstantOS"

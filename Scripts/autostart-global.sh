@@ -6,6 +6,13 @@ function run() {
   fi
 }
 
+function restart() {
+  while pgrep -u $UID -x $1 >/dev/null; do sleep 1; done
+  if ! pgrep $1; then
+    $@ &
+  fi
+}
+
 xrdb -merge $HOME/.Xresources
 xrdb -merge $HOME/.Xresources.custom
 xrdb -merge $HOME/.Xresources.monitor
@@ -35,11 +42,11 @@ nitrogen --restore
 # feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
 
 #start the conky to learn the shortcuts
-killall conky
+# killall conky
 # (conky -c $HOME/.xmonad/scripts/system-overview) &
 
 #starting utility applications at boot time
-# run emacs --daemon &
+run emacs --daemon &
 
 run nm-applet &
 run pamac-tray &
@@ -53,6 +60,7 @@ numlockx on &
 #starting utility applications at boot time
 run pasystray &
 run copyq &
-run alttab &
-run plank &
-# run teams &
+run teams &
+
+restart alttab &
+restart plank &

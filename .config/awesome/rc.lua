@@ -118,7 +118,6 @@ beautiful.init(theme_path)
 -- modkey or mod4 = super key
 local modkey = "Mod4"
 local altkey = "Mod1"
-local modkey1 = "Control"
 local controlkey = "Control"
 local shiftkey = "Shift"
 local returnkey = "Return"
@@ -131,7 +130,7 @@ local browser2 = "firefox"
 local browser3 = "firefox"
 local editor = os.getenv("EDITOR") or "nano"
 local editorgui = "Geany"
-local filemanager = "thunar"
+local filemanager = "pcmanfm"
 local mailclient = "evolution"
 local mediaplayer = "spotify"
 local terminal = "termite"
@@ -779,7 +778,8 @@ globalkeys =
             awful.screen.focused().quake:toggle()
         end,
         {description = "dropdown application", group = kgSystem}
-    ), -- Widgets popups
+    ),
+    -- Widgets popups
     -- awful.key({ altkey, }, "c", function () lain.widget.calendar.show(7) end,
     -- {description = "show calendar", group = "widgets"}),
     -- awful.key({ altkey, }, "h", function () if beautiful.fs then beautiful.fs.show(7) end end,
@@ -968,11 +968,11 @@ clientkeys =
     awful.key({modkey}, "space", awful.client.floating.toggle, {description = "toggle floating", group = kgClient}),
     awful.key(
         {modkey, controlkey},
-        returnkey,
+        "m",
         function(c)
             c:swap(awful.client.getmaster())
         end,
-        {description = "move to master", group = kgClient}
+        {description = "move to master", group = kgMaster}
     ),
     awful.key(
         {modkey, shiftkey},
@@ -1166,9 +1166,7 @@ awful.rules.rules = {
         properties = { screen = 1, tag = awful.util.tagnames[3] , switchtotag = true  }
     },
 
-    -- Set applications to always map on the tag 4 on screen 1.
-    -- { rule = { class = "Gimp" },
-    -- properties = { screen = 1, tag = awful.util.tagnames[4], switchtotag = true  } },
+    -- Set applications to always map on the tag 4 on screen 2.
 
     -- Set applications to always map on the tag 5 (Virtual/RDP) on screen 1.
     {
@@ -1218,6 +1216,7 @@ awful.rules.rules = {
     --          properties = { callback = function (c) c.maximized = false end } },
 
     {rule = {class = "Xfce4-settings-manager"}, properties = {floating = false}},
+
     -- Maximized clients.
     {
         rule = {class = "Gimp*", role = "gimp-image-window"},
@@ -1233,6 +1232,7 @@ awful.rules.rules = {
                 "inkscape",
                 "VirtualBox Machine",
                 "Vlc",
+                "Microsoft Teams - Preview"
             },
             name = {
             },
@@ -1274,7 +1274,8 @@ awful.rules.rules = {
                 "veromix",
                 "VirtualBox Manager",
                 "xtightvncviewer",
-                "Xfce4-terminal"
+                "Xfce4-terminal",
+                "Xfce4-taskmanager"
             },
             name = {
                 "Event Tester", -- xev.
@@ -1289,6 +1290,7 @@ awful.rules.rules = {
         },
         properties = {floating = true}
     },
+
     -- Floating clients but centered in screen
     {
         rule_any = {class = {"Polkit-gnome-authentication-agent-1"}},
@@ -1296,7 +1298,63 @@ awful.rules.rules = {
         callback = function(c)
             awful.placement.centered(c, nil)
         end
-    }
+    },
+
+    -- Special handled applications ()
+
+    -- Teams
+    {
+        -- Teams Hauptfenster
+        rule = {
+            class = "Microsoft Teams - Preview",
+            type = "normal"
+        },
+        properties = {
+            maximized = true,               -- maximieren
+            screen = 2,                     -- auf zweiten Monitor
+            tag = awful.util.tagnames[4],   -- auf tag 4 verschieben
+            switchtotag = false             -- auf aktuellem tag bleiben
+        }
+    },
+    {
+        -- Teams Messagebox
+        rule = {
+            class = "Microsoft Teams - Preview",
+            type = "notification",
+            -- name = "Microsoft Teams-Benachrichtigung"
+        },
+        properties = {
+            maximized = false,              -- nicht maximieren
+            screen = 1,                     -- auf ersten Monitor
+            -- tag = awful.util.tagnames[4],   -- auf tag 4 verschieben
+            switchtotag = true,             -- zur Nachricht springen
+        },
+    },
+
+    -- Develop Consolen auf Screen 2 tag 2 schieben
+    {
+        rule = { name = "OTC:*" },
+        properties = {
+            screen = 2,                     -- auf zweiten Monitor
+            tag = awful.util.tagnames[2],   -- auf tag 2
+            switchtotag = true,             -- zur Ausgabe springen
+        },
+    },
+
+    -- Chromium Debugger Instanz Screen 2 tag 2 schieben
+    {
+        rule = {
+            class = "Chromium",
+            instance = "chromium *",
+        },
+        properties = {
+            screen = 2,                     -- auf zweiten Monitor
+            tag = awful.util.tagnames[2],   -- auf tag 2
+            switchtotag = true,             -- zur Ausgabe springen
+        },
+    },
+
+
 }
 -- }}}
 

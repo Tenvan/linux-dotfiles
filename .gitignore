@@ -53,7 +53,6 @@
 !.config/omf/*
 !.config/picom
 !.config/picom/*
-!.config/plank
 !.config/picom/**/*
 !.config/polybar
 !.config/polybar/**/*

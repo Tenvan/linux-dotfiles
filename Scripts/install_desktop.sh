@@ -31,7 +31,7 @@ errorCheck() {
 
 # system packages
 yay -S --needed \
-  plank rofi zenity xclip xsel xdotool xorg-xfd xcwd-git \
+  latte-dock plank rofi zenity xclip xsel xdotool xorg-xfd xcwd-git \
   polybar broot broom pm-utils \
   polkit-gnome polkit-kde-agent \
   pamac-tray-appindicator checkupdates-aur \
@@ -42,7 +42,7 @@ errorCheck "system packages"
 
 # application packages
 yay -S --noconfirm --needed \
-  bitwarden-bin bitwarden-cli-bin bitwarden-rofi
+  evolution bitwarden-bin bitwarden-cli-bin bitwarden-rofi
 
 errorCheck "application packages"
 
