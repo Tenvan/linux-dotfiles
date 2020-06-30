@@ -32,6 +32,9 @@ select_application() {
     "Client Upgrade" "$shellCmd --hold -t OTC:ClientUpgrade -e yarn upgrade" \
     "Server Upgrade" "$shellCmd --hold -t OTC:ServerUpgrade -e yarn --cwd src/server4 upgrade" \
     "Upgrade Full" "$shellCmd --hold -t OTC:FullUpgrade -e yarn run update:all" \
+    "Doctor" "$shellCmd --hold -t OTC:Doctor -e yarn doctor" \
+    "Doctor Check" "$shellCmd --hold -t OTC:DoctorCheck -e yarn doctor:check" \
+    "Client Check" "$shellCmd --hold -t OTC:ClientCheck -e yarn client:check" \
     "Shell" "$shellCmd --hold -t OTC:Shell" \
     "Dateien" "$myFileManager $workDir"
 }
