@@ -5,32 +5,33 @@
 ---
 
 -- Standard awesome library
-local gears = require("gears")
-local awful = require("awful")
+gears = require("gears")
+awful = require("awful")
 
 gdebug = require("gears.debug")
 
-local xresources = require("beautiful.xresources")
-local dpi = xresources.apply_dpi
+xresources = require("beautiful.xresources")
+dpi = xresources.apply_dpi
 
-local utils = require("utils")
+utils = require("utils")
 
 -- Theme handling library
-local beautiful = require("beautiful")
+beautiful = require("beautiful")
 
 local colors = utils.get_current_theme()
 
 local themes = {
-  "multicolor", -- 1
-  "powerarrow", -- 2
-  "powerarrow-blue", -- 3
-  "blackburn" -- 4
+    "multicolor", -- 1
+    "powerarrow", -- 2
+    "powerarrow-blue", -- 3
+    "blackburn", -- 4
+    "mytheme" -- 5
 }
 
 -- choose your theme here
-local chosen_theme = themes[3]
+chosen_theme = themes[1]
 
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
+theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
 beautiful.init(theme_path)
 
 -- {{{ Variable definitions
@@ -38,24 +39,39 @@ beautiful.init(theme_path)
 
 themename = "gtk" -- theme name
 themetype = "dark"
-terminal = "alacritty" -- default terminal
-editor = "code" -- default editor
-editor_cmd = editor
 
--- extern apps definition
-browser = "firefox"
-clipboard = "copyq"
-composite = "picom"
-filemanager = "krusader"
-filemanager_root = "kdesu krusader"
-guard = "gnome-system-monitor"
-mail = "thunderbird"
-screenlook = "blurlock"
-tasks = "xfce4-taskmanager"
+-- modkey or mod4 = super key
+modkey = "Mod4"
+altkey = "Mod1"
+controlkey = "Control"
+shiftkey = "Shift"
+returnkey = "Return"
+escapekey = "Escape"
 
--- themes
-themepath = gears.filesystem.get_xdg_config_home() .. "awesome/"
-themefile = themepath .. "/theme.lua"
+-- personal variables
+-- change these variables if you want
+browser1 = "firefox"
+browser2 = "firefox"
+browser3 = "firefox"
+editor = os.getenv("EDITOR") or "nano"
+editorgui = "Geany"
+filemanager = "pcmanfm"
+mailclient = "evolution"
+mediaplayer = "spotify"
+terminal = "termite"
+virtualmachine = "virtualbox"
+
+-- key groups
+kgApplication = "application"
+kgAwesome = "awesome"
+kgClient = "client"
+kgLayout = "layout"
+kgMaster = "master"
+kgMenu = "menu"
+kgScreen = "screen"
+kgSound = "sound"
+kgSystem = "system"
+kgTag = "tag"
 
 -- tag definitions
 tag_Develop = " Develop"

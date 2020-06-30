@@ -30,6 +30,12 @@ errorCheck() {
 # Unter ArcoLinux besser TweakTool !! #
 #######################################
 
+# awesome
+yay -S --needed --noconfirm \
+  awesome xorg-server-xephyr luacheck luarocks lua-luajson lua-socket awmtt
+errorCheck "Manajaro: awesome"
+
+
 if $IS_ARCO == true; then
     #~ yay -S --noconfirm --needed \
         #~ instantmenu instantconf instantassist instantwm instantshell instantsettings \
@@ -51,11 +57,6 @@ if $IS_MANJARO == true; then
   yay -S --noconfirm --needed \
     xmonad xmonad-contrib xmonad-log xmonad-utils haskell-dbus stack
   errorCheck "Manajaro: xmonad"
-
-  # awesome
-  yay -S --needed --noconfirm \
-    awesome xorg-server-xephyr luacheck luarocks lua-luajson lua-socket awmtt
-  errorCheck "Manajaro: awesome"
 
   # i3
   yay -S --noconfirm --needed \

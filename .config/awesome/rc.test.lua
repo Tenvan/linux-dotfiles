@@ -9,15 +9,19 @@
 
      lain : https://github.com/lcpz/lain
 
+     Edition : Ralf Stich 2020
+
 --]] -- {{{ Required libraries
+require("definitions")
+
 local awesome, client, mouse, screen, tag = awesome, client, mouse, screen, tag
 local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, table, tostring, tonumber, type
 
 -- https://awesomewm.org/doc/api/documentation/05-awesomerc.md.html
 -- Standard awesome library
-local gears = require("gears") -- Utilities such as color parsing and objects
-local awful = require("awful") -- Everything related to window managment
+
 require("awful.autofocus")
+
 -- Widget and layout library
 local wibox = require("wibox")
 
@@ -36,7 +40,9 @@ local freedesktop = require("freedesktop")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 local hotkeys_popup = require("awful.hotkeys_popup").widget
+
 require("awful.hotkeys_popup.keys")
+
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local dpi = require("beautiful.xresources").apply_dpi
 -- }}}
@@ -101,98 +107,19 @@ awful.spawn.with_shell(
 
 -- {{{ Variable definitions
 
-local themes = {
-    "multicolor", -- 1
-    "powerarrow", -- 2
-    "powerarrow-blue", -- 3
-    "blackburn", -- 4
-    "mytheme" -- 5
-}
-
--- choose your theme here
-local chosen_theme = themes[5]
-
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
-beautiful.init(theme_path)
-
--- modkey or mod4 = super key
-local modkey = "Mod4"
-local altkey = "Mod1"
-local controlkey = "Control"
-local shiftkey = "Shift"
-local returnkey = "Return"
-local escapekey = "Escape"
-
--- personal variables
--- change these variables if you want
-local browser1 = "firefox"
-local browser2 = "firefox"
-local browser3 = "firefox"
-local editor = os.getenv("EDITOR") or "nano"
-local editorgui = "Geany"
-local filemanager = "pcmanfm"
-local mailclient = "evolution"
-local mediaplayer = "spotify"
-local terminal = "termite"
-local virtualmachine = "virtualbox"
-
--- key groups
-local kgApplication = "application"
-local kgAwesome = "awesome"
-local kgClient = "client"
-local kgLayout = "layout"
-local kgMaster = "master"
-local kgMenu = "menu"
-local kgScreen = "screen"
-local kgSound = "sound"
-local kgSystem = "system"
-local kgTag = "tag"
-
 -- awesome variables
 awful.util.terminal = terminal
+
 awful.util.tagnames = {
-    "➊",
-    "➋",
-    "➌",
-    "➍",
-    "➎",
-    "➏",
-    "➐",
-    "➑",
-    "➒",
-    "➓"
+-- "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒", "➓"
+    "", "", "", "", "", "", "", "", "", ""
+--   "", "", "", "", ""
+-- "⠐", "⠡", "⠲", "⠵", "⠻", "⠿"
+-- "⌘", "♐", "⌥", "ℵ"
+-- "www", "edit", "gimp", "inkscape", "music"
 }
--- awful.util.tagnames = {  "", "", "", "", "", "", "", "", "", "" }
--- awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
--- awful.util.tagnames = { "⌘", "♐", "⌥", "ℵ" }
--- awful.util.tagnames = { "www", "edit", "gimp", "inkscape", "music" }
+
 -- Use this : https://fontawesome.com/cheatsheet
--- awful.util.tagnames = { "", "", "", "", "" }
-awful.layout.suit.tile.left.mirror = true
-awful.layout.layouts = {
-    awful.layout.suit.tile,
-    awful.layout.suit.floating,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    --~ awful.layout.suit.corner.nw,
-    --~ awful.layout.suit.corner.ne,
-    --~ awful.layout.suit.corner.sw,
-    --~ awful.layout.suit.corner.se
-    --~ lain.layout.cascade,
-    --~ lain.layout.cascade.tile,
-    --~ lain.layout.centerwork,
-    --~ lain.layout.centerwork.horizontal,
-    --~ lain.layout.termfair,
-    --~ lain.layout.termfair.center,
-}
 
 awful.util.taglist_buttons =
     my_table.join(
@@ -1463,5 +1390,5 @@ client.connect_signal(
 -- }}}
 
 -- Autostart applications
-awful.spawn.with_shell("sh ~/Scripts/autostart-global.sh")
-awful.spawn.with_shell("sh ~/Scripts/autostart-awesome.sh")
+-- awful.spawn.with_shell("sh ~/Scripts/autostart-global.sh")
+-- awful.spawn.with_shell("sh ~/Scripts/autostart-awesome.sh")
