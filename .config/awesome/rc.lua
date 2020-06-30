@@ -1232,7 +1232,6 @@ awful.rules.rules = {
                 "inkscape",
                 "VirtualBox Machine",
                 "Vlc",
-                "Microsoft Teams - Preview"
             },
             name = {
             },
@@ -1320,13 +1319,15 @@ awful.rules.rules = {
         -- Teams Messagebox
         rule = {
             class = "Microsoft Teams - Preview",
-            type = "notification",
+            name = "Microsoft Teams-Benachrichtigung"
+            --~ type = "notification",
             -- name = "Microsoft Teams-Benachrichtigung"
         },
         properties = {
             maximized = false,              -- nicht maximieren
+            floating = true,
             screen = 1,                     -- auf ersten Monitor
-            -- tag = awful.util.tagnames[4],   -- auf tag 4 verschieben
+            tag = awful.util.tagnames[1],   -- auf tag 4 verschieben
             switchtotag = true,             -- zur Nachricht springen
         },
     },
