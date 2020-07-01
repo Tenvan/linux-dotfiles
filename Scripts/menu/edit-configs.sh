@@ -16,7 +16,9 @@ get_config_list() {
     --hide-column=3 \
     --hide-header \
     true awesome "$HOME/.config/awesome/*.lua" \
-    false autostart "$HOME/Scripts/autostart*.sh" \
+    false "scripts autostart" "$HOME/Scripts/autostart*.sh" \
+    false "scripts install" "$HOME/Scripts/install_*.sh" \
+    false "scripts all" "$HOME/Scripts/*.*" \
     false picom "$HOME/.config/picom/*.*" \
     false qtile "$HOME/.config/qtile/*.py" \
     false xmonad "$HOME/.xmonad/*.hs" \
@@ -27,7 +29,6 @@ get_config_list() {
     false gitignore "$HOME/.gitignore" \
     false neovim "$HOME/.config/nvim/init.vim" \
     false polybar "$HOME/.config/polybar/*.ini $HOME/.config/polybar/*.sh" \
-    false Scripts "$HOME/Scripts/*.*" \
     false termite "$HOME/.config/termite/config" \
     false xresources "$HOME/.Xresources*" \
     false xinitrc "$HOME/.xinitrc" \

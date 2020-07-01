@@ -63,4 +63,4 @@ run copyq &
 run teams &
 
 restart alttab &
-restart plank &
+# restart plank &
