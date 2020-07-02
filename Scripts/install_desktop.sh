@@ -31,7 +31,7 @@ errorCheck() {
 
 # system packages
 yay -S --needed \
-  rofi zenity xclip xsel xdotool xorg-xfd xcwd-git \
+  time rofi zenity xclip xsel xdotool xorg-xfd xcwd-git \
   polybar broot broom pm-utils \
   polkit-gnome polkit-kde-agent \
   pamac-tray-appindicator checkupdates-aur \
