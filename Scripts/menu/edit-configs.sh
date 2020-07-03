@@ -19,22 +19,16 @@ get_config_list() {
     false "scripts autostart" "$HOME/Scripts/autostart*.sh" \
     false "scripts install" "$HOME/Scripts/install_*.sh" \
     false "scripts all" "$HOME/Scripts/*.*" \
-    false picom "$HOME/.config/picom/*.*" \
-    false qtile "$HOME/.config/qtile/*.py" \
-    false xmonad "$HOME/.xmonad/*.hs" \
     false bash "$HOME/.bashrc*" \
     false menus "$HOME/Scripts/menu/*.*" \
-    false alacritty "$HOME/.config/alacritty/*" \
-    false broot "$HOME/.config/broot/conf.toml" \
-    false gitignore "$HOME/.gitignore" \
-    false neovim "$HOME/.config/nvim/init.vim" \
+    false ranger "$HOME/.config/ranger/*.sh $HOME/.config/ranger/*.conf" \
+    false broot "$HOME/.config/broot/*.*" \
+    false vim "$HOME/.config/nvim/init.vim" \
+    false picom "$HOME/.config/picom/*.*" \
     false polybar "$HOME/.config/polybar/*.ini $HOME/.config/polybar/*.sh" \
     false termite "$HOME/.config/termite/config" \
     false xresources "$HOME/.Xresources*" \
-    false xinitrc "$HOME/.xinitrc" \
-    false tint2 "$HOME/.config/tint2/*" \
-    false spacemacs "$HOME/.spacemacs" \
-    false doom "$HOME/.doom.d/*.*"
+    false gitignore "$HOME/.gitignore"
 }
 
 choice=$(get_config_list)

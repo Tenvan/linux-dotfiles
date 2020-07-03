@@ -11,7 +11,7 @@ fi
 /opt/shell-color-scripts/colorscript.sh -e 23
 
 PATH="$HOME/.doom.d/bin:$HOME/.emacs.d/bin:$HOME/.local/bin${PATH:+:${PATH}}"
-export EDITOR="geany"
+export EDITOR="nvim"
 export TERM="termite"
 
 colors() {
@@ -99,11 +99,11 @@ export HISTSIZE=${HISTFILESIZE} # increase history size (default is 500)
 export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
 
 # if this is interactive shell, then bind hstr to Ctrl-r (for Vi mode check doc)
-if [[ $- =~ .*i.* ]]; then 
-  bind '"\C-r": "\C-a hstr -- \C-j"'; 
+if [[ $- =~ .*i.* ]]; then
+  bind '"\C-r": "\C-a hstr -- \C-j"';
 fi
 
 # if this is interactive shell, then bind 'kill last command' to Ctrl-x k
-if [[ $- =~ .*i.* ]]; then 
-  bind '"\C-xk": "\C-a hstr -k \C-j"'; 
+if [[ $- =~ .*i.* ]]; then
+  bind '"\C-xk": "\C-a hstr -k \C-j"';
 fi

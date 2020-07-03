@@ -36,16 +36,22 @@ errorCheck "geany installation"
 yay -S --noconfirm --needed code bash-completion lua-format
 errorCheck "vs code installation"
 
-# micro
-yay -S --noconfirm --needed micro-bin
-errorCheck "micro installation"
+# vim/nvim
+yay -S --noconfirm --needed gvim neovim vim-plug python-pynvim nodejs neovim-remote
 
-# spacemacs
-yay -S --noconfirm --needed emacs
+errorCheck "vim installation"
+yarn global add neovim
 
-if ! [ -f ~/.emacs.de ]; then
-       echo emacs nicht gefunden, spacemacs wird installiert;
-       git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-fi
+rm -fr ~/.vim_runtime
+git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
+errorCheck "awesome vim clone local"
+sh ~/.vim_runtime/install_awesome_vimrc.sh
+errorCheck "awesome vim install"
 
-yarn global add tern js-beautify eslint
+sudo rm -fr /opt/vim_runtime
+sudo git clone --depth=1 https://github.com/amix/vimrc.git /opt/vim_runtime
+errorCheck "awesome vim clone global"
+
+sudo sh ~/.vim_runtime/install_awesome_parameterized.sh /opt/vim_runtime --all
+errorCheck "vim user init"
+
