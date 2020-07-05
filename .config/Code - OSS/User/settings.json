@@ -32,5 +32,8 @@
   },
   "vscode-metalua-formatter.luaPath": "/usr/bin/lua5.1",
   "lua.format.useTabs": null,
-  "lua.targetVersion": "5.3"
+  "lua.targetVersion": "5.3",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  }
 }

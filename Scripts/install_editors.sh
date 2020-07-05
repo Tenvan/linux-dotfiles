@@ -48,10 +48,12 @@ errorCheck "awesome vim clone local"
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 errorCheck "awesome vim install"
 
-sudo rm -fr /opt/vim_runtime
-sudo git clone --depth=1 https://github.com/amix/vimrc.git /opt/vim_runtime
-errorCheck "awesome vim clone global"
+# emacs / doom
+yay -S --noconfirm --needed emacs
+errorCheck "emacs installation"
 
-sudo sh ~/.vim_runtime/install_awesome_parameterized.sh /opt/vim_runtime --all
-errorCheck "vim user init"
+rm -fr ~/.emacs.d
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+errorCheck "doom clone local"
 
+~/.emacs.d/bin/doom install
