@@ -40,4 +40,5 @@ else
   # emacs $choice &
   # code --file-uri $choice &
   geany $choice &
+  # eval $TERM -e "nvim -p -- $choice" &
 fi

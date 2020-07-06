@@ -53,11 +53,6 @@ if $IS_ARCO == true; then
 fi
 
 if $IS_MANJARO == true; then
-  # xmonad
-  yay -S --noconfirm --needed \
-    xmonad xmonad-contrib xmonad-log xmonad-utils haskell-dbus stack
-  errorCheck "Manajaro: xmonad"
-
   # i3
   yay -S --noconfirm --needed \
     perl-anyevent-i3 dunst i3exit conky-i3 python-i3ipc xkb-switch-i3

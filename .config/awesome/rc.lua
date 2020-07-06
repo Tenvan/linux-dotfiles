@@ -1275,7 +1275,8 @@ awful.rules.rules = {
                 "VirtualBoxVM",
                 "xtightvncviewer",
                 "Xfce4-terminal",
-                "Xfce4-taskmanager"
+                "Xfce4-taskmanager",
+                "Xfce4-appfinder"
             },
             name = {
                 "Event Tester", -- xev.

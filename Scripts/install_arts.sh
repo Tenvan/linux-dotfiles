@@ -161,9 +161,12 @@ if $IS_MANJARO == true; then
     gucharmap \
     nerd-fonts-mononoki \
     ttf-mononoki \
-    ttf-joypixels
+    ttf-joypixels \
+    ttf-iosevka
 
   errorCheck "Manjaro: fonts"
+
+  sudo fc-cache
 
 fi
 
