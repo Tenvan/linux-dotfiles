@@ -18,11 +18,6 @@ xrdb -merge $HOME/.Xresources.custom
 xrdb -merge $HOME/.Xresources.monitor
 xrdb -merge $HOME/.Xresources.personal
 
-(
-  sleep 2
-  # sh $HOME/.config/polybar/launch.sh
-) &
-
 #change your keyboard if you need it
 #setxkbmap -layout be
 
@@ -63,4 +58,3 @@ run copyq &
 run teams &
 
 restart alttab &
-# restart plank &

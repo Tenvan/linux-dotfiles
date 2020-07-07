@@ -125,9 +125,7 @@ local escapekey = "Escape"
 
 -- personal variables
 -- change these variables if you want
-local browser1 = "firefox"
-local browser2 = "firefox"
-local browser3 = "firefox"
+local browser =  os.getenv("BROWSER") or "firefox"
 local editor = os.getenv("EDITOR") or "nano"
 local editorgui = "Geany"
 local filemanager = "pcmanfm"
@@ -438,9 +436,9 @@ globalkeys =
         {modkey},
         "F1",
         function()
-            awful.util.spawn(browser1)
+            awful.util.spawn(browser)
         end,
-        {description = browser1, group = kgApplication}
+        {description = browser, group = kgApplication}
     ),
     awful.key(
         {modkey},
@@ -1128,14 +1126,8 @@ awful.rules.rules = {
     -- Set applications to always map on the tag 1 on screen 1.
     -- find class or role via xprop command
 
-    -- { rule = { class = browser2 },
+    -- { rule = { class = browser },
     -- properties = { screen = 1, tag = awful.util.tagnames[1], switchtotag = true  } },
-
-    -- { rule = { class = browser1 },
-    -- properties = { screen = 1, tag = awful.util.tagnames[1], switchtotag = true  } },
-
-    -- { rule = { class = "Vivaldi-stable" },
-    -- properties = { screen = 1, tag = awful.util.tagnames[1], switchtotag = true } },
 
     -- { rule = { class = "Chromium" },
     -- properties = { screen = 1, tag = awful.util.tagnames[1], switchtotag = true  } },

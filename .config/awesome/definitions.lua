@@ -50,9 +50,7 @@ escapekey = "Escape"
 
 -- personal variables
 -- change these variables if you want
-browser1 = "firefox"
-browser2 = "firefox"
-browser3 = "firefox"
+browser = os.getenv("BROWSER") or "firefox"
 editor = os.getenv("EDITOR") or "nano"
 editorgui = "Geany"
 filemanager = "pcmanfm"

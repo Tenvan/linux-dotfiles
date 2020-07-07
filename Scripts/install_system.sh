@@ -64,10 +64,9 @@ errorCheck "optional system packages"
 
 # optional application packages
 yay -S --noconfirm --needed \
-  firefox-developer-edition-i18n-de google-chrome chromium opera brave \
+  firefox-developer-edition firefox-developer-edition-i18n-de google-chrome chromium opera brave \
   code bash-completion docker docker-compose \
   meld copyq \
-  firefox-developer-edition-i18n-de \
   gparted partitionmanager grub-customizer hardinfo \
   spectacle krita pinta blender gimp gimp-help-de aspell imagemagick pstoedit \
   inkscape python-lxml python-numpy transfig \

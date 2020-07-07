@@ -2,7 +2,7 @@
 
 myFileManager="thunar"
 myTerminal="termite"
-myBrowser="firefox"
+myBrowser="$BROWSER"
 workDir=$WORK_DIR
 shellCmd="$myTerminal --directory $workDir"
 timeCmd="/usr/bin/time -v "

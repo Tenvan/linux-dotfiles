@@ -2,7 +2,7 @@
 
 myFileManager="thunar"
 myTerminal="alacritty"
-myBrowser="firefox"
+myBrowser="$BROWSER"
 
 # Function create a scale dialog
 select_application() {

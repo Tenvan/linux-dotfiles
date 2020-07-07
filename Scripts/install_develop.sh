@@ -34,8 +34,7 @@ yay -S --noconfirm --needed \
   dotnet-sdk \
   mono mono-msbuild \
   jdk8-openjdk openjdk8-src jdk-openjdk \
-  firefox-developer-edition-i18n-de chromium opera \
-  code bash-completion docker docker-compose
+  docker docker-compose
 
 errorCheck "development tools"
 

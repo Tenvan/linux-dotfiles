@@ -15,7 +15,7 @@ get_config_list() {
     --print-column=3 \
     --hide-column=3 \
     --hide-header \
-    true awesome "$HOME/.config/awesome/*.lua" \
+    true awesome ".config/awesome/*.lua" \
     false "scripts autostart" "$HOME/Scripts/autostart*.sh" \
     false "scripts install" "$HOME/Scripts/install_*.sh" \
     false "scripts all" "$HOME/Scripts/*.*" \
@@ -36,9 +36,5 @@ choice=$(get_config_list)
 if [ -z "$choice" ]; then
   echo "abort choice"
 else
-  echo execute: $choice >>/dev/stderr
-  # emacs $choice &
-  # code --file-uri $choice &
-  geany $choice &
-  # eval $TERM -e "nvim -p -- $choice" &
+  sh ~/Scripts/start-editor.sh $choice &
 fi

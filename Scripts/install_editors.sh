@@ -54,15 +54,13 @@ cd ~
 # veonim, oni
 yay -S --noconfirm --needed onivim2 gnvim goneovim
 
-# emacs / doom
+# emacs / spacemacs
 yay -S --noconfirm --needed emacs
 errorCheck "emacs installation"
 
 rm -fr ~/.emacs.d
-git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-errorCheck "doom clone local"
-
-~/.emacs.d/bin/doom install
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+errorCheck "spacemacs clone local"
 
 # nodejs tools for editors
 yarn global add neovim eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop
