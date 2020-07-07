@@ -90,6 +90,7 @@ tyrannical.tags                         = {
       "Opera",
       "Rekonq",
       "firefox",
+      "firefoxdeveloperedition",
       "minefield",
       "nightly",
     }

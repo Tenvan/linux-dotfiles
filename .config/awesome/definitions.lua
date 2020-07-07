@@ -50,8 +50,8 @@ escapekey = "Escape"
 
 -- personal variables
 -- change these variables if you want
-browser = os.getenv("BROWSER") or "firefox"
-editor = os.getenv("EDITOR") or "nano"
+browser = os.getenv("BROWSER") or "firefox-developer-edition"
+editor = os.getenv("EDITOR") or "nvim"
 editorgui = "Geany"
 filemanager = "pcmanfm"
 mailclient = "evolution"
