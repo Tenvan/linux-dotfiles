@@ -115,8 +115,7 @@ myTextEditor :: String
 myTextEditor = "code"       -- Sets default text editor
 
 myFileManager :: String
-myFileManager = "thunar"    -- Sets default text editor
---myFileManager = "pcmanfm"   -- Sets default text editor
+myFileManager = "nemo"    -- Sets default text editor
 
 myBorderWidth :: Dimension
 myBorderWidth = 2          -- Sets border width for windows

@@ -39,28 +39,14 @@ errorCheck "vs code installation"
 # neovim
 yay -S --noconfirm --needed neovim python-pynvim nodejs neovim-remote
 
-# vim
+# vim / spacevim
 yay -S --noconfirm --needed vim vim-plug
 errorCheck "vim installation"
 
 rm -fr ~/.config/nvim
-git clone git://github.com/rafi/vim-config.git ~/.config/nvim
-errorCheck "rafi vim clone local"
-cd ~/.config/nvim
-ln -s ~/.config/nvim ~/.vim  # For "regular" Vim
-make
-cd ~
-
-# veonim, oni
-yay -S --noconfirm --needed onivim2 gnvim goneovim
-
-# emacs / spacemacs
-yay -S --noconfirm --needed emacs
-errorCheck "emacs installation"
-
-rm -fr ~/.emacs.d
-git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-errorCheck "spacemacs clone local"
+rm -fr ~/.SpaceVim
+curl -sLf https://spacevim.org/install.sh | bash
+errorCheck "spacevim install"
 
 # nodejs tools for editors
 yarn global add neovim eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop

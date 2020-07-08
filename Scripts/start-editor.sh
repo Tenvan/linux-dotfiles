@@ -2,7 +2,7 @@ echo start edit: $@ >>/dev/stderr
 
 # emacs $@ &
 # code --file-uri $@ &
-geany $@ &
+# geany $@ &
 # notepadqq $@ &
-# alacritty -e nvim -p $@ &
+alacritty -e nvim -p $@ &
 # emacs $@ &

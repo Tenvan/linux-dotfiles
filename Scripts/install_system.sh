@@ -19,7 +19,7 @@ fi
 errorCheck() {
   retVal=$?
   if [ $retVal -ne 0 ]; then
-    echo "abort installation script 'install_system': " $1
+    echo "abort installation script 'install_system': $1"
     exit $retVal
   fi
 }
@@ -78,8 +78,10 @@ errorCheck "optional application packages"
 
 # file manager
 yay -S --noconfirm --needed \
-  nemo nemo-share folder-color-switcher nemo-fileroller nemo-image-converter nemo-preview nemo-seahorse nemo-terminal nemo-compare nemo-megasync nemo-emblems nemo-media-columns nemo-media-columns nemo-pdf-tools \
-  pcmanfm mc ark arj dpkg lhasa unrar p7zip krusader kdiff3 kompare krename
+  nemo nemo-share folder-color-switcher nemo-fileroller nemo-image-converter nemo-preview nemo-seahorse \
+  nemo-terminal nemo-compare nemo-megasync nemo-emblems nemo-media-columns nemo-media-columns nemo-pdf-tools \
+  nemo-meld-compare nemo-audio-tab nemo-mediainfo-tab nemo-qml-plugin-dbus-git nemo-ext-git \
+  mc ark arj dpkg lhasa unrar p7zip
 
 errorCheck "file manager"
 

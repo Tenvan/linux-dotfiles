@@ -8,10 +8,11 @@ cursor_blink = system
 cursor_shape = block
 dynamic_title = true
 filter_unmatched_urls = true
-font = Mononoki Nerd Font Bold 12
+#~ font = Mononoki Nerd Font Bold 12
 #~ font = Noto Color Emoji 12
 #~ font = Monospace 12
-font = Iosevka Term Bold 12
+#~ font = NotoEmoji Nerd Font Mono 12
+font = Iosevka Term Medium 12
 geometry = 900x650
 highlight = #2f2f2f
 icon_name = terminal
@@ -48,7 +49,7 @@ urgent_on_bell = true
 
 [colors]
 # ArcoLinux Default Theme
-background = rgba(40, 42, 54, 0.8)
+background = rgba(40, 42, 54, 0.95)
 
 # special
 foreground      = #f8f8f2

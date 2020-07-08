@@ -49,6 +49,9 @@
 !.config/nitrogen/*
 !.config/nvim
 !.config/nvim/*.vim
+!.SpaceVim.d
+!.SpaceVim.d/**
+!.SpaceVim.d/**/*
 !.config/omf
 !.config/omf/*
 !.config/picom

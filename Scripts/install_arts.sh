@@ -71,21 +71,16 @@ if $IS_ARCO == true; then
     oxy-neon \
     paper-icon-theme \
     papirus-icon-theme \
-    surfn-mint-y-icons-git \
-    ttf-weather-icons
+    surfn-mint-y-icons-git
+
 
   errorCheck "ArcoLinux: icons"
 
   # fonts
   yay -S --needed --noconfirm \
     gucharmap \
-    nerd-fonts-mononoki \
-    ttf-mononoki \
-    ttf-joypixels \
-    ttf-bitstream-vera \
-    ttf-fira-code \
-    ttf-inconsolata \
-    ttf-liberation
+    nerd-fonts-complete \
+    ttf-iosevka
 
   errorCheck "ArcoLinux: fonts"
 
@@ -151,7 +146,6 @@ if $IS_MANJARO == true; then
     moka-icon-theme \
     papirus-icon-theme \
     papirus-maia-icon-theme \
-    ttf-weather-icons \
     vertex-maia-icon-theme
 
   errorCheck "Manjaro: icons"
@@ -159,9 +153,7 @@ if $IS_MANJARO == true; then
   # fonts
   yay -S --needed --noconfirm \
     gucharmap \
-    nerd-fonts-mononoki \
-    ttf-mononoki \
-    ttf-joypixels \
+    nerd-fonts-complete \
     ttf-iosevka
 
   errorCheck "Manjaro: fonts"

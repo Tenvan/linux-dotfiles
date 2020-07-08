@@ -15,7 +15,8 @@ get_config_list() {
     --print-column=3 \
     --hide-column=3 \
     --hide-header \
-    true awesome ".config/awesome/*.lua" \
+    true vim "$HOME/.SpaceVim.d/*.* $HOME/.SpaceVim.d/autoload/*.*" \
+    false awesome ".config/awesome/*.lua" \
     false "scripts autostart" "$HOME/Scripts/autostart*.sh" \
     false "scripts install" "$HOME/Scripts/install_*.sh" \
     false "scripts all" "$HOME/Scripts/*.*" \
@@ -23,10 +24,10 @@ get_config_list() {
     false menus "$HOME/Scripts/menu/*.*" \
     false ranger "$HOME/.config/ranger/*.sh $HOME/.config/ranger/*.conf" \
     false broot "$HOME/.config/broot/*.*" \
-    false vim "$HOME/.config/nvim/init.vim" \
     false picom "$HOME/.config/picom/*.*" \
     false polybar "$HOME/.config/polybar/*.ini $HOME/.config/polybar/*.sh" \
     false termite "$HOME/.config/termite/config" \
+    false alacritty "$HOME/.config/alacritty/alacritty.yml"  \
     false xresources "$HOME/.Xresources*" \
     false gitignore "$HOME/.gitignore"
 }
@@ -36,5 +37,5 @@ choice=$(get_config_list)
 if [ -z "$choice" ]; then
   echo "abort choice"
 else
-  sh ~/Scripts/start-editor.sh $choice &
+  sh ~/Scripts/start-editor.sh "$choice" &
 fi
