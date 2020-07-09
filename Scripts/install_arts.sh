@@ -76,10 +76,17 @@ if $IS_ARCO == true; then
   errorCheck "ArcoLinux: icons"
 
   # fonts
-  yay -S --needed --noconfirm \
+  yay -S --needed \
     gucharmap \
-    nerd-fonts-complete \
-    ttf-iosevka
+    nerd-fonts-dejavu-complete \
+    nerd-fonts-iosevka \
+    nerd-fonts-mononoki
+    nerd-fonts-source-code-pro \
+    nerd-fonts-fira-code \
+    nerd-fonts-hack \
+    nerd-fonts-jetbrains-mono \
+    nerd-fonts-noto \
+    nerd-fonts-terminus
 
   errorCheck "ArcoLinux: fonts"
 

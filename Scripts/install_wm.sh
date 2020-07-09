@@ -63,9 +63,9 @@ if $IS_MANJARO == true; then
 
   # dwm
   yay -S --noconfirm --needed dwm
-  errorCheck "Manajaro: dwm"
+  errorCheck "Manajaro: bspwm"
 
-  # bspwm
+  # dwm
   yay -S --needed bspwm-manjaro
   errorCheck "Manajaro: bspwm"
 
