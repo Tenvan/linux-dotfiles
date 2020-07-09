@@ -4,16 +4,15 @@
 # init distro check #
 #####################
 LINUX_VERSION_NAME=$(lsb_release -si)
-if [[ ${LINUX_VERSION_NAME} == "ManjaroLinux" ]]; then
-       IS_MANJARO=true
-else
-       IS_MANJARO=false
+
+IS_MANJARO=false
+IS_ARCO=false
+if [[ "$LINUX_VERSION_NAME" == *"Manjaro"* ]]; then
+    IS_MANJARO=true
 fi
 
-if [[ ${LINUX_VERSION_NAME} == "ArcoLinux" ]]; then
-       IS_ARCO=true
-else
-       IS_ARCO=false
+if [[ "$LINUX_VERSION_NAME" == *"ArcoLinux"* ]]; then
+    IS_ARCO=true
 fi
 
 errorCheck() {

@@ -4,16 +4,15 @@
 # init distro check #
 #####################
 LINUX_VERSION_NAME=$(lsb_release -si)
-if [[ ${LINUX_VERSION_NAME} == "ManjaroLinux" ]]; then
-  IS_MANJARO=true
-else
-  IS_MANJARO=false
+
+IS_MANJARO=false
+IS_ARCO=false
+if [[ "$LINUX_VERSION_NAME" == *"Manjaro"* ]]; then
+    IS_MANJARO=true
 fi
 
-if [[ ${LINUX_VERSION_NAME} == "ArcoLinux" ]]; then
-  IS_ARCO=true
-else
-  IS_ARCO=false
+if [[ "$LINUX_VERSION_NAME" == *"ArcoLinux"* ]]; then
+    IS_ARCO=true
 fi
 
 errorCheck() {
@@ -54,7 +53,7 @@ yay -S --noconfirm --needed \
   ark arj dpkg lhasa unrar p7zip \
   foxitreader pfetch neofetch screenfetch \
   clamav clamtk \
-  termite termite-style-git alacritty st \
+  termite alacritty \
   glances bashtop gtop htop iftop iotop iptraf-ng s-tui \
   gnome-system-monitor gnome-system-log \
   shell-color-scripts powerline-rs find-the-command hstr-git qfc-git \
@@ -112,7 +111,7 @@ fi
 # ArcoLinux
 if $IS_ARCO == true; then
   # arco only packages
-  yay -S --noconfirm --needed arcolinux-lightdm-gtk-greeter-settings
+  yay -S --noconfirm --needed arcolinux-lightdm-gtk-greeter-settings arcolinux-termite-themes-git
   errorCheck "ArcoLinux: arco only packages"
 
   # virtualbox for lts-kernel

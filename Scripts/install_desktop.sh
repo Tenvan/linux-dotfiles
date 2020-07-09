@@ -4,16 +4,15 @@
 # init distro check #
 #####################
 LINUX_VERSION_NAME=$(lsb_release -si)
-if [[ ${LINUX_VERSION_NAME} == "ManjaroLinux" ]]; then
-  IS_MANJARO=true
-else
-  IS_MANJARO=false
+
+IS_MANJARO=false
+IS_ARCO=false
+if [[ "$LINUX_VERSION_NAME" == *"Manjaro"* ]]; then
+    IS_MANJARO=true
 fi
 
-if [[ ${LINUX_VERSION_NAME} == "ArcoLinux" ]]; then
-  IS_ARCO=true
-else
-  IS_ARCO=false
+if [[ "$LINUX_VERSION_NAME" == *"ArcoLinux"* ]]; then
+    IS_ARCO=true
 fi
 
 errorCheck() {
@@ -35,7 +34,7 @@ yay -S --needed \
   polybar broot broom pm-utils \
   polkit-gnome polkit-kde-agent \
   pamac-tray-appindicator checkupdates-aur \
-  xfce4-taskmanager xfce4-appfinder lxappearance alttab-git xautolock \
+  xfce4-meta xfce4-taskmanager xfce4-appfinder lxappearance alttab-git xautolock \
   python python-psutil python-pygit2 python-xkbgroup python-taskw python-requests pygtk python2-distutils-extra
 
 errorCheck "system packages"
