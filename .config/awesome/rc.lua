@@ -148,18 +148,7 @@ local kgTag = "tag"
 
 -- awesome variables
 awful.util.terminal = terminal
-awful.util.tagnames = {
-    "➊",
-    "➋",
-    "➌",
-    "➍",
-    "➎",
-    "➏",
-    "➐",
-    "➑",
-    "➒",
-    "➓"
-}
+awful.util.tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒", "➓" }
 -- awful.util.tagnames = {  "", "", "", "", "", "", "", "", "", "" }
 -- awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
 -- awful.util.tagnames = { "⌘", "♐", "⌥", "ℵ" }
@@ -167,6 +156,7 @@ awful.util.tagnames = {
 -- Use this : https://fontawesome.com/cheatsheet
 -- awful.util.tagnames = { "", "", "", "", "" }
 awful.layout.suit.tile.left.mirror = true
+
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.floating,
@@ -180,10 +170,10 @@ awful.layout.layouts = {
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
-    --~ awful.layout.suit.corner.nw,
-    --~ awful.layout.suit.corner.ne,
-    --~ awful.layout.suit.corner.sw,
-    --~ awful.layout.suit.corner.se
+    awful.layout.suit.corner.nw,
+    awful.layout.suit.corner.ne,
+    awful.layout.suit.corner.sw,
+    awful.layout.suit.corner.se
     --~ lain.layout.cascade,
     --~ lain.layout.cascade.tile,
     --~ lain.layout.centerwork,
@@ -488,7 +478,7 @@ globalkeys =
         end
     ),
     awful.key({modkey, shiftkey}, "r", awesome.restart, {description = "reload awesome", group = kgAwesome}),
-    awful.key({modkey, shiftkey}, "x", awesome.quit, {description = "quit awesome", group = kgAwesome}), -- ctrl + shift + ...
+    awful.key({modkey, shiftkey}, "x", awesome.quit, {description = "quit awesome", group = kgAwesome}),
     awful.key(
         {controlkey, shiftkey},
         escapekey,
@@ -625,7 +615,9 @@ globalkeys =
         end,
         {description = "focus the previous screen", group = kgScreen}
     ),
-    awful.key({modkey}, "u", awful.client.urgent.jumpto, {description = "jump to urgent client", group = kgClient}), -- Show/Hide Wibox
+    awful.key({modkey}, "u", awful.client.urgent.jumpto, {description = "jump to urgent client", group = kgClient}),
+
+    -- Show/Hide Wibox
     awful.key(
         {modkey},
         "b",
@@ -638,7 +630,8 @@ globalkeys =
             end
         end,
         {description = "toggle wibox", group = kgLayout}
-    ), -- Show/Hide SystraySystray
+    ),
+    -- Show/Hide SystraySystray
     awful.key(
         {modkey},
         "-",
@@ -646,7 +639,8 @@ globalkeys =
             awful.screen.focused().systray.visible = not awful.screen.focused().systray.visible
         end,
         {description = "Toggle systray visibility", group = kgSystem}
-    ), -- Show/Hide Systray
+    ),
+    -- Show/Hide Systray
     awful.key(
         {modkey},
         "KP_Subtract",
@@ -654,7 +648,8 @@ globalkeys =
             awful.screen.focused().systray.visible = not awful.screen.focused().systray.visible
         end,
         {description = "Toggle systray visibility", group = kgSystem}
-    ), -- On the fly useless gaps change
+    ),
+    -- On the fly useless gaps change
     awful.key(
         {modkey, altkey},
         "Up",
@@ -670,7 +665,8 @@ globalkeys =
             lain.util.useless_gaps_resize(-1)
         end,
         {description = "decrement useless gaps", group = kgLayout}
-    ), -- Standard program
+    ),
+    -- Standard program
     awful.key(
         {modkey},
         returnkey,
@@ -768,7 +764,8 @@ globalkeys =
             end
         end,
         {description = "restore minimized", group = kgClient}
-    ), -- Dropdown application
+    ),
+    -- Dropdown application
     awful.key(
         {modkey, controlkey},
         returnkey,
@@ -800,7 +797,8 @@ globalkeys =
             os.execute("xbacklight -dec 10")
         end,
         {description = "-10%", group = kgSound}
-    ), -- ALSA volume control
+    ),
+    -- ALSA volume control
     awful.key(
         {modkey, controlkey},
         "Up",
@@ -856,7 +854,8 @@ globalkeys =
         function()
             awful.util.spawn("mpc stop")
         end
-    ), -- Default -- Menu Keys
+    ),
+    -- Default -- Menu Keys
     --[[ Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
             {description = "show the menubar", group = "super"})
@@ -999,7 +998,8 @@ for i = 1, 9 do
     end
     globalkeys =
         my_table.join(
-        globalkeys, -- View tag only.
+        globalkeys,
+        -- View tag only.
         awful.key(
             {modkey},
             "#" .. i + 9,
@@ -1011,7 +1011,8 @@ for i = 1, 9 do
                 end
             end,
             descr_view
-        ), -- Toggle tag display.
+        ),
+        -- Toggle tag display.
         awful.key(
             {modkey, "Control"},
             "#" .. i + 9,
@@ -1023,7 +1024,8 @@ for i = 1, 9 do
                 end
             end,
             descr_toggle
-        ), -- Move client to tag.
+        ),
+        -- Move client to tag.
         awful.key(
             {modkey, "Shift"},
             "#" .. i + 9,
@@ -1037,7 +1039,8 @@ for i = 1, 9 do
                 end
             end,
             descr_move
-        ), -- Toggle tag on focused client.
+        ),
+        -- Toggle tag on focused client.
         awful.key(
             {modkey, "Control", "Shift"},
             "#" .. i + 9,
