@@ -5,7 +5,7 @@
 ! ------------------------------------------------------------------------------
 
 xterm*font: 7x13
-xterm*faceName: NotoEmoji Nerd Font Mono:size=12:antialias=false
+xterm*faceName: mononoki Nerd Font Bold:size=12:antialias=false
 xterm*loginShell: true
 xterm*vt100*geometry: 90x34
 xterm*saveLines: 2000
@@ -95,11 +95,11 @@ URxvt*color15: #ffffff
 
 ! fonts
 URxvt*letterSpace: 	    		-2
-URxvt*font:                 	xft:NotoEmoji Nerd Font Mono:regular:size=12
-URxvt*imFont:               	xft:NotoEmoji Nerd Font Mono:regular:size=12
-URxvt*boldFont:             	xft:NotoEmoji Nerd Font Mono:bold:size=12
-URxvt*italicFont:           	xft:NotoEmoji Nerd Font Mono:italic:size=12
-URxvt*boldItalicFont:     		xft:NotoEmoji Nerd Font Mono:regular:size=12
+URxvt*font:                 	xft:mononoki Nerd Font Bold:regular:size=12
+URxvt*imFont:               	xft:mononoki Nerd Font Bold:regular:size=12
+URxvt*boldFont:             	xft:mononoki Nerd Font Bold:bold:size=12
+URxvt*italicFont:           	xft:mononoki Nerd Font Bold:italic:size=12
+URxvt*boldItalicFont:     		xft:mononoki Nerd Font Bold:regular:size=12
 ! run :.!fc-list | grep <font-name>
 
 ! perl extensions
@@ -147,8 +147,8 @@ UXTerm*termName: xterm-256color
 
 UXTerm*cursorColor:        white
 UXTerm*VT100.geometry:     90x30
-UXTerm*font:               NotoEmoji Nerd Font Mono
-UXTerm*faceSize:		   12
+UXTerm*font:               mononoki Nerd Font Bold 
+UXTerm*faceSize:		       12
 UXTerm*dynamicColors:      true
 UXTerm*utf8:               2
 UXTerm*eightBitInput:      true
