@@ -4,5 +4,6 @@ echo start edit: $@ >>/dev/stderr
 # code --file-uri $@ &
 # geany $@ &
 # notepadqq $@ &
-alacritty -e nvim -p $@ &
-# emacs $@ &
+# alacritty -e nvim -p $@ &
+emacs $@ &
+

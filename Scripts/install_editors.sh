@@ -48,6 +48,12 @@ rm -fr ~/.SpaceVim
 curl -sLf https://spacevim.org/install.sh | bash
 errorCheck "spacevim install"
 
+# emacs / spacemacs
+rm -fr ~/.emacs.d
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+errorCheck "spacemacs install"
+
 # nodejs tools for editors
-yarn global add neovim eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop
+yarn global add neovim eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript
+errorCheck "install required nodejs-tools"
 

@@ -21,6 +21,17 @@
 !Scripts/*
 !Scripts/menu/*
 
+# SpaceVim configs
+!.SpaceVim.d
+!.SpaceVim.d/**
+!.SpaceVim.d/**/*
+
+# SpaceMacs config
+!.spacemacs
+!.SpaceMacs.d
+!.SpaceMacs.d/**
+!.SpaceMacs.d/**/*
+
 # Ausnahmen im .config folder
 !.config
 !.config/compton*.conf
@@ -49,9 +60,6 @@
 !.config/nitrogen/*
 !.config/nvim
 !.config/nvim/*.vim
-!.SpaceVim.d
-!.SpaceVim.d/**
-!.SpaceVim.d/**/*
 !.config/omf
 !.config/omf/*
 !.config/picom
