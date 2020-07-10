@@ -30,8 +30,8 @@ errorCheck() {
 
 # system packages
 yay -S --needed \
-  time rofi zenity xclip xsel xdotool xorg-xfd xcwd-git \
-  polybar broot broom pm-utils \
+  time rofi zenity xclip xsel xdotool xorg-xfd xcwd-git gucharmap \
+  polybar broot pm-utils \
   polkit-gnome polkit-kde-agent \
   pamac-tray-appindicator checkupdates-aur \
   xfce4-meta xfce4-taskmanager xfce4-appfinder lxappearance alttab-git xautolock \

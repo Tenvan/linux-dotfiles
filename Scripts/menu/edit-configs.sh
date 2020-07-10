@@ -16,7 +16,7 @@ get_config_list() {
     --hide-column=3 \
     --hide-header \
     true " emacs" "$HOME/.spacemacs" \
-    true " vim" "$HOME/.SpaceVim.d/*.* $HOME/.SpaceVim.d/autoload/*.*" \
+    false " vim" "$HOME/.SpaceVim.d/*.* $HOME/.SpaceVim.d/autoload/*.*" \
     false " awesome" ".config/awesome/*.lua" \
     false " scripts autostart" "$HOME/Scripts/autostart*.sh" \
     false " scripts install" "$HOME/Scripts/install_*.sh" \

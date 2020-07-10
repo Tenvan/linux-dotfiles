@@ -77,16 +77,9 @@ if $IS_ARCO == true; then
 
   # fonts
   yay -S --needed \
-    gucharmap \
-    nerd-fonts-dejavu-complete \
-    nerd-fonts-iosevka \
-    nerd-fonts-mononoki
-    nerd-fonts-source-code-pro \
-    nerd-fonts-fira-code \
-    nerd-fonts-hack \
-    nerd-fonts-jetbrains-mono \
-    nerd-fonts-noto \
-    nerd-fonts-terminus
+      nerd-fonts-complete \
+      ttf-joypixels \
+      ttf-weather-icons
 
   errorCheck "ArcoLinux: fonts"
 

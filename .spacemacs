@@ -141,7 +141,12 @@ values."
                                :size 14
                                :weight bold
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 1.3)
+   ;; dotspacemacs-default-font '("FiraCodeNerdFont"
+   ;;                             :size 16
+   ;;                             :weight normal
+   ;;                             :width normal
+   ;;                             :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -314,6 +319,16 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  "Edits"
+  (global-set-key (kbd "C-S-c")    'evil-yank)
+  (global-set-key (kbd "C-S-v")    'yank)
+  (global-set-key (kbd "C-S-x")    'evil-delete)
+  (global-set-key (kbd "C-S-d")    'yank)
+  (global-set-key (kbd "C-s")      'save-buffer)
+  (global-set-key (kbd "C-S-l")    'sort-lines)
+  (global-set-key (kbd "M-<up>")   'move-text-up)
+  (global-set-key (kbd "M-<down>") 'move-text-down)
+
   "Konfigurations Management"
   (global-set-key (kbd "C-S-r") 'dotspacemacs/sync-configuration-layers)
   (global-set-key (kbd "C-S-t") 'dotspacemacs/test-dotfile)
