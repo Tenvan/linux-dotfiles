@@ -49,7 +49,8 @@ errorCheck "spacevim install"
 
 # emacs / spacemacs
 rm -fr ~/.emacs.d
-yay -S --noconfirm --needed emacs spacemacs
+yay -S --noconfirm --needed emacs
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 errorCheck "spacemacs install"
 
 # nodejs tools for editors
