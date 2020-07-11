@@ -149,6 +149,7 @@ local kgTag = "tag"
 -- awesome variables
 awful.util.terminal = terminal
 awful.util.tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒", "➓" }
+-- awful.util.tagnames = { "", "", "", "", "", "", "", "", "" }
 -- awful.util.tagnames = {  "", "", "", "", "", "", "", "", "", "" }
 -- awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
 -- awful.util.tagnames = { "⌘", "♐", "⌥", "ℵ" }
