@@ -17,6 +17,9 @@ local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, 
 -- Standard awesome library
 local gears = require("gears") -- Utilities such as color parsing and objects
 local awful = require("awful") -- Everything related to window managment
+
+local gdebug = require("gears.debug")
+
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
@@ -506,13 +509,16 @@ globalkeys =
     ), -- screenshots
     -- Personal keybindings}}}
     -- Hotkeys Awesome
-    awful.key({modkey}, "s", hotkeys_popup.show_help, {description = "show help", group = kgAwesome}), -- Tag browsing with modkey
+    awful.key({modkey}, "s", hotkeys_popup.show_help, {description = "show help", group = kgAwesome}),
+    -- Tag browsing with modkey
     -- awful.key({modkey}, "Left", awful.tag.viewprev, {description = "view previous", group = kgTag}),
     -- awful.key({modkey}, "Right", awful.tag.viewnext, {description = "view next", group = kgTag}),
-    awful.key({altkey}, escapekey, awful.tag.history.restore, {description = "go back", group = kgTag}), -- Tag browsing alt + tab
+    awful.key({altkey}, escapekey, awful.tag.history.restore, {description = "go back", group = kgTag}),
+    -- Tag browsing alt + tab
     -- Tag browsing modkey + tab
     awful.key({modkey}, "Tab", awful.tag.viewnext, {description = "view next", group = kgTag}),
-    awful.key({modkey, shiftkey}, "Tab", awful.tag.viewprev, {description = "view previous", group = kgTag}), -- Non-empty tag browsing
+    awful.key({modkey, shiftkey}, "Tab", awful.tag.viewprev, {description = "view previous", group = kgTag}),
+    -- Non-empty tag browsing
     -- awful.key({ modkey }, "Left", function () lain.util.tag_view_nonempty(-1) end,
     -- {description = "view  previous nonempty", group = kgTag}),
     -- awful.key({ modkey }, "Right", function () lain.util.tag_view_nonempty(1) end,
@@ -789,7 +795,7 @@ globalkeys =
         function()
             os.execute("xbacklight -inc 10")
         end,
-        {description = "+10%", group = kgSound}
+        {description = "+10% Helligkeit", group = kgSound}
     ),
     awful.key(
         {},
@@ -797,63 +803,62 @@ globalkeys =
         function()
             os.execute("xbacklight -dec 10")
         end,
-        {description = "-10%", group = kgSound}
+        {description = "-10% Helligkeit", group = kgSound}
     ),
     -- ALSA volume control
     awful.key(
-        {modkey, controlkey},
-        "Up",
+        {},
         "XF86AudioRaiseVolume",
         function()
-            os.execute(string.format("amixer -q set %s 1%%+", beautiful.volume.channel))
-            beautiful.volume.update()
-        end
+          os.execute("amixer -d set Master 5%+")
+        end,
+        {description = "+5% Volume", group = kgSound}
     ),
     awful.key(
-        {modkey, controlkey},
-        "Down",
+        {},
         "XF86AudioLowerVolume",
         function()
-            os.execute(string.format("amixer -q set %s 1%%-", beautiful.volume.channel))
-            beautiful.volume.update()
-        end
+          os.execute("amixer -d set Master 5%-")
+        end,
+        {description = "-5% Volume", group = kgSound}
     ),
     awful.key(
         {},
         "XF86AudioMute",
         function()
-            os.execute(
-                string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel)
-            )
-            beautiful.volume.update()
-        end
+            os.execute("amixer -q set Master toggle")
+        end,
+        {description = "Mute Volume", group = kgSound}
     ),
     awful.key(
         {},
         "XF86AudioPlay",
         function()
-            awful.util.spawn("mpc toggle")
-        end
+          awful.util.spawn("playerctl play-pause")
+        end,
+        {description = "Player Start/Pause", group = kgSound}
     ),
     awful.key(
         {},
         "XF86AudioNext",
         function()
-            awful.util.spawn("mpc next")
-        end
+          awful.util.spawn("playerctl next")
+        end,
+        {description = "Player Next", group = kgSound}
     ),
     awful.key(
         {},
         "XF86AudioPrev",
         function()
-            awful.util.spawn("mpc prev")
-        end
+          awful.util.spawn("playerctl previous")
+        end,
+        {description = "Player Zurück", group = kgSound}
     ),
     awful.key(
         {},
         "XF86AudioStop",
         function()
-            awful.util.spawn("mpc stop")
+            awful.util.spawn("Player Stop")
         end
     ),
     -- Default -- Menu Keys
