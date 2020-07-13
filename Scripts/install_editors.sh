@@ -54,6 +54,6 @@ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 errorCheck "spacemacs install"
 
 # nodejs tools for editors
-yarn global add neovim eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript
+yarn global add neovim eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify
 errorCheck "install required nodejs-tools"
 
