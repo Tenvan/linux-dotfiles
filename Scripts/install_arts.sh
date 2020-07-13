@@ -46,7 +46,6 @@ if $IS_ARCO == true; then
 
   # cursor
   yay -S --needed --noconfirm \
-    capitaine-cursors \
     xcursor-chameleon-anthracite \
     xcursor-chameleon-darkskyblue \
     xcursor-chameleon-pearl \
@@ -74,21 +73,11 @@ if $IS_ARCO == true; then
 
 
   errorCheck "ArcoLinux: icons"
-
-  # fonts
-  yay -S --needed \
-      nerd-fonts-complete \
-      ttf-joypixels \
-      ttf-weather-icons
-
-  errorCheck "ArcoLinux: fonts"
-
 fi
 
 if $IS_MANJARO == true; then
   yay -S --needed --noconfirm \
     artwork-i3 \
-    le3cell-artwork-wallpapers \
     manjaro-artwork \
     manjaro-artwork-extra \
     manjaro-users-artwork-wallpapers \
@@ -96,11 +85,8 @@ if $IS_MANJARO == true; then
     solar-backgrounds \
     antergos-wallpapers \
     awesome-wallpapers \
-    bspwm-wallpapers \
     cinnamon-wallpapers \
     illyria-wallpaper \
-    instantwallpaper \
-    le3cell-artwork-wallpapers \
     manjaro-users-artwork-wallpapers \
     manjaro-wallpapers-17.0 \
     manjaro-wallpapers-18.0 \
@@ -112,9 +98,7 @@ if $IS_MANJARO == true; then
     manjaro-wallpapers-by-lunix-i3 \
     manjaro-wallpapers-by-lunix-manjaro \
     manjaro-wallpapers-by-lunix-openbox \
-    manjaro-wallpapers-by-lunix-xfce \
-    muser-wallpapers \
-    pantheon-wallpapers
+    manjaro-wallpapers-by-lunix-xfce 
 
   errorCheck "Manjaro: wallpapers"
 
@@ -126,7 +110,12 @@ if $IS_MANJARO == true; then
     xcursor-chameleon-darkskyblue \
     xcursor-chameleon-pearl \
     xcursor-chameleon-skyblue \
-    xcursor-chameleon-white
+    xcursor-chameleon-white \
+    xcursor-comix \
+    xcursor-flatbed \
+    xcursor-neutral \
+    xcursor-premium \
+    xcursor-simpleandsoft
 
   errorCheck "Manjaro: cursor"
 
@@ -141,25 +130,25 @@ if $IS_MANJARO == true; then
     hicolor-icon-theme \
     maia-icon-theme \
     manjaro-artwork-icons \
-    masalla-icon-theme \
     moka-icon-theme \
     papirus-icon-theme \
     papirus-maia-icon-theme \
-    vertex-maia-icon-theme
+    vertex-maia-icon-theme \
+    sardi-icons
 
   errorCheck "Manjaro: icons"
 
-  # fonts
-  yay -S --needed --noconfirm \
-    gucharmap \
-    nerd-fonts-complete \
-    ttf-iosevka
-
-  errorCheck "Manjaro: fonts"
-
-  sudo fc-cache
-
 fi
+
+# fonts
+yay -S --needed \
+    nerd-fonts-complete \
+    ttf-joypixels \
+    ttf-weather-icons
+
+errorCheck "Fonts"
+
+sudo fc-cache -fv
 
 wallpath=$HOME/.local/share/wallpapers/wallpapers-dt
 

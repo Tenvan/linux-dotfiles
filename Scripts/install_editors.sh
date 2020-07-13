@@ -48,9 +48,20 @@ curl -sLf https://spacevim.org/install.sh | bash
 errorCheck "spacevim install"
 
 # emacs / spacemacs
-rm -fr ~/.emacs.d
 yay -S --noconfirm --needed emacs
-git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+
+if [ -f ~/.emacs.d/.git/config ]; then
+    echo Emacs Git gefunden. aktualisiere...
+    cd  ~/.emacs.d
+    git pull
+    errorCheck "pull emacs.d"
+    cd ~
+else
+    echo Emacs Git NICHT gefunden. klone...
+    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+    errorCheck "clone emacs.de"
+fi
+
 errorCheck "spacemacs install"
 
 # nodejs tools for editors
