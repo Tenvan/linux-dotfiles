@@ -15,7 +15,8 @@ get_config_list() {
     --print-column=3 \
     --hide-column=3 \
     --hide-header \
-    true " emacs" "$HOME/.spacemacs" \
+    true " spacemacs" "$HOME/.spacemacs" \
+    false " doom" "$HOME/.doom.d/*.*" \
     false " vim" "$HOME/.SpaceVim.d/*.* $HOME/.SpaceVim.d/autoload/*.*" \
     false " awesome" ".config/awesome/*.lua" \
     false " scripts autostart" "$HOME/Scripts/autostart*.sh" \
