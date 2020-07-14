@@ -1,9 +1,9 @@
 #!/bin/bash
 
 function run() {
-  if ! pgrep $1; then
-    $@ &
-  fi
+    if ! pgrep $1; then
+        $@ &
+    fi
 }
 
 killall -q picom

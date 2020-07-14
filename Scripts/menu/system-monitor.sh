@@ -8,7 +8,7 @@
 # Dmenu script for launching system monitoring programs.
 
 declare -a options=(
-	"s-tui
+    "s-tui
 bashtop
 glances
 gtop
@@ -22,22 +22,22 @@ choice=$(echo -e "${options[@]}" | zenity --text='System monitors: ' --list --wi
 terminal=alacritty
 
 case $choice in
-quit)
-	echo "Program terminated." && exit 1
-	;;
-bashtop | \
-	glances | \
-	gtop | \
-	htop | \
-	s-tui)
-	exec $terminal -t $choice -e $choice
-	;;
-iftop | \
-	iotop | \
-	iptraf-ng)
-	exec $terminal -t $choice -e sudo $choice
-	;;
-*)
-	exit 1
-	;;
+    quit)
+        echo "Program terminated." && exit 1
+        ;;
+    bashtop | \
+        glances | \
+        gtop | \
+        htop | \
+        s-tui)
+        exec $terminal -t $choice -e $choice
+        ;;
+    iftop | \
+        iotop | \
+        iptraf-ng)
+        exec $terminal -t $choice -e sudo $choice
+        ;;
+    *)
+        exit 1
+        ;;
 esac

@@ -63,7 +63,7 @@ function print_run {
     for (( i = "$1"; i < "$1" + "$2" && i < printable_colours; i++ )) do
         print_colour "$i"
     done
-    printf "  "
+        printf "  "
 }
 
 # Print blocks of colours
@@ -84,10 +84,10 @@ function print_blocks {
             for (( block = 0; block < blocks_per_line; block++ )) do
                 print_run $(( i + (block * block_length) )) "$block_cols"
             done
-            (( i += block_cols )) # Prepare to print the next row
-            printf "\n"
-        done
-    done
+                (( i += block_cols )) # Prepare to print the next row
+                printf "\n"
+            done
+            done
 }
 
 print_run 0 16 # The first 16 colours are spread over the whole spectrum

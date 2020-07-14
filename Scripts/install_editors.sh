@@ -16,11 +16,11 @@ if [[ "$LINUX_VERSION_NAME" == *"ArcoLinux"* ]]; then
 fi
 
 errorCheck() {
-       retVal=$?
-       if [ $retVal -ne 0 ]; then
-              echo "abort installation script 'install_editors': " $1
-              exit $retVal
-       fi
+    retVal=$?
+    if [ $retVal -ne 0 ]; then
+        echo "abort installation script 'install_editors': " $1
+        exit $retVal
+    fi
 }
 
 #####################################
@@ -48,7 +48,7 @@ curl -sLf https://spacevim.org/install.sh | bash
 errorCheck "spacevim install"
 
 # emacs / spacemacs
-yay -S --noconfirm --needed emacs
+yay -S --noconfirm --needed emacs shellcheck prettier
 
 if [ -f ~/.emacs.d/.git/config ]; then
     echo Emacs Git gefunden. aktualisiere...
@@ -67,4 +67,3 @@ errorCheck "spacemacs install"
 # nodejs tools for editors
 yarn global add neovim eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify
 errorCheck "install required nodejs-tools"
-

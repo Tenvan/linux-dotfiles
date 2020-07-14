@@ -1,16 +1,16 @@
 #!/bin/bash
 
 function run() {
-  if ! pgrep $1; then
-    $@ &
-  fi
+    if ! pgrep $1; then
+        $@ &
+    fi
 }
 
 function restart() {
-  while pgrep -u $UID -x $1 >/dev/null; do sleep 1; done
-  if ! pgrep $1; then
-    $@ &
-  fi
+    while pgrep -u $UID -x $1 >/dev/null; do sleep 1; done
+    if ! pgrep $1; then
+        $@ &
+    fi
 }
 
 xrdb -merge $HOME/.Xresources
