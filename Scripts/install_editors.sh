@@ -42,8 +42,6 @@ yay -S --noconfirm --needed neovim python-pynvim nodejs neovim-remote
 yay -S --noconfirm --needed vim vim-plug
 errorCheck "vim installation"
 
-rm -fr ~/.config/nvim
-rm -fr ~/.SpaceVim
 curl -sLf https://spacevim.org/install.sh | bash
 errorCheck "spacevim install"
 

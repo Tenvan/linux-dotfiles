@@ -337,14 +337,25 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq projectile-project-search-path '("/media/WORKSPACE"))
 
+  ;; number pad keys
+  ;; <kp-decimal>
+  ;; <kp-0>
+  ;; <kp-1>
+  ;; <kp-2>
+  ;; <kp-3>
+  ;; <kp-subtract>
+  ;; <kp-divide>
+  ;; <kp-multiply>
+
   "Edits"
   (setq x-select-enable-clipboard t)
   ;; (define-key evil-visual-state-map (kbd "s-c") (kbd "\"+y"))
   ;; (define-key evil-insert-state-map  (kbd "s-v") (kbd "^R+"))
   ;; (define-key evil-ex-completion-map (kbd "s-v") (kbd "^R+"))
   ;; (define-key evil-ex-search-keymap  (kbd "s-v") (kbd "^R+"))
+
   "undo"
-  (global-set-key (kbd "C-S-z")    'undo-tree-undo)
+  ;; (global-set-key (kbd "C-S-z")    'undo-tree-undo)
   "redo"
   (global-set-key (kbd "C-S-y")    'undo-tree-redo)
 
@@ -355,6 +366,10 @@ you should place your code here."
   "delete"
   (global-set-key (kbd "C-S-x")    'evil-delete)
   (global-set-key (kbd "C-S-d")    'yank)
+
+  "comments"
+  (global-set-key (kbd "C-<kp-divide>")   'evilnc-comment-or-uncomment-lines)
+  (global-set-key (kbd "S-<kp-divide>") 'evilnc-comment-or-uncomment-paragraphs)
 
   "folding"
   (global-set-key (kbd "C-S--")    'evil-close-folds)
@@ -382,10 +397,10 @@ you should place your code here."
   (global-set-key (kbd "C-S-g")    'magit)
 
   "Window Management"
-  (global-set-key (kbd "M-<right>") 'evil-window-next)
-  (global-set-key (kbd "M-<left>") 'evil-window-prev)
+  (global-set-key (kbd "M-<right>")   'evil-window-next)
+  (global-set-key (kbd "M-<left>")    'evil-window-prev)
   (global-set-key (kbd "M-S-<right>") 'next-buffer)
-  (global-set-key (kbd "M-S-<left>") 'previous-buffer)
+  (global-set-key (kbd "M-S-<left>")  'previous-buffer)
 
   (javascript :variables javascript-backend 'lsp)
 
