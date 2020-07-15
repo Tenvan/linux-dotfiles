@@ -79,5 +79,8 @@
 
 .cache/**/*
 .locale/**/*
+!.locale/share/wallpapers/shared
+!.locale/share/wallpapers/shared/*
+!.locale/share/wallpapers/shared/**/*
 
 **/*-private.*
