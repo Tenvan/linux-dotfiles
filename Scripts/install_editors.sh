@@ -46,7 +46,7 @@ curl -sLf https://spacevim.org/install.sh | bash
 errorCheck "spacevim install"
 
 # emacs / spacemacs
-yay -S --noconfirm --needed emacs shellcheck prettier
+yay -S --noconfirm --needed emacs shellcheck prettier ripgrep clang tar fd
 
 if [ -f ~/.emacs.d/.git/config ]; then
     echo Emacs Git gefunden. aktualisiere...

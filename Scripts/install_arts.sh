@@ -102,6 +102,17 @@ if $IS_MANJARO == true; then
 
     errorCheck "Manjaro: wallpapers"
 
+    # themes
+    yay -S --needed --noconfirm \
+        arc-gtk-theme \
+        arc-themes-breath \
+        arc-themes-maia \
+        arc-themes-solid-breath \
+        arc-themes-solid-maia \
+        materia-gtk-theme
+
+    errorCheck "ArcoLinux: themes"
+
     yay -S --needed --noconfirm \
         xcursor-breeze \
         xcursor-breeze-adapta \

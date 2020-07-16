@@ -29,6 +29,7 @@ select_application() {
            "♻ UTF8 Test" "$myTerminal --hold -e curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html" \
            "  Wetter Brakel" "$myTerminal --hold -d 140 44 -t wetter -e curl wttr.in/33034?lang=de" \
            "  Wetter Höxter" "$myTerminal --hold -d 140 44 -t wetter -e curl wttr.in/37671?lang=de" \
+           "  Wetter Mainz" "$myTerminal --hold -d 140 44 -t wetter -e curl wttr.in/Mainz?lang=de" \
            "♻ Matrix" "$myTerminal --hold -t matrix -e cmatrix"
 }
 

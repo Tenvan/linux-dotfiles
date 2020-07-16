@@ -128,7 +128,7 @@ local escapekey = "Escape"
 
 -- personal variables
 -- change these variables if you want
-local browser =  os.getenv("BROWSER") or "firefox-developer-edition"
+local browser =  os.getenv("BROWSER") or "firefox"
 local editor = os.getenv("EDITOR") or "nvim"
 local editorgui = "Geany"
 local filemanager = "nemo"
