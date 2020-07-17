@@ -1,5 +1,5 @@
-(setq doom-font (font-spec :family "Mononoki Nerd Font" :size 15)
-       doom-variable-pitch-font (font-spec :family "Mononoki Nerd Font" :size 15))
+(setq doom-font (font-spec :family "Iosevka Nerd Font" :size 15)
+      doom-variable-pitch-font (font-spec :family "Iosevka Nerd Font" :size 15))
 
 (setq doom-theme 'doom-palenight)
 
@@ -10,10 +10,13 @@
 ;;
 ;; My Custom Configurations
 ;;
-(setq-hook! prog-mode which-key-mode t)
-(setq-hook! prog-mode global-undo-tree-mode t)
-(setq-hook! prog-mode global-company-mode t)
+(setq which-key-mode t)
+(setq global-undo-tree-mode t)
 
+(use-package! company
+  :init
+  (global-company-mode t)
+  )
 ;;
 ;; number pad keys
 ;; <kp-decimal>
@@ -73,11 +76,11 @@
 (global-set-key (kbd "C-S-g")     'magit)
 
 "Window Management"
+(global-set-key (kbd "M-<left>")    'evil-window-prev)
 (global-set-key (kbd "M-<right>")   'evil-window-next)
 (global-set-key (kbd "M-S-<right>") 'next-buffer)
 (global-set-key (kbd "M-S-<left>")  'previous-buffer)
-
-(global-set-key "\C-x\ t" 'toggle-truncate-lines)
+(global-set-key (kbd "C-S-b")       'helm-buffers-list)
 
 (setq neo-window-fixed-size nil)
 
@@ -99,28 +102,6 @@
                                              (kbd "k") 'peep-dired-prev-file)
 
 (add-hook 'peep-dired-hook 'evil-normalize-keymaps)
-
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
-
-(setq md4rd-subs-active '(archlinux commandline DistroTube DoomEmacs emacs freesoftware lbry linux linux4noobs linuxmasterrace linnuxquestions orgmode qutebrowser suckless Ubuntu unixporn UsabilityPorn vim xmonad))
-
-(custom-set-variables
- '(elfeed-feeds
-   (quote
-    (("https://www.reddit.com/r/linux.rss" reddit linux)
-     ("https://opensource.com/feed" opensource linux)
-     ("https://linux.softpedia.com/backend.xml" softpedia linux)
-     ("https://itsfoss.com/feed/" itsfoss linux)
-     ("http://feeds.feedburner.com/d0od" omgubuntu linux)
-     ("https://www.computerworld.com/index.rss" computerworld linux)
-     ("https://www.networkworld.com/category/linux/index.rss" networkworld linux)
-     ("https://www.techrepublic.com/rssfeeds/topic/open-source/" techrepublic linux)
-     ("https://betanews.com/feed" betanews linux)
-     ("http://lxer.com/module/newswire/headlines.rss" lxer linux)
-     ("https://distrowatch.com/news/dwd.xml" distrowatch linux))))
- '(package-selected-packages
-   (quote
-    (exwm peep-dired nav-flash elfeed))))
 
 (custom-set-faces
  )
