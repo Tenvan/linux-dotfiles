@@ -49,15 +49,15 @@ errorCheck "spacevim install"
 yay -S --noconfirm --needed emacs shellcheck prettier ripgrep clang tar fd
 
 if [ -f ~/.emacs.d/.git/config ]; then
-    echo Emacs Git gefunden. aktualisiere...
+  echo "Doom Git gefunden. aktualisiere..."
     cd  ~/.emacs.d
     git pull
-    errorCheck "pull emacs.d"
+    errorCheck "pull doom in ~/.emcas.d"
     cd ~
 else
-    echo Emacs Git NICHT gefunden. klone...
-    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-    errorCheck "clone emacs.de"
+    echo "Doom Git NICHT gefunden. klone..."
+    git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+    errorCheck "clone doom in ~/.emacs.d"
 fi
 
 errorCheck "spacemacs install"
