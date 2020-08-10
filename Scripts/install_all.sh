@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 #####################
 # init distro check #
 #####################

@@ -1,19 +1,99 @@
 #+TITLE: stira's Doom Emacs Config
 #+AUTHOR: Ralf Stich (stira)
+#+STARTUP: showeverything
+
+** FONTS
+
+Doom exposes five (optional) variables for controlling fonts in Doom. Here are the three important ones:
+
++ `doom-font'
++ `doom-variable-pitch-font'
++ `doom-big-font' -- used for `doom-big-font-mode'; use this for
+
+They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
+font string. You generally only need these two:
 
 #+BEGIN_SRC emacs-lisp
 (setq doom-font (font-spec :family "Iosevka Nerd Font" :size 15)
       doom-variable-pitch-font (font-spec :family "Iosevka Nerd Font" :size 15))
+#+END_SRC
 
-(setq doom-theme 'doom-palenight)
+** DOOM THEME
+#+BEGIN_SRC emacs-lisp
+(use-package doom-themes
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-nord t)
 
-(setq org-directory "~/Dokumente/org/")
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
 
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
+  (doom-themes-treemacs-config)
+
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
+#+END_SRC
+
+** ORG MODE
+#+BEGIN_SRC emacs-lisp
+(setq org-directory "~/Documents/org/")
+#+END_SRC
+
+** LINE SETTINGS
+ #+BEGIN_SRC emacs-lisp
 (setq display-line-numbers-type t)
+(global-set-key "\C-x\ t" 'toggle-truncate-lines)
+#+END_SRC
+
+** NEOTREE
+Setting the neotree width to be adjustable.
+#+BEGIN_SRC emacs-lisp
+(setq neo-window-fixed-size nil)
+#+END_SRC
+
+** BROWSER (eww)
+Set urls to open in a specific browser.
+#+BEGIN_SRC emacs-lisp
+(setq browse-url-browser-function 'firefox)
+#+END_SRC
+
+** SPLITS
+Force splits to open on the right
+#+BEGIN_SRC emacs-lisp
+(defun prefer-horizontal-split ()
+  (set-variable 'split-height-threshold nil t)
+  (set-variable 'split-width-threshold 40 t)) ; make this as low as needed
+(add-hook 'markdown-mode-hook 'prefer-horizontal-split)
+#+END_SRC
+
+** FILE MANAGER (dired)
+Image previews in dired
+#+BEGIN_SRC emacs-lisp
+(map!
+  (:after dired
+    (:map dired-mode-map
+     "C-x i" #'peep-dired
+     )))
+(evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file
+                                             (kbd "k") 'peep-dired-prev-file)
+(add-hook 'peep-dired-hook 'evil-normalize-keymaps)
+#+END_SRC
+
+Enable Desktop Clipboard for emacs
+#+BEGIN_SRC emacs-lisp
+(setq-hook! prog-mode select-enable-clipboard t)
+#+END_SRC
 
 ;;
 ;; My Custom Configurations
 ;;
+#+BEGIN_SRC emacs-lisp
 (setq which-key-mode t)
 (setq global-undo-tree-mode t)
 
@@ -35,7 +115,6 @@
 ;;
 ;;Edits
 ;;
-(setq-hook! prog-mode select-enable-clipboard t)
 ;; (define-key evil-visual-state-map (kbd "s-c") (kbd "\"+y"))
 ;; (define-key evil-insert-state-map  (kbd "s-v") (kbd "^R+"))
 ;; (define-key evil-ex-completion-map (kbd "s-v") (kbd "^R+"))
@@ -85,28 +164,13 @@
 (global-set-key (kbd "M-S-<right>") 'next-buffer)
 (global-set-key (kbd "M-S-<left>")  'previous-buffer)
 (global-set-key (kbd "C-S-b")       'helm-buffers-list)
+#+END_SRC
 
-(setq neo-window-fixed-size nil)
-
-(setq browse-url-browser-function 'eww-browse-url)
-
-(defun prefer-horizontal-split ()
-  (set-variable 'split-height-threshold nil t)
-  (set-variable 'split-width-threshold 40 t)) ; make this as low as needed
-
-(add-hook 'markdown-mode-hook 'prefer-horizontal-split)
-
-(map!
-  (:after dired
-    (:map dired-mode-map
-     "C-x i" #'peep-dired
-     )))
-
-(evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file
-                                             (kbd "k") 'peep-dired-prev-file)
-
-(add-hook 'peep-dired-hook 'evil-normalize-keymaps)
-
+custom-set-faces was added by Custom.
+If you edit it by hand, you could mess it up, so be careful.
+Your init file should contain only one such instance.
+If there is more than one, they won't work right
+#+BEGIN_SRC emacs-lisp
 (custom-set-faces
  )
 #+END_SRC

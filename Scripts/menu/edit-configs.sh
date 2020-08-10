@@ -21,6 +21,7 @@ get_config_list() {
            false " awesome" ".config/awesome/*.lua" \
            false " scripts autostart" "$HOME/Scripts/autostart*.sh" \
            false " scripts install" "$HOME/Scripts/install_*.sh" \
+           false " scripts ldap" "$HOME/Scripts/ldap/*.sh" \
            false " scripts all" "$HOME/Scripts/*.*" \
            false " bash" "$HOME/.bashrc*" \
            false " menus" "$HOME/Scripts/menu/*.*" \

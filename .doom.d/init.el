@@ -25,7 +25,7 @@
         ;; +auto
         ;; +childframe)   ; the ultimate code completion backend
        helm              ; the *other* search engine for love and life
-       ido               ; the other *other* search engine...
+       ;; ido               ; the other *other* search engine...
        ivy               ; a search engine for love and life
 
        :ui
@@ -43,9 +43,9 @@
        neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
-       ;; pretty-code       ; ligatures or substitute text with pretty symbols
+       ;;pretty-code       ; ligatures or substitute text with pretty symbols
        tabs              ; an tab bar for Emacs
-       ;; treemacs          ; a project drawer, like neotree but cooler
+       treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
