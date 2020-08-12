@@ -1,6 +1,5 @@
 #+TITLE: stira's Doom Emacs Config
 #+AUTHOR: Ralf Stich (stira)
-#+STARTUP: inlineimages
 
 ** 2 Rudimentary configuration
 
@@ -13,7 +12,7 @@ Make this file run (slightly) faster with lexical binding (see this blog post fo
 
 It’s useful to have some basic personal information
 #+BEGIN_SRC emacs-lisp
-;; Personal Data
+;; Personal Data ####
 (setq user-full-name "stira"
       user-mail-address "ralf.stich@infoniqa.com")
 #+END_SRC
@@ -48,9 +47,9 @@ Browsing the web and seeing angrybacon/dotemacs and comparing with the values sh
 
 (delete-selection-mode 1)                         ; Replace selection when inserting text
 (display-time-mode 1)                             ; Enable time in the mode-line
-(unless (equal "Battery status not available"
-               (battery))
-  (display-battery-mode 1))                       ; On laptops it's nice to know how much power you have
+;; (unless (equal "Battery status not available"
+;;                (battery))
+;;   (display-battery-mode 1))                       ; On laptops it's nice to know how much power you have
 (global-subword-mode 1)                           ; Iterate through CamelCase words
 #+END_SRC
 
@@ -69,9 +68,9 @@ I also like the idea of fullscreen-ing when opened by Emacs or the .desktop file
 By default changes made via a customisation interface are added to init.el. I prefer the idea of using a separate file for this. We just need to change a setting, and load it if it exists.
 
 #+BEGIN_SRC emacs-lisp
-;; (setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
-;; (when (file-exists-p custom-file)
-  ;; (load custom-file))
+(setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
+(when (file-exists-p custom-file)
+  (load custom-file))
 #+END_SRC
 
 **** 2.2.4 Windows
@@ -98,27 +97,37 @@ Oh, and previews are nice
 
 Window rotation is nice, and can be found under SPC w r and SPC w R. Layout rotation is also nice though. Let’s stash this under SPC w SPC, inspired by Tmux’s use of C-b SPC to rotate windows.
 
+***** NAVIGATION
 We could also do with adding the missing arrow-key variants of the window navigation/swapping commands.
 #+BEGIN_SRC emacs-lisp
-;; (map! :map evil-window-map
-;;       "SPC" #'rotate-layout
-;;        ;; Navigation
-;;        "<left>"     #'evil-window-left
-;;        "<down>"     #'evil-window-down
-;;        "<up>"       #'evil-window-up
-;;        "<right>"    #'evil-window-right
-;;        ;; Swapping windows
-;;        "C-<left>"       #'+evil/window-move-left
-;;        "C-<down>"       #'+evil/window-move-down
-;;        "C-<up>"         #'+evil/window-move-up
-;;        "C-<right>"      #'+evil/window-move-right)
+(map! :map evil-window-map
+      "SPC" #'rotate-layout
+       ;; Navigation
+       "<left>"     #'evil-window-left
+       "<down>"     #'evil-window-down
+       "<up>"       #'evil-window-up
+       "<right>"    #'evil-window-right
+       ;; Swapping windows
+       "C-<left>"       #'+evil/window-move-left
+       "C-<down>"       #'+evil/window-move-down
+       "C-<up>"         #'+evil/window-move-up
+       "C-<right>"      #'+evil/window-move-right)
+#+END_SRC
+
+***** SPLITS
+Force splits to open on the right
+#+BEGIN_SRC emacs-lisp
+(defun prefer-horizontal-split ()
+  (set-variable 'split-height-threshold nil t)
+  (set-variable 'split-width-threshold 40 t)) ; make this as low as needed
+(add-hook 'markdown-mode-hook 'prefer-horizontal-split)
 #+END_SRC
 
 **** 2.2.5 Buffer defaults
 
 I’d much rather have my new buffers in org-mode than fundamental-mode, hence
 #+BEGIN_SRC emacs-lisp
-;; (setq-default major-mode 'org-mode)
+(setq-default major-mode 'org-mode)
 #+END_SRC
 
 For some reason this + the mixed pitch hook causes issues with hydra and so I’ll just need to resort to SPC b o for now.
@@ -141,14 +150,11 @@ For some reason this + the mixed pitch hook causes issues with hydra and so I’
 doom-one is nice and all, but I find the vibrant variant nicer. Oh, and with the nice selection doom provides there’s no reason for me to want the defaults.
 
 #+BEGIN_SRC emacs-lisp
-
 (setq doom-theme 'doom-nord)
 (delq! t custom-theme-load-path)
-
 #+END_SRC
 
 However, by default red text is used in the modeline, so let’s make that orange so I don’t feel like something’s gone wrong when editing files.
-#
 
 #+BEGIN_SRC emacs-lisp
 (custom-set-faces!
@@ -156,7 +162,6 @@ However, by default red text is used in the modeline, so let’s make that orang
 #+END_SRC
 
 While we’re modifying the modeline, LF UTF-8 is the default file encoding, and thus not worth noting in the modeline. So, let’s conditionally hide it.
-#
 
 #+BEGIN_SRC emacs-lisp
 (defun doom-modeline-conditional-buffer-encoding ()
@@ -169,42 +174,81 @@ While we’re modifying the modeline, LF UTF-8 is the default file encoding, and
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-;; (use-package doom-themes
-;;   :config
-;;   ;; Global settings (defaults)
-;;   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-;;         doom-themes-enable-italic t) ; if nil, italics is universally disabled
+(use-package doom-themes
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
-;;   ;; Enable flashing mode-line on errors
-;;   (doom-themes-visual-bell-config)
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
 
-;;   ;; Enable custom neotree theme (all-the-icons must be installed!)
-;;   (doom-themes-neotree-config)
-;;   ;; or for treemacs users
-;;   (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
-;;   (doom-themes-treemacs-config)
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
+  (doom-themes-treemacs-config)
 
-;;   ;; Corrects (and improves) org-mode's native fontification.
-;;   (doom-themes-org-config))
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
 #+END_SRC
 
 ***** 2.3.1.3 Miscellaneous
 
 Relative line numbers are fantastic for knowing how far away line numbers are, then ESC 12 <UP> gets you exactly where you think.
 
+****** LINE NUMBERS
 #+BEGIN_SRC emacs-lisp
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type t)
+;; (setq display-line-numbers-type 'relative)
 #+END_SRC
 
+
+****** BUFFERS
 I’d like some slightly nicer default buffer names
 #+BEGIN_SRC emacs-lisp
 (setq doom-fallback-buffer-name "► Doom"
       +doom-dashboard-name "► Doom")
 #+END_SRC
 
+
+****** MODELINE
 There’s a bug with the modeline in insert mode for org documents (issue), so
 #+BEGIN_SRC emacs-lisp
 (custom-set-faces! '(doom-modeline-evil-insert-state :weight bold :foreground "#339CDB"))
+#+END_SRC
+
+
+****** NEOTREE
+Setting the neotree width to be adjustable.
+#+BEGIN_SRC emacs-lisp
+;; (setq neo-window-fixed-size nil)
+#+END_SRC
+
+
+****** BROWSER
+Set urls to open in a specific browser.
+#+BEGIN_SRC emacs-lisp
+(setq browse-url-browser-function 'firefox)
+#+END_SRC
+
+****** FILE MANAGER (dired)
+Image previews in dired
+#+BEGIN_SRC emacs-lisp
+(map!
+  (:after dired
+    (:map dired-mode-map
+     "C-x i" #'peep-dired
+     )))
+(evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file
+                                             (kbd "k") 'peep-dired-prev-file)
+(add-hook 'peep-dired-hook 'evil-normalize-keymaps)
+#+END_SRC
+
+****** CLIPBOARD
+Enable Desktop Clipboard for emacs
+#+BEGIN_SRC emacs-lisp
+(setq-hook! prog-mode select-enable-clipboard t)
 #+END_SRC
 
 **** 2.3.2 Some helper macros
@@ -465,7 +509,7 @@ Specify a :branch to install a package from a particular branch or tag. This is 
 *** 3.2 General packages
 **** 3.2.1 Window management
 #+BEGIN_SRC emacs-lisp
-;;(package! rotate :pin "091b5ac4fc")
+;; (package! rotate)
 #+END_SRC
 
 **** 3.2.2 Fun
@@ -473,13 +517,13 @@ Specify a :branch to install a package from a particular branch or tag. This is 
 Sometimes one just wants a little fun. XKCD comics are fun.
 
 #+BEGIN_SRC emacs-lisp
-;;(package! xkcd :pin "66e928706f")
+;; (package! xkcd)
 #+END_SRC
 
 Every so often, you want everyone else to know that you’re typing, or just to amuse oneself. Introducing: typewriter sounds!
 
 #+BEGIN_SRC emacs-lisp
-;;(package! selectric-mode :pin "bb9e66678f")
+;; (package! selectric-mode)
 #+END_SRC
 
 Hey, let’s get the weather in here while we’re at it. Unfortunately this seems slightly unmaintained (few open bugfix PRs) so let’s roll our own version.
@@ -491,13 +535,13 @@ Hey, let’s get the weather in here while we’re at it. Unfortunately this see
 Why not flash words on the screen. Why not — hey, it could be fun.
 
 #+BEGIN_SRC emacs-lisp
-;;(package! spray :pin "00638bc916")
+;; (package! spray)
 #+END_SRC
 
 With all our fancy Emacs themes, my terminal is missing out!
 
 #+BEGIN_SRC emacs-lisp
-;;(package! theme-magic :pin "844c4311bd")
+;; (package! theme-magic)
 #+END_SRC
 
 What’s even the point of using Emacs unless you’re constantly telling everyone about it?
@@ -615,8 +659,10 @@ The very large files mode loads large files in chunks, allowing one to open ridi
 To make VLF available without delaying startup, we’ll just load it in quiet moments.
 #
 
+#+BEGIN_SRC emacs-lisp
 (use-package! vlf-setup
   :defer-incrementally vlf-tune vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
+#+END_SRC
 
 ***** 3.2.3.7 Definitions
 
@@ -6801,50 +6847,7 @@ Now we just need to load it appropriately.
 (setq org-directory "~/Documents/org/")
 #+END_SRC
 
-** LINE SETTINGS
- #+BEGIN_SRC emacs-lisp
-(setq display-line-numbers-type t)
-(global-set-key "\C-x\ t" 'toggle-truncate-lines)
-#+END_SRC
 
-** NEOTREE
-Setting the neotree width to be adjustable.
-#+BEGIN_SRC emacs-lisp
-(setq neo-window-fixed-size nil)
-#+END_SRC
-
-** BROWSER (eww)
-Set urls to open in a specific browser.
-#+BEGIN_SRC emacs-lisp
-(setq browse-url-browser-function 'firefox)
-#+END_SRC
-
-** SPLITS
-Force splits to open on the right
-#+BEGIN_SRC emacs-lisp
-(defun prefer-horizontal-split ()
-  (set-variable 'split-height-threshold nil t)
-  (set-variable 'split-width-threshold 40 t)) ; make this as low as needed
-(add-hook 'markdown-mode-hook 'prefer-horizontal-split)
-#+END_SRC
-
-** FILE MANAGER (dired)
-Image previews in dired
-#+BEGIN_SRC emacs-lisp
-(map!
-  (:after dired
-    (:map dired-mode-map
-     "C-x i" #'peep-dired
-     )))
-(evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file
-                                             (kbd "k") 'peep-dired-prev-file)
-(add-hook 'peep-dired-hook 'evil-normalize-keymaps)
-#+END_SRC
-
-Enable Desktop Clipboard for emacs
-#+BEGIN_SRC emacs-lisp
-(setq-hook! prog-mode select-enable-clipboard t)
-#+END_SRC
 
 ;;
 ;; My Custom Configurations
