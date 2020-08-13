@@ -45,11 +45,11 @@ yay -S --noconfirm --needed \
 
 errorCheck "application packages"
 
-if $IS_MANJARO == true; then
-    #yay -S picom
-    yay -S picom-ibhagwan-git
-    #yay -S picom-tryone-git
+yay -S picom-ibhagwan-git
 
+errorCheck "picom"
+
+if $IS_MANJARO == true; then
     yay -S --noconfirm --needed bmenu dmenu-manjaro conky
     errorCheck "Manjaro: menus"
 fi
