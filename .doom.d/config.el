@@ -159,15 +159,157 @@
 (use-package! vlf-setup
   :defer-incrementally vlf-tune vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
 
+;; (unpin! org)
+
+;; (package! org-super-agenda)
+
+;; (package! doct
+;;   :recipe (:host github :repo "progfolio/doct"))
+
+;; (package! org-pretty-table-mode
+;;   :recipe (:host github :repo "Fuco1/org-pretty-table"))
+
+;; (package! org-fragtog)
+
+;; (package! org-pretty-tags)
+
+;; (package! ox-gfm :pin "99f93011b0...")
+
+;; (package! org-ref :pin "9a8053f0b0...")
+
+;; (package! org-graph-view :recipe (:host github :repo "alphapapa/org-graph-view") :pin "13314338d7...")
+
+;; (package! org-chef :pin "77f97ad07b...")
+
+;; (package! org-plot :recipe (:local-repo "lisp" :no-byte-compile t))
+
+;; (package! org-roam-server :pin "bfc7032741...")
+
+;; (use-package org-roam-server
+;;   :after org-roam
+;;   :config
+;;   (setq org-roam-server-host "127.0.0.1"
+;;         org-roam-server-port 8078
+;;         org-roam-server-export-inline-images t
+;;         org-roam-server-authenticate nil
+;;         org-roam-server-label-truncate t
+;;         org-roam-server-label-truncate-length 60
+;;         org-roam-server-label-wrap-length 20)
+;;   (defun org-roam-server-open ()
+;;     "Ensure the server is active, then open the roam graph."
+;;     (interactive)
+;;     (org-roam-server-mode 1)
+;;     (browse-url-xdg-open (format "http://localhost:%d" org-roam-server-port))))
+
+(use-package abbrev
+  :init
+  (setq-default abbrev-mode t)
+  ;; a hook funtion that sets the abbrev-table to org-mode-abbrev-table
+  ;; whenever the major mode is a text mode
+  (defun tec/set-text-mode-abbrev-table ()
+    (if (derived-mode-p 'text-mode)
+        (setq local-abbrev-table org-mode-abbrev-table)))
+  :commands abbrev-mode
+  :hook
+  (abbrev-mode . tec/set-text-mode-abbrev-table)
+  :config
+  (setq abbrev-file-name (expand-file-name "abbrev.el" doom-private-dir))
+  (setq save-abbrevs 'silently))
+
+(after! centaur-tabs
+  (centaur-tabs-mode t)
+  (setq centaur-tabs-height 36
+        centaur-tabs-set-icons t
+        centaur-tabs-modified-marker "o"
+        centaur-tabs-close-button "×"
+        centaur-tabs-set-bar 'above)
+        centaur-tabs-gray-out-icons 'buffer
+  (centaur-tabs-change-fonts "P22 Underground Book" 160))
+;; (setq x-underline-at-descent-line t)
+
+(after! company
+  (setq company-idle-delay 0.5
+        company-minimum-prefix-length 2)
+  (setq company-show-numbers t)
+(add-hook 'evil-normal-state-entry-hook #'company-abort)) ;; make aborting less annoying.
+
+(setq-default history-length 1000)
+(setq-default prescient-history-length 1000)
+
+(set-company-backend! '(text-mode
+                        markdown-mode
+                        gfm-mode)
+  '(:seperate company-ispell
+              company-files
+              company-yasnippet))
+
+(set-company-backend! 'ess-r-mode '(company-R-args company-R-objects company-dabbrev-code :separate))
+
+(setq elcord-use-major-mode-as-main-icon t)
+
+(setq eros-eval-result-prefix "⟹ ")
+
+(after! evil (evil-escape-mode nil))
+
+(after! flyspell (require 'flyspell-lazy) (flyspell-lazy-mode 1))
+
+(use-package! info-colors
+  :commands (info-colors-fontify-node))
+
+(add-hook 'Info-selection-hook 'info-colors-fontify-node)
+
+(add-hook 'Info-mode-hook #'mixed-pitch-mode)
+
+(setq ivy-read-action-function 'ivy-hydra-read-action)
+
+(setq ivy-sort-max-size 50000)
+
+(after! magit
+  (magit-delta-mode +1))
+
+(use-package! org-chef
+  :commands (org-chef-insert-recipe org-chef-get-recipe-from-url))
+
+(setq projectile-ignored-projects '("~/" "/tmp" "~/.emacs.d/.local/straight/repos/"))
+(defun projectile-ignored-project-function (filepath)
+  "Return t if FILEPATH is within any of `projectile-ignored-projects'"
+  (or (mapcar (lambda (p) (s-starts-with-p p filepath)) projectile-ignored-projects)))
+
+(sp-local-pair
+     '(org-mode)
+     "<<" ">>"
+     :actions '(insert))
+
+(setq spray-wpm 500
+      spray-height 700)
+
+(add-hook 'doom-load-theme-hook 'theme-magic-from-emacs)
+
+(setq which-key-idle-delay 0.5) ;; I need the help, I really do
+(setq which-key-mode t)
+
+(setq which-key-allow-multiple-replacements t)
+(after! which-key
+  (pushnew!
+   which-key-replacement-alist
+   '(("" . "\\`+?evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "◂\\1"))
+   '(("\\`g s" . "\\`evilem--?motion-\\(.*\\)") . (nil . "◃\\1"))
+   ))
+
+(after! text-mode
+  (add-hook! 'text-mode-hook
+    ;; Apply ANSI color codes
+    (with-silent-modifications
+      (ansi-color-apply-on-region (point-min) (point-max)))))
+
 (setq org-directory "~/Documents/org/")
 
-(setq which-key-mode t)
 (setq global-undo-tree-mode t)
 
-(use-package! company
-  :init
-  (global-company-mode t)
-  )
+;; (use-package! company
+;;   :init
+;;   (global-company-mode t)
+;;   )
 ;;
 ;; number pad keys
 ;; <kp-decimal>
