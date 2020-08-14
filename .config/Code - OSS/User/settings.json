@@ -35,5 +35,6 @@
   "lua.targetVersion": "5.3",
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
-  }
+  },
+  "vsicons.dontShowNewVersionMessage": true
 }
