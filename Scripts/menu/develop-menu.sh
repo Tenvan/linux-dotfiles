@@ -20,7 +20,7 @@ select_application() {
            --print-column=2 \
            --hide-column=2 \
            --hide-header \
-           "♻ Git" "emacs $WORK_DIR/package.json" \
+           "♻ Git" "sh ~/Scripts/start-editor.sh $WORK_DIR/package.json" \
            "♻ Yarn quick install" "$shellCmd --hold -t OTC:QuickInstall -e '$timeCmd yarn install --ignore-scripts'" \
            "♻ Yarn full install" "$shellCmd --hold -t OTC:FullInstall -e '$timeCmd yarn'" \
            "♻ Start Server" "$shellCmd --hold -t OTC:StartServer -e 'yarn server:dev'" \
