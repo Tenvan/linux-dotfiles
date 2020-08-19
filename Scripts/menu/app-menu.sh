@@ -17,11 +17,6 @@ select_application() {
            --print-column=2 \
            --hide-column=2 \
            --hide-header \
-           "♻ JetBrains Toolsbox" "jetbrains-toolbox" \
-           "♻ SmartGit" "/opt/smartgit/bin/smartgit.sh" \
-           "♻ Krusader" "krusader" \
-           "♻ Dateien" $myFileManager \
-           "♻ xmonad Errors" "$myTerminal -t xmonad-errors -d 140 44 -e multitail -i $HOME/.xmonad/xmonad.errors" \
            "♻ xsession Errors" "$myTerminal -t xsession-errors -d 140 44 -e multitail -i $HOME/.xsession-errors" \
            "  Browser" "$myBrowser" \
            "♻ Teams" "teams" \

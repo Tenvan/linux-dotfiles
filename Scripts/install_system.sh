@@ -51,7 +51,7 @@ errorCheck "required application packages"
 yay -S --noconfirm --needed \
     exa ripgrep timeshift timeset-gui nitrogen \
     ark arj dpkg lhasa unrar p7zip \
-    foxitreader pfetch neofetch screenfetch \
+    foxitreader neofetch screenfetch \
     clamav clamtk \
     termite alacritty \
     glances bashtop gtop htop iftop iotop iptraf-ng s-tui \

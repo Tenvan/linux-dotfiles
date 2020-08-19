@@ -12,7 +12,7 @@ fi
 
 PATH="$HOME/.doom.d/bin:$HOME/.emacs.d/bin:$HOME/.local/bin${PATH:+:${PATH}}"
 export EDITOR="nvim"
-export TERM="termite"
+export TERM="alacritty"
 export BROWSER="firefox"
 
 colors() {

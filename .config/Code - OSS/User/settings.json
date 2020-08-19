@@ -16,6 +16,7 @@
     "Mononoki",
     "NBFULL",
     "alacritty",
+    "ngxs",
     "pcmanfm",
     "thunar",
     "xcomposite",
@@ -36,5 +37,9 @@
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "vsicons.dontShowNewVersionMessage": true
+  "vsicons.dontShowNewVersionMessage": true,
+  "editor.renameOnType": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

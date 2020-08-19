@@ -13,6 +13,7 @@ font = Noto Color Emoji 12
 font = Mononoki Nerd Font Bold 12
 font = Monospace 12
 font = Iosevka 12
+font = Twemoji 14
 geometry = 900x650
 highlight = #2f2f2f
 icon_name = terminal

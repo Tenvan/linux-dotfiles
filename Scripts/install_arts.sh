@@ -18,7 +18,7 @@ fi
 errorCheck() {
     retVal=$?
     if [ $retVal -ne 0 ]; then
-        echo "abort installation script 'install_desktop': " $1
+        echo "abort installation script 'install_arts': " $1
         exit $retVal
     fi
 }
@@ -31,7 +31,6 @@ if $IS_ARCO == true; then
     yay -S --needed --noconfirm \
         arcolinux-wallpapers-git \
         arcolinux-wallpapers-lxqt-dual-git \
-        solar-backgrounds \
         ukui-wallpapers
 
     errorCheck "ArcoLinux: wallpapers"
@@ -82,7 +81,6 @@ if $IS_MANJARO == true; then
         manjaro-artwork-extra \
         manjaro-users-artwork-wallpapers \
         manjaro-backgrounds \
-        solar-backgrounds \
         antergos-wallpapers \
         awesome-wallpapers \
         cinnamon-wallpapers \
@@ -154,8 +152,13 @@ fi
 # fonts
 yay -S --needed \
     nerd-fonts-complete \
+    ttf-ibm-plex \
     ttf-joypixels \
-    ttf-weather-icons
+    ttf-cascadia-code \
+    ttf-twemoji \
+    ttf-twemoji-color \
+    ttf-weather-icons \
+    otf-openmoji
 
 errorCheck "Fonts"
 

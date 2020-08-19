@@ -28,7 +28,7 @@ errorCheck() {
 #######################################
 
 yay -S --noconfirm --needed \
-    git bazel \
+    git bazel nsis \
     nodejs nodejs-emojione npm yarn \
     dotnet-sdk \
     mono mono-msbuild \
@@ -36,19 +36,3 @@ yay -S --noconfirm --needed \
     docker docker-compose
 
 errorCheck "development tools"
-
-# ArcoLinux
-if $IS_ARCO == true; then
-    # arco only packages
-    yay -S --noconfirm --needed nsis2
-
-    errorCheck "ArcoLinux: nsis"
-fi
-
-# Manjaro
-if $IS_MANJARO == true; then
-    yay -S --noconfirm --needed \
-        nsis
-
-    errorCheck "Manjaro: nsis"
-fi

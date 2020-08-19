@@ -134,7 +134,7 @@ local editorgui = "Geany"
 local filemanager = "nemo"
 local mailclient = "evolution"
 local mediaplayer = "spotify"
-local terminal = "termite"
+local terminal = "alacritty"
 local virtualmachine = "virtualbox"
 
 -- key groups
