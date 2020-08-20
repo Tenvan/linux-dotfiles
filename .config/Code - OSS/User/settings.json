@@ -41,5 +41,6 @@
   "editor.renameOnType": true,
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "diffEditor.codeLens": true
 }
