@@ -38,18 +38,12 @@ if $IS_ARCO == true; then
     # themes
     yay -S --needed --noconfirm \
         arcolinux-arc-themes-nico-git \
-        materia-gtk-theme \
-        numix-gtk-theme-git
+        materia-gtk-theme
 
     errorCheck "ArcoLinux: themes"
 
     # cursor
-    yay -S --needed --noconfirm \
-        xcursor-chameleon-anthracite \
-        xcursor-chameleon-darkskyblue \
-        xcursor-chameleon-pearl \
-        xcursor-chameleon-skyblue \
-        xcursor-chameleon-white \
+    yay -S --needed --noconfirm \        
         xcursor-comix \
         xcursor-flatbed \
         xcursor-neutral \
@@ -63,9 +57,6 @@ if $IS_ARCO == true; then
         arc-icon-theme \
         faba-icon-theme \
         hicolor-icon-theme \
-        numix-circle-arc-icons-git \
-        numix-circle-icon-theme-git \
-        oxy-neon \
         paper-icon-theme \
         papirus-icon-theme \
         surfn-mint-y-icons-git
@@ -151,14 +142,21 @@ fi
 
 # fonts
 yay -S --needed \
-    nerd-fonts-complete \
-    ttf-ibm-plex \
-    ttf-joypixels \
+    font-manager \
+    awesome-terminal-fonts \
+    nerd-fonts-fira-code \
+    nerd-fonts-hack \
+    nerd-fonts-iosevka \
+    nerd-fonts-source-code-pro \
+    nerd-fonts-mononoki \
+    nerd-fonts-dejavu-complete \
+    nerd-fonts-terminus \
+    ttf-nerd-fonts-symbols \
+    ttf-font-awesome \
     ttf-cascadia-code \
     ttf-twemoji \
     ttf-twemoji-color \
-    ttf-weather-icons \
-    otf-openmoji
+    ttf-weather-icons
 
 errorCheck "Fonts"
 

@@ -48,7 +48,7 @@ errorCheck "spacevim install"
 # emacs / spacemacs
 yay -S --noconfirm --needed \
     emacs shellcheck prettier ripgrep clang tar fd \
-    git-delta gdb bashdb cargo-script graphviz \
+    gdb bashdb graphviz \
     python-black python-pyflakes python-pipenv python-nose python-pytest
 
 if [ -f ~/.emacs.d/.git/config ]; then

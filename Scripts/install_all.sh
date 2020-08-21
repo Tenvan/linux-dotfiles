@@ -18,7 +18,7 @@ fi
 errorCheck() {
     retVal=$?
     if [ $retVal -ne 0 ]; then
-        echo "abort installation script 'install_wm': " $1
+        echo "abort installation script 'install_all': " $1
         exit $retVal
     fi
 }
