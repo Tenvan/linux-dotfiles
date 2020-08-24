@@ -128,7 +128,7 @@ local escapekey = "Escape"
 
 -- personal variables
 -- change these variables if you want
-local browser =  os.getenv("BROWSER") or "firefox"
+local browser = os.getenv("BROWSER") or "firefox"
 local editor = os.getenv("EDITOR") or "nvim"
 local editorgui = "Geany"
 local filemanager = "nemo"
@@ -151,7 +151,8 @@ local kgTag = "tag"
 
 -- awesome variables
 awful.util.terminal = terminal
-awful.util.tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒", "➓" }
+-- awful.util.tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒", "➓" }
+awful.util.tagnames = {"󾠮", "󾠯", "󾠰", "󾠱", "󾠲", "󾠳", "󾠴", "󾠵", "󾠶"}
 -- awful.util.tagnames = { "", "", "", "", "", "", "", "", "" }
 -- awful.util.tagnames = {  "", "", "", "", "", "", "", "", "", "" }
 -- awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
@@ -173,11 +174,11 @@ awful.layout.layouts = {
     awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
-    awful.layout.suit.corner.ne,
-    awful.layout.suit.corner.sw,
-    awful.layout.suit.corner.se
+    awful.layout.suit.magnifier
+    -- awful.layout.suit.corner.nw,
+    -- awful.layout.suit.corner.ne,
+    -- awful.layout.suit.corner.sw,
+    -- awful.layout.suit.corner.se
     --~ lain.layout.cascade,
     --~ lain.layout.cascade.tile,
     --~ lain.layout.centerwork,
@@ -301,9 +302,12 @@ beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv
 
 -- {{{ Menu
 local myawesomemenu = {
-    {"hotkeys", function()
+    {
+        "hotkeys",
+        function()
             return false, hotkeys_popup.show_help
-        end},
+        end
+    },
     {"arandr", "arandr"}
 }
 
@@ -317,9 +321,12 @@ awful.util.mymainmenu =
         },
         after = {
             {"Terminal", terminal},
-            {"Log out", function()
+            {
+                "Log out",
+                function()
                     awesome.quit()
-                end},
+                end
+            },
             {"Sleep", "systemctl suspend"},
             {"Restart", "systemctl reboot"},
             {"Shutdown", "systemctl poweroff"}
@@ -405,7 +412,6 @@ globalkeys =
         end,
         {description = "start xprop", group = kgSystem}
     ),
-
     awful.key(
         {modkey},
         "t",
@@ -414,7 +420,6 @@ globalkeys =
         end,
         {description = "toggle picom", group = kgSystem}
     ),
-
     -- Function keys
     awful.key(
         {modkey},
@@ -424,7 +429,6 @@ globalkeys =
         end,
         {description = "dropdown terminal", group = kgApplication}
     ),
-
     -- super + ... function keys
     awful.key(
         {modkey},
@@ -623,7 +627,6 @@ globalkeys =
         {description = "focus the previous screen", group = kgScreen}
     ),
     awful.key({modkey}, "u", awful.client.urgent.jumpto, {description = "jump to urgent client", group = kgClient}),
-
     -- Show/Hide Wibox
     awful.key(
         {modkey},
@@ -810,7 +813,7 @@ globalkeys =
         {},
         "XF86AudioRaiseVolume",
         function()
-          os.execute("amixer -d set Master 5%+")
+            os.execute("amixer -d set Master 5%+")
         end,
         {description = "+5% Volume", group = kgSound}
     ),
@@ -818,7 +821,7 @@ globalkeys =
         {},
         "XF86AudioLowerVolume",
         function()
-          os.execute("amixer -d set Master 5%-")
+            os.execute("amixer -d set Master 5%-")
         end,
         {description = "-5% Volume", group = kgSound}
     ),
@@ -834,7 +837,7 @@ globalkeys =
         {},
         "XF86AudioPlay",
         function()
-          awful.util.spawn("playerctl play-pause")
+            awful.util.spawn("playerctl play-pause")
         end,
         {description = "Player Start/Pause", group = kgSound}
     ),
@@ -842,7 +845,7 @@ globalkeys =
         {},
         "XF86AudioNext",
         function()
-          awful.util.spawn("playerctl next")
+            awful.util.spawn("playerctl next")
         end,
         {description = "Player Next", group = kgSound}
     ),
@@ -850,7 +853,7 @@ globalkeys =
         {},
         "XF86AudioPrev",
         function()
-          awful.util.spawn("playerctl previous")
+            awful.util.spawn("playerctl previous")
         end,
         {description = "Player Zurück", group = kgSound}
     ),
@@ -1114,7 +1117,7 @@ awful.rules.rules = {
     },
     -- Toolbars
     {
-        rule_any = { class = { "Polybar", "Plank" }},
+        rule_any = {class = {"Polybar", "Plank"}},
         properties = {border_width = 0}
     },
     -- Titlebars
@@ -1127,7 +1130,6 @@ awful.rules.rules = {
         rule_any = {type = {"dialog"}},
         properties = {maximized = false, floating = true}
     },
-
     -- Set applications to always map on the tag 2 on screen 1.
     -- { rule = { class = "Subl3" },
     -- properties = { screen = 1, tag = awful.util.tagnames[2], switchtotag = true  } },
@@ -1160,13 +1162,18 @@ awful.rules.rules = {
     -- Set applications to always map on the tag 3 (Git)) on screen 1.
     {
         rule_any = {
-            class = {
-                "SmartGit"
+            name = {
+                ".*Git Extensions"
             }
         },
-        properties = { screen = 1, tag = awful.util.tagnames[3] , switchtotag = true  }
+        properties = {
+            screen = 1,
+            tag = awful.util.tagnames[3],
+            switchtotag = true,
+            maximized = true,
+            floating = false
+        }
     },
-
     -- Set applications to always map on the tag 4 on screen 2.
 
     -- Set applications to always map on the tag 5 (Virtual/RDP) on screen 1.
@@ -1176,9 +1183,8 @@ awful.rules.rules = {
                 "VirtualBox*"
             }
         },
-        properties = { screen = 1, tag = awful.util.tagnames[5] , switchtotag = true  }
+        properties = {screen = 1, tag = awful.util.tagnames[5], switchtotag = true}
     },
-
     -- Set applications to always map on the tag 9 (Systemtools) on screen 1.
     {
         rule_any = {
@@ -1186,10 +1192,8 @@ awful.rules.rules = {
                 editorgui
             }
         },
-        properties = { screen = 1, tag = awful.util.tagnames[9] , switchtotag = true  }
+        properties = {screen = 1, tag = awful.util.tagnames[9], switchtotag = true}
     },
-
-
     -- Set applications to be maximized at startup.
     -- find class or role via xprop command
 
@@ -1198,16 +1202,17 @@ awful.rules.rules = {
         rule = {class = "Geany", type = "dialog"},
         properties = {maximized = false, floating = true}
     },
-
     {
         rule = {class = "Vivaldi-stable"},
         properties = {maximized = false, floating = false}
     },
     {
         rule = {class = "Vivaldi-stable"},
-        properties = {callback = function(c)
+        properties = {
+            callback = function(c)
                 c.maximized = false
-            end}
+            end
+        }
     },
     -- IF using Vivaldi snapshot you must comment out the rules above for Vivaldi-stable as they conflict
     --    { rule = { class = "Vivaldi-snapshot" },
@@ -1217,31 +1222,25 @@ awful.rules.rules = {
     --          properties = { callback = function (c) c.maximized = false end } },
 
     {rule = {class = "Xfce4-settings-manager"}, properties = {floating = false}},
-
     -- Maximized clients.
     {
         rule = {class = "Gimp*", role = "gimp-image-window"},
         properties = {maximized = true}
     },
-
     {
         rule_any = {
-            instance = {
-            },
+            instance = {},
             class = {
                 mediaplayer,
                 "inkscape",
                 "VirtualBox Machine",
-                "Vlc",
+                "Vlc"
             },
-            name = {
-            },
-            role = {
-            }
+            name = {},
+            role = {}
         },
         properties = {maximized = true}
     },
-
     -- Floating clients.
     {
         rule_any = {
@@ -1292,7 +1291,6 @@ awful.rules.rules = {
         },
         properties = {floating = true}
     },
-
     -- Floating clients but centered in screen
     {
         rule_any = {class = {"Polkit-gnome-authentication-agent-1"}},
@@ -1301,7 +1299,6 @@ awful.rules.rules = {
             awful.placement.centered(c, nil)
         end
     },
-
     -- Special handled applications ()
 
     -- Teams
@@ -1312,10 +1309,10 @@ awful.rules.rules = {
             type = "normal"
         },
         properties = {
-            maximized = true,               -- maximieren
-            screen = 2,                     -- auf zweiten Monitor
-            tag = awful.util.tagnames[4],   -- auf tag 4 verschieben
-            switchtotag = false             -- auf aktuellem tag bleiben
+            maximized = true, -- maximieren
+            screen = 2, -- auf zweiten Monitor
+            tag = awful.util.tagnames[4], -- auf tag 4 verschieben
+            switchtotag = false -- auf aktuellem tag bleiben
         }
     },
     {
@@ -1327,38 +1324,34 @@ awful.rules.rules = {
             -- name = "Microsoft Teams-Benachrichtigung"
         },
         properties = {
-            maximized = false,              -- nicht maximieren
+            maximized = false, -- nicht maximieren
             floating = true,
-            screen = 1,                     -- auf ersten Monitor
-            tag = awful.util.tagnames[1],   -- auf tag 4 verschieben
-            switchtotag = true,             -- zur Nachricht springen
-        },
+            screen = 1, -- auf ersten Monitor
+            tag = awful.util.tagnames[1], -- auf tag 4 verschieben
+            switchtotag = true -- zur Nachricht springen
+        }
     },
-
     -- Develop Consolen auf Screen 2 tag 2 schieben
     {
-        rule = { name = "OTC:*" },
+        rule = {name = "OTC:*"},
         properties = {
-            screen = 2,                     -- auf zweiten Monitor
-            tag = awful.util.tagnames[2],   -- auf tag 2
-            switchtotag = true,             -- zur Ausgabe springen
-        },
+            screen = 2, -- auf zweiten Monitor
+            tag = awful.util.tagnames[2], -- auf tag 2
+            switchtotag = true -- zur Ausgabe springen
+        }
     },
-
     -- Chromium Debugger Instanz Screen 2 tag 2 schieben
     {
         rule = {
             class = "Chromium",
-            instance = "chromium *",
+            instance = "chromium *"
         },
         properties = {
-            screen = 2,                     -- auf zweiten Monitor
-            tag = awful.util.tagnames[2],   -- auf tag 2
-            switchtotag = true,             -- zur Ausgabe springen
-        },
-    },
-
-
+            screen = 2, -- auf zweiten Monitor
+            tag = awful.util.tagnames[2], -- auf tag 2
+            switchtotag = true -- zur Ausgabe springen
+        }
+    }
 }
 -- }}}
 

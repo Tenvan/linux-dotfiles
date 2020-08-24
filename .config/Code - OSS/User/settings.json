@@ -42,5 +42,6 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "diffEditor.codeLens": true
+  "diffEditor.codeLens": true,
+  "explorer.confirmDelete": false
 }
