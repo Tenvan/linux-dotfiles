@@ -43,7 +43,7 @@ if $IS_ARCO == true; then
     errorCheck "ArcoLinux: themes"
 
     # cursor
-    yay -S --needed --noconfirm \        
+    yay -S --needed --noconfirm \
         xcursor-comix \
         xcursor-flatbed \
         xcursor-neutral \
