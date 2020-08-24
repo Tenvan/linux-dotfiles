@@ -24,11 +24,11 @@ select_application() {
            "♻ Yarn quick install" "$shellCmd --hold -t OTC:QuickInstall -e $timeCmd yarn install --ignore-scripts" \
            "♻ Yarn full install" "$shellCmd --hold -t OTC:FullInstall -e $timeCmd yarn" \
            "♻ Start Server" "$shellCmd --hold -t OTC:StartServer -e yarn server:dev" \
-           "♻ Pug watch" "$shellCmd/src/client --hold -t OTC:PugWatch -e yarn pug:watch" \
-           "♻ Start Default" "$shellCmd/src/client --hold -t OTC:StartDefault -e $timeCmd yarn start" \
-           "♻ Start HMR" "$shellCmd/src/client --hold -t OTC:StartHMR -e yarn start:client:hmr --port 4201" \
-           "♻ Start AOT" "$shellCmd/src/client --hold -t OTC:StartAOT -e yarn start:client:dev --aot --port 4202" \
-           "♻ Start IVY" "$shellCmd/src/client --hold -t OTC:StartAOT -e yarn start:client:ivy --aot --port 4202" \
+           "♻ Pug watch" "$shellCmd --hold -t OTC:PugWatch -e yarn --cwd src/client pug:watch" \
+           "♻ Start Default" "$shellCmd --hold -t OTC:StartDefault -e $timeCmd yarn --cwd src/client start" \
+           "♻ Start HMR" "$shellCmd --hold -t OTC:StartHMR -e yarn --cwd src/client start:client:hmr --port 4201" \
+           "♻ Start AOT" "$shellCmd --hold -t OTC:StartAOT -e yarn --cwd src/client start:client:dev --aot --port 4202" \
+           "♻ Start IVY" "$shellCmd --hold -t OTC:StartIVY -e yarn --cwd src/client start:client:ivy --aot --port 4202" \
            "♻ Generate" "$shellCmd --hold -t OTC:Generate -e $timeCmd yarn generate" \
            "♻ Check Client Updates" "$shellCmd --hold -t OTC:CheckClientUpdates -e $timeCmd yarn outdated" \
            "♻ Check Server Updates" "$shellCmd --hold -t OTC:CheckServerUpdates -e $timeCmd yarn --cwd src/server4 outdated" \

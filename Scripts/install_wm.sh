@@ -43,3 +43,28 @@ if $IS_MANJARO == true; then
     yay -S --needed manjaro-awesome-settings
     errorCheck "Manajaro: settings"
 fi
+
+if $IS_ARCO == true; then
+    yay -S --noconfirm --needed blingbling
+    errorCheck "ArcoLinux: AWESOME Stuff"
+
+    yay -S --noconfirm --needed \
+        instantassist \
+        instantconf \
+        instantcursors \
+        instantdotfiles \
+        instantfonts \
+        instantlock \
+        instantmenu \
+        instantsettings \
+        instantshell \
+        instantthemes \
+        instanttools \
+        instantutils \
+        instantwallpaper \
+        instantwelcome \
+        instantwidgets \
+        instantwm
+
+    errorCheck "ArcoLinux: InstantOS"
+fi
