@@ -1249,6 +1249,7 @@ awful.rules.rules = {
                 "copyq" -- Includes session name in class.
             },
             class = {
+                ".*AnyConnect.*",
                 "Arandr",
                 "Arcolinux-welcome-app.py",
                 "Blueberry",

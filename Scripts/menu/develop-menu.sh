@@ -26,7 +26,6 @@ select_application() {
            "♻ Start Server" "$shellCmd --hold -t OTC:StartServer -e yarn server:dev" \
            "♻ Pug watch" "$shellCmd --hold -t OTC:PugWatch -e yarn --cwd src/client pug:watch" \
            "♻ Start Default" "$shellCmd --hold -t OTC:StartDefault -e $timeCmd yarn --cwd src/client start" \
-           "♻ Start HMR" "$shellCmd --hold -t OTC:StartHMR -e yarn --cwd src/client start:client:hmr --port 4201" \
            "♻ Start AOT" "$shellCmd --hold -t OTC:StartAOT -e yarn --cwd src/client start:client:dev --aot --port 4202" \
            "♻ Start IVY" "$shellCmd --hold -t OTC:StartIVY -e yarn --cwd src/client start:client:ivy --aot --port 4202" \
            "♻ Generate" "$shellCmd --hold -t OTC:Generate -e $timeCmd yarn generate" \
