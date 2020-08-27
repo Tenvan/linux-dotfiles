@@ -25,6 +25,7 @@ select_application() {
            "♻ Yarn full install" "$shellCmd --hold -t OTC:FullInstall -e $timeCmd yarn" \
            "♻ Start Server" "$shellCmd --hold -t OTC:StartServer -e yarn server:dev" \
            "♻ Pug watch" "$shellCmd --hold -t OTC:PugWatch -e yarn --cwd src/client pug:watch" \
+           "♻ Pug once" "$shellCmd --hold -t OTC:PugOnce -e yarn --cwd src/client pug:once" \
            "♻ Start Default" "$shellCmd --hold -t OTC:StartDefault -e $timeCmd yarn --cwd src/client start" \
            "♻ Start AOT" "$shellCmd --hold -t OTC:StartAOT -e yarn --cwd src/client start:client:dev --aot --port 4202" \
            "♻ Start IVY" "$shellCmd --hold -t OTC:StartIVY -e yarn --cwd src/client start:client:ivy --aot --port 4202" \
