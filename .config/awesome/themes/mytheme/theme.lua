@@ -232,6 +232,8 @@ vicious.cache(vicious.widgets.mem)
 vicious.register(graph_mem, vicious.widgets.mem, "$1", 5)
 
 -- CPU Histogramm
+vicious.cache(vicious.widgets.cpu)
+
 local cpuHistogrammWidget = awful.widget.graph()
 cpuHistogrammWidget:set_width(150)
 cpuHistogrammWidget:set_background_color(accent_color1)
@@ -241,15 +243,12 @@ cpuHistogrammWidget:set_color {
     to = {50, 0},
     stops = {{0, "#FF5656"}, {0.5, "#88A175"}, {1, "#AECF96"}}
 }
-vicious.cache(vicious.widgets.cpu)
 vicious.register(cpuHistogrammWidget, vicious.widgets.cpu, "$1", 2)
 
--- CPU Kernels
-local cpuKernelWidget = wibox.widget.textbox()
-cpuHistogrammWidget:set_width(150)
-vicious.cache(vicious.widgets.cpu)
+-- CPU Kernels Text
+local cpuKernelTextWidget = wibox.widget.textbox()
 vicious.register(
-    cpuKernelWidget,
+    cpuKernelTextWidget,
     vicious.widgets.cpu,
     function(widget, args)
         local count = 0
@@ -267,6 +266,19 @@ vicious.register(
         return ("Kernels(%d):"):format(count) .. kstr
     end,
     2
+)
+
+-- CPU Kernels Stacked
+local cpuKernelStackWidget = wibox.widget.graph()
+cpuKernelStackWidget:set_stack(true)
+cpuKernelStackWidget:set_stack_colors({"red", "yellow", "green", "blue"})
+vicious.register(
+    cpuKernelStackWidget,
+    vicious.widgets.cpu,
+    function(widget, args)
+        return {args[2], args[3], args[4], args[5]}
+    end,
+    3
 )
 
 --[[ Coretemp (lm_sensors, per core)
@@ -325,7 +337,7 @@ function theme.at_screen_connect(s)
             accent_color2
         ),
         arrow(accent_color2, accent_color1),
-        wibox.container.background(wibox.container.margin(cpuKernelWidget), accent_color1),
+        wibox.container.background(wibox.container.margin(cpuKernelTextWidget), accent_color1),
         wibox.container.background(wibox.container.margin(cpuHistogrammWidget), accent_color1),
         arrow(accent_color1, accent_color2),
         wibox.container.background(
@@ -339,8 +351,7 @@ function theme.at_screen_connect(s)
         arrow(accent_color2, accent_color1),
         wibox.container.background(wibox.container.margin(datewidget, dpi(4), dpi(8)), accent_color1),
         arrow(accent_color1, "alpha"),
-        wibox.widget.systray(),
-        s.mylayoutbox
+        wibox.widget.systray()
     }
 
     local screen2widgets = {
@@ -373,66 +384,19 @@ function theme.at_screen_connect(s)
             accent_color1
         ),
         arrow(accent_color1, accent_color2),
-        wibox.container.background(wibox.container.margin(datewidget, dpi(4), dpi(8)), accent_color2),
+        wibox.container.background(wibox.container.margin(datewidget, dpi(4), dpi(8)), accent_color2)
         -- arrow(accent_color1, "alpha"),
-        -- wibox.widget.systray(),
-        s.mylayoutbox
     }
 
     -- Quake application
     -- s.quake = lain.util.quake({app = awful.util.terminal})
     s.quake = lain.util.quake({app = "termite", height = 0.50, argname = "--title %s"})
 
-    -- If wallpaper is a function, call it with the screen
-    -- local wallpaper = theme.wallpaper
-    -- if type(wallpaper) == "function" then
-    --     wallpaper = wallpaper(s)
-    -- end
-    -- gears.wallpaper.maximized(wallpaper, s, true)
-
     -- All tags open with layout 1
     awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
 
-    -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
-    -- Create an imagebox widget which will contains an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
-    s.mylayoutbox = awful.widget.layoutbox(s)
-
-    s.mylayoutbox:buttons(
-        my_table.join(
-            awful.button(
-                {},
-                1,
-                function()
-                    awful.layout.inc(1)
-                end
-            ),
-            awful.button(
-                {},
-                3,
-                function()
-                    awful.layout.inc(-1)
-                end
-            ),
-            awful.button(
-                {},
-                4,
-                function()
-                    awful.layout.inc(1)
-                end
-            ),
-            awful.button(
-                {},
-                5,
-                function()
-                    awful.layout.inc(-1)
-                end
-            )
-        )
-    )
     -- Create a taglist widget
-    s.mytaglist =
+    local taglist =
         awful.widget.taglist {
         screen = s,
         filter = awful.widget.taglist.filter.all,
@@ -440,35 +404,41 @@ function theme.at_screen_connect(s)
     }
 
     -- Create a tasklist widget
-    s.mytasklist =
+    local tasklist =
         awful.widget.tasklist {
         screen = s,
         filter = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons
-        -- widget_template = theme.tasklist_widget_template
+        buttons = awful.util.tasklist_buttons
     }
 
     -- Create the wibox
-    s.mywibox =
-        awful.wibar({position = "top", screen = s, height = dpi(22), bg = theme.bg_normal, fg = theme.fg_normal})
+    local wibox_bar =
+        awful.wibar(
+        {
+            position = "top",
+            screen = s,
+            height = dpi(22),
+            bg = theme.bg_normal,
+            fg = theme.fg_normal
+        }
+    )
 
     -- Add widgets to the wibox
-
     local widgets = screen2widgets
     if s.index == 1 then
         widgets = screen1widgets
     end
 
-    s.mywibox:setup {
+    wibox_bar:setup {
         layout = wibox.layout.align.horizontal,
         {
             -- Left widgets
+            awful.widget.layoutbox(s),
             layout = wibox.layout.fixed.horizontal,
-            -- s.mylayoutbox,
-            s.mytaglist
+            taglist
             -- spr,
         },
-        s.mytasklist, -- Middle widget
+        tasklist, -- Middle widget
         widgets
     }
 end
