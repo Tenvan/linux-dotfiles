@@ -43,5 +43,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "diffEditor.codeLens": true,
-  "explorer.confirmDelete": false
+  "explorer.confirmDelete": false,
+  "git.enableSmartCommit": true
 }

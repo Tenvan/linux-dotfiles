@@ -269,16 +269,34 @@ vicious.register(
 )
 
 -- CPU Kernels Stacked
-local cpuKernelStackWidget = wibox.widget.graph()
-cpuKernelStackWidget:set_stack(true)
-cpuKernelStackWidget:set_stack_colors({"red", "yellow", "green", "blue"})
+local cpuprogress = wibox.widget.progressbar()
+
+local cpuKernelStackWidget =
+    wibox.widget {
+    {
+        max_value = 1,
+        widget = cpuprogress,
+        border_width = 1,
+        border_color = "#000000",
+        color = {
+            type = "linear",
+            from = {0, 0},
+            to = {0, 100},
+            stops = {{0, "#AECF96"}, {1, "#FF5656"}}
+        }
+    },
+    forced_height = 10,
+    forced_width = 16,
+    direction = "north",
+    color = theme.fg_normal,
+    layout = wibox.container.rotate
+}
+
 vicious.register(
     cpuKernelStackWidget,
     vicious.widgets.cpu,
-    function(widget, args)
-        return {args[2], args[3], args[4], args[5]}
-    end,
-    3
+    "$1",
+    1
 )
 
 --[[ Coretemp (lm_sensors, per core)
@@ -337,7 +355,8 @@ function theme.at_screen_connect(s)
             accent_color2
         ),
         arrow(accent_color2, accent_color1),
-        wibox.container.background(wibox.container.margin(cpuKernelTextWidget), accent_color1),
+        wibox.container.background(wibox.container.margin(cpuKernelStackWidget), accent_color1),
+        wibox.container.background(wibox.container.margin(cpuKernelTextWidget), accent_color2),
         wibox.container.background(wibox.container.margin(cpuHistogrammWidget), accent_color1),
         arrow(accent_color1, accent_color2),
         wibox.container.background(
