@@ -156,10 +156,8 @@ theme.tasklist_widget_template = {
         right = dpi(4),
         widget = wibox.container.margin
     },
-    
     id = "background_role",
     widget = wibox.container.background,
-
     create_callback = function(self, c)
         self:get_children_by_id("clienticon")[1].client = c
     end
@@ -282,18 +280,21 @@ for i = 1, cpu_kernels - 1 do
         wibox.widget {
             {
                 max_value = 100,
-                forced_height = 16,
+                value = (100 / cpu_kernels) * i,
+                forced_height = 12,
                 border_width = dpi(1),
                 border_color = accent_color2,
-                color = {
-                    type = "linear",
-                    from = {0, 0},
-                    to = {0, 50},
-                    stops = {
-                        {0, "#FF5656"},
-                        {1, "#AECF96"}
-                    }
-                },
+                background_color = "alpha",
+                color = "#FF5656",
+                -- color = {
+                --     type = "linear",
+                --     from = {0, 0},
+                --     to = {0, 12},
+                --     stops = {
+                --         {0, "#FF5656"},
+                --         {1, "#fcccb1"},
+                --     }
+                -- },
                 widget = cpuKernelProgress[i]
             },
             direction = "east",
@@ -392,7 +393,7 @@ function theme.at_screen_connect(s)
     }
 
     local screen2LeftWidges = {
-        layout = wibox.layout.fixed.horizontal,
+        layout = wibox.layout.fixed.horizontal
     }
 
     local screen1widgets = {
@@ -430,7 +431,7 @@ function theme.at_screen_connect(s)
         wibox.widget.systray()
     }
 
-    local screen2widgets = {
+    local screen2RightWidgets = {
         -- Right widgets
         layout = wibox.layout.fixed.horizontal,
         -- using separators
@@ -491,10 +492,10 @@ function theme.at_screen_connect(s)
         screen = s,
         filter = awful.widget.tasklist.filter.currenttags,
         buttons = awful.util.tasklist_buttons,
-        style    = {
+        style = {
             shape_border_width = 2,
             shape_border_color = accent_color1,
-            shape  = gears.shape.rounded_bar,
+            shape = gears.shape.rounded_bar
         },
         widget_template = theme.tasklist_widget_template
     }
@@ -512,10 +513,11 @@ function theme.at_screen_connect(s)
     )
 
     -- Add widgets to the wibox
-    local widgets = screen2widgets
+    local rightWidgets = screen2RightWidgets
     local leftWidgets = screen2LeftWidges
+    
     if s.index == 1 then
-        widgets = screen1widgets
+        rightWidgets = screen1widgets
         leftWidgets = screen1LeftWidges
     end
 
@@ -526,10 +528,12 @@ function theme.at_screen_connect(s)
             layout = wibox.layout.fixed.horizontal,
             awful.widget.layoutbox(s),
             taglist,
-            leftWidgets,
+            leftWidgets
         },
-        tasklist, -- Middle widget
-        widgets
+        -- Middle widgets
+        tasklist,
+        -- Right widgets
+        rightWidgets
     }
 end
 
