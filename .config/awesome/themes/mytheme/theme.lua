@@ -5,6 +5,8 @@
 
 --]]
 local gears = require("gears")
+local gdebug = require("gears.debug")
+
 local lain = require("lain")
 local awful = require("awful")
 local wibox = require("wibox")
@@ -139,7 +141,7 @@ theme.tasklist_widget_template = {
             {
                 {
                     id = "clienticon",
-                    widget = awful_widget_clienticon
+                    widget = awful.widget.clienticon
                 },
                 margins = dpi(4),
                 widget = wibox.container.margin
@@ -154,8 +156,10 @@ theme.tasklist_widget_template = {
         right = dpi(4),
         widget = wibox.container.margin
     },
+    
     id = "background_role",
     widget = wibox.container.background,
+
     create_callback = function(self, c)
         self:get_children_by_id("clienticon")[1].client = c
     end
@@ -212,11 +216,11 @@ theme.volume =
 -- MEM
 local memwidget = wibox.widget.textbox()
 vicious.cache(vicious.widgets.mem)
-vicious.register(memwidget, vicious.widgets.mem, "$1% ($2MiB/$3MiB)", 5)
+vicious.register(memwidget, vicious.widgets.mem, "$1% ($2MiB/$3MiB)", 7)
 
 -- Graph
-local graph_mem = awful.widget.graph()
-graph_mem:set_width(150)
+local graph_mem = wibox.widget.graph()
+graph_mem:set_width(50)
 graph_mem:set_background_color(accent_color1)
 graph_mem:set_color(
     {
@@ -229,13 +233,13 @@ graph_mem:set_color(
 
 -- Register widget
 vicious.cache(vicious.widgets.mem)
-vicious.register(graph_mem, vicious.widgets.mem, "$1", 5)
+vicious.register(graph_mem, vicious.widgets.mem, "$1", 7)
 
 -- CPU Histogramm
 vicious.cache(vicious.widgets.cpu)
 
-local cpuHistogrammWidget = awful.widget.graph()
-cpuHistogrammWidget:set_width(150)
+local cpuHistogrammWidget = wibox.widget.graph()
+cpuHistogrammWidget:set_width(50)
 cpuHistogrammWidget:set_background_color(accent_color1)
 cpuHistogrammWidget:set_color {
     type = "linear",
@@ -243,72 +247,76 @@ cpuHistogrammWidget:set_color {
     to = {50, 0},
     stops = {{0, "#FF5656"}, {0.5, "#88A175"}, {1, "#AECF96"}}
 }
-vicious.register(cpuHistogrammWidget, vicious.widgets.cpu, "$1", 2)
+vicious.register(cpuHistogrammWidget, vicious.widgets.cpu, "$1", 1)
 
--- CPU Kernels Text
-local cpuKernelTextWidget = wibox.widget.textbox()
-vicious.register(
-    cpuKernelTextWidget,
-    vicious.widgets.cpu,
-    function(widget, args)
-        local count = 0
-        local kstr = ""
+-- Get CPU stats
+local f = io.open("/proc/stat")
+local cpu_kernels = 0
+for line in f:lines() do
+    if string.sub(line, 1, 3) ~= "cpu" then
+        break
+    end
+    cpu_kernels = cpu_kernels + 1
+end
+f:close()
 
-        for _ in pairs(args) do
-            count = count + 1
-            if (count > 1) then
-                kstr = kstr .. ("%03d "):format(args[count])
-            else
-                kstr = kstr .. ("%03d"):format(args[count]) .. "% "
-            end
-        end
+gdebug.dump("Kernels:" .. cpu_kernels)
 
-        return ("Kernels(%d):"):format(count) .. kstr
-    end,
-    2
-)
+-- CPU Kernels Bar
+local cpuKernelProgress = {}
 
--- CPU Kernels Stacked
-local cpuprogress = wibox.widget.progressbar()
-
-local cpuKernelStackWidget =
+local cpuKernelGridWidget =
     wibox.widget {
-    {
-        max_value = 1,
-        widget = cpuprogress,
-        border_width = 1,
-        border_color = "#000000",
-        color = {
-            type = "linear",
-            from = {0, 0},
-            to = {0, 100},
-            stops = {{0, "#AECF96"}, {1, "#FF5656"}}
-        }
-    },
-    forced_height = 10,
-    forced_width = 16,
-    direction = "north",
-    color = theme.fg_normal,
-    layout = wibox.container.rotate
+    forced_num_cols = cpu_kernels - 1,
+    forced_num_rows = 1,
+    homogeneous = true,
+    expand = true,
+    layout = wibox.layout.grid
 }
 
+for i = 1, cpu_kernels - 1 do
+    cpuKernelProgress[i] = wibox.widget.progressbar()
+
+    local newKernelProgress =
+        wibox.container.margin(
+        wibox.widget {
+            {
+                max_value = 100,
+                forced_height = 16,
+                border_width = dpi(1),
+                border_color = accent_color2,
+                color = {
+                    type = "linear",
+                    from = {0, 0},
+                    to = {0, 50},
+                    stops = {
+                        {0, "#FF5656"},
+                        {1, "#AECF96"}
+                    }
+                },
+                widget = cpuKernelProgress[i]
+            },
+            direction = "east",
+            layout = wibox.container.rotate
+        },
+        dpi(1)
+        -- dpi(5)
+    )
+
+    cpuKernelGridWidget:add(newKernelProgress)
+end
+
 vicious.register(
-    cpuKernelStackWidget,
+    cpuKernelGridWidget,
     vicious.widgets.cpu,
-    "$1",
-    1
+    function(widget, args)
+        for i = 2, cpu_kernels do
+            cpuKernelProgress[i - 1]:set_value(args[i])
+        end
+    end,
+    3
 )
 
---[[ Coretemp (lm_sensors, per core)
-local tempwidget = awful.widget.watch({awful.util.shell, '-c', 'sensors | grep Core'}, 30,
-function(widget, stdout)
-    local temps = ""
-    for line in stdout:gmatch("[^\r\n]+") do
-        temps = temps .. line:match("+(%d+).*°C")  .. "° " -- in Celsius
-    end
-    widget:set_markup(markup.font(theme.font, " " .. temps))
-end)
---]]
 -- Coretemp (lain, average)
 local temp =
     lain.widget.temp(
@@ -334,10 +342,59 @@ local net =
     }
 )
 
+-- Storage
+vicious.cache(vicious.widgets.fs)
+
+local fsRootWidget = wibox.widget.textbox()
+vicious.register(fsRootWidget, vicious.widgets.fs, "ROOT:${/ avail_gb}GB", 61)
+local fsBidataWidget = wibox.widget.textbox()
+vicious.register(fsBidataWidget, vicious.widgets.fs, "BIGDATA:${/media/BIGDATA avail_gb}GB", 63)
+local fsVmWidget = wibox.widget.textbox()
+vicious.register(fsVmWidget, vicious.widgets.fs, "VM:${/media/VM avail_gb}GB", 67)
+
+-- System Os
+vicious.cache(vicious.widgets.os)
+
+local sysOs = wibox.widget.textbox()
+vicious.register(sysOs, vicious.widgets.os, "$1 $2", 86400)
+
+-- System Host
+local sysHost = wibox.widget.textbox()
+vicious.register(sysHost, vicious.widgets.os, "$3@$4", 86400)
+
+-- Packages
+vicious.cache(vicious.widgets.pkg)
+
+local pkgAll = wibox.widget.textbox()
+vicious.register(pkgAll, vicious.widgets.pkg, "Updates: $1", 311, "Arch C")
+
+-- Up Time
+vicious.cache(vicious.widgets.uptime)
+
+local upTime = wibox.widget.textbox()
+vicious.register(upTime, vicious.widgets.uptime, "Up: $1d $2h $3m", 60)
+
 -- Separators
-local arrow = separators.arrow_left
+local arrowl = separators.arrow_left
+local arrowr = separators.arrow_right
 
 function theme.at_screen_connect(s)
+    local screen1LeftWidges = {
+        layout = wibox.layout.fixed.horizontal,
+        wibox.container.background(wibox.container.margin(upTime, dpi(3), dpi(3)), accent_color2),
+        arrowr(accent_color2, accent_color1),
+        wibox.container.background(wibox.container.margin(pkgAll, dpi(3), dpi(3)), accent_color1),
+        arrowr(accent_color1, accent_color2),
+        wibox.container.background(wibox.container.margin(sysOs, dpi(3), dpi(3)), accent_color2),
+        arrowr(accent_color2, accent_color1),
+        wibox.container.background(wibox.container.margin(sysHost, dpi(3), dpi(3)), accent_color1),
+        arrowr(accent_color1, "alpha")
+    }
+
+    local screen2LeftWidges = {
+        layout = wibox.layout.fixed.horizontal,
+    }
+
     local screen1widgets = {
         -- Right widgets
         layout = wibox.layout.fixed.horizontal,
@@ -345,20 +402,20 @@ function theme.at_screen_connect(s)
         -- arrow("alpha", accent_color2),
         -- arrow(accent_color1, accent_color2),
         -- arrow(accent_color2, accent_color1),
-        arrow("alpha", accent_color2),
+        arrowl("alpha", accent_color1),
         wibox.container.background(
             wibox.container.margin(
                 wibox.widget {nil, neticon, net.widget, layout = wibox.layout.align.horizontal},
                 dpi(3),
                 dpi(3)
             ),
-            accent_color2
+            accent_color1
         ),
-        arrow(accent_color2, accent_color1),
-        wibox.container.background(wibox.container.margin(cpuKernelStackWidget), accent_color1),
-        wibox.container.background(wibox.container.margin(cpuKernelTextWidget), accent_color2),
+        arrowl(accent_color1, accent_color2),
+        wibox.container.background(wibox.container.margin(cpuKernelGridWidget, dpi(3), dpi(3)), accent_color2),
+        arrowl(accent_color2, accent_color1),
         wibox.container.background(wibox.container.margin(cpuHistogrammWidget), accent_color1),
-        arrow(accent_color1, accent_color2),
+        arrowl(accent_color1, accent_color2),
         wibox.container.background(
             wibox.container.margin(
                 wibox.widget {volicon, theme.volume.widget, layout = wibox.layout.align.horizontal},
@@ -367,9 +424,9 @@ function theme.at_screen_connect(s)
             ),
             accent_color2
         ),
-        arrow(accent_color2, accent_color1),
+        arrowl(accent_color2, accent_color1),
         wibox.container.background(wibox.container.margin(datewidget, dpi(4), dpi(8)), accent_color1),
-        arrow(accent_color1, "alpha"),
+        arrowl(accent_color1, "alpha"),
         wibox.widget.systray()
     }
 
@@ -380,11 +437,17 @@ function theme.at_screen_connect(s)
         -- arrow("alpha", accent_color2),
         -- arrow(accent_color1, accent_color2),
         -- arrow(accent_color2, accent_color1),
-        arrow("alpha", accent_color2),
+        arrowl("alpha", accent_color1),
+        wibox.container.background(wibox.container.margin(fsRootWidget, dpi(2), dpi(3)), accent_color1),
+        arrowl(accent_color1, accent_color2),
+        wibox.container.background(wibox.container.margin(fsBidataWidget, dpi(2), dpi(3)), accent_color2),
+        arrowl(accent_color2, accent_color1),
+        wibox.container.background(wibox.container.margin(fsVmWidget, dpi(2), dpi(3)), accent_color1),
+        arrowl(accent_color1, accent_color2),
         wibox.container.background(wibox.container.margin(memwidget, dpi(2), dpi(3)), accent_color2),
-        arrow(accent_color2, accent_color1),
+        arrowl(accent_color2, accent_color1),
         wibox.container.background(wibox.container.margin(graph_mem, dpi(2), dpi(3)), accent_color1),
-        arrow(accent_color1, accent_color2),
+        arrowl(accent_color1, accent_color2),
         wibox.container.background(
             wibox.container.margin(
                 wibox.widget {tempicon, temp.widget, layout = wibox.layout.align.horizontal},
@@ -393,7 +456,7 @@ function theme.at_screen_connect(s)
             ),
             accent_color2
         ),
-        arrow(accent_color2, accent_color1),
+        arrowl(accent_color2, accent_color1),
         wibox.container.background(
             wibox.container.margin(
                 wibox.widget {volicon, theme.volume.widget, layout = wibox.layout.align.horizontal},
@@ -402,7 +465,7 @@ function theme.at_screen_connect(s)
             ),
             accent_color1
         ),
-        arrow(accent_color1, accent_color2),
+        arrowl(accent_color1, accent_color2),
         wibox.container.background(wibox.container.margin(datewidget, dpi(4), dpi(8)), accent_color2)
         -- arrow(accent_color1, "alpha"),
     }
@@ -427,7 +490,13 @@ function theme.at_screen_connect(s)
         awful.widget.tasklist {
         screen = s,
         filter = awful.widget.tasklist.filter.currenttags,
-        buttons = awful.util.tasklist_buttons
+        buttons = awful.util.tasklist_buttons,
+        style    = {
+            shape_border_width = 2,
+            shape_border_color = accent_color1,
+            shape  = gears.shape.rounded_bar,
+        },
+        widget_template = theme.tasklist_widget_template
     }
 
     -- Create the wibox
@@ -444,18 +513,20 @@ function theme.at_screen_connect(s)
 
     -- Add widgets to the wibox
     local widgets = screen2widgets
+    local leftWidgets = screen2LeftWidges
     if s.index == 1 then
         widgets = screen1widgets
+        leftWidgets = screen1LeftWidges
     end
 
     wibox_bar:setup {
         layout = wibox.layout.align.horizontal,
         {
             -- Left widgets
-            awful.widget.layoutbox(s),
             layout = wibox.layout.fixed.horizontal,
-            taglist
-            -- spr,
+            awful.widget.layoutbox(s),
+            taglist,
+            leftWidgets,
         },
         tasklist, -- Middle widget
         widgets
