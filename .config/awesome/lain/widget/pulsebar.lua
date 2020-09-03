@@ -129,9 +129,9 @@ local function factory(args)
 
             -- tot is the maximum number of ticks to display in the notification
             -- fallback: default horizontal wibox height
-            local wib, tot = awful.screen.focused().mywibox, 20
+            local wib, tot = awful.screen.focused().wibox_bar, 20
 
-            -- if we can grab mywibox, tot is defined as its height if
+            -- if we can grab wibox_bar, tot is defined as its height if
             -- horizontal, or width otherwise
             if wib then
                 if wib.position == "left" or wib.position == "right" then

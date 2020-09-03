@@ -535,6 +535,8 @@ function theme.at_screen_connect(s)
         -- Right widgets
         rightWidgets
     }
+
+    s.wibox_bar = wibox_bar
 end
 
 return theme
