@@ -11,10 +11,6 @@
 
 !.dmenu
 !.dmenu/*
-!.xmonad
-!.xmonad/*.hs
-!.xmonad/xpm
-!.xmonad/xpm/*
 
 # Ausnahmen Script Folder
 !Scripts
@@ -25,12 +21,6 @@
 !.SpaceVim.d
 !.SpaceVim.d/**
 !.SpaceVim.d/**/*
-
-# SpaceMacs config
-!.spacemacs
-!.SpaceMacs.d
-!.SpaceMacs.d/**
-!.SpaceMacs.d/**/*
 
 # Ausnahmen im .config folder
 !.config
@@ -74,8 +64,6 @@
 !.config/termite/*
 !.config/xsettingsd
 !.config/xsettingsd/*
-!.config/xmobar
-!.config/xmobar/*
 
 .cache/**/*
 .locale/**/*

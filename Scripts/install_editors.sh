@@ -45,25 +45,13 @@ errorCheck "vim installation"
 curl -sLf https://spacevim.org/install.sh | bash
 errorCheck "spacevim install"
 
-# emacs / spacemacs
+# utils for emacs / spacemacs
 yay -S --noconfirm --needed \
-    emacs shellcheck prettier ripgrep clang tar fd \
-    gdb bashdb graphviz \
+    shellcheck prettier ripgrep clang tar fd \
+    nodejs gdb bashdb graphviz \
     python-black python-pyflakes python-pipenv python-nose python-pytest
 
-if [ -f ~/.emacs.d/.git/config ]; then
-    echo "Doom Git gefunden. aktualisiere..."
-    cd  ~/.emacs.d
-    git pull
-    errorCheck "pull doom in ~/.emcas.d"
-    cd ~
-else
-    echo "Doom Git NICHT gefunden. klone..."
-    git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-    errorCheck "clone doom in ~/.emacs.d"
-fi
-
-errorCheck "spacemacs install"
+errorCheck "utils install"
 
 # nodejs tools for editors
 yarn global add neovim eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify

@@ -30,7 +30,7 @@ errorCheck() {
 
 # system packages
 yay -S --needed \
-    time rofi zenity xclip xsel xdotool xorg-xfd xcwd-git gucharmap \
+    time rofi zenity xclip xsel xdotool xorg-xfd xcwd-git \
     polybar broot pm-utils \
     polkit-gnome polkit-kde-agent \
     pamac-tray-appindicator checkupdates-aur \
@@ -58,4 +58,4 @@ chmod +x ~/Scripts/100-user-monitors.sh
 sudo cp ~/Scripts/100-user-monitors.sh /etc/X11/xinit/xinitrc.d
 
 # Default Browser setzen (vorher $BROWSER Variable entfernen)
-xdg-settings set default-web-browser firefox-developer-edition.desktop
+xdg-settings set default-web-browser firefox.desktop

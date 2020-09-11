@@ -1,4 +1,5 @@
 code --install-extension aaron-bond.better-comments
+code --install-extension adam-watters.vscode-color-pick
 code --install-extension adamvoss.vscode-languagetool
 code --install-extension adamvoss.vscode-languagetool-de
 code --install-extension adamvoss.vscode-languagetool-en
@@ -23,6 +24,7 @@ code --install-extension donjayamanne.git-extension-pack
 code --install-extension donjayamanne.githistory
 code --install-extension donjayamanne.jquerysnippets
 code --install-extension dotdevru.dotdevru-metalua-formatter
+code --install-extension DotJoshJohnson.xml
 code --install-extension dsznajder.es7-react-js-snippets
 code --install-extension dunstontc.viml
 code --install-extension dzannotti.vscode-babel-coloring
@@ -32,7 +34,6 @@ code --install-extension EditorConfig.EditorConfig
 code --install-extension eg2.vscode-npm-script
 code --install-extension esbenp.prettier-vscode
 code --install-extension evan-buss.font-switcher
-code --install-extension fatihacet.gitlab-workflow
 code --install-extension felipecaputo.git-project-manager
 code --install-extension formulahendry.auto-rename-tag
 code --install-extension formulahendry.code-runner
@@ -51,6 +52,7 @@ code --install-extension jrebocho.vscode-random
 code --install-extension justusadam.language-haskell
 code --install-extension lamartire.git-indicators
 code --install-extension mgmcdermott.vscode-language-babel
+code --install-extension mhutchie.git-graph
 code --install-extension mikestead.dotenv
 code --install-extension mrmlnc.vscode-autoprefixer
 code --install-extension mrmlnc.vscode-pugbeautify
@@ -66,6 +68,7 @@ code --install-extension pranaygp.vscode-css-peek
 code --install-extension Prisma.vscode-graphql
 code --install-extension quicktype.quicktype
 code --install-extension rokoroku.vscode-theme-darcula
+code --install-extension royaction.color-manager
 code --install-extension serayuzgur.crates
 code --install-extension steoates.autoimport
 code --install-extension streetsidesoftware.code-spell-checker
@@ -77,6 +80,7 @@ code --install-extension VimLeSai.front-end-ext-pack
 code --install-extension vincaslt.highlight-matching-tag
 code --install-extension VisualStudioExptTeam.vscodeintellicode
 code --install-extension vscode-icons-team.vscode-icons
+code --install-extension waderyan.gitblame
 code --install-extension wix.vscode-import-cost
 code --install-extension Wscats.qf
 code --install-extension wwm.better-align

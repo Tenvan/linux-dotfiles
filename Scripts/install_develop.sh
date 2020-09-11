@@ -28,11 +28,10 @@ errorCheck() {
 #######################################
 
 yay -S --noconfirm --needed \
-    git bazel nsis \
+    meld git nsis \
     nodejs nodejs-emojione npm yarn \
     dotnet-sdk \
     mono mono-msbuild \
-    jdk8-openjdk openjdk8-src jdk-openjdk \
-    docker docker-compose
+    jdk8-openjdk openjdk8-src jdk-openjdk
 
 errorCheck "development tools"

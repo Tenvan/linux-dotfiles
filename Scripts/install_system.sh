@@ -37,16 +37,6 @@ errorCheck "installation rustup"
 rustup install stable
 errorCheck "rustup stable"
 
-# required packages
-yay -S --noconfirm --needed \
-    git gitflow-avh bazel \
-    ungit gitahead-bin \
-    nodejs nodejs-emojione npm yarn \
-    dotnet-sdk mono mono-msbuild \
-    jdk8-openjdk openjdk8-src jdk-openjdk
-
-errorCheck "required application packages"
-
 # optional system packages
 yay -S --noconfirm --needed \
     exa ripgrep timeshift timeset-gui nitrogen \
@@ -63,14 +53,14 @@ errorCheck "optional system packages"
 
 # optional application packages
 yay -S --noconfirm --needed \
-    firefox-developer-edition firefox-developer-edition-i18n-de google-chrome chromium opera brave \
-    code bash-completion docker docker-compose \
-    meld copyq \
+    firefox-developer-edition firefox-developer-edition-i18n-de google-chrome chromium opera \
+    docker docker-compose copyq \
     gparted partitionmanager grub-customizer hardinfo \
     spectacle krita pinta blender gimp gimp-help-de aspell imagemagick pstoedit \
-    inkscape python-lxml python-numpy transfig \
+    inkscape xfig transfig \
+    python-lxml python-numpy \
     virt-manager qemu qemu-arch-extra libvirt \
-    teams x2goserver x2goclient \
+    teams \
     remmina remmina-plugin-open remmina-plugin-rdesktop remmina-plugin-url remmina-plugin-folder remmina-plugin-open freerdp
 
 errorCheck "optional application packages"
@@ -131,10 +121,3 @@ fi
 sudo systemctl enable libvirtd.service
 sudo systemctl start libvirtd.service
 errorCheck "libvirtd service"
-
-sudo x2godbadmin --create
-errorCheck "x2go create"
-
-sudo systemctl enable x2goserver.service
-sudo systemctl start x2goserver.service
-errorCheck "x2go service"
