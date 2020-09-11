@@ -12,6 +12,10 @@
 !.dmenu
 !.dmenu/*
 
+# Ausnahmen VS Code
+!.vscode
+!.vscode/*
+
 # Ausnahmen Script Folder
 !Scripts
 !Scripts/*

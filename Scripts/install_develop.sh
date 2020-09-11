@@ -35,3 +35,12 @@ yay -S --noconfirm --needed \
     jdk8-openjdk openjdk8-src jdk-openjdk
 
 errorCheck "development tools"
+
+# Git config for meld
+git config --global diff.tool meld
+git config --global difftool.meld.path "/usr/bin/meld \"\$LOCAL\" \"\$REMOTE\""
+git config --global difftool.prompt false
+
+git config --global merge.tool meld
+git config --global mergetool.meld.path "/usr/bin/meld \"\$LOCAL\" \"\$BASE\" \"\$REMOTE\" --output \"\$MERGED\""
+git config --global mergetool.prompt false
