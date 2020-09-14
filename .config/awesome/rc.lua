@@ -31,7 +31,6 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 naughty.config.defaults["icon_size"] = 100
-naughty.config.defaults["screen"] = 1
 naughty.config.defaults["border_width"] = dpi(3)
 naughty.config.defaults["position"] = "bottom_right"
 
@@ -961,10 +960,6 @@ clientkeys =
         {modkey, shiftkey},
         "f",
         awful.client.floating.fullscreen,
-        -- function(c)
-        --   c.fullscreen = not c.fullscreen
-        --   c:raise()
-        -- end,
         {description = "toggle fullscreen", group = kgClient}
     ),
     awful.key(
