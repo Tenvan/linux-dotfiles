@@ -34,6 +34,10 @@ naughty.config.defaults["icon_size"] = 100
 naughty.config.defaults["border_width"] = dpi(3)
 naughty.config.defaults["position"] = "bottom_right"
 
+local function notify(titel, message, category)
+    os.execute("notify-send.sh -a '' '" .. titel .. "' '" .. message .. "'")
+end
+
 -- local menubar       = require("menubar")
 
 local lain = require("lain")
@@ -51,13 +55,7 @@ local dpi = require("beautiful.xresources").apply_dpi
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
-    naughty.notify(
-        {
-            preset = naughty.config.presets.critical,
-            title = "Oops, there were errors during startup!",
-            text = awesome.startup_errors
-        }
-    )
+    notify("Oops, there were errors during startup!", awesome.startup_errors, naughty.config.presets.critical)
 end
 
 -- Handle runtime errors after startup
@@ -71,13 +69,7 @@ do
             end
             in_error = true
 
-            naughty.notify(
-                {
-                    preset = naughty.config.presets.critical,
-                    title = "Oops, an error happened!",
-                    text = tostring(err)
-                }
-            )
+            notify("Oops, an error happened!", tostring(err), naughty.config.presets.critical)
             in_error = false
         end
     )
@@ -991,13 +983,19 @@ clientkeys =
         {modkey, shiftkey},
         "i",
         function(c)
-            naughty.notify(
-                {
-                    -- preset = naughty.config.presets,
-                    title = "Oops, dies ist eine Test-Benachrichtung!",
-                    text = "Dolor et est dolor sed labore dolores, lorem sea kasd sed accusam.\nNonumy ipsum elitr aliquyam eirmod.\nNo sit lorem."
-                }
+            notify(
+                "Oops, dies ist eine Test-Benachrichtung!",
+                "Dolor et est dolor sed labore dolores, lorem sea kasd sed accusam.\nNonumy ipsum elitr aliquyam eirmod.\nNo sit lorem.",
+                naughty.config.presets.critical
             )
+        end,
+        {description = "toggle keep on top", group = kgClient}
+    ),
+    awful.key(
+        {modkey, controlkey},
+        "i",
+        function(c)
+            os.execute("kill -s USR1 $(pidof deadd-notification-center)")
         end,
         {description = "toggle keep on top", group = kgClient}
     )

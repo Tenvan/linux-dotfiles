@@ -144,13 +144,7 @@ fi
 yay -S --needed \
     font-manager \
     awesome-terminal-fonts \
-    nerd-fonts-fira-code \
-    nerd-fonts-hack \
-    nerd-fonts-iosevka \
-    nerd-fonts-source-code-pro \
-    nerd-fonts-mononoki \
-    nerd-fonts-dejavu-complete \
-    nerd-fonts-terminus \
+    nerd-fonts-complete \
     ttf-nerd-fonts-symbols \
     ttf-font-awesome \
     ttf-cascadia-code \
