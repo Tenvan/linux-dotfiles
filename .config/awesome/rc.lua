@@ -1280,7 +1280,9 @@ awful.rules.rules = {
                 "Xfce4-appfinder"
             },
             name = {
-                "Event Tester", -- xev.
+                "ArcoLinux Tweak Tool",
+                "Event Tester",
+                "Wetter:.*",
                 "XProp"
             },
             role = {

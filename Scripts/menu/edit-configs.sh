@@ -18,7 +18,7 @@ get_config_list() {
            --print-column=3 \
            --hide-column=3 \
            --hide-header \
-           true "📑 all (Git)" "$folderEdit $HOME" \
+           true "🇬 all (Git)" "$folderEdit $HOME" \
            false "📑 awesome dir" "$folderEdit $HOME/.config/awesome" \
            false "📑 scripts autostart" "$filesEdit $HOME/Scripts/autostart*.sh" \
            false "📑 scripts install" "$filesEdit $HOME/Scripts/install_*.sh" \
