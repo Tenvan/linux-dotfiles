@@ -501,7 +501,7 @@ function theme.at_screen_connect(s)
     }
 
     -- Create the wibox
-    local wibox_bar =
+    local mywibox =
         awful.wibar(
         {
             position = "top",
@@ -521,7 +521,7 @@ function theme.at_screen_connect(s)
         leftWidgets = screen1LeftWidges
     end
 
-    wibox_bar:setup {
+    mywibox:setup {
         layout = wibox.layout.align.horizontal,
         {
             -- Left widgets
@@ -536,7 +536,7 @@ function theme.at_screen_connect(s)
         rightWidgets
     }
 
-    s.wibox_bar = wibox_bar
+    s.mywibox = mywibox
 end
 
 return theme

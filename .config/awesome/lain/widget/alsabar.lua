@@ -121,8 +121,8 @@ local function factory(args)
             local tot = alsabar.notification_preset.max_ticks
 
             if not tot then
-                local wib = awful.screen.focused().wibox_bar
-                -- if we can grab wibox_bar, tot is defined as its height if
+                local wib = awful.screen.focused().mywibox
+                -- if we can grab mywibox, tot is defined as its height if
                 -- horizontal, or width otherwise
                 if wib then
                     if wib.position == "left" or wib.position == "right" then
