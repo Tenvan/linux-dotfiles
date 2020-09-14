@@ -7,10 +7,7 @@ function run() {
 }
 
 function restart() {
-    while pgrep -u $UID -x $1 >/dev/null; do sleep 1; done
-    if ! pgrep $1; then
-        $@ &
-    fi
+    killall $1
 }
 
 xrdb -merge $HOME/.Xresources
@@ -44,8 +41,6 @@ nitrogen --set-zoom-fill ~/.local/share/wallpapers/shared/floating-world-in-spac
 # (conky -c $HOME/.xmonad/scripts/system-overview) &
 
 #starting utility applications at boot time
-run emacs --daemon &
-
 run nm-applet &
 run pamac-tray &
 run xfce4-power-manager &
@@ -53,11 +48,11 @@ run xfce4-power-manager &
 numlockx on &
 # blueberry-tray &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-/usr/lib/xfce4/notifyd/xfce4-notifyd &
 
 #starting utility applications at boot time
 run pasystray &
 run copyq &
 run teams &
 
-restart alttab &
+killall alttab
+run alttab &

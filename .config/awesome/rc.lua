@@ -17,6 +17,7 @@ local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, 
 -- Standard awesome library
 local gears = require("gears") -- Utilities such as color parsing and objects
 local awful = require("awful") -- Everything related to window managment
+local dpi = require("beautiful.xresources").apply_dpi
 
 local gdebug = require("gears.debug")
 
@@ -30,6 +31,9 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 naughty.config.defaults["icon_size"] = 100
+naughty.config.defaults["screen"] = 1
+naughty.config.defaults["border_width"] = dpi(3)
+naughty.config.defaults["position"] = "bottom_right"
 
 -- local menubar       = require("menubar")
 
@@ -491,7 +495,7 @@ globalkeys =
         {controlkey, shiftkey},
         escapekey,
         function()
-            awful.util.spawn("xfce4-taskmanager")
+            awful.util.spawn("gnome-system-monitor")
         end,
         {description = "taskmanager", group = kgSystem}
     ), -- ctrl+alt +  ...
@@ -987,6 +991,20 @@ clientkeys =
             c.ontop = not c.ontop
         end,
         {description = "toggle keep on top", group = kgClient}
+    ),
+    awful.key(
+        {modkey, shiftkey},
+        "i",
+        function(c)
+            naughty.notify(
+                {
+                    -- preset = naughty.config.presets,
+                    title = "Oops, dies ist eine Test-Benachrichtung!",
+                    text = "Dolor et est dolor sed labore dolores, lorem sea kasd sed accusam.\nNonumy ipsum elitr aliquyam eirmod.\nNo sit lorem."
+                }
+            )
+        end,
+        {description = "toggle keep on top", group = kgClient}
     )
 )
 
@@ -1245,8 +1263,7 @@ awful.rules.rules = {
     {
         rule_any = {
             instance = {
-                "DTA", -- Firefox addon DownThemAll.
-                "copyq" -- Includes session name in class.
+                "copyq"
             },
             class = {
                 ".*AnyConnect.*",
@@ -1256,6 +1273,7 @@ awful.rules.rules = {
                 "Galculator",
                 "Gnome-disks",
                 "Gnome-font-viewer",
+                "Gnome-system-monitor",
                 "Gpick",
                 "Imagewriter",
                 "Font-manager",
@@ -1343,11 +1361,22 @@ awful.rules.rules = {
             switchtotag = true -- zur Ausgabe springen
         }
     },
-    -- Chromium Debugger Instanz Screen 2 tag 2 schieben
+    -- Chromium Debugger Instanz auf Screen 2 tag 2 schieben
     {
         rule = {
             class = "Chromium",
             instance = "chromium *"
+        },
+        properties = {
+            screen = 2, -- auf zweiten Monitor
+            tag = awful.util.tagnames[2], -- auf tag 2
+            switchtotag = true -- zur Ausgabe springen
+        }
+    },
+    -- Firefox Develop Edition auf Screen 2 tag 2 schieben
+    {
+        rule = {
+            class = "firefoxdeveloperedition"
         },
         properties = {
             screen = 2, -- auf zweiten Monitor
