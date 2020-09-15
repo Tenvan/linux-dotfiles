@@ -32,7 +32,8 @@ errorCheck() {
 yay -S --needed \
     time rofi zenity xclip xsel xdotool xorg-xfd xcwd-git \
     notify-send.sh polybar broot pm-utils \
-    polkit-gnome polkit-kde-agent \
+    gnome-system-monitor gnome-system-log \
+    polkit-gnome polkit-kde-agent seahorse gnome-keyring \
     pamac-tray-appindicator checkupdates-aur \
     xfce4-meta xfce4-taskmanager xfce4-appfinder lxappearance alttab-git xautolock \
     python python-psutil python-pygit2 python-xkbgroup python-taskw python-requests pygtk python2-distutils-extra

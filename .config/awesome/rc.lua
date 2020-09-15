@@ -137,6 +137,7 @@ local mailclient = "evolution"
 local mediaplayer = "spotify"
 local terminal = "alacritty"
 local virtualmachine = "virtualbox"
+local systemmonitor = "gnome-system-monitor"
 
 -- key groups
 local kgApplication = "application"
@@ -154,6 +155,7 @@ local kgTag = "tag"
 awful.util.terminal = terminal
 -- awful.util.tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒", "➓" }
 awful.util.tagnames = {"󾠮", "󾠯", "󾠰", "󾠱", "󾠲", "󾠳", "󾠴", "󾠵", "󾠶"}
+-- awful.util.tagnames = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
 -- awful.util.tagnames = { "", "", "", "", "", "", "", "", "" }
 -- awful.util.tagnames = {  "", "", "", "", "", "", "", "", "", "" }
 -- awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
@@ -492,7 +494,7 @@ globalkeys =
         {controlkey, shiftkey},
         escapekey,
         function()
-            awful.util.spawn("gnome-system-monitor")
+            awful.util.spawn(systemmonitor)
         end,
         {description = "taskmanager", group = kgSystem}
     ), -- ctrl+alt +  ...
@@ -1265,11 +1267,13 @@ awful.rules.rules = {
                 "Gnome-disks",
                 "Gnome-font-viewer",
                 "Gnome-system-monitor",
+                "Mate-system-monitor",
+                "deepin-system-monitor",
                 "Gpick",
                 "Imagewriter",
                 "Font-manager",
                 "Kruler",
-                "MessageWin", -- kalarm.
+                "MessageWin",
                 "Nm-connection-editor",
                 "arcolinux-logout",
                 "Pavucontrol",

@@ -45,9 +45,8 @@ yay -S --noconfirm --needed \
     clamav clamtk \
     termite alacritty \
     glances bashtop gtop htop iftop iotop iptraf-ng s-tui \
-    gnome-system-monitor gnome-system-log \
     shell-color-scripts powerline-rs find-the-command hstr-git qfc-git \
-    kindd etcher multitail
+    kindd etcher multitail systemdgenie
 
 errorCheck "optional system packages"
 
