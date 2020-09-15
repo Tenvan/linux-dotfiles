@@ -43,8 +43,3 @@ if $IS_MANJARO == true; then
     yay -S --needed manjaro-awesome-settings
     errorCheck "Manajaro: settings"
 fi
-
-if $IS_ARCO == true; then
-    yay -S --noconfirm --needed blingbling
-    errorCheck "ArcoLinux: AWESOME Stuff"
-fi

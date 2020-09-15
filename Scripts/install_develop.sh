@@ -28,10 +28,8 @@ errorCheck() {
 #######################################
 
 yay -S --noconfirm --needed \
-    meld git nsis \
-    nodejs nodejs-emojione npm yarn \
-    dotnet-sdk \
-    mono mono-msbuild \
+    meld git nodejs nodejs-emojione npm yarn \
+    dotnet-sdk mono mono-msbuild \
     jdk8-openjdk openjdk8-src jdk-openjdk
 
 errorCheck "development tools"

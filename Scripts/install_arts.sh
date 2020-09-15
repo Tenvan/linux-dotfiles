@@ -72,22 +72,9 @@ if $IS_MANJARO == true; then
         manjaro-artwork-extra \
         manjaro-users-artwork-wallpapers \
         manjaro-backgrounds \
-        antergos-wallpapers \
         awesome-wallpapers \
         cinnamon-wallpapers \
-        illyria-wallpaper \
-        manjaro-users-artwork-wallpapers \
-        manjaro-wallpapers-17.0 \
-        manjaro-wallpapers-18.0 \
-        manjaro-wallpapers-by-lunix-budgie \
-        manjaro-wallpapers-by-lunix-cinnamon \
-        manjaro-wallpapers-by-lunix-cool-logo \
-        manjaro-wallpapers-by-lunix-deepin \
-        manjaro-wallpapers-by-lunix-gnome \
-        manjaro-wallpapers-by-lunix-i3 \
-        manjaro-wallpapers-by-lunix-manjaro \
-        manjaro-wallpapers-by-lunix-openbox \
-        manjaro-wallpapers-by-lunix-xfce
+        illyria-wallpaper
 
     errorCheck "Manjaro: wallpapers"
 

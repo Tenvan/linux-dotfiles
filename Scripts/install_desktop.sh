@@ -51,7 +51,7 @@ yay -S picom-ibhagwan-git
 errorCheck "picom"
 
 if $IS_MANJARO == true; then
-    yay -S --noconfirm --needed bmenu dmenu-manjaro conky
+    yay -S --noconfirm --needed bmenu dmenu-manjaro
     errorCheck "Manjaro: menus"
 fi
 
