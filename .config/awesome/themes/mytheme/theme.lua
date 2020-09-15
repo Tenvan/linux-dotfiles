@@ -24,7 +24,9 @@ local accent_color2 = "#889FA7"
 theme.dir = os.getenv("HOME") .. "/.config/awesome/themes/mytheme"
 theme.wallpaper = theme.dir .. "/wallpaper.jpg"
 theme.font = "Mononoki 12"
-theme.taglist_font = "NotoEmoji Nerd Font Light 12"
+theme.taglist_font = "Twemoji 10"
+-- theme.taglist_font = "Noto Sans Symbols2 12"
+-- theme.taglist_font = "Noto Color Emoji 12"
 theme.fg_normal = "#FEFEFE"
 theme.fg_focus = accent_color2
 theme.fg_urgent = "#b74822"
@@ -222,7 +224,7 @@ vicious.register(memwidget, vicious.widgets.mem, "$1% ($2MiB/$3MiB)", 7)
 
 -- Graph
 local graph_mem = wibox.widget.graph()
-graph_mem:set_width(50)
+graph_mem:set_width(100)
 graph_mem:set_background_color(accent_color1)
 graph_mem:set_color(
     {
@@ -241,7 +243,7 @@ vicious.register(graph_mem, vicious.widgets.mem, "$1", 7)
 vicious.cache(vicious.widgets.cpu)
 
 local cpuHistogrammWidget = wibox.widget.graph()
-cpuHistogrammWidget:set_width(50)
+cpuHistogrammWidget:set_width(100)
 cpuHistogrammWidget:set_background_color(accent_color1)
 cpuHistogrammWidget:set_color {
     type = "linear",
@@ -261,8 +263,6 @@ for line in f:lines() do
     cpu_kernels = cpu_kernels + 1
 end
 f:close()
-
-gdebug.dump("Kernels:" .. cpu_kernels)
 
 -- CPU Kernels Bar
 local cpuKernelProgress = {}
@@ -284,21 +284,12 @@ for i = 1, cpu_kernels - 1 do
         wibox.widget {
             {
                 max_value = 100,
-                value = (100 / cpu_kernels) * i,
+                value = 0,
                 forced_height = 12,
-                border_width = dpi(1),
+                border_width = dpi(0),
                 border_color = accent_color2,
                 background_color = "alpha",
                 color = "#FF5656",
-                -- color = {
-                --     type = "linear",
-                --     from = {0, 0},
-                --     to = {0, 12},
-                --     stops = {
-                --         {0, "#FF5656"},
-                --         {1, "#fcccb1"},
-                --     }
-                -- },
                 widget = cpuKernelProgress[i]
             },
             direction = "east",
