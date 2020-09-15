@@ -18,13 +18,13 @@ select_application() {
            --hide-column=2 \
            --hide-header \
            "🌍 Browser" "$myBrowser" \
-           "♻ Emoji Test" "$myTerminal --hold -e curl https://unicode.org/Public/emoji/5.0/emoji-test.txt" \
-           "♻ UTF8 Test" "$myTerminal --hold -e curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html" \
+           "😃 Emoji Test" "$myTerminal --hold -e curl https://unicode.org/Public/emoji/5.0/emoji-test.txt" \
+           "☦ UTF8 Test" "$myTerminal --hold -e curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html" \
            "🌤 Wetter Brakel" "$myTerminal --hold -d 140 44 -t Wetter:Brakel -e curl wttr.in/33034?lang=de" \
            "🌤 Wetter Höxter" "$myTerminal --hold -d 140 44 -t Wetter:Höxter -e curl wttr.in/37671?lang=de" \
            "🌤 Wetter Mainz" "$myTerminal --hold -d 140 44 -t Wetter:Mainz -e curl wttr.in/Mainz?lang=de" \
            "♻ Matrix" "$myTerminal --hold -t matrix -e cmatrix" \
-           "♻ xsession Errors" "$myTerminal -t xsession-errors -d 140 44 -e multitail -i $HOME/.xsession-errors"
+           "🚧 xsession Errors" "$myTerminal -t xsession-errors -d 140 44 -e multitail -i $HOME/.xsession-errors"
 }
 
 choice=$(select_application)

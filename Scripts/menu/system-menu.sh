@@ -13,7 +13,6 @@ select_system_action() {
            --print-column=2 \
            --hide-column=2 \
            --hide-header \
-           "⚡ Matrix" "alacritty -e cmatrix -C green" \
            "⚡ Abmelden" "sh $HOME$/Scripts/session_logout.sh" \
            "⚡ Light Theme" "sh $HOME/Scripts/lighttheme.sh" \
            "⚡ Sperren" "sh $HOME/Scripts/session_lock.sh" \

@@ -42,6 +42,9 @@
 !.config/conky/*
 !.config/dunst
 !.config/dunst/*
+!.config/fontconfig
+!.config/fontconfig/**
+!.config/fontconfig/**/*
 !.config/fish
 !.config/fish/*
 !.config/gtk-3.0
