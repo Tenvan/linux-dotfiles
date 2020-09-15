@@ -35,7 +35,13 @@ naughty.config.defaults["border_width"] = dpi(3)
 naughty.config.defaults["position"] = "bottom_right"
 
 local function notify(titel, message, category)
-    os.execute("notify-send.sh -a '' '" .. titel .. "' '" .. message .. "'")
+    naughty.notify(
+        {
+            presets = category,
+            text = message,
+            title = titel
+        }
+    )
 end
 
 -- local menubar       = require("menubar")
@@ -988,14 +994,6 @@ clientkeys =
                 "Dolor et est dolor sed labore dolores, lorem sea kasd sed accusam.\nNonumy ipsum elitr aliquyam eirmod.\nNo sit lorem.",
                 naughty.config.presets.critical
             )
-        end,
-        {description = "toggle keep on top", group = kgClient}
-    ),
-    awful.key(
-        {modkey, controlkey},
-        "i",
-        function(c)
-            os.execute("kill -s USR1 $(pidof deadd-notification-center)")
         end,
         {description = "toggle keep on top", group = kgClient}
     )
