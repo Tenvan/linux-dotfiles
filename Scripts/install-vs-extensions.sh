@@ -54,6 +54,7 @@ code --install-extension joelday.docthis
 code --install-extension john-crowson.angular-file-changer
 code --install-extension johnpapa.angular-essentials
 code --install-extension johnpapa.Angular2
+code --install-extension johnpapa.winteriscoming
 code --install-extension jrebocho.vscode-random
 code --install-extension KnisterPeter.vscode-commitizen
 code --install-extension Koihik.vscode-lua-format

@@ -1,7 +1,6 @@
 {
   "editor.fontFamily": "'mononoki Nerd Font Mono', 'mononoki', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
   "editor.tabSize": 2,
-  "workbench.iconTheme": "material-icon-theme",
   "window.zoomLevel": 0,
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
