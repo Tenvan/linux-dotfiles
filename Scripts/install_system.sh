@@ -55,7 +55,7 @@ yay -S --noconfirm --needed \
     firefox-developer-edition firefox-developer-edition-i18n-de google-chrome chromium opera \
     docker docker-compose copyq \
     gparted partitionmanager grub-customizer hardinfo \
-    spectacle krita pinta blender gimp gimp-help-de aspell imagemagick pstoedit \
+    spectacle krita blender gimp gimp-help-de aspell imagemagick pstoedit \
     inkscape xfig transfig \
     python-lxml python-numpy \
     virt-manager qemu qemu-arch-extra libvirt \
@@ -67,7 +67,7 @@ errorCheck "optional application packages"
 # file manager
 yay -S --noconfirm --needed \
     nemo nemo-share folder-color-switcher nemo-fileroller nemo-image-converter nemo-preview nemo-seahorse \
-    nemo-terminal nemo-compare nemo-megasync nemo-emblems nemo-media-columns nemo-media-columns nemo-pdf-tools \
+    nemo-terminal nemo-compare nemo-emblems nemo-media-columns nemo-media-columns nemo-pdf-tools \
     nemo-meld-compare nemo-audio-tab nemo-mediainfo-tab nemo-qml-plugin-dbus-git nemo-ext-git \
     mc ark arj dpkg lhasa unrar p7zip
 
@@ -90,7 +90,8 @@ errorCheck "LibreOffice fresh"
 
 # Manjaro
 if $IS_MANJARO == true; then
-    yay -S --noconfirm --needed lightdm-gtk-greeter-settings manjaro-settings-samba manjaro-pulse virtualbox
+    yay -S --noconfirm --needed \
+    pinta lightdm-gtk-greeter-settings manjaro-settings-samba manjaro-pulse virtualbox
     errorCheck "Manajaro: packages"
     # gimicks
     yay -S --noconfirm --needed cmatrix hollywood cowsay
