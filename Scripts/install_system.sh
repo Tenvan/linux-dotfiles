@@ -39,63 +39,28 @@ errorCheck "rustup stable"
 
 # optional system packages
 yay -S --noconfirm --needed \
-    exa ripgrep timeshift timeset-gui nitrogen \
-    ark arj dpkg lhasa unrar p7zip \
-    foxitreader neofetch screenfetch \
-    clamav clamtk \
+    exa ripgrep timeshift timeset-gui \
     termite alacritty \
+    ark arj dpkg lhasa unrar p7zip \
+    neofetch screenfetch \
+    clamav clamtk \
     glances bashtop gtop htop iftop iotop iptraf-ng s-tui \
     shell-color-scripts powerline-rs find-the-command hstr-git qfc-git \
-    kindd etcher multitail systemdgenie
+    kindd multitail
 
 errorCheck "optional system packages"
 
-# optional application packages
-yay -S --noconfirm --needed \
-    firefox-developer-edition firefox-developer-edition-i18n-de google-chrome chromium opera \
-    docker docker-compose copyq \
-    gparted partitionmanager grub-customizer hardinfo \
-    spectacle krita blender gimp gimp-help-de aspell imagemagick pstoedit \
-    inkscape xfig transfig \
-    python-lxml python-numpy \
-    virt-manager qemu qemu-arch-extra libvirt \
-    teams \
-    remmina remmina-plugin-open remmina-plugin-rdesktop remmina-plugin-url remmina-plugin-folder remmina-plugin-open freerdp
-
-errorCheck "optional application packages"
-
-# file manager
-yay -S --noconfirm --needed \
-    nemo nemo-share folder-color-switcher nemo-fileroller nemo-image-converter nemo-preview nemo-seahorse \
-    nemo-terminal nemo-compare nemo-emblems nemo-media-columns nemo-media-columns nemo-pdf-tools \
-    nemo-meld-compare nemo-audio-tab nemo-mediainfo-tab nemo-qml-plugin-dbus-git nemo-ext-git \
-    mc ark arj dpkg lhasa unrar p7zip
-
-errorCheck "file manager"
-
-# printer setup
-yay -S --noconfirm --needed canon-cque samsung-printers cups-pdf system-config-printer
-errorCheck "printer setup"
-
-# sound setup
-yay -S --noconfirm --needed \
-    paprefs pulseaudio-ctl pulseaudio-qt pulseaudio-equalizer-ladspa pasystray \
-    sound-theme-elementary sound-theme-smooth sound-theme-lbr-impress
-
-errorCheck "sound setup"
-
-# LibreOffice fresh
-yay -S --noconfirm --needed libreoffice-fresh
-errorCheck "LibreOffice fresh"
-
 # Manjaro
 if $IS_MANJARO == true; then
+    # manjaro only packages
     yay -S --noconfirm --needed \
-    pinta lightdm-gtk-greeter-settings manjaro-settings-samba manjaro-pulse virtualbox
-    errorCheck "Manajaro: packages"
+        lightdm-gtk-greeter-settings manjaro-settings-samba manjaro-pulse
+
+    errorCheck "Manjaro: packages"
+    
     # gimicks
     yay -S --noconfirm --needed cmatrix hollywood cowsay
-    errorCheck "Manajaro: gimicks"
+    errorCheck "Manjaro: gimicks"
 fi
 
 # ArcoLinux
@@ -104,20 +69,6 @@ if $IS_ARCO == true; then
     yay -S --noconfirm --needed arcolinux-lightdm-gtk-greeter-settings arcolinux-termite-themes-git
     errorCheck "ArcoLinux: arco only packages"
 
-    # virtualbox for lts-kernel
-    yay -S --noconfirm --needed virtualbox
-    errorCheck "ArcoLinux: virtualbox installation"
-
-    yay -S --needed virtualbox-host-dkms
-    errorCheck "ArcoLinux: virtualbox host installation"
-
-    yay -S --noconfirm --needed linux-lts-headers
-    errorCheck "ArcoLinux: virtualbox headers installation"
-
     sudo grub-mkconfig -o /boot/grub/grub.cfg
-    errorCheck "ArcoLinux: virtualbox grub config"
+    errorCheck "ArcoLinux: grub config"
 fi
-
-sudo systemctl enable libvirtd.service
-sudo systemctl start libvirtd.service
-errorCheck "libvirtd service"

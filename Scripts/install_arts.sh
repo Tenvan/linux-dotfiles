@@ -30,39 +30,15 @@ if $IS_ARCO == true; then
     # wallpapers
     yay -S --needed --noconfirm \
         arcolinux-wallpapers-git \
-        arcolinux-wallpapers-lxqt-dual-git \
-        ukui-wallpapers
+        arcolinux-wallpapers-lxqt-dual-git
 
     errorCheck "ArcoLinux: wallpapers"
 
     # themes
     yay -S --needed --noconfirm \
-        arcolinux-arc-themes-nico-git \
-        materia-gtk-theme
+        arcolinux-arc-themes-nico-git
 
     errorCheck "ArcoLinux: themes"
-
-    # cursor
-    yay -S --needed --noconfirm \
-        xcursor-comix \
-        xcursor-flatbed \
-        xcursor-neutral \
-        xcursor-premium \
-        xcursor-simpleandsoft
-
-    errorCheck "ArcoLinux: cursor"
-
-    # icons
-    yay -S --needed --noconfirm \
-        arc-icon-theme \
-        faba-icon-theme \
-        hicolor-icon-theme \
-        paper-icon-theme \
-        papirus-icon-theme \
-        surfn-mint-y-icons-git
-
-
-    errorCheck "ArcoLinux: icons"
 fi
 
 if $IS_MANJARO == true; then
@@ -80,55 +56,76 @@ if $IS_MANJARO == true; then
 
     # themes
     yay -S --needed --noconfirm \
-        arc-gtk-theme \
         arc-themes-breath \
         arc-themes-maia \
         arc-themes-solid-breath \
-        arc-themes-solid-maia \
-        materia-gtk-theme
+        arc-themes-solid-maia
 
-    errorCheck "ArcoLinux: themes"
+    errorCheck "Manajro: themes"
 
+    # icons
     yay -S --needed --noconfirm \
-        xcursor-breeze \
-        xcursor-breeze-adapta \
-        xcursor-breeze-serie-obsidian \
-        xcursor-chameleon-anthracite \
-        xcursor-chameleon-darkskyblue \
-        xcursor-chameleon-pearl \
-        xcursor-chameleon-skyblue \
-        xcursor-chameleon-white \
-        xcursor-comix \
-        xcursor-flatbed \
-        xcursor-neutral \
-        xcursor-premium \
-        xcursor-simpleandsoft
-
-    errorCheck "Manjaro: cursor"
-
-    yay -S --needed --noconfirm \
-        adwaita-icon-theme \
-        arc-icon-theme \
-        arc-maia-icon-theme \
-        breath-icon-theme \
-        breath2-icon-themes \
         breeze-maia-icon-themes \
-        faba-icon-theme \
-        hicolor-icon-theme \
-        maia-icon-theme \
         manjaro-artwork-icons \
-        moka-icon-theme \
-        papirus-icon-theme \
         papirus-maia-icon-theme \
         vertex-maia-icon-theme \
-        sardi-icons
+        arc-maia-icon-theme \
+        breath-icon-theme \
+        breath2-icon-themes       
 
     errorCheck "Manjaro: icons"
-
 fi
 
+# themes
+yay -S --needed --noconfirm \
+    arc-gtk-theme \
+    materia-gtk-theme
+
+errorCheck "Themes"
+
+# wallpapers
+yay -S --needed --noconfirm \
+    ukui-wallpapers
+
+errorCheck "Wallpapers"
+
+yay -S --needed --noconfirm \
+    xcursor-breeze \
+    xcursor-breeze-adapta \
+    xcursor-breeze-serie-obsidian \
+    xcursor-chameleon-anthracite \
+    xcursor-chameleon-darkskyblue \
+    xcursor-chameleon-pearl \
+    xcursor-chameleon-skyblue \
+    xcursor-chameleon-white \
+    xcursor-comix \
+    xcursor-flatbed \
+    xcursor-neutral \
+    xcursor-premium \
+    xcursor-simpleandsoft
+
+errorCheck "Cursor"
+
+# icons
+yay -S --needed --noconfirm \
+    adwaita-icon-theme \
+    arc-icon-theme \
+    arc-icon-theme \
+    faba-icon-theme \
+    faba-icon-theme \
+    hicolor-icon-theme \
+    hicolor-icon-theme \
+    maia-icon-theme \
+    moka-icon-theme \
+    paper-icon-theme \
+    papirus-icon-theme \
+    papirus-icon-theme \
+    sardi-icons
+
+errorCheck "Icons"
+
 # fonts
-yay -S --needed \
+yay -S --needed --noconfirm \
     font-manager \
     awesome-terminal-fonts \
     nerd-fonts-complete \

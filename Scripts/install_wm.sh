@@ -23,23 +23,23 @@ errorCheck() {
     fi
 }
 
-#######################################
-# Installing all used Window Managers #
-# Nur mit Manajaro verwenden !!!      #
-# Unter ArcoLinux besser TweakTool !! #
-#######################################
+########################################
+# Installing all used Window Managers  #
+# Unter ArcoLinux TweakTool verwenden. #
+########################################
 
 if $IS_MANJARO == true; then
-    # awesome
-    yay -S --needed --noconfirm \
-        awesome xorg-server-xephyr luacheck luarocks lua-luajson lua-socket awmtt
-    errorCheck "Manajaro: awesome"
-
-    # qtile
-    yay -S --noconfirm --needed qtile
-    errorCheck "Manajaro: qtile"
+    yay -S --noconfirm --needed dmenu-manjaro
+    errorCheck "Manjaro: menus"
 
     # current used settings
     yay -S --needed manjaro-awesome-settings
-    errorCheck "Manajaro: settings"
+    errorCheck "Manjaro: settings"
 fi
+
+
+# awesome packages
+yay -S --needed --noconfirm \
+    awesome vicious xorg-server-xephyr luacheck luarocks lua-luajson lua-socket awmtt bmenu
+    
+errorCheck "all awesome"
