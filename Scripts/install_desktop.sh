@@ -32,6 +32,7 @@ errorCheck() {
 yay -S --needed \
     time rofi zenity xclip xsel xdotool xorg-xfd xcwd-git \
     notify-send.sh polybar broot pm-utils \
+    qt-logout multimonitorlock multimonitorlock-gui \
     gnome-system-monitor gnome-system-log \
     polkit-gnome polkit-kde-agent seahorse gnome-keyring \
     pamac-tray-appindicator checkupdates-aur \

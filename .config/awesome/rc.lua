@@ -469,7 +469,7 @@ globalkeys =
         {modkey},
         "x",
         function()
-            awful.util.spawn("arcolinux-logout")
+            awful.util.spawn("qt-logout")
         end,
         {description = "exit", group = kgSystem}
     ),
