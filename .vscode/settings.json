@@ -1,6 +1,5 @@
 {
   "merge-conflict.autoNavigateNextConflict.enabled": true,
-  "workbench.colorTheme": "Winter is Coming (Light)",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.preferredLightColorTheme": "Winter is Coming (Light)"
 }
