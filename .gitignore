@@ -72,10 +72,8 @@
 !.config/xsettingsd
 !.config/xsettingsd/*
 
-.cache/**/*
-.locale/**/*
-!.locale/share/wallpapers/shared
-!.locale/share/wallpapers/shared/*
-!.locale/share/wallpapers/shared/**/*
+!.local/share/wallpapers/shared
+!.local/share/wallpapers/shared/**
+!.local/share/wallpapers/shared/**/*
 
 **/*-private.*
