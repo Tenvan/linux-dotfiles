@@ -1,17 +1,30 @@
-# i3-desktop
+# Awesome Desktop
 
-- Komplette Konfiguration eines I3-Desktops.
+- Komplette Konfiguration eines Awesome-Desktops.
 - Fest ausgelegt auf Dual-Monitor
-- Umschaltung zwischen Light/Dark Theme durch Git-Branch
+- Umschaltung zwischen Light/Dark Theme
 
-Als Basis dient eine Full-I3 Installation durch den Manjaro "Architekt"-Installater, oder eine vergleichbare.
+Als Basis dient eine Manajaro Full Cinnamon Installation, oder eine vergleichbare.
 
 ## Installation
 
+Repository klonen
+
+```bash
+git clone http://gitlab.ihr.infoniqa.local/one-time-de/linux-environments/dotfiles-developer-workstation.git
+```
+
+und in das Homeverzeichnis verschieben:
+```bash
+shopt -s dotglob
+rsync -vrlptgo --include ".*" dotfiles-developer-workstation/* ~/
+rm -fr dotfiles-developer-workstation/
+```
+
 Fehlende Pakete werden mit folgendem Batch nachinstalliert:
 
-```
-sh ~/i3install.sh
+```bash
+sh ~/Scripts/install_all.sh
 ```
 
 ## Manuelle Konfiguration
