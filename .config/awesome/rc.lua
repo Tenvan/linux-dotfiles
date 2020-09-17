@@ -1235,7 +1235,10 @@ awful.rules.rules = {
     {rule = {class = "Xfce4-settings-manager"}, properties = {floating = false}},
     -- Maximized clients.
     {
-        rule = {class = "Gimp*", role = "gimp-image-window"},
+        rule = {
+            class = "Gimp*",
+            role = "gimp-image-window"
+        },
         properties = {maximized = true}
     },
     {
@@ -1272,12 +1275,12 @@ awful.rules.rules = {
                 "Gpick",
                 "Imagewriter",
                 "Font-manager",
-                "Kruler",
                 "MessageWin",
                 "Nm-connection-editor",
                 "arcolinux-logout",
                 "Pavucontrol",
                 "Peek",
+                "Rofi",
                 "Skype",
                 "System-config-printer.py",
                 "Sxiv",
@@ -1305,12 +1308,24 @@ awful.rules.rules = {
                 "setup"
             }
         },
-        properties = {floating = true}
+        properties = {
+            floating = true,
+            opacity = 0.9
+        }
     },
     -- Floating clients but centered in screen
     {
-        rule_any = {class = {"Polkit-gnome-authentication-agent-1"}},
-        properties = {floating = true},
+        rule_any = {
+            class = {
+                ".*gnome-authentication-agent.*",
+                "Gcr-prompter",
+                "Rofi"
+            }
+        },
+        properties = {
+            floating = true,
+            opacity = 0.8
+        },
         callback = function(c)
             awful.placement.centered(c, nil)
         end
