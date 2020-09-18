@@ -107,6 +107,7 @@ fi
 ##########################
 inst meld
 inst git
+inst gitflow-avh
 inst nodejs
 inst nodejs-emojione
 inst npm
@@ -129,6 +130,7 @@ if $IS_MANJARO == true; then
 
     # current used settings
     inst manjaro-awesome-settings
+    # inst manjaro-cinnamon-settings
     errorCheck "Manjaro: settings"
 fi
 
@@ -147,6 +149,7 @@ inst awmtt
 # for tiling windows managers (all) #
 #####################################
 # system packages
+inst arandr
 inst copyq
 inst time
 inst rofi
@@ -267,9 +270,12 @@ inst remmina-plugin-open
 inst freerdp
 
 # virtualbox for lts-kernel
-inst  virtualbox
-inst  virtualbox-host-dkms
-inst  linux-lts-headers
+inst virtualbox
+inst virtualbox-host-dkms
+# inst linux-lts-headers
+# inst linux-lts-virtualbox-host-modules
+inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-headers
+inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-virtualbox-host-modules
 
 # libvirt service and manager
 inst virt-manager
@@ -453,6 +459,12 @@ errorCheck "libvirtd service"
 
 chmod +x ~/Scripts/100-user-monitors.sh
 sudo cp ~/Scripts/100-user-monitors.sh /etc/X11/xinit/xinitrc.d
+
+if [ -f $HOME/.screenlayout/screenlayout.sh ]; then
+    sed 's/^#display-setup-script=$/display-setup-script=\/opt\/screenlayout.sh/g' < /etc/lightdm/lightdm.conf > lightdm.conf
+    sudo mv lightdm.conf /etc/lightdm
+    sudo cp $HOME/.screenlayout/screenlayout.sh /opt
+fi
 
 # Default Browser setzen (vorher $BROWSER Variable entfernen)
 xdg-settings set default-web-browser firefox.desktop

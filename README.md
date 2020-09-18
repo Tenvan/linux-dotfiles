@@ -29,8 +29,9 @@ sh ~/Scripts/install_all.sh
 
 ## Manuelle Konfiguration
 
-Einzige z.Zt. nötige manuelle Konfiguration ist die Anschlussdefinitiob der beiden Monitore.
+Einzige z.Zt. nötige manuelle Konfiguration ist die Anschlussdefinition der beiden Monitore.
 
+### Konfiguration der Anschlussnamen
 Hierfür muss im Homeverzeichnis eine Datei '.Xresources.monitor' angelegt werden, die folgenden Aufbau hat:
 
 ```
@@ -41,7 +42,16 @@ Hierfür muss im Homeverzeichnis eine Datei '.Xresources.monitor' angelegt werde
 Ermittelt werden können diese durch:
 
 ```
-xrandr | grep connected -w 
+echo "*monitor1: DP2
+*monitor2: DP3"  > .Xresources.monitor
+
+xrandr | grep connected -w >> .Xresources.monitor
+code .Xresources.monitor
 ```
 
-Rebooten bzw- neu anmdelden nicht vergessen !
+Mit Code die Datei dann entsprechend den Anschlüssen korrigieren.
+
+### Monitor Definition erstellen
+Mit 'arandr' die Monitoreinstellung vornehmen und in der Datei '~/.screenlayout/screenlayout.sh' speichern.
+
+Das Install-Script nochmal laufen lassen, anschließend neu booten.
