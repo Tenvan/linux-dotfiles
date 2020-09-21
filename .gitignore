@@ -7,10 +7,8 @@
 !.gvimrc
 !.gtkrc-2.0.*
 !.Xresources
+!.xbindkeysrc
 !README.MD
-
-!.dmenu
-!.dmenu/*
 
 # Ausnahmen VS Code
 !.vscode

@@ -10,7 +10,7 @@ select_application() {
            --width=300 \
            --height=600 \
            --title="Edit Konfiguation" \
-           --text="System Menü" \
+           --text="APPLICATIONS" \
            --column=Option \
            --column="Aktion" \
            --separator=" " \

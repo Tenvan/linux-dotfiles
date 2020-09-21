@@ -16,8 +16,8 @@ select_application() {
            --width=300 \
            --height=700 \
            --title="Edit Konfiguation" \
-           --text="System Menü" \
-           --column=Option \
+           --text="DEVELOP" \
+           --column="Option" \
            --column="Aktion" \
            --separator=" " \
            --print-column=2 \
