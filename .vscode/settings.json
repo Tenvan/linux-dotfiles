@@ -1,5 +1,31 @@
 {
+  "cSpell.language": "de,de-DE,en,en-GB,en-US",
+  "cSpell.allowCompoundWords": true,
+  "diffEditor.codeLens": true,
+  "editor.fontFamily": "monospace, 'Droid Sans Fallback'",
+  "editor.tabSize": 2,
+  "editor.renameOnType": true,
+  "editor.renderControlCharacters": true,
+  "files.autoSave": "onFocusChange",
+  "editor.suggestSelection": "first",
+  "explorer.confirmDelete": false,
+  "git.enableSmartCommit": true,
+  "languageTool.language": "de",
   "merge-conflict.autoNavigateNextConflict.enabled": true,
+  "python.languageServer": "Microsoft",
+  "todo-tree.tree.showScanModeButton": false,
+  "vscode-metalua-formatter.luaPath": "/usr/bin/lua5.1",
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.preferredLightColorTheme": "Winter is Coming (Light)"
+  "workbench.preferredLightColorTheme": "Winter is Coming (Light)",
+  "[lua]": {
+    "editor.defaultFormatter": "trixnz.vscode-lua"
+  },
+  "lua.format.useTabs": null,
+  "lua.targetVersion": "5.3",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 }

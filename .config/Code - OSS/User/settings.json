@@ -1,12 +1,4 @@
 {
-  "editor.fontFamily": "'mononoki Nerd Font Mono', 'mononoki', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-  "editor.tabSize": 2,
-  "window.zoomLevel": 0,
-  "editor.suggestSelection": "first",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "todo-tree.tree.showScanModeButton": false,
-  "files.autoSave": "onFocusChange",
-  "cSpell.language": "en,en-GB,en-US,de,de-DE",
   "cSpell.userWords": [
     "Derek",
     "Distro",
@@ -21,27 +13,6 @@
     "xcomposite",
     "xmobar",
     "xmonad"
-  ],
-  "languageTool.language": "de",
-  "cSpell.allowCompoundWords": true,
-  "cSpell.enableFiletypes": ["!haskell"],
-  "languageServerHaskell.hieVariant": "ghcide",
-  "python.languageServer": "Microsoft",
-  "[lua]": {
-    "editor.defaultFormatter": "trixnz.vscode-lua"
-  },
-  "vscode-metalua-formatter.luaPath": "/usr/bin/lua5.1",
-  "lua.format.useTabs": null,
-  "lua.targetVersion": "5.3",
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "vsicons.dontShowNewVersionMessage": true,
-  "editor.renameOnType": true,
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "diffEditor.codeLens": true,
-  "explorer.confirmDelete": false,
-  "git.enableSmartCommit": true
+  ]
+
 }
