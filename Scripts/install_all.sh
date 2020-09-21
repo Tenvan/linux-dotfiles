@@ -187,6 +187,7 @@ inst python-taskw
 inst python-requests
 inst pygtk
 inst python2-distutils-extra
+inst xbindkeys
 
 # file manager
 inst nemo

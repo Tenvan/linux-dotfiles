@@ -54,5 +54,8 @@ run pasystray &
 run copyq &
 run teams &
 
+killall xbindkeys
+run xbindkeys &
+
 killall alttab
 run alttab &

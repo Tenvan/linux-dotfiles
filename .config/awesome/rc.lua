@@ -129,23 +129,14 @@ local escapekey = "Escape"
 
 -- personal variables
 -- change these variables if you want
-local browser = os.getenv("BROWSER") or "firefox"
-local editor = os.getenv("EDITOR") or "nvim"
 local editorgui = "Geany"
-local filemanager = "nemo"
-local mailclient = "evolution"
-local mediaplayer = "spotify"
 local terminal = "alacritty"
-local virtualmachine = "virtualbox"
-local systemmonitor = "gnome-system-monitor"
 
 -- key groups
-local kgApplication = "application"
 local kgAwesome = "awesome"
 local kgClient = "client"
 local kgLayout = "layout"
 local kgMaster = "master"
-local kgMenu = "menu"
 local kgScreen = "screen"
 local kgSound = "sound"
 local kgSystem = "system"
@@ -406,115 +397,9 @@ root.buttons(
 -- {{{ Key bindings
 globalkeys =
     my_table.join(
-    -- System Functions
-    awful.key(
-        {controlkey, modkey},
-        "x",
-        function()
-            awful.spawn.spawn(string.format("%s -t XProp --hold -e %s", terminal, "xprop"))
-        end,
-        {description = "start xprop", group = kgSystem}
-    ),
-    awful.key(
-        {modkey},
-        "t",
-        function()
-            awful.spawn.with_shell("sh $HOME/Scripts/picom-toggle-awesome.sh")
-        end,
-        {description = "toggle picom", group = kgSystem}
-    ),
-    -- Function keys
-    awful.key(
-        {modkey},
-        "F12",
-        function()
-            awful.util.spawn("xfce4-terminal --drop-down")
-        end,
-        {description = "dropdown terminal", group = kgApplication}
-    ),
-    -- super + ... function keys
-    awful.key(
-        {modkey},
-        "F1",
-        function()
-            awful.util.spawn(browser)
-        end,
-        {description = browser, group = kgApplication}
-    ),
-    awful.key(
-        {modkey},
-        "F7",
-        function()
-            awful.util.spawn("virtualbox")
-        end,
-        {description = virtualmachine, group = kgApplication}
-    ),
-    awful.key(
-        {modkey},
-        "F8",
-        function()
-            awful.util.spawn(filemanager)
-        end,
-        {description = filemanager, group = kgApplication}
-    ),
-    awful.key(
-        {modkey},
-        "c",
-        function()
-            awful.util.spawn("conky-toggle")
-        end,
-        {description = "conky-toggle", group = "conky"}
-    ),
-    awful.key(
-        {modkey},
-        "x",
-        function()
-            awful.util.spawn("qt-logout")
-        end,
-        {description = "exit", group = kgSystem}
-    ),
-    awful.key(
-        {modkey},
-        escapekey,
-        function()
-            awful.util.spawn("xkill")
-        end,
-        {description = "Kill proces", group = kgSystem}
-    ), -- super + shift + ...
-    awful.key(
-        {modkey, shiftkey},
-        returnkey,
-        function()
-            awful.util.spawn(filemanager)
-        end
-    ),
     awful.key({modkey, shiftkey}, "r", awesome.restart, {description = "reload awesome", group = kgAwesome}),
     awful.key({modkey, shiftkey}, "x", awesome.quit, {description = "quit awesome", group = kgAwesome}),
-    awful.key(
-        {controlkey, shiftkey},
-        escapekey,
-        function()
-            awful.util.spawn(systemmonitor)
-        end,
-        {description = "taskmanager", group = kgSystem}
-    ), -- ctrl+alt +  ...
-    awful.key(
-        {controlkey, altkey},
-        "a",
-        function()
-            awful.util.spawn("xfce4-appfinder")
-        end,
-        {description = "Xfce appfinder", group = kgSystem}
-    ), -- alt + ...
-    awful.key(
-        {altkey},
-        "F3",
-        function()
-            awful.util.spawn("xfce4-appfinder")
-        end,
-        {description = "Xfce appfinder", group = kgSystem}
-    ), -- screenshots
-    -- Personal keybindings}}}
+    -- alt + ...
     -- Hotkeys Awesome
     awful.key({modkey}, "s", hotkeys_popup.show_help, {description = "show help", group = kgAwesome}),
     -- Tag browsing with modkey
@@ -636,7 +521,7 @@ globalkeys =
         "b",
         function()
             for s in screen do
-                s.wibox_bar.visible = not s.wibox_bar.visible
+                s.mywibox.visible = not s.mywibox.visible
                 if s.mybottomwibox then
                     s.mybottomwibox.visible = not s.mybottomwibox.visible
                 end
@@ -678,15 +563,6 @@ globalkeys =
             lain.util.useless_gaps_resize(-1)
         end,
         {description = "decrement useless gaps", group = kgLayout}
-    ),
-    -- Standard program
-    awful.key(
-        {modkey},
-        returnkey,
-        function()
-            awful.spawn(terminal)
-        end,
-        {description = terminal, group = kgSystem}
     ),
     awful.key(
         {altkey, shiftkey},
@@ -866,90 +742,6 @@ globalkeys =
         function()
             awful.util.spawn("Player Stop")
         end
-    ),
-    -- Default -- Menu Keys
-    --[[ Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-            {description = "show the menubar", group = "super"})
-    --]] awful.key(
-        {modkey},
-        "z",
-        function()
-            awful.spawn.with_shell("rofi -show run")
-        end,
-        {description = "rofi combi", group = kgMenu}
-    ),
-    awful.key(
-        {modkey, shiftkey},
-        "z",
-        function()
-            awful.spawn.with_shell("rofi -show combi")
-        end,
-        {description = "rofi combi", group = kgMenu}
-    ),
-    awful.key(
-        {modkey},
-        "F2",
-        function()
-            awful.spawn.with_shell("xfce4-appfinder")
-        end,
-        {description = "app finder", group = kgMenu}
-    ),
-    awful.key(
-        {modkey},
-        "w",
-        function()
-            awful.spawn.with_shell("bwmenu -- -location 2")
-        end,
-        {description = "bitwarden menu", group = kgMenu}
-    ), -- Custom Menus
-    awful.key(
-        {modkey, altkey},
-        "a",
-        function()
-            awful.spawn.with_shell("sh $HOME/Scripts/menu/app-menu.sh")
-        end,
-        {description = "start application", group = kgMenu}
-    ),
-    awful.key(
-        {modkey},
-        "d",
-        function()
-            awful.spawn.with_shell("sh $HOME/Scripts/menu/develop-menu.sh")
-        end,
-        {description = "developer actions", group = kgMenu}
-    ),
-    awful.key(
-        {modkey, altkey},
-        "d",
-        function()
-            awful.spawn.with_shell("sh $HOME/Scripts/menu/develop-menu.sh")
-        end,
-        {description = "developer actions", group = kgMenu}
-    ),
-    awful.key(
-        {modkey, altkey},
-        "e",
-        function()
-            awful.spawn.with_shell("sh $HOME/Scripts/menu/edit-configs.sh")
-        end,
-        {description = "edit config", group = kgMenu}
-    ),
-    awful.key(
-        {modkey, altkey},
-        "m",
-        function()
-            awful.spawn.with_shell("sh $HOME/Scripts/menu/system-monitor.sh")
-        end,
-        {description = "system monitors", group = kgMenu}
-    ),
-    awful.key(
-        {modkey, altkey},
-        "q",
-        function()
-            awful.spawn.with_shell("sh $HOME/Scripts/menu/system-menu.sh")
-        end,
-        {description = "system menu", group = kgMenu}
     )
 )
 
@@ -1245,7 +1037,7 @@ awful.rules.rules = {
         rule_any = {
             instance = {},
             class = {
-                mediaplayer,
+                "spotify",
                 "inkscape",
                 "VirtualBox Machine",
                 "Vlc"
@@ -1297,9 +1089,9 @@ awful.rules.rules = {
             },
             name = {
                 "ArcoLinux Tweak Tool",
+                "CF:.*",
                 "Event Tester",
-                "Wetter:.*",
-                "XProp"
+                "Wetter:.*"
             },
             role = {
                 "AlarmWindow", -- Thunderbird's calendar.
