@@ -7,6 +7,11 @@
   "editor.renameOnType": true,
   "editor.renderControlCharacters": true,
   "files.autoSave": "onFocusChange",
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true
+  },
   "editor.suggestSelection": "first",
   "explorer.confirmDelete": false,
   "git.enableSmartCommit": true,
