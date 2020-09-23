@@ -76,5 +76,17 @@
     "key": "ctrl+[Period]",
     "command": "-editor.action.quickFix",
     "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+numpad_add",
+    "command": "editor.action.fontZoomIn"
+  },
+  {
+    "key": "alt+numpad_subtract",
+    "command": "editor.action.fontZoomOut"
+  },
+  {
+    "key": "alt+numpad_multiply",
+    "command": "editor.action.fontZoomReset"
   }
 ]
