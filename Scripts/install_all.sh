@@ -188,6 +188,8 @@ inst python-requests
 inst pygtk
 inst python2-distutils-extra
 inst xbindkeys
+inst genius
+inst gnome-calculator
 
 # file manager
 inst nemo
