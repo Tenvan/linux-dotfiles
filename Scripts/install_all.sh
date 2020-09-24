@@ -249,7 +249,7 @@ inst foxitreader
 inst gparted
 inst partitionmanager
 inst grub-customizer
-inst hardinfo \
+inst hardinfo
 inst spectacle
 inst krita
 inst blender
