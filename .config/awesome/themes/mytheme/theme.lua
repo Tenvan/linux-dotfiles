@@ -23,7 +23,7 @@ local accent_color2 = "#889FA7"
 
 theme.dir = os.getenv("HOME") .. "/.config/awesome/themes/mytheme"
 theme.wallpaper = theme.dir .. "/wallpaper.jpg"
-theme.font = "Mononoki 12"
+theme.font = "Sans 12"
 theme.taglist_font = "Twemoji 12"
 -- theme.taglist_font = "Noto Sans Symbols2 12"
 -- theme.taglist_font = "Noto Color Emoji 12"

@@ -1,13 +1,13 @@
 !! overwrite Fonts from .Xresources
-xterm*faceName:  Iosevka Term Medium:size=16:antialias=false
+xterm*faceName: monospace:size=14:antialias=true
 
-URxvt*font:                     xft:Iosevka Term:regular:size=12
-URxvt*imFont:                   xft:Iosevka Term:regular:size=12
-URxvt*boldFont:                 xft:Iosevka Term:bold:size=12
-URxvt*italicFont:               xft:Iosevka Term:italic:size=12
-URxvt*boldItalicFont:           xft:Iosevka Term:regular:size=12
+URxvt*font:                     xft:monospace:regular:size=12
+URxvt*imFont:                   xft:monospace:regular:size=12
+URxvt*boldFont:                 xft:monospace:bold:size=12
+URxvt*italicFont:               xft:monospace:italic:size=12
+URxvt*boldItalicFont:           xft:monospace:regular:size=12
 
-UXTerm*font:                    Iosevka Term
+UXTerm*font:                    monospace
 
 Xft.dpi:       96
 Xft.antialias: true

@@ -163,9 +163,6 @@ inst notify-send.sh
 inst polybar
 inst broot
 inst pm-utils
-inst qt-logout
-inst multimonitorlock
-inst multimonitorlock-gui
 inst gnome-system-monitor
 inst gnome-system-log
 inst polkit-gnome
@@ -190,6 +187,11 @@ inst python2-distutils-extra
 inst xbindkeys
 inst genius
 inst gnome-calculator
+inst qt-logout
+if $IS_MANJARO == true; then
+    inst multimonitorlock
+    inst multimonitorlock-gui
+fi
 
 # file manager
 inst nemo
@@ -208,6 +210,7 @@ inst nemo-audio-tab
 inst nemo-mediainfo-tab
 inst nemo-ext-git
 inst mc
+inst ranger
 
 # sound setup
 inst paprefs
@@ -274,13 +277,24 @@ inst remmina-plugin-folder
 inst remmina-plugin-open
 inst freerdp
 
-# virtualbox for lts-kernel
-inst virtualbox
-inst virtualbox-host-dkms
-# inst linux-lts-headers
-# inst linux-lts-virtualbox-host-modules
-inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-headers
-inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-virtualbox-host-modules
+# virtualbox 
+if $IS_ARCO == true; then
+    inst virtualbox
+    inst virtualbox-host-modules-arch
+    # inst linux-headers
+    # inst virtualbox-host-dkms
+    # inst linux-lts-headers
+    # inst virtualbox-host-modules-lts
+fi
+
+if $IS_MANJARO == true; then
+    inst virtualbox
+    inst virtualbox-host-dkms
+    # inst linux-lts-headers
+    # inst linux-lts-virtualbox-host-modules
+    inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-headers
+    inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-virtualbox-host-modules
+fi
 
 # libvirt service and manager
 inst virt-manager
@@ -462,23 +476,8 @@ sudo systemctl enable libvirtd.service
 sudo systemctl start libvirtd.service
 errorCheck "libvirtd service"
 
-chmod +x ~/Scripts/100-user-monitors.sh
-sudo cp ~/Scripts/100-user-monitors.sh /etc/X11/xinit/xinitrc.d
-
-if [ -f $HOME/.screenlayout/screenlayout.sh ]; then
-    sed 's/^#display-setup-script=$/display-setup-script=\/opt\/screenlayout.sh/g' < /etc/lightdm/lightdm.conf > lightdm.conf
-    sudo mv lightdm.conf /etc/lightdm
-    sudo cp $HOME/.screenlayout/screenlayout.sh /opt
-fi
-
 # Default Browser setzen (vorher $BROWSER Variable entfernen)
 xdg-settings set default-web-browser firefox.desktop
-
-# ArcoLinux
-if $IS_ARCO == true; then
-    sudo grub-mkconfig -o /boot/grub/grub.cfg
-    errorCheck "ArcoLinux: grub config"
-fi
 
 sudo fc-cache -fv
 errorCheck "fontcache"
