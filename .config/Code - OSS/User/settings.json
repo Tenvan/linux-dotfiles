@@ -13,6 +13,7 @@
     "xcomposite",
     "xmobar",
     "xmonad"
-  ]
+  ],
+  "git.confirmSync": false
 
 }

@@ -262,6 +262,8 @@ inst nitrogen
 inst python-lxml
 inst python-numpy
 inst teams
+inst transmission-qt
+inst qbittorrent
 
 # remmina
 inst remmina
