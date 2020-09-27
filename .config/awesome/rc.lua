@@ -395,7 +395,7 @@ root.buttons(
 -- }}}
 
 -- {{{ Key bindings
-globalkeys =
+local globalkeys =
     my_table.join(
     awful.key({modkey, shiftkey}, "r", awesome.restart, {description = "reload awesome", group = kgAwesome}),
     awful.key({modkey, shiftkey}, "x", awesome.quit, {description = "quit awesome", group = kgAwesome}),
@@ -745,7 +745,7 @@ globalkeys =
     )
 )
 
-clientkeys =
+local clientkeys =
     my_table.join(
     awful.key({altkey, shiftkey}, "m", lain.util.magnify_client, {description = "magnify client", group = kgClient}),
     awful.key(
@@ -869,7 +869,7 @@ for i = 1, 9 do
     )
 end
 
-clientbuttons =
+local clientbuttons =
     gears.table.join(
     awful.button(
         {},
@@ -1191,15 +1191,15 @@ awful.rules.rules = {
     -- System Monitor Consolen auf Screen 2 tag 9 schieben
     {
         rule_any = {
-            name = { "SysMon:*" },
-            class ={ "Gnome-system-monitor" }
+            name = {"SysMon:*"},
+            class = {"Gnome-system-monitor"}
         },
         properties = {
             screen = 2, -- auf zweiten Monitor
             tag = awful.util.tagnames[9], -- auf tag 2
             switchtotag = true -- zur Ausgabe springen
         }
-    },
+    }
 }
 -- }}}
 

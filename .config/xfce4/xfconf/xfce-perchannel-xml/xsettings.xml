@@ -36,7 +36,4 @@
     <property name="CursorThemeSize" type="empty"/>
     <property name="DecorationLayout" type="empty"/>
   </property>
-  <property name="Gdk" type="empty">
-    <property name="WindowScalingFactor" type="empty"/>
-  </property>
 </channel>

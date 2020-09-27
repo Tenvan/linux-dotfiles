@@ -455,7 +455,7 @@ curl -sLf https://spacevim.org/install.sh | bash
 errorCheck "spacevim install"
 
 # nodejs tools for editors
-yarn global add neovim eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify
+sudo npm install -g neovim eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify
 errorCheck "install required nodejs-tools"
 
 wallpath=$HOME/.local/share/wallpapers/wallpapers-dt
