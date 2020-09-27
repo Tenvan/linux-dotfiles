@@ -6,8 +6,8 @@ folderEdit="code -a --folder-uri"
 
 get_config_list() {
     zenity --list \
-           --width=300 \
-           --height=600 \
+           --width=400 \
+           --height=800 \
            --title="Edit Konfiguation" \
            --text="Konfig file" \
            --column="Option" \
@@ -17,17 +17,18 @@ get_config_list() {
            --hide-column=2 \
            --hide-header \
            "🇬 all (Git)" "$folderEdit $HOME" \
-           "📑 awesome dir" "$folderEdit $HOME/.config/awesome" \
+           "📁 config dir" "$folderEdit $HOME/.config" \
+           "📁 awesome dir" "$folderEdit $HOME/.config/awesome" \
            "📑 x-files" "$filesEdit $HOME/.x*" \
            "📑 scripts autostart" "$filesEdit $HOME/Scripts/autostart*.sh" \
            "📑 scripts install" "$filesEdit $HOME/Scripts/install_*.sh" \
            "📑 scripts ldap" "$filesEdit $HOME/Scripts/ldap/*.sh" \
-           "📑 scripts dir" "$folderEdit $HOME/Scripts" \
+           "📁 scripts dir" "$folderEdit $HOME/Scripts" \
            "📑 bash" "$filesEdit $HOME/.bashrc*" \
-           "📑 menu dir" "$folderEdit $HOME/Scripts/menu" \
+           "📁 menu dir" "$folderEdit $HOME/Scripts/menu" \
            "📑 ranger" "$filesEdit $HOME/.config/ranger/*.sh $HOME/.config/ranger/*.conf" \
-           "📑 broot dir" "$folderEdit $HOME/.config/broot" \
-           "📑 picom dir" "$folderEdit  $HOME/.config/picom" \
+           "📁 broot dir" "$folderEdit $HOME/.config/broot" \
+           "📁 picom dir" "$folderEdit  $HOME/.config/picom" \
            "📑 polybar" "$filesEdit $HOME/.config/polybar/*.ini $HOME/.config/polybar/*.sh" \
            "📑 termite" "$filesEdit $HOME/.config/termite/config" \
            "📑 alacritty" "$filesEdit $HOME/.config/alacritty/alacritty.yml"  \

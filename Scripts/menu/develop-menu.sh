@@ -13,8 +13,8 @@ folderEdit="code -r --folder-uri"
 # Function create a scale dialog
 select_application() {
     zenity --list \
-           --width=300 \
-           --height=700 \
+           --width=400 \
+           --height=800 \
            --title="Edit Konfiguation" \
            --text="DEVELOP" \
            --column="Option" \

@@ -31,3 +31,4 @@ feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
 #run "ckb-next -b"
 #run "discord"
 #run "telegram-desktop"
+run "radiotray"

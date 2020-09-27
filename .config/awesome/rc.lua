@@ -1061,7 +1061,7 @@ awful.rules.rules = {
                 "Galculator",
                 "Gnome-disks",
                 "Gnome-font-viewer",
-                "Gnome-system-monitor",
+                "Grub-customizer",
                 "Mate-system-monitor",
                 "deepin-system-monitor",
                 "Gpick",
@@ -1069,9 +1069,11 @@ awful.rules.rules = {
                 "Font-manager",
                 "MessageWin",
                 "Nm-connection-editor",
+                "Nvidia-settings",
                 "arcolinux-logout",
                 "Pavucontrol",
                 "Peek",
+                "Radiotray",
                 "Rofi",
                 "Skype",
                 "System-config-printer.py",
@@ -1185,7 +1187,19 @@ awful.rules.rules = {
             tag = awful.util.tagnames[2], -- auf tag 2
             switchtotag = true -- zur Ausgabe springen
         }
-    }
+    },
+    -- System Monitor Consolen auf Screen 2 tag 9 schieben
+    {
+        rule_any = {
+            name = { "SysMon:*" },
+            class ={ "Gnome-system-monitor" }
+        },
+        properties = {
+            screen = 2, -- auf zweiten Monitor
+            tag = awful.util.tagnames[9], -- auf tag 2
+            switchtotag = true -- zur Ausgabe springen
+        }
+    },
 }
 -- }}}
 

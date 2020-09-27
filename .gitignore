@@ -24,6 +24,22 @@
 !.SpaceVim.d/**
 !.SpaceVim.d/**/*
 
+# Ausnahmen im .local folder
+!.local
+!.local/share
+
+!.local/share/wallpapers
+!.local/share/wallpapers/shared
+!.local/share/wallpapers/shared/*
+!.local/share/wallpapers/shared/**
+!.local/share/wallpapers/shared/**/*
+
+!.local/share/radiotray
+!.local/share/radiotray/*
+!.local/share/radiotray/**
+!.local/share/radiotray/**/*
+.local/share/radiotray/*.log
+
 # Ausnahmen im .config folder
 !.config
 !.config/compton*.conf
@@ -73,9 +89,5 @@
 !.config/termite/*
 !.config/xsettingsd
 !.config/xsettingsd/*
-
-!.local/share/wallpapers/shared
-!.local/share/wallpapers/shared/**
-!.local/share/wallpapers/shared/**/*
 
 **/*-private.*

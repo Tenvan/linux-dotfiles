@@ -7,8 +7,8 @@ myBrowser="$BROWSER"
 # Function create a scale dialog
 select_application() {
     zenity --list \
-           --width=300 \
-           --height=600 \
+           --width=400 \
+           --height=500 \
            --title="Edit Konfiguation" \
            --text="APPLICATIONS" \
            --column=Option \

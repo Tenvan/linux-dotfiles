@@ -3,13 +3,13 @@
 # Function create a scale dialog
 select_system_action() {
     zenity --list \
-           --width=300 \
-           --height=600 \
+           --width=400 \
+           --height=500 \
            --title="Edit Konfiguation" \
            --text="System Menü" \
            --column=Option \
            --column="Aktion" \
-           --separator=" " \
+           --separator=" " \=
            --print-column=2 \
            --hide-column=2 \
            --hide-header \

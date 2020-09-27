@@ -71,5 +71,7 @@ alttab*screens:          0
 
 !! Xcursor.theme: xcursor-breeze-snow
 !! Xcursor.theme: Breeze_Snow
+
+!! Xcursor.theme: Chameleon-Pearl-Large-0.5
 Xcursor.theme: Bibata_Ice
-Xcursor.size:                     0
+Xcursor.size:  32

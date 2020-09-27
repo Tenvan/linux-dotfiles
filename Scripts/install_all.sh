@@ -319,7 +319,7 @@ inst geany-plugins
 inst geany-themes
 
 # vs code
-inst code
+inst visual-studio-code-bin
 inst bash-completion
 inst lua-format
 
