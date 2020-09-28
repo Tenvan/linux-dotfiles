@@ -188,6 +188,8 @@ inst xbindkeys
 inst genius
 inst gnome-calculator
 inst qt-logout
+inst radiotray
+
 if $IS_MANJARO == true; then
     inst multimonitorlock
     inst multimonitorlock-gui
