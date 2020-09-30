@@ -33,7 +33,6 @@ get_config_list() {
            "📑 termite" "$filesEdit $HOME/.config/termite/config" \
            "📑 alacritty" "$filesEdit $HOME/.config/alacritty/alacritty.yml"  \
            "📑 themes" "$filesEdit $HOME/.Xresources* $HOME/.gtkrc-2.0 $HOME/.config/gtk-3.0/* $HOME/.config/gtk-4.0 $HOME/.config/qt5ct/* $HOME/.config/fontconfig/*" \
-           "📑 nvim" "$filesEdit $HOME/.SpaceVim.d/*.* $HOME/.SpaceVim.d/autoload/*.*" \
            "📑 gitignoree" "$filesEdit $HOME/.gitignore"
 }
 

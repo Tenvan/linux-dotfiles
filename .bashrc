@@ -220,7 +220,7 @@ fi
 /opt/shell-color-scripts/colorscript.sh -e 23
 
 PATH="$HOME/.doom.d/bin:$HOME/.emacs.d/bin:$HOME/.local/bin${PATH:+:${PATH}}"
-export EDITOR="nvim"
+export EDITOR="code"
 export TERM="alacritty"
 # export BROWSER="firefox"
 

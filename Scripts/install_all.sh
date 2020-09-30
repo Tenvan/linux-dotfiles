@@ -187,13 +187,14 @@ inst python2-distutils-extra
 inst xbindkeys
 inst genius
 inst gnome-calculator
-inst qt-logout
 inst radiotray
 
-if $IS_MANJARO == true; then
-    inst multimonitorlock
-    inst multimonitorlock-gui
-fi
+# Multi Monitor Lock and QT-Logout
+yay -Rsnu --noconfirm arcolinux-betterlockscreen-git arcolinux-logout-git arcolinux-openbox-git arcolinux-logout-themes-git arcolinux-i3wm-git
+
+inst multimonitorlock
+inst multimonitorlock-gui
+inst qt-logout
 
 # file manager
 inst nemo
@@ -327,10 +328,6 @@ inst lua-format
 
 # neovim
 inst neovim
-inst python-pynvim
-inst neovim-remote
-inst vim
-inst vim-plug
 
 # utils for editors
 inst nodejs

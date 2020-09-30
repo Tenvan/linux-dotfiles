@@ -94,3 +94,4 @@
 !.config/xsettingsd/*
 
 **/*-private.*
+.vscode/argv.json
