@@ -449,6 +449,8 @@ git config --global merge.tool meld
 git config --global mergetool.meld.path "/usr/bin/meld \"\$LOCAL\" \"\$BASE\" \"\$REMOTE\" --output \"\$MERGED\""
 git config --global mergetool.prompt false
 
+git config --global core.editor $(which code)
+
 # spacevim
 curl -sLf https://spacevim.org/install.sh | bash
 errorCheck "spacevim install"
