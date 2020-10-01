@@ -690,22 +690,6 @@ local globalkeys =
     -- ALSA volume control
     awful.key(
         {},
-        "XF86AudioRaiseVolume",
-        function()
-            os.execute("amixer -d set Master 5%+")
-        end,
-        {description = "+5% Volume", group = kgSound}
-    ),
-    awful.key(
-        {},
-        "XF86AudioLowerVolume",
-        function()
-            os.execute("amixer -d set Master 5%-")
-        end,
-        {description = "-5% Volume", group = kgSound}
-    ),
-    awful.key(
-        {},
         "XF86AudioMute",
         function()
             os.execute("amixer -q set Master toggle")

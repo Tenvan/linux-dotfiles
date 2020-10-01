@@ -26,6 +26,7 @@ select_application() {
            "🇬 Git" "$folderEdit $WORK_DIR" \
            "💽 Yarn quick install" "$shellCmd --hold -t OTC:QuickInstall -e $timeCmd yarn install --ignore-scripts" \
            "💽 Yarn full install" "$shellCmd --hold -t OTC:FullInstall -e $timeCmd yarn" \
+           "🏄 Start All" "$shellCmd --hold -t OTC:StartServer -e yarn server:dev & $shellCmd --hold -t OTC:PugWatch -e yarn --cwd src/client pug:watch & $shellCmd --hold -t OTC:StartDefault -e $timeCmd yarn --cwd src/client start" \
            "🏄 Start Server" "$shellCmd --hold -t OTC:StartServer -e yarn server:dev" \
            "🇵 Pug watch" "$shellCmd --hold -t OTC:PugWatch -e yarn --cwd src/client pug:watch" \
            "🇵 Pug once" "$shellCmd --hold -t OTC:PugOnce -e yarn --cwd src/client pug:once" \

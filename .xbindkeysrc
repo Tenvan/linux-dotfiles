@@ -121,6 +121,12 @@
 "alacritty --hold -t CF:Show -e xbindkeys --multikey" 
   mod4 + alt + q
 
+"amixer -d set Master 5%+" 
+  mod4 + alt + KP_Add
+
+"amixer -d set Master 5%-" 
+  mod4 + alt + KP_Subtract
+
 #################
 # System Hotkeys
 
