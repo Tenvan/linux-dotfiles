@@ -127,6 +127,9 @@
 "amixer -d set Master 5%-" 
   mod4 + alt + KP_Subtract
 
+"amixer -d set Master toggle" 
+  mod4 + alt + KP_Multiply
+
 #################
 # System Hotkeys
 

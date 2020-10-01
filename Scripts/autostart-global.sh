@@ -43,20 +43,20 @@ nitrogen --set-zoom-fill ~/.local/share/wallpapers/shared/floating-world-in-spac
 #starting utility applications at boot time
 run nm-applet &
 run pamac-tray &
-run radiotray &
 run xfce4-power-manager &
-# run volumeicon &
+killall radiotray
+run radiotray &
+killall xbindkeys
+run xbindkeys &
+killall alttab
+run alttab &
+killall volumeicon
+run volumeicon &
+killall pasystray
+# run pasystray &
 numlockx on &
 # blueberry-tray &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-#starting utility applications at boot time
-run pasystray &
 run copyq &
 run teams &
-
-killall xbindkeys
-run xbindkeys &
-
-killall alttab
-run alttab &
