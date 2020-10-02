@@ -1065,6 +1065,7 @@ awful.rules.rules = {
                 "deepin-system-monitor",
                 "Gpick",
                 "Imagewriter",
+                "jetbrains-studio",
                 "Font-manager",
                 "MessageWin",
                 "Nm-connection-editor",
