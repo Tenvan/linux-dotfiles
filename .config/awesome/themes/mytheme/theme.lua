@@ -361,9 +361,6 @@ vicious.register(sysHost, vicious.widgets.os, "$3@$4", 86400)
 -- Packages
 vicious.cache(vicious.widgets.pkg)
 
-local pkgAll = wibox.widget.textbox()
-vicious.register(pkgAll, vicious.widgets.pkg, "Updates: $1", 311, "Arch C")
-
 -- Up Time
 vicious.cache(vicious.widgets.uptime)
 
@@ -379,12 +376,10 @@ function theme.at_screen_connect(s)
         layout = wibox.layout.fixed.horizontal,
         wibox.container.background(wibox.container.margin(upTime, dpi(3), dpi(3)), accent_color2),
         arrowr(accent_color2, accent_color1),
-        wibox.container.background(wibox.container.margin(pkgAll, dpi(3), dpi(3)), accent_color1),
+        wibox.container.background(wibox.container.margin(sysOs, dpi(3), dpi(3)), accent_color1),
         arrowr(accent_color1, accent_color2),
-        wibox.container.background(wibox.container.margin(sysOs, dpi(3), dpi(3)), accent_color2),
-        arrowr(accent_color2, accent_color1),
-        wibox.container.background(wibox.container.margin(sysHost, dpi(3), dpi(3)), accent_color1),
-        arrowr(accent_color1, "alpha")
+        wibox.container.background(wibox.container.margin(sysHost, dpi(3), dpi(3)), accent_color2),
+        arrowr(accent_color2, "alpha")
     }
 
     local screen2LeftWidges = {

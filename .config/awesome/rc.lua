@@ -703,7 +703,8 @@ local globalkeys =
             os.execute("amixer -d set Master 5%-")
         end,
         {description = "-5% Volume", group = kgSound}
-    ),    awful.key(
+    ),
+    awful.key(
         {},
         "XF86AudioMute",
         function()

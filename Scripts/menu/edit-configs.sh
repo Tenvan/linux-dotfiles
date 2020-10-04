@@ -16,6 +16,7 @@ get_config_list() {
            --print-column=2 \
            --hide-column=2 \
            --hide-header \
+           "🇬 Workspace" "code -r $HOME/dotfiles.code-workspace" \
            "🇬 all (Git)" "$folderEdit $HOME" \
            "📁 config dir" "$folderEdit $HOME/.config" \
            "📁 awesome dir" "$folderEdit $HOME/.config/awesome" \

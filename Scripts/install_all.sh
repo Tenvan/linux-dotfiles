@@ -441,12 +441,12 @@ errorCheck "install packages"
 # FINISHING #
 
 # Git config for meld
-git config --global diff.tool meld
-git config --global difftool.meld.path "/usr/bin/meld \"\$LOCAL\" \"\$REMOTE\""
+git config --global diff.tool code
+git config --global difftool.code.cmd "$(which code) --wait --diff \"\$LOCAL\" \"\$BASE\" \"\$REMOTE\""
 git config --global difftool.prompt false
 
-git config --global merge.tool meld
-git config --global mergetool.meld.path "/usr/bin/meld \"\$LOCAL\" \"\$BASE\" \"\$REMOTE\" --output \"\$MERGED\""
+git config --global merge.tool code
+git config --global mergetool.code.cmd "$(which code) --wait \"\$MERGED\""
 git config --global mergetool.prompt false
 
 git config --global core.editor $(which code)
