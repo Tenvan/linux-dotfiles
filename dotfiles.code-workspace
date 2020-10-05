@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": ".config"
+		},
+		{
+			"path": ".config/awesome"
+		},
+		{
+			"path": "Scripts/menu"
+		}
+	],
+	"settings": {
+		"todo-tree.general.fileWatcherGlob": "!**/*",
+		"tsimporter.filesToExclude": [
+		
+		],
+		"lua.targetVersion": "5.3"
+	}
+}

@@ -1303,6 +1303,7 @@ client.connect_signal(
         c.border_color = beautiful.border_focus
     end
 )
+
 client.connect_signal(
     "unfocus",
     function(c)
@@ -1313,5 +1314,5 @@ client.connect_signal(
 -- }}}
 
 -- Autostart applications
-awful.spawn.with_shell("sh ~/Scripts/autostart-global.sh")
+-- awful.spawn.with_shell("sh ~/Scripts/autostart-global.sh")
 awful.spawn.with_shell("sh ~/Scripts/autostart-awesome.sh")
