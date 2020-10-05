@@ -1,0 +1,6 @@
+[submodule ".config/awesome/--force"]
+	path = .config/awesome/--force
+	url = https://github.com/Elv13/tyrannical.git
+[submodule ".config/awesome/tyrannical"]
+	path = .config/awesome/tyrannical
+	url = https://github.com/Elv13/tyrannical.git

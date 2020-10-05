@@ -28,6 +28,11 @@ local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 
+-- Tyrannical library
+local tyrannical = require("tyrannical")
+require("tyrannical.shortcut") --optional
+require("tags")
+
 -- Notification library
 local naughty = require("naughty")
 naughty.config.defaults["icon_size"] = 100
