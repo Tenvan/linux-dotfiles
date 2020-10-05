@@ -53,7 +53,7 @@ run alttab &
 killall volumeicon
 run volumeicon &
 killall pasystray
-# run pasystray &
+run pasystray &
 numlockx on &
 # blueberry-tray &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
