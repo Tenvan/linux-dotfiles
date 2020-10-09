@@ -90,7 +90,7 @@
 # Appliactions Calls
 
 # Browser
-"firefox" 
+"firefox-developer-edition" 
   mod4 + F1
 
 # AppFinder

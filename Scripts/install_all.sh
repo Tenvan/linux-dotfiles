@@ -451,27 +451,9 @@ git config --global mergetool.prompt false
 
 git config --global core.editor $(which code)
 
-# spacevim
-curl -sLf https://spacevim.org/install.sh | bash
-errorCheck "spacevim install"
-
 # nodejs tools for editors
 sudo npm install -g neovim eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify
 errorCheck "install required nodejs-tools"
-
-wallpath=$HOME/.local/share/wallpapers/wallpapers-dt
-
-if [ -f $wallpath/README.md ]; then
-    echo DT Wallpaper gefunden. aktualisiere...
-    cd $wallpath
-    git pull
-    errorCheck "pull dt wallpapers"
-    cd ~
-else
-    echo DT Wallpaper NICHT gefunden. klone...
-    git clone https://gitlab.com/dwt1/wallpapers.git $wallpath
-    errorCheck "clone dt wallpapers"
-fi
 
 sudo systemctl enable libvirtd.service
 sudo systemctl start libvirtd.service

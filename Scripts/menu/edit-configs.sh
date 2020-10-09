@@ -20,12 +20,13 @@ get_config_list() {
            "🇬 all (Git)" "$folderEdit $HOME" \
            "📁 config dir" "$folderEdit $HOME/.config" \
            "📁 awesome dir" "$folderEdit $HOME/.config/awesome" \
-           "📑 x-files" "$filesEdit $HOME/.x*" \
+           "📑 x-files" "$filesEdit $HOME/.x* $HOME/.X*" \
+           "📑 bash" "$filesEdit $HOME/.bashrc*" \
+           "📑 profile" "$filesEdit $HOME/.profile*" \
            "📑 scripts autostart" "$filesEdit $HOME/Scripts/autostart*.sh" \
            "📑 scripts install" "$filesEdit $HOME/Scripts/install_*.sh" \
            "📑 scripts ldap" "$filesEdit $HOME/Scripts/ldap/*.sh" \
            "📁 scripts dir" "$folderEdit $HOME/Scripts" \
-           "📑 bash" "$filesEdit $HOME/.bashrc*" \
            "📁 menu dir" "$folderEdit $HOME/Scripts/menu" \
            "📑 ranger" "$filesEdit $HOME/.config/ranger/*.sh $HOME/.config/ranger/*.conf" \
            "📁 broot dir" "$folderEdit $HOME/.config/broot" \

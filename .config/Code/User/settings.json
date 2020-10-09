@@ -20,8 +20,8 @@
     "python.languageServer": "Microsoft",
     "todo-tree.tree.showScanModeButton": false,
     "vscode-metalua-formatter.luaPath": "/usr/bin/lua5.1",
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.preferredLightColorTheme": "Winter is Coming (Dark Black - No Italics)",
+    "workbench.iconTheme": "eq-material-theme-icons-darker",
+    "workbench.preferredLightColorTheme": "Community Material Theme Lighter High Contrast",
     "[lua]": {
       "editor.defaultFormatter": "trixnz.vscode-lua"
     },
@@ -33,4 +33,6 @@
     "[typescript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "workbench.colorTheme": "Community Material Theme Darker High Contrast",
+    "workbench.preferredDarkColorTheme": "Community Material Theme Darker High Contrast",
   }
