@@ -5,7 +5,7 @@
 ---
 -- Grab environment
 local awesome = awesome
-local gears_debug = require("gears.debug")
+local gdebug = require("gears.debug")
 
 local utils = {}
 
@@ -56,7 +56,7 @@ function utils.get_current_theme()
         color = "#"..color:gsub("[a]?rgb:", ""):gsub("/", "")
       end
     else
-      gears_debug.print_warning(
+      gdebug.print_warning(
         "beautiful: can't get colorscheme from xrdb for value '"..key.."' (using fallback)."
       )
       color = fallback[key]

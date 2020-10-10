@@ -15,7 +15,7 @@ require("tyrannical.shortcut") --optional
 
 tyrannical.tags = {
   {
-    name = "Work", -- Call the tag "Term"
+    name = "󾠮", -- Call the tag "Term"
     init = true, -- Load the tag on startup
     exclusive = true, -- Refuse any other type of clients (by classes)
     screen = {1, 2}, -- Create this tag on screen 1 and screen 2
@@ -34,7 +34,7 @@ tyrannical.tags = {
     }
   },
   {
-    name = "Develop",
+    name = "󾠯",
     init = true,
     exclusive = true,
     screen = 1,
@@ -49,12 +49,12 @@ tyrannical.tags = {
     }
   },
   {
-    name = "Internet",
+    name = "󾠰",
     init = true,
     exclusive = true,
     --icon        = "~net.png",                 -- Use this icon for the tag (uncomment with a real path)
     screen = screen.count() > 1 and 2 or 1,
-     -- Setup on screen 2 if there is more than 1 screen, else on screen 1
+    -- Setup on screen 2 if there is more than 1 screen, else on screen 1
     layout = awful.layout.suit.max, -- Use the max layout
     class = {
       "Opera",
@@ -68,7 +68,17 @@ tyrannical.tags = {
     }
   },
   {
-    name = "Files",
+    name = "󾠱",
+    init = true,
+    exclusive = true,
+    --icon        = "~net.png",                 -- Use this icon for the tag (uncomment with a real path)
+    screen = screen.count() > 1 and 2 or 1,
+    -- Setup on screen 2 if there is more than 1 screen, else on screen 1
+    layout = awful.layout.suit.max, -- Use the max layout
+    class = {}
+  },
+  {
+    name = "󾠲",
     init = true,
     exclusive = true,
     screen = 1,
@@ -84,8 +94,39 @@ tyrannical.tags = {
     }
   },
   {
-    name = "Sys",
-    init = false, -- This tag wont be created at startup, but will be when one of the
+    name = "󾠳",
+    init = true,
+    exclusive = true,
+    --icon        = "~net.png",                 -- Use this icon for the tag (uncomment with a real path)
+    screen = screen.count() > 1 and 2 or 1,
+    -- Setup on screen 2 if there is more than 1 screen, else on screen 1
+    layout = awful.layout.suit.max, -- Use the max layout
+    class = {}
+  },
+  {
+    name = "󾠴",
+    init = true,
+    exclusive = true,
+    --icon        = "~net.png",                 -- Use this icon for the tag (uncomment with a real path)
+    screen = screen.count() > 1 and 2 or 1,
+    -- Setup on screen 2 if there is more than 1 screen, else on screen 1
+    layout = awful.layout.suit.max, -- Use the max layout
+    class = {}
+  },
+  {
+    name = "󾠵",
+    init = true,
+    exclusive = true,
+    --icon        = "~net.png",                 -- Use this icon for the tag (uncomment with a real path)
+    screen = screen.count() > 1 and 2 or 1,
+    -- Setup on screen 2 if there is more than 1 screen, else on screen 1
+    layout = awful.layout.suit.max, -- Use the max layout
+    class = {}
+  },
+  {
+    name = "󾠶",
+    init = false,
+    -- This tag wont be created at startup, but will be when one of the
     -- client in the "class" section will start. It will be created on
     -- the client startup screen
     exclusive = true,

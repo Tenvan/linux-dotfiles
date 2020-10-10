@@ -8,6 +8,12 @@
 		},
 		{
 			"path": "Scripts/menu"
+		},
+		{
+			"path": ".x2goclient"
+		},
+		{
+			"path": ".xmonad"
 		}
 	],
 	"settings": {

@@ -10,13 +10,21 @@ function restart() {
     killall $1
 }
 
-xrdb -merge $HOME/.Xresources
-xrdb -merge $HOME/.Xresources.custom
-xrdb -merge $HOME/.Xresources.monitor
-xrdb -merge $HOME/.Xresources.personal
+if [ -f $HOME/.Xresources ]; then
+    xrdb -merge $HOME/.Xresources
+fi
+if [ -f $HOME/.Xresources.custom ]; then
+    xrdb -merge $HOME/.Xresources.custom
+fi
+if [ -f $HOME/.Xresources.monitor ]; then
+    xrdb -merge $HOME/.Xresources.monitor
+fi
+if [ -f $HOME/.Xresources.personal ]; then
+    xrdb -merge $HOME/.Xresources.personal
+fi
 
 #change your keyboard if you need it
-#setxkbmap -layout be
+setxkbmap -layout de
 
 #cursor active at boot
 xsetroot -cursor_name left_ptr &

@@ -2,7 +2,7 @@
     "cSpell.language": "de,de-DE,en,en-GB,en-US",
     "cSpell.allowCompoundWords": true,
     "diffEditor.codeLens": true,
-    "editor.fontFamily": "monospace",
+    "editor.fontFamily": "monospace, Twemoji",
     "editor.tabSize": 2,
     "editor.renameOnType": true,
     "editor.renderControlCharacters": true,

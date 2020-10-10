@@ -115,13 +115,14 @@ local themes = {
     "powerarrow", -- 2
     "powerarrow-blue", -- 3
     "blackburn", -- 4
-    "mytheme" -- 5
+    "mytheme", -- 5
+    "testtheme" -- 6
 }
 
 -- choose your theme here
-local chosen_theme = themes[5]
+local chosen_theme = themes[6]
 
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.test.lua", os.getenv("HOME"), chosen_theme)
 beautiful.init(theme_path)
 
 -- modkey or mod4 = super key
@@ -376,6 +377,8 @@ screen.connect_signal(
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(
     function(s)
+        gdebug.print_warning("Screen " .. s.index);
+    
         beautiful.at_screen_connect(s)
         s.systray = wibox.widget.systray()
         s.systray.visible = true
@@ -1315,4 +1318,4 @@ client.connect_signal(
 
 -- Autostart applications
 -- awful.spawn.with_shell("sh ~/Scripts/autostart-global.sh")
-awful.spawn.with_shell("sh ~/Scripts/autostart-awesome.sh")
+-- awful.spawn.with_shell("sh ~/Scripts/autostart-awesome.sh")

@@ -24,8 +24,8 @@ select_application() {
            "🌤 Wetter Höxter" "$myTerminal --hold -d 140 44 -t Wetter:Höxter -e curl wttr.in/37671?lang=de" \
            "🌤 Wetter Mainz" "$myTerminal --hold -d 140 44 -t Wetter:Mainz -e curl wttr.in/Mainz?lang=de" \
            "♻ Matrix" "$myTerminal --hold -t matrix -e cmatrix" \
-           "🚧 xsession Errors" "$myTerminal -t xsession-errors -d 140 44 -e multitail -i $HOME/.xsession-errors" \
-           "🚧 Awmtt Start" "$myTerminal --hold -t AWMTT -d 140 44 -e awmtt start  -C .config/awesome/rc.test.lua -S 2000x1500" \
+           "📛 xsession Errors" "$myTerminal -t xsession-errors -d 140 44 -e multitail -i $HOME/.xsession-errors" \
+           "🚧 Awmtt Start" "$myTerminal --hold -t AWMTT -d 140 44 -e awmtt start  -C .config/awesome/rc.test.lua --size 1920x1080" \
            "🚧 Awmtt Restart" "$myTerminal -t xsession-errors -d 140 44 -e awmtt restart" \
            "🚧 Awmtt Stop" "$myTerminal -t xsession-errors -d 140 44 -e awmtt stop"
 }

@@ -20,13 +20,13 @@ local theme = {}
 
 local accent_color1 = "#497B96"
 local accent_color2 = "#889FA7"
+local accent_color3 = "#fd9b62"
 
 theme.dir = os.getenv("HOME") .. "/.config/awesome/themes/mytheme"
 theme.wallpaper = theme.dir .. "/wallpaper.jpg"
-theme.font = "Sans 12"
-theme.taglist_font = "Twemoji 12"
--- theme.taglist_font = "Noto Sans Symbols2 12"
--- theme.taglist_font = "Noto Color Emoji 12"
+theme.font_size = 12
+theme.font = "Sans " .. theme.font_size
+theme.taglist_font = "Twemoji " .. theme.font_size
 theme.fg_normal = "#FEFEFE"
 theme.fg_focus = accent_color2
 theme.fg_urgent = "#b74822"
@@ -36,17 +36,19 @@ theme.bg_urgent = "#3F3F3F"
 theme.taglist_fg_focus = accent_color2
 theme.tasklist_bg_focus = "#000000"
 theme.tasklist_fg_focus = accent_color2
-theme.border_width = dpi(2)
-theme.border_normal = "#3F3F3F"
-theme.border_focus = "#6F6F6F"
-theme.border_marked = "#CC9393"
+theme.border_width = dpi(8)
+theme.margins_width = dpi(2)
+theme.border_normal = accent_color1 .. '30'
+theme.border_focus = accent_color3 .. '30'
+theme.border_marked = accent_color2
 theme.titlebar_bg_focus = "#3F3F3F"
 theme.titlebar_bg_normal = "#3F3F3F"
 theme.titlebar_bg_focus = theme.bg_focus
 theme.titlebar_bg_normal = theme.bg_normal
 theme.titlebar_fg_focus = theme.fg_focus
-theme.menu_height = dpi(25)
-theme.menu_width = dpi(260)
+-- theme.menu_bar = dpi(theme.font_size + theme.margins_width)
+theme.menu_height = dpi(30)
+theme.menu_width = dpi(300)
 theme.menu_submenu_icon = theme.dir .. "/icons/submenu.png"
 theme.awesome_icon = theme.dir .. "/icons/awesome.png"
 theme.taglist_squares_sel = theme.dir .. "/icons/square_sel.png"
@@ -134,7 +136,7 @@ theme.cal =
     {
         attach_to = {clock},
         notification_preset = {
-            font = "Noto Sans Mono Medium 10",
+            font = theme.font,
             fg = theme.fg_normal,
             bg = theme.bg_normal
         }
@@ -149,7 +151,7 @@ theme.tasklist_widget_template = {
                     id = "clienticon",
                     widget = awful.widget.clienticon
                 },
-                margins = dpi(4),
+                margins = theme.margins_width,
                 widget = wibox.container.margin
             },
             {
@@ -158,8 +160,8 @@ theme.tasklist_widget_template = {
             },
             layout = wibox.layout.fixed.horizontal
         },
-        left = dpi(2),
-        right = dpi(4),
+        left = dpi(5),
+        right = dpi(5),
         widget = wibox.container.margin
     },
     id = "background_role",
@@ -286,7 +288,7 @@ for i = 1, cpu_kernels - 1 do
                 max_value = 100,
                 value = 0,
                 forced_height = 12,
-                border_width = dpi(0),
+                border_width = 0,
                 border_color = accent_color2,
                 background_color = "alpha",
                 color = "#FF5656",
@@ -296,7 +298,6 @@ for i = 1, cpu_kernels - 1 do
             layout = wibox.container.rotate
         },
         dpi(1)
-        -- dpi(5)
     )
 
     cpuKernelGridWidget:add(newKernelProgress)
@@ -374,11 +375,20 @@ local arrowr = separators.arrow_right
 function theme.at_screen_connect(s)
     local screen1LeftWidges = {
         layout = wibox.layout.fixed.horizontal,
-        wibox.container.background(wibox.container.margin(upTime, dpi(3), dpi(3)), accent_color2),
+        wibox.container.background(
+            wibox.container.margin(upTime, theme.margins_width, theme.margins_width),
+            accent_color2
+        ),
         arrowr(accent_color2, accent_color1),
-        wibox.container.background(wibox.container.margin(sysOs, dpi(3), dpi(3)), accent_color1),
+        wibox.container.background(
+            wibox.container.margin(sysOs, theme.margins_width, theme.margins_width),
+            accent_color1
+        ),
         arrowr(accent_color1, accent_color2),
-        wibox.container.background(wibox.container.margin(sysHost, dpi(3), dpi(3)), accent_color2),
+        wibox.container.background(
+            wibox.container.margin(sysHost, theme.margins_width, theme.margins_width),
+            accent_color2
+        ),
         arrowr(accent_color2, "alpha")
     }
 
@@ -397,26 +407,32 @@ function theme.at_screen_connect(s)
         wibox.container.background(
             wibox.container.margin(
                 wibox.widget {nil, neticon, net.widget, layout = wibox.layout.align.horizontal},
-                dpi(3),
-                dpi(3)
+                theme.margins_width,
+                theme.margins_width
             ),
             accent_color1
         ),
         arrowl(accent_color1, accent_color2),
-        wibox.container.background(wibox.container.margin(cpuKernelGridWidget, dpi(3), dpi(3)), accent_color2),
+        wibox.container.background(
+            wibox.container.margin(cpuKernelGridWidget, theme.margins_width, theme.margins_width),
+            accent_color2
+        ),
         arrowl(accent_color2, accent_color1),
         wibox.container.background(wibox.container.margin(cpuHistogrammWidget), accent_color1),
         arrowl(accent_color1, accent_color2),
         wibox.container.background(
             wibox.container.margin(
                 wibox.widget {volicon, theme.volume.widget, layout = wibox.layout.align.horizontal},
-                dpi(3),
-                dpi(3)
+                theme.margins_width,
+                theme.margins_width
             ),
             accent_color2
         ),
         arrowl(accent_color2, accent_color1),
-        wibox.container.background(wibox.container.margin(datewidget, dpi(4), dpi(8)), accent_color1),
+        wibox.container.background(
+            wibox.container.margin(datewidget, theme.margins_width, theme.margins_width),
+            accent_color1
+        ),
         arrowl(accent_color1, "alpha"),
         wibox.widget.systray()
     }
@@ -429,21 +445,36 @@ function theme.at_screen_connect(s)
         -- arrow(accent_color1, accent_color2),
         -- arrow(accent_color2, accent_color1),
         arrowl("alpha", accent_color1),
-        wibox.container.background(wibox.container.margin(fsRootWidget, dpi(2), dpi(3)), accent_color1),
+        wibox.container.background(
+            wibox.container.margin(fsRootWidget, theme.margins_width, theme.margins_width),
+            accent_color1
+        ),
         arrowl(accent_color1, accent_color2),
-        wibox.container.background(wibox.container.margin(fsBidataWidget, dpi(2), dpi(3)), accent_color2),
+        wibox.container.background(
+            wibox.container.margin(fsBidataWidget, theme.margins_width, theme.margins_width),
+            accent_color2
+        ),
         arrowl(accent_color2, accent_color1),
-        wibox.container.background(wibox.container.margin(fsVmWidget, dpi(2), dpi(3)), accent_color1),
+        wibox.container.background(
+            wibox.container.margin(fsVmWidget, theme.margins_width, theme.margins_width),
+            accent_color1
+        ),
         arrowl(accent_color1, accent_color2),
-        wibox.container.background(wibox.container.margin(memwidget, dpi(2), dpi(3)), accent_color2),
+        wibox.container.background(
+            wibox.container.margin(memwidget, theme.margins_width, theme.margins_width),
+            accent_color2
+        ),
         arrowl(accent_color2, accent_color1),
-        wibox.container.background(wibox.container.margin(graph_mem, dpi(2), dpi(3)), accent_color1),
+        wibox.container.background(
+            wibox.container.margin(graph_mem, theme.margins_width, theme.margins_width),
+            accent_color1
+        ),
         arrowl(accent_color1, accent_color2),
         wibox.container.background(
             wibox.container.margin(
                 wibox.widget {tempicon, temp.widget, layout = wibox.layout.align.horizontal},
-                dpi(4),
-                dpi(4)
+                theme.margins_width,
+                theme.margins_width
             ),
             accent_color2
         ),
@@ -451,13 +482,16 @@ function theme.at_screen_connect(s)
         wibox.container.background(
             wibox.container.margin(
                 wibox.widget {volicon, theme.volume.widget, layout = wibox.layout.align.horizontal},
-                dpi(3),
-                dpi(3)
+                theme.margins_width,
+                theme.margins_width
             ),
             accent_color1
         ),
         arrowl(accent_color1, accent_color2),
-        wibox.container.background(wibox.container.margin(datewidget, dpi(4), dpi(8)), accent_color2)
+        wibox.container.background(
+            wibox.container.margin(datewidget, theme.margins_width, theme.margins_width * 2),
+            accent_color2
+        )
         -- arrow(accent_color1, "alpha"),
     }
 
@@ -496,7 +530,7 @@ function theme.at_screen_connect(s)
         {
             position = "top",
             screen = s,
-            height = dpi(22),
+            height = theme.menu_bar,
             bg = theme.bg_normal,
             fg = theme.fg_normal
         }
@@ -505,7 +539,7 @@ function theme.at_screen_connect(s)
     -- Add widgets to the wibox
     local rightWidgets = screen2RightWidgets
     local leftWidgets = screen2LeftWidges
-    
+
     if s.index == 1 then
         rightWidgets = screen1widgets
         leftWidgets = screen1LeftWidges

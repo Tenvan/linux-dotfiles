@@ -231,8 +231,9 @@ inst samsung-printers
 inst cups-pdf
 inst system-config-printer
 
-# LibreOffice fresh
+# Office
 inst libreoffice-fresh
+inst onlyoffice
 
 # optional application packages
 inst evolution

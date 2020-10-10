@@ -371,6 +371,9 @@ screen.connect_signal(
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(
     function(s)
+        gdebug.print_warning("Screen " .. s.index)
+        gdebug.dump(s)
+
         beautiful.at_screen_connect(s)
         s.systray = wibox.widget.systray()
         s.systray.visible = true
@@ -749,9 +752,12 @@ local clientkeys =
     my_table.join(
     awful.key({altkey, shiftkey}, "m", lain.util.magnify_client, {description = "magnify client", group = kgClient}),
     awful.key(
-        {modkey, shiftkey},
+        {modkey},
         "f",
-        awful.client.floating.fullscreen,
+        function(c)
+            c.fullscreen = not c.fullscreen
+            c:raise()
+        end,
         {description = "toggle fullscreen", group = kgClient}
     ),
     awful.key(
