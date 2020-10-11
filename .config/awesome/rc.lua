@@ -28,10 +28,25 @@ local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 
+local themes = {
+    "multicolor", -- 1
+    "powerarrow", -- 2
+    "powerarrow-blue", -- 3
+    "blackburn", -- 4
+    "mytheme" -- 5
+}
+
+-- choose your theme here
+local chosen_theme = themes[5]
+
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
+beautiful.init(theme_path)
+
 -- Notification library
 local naughty = require("naughty")
 naughty.config.defaults["icon_size"] = 100
-naughty.config.defaults["border_width"] = dpi(3)
+naughty.config.defaults["border_width"] = beautiful.border_width
+naughty.config.defaults["border_width"] = beautiful.border_width
 naughty.config.defaults["position"] = "bottom_right"
 
 local function notify(titel, message, category)
@@ -104,20 +119,6 @@ awful.spawn.with_shell(
 -- }}}
 
 -- {{{ Variable definitions
-
-local themes = {
-    "multicolor", -- 1
-    "powerarrow", -- 2
-    "powerarrow-blue", -- 3
-    "blackburn", -- 4
-    "mytheme" -- 5
-}
-
--- choose your theme here
-local chosen_theme = themes[5]
-
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
-beautiful.init(theme_path)
 
 -- modkey or mod4 = super key
 local modkey = "Mod4"
@@ -1304,6 +1305,7 @@ client.connect_signal(
         c.border_color = beautiful.border_focus
     end
 )
+
 client.connect_signal(
     "unfocus",
     function(c)

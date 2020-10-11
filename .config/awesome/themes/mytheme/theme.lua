@@ -16,39 +16,102 @@ local vicious = require("vicious")
 local math, string, os = math, string, os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
+local xres = require("beautiful.gtk").get_theme_variables()
+gdebug.dump(xres)
+
+-- current Values
+-- base_color : #404552ff (string)
+-- bg_color : #383c4aff (string)
+-- button_bg_color : #444a58ff (string)
+-- button_border_color : #2b2e39ff (string)
+-- button_border_radius : 3.0 (number)
+-- button_border_width : 1.0 (number)
+-- button_fg_color : #d3dae3ff (string)
+-- error_bg_color : #f04a50ff (string)
+-- error_color : #fc4138ff (string)
+-- error_fg_color : #ffffffff (string)
+-- fg_color : #d3dae3ff (string)
+-- font_family : Sans (string)
+-- font_size : 15.36 (number)
+-- header_button_bg_color : #2f343f00 (string)
+-- header_button_border_color : #2f343f00 (string)
+-- header_button_fg_color : #cfdae7cc (string)
+-- menubar_bg_color : #2f343fff (string)
+-- menubar_fg_color : #cfdae7cc (string)
+-- osd_bg_color : #383c4aff (string)
+-- osd_border_color : #d3dae3ff (string)
+-- osd_fg_color : #d3dae3ff (string)
+-- selected_bg_color : #5294e2ff (string)
+-- selected_fg_color : #ffffffff (string)
+-- success_bg_color : #73d216ff (string)
+-- success_color : #73d216ff (string)
+-- success_fg_color : #ffffffff (string)
+-- text_color : #d3dae3ff (string)
+-- tooltip_bg_color : #383c4aff (string)
+-- tooltip_fg_color : #d3dae3ff (string)
+-- warning_bg_color : #f27835ff (string)
+-- warning_color : #f27835ff (string)
+-- warning_fg_color : #ffffffff (string)
+-- wm_bg_color : #2f343fff (string)
+-- wm_border_focused_color : #5294e2ff (string)
+-- wm_border_unfocused_color : #2f343fff (string)
+-- wm_icons_focused_color : #ffffffff (string)
+-- wm_icons_unfocused_color : #cfdae7cc (string)
+-- wm_title_focused_color : #ffffffff (string)
+-- wm_title_unfocused_color : #cfdae7cc (string)
+
 local theme = {}
 
 local accent_color1 = "#497B96"
 local accent_color2 = "#889FA7"
 local accent_color3 = "#fd9b62"
 
+theme.xres = xres
+
 theme.dir = os.getenv("HOME") .. "/.config/awesome/themes/mytheme"
 theme.wallpaper = theme.dir .. "/wallpaper.jpg"
-theme.font_size = 12
-theme.font = "Sans " .. theme.font_size
-theme.taglist_font = "Twemoji " .. theme.font_size
-theme.fg_normal = "#FEFEFE"
-theme.fg_focus = accent_color2
-theme.fg_urgent = "#b74822"
-theme.bg_normal = "#000000"
-theme.bg_focus = "#1E2320"
-theme.bg_urgent = "#3F3F3F"
-theme.taglist_fg_focus = accent_color2
-theme.tasklist_bg_focus = "#000000"
-theme.tasklist_fg_focus = accent_color2
+
+theme.border_normal = xres.wm_border_unfocused_color
+theme.border_focus = xres.wm_border_focused_color
+theme.border_marked = accent_color3
 theme.border_width = dpi(8)
 theme.margins_width = dpi(2)
-theme.border_normal = accent_color1 .. '30'
-theme.border_focus = accent_color3 .. '30'
-theme.border_marked = accent_color2
-theme.titlebar_bg_focus = "#3F3F3F"
-theme.titlebar_bg_normal = "#3F3F3F"
-theme.titlebar_bg_focus = theme.bg_focus
-theme.titlebar_bg_normal = theme.bg_normal
-theme.titlebar_fg_focus = theme.fg_focus
+
+theme.font_size = xres.font_size
+theme.font = xres.font_family .. theme.font_size
+
+theme.bg_normal = xres.bg_color
+theme.fg_normal = xres.fg_color
+theme.bg_focus = xres.wm_border_focused_color
+theme.fg_focus = xres.fg_color
+theme.bg_urgent = xres.warning_bg_color
+theme.fg_urgent = xres.warning_color
+
+theme.taglist_font = "Twemoji " .. theme.font_size
+theme.taglist_bg_focus = xres.selected_bg_color
+theme.taglist_fg_focus = xres.selected_fg_color
+
+theme.tasklist_bg_focus = xres.menubar_bg_color
+theme.tasklist_fg_focus = xres.menubar_fg_color
+
+theme.titlebar_bg_focus = xres.menubar_bg_color
+theme.titlebar_fg_focus = xres.wm_title_focused_color
+theme.titlebar_bg_normal = xres.menubar_bg_color
+theme.titlebar_fg_normal = xres.wm_title_unfocused_color
+
 -- theme.menu_bar = dpi(theme.font_size + theme.margins_width)
 theme.menu_height = dpi(30)
 theme.menu_width = dpi(300)
+
+theme.notification_opacity = 0.90
+theme.notification_bg = xres.tooltip_bg_color
+theme.notification_fg = xres.tooltip_fg_color
+theme.notification_border_color = xres.osd_border_color
+
+theme.tasklist_plain_task_name = false
+theme.tasklist_disable_icon = false
+theme.useless_gap = dpi(2)
+
 theme.menu_submenu_icon = theme.dir .. "/icons/submenu.png"
 theme.awesome_icon = theme.dir .. "/icons/awesome.png"
 theme.taglist_squares_sel = theme.dir .. "/icons/square_sel.png"
@@ -65,10 +128,6 @@ theme.layout_max = theme.dir .. "/icons/max.png"
 theme.layout_fullscreen = theme.dir .. "/icons/fullscreen.png"
 theme.layout_magnifier = theme.dir .. "/icons/magnifier.png"
 theme.layout_floating = theme.dir .. "/icons/floating.png"
-theme.notification_opacity = 0.66
-theme.notification_bg = accent_color1
-theme.notification_fg = theme.fg_normal
-theme.notification_border_color = accent_color2
 theme.widget_ac = theme.dir .. "/icons/ac.png"
 theme.widget_battery = theme.dir .. "/icons/battery.png"
 theme.widget_battery_low = theme.dir .. "/icons/battery_low.png"
@@ -91,9 +150,7 @@ theme.widget_mail_on = theme.dir .. "/icons/mail_on.png"
 theme.widget_task = theme.dir .. "/icons/task.png"
 theme.widget_scissors = theme.dir .. "/icons/scissors.png"
 theme.widget_weather = theme.dir .. "/icons/dish.png"
-theme.tasklist_plain_task_name = true
-theme.tasklist_disable_icon = true
-theme.useless_gap = 0
+
 theme.titlebar_close_button_focus = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal = theme.dir .. "/icons/titlebar/close_normal.png"
 theme.titlebar_ontop_button_focus_active = theme.dir .. "/icons/titlebar/ontop_focus_active.png"
@@ -518,10 +575,10 @@ function theme.at_screen_connect(s)
         buttons = awful.util.tasklist_buttons,
         style = {
             shape_border_width = 2,
-            shape_border_color = accent_color1,
-            shape = gears.shape.rounded_bar
+            shape_border_color = theme.tasklist_fg_focus,
+            shape = gears.shape.rectangle
         },
-        widget_template = theme.tasklist_widget_template
+        -- widget_template = theme.tasklist_widget_template
     }
 
     -- Create the wibox

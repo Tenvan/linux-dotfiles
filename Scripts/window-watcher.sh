@@ -11,7 +11,6 @@ while read -r id; do
     if [ -n "$class" ]; then
         # Found a window with the correct WM_CLASS now what makes your
         # window unique?
-        echo "Get Id: $id / $class_name"
-        # xprop -id $id -f _NET_WM_STATE 32a -set _NET_WM_STATE _NET_WM_STATE_MODAL
+        echo "Get Id: $id / $class_name"        
     fi
 done
