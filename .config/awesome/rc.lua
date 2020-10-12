@@ -1075,6 +1075,7 @@ awful.rules.rules = {
                 "Imagewriter",
                 "jetbrains-studio",
                 "Font-manager",
+                "krusader",
                 "MessageWin",
                 "Nm-connection-editor",
                 "Nvidia-settings",
@@ -1188,8 +1189,11 @@ awful.rules.rules = {
     },
     -- Firefox Develop Edition auf Screen 2 tag 2 schieben
     {
-        rule = {
-            class = "firefoxdeveloperedition"
+        rule_any = {
+            class = {
+                "firefox",
+                "firefoxdeveloperedition"
+            }
         },
         properties = {
             screen = 2, -- auf zweiten Monitor

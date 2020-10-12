@@ -233,6 +233,7 @@ inst system-config-printer
 
 # Office
 inst libreoffice-fresh
+inst libreoffice-fresh-de
 inst onlyoffice
 
 # optional application packages
