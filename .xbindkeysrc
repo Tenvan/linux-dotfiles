@@ -90,7 +90,7 @@
 # Appliactions Calls
 
 # Browser
-"firefox-developer-edition" 
+"xdg-open about:blank" 
   mod4 + F1
 
 # AppFinder
