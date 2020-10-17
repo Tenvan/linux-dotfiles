@@ -14,7 +14,7 @@ folderEdit="code -r --folder-uri"
 select_application() {
     zenity --list \
            --width=400 \
-           --height=500 \
+           --height=450 \
            --title="System Monitors" \
            --text="MONITOR" \
            --column="Option" \

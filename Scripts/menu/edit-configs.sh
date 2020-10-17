@@ -7,7 +7,7 @@ folderEdit="code -a --folder-uri"
 get_config_list() {
     zenity --list \
            --width=400 \
-           --height=800 \
+           --height=850 \
            --title="Edit Konfiguation" \
            --text="Konfig file" \
            --column="Option" \

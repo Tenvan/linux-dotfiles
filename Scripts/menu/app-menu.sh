@@ -9,7 +9,7 @@ timeCmd="/usr/bin/time -v "
 select_application() {
     zenity --list \
         --width=400 \
-        --height=500 \
+        --height=600 \
         --title="Edit Konfiguation" \
         --text="APPLICATIONS" \
         --column=Option \

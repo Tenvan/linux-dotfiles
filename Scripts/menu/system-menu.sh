@@ -4,7 +4,7 @@
 select_system_action() {
     zenity --list \
            --width=400 \
-           --height=500 \
+           --height=450 \
            --title="Edit Konfiguation" \
            --text="System Menü" \
            --column=Option \

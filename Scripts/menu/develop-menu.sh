@@ -14,7 +14,7 @@ folderEdit="code -r --folder-uri"
 select_application() {
     zenity --list \
            --width=400 \
-           --height=800 \
+           --height=850 \
            --title="Edit Konfiguation" \
            --text="DEVELOP" \
            --column="Option" \

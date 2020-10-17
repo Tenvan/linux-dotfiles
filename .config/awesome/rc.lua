@@ -1073,7 +1073,6 @@ awful.rules.rules = {
                 "deepin-system-monitor",
                 "Gpick",
                 "Imagewriter",
-                "jetbrains-studio",
                 "Font-manager",
                 "krusader",
                 "MessageWin",
@@ -1138,6 +1137,38 @@ awful.rules.rules = {
 
     -- Teams
     {
+        -- JetBrains InteliJ Hauptfenster
+        rule = {
+            class = "jetbrains-.*"
+        },
+        properties = {
+            maximized = true, -- maximieren
+            opacity = 1,
+            screen = 1, -- auf ersten Monitor
+            tag = awful.util.tagnames[1], -- auf tag 1 verschieben
+            switchtotag = true -- zu IDE springen
+        }
+    },
+    {
+        -- JetBrains InteliJ Hauptfenster
+        rule = {
+            class = "jetbrains-.*"
+        },
+        except_any = {
+            name = {
+                "^OneTime.*"
+            }
+        },
+        properties = {
+            maximized = false,
+            float = true,
+            opacity = 0.8,
+            screen = 1, -- auf ersten Monitor
+            tag = awful.util.tagnames[1], -- auf tag 1 verschieben
+            switchtotag = true -- zu IDE springen
+        }
+    },
+    {
         -- Teams Hauptfenster
         rule = {
             class = "Microsoft Teams - Preview",
@@ -1196,7 +1227,7 @@ awful.rules.rules = {
             }
         },
         properties = {
-            screen = 2, -- auf zweiten Monitor
+            screen = 1, -- auf zweiten Monitor
             tag = awful.util.tagnames[2], -- auf tag 2
             switchtotag = true -- zur Ausgabe springen
         }

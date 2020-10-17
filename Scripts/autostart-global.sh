@@ -52,7 +52,7 @@ nitrogen --set-zoom-fill ~/.local/share/wallpapers/shared/floating-world-in-spac
 run nm-applet &
 run pamac-tray &
 run xfce4-power-manager &
-killall radiotray
+# killall radiotray
 run radiotray &
 killall xbindkeys
 run xbindkeys &
