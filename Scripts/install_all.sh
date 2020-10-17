@@ -129,8 +129,8 @@ if $IS_MANJARO == true; then
     errorCheck "Manjaro: menus"
 
     # current used settings
-    inst manjaro-awesome-settings
-    # inst manjaro-cinnamon-settings
+    # inst manjaro-awesome-settings
+    inst manjaro-cinnamon-settings
     errorCheck "Manjaro: settings"
 fi
 
@@ -190,10 +190,11 @@ inst gnome-calculator
 inst radiotray
 
 # Multi Monitor Lock and QT-Logout
-yay -Rsnu --noconfirm arcolinux-betterlockscreen-git arcolinux-logout-git arcolinux-openbox-git arcolinux-logout-themes-git arcolinux-i3wm-git
+if $IS_ARCO == true; then
+  yay -Rsnu --noconfirm arcolinux-betterlockscreen-git arcolinux-logout-git arcolinux-openbox-git arcolinux-logout-themes-git arcolinux-i3wm-git
+fi
 
-inst multimonitorlock
-inst multimonitorlock-gui
+inst xscreensaver
 inst qt-logout
 
 # file manager
@@ -306,7 +307,6 @@ inst qemu
 inst qemu-arch-extra
 inst libvirt
 
-yay -R --noconfirm picom
 inst picom-ibhagwan-git
 
 if $IS_MANJARO == true; then
@@ -383,6 +383,12 @@ if $IS_MANJARO == true; then
     inst arc-maia-icon-theme
     inst breath-icon-theme
     inst breath2-icon-themes
+    # cursor
+
+    # inst bibata-extra-cursor-git
+    inst bibata-extra-cursor-theme
+    inst bibata-cursor-theme-bin
+    inst bibata-cursor-translucent
 fi
 
 # themes

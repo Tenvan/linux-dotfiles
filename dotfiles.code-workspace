@@ -10,10 +10,7 @@
 			"path": "Scripts/menu"
 		},
 		{
-			"path": ".x2goclient"
-		},
-		{
-			"path": ".xmonad"
+			"path": "Scripts"
 		}
 	],
 	"settings": {

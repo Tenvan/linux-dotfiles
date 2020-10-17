@@ -10,15 +10,22 @@ function restart() {
     killall $1
 }
 
+# Standard Resources
 if [ -f $HOME/.Xresources ]; then
     xrdb -merge $HOME/.Xresources
 fi
-if [ -f $HOME/.Xresources.custom ]; then
-    xrdb -merge $HOME/.Xresources.custom
+
+# Resources for dark themes
+if [ -f $HOME/.Xresources.dark ]; then
+    xrdb -merge $HOME/.Xresources.dark
 fi
+
+# Custom resources for monitor namings
 if [ -f $HOME/.Xresources.monitor ]; then
     xrdb -merge $HOME/.Xresources.monitor
 fi
+
+# Personal (private) Resources
 if [ -f $HOME/.Xresources.personal ]; then
     xrdb -merge $HOME/.Xresources.personal
 fi
@@ -64,6 +71,7 @@ killall pasystray
 run pasystray &
 numlockx on &
 # blueberry-tray &
+run xscreensaver &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 run copyq &

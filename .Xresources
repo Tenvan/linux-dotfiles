@@ -3,9 +3,8 @@
 ! ------------------------------------------------------------------------------
 ! https://critical.ch/xterm/
 ! ------------------------------------------------------------------------------
-
 xterm*font: 7x13
-xterm*faceName: Monospace:size=12:antialias=false
+xterm*faceName: monospace:size=14:antialias=true
 xterm*loginShell: true
 xterm*vt100*geometry: 90x34
 xterm*saveLines: 2000
@@ -32,14 +31,9 @@ xterm*color14: rgb:54/fc/fc
 xterm*color15: rgb:c5/c8/c6
 xterm*boldMode: false
 
-
-
-! ------------------------------------------------------------------------------
-! URxvt standard arcolinux theme - Reload with xrdb -merge ~/.Xresources
-! ------------------------------------------------------------------------------
-
-
-
+! -------------------------------
+! URxvt standard arcolinux theme 
+! -------------------------------
 ! general settings
 URxvt*saveline:         15000
 URxvt*termName:         xterm-256color
@@ -95,12 +89,11 @@ URxvt*color15: #ffffff
 
 ! fonts
 URxvt*letterSpace: 	    		-2
-URxvt*font:                 	xft:Monospace:regular:size=12
-URxvt*imFont:               	xft:Monospace:regular:size=12
-URxvt*boldFont:             	xft:Monospace:bold:size=12
-URxvt*italicFont:           	xft:Monospace:italic:size=12
-URxvt*boldItalicFont:     		xft:Monospace:regular:size=12
-! run :.!fc-list | grep <font-name>
+URxvt*font:                     xft:monospace:regular:size=12
+URxvt*imFont:                   xft:monospace:regular:size=12
+URxvt*boldFont:                 xft:monospace:bold:size=12
+URxvt*italicFont:               xft:monospace:italic:size=12
+URxvt*boldItalicFont:           xft:monospace:regular:size=12
 
 ! perl extensions
 URxvt*perl-ext-common:  default,clipboard,url-select,keyboard-select,resize-font
@@ -131,24 +124,15 @@ URxvt*buffered:         false
 URxvt*keysym.Control-Shift-C: perl:clipboard:copy
 URxvt*keysym.Control-Shift-V: perl:clipboard:paste
 
-
-
-
-
 ! ------------------------------------------------------------------------------
 ! UXTerm standard arcolinux theme
 ! ------------------------------------------------------------------------------
-
-
-
 ! termtype
 UXTerm*termName: xterm-256color
-
-
 UXTerm*cursorColor:        white
 UXTerm*VT100.geometry:     90x30
-UXTerm*font:               Monospace
-UXTerm*faceSize:		   12
+UXTerm*font:               monospace
+UXTerm*faceSize:		       12
 UXTerm*dynamicColors:      true
 UXTerm*utf8:               2
 UXTerm*eightBitInput:      true
@@ -184,5 +168,21 @@ UXTerm*boldMode: false
 UXTerm*colorBDMode: true
 UXTerm*colorBD: rgb:3f/3f/3f
 
+Xft.dpi:       96
+Xft.antialias: true
+Xft.hinting:   true
+Xft.rgba:      rgb
+Xft.autohint:  false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+! Color for alttab app
+alttab*background:       #1a1a1a
+alttab*foreground:       #d6d6d6
+alttab*windowmanager:    1
+alttab*desktops:         1
+alttab*screens:          0
+
+! Set Cursor Theme
 Xcursor.theme: Bibata-Modern-Ice
 Xcursor.size:  32

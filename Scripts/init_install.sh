@@ -49,7 +49,7 @@ if [ -f $HOME/.screenlayout/screenlayout.sh ]; then
 fi
 
 # powerline in linux console
-yay -S --needed --noconfirm terminus-font powerline-fonts-git
+yay -S --needed --noconfirm terminus-font powerline-fonts
 
 echo "KEYMAP=de
 FONT=ter-powerline-v12n
