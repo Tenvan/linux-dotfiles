@@ -295,8 +295,7 @@ fi
 if $IS_MANJARO == true; then
     inst virtualbox
     inst virtualbox-host-dkms
-    # inst linux-lts-headers
-    # inst linux-lts-virtualbox-host-modules
+    inst virtualbox-ext-oracle
     inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-headers
     inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-virtualbox-host-modules
 fi

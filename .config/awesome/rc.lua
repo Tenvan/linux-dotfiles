@@ -1172,6 +1172,19 @@ awful.rules.rules = {
         }
     },
     {
+        -- JetBrains DataGrip
+        rule = {
+            class = "jetbrains-datagrip"
+        },
+        properties = {
+            maximized = true, -- maximieren
+            opacity = 1,
+            screen = 1, -- auf ersten Monitor
+            tag = awful.util.tagnames[1], -- auf tag 1 verschieben
+            switchtotag = true -- zu IDE springen
+        }
+    },
+    {
         -- Teams Hauptfenster
         rule = {
             class = "Microsoft Teams - Preview",
