@@ -8,6 +8,12 @@ PKG_FILE=pkg_to_install.txt
 
 IS_MANJARO=false
 IS_ARCO=false
+
+YAY_ALL="--needed --batchinstall --topdown \
+    --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu \
+    --norebuild --noredownload --noprovides --useask --noremovemake \
+    --combinedupgrade"
+
 if [[ "$LINUX_VERSION_NAME" == *"Manjaro"* ]]; then
     IS_MANJARO=true
 fi
@@ -32,7 +38,17 @@ rm -f $PKG_FILE
 
 # Yay installieren
 sudo pacman -S --noconfirm --needed yay
-errorCheck "installation yay"
+
+# Manjaro
+if $IS_MANJARO == true; then
+    yay -S $YAY_ALL pamac-tray-appindicator pamac-flatpak-plugin pamac-snap-plugin
+fi
+
+# ArcoLinux
+if $IS_ARCO == true; then
+    yay -S --noconfirm $YAY_ALL pamac-all
+fi
+errorCheck "installation yay/pamac"
 
 # Rust repaprieren/installieren
 yay -Syy --needed --noconfirm rustup
@@ -126,12 +142,9 @@ inst jdk-openjdk
 
 if $IS_MANJARO == true; then
     inst dmenu-manjaro
-    errorCheck "Manjaro: menus"
-
     # current used settings
     # inst manjaro-awesome-settings
     inst manjaro-cinnamon-settings
-    errorCheck "Manjaro: settings"
 fi
 
 # awesome packages
@@ -169,7 +182,6 @@ inst polkit-gnome
 inst polkit-kde-agent
 inst seahorse
 inst gnome-keyring
-inst pamac-tray-appindicator
 inst checkupdates-aur
 inst lxappearance
 inst alttab-git
@@ -212,7 +224,6 @@ inst nemo-pdf-tools
 inst nemo-meld-compare
 inst nemo-audio-tab
 inst nemo-mediainfo-tab
-inst nemo-ext-git
 inst mc
 inst ranger
 
@@ -260,6 +271,7 @@ inst krita
 inst blender
 inst gimp
 inst gimp-help-de
+inst pinta
 inst aspell
 inst imagemagick
 inst pstoedit
@@ -283,8 +295,9 @@ inst remmina-plugin-open
 inst freerdp
 
 # virtualbox 
+inst virtualbox
+
 if $IS_ARCO == true; then
-    inst virtualbox
     inst virtualbox-host-modules-arch
     # inst linux-headers
     # inst virtualbox-host-dkms
@@ -293,9 +306,6 @@ if $IS_ARCO == true; then
 fi
 
 if $IS_MANJARO == true; then
-    inst virtualbox
-    inst virtualbox-host-dkms
-    inst virtualbox-ext-oracle
     inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-headers
     inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-virtualbox-host-modules
 fi
@@ -307,11 +317,6 @@ inst qemu-arch-extra
 inst libvirt
 
 inst picom-ibhagwan-git
-
-if $IS_MANJARO == true; then
-    # optional application packages manjaro
-    inst pinta-git
-fi
 
 #####################################
 # installation of important editors #
@@ -441,7 +446,7 @@ inst ttf-weather-icons
 #################################
 # install all (needed) packages #
 #################################
-yay -S --needed --batchinstall - < $PKG_FILE
+yay -S $YAY_ALL - < $PKG_FILE
 errorCheck "install packages"
 
 # FINISHING #
