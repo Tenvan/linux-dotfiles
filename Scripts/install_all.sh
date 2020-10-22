@@ -161,6 +161,7 @@ inst awmtt
 # for tiling windows managers (all) #
 #####################################
 # system packages
+inst appeditor-git
 inst arandr
 inst copyq
 inst time
@@ -175,12 +176,7 @@ inst notify-send.sh
 inst polybar
 inst broot
 inst pm-utils
-inst gnome-system-monitor
-inst gnome-system-log
-inst polkit-gnome
-#inst polkit-kde-agent
 inst seahorse
-inst gnome-keyring
 inst checkupdates-aur
 inst lxappearance
 inst alttab-git
@@ -196,8 +192,19 @@ inst pygtk
 inst python2-distutils-extra
 inst xbindkeys
 inst genius
-inst gnome-calculator
 inst radiotray
+
+# utilities from gnome
+inst gnome-disk-utility
+inst gnome-system-monitor
+inst gnome-system-log
+inst gnome-keyring
+inst gnome-calculator
+inst gnome-menu-editor-qt
+
+# polkits
+inst polkit-gnome
+inst polkit-kde-agent
 
 # Multi Monitor Lock and QT-Logout
 if $IS_ARCO == true; then
@@ -278,21 +285,21 @@ inst remmina-plugin-folder
 inst remmina-plugin-open
 inst freerdp
 
-# virtualbox 
-# inst virtualbox
+virtualbox 
+inst virtualbox
+inst virtualbox-ext-oracle
 
-#if $IS_ARCO == true; then
-    # inst virtualbox-host-modules-arch
-    # inst linux-headers
-    # inst virtualbox-host-dkms
+if $IS_ARCO == true; then
+    inst virtualbox-host-modules-arch
+    inst linux-headers
     # inst linux-lts-headers
     # inst virtualbox-host-modules-lts
-#fi
+fi
 
-#if $IS_MANJARO == true; then
-#    inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-headers
-#    inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-virtualbox-host-modules
-#fi
+if $IS_MANJARO == true; then
+    inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-headers
+    inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-virtualbox-host-modules
+fi
 
 # libvirt service and manager
 inst virt-manager
@@ -420,9 +427,9 @@ inst sardi-icons
 inst font-manager
 inst awesome-terminal-fonts
 
-# inst nerd-fonts-complete
-inst nerd-fonts-mononoki
-inst nerd-fonts-iosevka
+inst nerd-fonts-complete
+# inst nerd-fonts-mononoki
+# inst nerd-fonts-iosevka
 
 inst noto-fonts-emoji
 inst noto-fonts-extra
@@ -463,7 +470,7 @@ sudo systemctl start libvirtd.service
 errorCheck "libvirtd service"
 
 # Default Browser setzen (vorher $BROWSER Variable entfernen)
-xdg-settings set default-web-browser firefox-developer-edition.desktop
+xdg-settings set default-web-browser firefox.desktop
 
 sudo fc-cache -fv
 errorCheck "fontcache"
