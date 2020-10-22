@@ -1,1 +1,1 @@
-rofi -font "$ROFI_FONT" $@
+rofi -font "$($ROFI_FONT | echo mono 14)" $@
