@@ -1069,6 +1069,7 @@ awful.rules.rules = {
                 "Galculator",
                 "Gnome-disks",
                 "Gnome-font-viewer",
+                "Gnome-calculator",
                 "gnome-menu-editor-qt",
                 "Grub-customizer",
                 "Mate-system-monitor",
