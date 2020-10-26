@@ -133,6 +133,9 @@
 #################
 # System Hotkeys
 
+"sudo killall node; notify-send Node 'all Nodes killed'" 
+  control + alt + k
+
 "alacritty" 
   mod4 + Return
 
