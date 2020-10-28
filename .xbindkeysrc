@@ -133,7 +133,7 @@
 #################
 # System Hotkeys
 
-"sudo killall node; notify-send Node 'all Nodes killed'" 
+"killall node; fuser -k 4200/tcp; fuser -k 4201/tcp; fuser -k 4202/tcp; notify-send Node 'all nodes-processes and ng-services killed'" 
   control + alt + k
 
 "alacritty" 

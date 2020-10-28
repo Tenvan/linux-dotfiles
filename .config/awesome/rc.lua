@@ -922,116 +922,85 @@ awful.rules.rules = {
             buttons = clientbuttons,
             screen = awful.screen.preferred,
             placement = awful.placement.no_overlap + awful.placement.no_offscreen,
-            size_hints_honor = false
+            size_hints_honor = false,
+            -- float first
+            maximized = false,
+            floating = true
         }
     },
     -- Toolbars
     {
-        rule_any = {class = {"Polybar", "Plank"}},
-        properties = {border_width = 0}
+        rule_any = {
+            class = {"Polybar", "Plank"}
+        },
+        properties = {
+            border_width = 0
+        }
     },
     -- Titlebars
     {
-        rule_any = {type = {"dialog", "normal"}},
-        properties = {titlebars_enabled = true}
+        rule_any = {
+            type = {"dialog", "normal"}
+        },
+        properties = {
+            titlebars_enabled = true
+        }
     },
     -- Dialogs
     {
         rule_any = {type = {"dialog"}},
-        properties = {maximized = false, floating = true}
-    },
-    -- Set applications to always map on the tag 2 on screen 1.
-    -- { rule = { class = "Subl3" },
-    -- properties = { screen = 1, tag = awful.util.tagnames[2], switchtotag = true  } },
-
-    -- Set applications to always map on the tag 1 on screen 1.
-    -- find class or role via xprop command
-
-    -- { rule = { class = browser },
-    -- properties = { screen = 1, tag = awful.util.tagnames[1], switchtotag = true  } },
-
-    -- { rule = { class = "Chromium" },
-    -- properties = { screen = 1, tag = awful.util.tagnames[1], switchtotag = true  } },
-
-    -- { rule = { class = "Opera" },
-    -- properties = { screen = 1, tag = awful.util.tagnames[1],switchtotag = true  } },
-
-    -- Set applications to always map on the tag 2 on screen 1.
-    -- { rule = { class = "Subl3" },
-    -- properties = { screen = 1, tag = awful.util.tagnames[2],switchtotag = true  } },
-
-    -- { rule = { class = "Brackets" },
-    -- properties = { screen = 1, tag = awful.util.tagnames[2], switchtotag = true  } },
-
-    -- { rule = { class = "Code" },
-    -- properties = { screen = 1, tag = awful.util.tagnames[2], switchtotag = true  } },
-
-    --  { rule = { class = "Geany" },
-    --  properties = { screen = 1, tag = awful.util.tagnames[2], switchtotag = true  } },
-
-    -- Set applications to always map on the tag 3 (Git)) on screen 1.
-    {
-        rule_any = {
-            name = {
-                ".*Git Extensions"
-            }
-        },
         properties = {
-            screen = 1,
-            tag = awful.util.tagnames[3],
-            switchtotag = true,
-            maximized = true,
-            floating = false
+            maximized = false,
+            floating = true
         }
-    },
-    -- Set applications to always map on the tag 4 on screen 2.
-
-    -- Set applications to always map on the tag 5 (Virtual/RDP) on screen 1.
-    {
-        rule_any = {
-            class = {
-                "VirtualBox*"
-            }
-        },
-        properties = {screen = 1, tag = awful.util.tagnames[5], switchtotag = true}
-    },
-    -- Set applications to always map on the tag 9 (Systemtools) on screen 1.
-    {
-        rule_any = {
-            class = {
-                editorgui
-            }
-        },
-        properties = {screen = 1, tag = awful.util.tagnames[9], switchtotag = true}
     },
     -- Set applications to be maximized at startup.
     -- find class or role via xprop command
 
-    {rule = {class = "Geany"}, properties = {maximized = false, floating = false}},
     {
-        rule = {class = "Geany", type = "dialog"},
-        properties = {maximized = false, floating = true}
+        rule = {
+            class = "Geany"
+        },
+        properties = {
+            maximized = false,
+            floating = false
+        }
     },
     {
-        rule = {class = "Vivaldi-stable"},
-        properties = {maximized = false, floating = false}
+        rule = {
+            class = "Geany",
+            type = "dialog"
+        },
+        properties = {
+            maximized = false,
+            floating = true
+        }
     },
     {
-        rule = {class = "Vivaldi-stable"},
+        rule = {
+            class = "Vivaldi-stable"
+        },
+        properties = {
+            maximized = false,
+            floating = false
+        }
+    },
+    {
+        rule = {
+            class = "Vivaldi-stable"
+        },
         properties = {
             callback = function(c)
                 c.maximized = false
             end
         }
     },
-    -- IF using Vivaldi snapshot you must comment out the rules above for Vivaldi-stable as they conflict
-    --    { rule = { class = "Vivaldi-snapshot" },
-    --          properties = { maximized = false, floating = false } },
-
-    --    { rule = { class = "Vivaldi-snapshot" },
-    --          properties = { callback = function (c) c.maximized = false end } },
-
-    {rule = {class = "Xfce4-settings-manager"}, properties = {floating = false}},
+    {
+        rule = {
+            class = "Xfce4-settings-manager"
+        },
+        properties = {floating = false}
+    },
     -- Maximized clients.
     {
         rule = {
@@ -1054,74 +1023,18 @@ awful.rules.rules = {
         },
         properties = {maximized = true}
     },
-    -- Floating clients.
+    -- Non-Floating clients.
     {
         rule_any = {
-            instance = {
-                "copyq"
-            },
+            instance = {},
             class = {
-                ".*AnyConnect.*",
-                "Arandr",
-                "Arcolinux-welcome-app.py",
-                "Blueberry",
-                "Com.github.donadigo.appeditor",
-                "Galculator",
-                "Gnome-disks",
-                "Gnome-font-viewer",
-                "Gnome-calculator",
-                "gnome-menu-editor-qt",
-                "Grub-customizer",
-                "Mate-system-monitor",
-                "deepin-system-monitor",
-                "Gpick",
-                "Imagewriter",
-                "Font-manager",
-                "krusader",
-                "Kvantum Manager",
-                "Lxappearance",
-                "Manjaro Settings Manager",
-                "Manjaro-hello",
-                "Manjaro-application-utility",
-                "MenuLibre",
-                "MessageWin",
-                "Nm-connection-editor",
-                "Nvidia-settings",
-                "arcolinux-logout",
-                "Pavucontrol",
-                "Peek",
-                "Radiotray",
-                "Rofi",
-                "Skype",
-                "System-config-printer.py",
-                "Sxiv",
-                "Unetbootin.elf",
-                "Wpa_gui",
-                "pinentry",
-                "veromix",
-                "VirtualBox Manager",
-                "VirtualBoxVM",
-                "xtightvncviewer",
-                "Xfce4-terminal",
-                "Xfce4-taskmanager",
-                "Xfce4-appfinder"
+                "Alacritty"
             },
-            name = {
-                "ArcoLinux Tweak Tool",
-                "CF:.*",
-                "Event Tester",
-                "Wetter:.*",
-                "XBindKey: Hit a key"
-            },
-            role = {
-                "AlarmWindow", -- Thunderbird's calendar.
-                "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
-                "Preferences",
-                "setup"
-            }
+            name = {},
+            role = {}
         },
         properties = {
-            floating = true,
+            floating = false,
             opacity = 0.9
         }
     },
@@ -1142,7 +1055,71 @@ awful.rules.rules = {
             awful.placement.centered(c, nil)
         end
     },
-    -- Special handled applications ()
+    -- Floating clients (overide non-floating rules bevor this)
+    {
+        rule_any = {
+            instance = {},
+            class = {},
+            name = {
+                "CF:.*",
+                "Wetter:.*",
+                "XBindKey: Hit a key"
+            },
+            role = {
+                "pop-up",
+                "Preferences",
+                "setup"
+            }
+        },
+        properties = {
+            floating = true,
+            opacity = 0.7
+        }
+    },
+    -- Special applications mappings
+
+    -- Set applications to always map on the tag 3 (Git)) on screen 1.
+    {
+        rule_any = {
+            name = {
+                ".*Git Extensions"
+            }
+        },
+        properties = {
+            screen = 1,
+            tag = awful.util.tagnames[3],
+            switchtotag = true,
+            maximized = true,
+            floating = false
+        }
+    },
+    -- Set applications to always map on the tag 5 (Virtual/RDP) on screen 1.
+    {
+        rule_any = {
+            class = {
+                "VirtualBox*"
+            }
+        },
+        properties = {
+            screen = 1,
+            tag = awful.util.tagnames[5],
+            switchtotag = true
+        }
+    },
+    -- Set applications to always map on the tag 9 (Systemtools) on screen 1.
+    {
+        rule_any = {
+            class = {
+                editorgui
+            }
+        },
+        properties = {
+            screen = 1,
+            tag = awful.util.tagnames[9],
+            switchtotag = true
+        }
+    },
+    -- Special handled applications
 
     -- Teams
     {
@@ -1150,10 +1127,19 @@ awful.rules.rules = {
         rule = {
             class = "jetbrains-.*"
         },
+        except_any = {
+            class = {
+                "jetbrains-toolbox"
+            },
+            name = {
+                "Welcome to.*"
+            }
+        },
         properties = {
-            maximized = true, -- maximieren
+            maximized = true,
             opacity = 1,
-            screen = 1, -- auf ersten Monitor
+            -- auf ersten Monitor
+            screen = 1,
             tag = awful.util.tagnames[1], -- auf tag 1 verschieben
             switchtotag = true -- zu IDE springen
         }
@@ -1161,20 +1147,13 @@ awful.rules.rules = {
     {
         -- JetBrains InteliJ Hauptfenster
         rule = {
-            class = "jetbrains-.*"
-        },
-        except_any = {
-            name = {
-                "^OneTime.*"
-            }
+            class = "jetbrains-.*",
+            type = "dialog"
         },
         properties = {
             maximized = false,
             float = true,
-            opacity = 1,
-            screen = 1, -- auf ersten Monitor
-            tag = awful.util.tagnames[1], -- auf tag 1 verschieben
-            switchtotag = true -- zu IDE springen
+            opacity = 0.8
         }
     },
     {
@@ -1235,7 +1214,8 @@ awful.rules.rules = {
             instance = "chromium *"
         },
         properties = {
-            screen = 2, -- auf zweiten Monitor
+            floating = false,
+            screen = 2,
             tag = awful.util.tagnames[2], -- auf tag 2
             switchtotag = true -- zur Ausgabe springen
         }
@@ -1249,6 +1229,7 @@ awful.rules.rules = {
             }
         },
         properties = {
+            maximized = true,
             screen = 1, -- auf zweiten Monitor
             tag = awful.util.tagnames[2], -- auf tag 2
             switchtotag = true -- zur Ausgabe springen

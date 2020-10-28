@@ -26,11 +26,11 @@ select_application() {
            "🇬 Git" "$folderEdit $WORK_DIR" \
            "💽 Yarn quick install" "$shellCmd --hold -t OTC:QuickInstall -e $timeCmd yarn install --ignore-scripts" \
            "💽 Yarn full install" "$shellCmd --hold -t OTC:FullInstall -e $timeCmd yarn" \
-           "🏄 Start All" "$shellCmd --hold -t OTC:StartServer -e yarn server:dev & $shellCmd --hold -t OTC:PugWatch -e yarn --cwd src/client pug:watch & $shellCmd --hold -t OTC:StartDefault -e $timeCmd yarn --cwd src/client start" \
+           "🏄 Start All" "killall node & fuser -k 4200/tcp & fuser -k 4201/tcp & fuser -k 4202/tcp & $shellCmd --hold -t OTC:StartServer -e yarn server:dev & $shellCmd --hold -t OTC:PugWatch -e yarn --cwd src/client pug:watch & $shellCmd --hold -t OTC:StartDefault -e $timeCmd yarn --cwd src/client start" \
            "🏄 Start Server" "$shellCmd --hold -t OTC:StartServer -e yarn server:dev" \
            "🇵 Pug watch" "$shellCmd --hold -t OTC:PugWatch -e yarn --cwd src/client pug:watch" \
            "🇵 Pug once" "$shellCmd --hold -t OTC:PugOnce -e yarn --cwd src/client pug:once" \
-           "🛫 Start" "$shellCmd --hold -t OTC:StartDefault -e $timeCmd yarn --cwd src/client start" \
+           "🛫 Start" "fuser -k 4200/tcp & $shellCmd --hold -t OTC:StartDefault -e $timeCmd yarn --cwd src/client start" \
            "⚗ Generate" "$shellCmd --hold -t OTC:Generate -e $timeCmd yarn generate" \
            "🇺 Check Client Updates" "$shellCmd --hold -t OTC:CheckClientUpdates -e $timeCmd yarn outdated" \
            "🇺 Check Server Updates" "$shellCmd --hold -t OTC:CheckServerUpdates -e $timeCmd yarn --cwd src/server4 outdated" \
