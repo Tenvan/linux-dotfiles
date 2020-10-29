@@ -5,6 +5,7 @@
 #####################
 LINUX_VERSION_NAME=$(lsb_release -si)
 PKG_FILE=pkg_to_install.txt
+PKG_UNINST_FILE=pkg_to_uninstall.txt
 
 IS_MANJARO=false
 IS_ARCO=false
@@ -34,7 +35,12 @@ inst() {
     echo $1 >> $PKG_FILE
 }
 
+uninst() {
+    echo $1 >> $PKG_UNINST_FILE
+}
+
 rm -f $PKG_FILE
+rm -f $PKG_UNINST_FILE
 
 # Yay installieren
 sudo pacman -S --noconfirm --needed yay
@@ -67,8 +73,8 @@ errorCheck "rustup stable"
 inst exa
 inst ripgrep
 inst timeshift
-inst timeset-gui
-inst termite
+uninst timeset-gui
+uninst termite
 inst alacritty
 inst ark
 inst arj
@@ -77,7 +83,7 @@ inst lhasa
 inst unrar
 inst p7zip
 inst neofetch
-inst screenfetch
+uninst screenfetch
 inst clamav
 inst clamtk
 inst glances
@@ -123,7 +129,7 @@ fi
 inst meld
 inst git
 inst gitflow-avh
-inst nodejs
+inst nodejs-lts-erbium
 inst nodejs-emojione
 inst npm
 inst yarn
@@ -173,8 +179,8 @@ inst xdotool
 inst xorg-xfd
 inst xcwd-git
 inst notify-send.sh
-inst polybar
-inst broot
+uninst polybar
+uninst broot
 inst pm-utils
 inst seahorse
 inst checkupdates-aur
@@ -204,11 +210,12 @@ inst gnome-menu-editor-qt
 
 # polkits
 inst polkit-gnome
-inst polkit-kde-agent
+uninst polkit-kde-agent
 
 # Multi Monitor Lock and QT-Logout
 if $IS_ARCO == true; then
-  yay -Rsnu --noconfirm arcolinux-betterlockscreen-git arcolinux-logout-git arcolinux-openbox-git arcolinux-logout-themes-git arcolinux-i3wm-git
+  inst arcolinux-betterlockscreen-git arcolinux-logout-git arcolinux-logout-themes-git
+  uninst arcolinux-openbox-git arcolinux-i3wm-git
 fi
 
 inst xscreensaver
@@ -225,9 +232,9 @@ inst pulseaudio-ctl
 inst pulseaudio-qt
 inst pulseaudio-equalizer-ladspa
 inst pasystray
-inst sound-theme-elementary
-inst sound-theme-smooth
-inst sound-theme-lbr-impress
+uninst sound-theme-elementary
+uninst sound-theme-smooth
+uninst sound-theme-lbr-impress
 
 # printer setup
 inst canon-cque
@@ -240,27 +247,28 @@ inst libreoffice-fresh
 inst libreoffice-fresh-de
 
 # optional application packages
-#inst evolution
+inst evolution
 inst bitwarden-bin
 inst bitwarden-cli-bin
 inst bitwarden-rofi
 inst firefox
 inst firefox-i18n-de
-inst firefox-developer-edition
-inst firefox-developer-edition-i18n-de
+uninst firefox-developer-edition
+uninst firefox-developer-edition-i18n-de
 inst google-chrome
 inst chromium
-#inst opera
+inst opera
+inst microsoft-edge-dev-bin
 inst docker
 inst docker-compose
-#inst foxitreader
+uninst foxitreader
 inst gparted
 inst partitionmanager
 inst grub-customizer
 inst hardinfo
 inst spectacle
-inst krita
-inst blender
+uninst krita
+uninst blender
 inst gimp
 inst gimp-help-de
 inst pinta
@@ -285,15 +293,13 @@ inst remmina-plugin-folder
 inst remmina-plugin-open
 inst freerdp
 
-virtualbox 
+# virtualbox 
 inst virtualbox
 inst virtualbox-ext-oracle
 
 if $IS_ARCO == true; then
     inst virtualbox-host-modules-arch
     inst linux-headers
-    # inst linux-lts-headers
-    # inst virtualbox-host-modules-lts
 fi
 
 if $IS_MANJARO == true; then
@@ -312,11 +318,6 @@ inst picom-ibhagwan-git
 #####################################
 # installation of important editors #
 #####################################
-# geany
-inst geany
-inst geany-plugins
-inst geany-themes
-
 # vs code
 inst visual-studio-code-bin
 inst bash-completion
@@ -326,7 +327,6 @@ inst lua-format
 inst neovim
 
 # utils for editors
-inst nodejs
 inst shellcheck
 inst prettier
 inst ripgrep
@@ -402,22 +402,22 @@ inst xcursor-chameleon-darkskyblue
 inst xcursor-chameleon-pearl
 inst xcursor-chameleon-skyblue
 inst xcursor-chameleon-white
-inst xcursor-comix
-inst xcursor-flatbed
-inst xcursor-neutral
-inst xcursor-premium
-inst xcursor-simpleandsoft
+uninst xcursor-comix
+uninst xcursor-flatbed
+uninst xcursor-neutral
+uninst xcursor-premium
+uninst xcursor-simpleandsoft
 
 # icons
 inst adwaita-icon-theme
 inst arc-icon-theme
 inst arc-icon-theme
-inst faba-icon-theme
-inst faba-icon-theme
-inst hicolor-icon-theme
-inst hicolor-icon-theme
-inst maia-icon-theme
-inst moka-icon-theme
+uninst faba-icon-theme
+uninst faba-icon-theme
+uninst hicolor-icon-theme
+uninst hicolor-icon-theme
+uninst maia-icon-theme
+uninst moka-icon-theme
 inst paper-icon-theme
 inst papirus-icon-theme
 inst papirus-icon-theme
@@ -432,12 +432,12 @@ inst nerd-fonts-complete
 # inst nerd-fonts-iosevka
 
 inst noto-fonts-emoji
-inst noto-fonts-extra
+uninst noto-fonts-extra
 
-inst ttf-droid
-inst ttf-nerd-fonts-symbols
-inst ttf-font-awesome
-inst ttf-cascadia-code
+uninst ttf-droid
+uninst ttf-nerd-fonts-symbols
+uninst ttf-font-awesome
+uninst ttf-cascadia-code
 inst ttf-twemoji
 inst ttf-twemoji-color
 inst ttf-weather-icons
@@ -448,7 +448,12 @@ inst ttf-weather-icons
 yay -S $YAY_ALL - < $PKG_FILE
 errorCheck "install packages"
 
-# FINISHING #
+###############################
+# uninstall unneeded packages #
+###############################
+yay -R --noconfirm - < $PKG_UNINST_FILE
+
+## FINISHING #
 
 # Git config for meld
 git config --global diff.tool code
@@ -476,3 +481,4 @@ sudo fc-cache -fv
 errorCheck "fontcache"
 
 rm -f $PKG_FILE
+rm -f $PKG_UNINST_FILE
