@@ -25,6 +25,7 @@ select_application() {
            --hide-header \
            "💿 System Resourcen" "gnome-system-monitor -r" \
            "💿 s-tui" "$shellCmd -t SysMon:s-tui -e s-tui" \
+           "💿 bpytop" "$shellCmd -t SysMon:bashtop -e bpytop" \
            "💿 bashtop" "$shellCmd -t SysMon:bashtop -e bashtop" \
            "💿 glances" "$shellCmd -t SysMon:glances -e glances" \
            "💿 gtop" "$shellCmd -t SysMon:gtop -e gtop" \

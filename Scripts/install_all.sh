@@ -88,6 +88,7 @@ inst clamav
 inst clamtk
 inst glances
 inst bashtop
+inst bpytop
 inst gtop
 inst htop
 inst iftop
@@ -129,7 +130,7 @@ fi
 inst meld
 inst git
 inst gitflow-avh
-inst nodejs-lts-erbium
+inst nodejs-lts-fermium
 inst nodejs-emojione
 inst npm
 inst yarn
