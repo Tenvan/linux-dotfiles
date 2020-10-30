@@ -6,6 +6,8 @@
 LINUX_VERSION_NAME=$(lsb_release -si)
 PKG_FILE=pkg_to_install.txt
 
+MAKEFLAGS="-j$(nproc)"
+
 IS_MANJARO=false
 IS_ARCO=false
 if [[ "$LINUX_VERSION_NAME" == *"Manjaro"* ]]; then
@@ -24,8 +26,8 @@ errorCheck() {
     fi
 }
 
-# Yay installieren
-sudo pacman -S --noconfirm --needed yay
+# Yay and tools installieren
+sudo pacman -S --noconfirm --needed yay colorgcc ccache
 errorCheck "installation yay"
 
 # Colored pacman

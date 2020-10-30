@@ -7,6 +7,8 @@ LINUX_VERSION_NAME=$(lsb_release -si)
 PKG_FILE=pkg_to_install.txt
 PKG_UNINST_FILE=pkg_to_uninstall.txt
 
+MAKEFLAGS="-j$(nproc)"
+
 IS_MANJARO=false
 IS_ARCO=false
 
