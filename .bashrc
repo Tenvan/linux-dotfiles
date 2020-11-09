@@ -1,6 +1,9 @@
 #
 # ~/.bashrc
 #
+echo "run: .bashrc"
+
+source $HOME/Scripts/defs.sh
 
 #Ibus settings if you need them
 #type ibus-setup in terminal to change settings and start the daemon
@@ -16,12 +19,20 @@ export HISTCONTROL=ignoreboth:erasedups
 
 PS1='[\u@\h \W]\$ '
 
-if [ -d "$HOME/.bin" ] ;
-  then PATH="$HOME/.bin:$PATH"
+if [ -d "$HOME/.bin" ]; then
+  PATH="$HOME/.bin:$PATH"
 fi
 
-if [ -d "$HOME/.local/bin" ] ;
-  then PATH="$HOME/.local/bin:$PATH"
+if [ -d "$HOME/.local/bin" ]; then
+  PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "$HOME/.doom.d/bin" ]; then
+  PATH="$HOME/.doom.d/bin:$PATH"
+fi
+
+if [ -d "$HOME/.emacs.d/bin" ]; then
+  PATH="$HOME/.emacs.d/bin:$PATH"
 fi
 
 #ignore upper and lowercase when TAB completion
@@ -39,6 +50,9 @@ alias cd..='cd ..'
 alias pdw="pwd"
 alias udpate='sudo pacman -Syyu'
 alias upate='sudo pacman -Syyu'
+alias updte='sudo pacman -Syyu'
+alias updqte='sudo pacman -Syyu'
+alias upqll="yay -Syu --noconfirm"
 
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
@@ -117,19 +131,30 @@ alias trizenskip='trizen -S --skipinteg'
 alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
 
 #get fastest mirrors in your neighborhood
-alias mirror="sudo pacman-mirrors -i"
-alias mirrord="sudo pacman-mirrors -c Germany"
-alias mirrors="sudo pacman-mirrors -a"
+# ArcoLinux
+if $IS_ARCO == true; then
+  alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
+  alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
+  alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
+  alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
+fi
+
+# Manjaro
+if $IS_MANJARO == true; then
+  alias mirror="sudo pacman-mirrors -i"
+  alias mirrord="sudo pacman-mirrors -c Germany"
+  alias mirrors="sudo pacman-mirrors -a"
+fi
 
 #mounting the folder Public for exchange between host and guest on virtualbox
 alias vbm="sudo /usr/local/bin/arcolinux-vbox-share"
 
 #shopt
-shopt -s autocd # change to named directory
+shopt -s autocd  # change to named directory
 shopt -s cdspell # autocorrects cd misspellings
 shopt -s cmdhist # save multi-line commands in history as single line
 shopt -s dotglob
-shopt -s histappend # do not overwrite history
+shopt -s histappend     # do not overwrite history
 shopt -s expand_aliases # expand aliases
 
 #youtube-dl
@@ -175,31 +200,37 @@ alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
 #receive the key of a developer
 alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 
+#maintenance
+alias big="expac -H M '%m\t%n' | sort -h | nl"
+alias downgrada="downgrade --ala-url 'https://bike.seedhost.eu/arcolinux/'"
+
+#systeminfo
+alias probe="sudo -E hw-probe -all -upload"
+
 #shutdown or reboot
 alias ssn="sudo shutdown now"
 alias sr="sudo reboot"
 
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
-ex ()
-{
-  if [ -f $1 ] ; then
+ex() {
+  if [ -f $1 ]; then
     case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *.deb)       ar x $1      ;;
-      *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   unzstd $1    ;;      
-      *)           echo "'$1' cannot be extracted via ex()" ;;
+    *.tar.bz2) tar xjf $1 ;;
+    *.tar.gz) tar xzf $1 ;;
+    *.bz2) bunzip2 $1 ;;
+    *.rar) unrar x $1 ;;
+    *.gz) gunzip $1 ;;
+    *.tar) tar xf $1 ;;
+    *.tbz2) tar xjf $1 ;;
+    *.tgz) tar xzf $1 ;;
+    *.zip) unzip $1 ;;
+    *.Z) uncompress $1 ;;
+    *.7z) 7z x $1 ;;
+    *.deb) ar x $1 ;;
+    *.tar.xz) tar xf $1 ;;
+    *.tar.zst) unzstd $1 ;;
+    *) echo "'$1' cannot be extracted via ex()" ;;
     esac
   else
     echo "'$1' is not a valid file"
@@ -217,8 +248,6 @@ fi
 ### COLOR SCRIPTS ###
 test -f /opt/shell-color-scripts/colorscript.sh && /opt/shell-color-scripts/colorscript.sh -e 3
 test -f /opt/shell-color-scripts/colorscript.sh && /opt/shell-color-scripts/colorscript.sh -e 23
-
-PATH="$HOME/.doom.d/bin:$HOME/.emacs.d/bin:$HOME/.local/bin${PATH:+:${PATH}}"
 
 colors() {
   clear
@@ -254,8 +283,8 @@ alias ed=$EDITOR
 
 # Changing "ls" to "exa"
 alias ls='exa -alghHi --color=always --colour-scale --group-directories-first' # my preferred listing
-alias la='exa -alghHi --color=always --colour-scale --group-directories-first'  # all files and dirs
-alias ll='exa -alghHi --color=always --colour-scale --group-directories-first'  # long format
+alias la='exa -alghHi --color=always --colour-scale --group-directories-first' # all files and dirs
+alias ll='exa -alghHi --color=always --colour-scale --group-directories-first' # long format
 alias lt='exa -aT -L3 --color=always --colour-scale --group-directories-first' # tree listing
 
 # adding flags
@@ -274,8 +303,8 @@ alias sys-utf8="curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html"
 # set -o vi
 
 ### BASH POWERLINE ###
-if [ -f ~/.bash-powerline.sh ]; then
-  source ~/.bash-powerline.sh
+if [ -f ~/Scripts/bash-powerline.sh ]; then
+  source ~/Scripts/bash-powerline.sh
 fi
 
 ### BROOT ###
@@ -306,16 +335,16 @@ export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
 
 # if this is interactive shell, then bind hstr to Ctrl-r (for Vi mode check doc)
 if [[ $- =~ .*i.* ]]; then
-  bind '"\C-r": "\C-a hstr -- \C-j"';
+  bind '"\C-r": "\C-a hstr -- \C-j"'
 fi
 
 # if this is interactive shell, then bind 'kill last command' to Ctrl-x k
 if [[ $- =~ .*i.* ]]; then
-  bind '"\C-xk": "\C-a hstr -k \C-j"';
+  bind '"\C-xk": "\C-a hstr -k \C-j"'
 fi
 
 [[ -f ~/.bashrc-personal.sh ]] && . ~/.bashrc-personal.sh
 
 if test -f "/usr/bin/neofetch"; then
-	neofetch
+  neofetch
 fi

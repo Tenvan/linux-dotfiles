@@ -1,1 +1,0 @@
-conky -c /home/stira/.config/conky/AUR-Concise-Inf-Orange-Red.conkyrc & sleep 1s

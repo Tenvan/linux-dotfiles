@@ -55,8 +55,6 @@
 !.config/copyq/themes
 !.config/copyq/themes/**
 !.config/copyq/themes/**/*
-!.config/conky
-!.config/conky/*
 !.config/dunst
 !.config/dunst/*
 !.config/fontconfig

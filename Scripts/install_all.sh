@@ -1,29 +1,17 @@
 #!/usr/bin/env bash
 
+source $HOME/Scripts/defs.sh
+
 #####################
 # init distro check #
 #####################
-LINUX_VERSION_NAME=$(lsb_release -si)
 PKG_FILE=pkg_to_install.txt
 PKG_UNINST_FILE=pkg_to_uninstall.txt
-
-MAKEFLAGS="-j$(nproc)"
-
-IS_MANJARO=false
-IS_ARCO=false
 
 YAY_ALL="--needed --batchinstall --topdown \
     --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu \
     --norebuild --noredownload --noprovides --useask --noremovemake \
     --combinedupgrade"
-
-if [[ "$LINUX_VERSION_NAME" == *"Manjaro"* ]]; then
-    IS_MANJARO=true
-fi
-
-if [[ "$LINUX_VERSION_NAME" == *"ArcoLinux"* ]]; then
-    IS_ARCO=true
-fi
 
 errorCheck() {
     retVal=$?
