@@ -756,10 +756,10 @@ local clientkeys =
         {modkey},
         "f",
         function(c)
-            c.fullscreen = not c.fullscreen
+            c.maximized = not c.maximized
             c:raise()
         end,
-        {description = "toggle fullscreen", group = kgClient}
+        {description = "toggle maximized", group = kgClient}
     ),
     awful.key(
         {modkey},
@@ -770,6 +770,18 @@ local clientkeys =
         {description = "close", group = kgClient}
     ),
     awful.key({modkey}, "space", awful.client.floating.toggle, {description = "toggle floating", group = kgClient}),
+    awful.key(
+        {modkey, altkey},
+        "space",
+        function(c)
+            c.maximized = not c.maximized
+            c:raise()
+        end,
+        {
+            description = "toggle maximized",
+            group = kgClient
+        }
+    ),
     awful.key(
         {modkey, controlkey},
         "m",
@@ -962,8 +974,7 @@ awful.rules.rules = {
             class = "Geany"
         },
         properties = {
-            maximized = false,
-            floating = false
+            maximized = false
         }
     },
     {
@@ -972,8 +983,7 @@ awful.rules.rules = {
             type = "dialog"
         },
         properties = {
-            maximized = false,
-            floating = true
+            maximized = false
         }
     },
     {
@@ -995,19 +1005,16 @@ awful.rules.rules = {
             end
         }
     },
-    {
-        rule = {
-            class = "Xfce4-settings-manager"
-        },
-        properties = {floating = false}
-    },
     -- Maximized clients.
     {
         rule = {
             class = "Gimp*",
             role = "gimp-image-window"
         },
-        properties = {maximized = true}
+        properties = {
+            maximized = true,
+            floating = false
+        }
     },
     {
         rule_any = {
@@ -1022,7 +1029,10 @@ awful.rules.rules = {
             name = {},
             role = {}
         },
-        properties = {maximized = true}
+        properties = {
+            maximized = true,
+            floating = false
+        }
     },
     -- Non-Floating clients.
     {
@@ -1138,11 +1148,11 @@ awful.rules.rules = {
         },
         properties = {
             maximized = true,
+            floating = false,
             opacity = 1,
-            -- auf ersten Monitor
             screen = 1,
-            tag = awful.util.tagnames[1], -- auf tag 1 verschieben
-            switchtotag = true -- zu IDE springen
+            tag = awful.util.tagnames[1],
+            switchtotag = true
         }
     },
     {
@@ -1163,11 +1173,12 @@ awful.rules.rules = {
             class = "jetbrains-datagrip"
         },
         properties = {
-            maximized = true, -- maximieren
+            maximized = true,
+            floating = false,
             opacity = 1,
-            screen = 1, -- auf ersten Monitor
-            tag = awful.util.tagnames[1], -- auf tag 1 verschieben
-            switchtotag = true -- zu IDE springen
+            screen = 1,
+            tag = awful.util.tagnames[1],
+            switchtotag = true
         }
     },
     {
@@ -1177,10 +1188,11 @@ awful.rules.rules = {
             type = "normal"
         },
         properties = {
-            maximized = true, -- maximieren
-            screen = 2, -- auf zweiten Monitor
-            tag = awful.util.tagnames[4], -- auf tag 4 verschieben
-            switchtotag = false -- auf aktuellem tag bleiben
+            maximized = true,
+            floating = false,
+            screen = 2,
+            tag = awful.util.tagnames[4],
+            switchtotag = false
         }
     },
     {
@@ -1192,10 +1204,10 @@ awful.rules.rules = {
             -- name = "Microsoft Teams-Benachrichtigung"
         },
         properties = {
-            maximized = false, -- nicht maximieren
+            maximized = false,
             floating = true,
-            screen = 1, -- auf ersten Monitor
-            tag = awful.util.tagnames[1], -- auf tag 4 verschieben
+            screen = 1,
+            tag = awful.util.tagnames[1],
             switchtotag = true -- zur Nachricht springen
         }
     },
@@ -1203,9 +1215,9 @@ awful.rules.rules = {
     {
         rule = {name = "OTC:*"},
         properties = {
-            screen = 2, -- auf zweiten Monitor
-            tag = awful.util.tagnames[2], -- auf tag 2
-            switchtotag = true -- zur Ausgabe springen
+            screen = 2,
+            tag = awful.util.tagnames[2],
+            switchtotag = true
         }
     },
     -- Chromium Debugger Instanz auf Screen 2 tag 2 schieben
@@ -1217,8 +1229,8 @@ awful.rules.rules = {
         properties = {
             floating = false,
             screen = 2,
-            tag = awful.util.tagnames[2], -- auf tag 2
-            switchtotag = true -- zur Ausgabe springen
+            tag = awful.util.tagnames[2],
+            switchtotag = true
         }
     },
     -- Firefox Develop Edition auf Screen 2 tag 2 schieben
@@ -1231,9 +1243,10 @@ awful.rules.rules = {
         },
         properties = {
             maximized = true,
-            screen = 1, -- auf zweiten Monitor
-            tag = awful.util.tagnames[2], -- auf tag 2
-            switchtotag = true -- zur Ausgabe springen
+            floating = false,
+            screen = 1,
+            tag = awful.util.tagnames[2],
+            switchtotag = true
         }
     },
     -- System Monitor Consolen auf Screen 2 tag 9 schieben
@@ -1246,9 +1259,9 @@ awful.rules.rules = {
             class = {"Gnome-system-monitor"}
         },
         properties = {
-            screen = 2, -- auf zweiten Monitor
-            tag = awful.util.tagnames[9], -- auf tag 2
-            switchtotag = true -- zur Ausgabe springen
+            screen = 2,
+            tag = awful.util.tagnames[9],
+            switchtotag = true
         }
     }
 }

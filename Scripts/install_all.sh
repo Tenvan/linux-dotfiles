@@ -419,9 +419,9 @@ inst sardi-icons
 inst font-manager
 inst awesome-terminal-fonts
 
-inst nerd-fonts-complete
-# inst nerd-fonts-mononoki
-# inst nerd-fonts-iosevka
+uninst nerd-fonts-complete
+inst nerd-fonts-mononoki
+inst nerd-fonts-iosevka
 
 inst noto-fonts-emoji
 uninst noto-fonts-extra
