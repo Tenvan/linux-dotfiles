@@ -59,18 +59,20 @@ nitrogen --set-zoom-fill ~/.local/share/wallpapers/shared/floating-world-in-spac
 run nm-applet &
 run pamac-tray &
 run xfce4-power-manager &
-# killall radiotray
 run radiotray &
+
 killall xbindkeys
 run xbindkeys &
+
 killall alttab
 run alttab &
-killall volumeicon
-run volumeicon &
+
+# Sound Tray Icons
 killall pasystray
 run pasystray &
+
 numlockx on &
-# blueberry-tray &
+blueberry-tray &
 run xscreensaver &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 

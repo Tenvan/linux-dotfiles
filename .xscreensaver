@@ -1,10 +1,10 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-demo 5.44 for ralf on Sat Oct 17 15:40:53 2020.
+# Written by xscreensaver-demo 5.44 for ralf on Fri Nov  6 11:28:08 2020.
 # https://www.jwz.org/xscreensaver/
 
-timeout:	1:00:00
-cycle:		0:05:00
-lock:		True
+timeout:	0:05:00
+cycle:		0:02:00
+lock:		False
 lockTimeout:	0:10:00
 passwdTimeout:	0:00:30
 visualID:	default
@@ -18,7 +18,7 @@ prefsCommand:
 nice:		10
 memoryLimit:	0
 fade:		True
-unfade:		False
+unfade:		True
 fadeSeconds:	0:00:03
 fadeTicks:	20
 captureStderr:	True
@@ -29,7 +29,7 @@ dpmsQuickOff:	False
 dpmsStandby:	1:00:00
 dpmsSuspend:	2:00:00
 dpmsOff:	4:00:00
-grabDesktopImages:  True
+grabDesktopImages:  False
 grabVideoFrames:    False
 chooseRandomImages: True
 imageDirectory:	/media/BIGDATA/Pictures
@@ -281,7 +281,7 @@ programs:								      \
   GL: 				deepstars -root				    \n\
   GL: 				gravitywell -root			    \n\
   GL: 				etruscanvenus -root			    \n\
-  GL: 				gibson -root				    \n\
+  GL: 				gibson -root -spacing 1			    \n\
 
 
 pointerPollTime:    0:00:05
