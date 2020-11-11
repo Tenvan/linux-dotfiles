@@ -348,3 +348,8 @@ fi
 if test -f "/usr/bin/neofetch"; then
   neofetch
 fi
+
+# add android sdk path, if installed
+if [ -d "$HOME/Android/Sdk/tools" ] ; then 
+  PATH="$HOME/Android/Sdk/tools:$PATH"
+fi
