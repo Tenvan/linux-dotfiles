@@ -120,6 +120,7 @@ fi
 inst meld
 inst git
 inst gitflow-avh
+inst github-cli
 inst nodejs-lts-fermium
 inst nodejs-emojione
 inst npm
@@ -466,7 +467,7 @@ sudo systemctl start libvirtd.service
 errorCheck "libvirtd service"
 
 # Default Browser setzen (vorher $BROWSER Variable entfernen)
-xdg-settings set default-web-browser firefox.desktop
+xdg-settings set default-web-browser firefox-developer-edition.desktop
 
 sudo fc-cache -fv
 errorCheck "fontcache"

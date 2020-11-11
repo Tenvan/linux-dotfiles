@@ -3,5 +3,3 @@ theme=KvArcDark#
 
 [Applications]
 Default=virtualbox
-KvArcBreath=virtualbox
-KvArcDarkMaia=virtualbox
