@@ -1132,29 +1132,6 @@ awful.rules.rules = {
     },
     -- Special handled applications
 
-    -- Teams
-    {
-        -- JetBrains InteliJ Hauptfenster
-        rule = {
-            class = "jetbrains-.*"
-        },
-        except_any = {
-            class = {
-                "jetbrains-toolbox"
-            },
-            name = {
-                "Welcome to.*"
-            }
-        },
-        properties = {
-            maximized = true,
-            floating = false,
-            opacity = 1,
-            screen = 1,
-            tag = awful.util.tagnames[1],
-            switchtotag = true
-        }
-    },
     {
         -- JetBrains InteliJ Hauptfenster
         rule = {
@@ -1165,20 +1142,6 @@ awful.rules.rules = {
             maximized = false,
             float = true,
             opacity = 0.8
-        }
-    },
-    {
-        -- JetBrains DataGrip
-        rule = {
-            class = "jetbrains-datagrip"
-        },
-        properties = {
-            maximized = true,
-            floating = false,
-            opacity = 1,
-            screen = 1,
-            tag = awful.util.tagnames[1],
-            switchtotag = true
         }
     },
     {

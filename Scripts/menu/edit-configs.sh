@@ -3,6 +3,8 @@
 # Function create a scale dialog
 filesEdit="code -a --file-uri"
 folderEdit="code -a --folder-uri"
+# filesEdit="atom "
+# folderEdit="atom "
 
 get_config_list() {
     zenity --list \

@@ -285,7 +285,7 @@ inst remmina-plugin-folder
 inst remmina-plugin-open
 inst freerdp
 
-# virtualbox 
+# virtualbox
 inst virtualbox
 inst virtualbox-ext-oracle
 
@@ -317,6 +317,9 @@ inst lua-format
 
 # neovim
 inst neovim
+
+# Atom
+inst atom-editor-bin
 
 # utils for editors
 inst shellcheck
@@ -446,7 +449,10 @@ errorCheck "install packages"
 yay -R --noconfirm - < $PKG_UNINST_FILE
 
 ## FINISHING #
-
+# Atom Plugins
+apm install autocomplete-lua busy-signal intentions language-lua \
+  linter linter-lua linter-ui-default
+  
 # Git config for meld
 git config --global diff.tool code
 git config --global difftool.code.cmd "$(which code) --wait --diff \"\$LOCAL\" \"\$BASE\" \"\$REMOTE\""
