@@ -32,27 +32,6 @@ uninst() {
 rm -f $PKG_FILE
 rm -f $PKG_UNINST_FILE
 
-# Yay installieren
-sudo pacman -S --noconfirm --needed yay
-
-# Manjaro
-if $IS_MANJARO == true; then
-    yay -S $YAY_ALL pamac-tray-appindicator pamac-flatpak-plugin pamac-snap-plugin
-fi
-
-# ArcoLinux
-if $IS_ARCO == true; then
-    yay -S --noconfirm $YAY_ALL pamac-all
-fi
-errorCheck "installation yay/pamac"
-
-# Rust repaprieren/installieren
-yay -S --needed --noconfirm rustup
-errorCheck "installation rustup"
-
-rustup install stable
-errorCheck "rustup stable"
-
 ###########################
 # collect needed packages #
 ###########################
@@ -238,29 +217,28 @@ inst system-config-printer
 inst libreoffice-fresh
 inst libreoffice-fresh-de
 
+# Browser
+inst firefox-developer-edition
+inst firefox-developer-edition-i18n-de
+inst google-chrome
+inst chromium
+inst microsoft-edge-dev-bin
+uninst firefox
+uninst firefox-i18n-de
+uninst vivaldi
+
 # optional application packages
 inst evolution
 inst bitwarden-bin
 inst bitwarden-cli-bin
 inst bitwarden-rofi
-inst firefox
-inst firefox-i18n-de
-uninst firefox-developer-edition
-uninst firefox-developer-edition-i18n-de
-inst google-chrome
-inst chromium
-inst opera
-inst microsoft-edge-dev-bin
 inst docker
 inst docker-compose
-uninst foxitreader
 inst gparted
 inst partitionmanager
 inst grub-customizer
 inst hardinfo
 inst spectacle
-uninst krita
-uninst blender
 inst gimp
 inst gimp-help-de
 inst pinta
@@ -274,7 +252,12 @@ inst nitrogen
 inst python-lxml
 inst python-numpy
 inst teams
-inst qbittorrent
+inst ktorrent
+inst transmission-gtk
+uninst qbittorrent
+uninst krita
+uninst blender
+uninst foxitreader
 
 # remmina
 inst remmina
@@ -449,9 +432,6 @@ errorCheck "install packages"
 yay -R --noconfirm - < $PKG_UNINST_FILE
 
 ## FINISHING #
-# Atom Plugins
-apm install autocomplete-lua busy-signal intentions language-lua \
-  linter linter-lua linter-ui-default
   
 # Git config for meld
 git config --global diff.tool code

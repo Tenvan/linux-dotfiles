@@ -26,6 +26,27 @@ errorCheck() {
     fi
 }
 
+# Yay installieren
+sudo pacman -S --noconfirm --needed yay
+
+# Manjaro
+if $IS_MANJARO == true; then
+    yay -S $YAY_ALL pamac-tray-appindicator pamac-flatpak-plugin pamac-snap-plugin
+fi
+
+# ArcoLinux
+if $IS_ARCO == true; then
+    yay -S --noconfirm $YAY_ALL pamac-all
+fi
+errorCheck "installation yay/pamac"
+
+# Rust repaprieren/installieren
+yay -S --needed --noconfirm rustup
+errorCheck "installation rustup"
+
+rustup install stable
+errorCheck "rustup stable"
+
 # Yay and tools installieren
 sudo pacman -S --noconfirm --needed yay colorgcc ccache
 errorCheck "installation yay"

@@ -1020,7 +1020,6 @@ awful.rules.rules = {
         rule_any = {
             instance = {},
             class = {
-                "Code",
                 "spotify",
                 "inkscape",
                 "VirtualBox Machine",

@@ -20,14 +20,14 @@ if [ -f $HOME/.Xresources.dark ]; then
     xrdb -merge $HOME/.Xresources.dark
 fi
 
-# Custom resources for monitor namings
-if [ -f $HOME/.Xresources.monitor ]; then
-    xrdb -merge $HOME/.Xresources.monitor
-fi
-
 # Personal (private) Resources
 if [ -f $HOME/.Xresources.personal ]; then
     xrdb -merge $HOME/.Xresources.personal
+fi
+
+# Custom resources for monitor namings
+if [ -f $HOME/.Xresources.monitor ]; then
+    xrdb -merge $HOME/.Xresources.monitor
 fi
 
 #change your keyboard if you need it
