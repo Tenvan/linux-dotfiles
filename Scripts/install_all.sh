@@ -100,6 +100,7 @@ inst meld
 inst git
 inst gitflow-avh
 inst github-cli
+inst libsecret
 inst nodejs-lts-fermium
 inst nodejs-emojione
 inst npm
@@ -443,6 +444,8 @@ git config --global mergetool.code.cmd "$(which code) --wait \"\$MERGED\""
 git config --global mergetool.prompt false
 
 git config --global core.editor $(which code)
+
+git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
 
 # nodejs tools for editors
 sudo npm install -g neovim eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify

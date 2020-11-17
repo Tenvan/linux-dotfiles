@@ -26,7 +26,7 @@ get_config_list() {
            "📑 bash" "$filesEdit $HOME/.bashrc*" \
            "📑 profile" "$filesEdit $HOME/.profile*" \
            "📑 scripts autostart" "$filesEdit $HOME/Scripts/autostart*.sh" \
-           "📑 scripts install" "$filesEdit $HOME/Scripts/install_*.sh" \
+           "📑 scripts install" "$filesEdit $HOME/Scripts/install_all.sh $HOME/Scripts/init_install.sh" \
            "📑 scripts ldap" "$filesEdit $HOME/Scripts/ldap/*.sh" \
            "📁 scripts dir" "$folderEdit $HOME/Scripts" \
            "📁 menu dir" "$folderEdit $HOME/Scripts/menu" \

@@ -24,6 +24,7 @@ rm -fr dotfiles-developer-workstation/
 Fehlende Pakete werden mit folgendem Batch nachinstalliert:
 
 ```bash
+sh ~/Scripts/init_install.sh
 sh ~/Scripts/install_all.sh
 ```
 
