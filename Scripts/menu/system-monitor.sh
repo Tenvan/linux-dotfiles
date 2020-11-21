@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 myFileManager="thunar"
 myTerminal="alacritty"

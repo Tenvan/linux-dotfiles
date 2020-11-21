@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 class_name=$1
 
 # regex for extracting hex id's

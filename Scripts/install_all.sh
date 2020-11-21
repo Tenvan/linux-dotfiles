@@ -463,3 +463,8 @@ errorCheck "fontcache"
 
 rm -f $PKG_FILE
 rm -f $PKG_UNINST_FILE
+
+sudo usermod -aG docker $USER
+sudo systemctl enable docker
+sudo systemctl start docker
+errorCheck "docker service"

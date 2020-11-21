@@ -81,3 +81,5 @@ FONT_MAP=" | sudo tee /etc/vconsole.conf
 sudo mkinitcpio -P
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 errorCheck "grub config"
+
+chmod -R -v +xrw ~/Scripts
