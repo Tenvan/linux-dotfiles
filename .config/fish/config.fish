@@ -1,4 +1,13 @@
-pfetch
+
+### BASH POWERLINE ###
+if test -f ~/Scripts/bash-powerline.sh
+  source ~/Scripts/bash-powerline.sh
+end
+
+if test -f "/usr/bin/neofetch"
+  neofetch
+end
+
 
 # Dump Farbpalette
 echo -e "\033[0mNC (No color)"

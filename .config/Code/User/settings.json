@@ -44,5 +44,7 @@
     },
     "[xml]": {
       "editor.defaultFormatter": "DotJoshJohnson.xml"
-    }
+    },
+    "pascal.formatter.engine": "ptop",
+    "pascal.formatter.enginePath": "/usr/bin/ptop"
   }

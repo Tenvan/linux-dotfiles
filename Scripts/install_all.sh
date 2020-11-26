@@ -10,8 +10,7 @@ PKG_UNINST_FILE=pkg_to_uninstall.txt
 
 YAY_ALL="--needed --batchinstall --topdown \
     --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu \
-    --norebuild --noredownload --noprovides --useask --noremovemake \
-    --combinedupgrade"
+    --norebuild --noredownload --noprovides --useask --noremovemake"
 
 errorCheck() {
     retVal=$?
@@ -42,8 +41,6 @@ rm -f $PKG_UNINST_FILE
 inst exa
 inst ripgrep
 inst timeshift
-uninst timeset-gui
-uninst termite
 inst alacritty
 inst ark
 inst arj
@@ -52,7 +49,6 @@ inst lhasa
 inst unrar
 inst p7zip
 inst neofetch
-uninst screenfetch
 inst clamav
 inst clamtk
 inst glances
@@ -120,8 +116,7 @@ inst jdk-openjdk
 if $IS_MANJARO == true; then
     inst dmenu-manjaro
     # current used settings
-    inst manjaro-awesome-settings
-    # inst manjaro-cinnamon-settings
+    inst manjaro-cinnamon-settings
 fi
 
 # awesome packages
@@ -151,8 +146,6 @@ inst xdotool
 inst xorg-xfd
 inst xcwd-git
 inst notify-send.sh
-uninst polybar
-uninst broot
 inst pm-utils
 inst seahorse
 inst checkupdates-aur
@@ -204,9 +197,6 @@ inst pulseaudio-ctl
 inst pulseaudio-qt
 inst pulseaudio-equalizer-ladspa
 inst pasystray
-uninst sound-theme-elementary
-uninst sound-theme-smooth
-uninst sound-theme-lbr-impress
 
 # printer setup
 inst canon-cque
@@ -221,11 +211,11 @@ inst libreoffice-fresh-de
 # Browser
 inst firefox-developer-edition
 inst firefox-developer-edition-i18n-de
+inst firefox
+inst firefox-i18n-de
 inst google-chrome
 inst chromium
 inst microsoft-edge-dev-bin
-uninst firefox
-uninst firefox-i18n-de
 uninst vivaldi
 
 # optional application packages
@@ -255,7 +245,7 @@ inst python-numpy
 inst teams
 inst ktorrent
 inst transmission-gtk
-uninst qbittorrent
+inst qbittorrent
 uninst krita
 uninst blender
 uninst foxitreader
@@ -274,13 +264,15 @@ inst virtualbox
 inst virtualbox-ext-oracle
 
 if $IS_ARCO == true; then
+    echo Install ArcoLinux Virtualbox
     inst virtualbox-host-modules-arch
     inst linux-headers
 fi
 
 if $IS_MANJARO == true; then
-    inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-headers
-    inst linux$(uname -r | sed -E 's/(.){1}\.(.){1}(.*)/\1\2/g')-virtualbox-host-modules
+    echo Install Manjaro Virtualbox
+    inst linux$(uname -r | cut -f 1-2 -d '.' | tr -d '.')-headers
+    inst linux$(uname -r | cut -f 1-2 -d '.' | tr -d '.')-virtualbox-host-modules    
 fi
 
 # libvirt service and manager
@@ -331,6 +323,9 @@ if $IS_ARCO == true; then
 
     # themes
     inst arcolinux-arc-themes-nico-git
+
+    uninst maia-icon-theme
+    uninst moka-icon-theme
 fi
 
 if $IS_MANJARO == true; then
@@ -350,11 +345,11 @@ if $IS_MANJARO == true; then
     inst arc-themes-solid-maia
 
     # icons
-    inst breeze-maia-icon-themes
+    #inst breeze-maia-icon-themes
     inst manjaro-artwork-icons
     inst papirus-maia-icon-theme
     inst vertex-maia-icon-theme
-    inst arc-maia-icon-theme
+    #inst arc-maia-icon-theme
     inst breath-icon-theme
     inst breath2-icon-themes
     # cursor
@@ -389,14 +384,11 @@ uninst xcursor-simpleandsoft
 
 # icons
 inst adwaita-icon-theme
-inst arc-icon-theme
-inst arc-icon-theme
+# inst arc-icon-theme
 uninst faba-icon-theme
 uninst faba-icon-theme
 uninst hicolor-icon-theme
 uninst hicolor-icon-theme
-uninst maia-icon-theme
-uninst moka-icon-theme
 inst paper-icon-theme
 inst papirus-icon-theme
 inst papirus-icon-theme

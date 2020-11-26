@@ -29,7 +29,6 @@ select_application() {
         --text="DEVELOP" \
         --column="Option" \
         --column="Aktion" \
-        --separator=" " \
         --print-column=2 \
         --hide-column=2 \
         --hide-header \
