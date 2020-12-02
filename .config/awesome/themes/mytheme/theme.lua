@@ -400,9 +400,11 @@ local net =
 vicious.cache(vicious.widgets.fs)
 
 local fsRootWidget = wibox.widget.textbox()
-vicious.register(fsRootWidget, vicious.widgets.fs, "ROOT:${/ avail_gb}GB", 61)
+vicious.register(fsRootWidget, vicious.widgets.fs, "/:${/ avail_gb}GB", 61)
+local fsWorkspaceWidget = wibox.widget.textbox()
+vicious.register(fsWorkspaceWidget, vicious.widgets.fs, "WS:${/media/WORKSPACE avail_gb}GB", 61)
 local fsBidataWidget = wibox.widget.textbox()
-vicious.register(fsBidataWidget, vicious.widgets.fs, "BIGDATA:${/media/BIGDATA avail_gb}GB", 63)
+vicious.register(fsBidataWidget, vicious.widgets.fs, "BD:${/media/BIGDATA avail_gb}GB", 63)
 local fsVmWidget = wibox.widget.textbox()
 vicious.register(fsVmWidget, vicious.widgets.fs, "VM:${/media/VM avail_gb}GB", 67)
 
@@ -453,6 +455,13 @@ function theme.at_screen_connect(s)
         layout = wibox.layout.fixed.horizontal
     }
 
+    -- theme.bg_systray = xres.warning_bg_color
+    theme.systray_icon_spacing = dpi(3)
+
+    local systray = wibox.widget.systray()
+    systray:set_base_size(dpi(18))
+    local systrayWidget = wibox.layout.margin(systray, dpi(3), dpi(2), dpi(5), dpi(2))    
+
     local screen1widgets = {
         -- Right widgets
         layout = wibox.layout.fixed.horizontal,
@@ -491,7 +500,7 @@ function theme.at_screen_connect(s)
             accent_color1
         ),
         arrowl(accent_color1, "alpha"),
-        wibox.widget.systray()
+        systrayWidget
     }
 
     local screen2RightWidgets = {
@@ -501,9 +510,14 @@ function theme.at_screen_connect(s)
         -- arrow("alpha", accent_color2),
         -- arrow(accent_color1, accent_color2),
         -- arrow(accent_color2, accent_color1),
-        arrowl("alpha", accent_color1),
+        arrowl("alpha", accent_color2),
         wibox.container.background(
             wibox.container.margin(fsRootWidget, theme.margins_width, theme.margins_width),
+            accent_color2
+        ),
+        arrowl(accent_color2, accent_color1),
+        wibox.container.background(
+            wibox.container.margin(fsWorkspaceWidget, theme.margins_width, theme.margins_width),
             accent_color1
         ),
         arrowl(accent_color1, accent_color2),
@@ -577,7 +591,7 @@ function theme.at_screen_connect(s)
             shape_border_width = 2,
             shape_border_color = theme.tasklist_fg_focus,
             shape = gears.shape.rectangle
-        },
+        }
         -- widget_template = theme.tasklist_widget_template
     }
 

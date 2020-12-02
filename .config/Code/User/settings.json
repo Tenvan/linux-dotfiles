@@ -46,5 +46,14 @@
       "editor.defaultFormatter": "DotJoshJohnson.xml"
     },
     "pascal.formatter.engine": "ptop",
-    "pascal.formatter.enginePath": "/usr/bin/ptop"
+    "pascal.formatter.enginePath": "/usr/bin/ptop",
+    "git-graph.commitDetailsView.location": "Docked to Bottom",
+    "git-graph.date.format": "Relative",
+    "git-graph.date.type": "Commit Date",
+    "git-graph.dialog.fetchRemote.prune": true,
+    "git-graph.dialog.fetchRemote.pruneTags": true,
+    "git-graph.dialog.resetCurrentBranchToCommit.mode": "Hard",
+    "git-graph.dialog.resetUncommittedChanges.mode": "Hard",
+    "git-graph.graph.style": "angular",
+    "git-graph.repository.commits.fetchAvatars": true
   }

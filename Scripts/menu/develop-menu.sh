@@ -24,7 +24,7 @@ startAll() {
 select_application() {
     zenity --list \
         --width=400 \
-        --height=850 \
+        --height=950 \
         --title="Edit Konfiguation" \
         --text="DEVELOP" \
         --column="Option" \
@@ -51,6 +51,9 @@ select_application() {
         "☑ Client Check" "$shellCmd --hold -t OTC:ClientCheck -e $timeCmd yarn client:check" \
         "✅ Prod Check" "$shellCmd --hold -t OTC:ClientCheck -e $timeCmd yarn client:check:prod" \
         "💻 Shell" "$shellCmd --hold -t OTC:Shell" \
+        "🛻 SQL-Server Stop" "$shellCmd --hold -t OTC:SqlServer -e $timeCmd sudo systemctl stop mssql-server" \
+        "🛻 SQL-Server Start" "$shellCmd --hold -t OTC:SqlServer -e $timeCmd sudo systemctl start mssql-server" \
+        "🛻 SQL-Server Restart" "$shellCmd --hold -t OTC:SqlServer -e $timeCmd sudo systemctl restart mssql-server" \
         "📑 Dateien" "$myFileManager $workDir"
 }
 

@@ -60,6 +60,7 @@ run nm-applet &
 run pamac-tray &
 run xfce4-power-manager &
 run radiotray &
+run kteatime &
 
 killall xbindkeys
 run xbindkeys &
@@ -72,7 +73,7 @@ killall pasystray
 run pasystray &
 
 numlockx on &
-blueberry-tray &
+blueman-tray &
 run xscreensaver &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 

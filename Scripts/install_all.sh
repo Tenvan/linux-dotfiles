@@ -136,6 +136,7 @@ inst awmtt
 # system packages
 inst appeditor-git
 inst arandr
+inst blueman
 inst copyq
 inst time
 inst rofi
@@ -219,33 +220,34 @@ inst microsoft-edge-dev-bin
 uninst vivaldi
 
 # optional application packages
-inst evolution
+inst aspell
 inst bitwarden-bin
 inst bitwarden-cli-bin
 inst bitwarden-rofi
 inst docker
 inst docker-compose
-inst gparted
-inst partitionmanager
-inst grub-customizer
-inst hardinfo
-inst spectacle
+inst evolution
 inst gimp
 inst gimp-help-de
-inst pinta
-inst aspell
+inst gparted
+inst grub-customizer
+inst hardinfo
 inst imagemagick
-inst pstoedit
 inst inkscape
-inst xfig
-inst transfig
+inst ktorrent
 inst nitrogen
+inst partitionmanager
+inst playerctl
+inst pinta
+inst pstoedit
 inst python-lxml
 inst python-numpy
-inst teams
-inst ktorrent
-inst transmission-gtk
 inst qbittorrent
+inst spectacle
+inst teams
+inst transfig
+inst transmission-gtk
+inst xfig
 uninst krita
 uninst blender
 uninst foxitreader
