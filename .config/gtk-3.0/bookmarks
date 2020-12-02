@@ -1,9 +1,10 @@
+file:///usr/share/sounds
 file:///media/WORKSPACE/ralf/Node Node
 file:///usr/share/backgrounds backgrounds
 file:///media/BIGDATA BIGDATA
 file:///media/BIGDATA/ISO ISO
 file:///media/WORKSPACE WORKSPACE
-smb://10.31.200.28/e$ e$ auf 10.31.200.28
-smb://192.168.113.25/apgsuite apgsuite auf 192.168.113.25
+smb://10.31.200.28/e$/ e$ auf 10.31.200.28
+smb://192.168.113.25/apgsuite/ apgsuite auf 192.168.113.25
 smb://10.31.200.28/e$/INFONIQA/Install/OneTime OneTime auf QS28
 smb://192.168.113.25/apgsuite/OneTime/OneTime_Dist_20.1/OneTime OneTime auf apgsuite

@@ -1,0 +1,24 @@
+[General]
+Geometry=\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x03\x91\x00\x00\x01_\x00\x00\ti\x00\x00\x05\n\x00\x00\x03\x9d\x00\x00\x01\x8b\x00\x00\t]\x00\x00\x04\xfe\x00\x00\x00\x00\x00\x00\x00\x00\x0f\x00\x00\x00\x03\x9d\x00\x00\x01\x8b\x00\x00\t]\x00\x00\x04\xfe
+PopupAutoHide=false
+PopupAutoHideTime=30
+ReminderTime=60
+SettingsDialogXPos=913
+SettingsDialogYPos=351
+UsePopup=true
+UseReminder=true
+UseVisualize=true
+
+[Tealist]
+Tea0 Name=Schwarzer Tee
+Tea0 Time=180
+Tea1 Name=Earl Grey
+Tea1 Time=300
+Tea2 Name=Früchtetee
+Tea2 Time=480
+Tea3 Name=Grüner Tee
+Tea3 Time=120
+Tea4 Name=Bratapfel
+Tea4 Time=390
+Tea5 Name=Linux Test Tee
+Tea5 Time=10
