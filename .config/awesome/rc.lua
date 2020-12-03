@@ -420,6 +420,55 @@ local globalkeys =
     -- awful.key({ modkey }, "Right", function () lain.util.tag_view_nonempty(1) end,
     -- {description = "view  previous nonempty", group = kgTag}),
     -- Default client focus
+    -- Window Sizing
+    awful.key(
+        {modkey, shiftkey},
+        "Next",
+        function()
+            awful.client.moveresize(20, 20, -40, -40)
+        end,
+        {description = "increase window size", group = kgClient}
+    ),
+    awful.key(
+        {modkey, shiftkey},
+        "Prior",
+        function()
+            awful.client.moveresize(-20, -20, 40, 40)
+        end,
+        {description = "decrease window size", group = kgClient}
+    ),
+    awful.key(
+        {modkey, shiftkey},
+        "Down",
+        function()
+            awful.client.incwfact(0.05)
+        end,
+        {description = "increase window size", group = kgClient}
+    ),
+    awful.key(
+        {modkey, shiftkey},
+        "Up",
+        function()
+            awful.client.incwfact(-0.05)
+        end,
+        {description = "decrease window size", group = kgClient}
+    ),
+    awful.key(
+        {modkey, shiftkey},
+        "Left",
+        function()
+            awful.tag.incmwfact(-0.05)
+        end,
+        {description = "increase master size", group = kgClient}
+    ),
+    awful.key(
+        {modkey, shiftkey},
+        "Right",
+        function()
+            awful.tag.incmwfact(0.05)
+        end,
+        {description = "decrease master size", group = kgClient}
+    ),
     awful.key(
         {modkey},
         "Right",
@@ -435,7 +484,8 @@ local globalkeys =
             awful.client.focus.byidx(-1)
         end,
         {description = "focus previous by index", group = kgClient}
-    ), -- By direction client focus with arrows
+    ),
+    -- By direction client focus with arrows
     awful.key(
         {controlkey, modkey},
         "Down",
@@ -569,30 +619,8 @@ local globalkeys =
         {description = "decrement useless gaps", group = kgLayout}
     ),
     awful.key(
-        {altkey, shiftkey},
-        "Up",
-        function()
-            awful.tag.incmwfact(0.05)
-        end,
-        {
-            description = "increase master width factor",
-            group = kgMaster
-        }
-    ),
-    awful.key(
-        {altkey, shiftkey},
-        "Down",
-        function()
-            awful.tag.incmwfact(-0.05)
-        end,
-        {
-            description = "decrease master width factor",
-            group = kgMaster
-        }
-    ),
-    awful.key(
-        {modkey, shiftkey},
-        "Up",
+        {modkey, controlkey},
+        "m",
         function()
             awful.tag.incnmaster(1, nil, true)
         end,
@@ -603,7 +631,7 @@ local globalkeys =
     ),
     awful.key(
         {modkey, shiftkey},
-        "l",
+        "m",
         function()
             awful.tag.incnmaster(-1, nil, true)
         end,
@@ -640,11 +668,16 @@ local globalkeys =
         function()
             awful.layout.inc(1)
         end,
-        {description = "select next", group = kgLayout}
+        {description = "select next layout", group = kgLayout}
     ),
-    -- awful.key({ modkey, shiftkey   }, "space", function () awful.layout.inc(-1)                end,
-    -- {description = "select previous", group = kgLayout}),
-
+    awful.key(
+        {modkey, controlkey},
+        "space",
+        function()
+            awful.layout.inc(-1)
+        end,
+        {description = "select previous layout", group = kgLayout}
+    ),
     awful.key(
         {modkey, controlkey},
         "n",
