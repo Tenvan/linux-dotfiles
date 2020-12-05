@@ -109,6 +109,11 @@
 "sh $HOME/Scripts/menu/rofi.sh -show run"
   mod4 + shift + z
 
+# Skippy Toggle
+"skippy-xd"
+  alt + Tab
+
+
 #
 #####################
 

@@ -65,9 +65,6 @@ run kteatime &
 killall xbindkeys
 run xbindkeys &
 
-killall alttab
-run alttab &
-
 # Sound Tray Icons
 killall pasystray
 run pasystray &
