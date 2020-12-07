@@ -113,8 +113,6 @@
 "skippy-xd"
   alt + Tab
 
-
-#
 #####################
 
 "alacritty --hold -t CF:Show -e xbindkeys --show" 

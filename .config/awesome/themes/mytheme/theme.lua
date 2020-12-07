@@ -456,11 +456,11 @@ function theme.at_screen_connect(s)
     }
 
     -- theme.bg_systray = xres.warning_bg_color
-    theme.systray_icon_spacing = dpi(3)
+    theme.systray_icon_spacing = dpi(2)
 
     local systray = wibox.widget.systray()
-    systray:set_base_size(dpi(18))
-    local systrayWidget = wibox.layout.margin(systray, dpi(3), dpi(2), dpi(5), dpi(2))    
+    -- systray:set_base_size(dpi(18))
+    local systrayWidget = wibox.layout.margin(systray, dpi(5), dpi(5), dpi(2), dpi(2))    
 
     local screen1widgets = {
         -- Right widgets

@@ -442,7 +442,7 @@ git config --global core.editor $(which code)
 git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
 
 # nodejs tools for editors
-sudo npm install -g neovim eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify
+sudo npm install -g neovim eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
 errorCheck "install required nodejs-tools"
 
 sudo systemctl enable libvirtd.service

@@ -1053,12 +1053,10 @@ awful.rules.rules = {
         rule_any = {
             instance = {},
             class = {
-                "spotify",
                 "inkscape",
                 "VirtualBox Machine",
                 "Vlc"
             },
-            name = {},
             role = {}
         },
         properties = {
@@ -1120,22 +1118,36 @@ awful.rules.rules = {
         }
     },
     -- Special applications mappings
-
-    -- Set applications to always map on the tag 3 (Git)) on screen 1.
     {
         rule_any = {
-            name = {
-                ".*Git Extensions"
+            class = {
+                "Pavucontrol"
             }
         },
         properties = {
-            screen = 1,
+            screen = 2,
+            tag = awful.util.tagnames[3],
+            ontop = true,
+            switchtotag = true,
+            maximized = false,
+            floating = true
+        }
+    },
+    {
+        rule_any = {
+            class = {
+                "Spotify"
+            }
+        },
+        properties = {
+            screen = 2,
             tag = awful.util.tagnames[3],
             switchtotag = true,
             maximized = true,
             floating = false
         }
     },
+
     -- Set applications to always map on the tag 5 (Virtual/RDP) on screen 1.
     {
         rule_any = {
