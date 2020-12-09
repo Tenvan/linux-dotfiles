@@ -125,7 +125,7 @@ colors() {
 complete -cf sudo
 
 ### SET VI MODE IN BASH SHELL
-# set -o vi
+set -o vi
 
 ### BASH POWERLINE ###
 if [ -f ~/Scripts/bash-powerline.sh ]; then

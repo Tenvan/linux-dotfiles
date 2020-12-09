@@ -25,6 +25,9 @@ errorCheck() {
         exit $retVal
     fi
 }
+# Prompt installieren
+curl -fsSL https://starship.rs/install.sh | bash
+eval "$(starship init bash)"
 
 # Yay installieren
 sudo pacman -S --noconfirm --needed yay

@@ -6,4 +6,6 @@ else
 fi
 }
 
-PROMPT_COMMAND=prompt
+# PROMPT_COMMAND=prompt
+
+eval "$(starship init bash)"
