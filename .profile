@@ -10,7 +10,7 @@ export SCRIPTS="$HOME/.scripts"
 # fix "xdg-open fork-bomb" export your preferred browser from here
 # export BROWSER=$(which firefox-developer-edition)
 
-[ -r "$HOME/.profile-custom" ] && source "$HOME/.profile-custom"
+test -f "$HOME/.profile-custom" && source "$HOME/.profile-custom"
 
 # Some Vars settings in '.profile.custom':
 # export WORK_DIR=<Work Folder>

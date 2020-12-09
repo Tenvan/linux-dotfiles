@@ -15,9 +15,9 @@
 !.vscode/*
 
 # Ausnahmen Script Folder
-!Scripts
-!Scripts/*
-!Scripts/menu/*
+!.scripts
+!.scripts/*
+!.scripts/**/*
 
 # SpaceVim configs
 !.SpaceVim.d

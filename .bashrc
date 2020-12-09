@@ -3,6 +3,8 @@
 #
 echo "run: .bashrc"
 
+export SCRIPTS="$HOME/.scripts"
+
 test -f "$SCRIPTS/defs.sh" && source "$SCRIPTS/defs.sh"
 
 #Ibus settings if you need them
