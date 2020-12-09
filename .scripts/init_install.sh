@@ -8,16 +8,6 @@ PKG_FILE=pkg_to_install.txt
 
 MAKEFLAGS="-j$(nproc)"
 
-IS_MANJARO=false
-IS_ARCO=false
-if [[ "$LINUX_VERSION_NAME" == *"Manjaro"* ]]; then
-    IS_MANJARO=true
-fi
-
-if [[ "$LINUX_VERSION_NAME" == *"ArcoLinux"* ]]; then
-    IS_ARCO=true
-fi
-
 errorCheck() {
     retVal=$?
     if [ $retVal -ne 0 ]; then
@@ -25,6 +15,7 @@ errorCheck() {
         exit $retVal
     fi
 }
+
 # Prompt installieren
 curl -fsSL https://starship.rs/install.sh | bash
 eval "$(starship init bash)"
@@ -33,14 +24,8 @@ eval "$(starship init bash)"
 sudo pacman -S --noconfirm --needed yay
 
 # Manjaro
-if $IS_MANJARO == true; then
-    yay -S $YAY_ALL pamac-tray-appindicator pamac-flatpak-plugin pamac-snap-plugin
-fi
+yay -S $YAY_ALL pamac-tray-appindicator pamac-flatpak-plugin pamac-snap-plugin
 
-# ArcoLinux
-if $IS_ARCO == true; then
-    yay -S --noconfirm $YAY_ALL pamac-all
-fi
 errorCheck "installation yay/pamac"
 
 # Rust repaprieren/installieren
@@ -85,4 +70,4 @@ sudo mkinitcpio -P
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 errorCheck "grub config"
 
-chmod -R -v +xrw ~/Scripts
+chmod -R -v +xrw ~/.scripts

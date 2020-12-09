@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source $HOME/Scripts/defs.sh
+sh $SCRIPTS/defs.sh
 
 #####################
 # init distro check #
@@ -62,6 +62,7 @@ inst iptraf-ng
 inst s-tui
 inst shell-color-scripts
 inst powerline-rs
+inst starship
 inst find-the-command
 inst hstr
 inst qfc-git
@@ -70,24 +71,15 @@ inst multitail
 inst openconnect
 
 # Manjaro
-if $IS_MANJARO == true; then
-    # manjaro only packages
-    inst lightdm-gtk-greeter-settings
-    inst manjaro-settings-samba
-    inst manjaro-pulse
+# manjaro only packages
+inst lightdm-gtk-greeter-settings
+inst manjaro-settings-samba
+inst manjaro-pulse
 
-    # gimicks
-    inst cmatrix
-    inst hollywood
-    inst cowsay
-fi
-
-# ArcoLinux
-if $IS_ARCO == true; then
-    # arco only packages
-    inst arcolinux-lightdm-gtk-greeter-settings
-    inst arcolinux-termite-themes-git
-fi
+# gimicks
+inst cmatrix
+inst hollywood
+inst cowsay
 
 ##########################
 # Base Development Tools #
@@ -113,11 +105,9 @@ inst jdk-openjdk
 # Unter ArcoLinux TweakTool verwenden. #
 ########################################
 
-if $IS_MANJARO == true; then
-    inst dmenu-manjaro
-    # current used settings
-    inst manjaro-cinnamon-settings
-fi
+inst dmenu-manjaro
+# current used settings
+inst manjaro-cinnamon-settings
 
 # awesome packages
 inst awesome
@@ -177,12 +167,6 @@ inst gnome-menu-editor-qt
 # polkits
 inst polkit-gnome
 uninst polkit-kde-agent
-
-# Multi Monitor Lock and QT-Logout
-if $IS_ARCO == true; then
-    inst arcolinux-betterlockscreen-git arcolinux-logout-git arcolinux-logout-themes-git
-    uninst arcolinux-openbox-git arcolinux-i3wm-git
-fi
 
 inst xscreensaver
 inst qt-logout
@@ -265,17 +249,9 @@ inst freerdp
 inst virtualbox
 inst virtualbox-ext-oracle
 
-if $IS_ARCO == true; then
-    echo Install ArcoLinux Virtualbox
-    inst virtualbox-host-modules-arch
-    inst linux-headers
-fi
-
-if $IS_MANJARO == true; then
-    echo Install Manjaro Virtualbox
-    inst linux$(uname -r | cut -f 1-2 -d '.' | tr -d '.')-headers
-    inst linux$(uname -r | cut -f 1-2 -d '.' | tr -d '.')-virtualbox-host-modules
-fi
+echo "Install Manjaro Virtualbox"
+inst linux$(uname -r | cut -f 1-2 -d '.' | tr -d '.')-headers
+inst linux$(uname -r | cut -f 1-2 -d '.' | tr -d '.')-virtualbox-host-modules
 
 # libvirt service and manager
 inst virt-manager
@@ -319,49 +295,35 @@ inst python-pytest
 ###############################################
 # install wallpapers, themes, icons and fonts #
 ###############################################
-if $IS_ARCO == true; then
-    # wallpapers
-    inst arcolinux-wallpapers-git
-    inst arcolinux-wallpapers-lxqt-dual-git
+inst artwork-i3
+inst manjaro-artwork
+inst manjaro-artwork-extra
+inst manjaro-users-artwork-wallpapers
+inst manjaro-backgrounds
+inst awesome-wallpapers
+inst cinnamon-wallpapers
+inst illyria-wallpaper
 
-    # themes
-    inst arcolinux-arc-themes-nico-git
+# themes
+inst arc-themes-breath
+inst arc-themes-maia
+inst arc-themes-solid-breath
+inst arc-themes-solid-maia
 
-    uninst maia-icon-theme
-    uninst moka-icon-theme
-fi
+# icons
+#inst breeze-maia-icon-themes
+inst manjaro-artwork-icons
+inst papirus-maia-icon-theme
+inst vertex-maia-icon-theme
+#inst arc-maia-icon-theme
+inst breath-icon-theme
+inst breath2-icon-themes
+# cursor
 
-if $IS_MANJARO == true; then
-    inst artwork-i3
-    inst manjaro-artwork
-    inst manjaro-artwork-extra
-    inst manjaro-users-artwork-wallpapers
-    inst manjaro-backgrounds
-    inst awesome-wallpapers
-    inst cinnamon-wallpapers
-    inst illyria-wallpaper
-
-    # themes
-    inst arc-themes-breath
-    inst arc-themes-maia
-    inst arc-themes-solid-breath
-    inst arc-themes-solid-maia
-
-    # icons
-    #inst breeze-maia-icon-themes
-    inst manjaro-artwork-icons
-    inst papirus-maia-icon-theme
-    inst vertex-maia-icon-theme
-    #inst arc-maia-icon-theme
-    inst breath-icon-theme
-    inst breath2-icon-themes
-    # cursor
-
-    # inst bibata-extra-cursor-git
-    inst bibata-extra-cursor-theme
-    inst bibata-cursor-theme-bin
-    inst bibata-cursor-translucent
-fi
+# inst bibata-extra-cursor-git
+inst bibata-extra-cursor-theme
+inst bibata-cursor-theme-bin
+inst bibata-cursor-translucent
 
 # themes
 inst arc-gtk-theme

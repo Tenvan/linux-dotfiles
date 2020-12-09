@@ -18,7 +18,7 @@ select_application() {
         --print-column=2 \
         --hide-column=2 \
         --hide-header \
-        "🧩 Install Applications" "$myTerminal --hold -d 140 44 -t Sys:Install -e $timeCmd sh $HOME/Scripts/install_all.sh" \
+        "🧩 Install Applications" "$myTerminal --hold -d 140 44 -t Sys:Install -e $timeCmd sh $SCRIPTS/install_all.sh" \
         "🧩 Install Updates" "$myTerminal --hold -d 140 44 -t Sys:Upall -e $timeCmd yay -Syu --noconfirm" \
         "🪣 Cleanup Installs" "$myTerminal --hold -d 140 44 -t Sys:Cleanup -e $timeCmd sudo pacman -Rns $(pacman -Qtdq)" \
         "🌍 Browser" "$myBrowser" \

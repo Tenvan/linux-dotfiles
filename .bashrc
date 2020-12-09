@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #
 # ~/.bashrc
 #
@@ -6,13 +7,6 @@ echo "run: .bashrc"
 export SCRIPTS="$HOME/.scripts"
 
 test -f "$SCRIPTS/defs.sh" && source "$SCRIPTS/defs.sh"
-
-#Ibus settings if you need them
-#type ibus-setup in terminal to change settings and start the daemon
-#delete the hashtags of the next lines and restart
-#export GTK_IM_MODULE=ibus
-#export XMODIFIERS=@im=dbus
-#export QT_IM_MODULE=ibus
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -30,25 +24,6 @@ test -d "$HOME/.emacs.d/bin" && PATH="$HOME/.emacs.d/bin:$PATH"
 bind "set completion-ignore-case on"
 
 test -f ~/.aliasrc && source ~/.aliasrc
-
-#Cleanup orphaned packages
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
-
-#get fastest mirrors in your neighborhood
-# ArcoLinux
-if $IS_ARCO == true; then
-  alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-  alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-  alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-  alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
-fi
-
-# Manjaro
-if $IS_MANJARO == true; then
-  alias mirror="sudo pacman-mirrors -i"
-  alias mirrord="sudo pacman-mirrors -c Germany"
-  alias mirrors="sudo pacman-mirrors -a"
-fi
 
 #shopt
 shopt -s autocd  # change to named directory
@@ -89,7 +64,7 @@ if [ "$TERM" = "linux" ]; then
   for i in $(sed -n "$_SEDCMD" $HOME/.Xresources | awk '$1 < 16 {printf "\\e]P%X%s", $1, $2}'); do
     echo -en "$i"
   done
-  clear
+  # clear
 fi
 
 ### COLOR SCRIPTS ###
@@ -97,7 +72,7 @@ test -f /opt/shell-color-scripts/colorscript.sh && /opt/shell-color-scripts/colo
 test -f /opt/shell-color-scripts/colorscript.sh && /opt/shell-color-scripts/colorscript.sh -e 23
 
 colors() {
-  clear
+  # clear
   # /opt/shell-color-scripts/colorscript.sh -e 34
   echo Script 1
   test -f /opt/shell-color-scripts/colorscript.sh && /opt/shell-color-scripts/colorscript.sh -e 1
@@ -119,10 +94,7 @@ complete -cf sudo
 set -o vi
 
 ### BASH POWERLINE ###
-test -f $SCRIPTS/bash-powerline.sh && source $SCRIPTS/bash-powerline.sh
-
-### BROOT ###
-test -f ~/.config/broot/launcher/bash/br && source ~/.config/broot/launcher/bash/br
+eval "$(starship init bash)"
 
 ### BASH INSULTER ###
 test -f /usr/share/doc/find-the-command/ftc.bash && source /usr/share/doc/find-the-command/ftc.bash

@@ -25,16 +25,16 @@ get_config_list() {
            "📑 x-files" "$filesEdit $HOME/.x* $HOME/.X*" \
            "📑 bash" "$filesEdit $HOME/.bashrc*" \
            "📑 profile" "$filesEdit $HOME/.profile*" \
-           "📑 scripts autostart" "$filesEdit $HOME/Scripts/autostart*.sh" \
-           "📑 scripts install" "$filesEdit $HOME/Scripts/install_all.sh $HOME/Scripts/init_install.sh" \
-           "📑 scripts ldap" "$filesEdit $HOME/Scripts/ldap/*.sh" \
-           "📁 scripts dir" "$folderEdit $HOME/Scripts" \
-           "📁 menu dir" "$folderEdit $HOME/Scripts/menu" \
+           "📑 scripts autostart" "$filesEdit $SCRIPTS/autostart*.sh" \
+           "📑 scripts install" "$filesEdit $SCRIPTS/install_all.sh $SCRIPTS/init_install.sh" \
+           "📑 scripts ldap" "$filesEdit $SCRIPTS/ldap/*.sh" \
+           "📁 scripts dir" "$folderEdit $SCRIPTS" \
+           "📁 menu dir" "$folderEdit $SCRIPTS/menu" \
            "📑 ranger" "$filesEdit $HOME/.config/ranger/*.sh $HOME/.config/ranger/*.conf" \
            "📁 broot dir" "$folderEdit $HOME/.config/broot" \
            "📁 picom dir" "$folderEdit  $HOME/.config/picom" \
            "📑 polybar" "$filesEdit $HOME/.config/polybar/*.ini $HOME/.config/polybar/*.sh" \
-           "📑 termite" "$filesEdit $HOME/.config/termite/config" \
+           "☄ starship" "$filesEdit $HOME/.config/starship.toml" \
            "📑 alacritty" "$filesEdit $HOME/.config/alacritty/alacritty.yml"  \
            "📑 themes" "$filesEdit $HOME/.Xresources* $HOME/.gtkrc-2.0 $HOME/.config/gtk-3.0/* $HOME/.config/gtk-4.0 $HOME/.config/qt5ct/* $HOME/.config/fontconfig/*" \
            "📑 gitignoree" "$filesEdit $HOME/.gitignore"

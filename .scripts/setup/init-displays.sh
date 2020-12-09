@@ -4,7 +4,7 @@
 # set -v
 # set -e
 
-source $HOME/Scripts/defs.sh
+sh $SCRIPTS/defs.sh
 
 get_config_list() {
   mmonitors=("${@}")

@@ -1,0 +1,154 @@
+# Don't print a new line at the start of the prompt
+add_newline = true
+
+# Use custom format
+format = """
+[┌─────────────────────────────────────────────────────────>](bold blue)
+[│](bold blue)$time\
+$hostname\
+$username\
+$shlvl\
+[│](bold blue)$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$hg_branch\
+$docker_context\
+$cmake\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$julia\
+$nim\
+$ocaml\
+$perl\
+$php\
+$purescript\
+$python\
+$ruby\
+$rust\
+$swift\
+$terraform\
+$zig\
+$conda\
+$memory_usage\
+$openstack\
+$env_var\
+$crystal\
+$cmd_duration\
+$custom\
+$line_break\
+$lua\
+$jobs\
+$battery\
+$dotnet\
+[│](bold blue)$package\
+$nodejs\
+$status\
+\n[└─>](bold blue)
+$character\
+"""
+
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character]                            # The name of the module we are configuring is "character"
+success_symbol = "[➜](bold green):"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+error_symbol = "[✗](bold red):"
+
+[cmd_duration]
+min_time = 100
+format = "duration [$duration](bold yellow)"
+show_notifications=true
+
+[directory]
+format="[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 8
+# truncation_symbol = "…/"
+truncate_to_repo=true
+
+[docker_context]
+# disabled=true
+format = "\\[Docker [🐋 $context](blue bold)\\]"
+
+[dotnet]
+disabled=false
+symbol = "🥅 "
+style = "green"
+heuristic = false
+
+[git_branch]
+# symbol = "🌱 "
+always_show_remote=true
+format="on [$symbol$branch]($style) "
+
+[git_commit]
+disabled=false
+commit_hash_length = 8
+tag_symbol = "🔖 "
+
+[git_state]
+disabled=false
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = "[🍒 PICKING](bold red)"
+
+[git_status]
+conflicted = "🏳 "
+ahead = "🏎💨 "
+behind = "😰 "
+diverged = "😵 "
+untracked = "🤷‍ "
+stashed = "📦 "
+modified = "📝 "
+staged = '[++\($count\)](green)'
+renamed = "👅 "
+deleted = "🗑 "
+
+[memory_usage]
+disabled=false
+threshold=-1
+# symbol=" "
+style="bold dimmed green"
+
+[nodejs]
+format = "\\[NodeJS [🤖 $version](bold green)\\] "
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled=false
+display_private=true
+# format = "via [🎁 $version](208 bold) "
+
+[shlvl]
+disabled=false
+format="$shlvl level(s) down:"
+threshold = 3
+
+[status]
+disabled=false
+style="bg:blue"
+symbol="💣 "
+format='[\[$symbol$status\]]($style) '
+
+[time]
+disabled = false
+format = '🕙[\[ $time \]]($style) '
+time_format = "%T"
+# utc_time_offset = "-5"
+# time_range = "10:00:00-18:00:00"
+
+[hostname]
+ssh_only = false
+format =  "on [$hostname](bold red) "
+trim_at = ".companyname.com"
+disabled = false
+
+[username]
+style_user = "white bold"
+style_root = "black bold"
+format = "user: [$user]($style)\n"
+disabled = false
+show_always = true

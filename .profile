@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 echo "run: .profile"
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
