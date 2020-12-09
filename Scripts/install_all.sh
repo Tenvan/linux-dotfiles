@@ -21,11 +21,11 @@ errorCheck() {
 }
 
 inst() {
-    echo $1 >> $PKG_FILE
+    echo $1 >>$PKG_FILE
 }
 
 uninst() {
-    echo $1 >> $PKG_UNINST_FILE
+    echo $1 >>$PKG_UNINST_FILE
 }
 
 rm -f $PKG_FILE
@@ -154,7 +154,6 @@ inst python2-distutils-extra
 inst radiotray
 inst rofi
 inst seahorse
-inst skippy-xd
 inst systemdgenie
 inst time
 inst xautolock
@@ -165,6 +164,7 @@ inst xdotool
 inst xorg-xfd
 inst xsel
 inst zenity
+inst skippy-xd-git
 
 # utilities from gnome
 inst gnome-disk-utility
@@ -180,8 +180,8 @@ uninst polkit-kde-agent
 
 # Multi Monitor Lock and QT-Logout
 if $IS_ARCO == true; then
-  inst arcolinux-betterlockscreen-git arcolinux-logout-git arcolinux-logout-themes-git
-  uninst arcolinux-openbox-git arcolinux-i3wm-git
+    inst arcolinux-betterlockscreen-git arcolinux-logout-git arcolinux-logout-themes-git
+    uninst arcolinux-openbox-git arcolinux-i3wm-git
 fi
 
 inst xscreensaver
@@ -274,7 +274,7 @@ fi
 if $IS_MANJARO == true; then
     echo Install Manjaro Virtualbox
     inst linux$(uname -r | cut -f 1-2 -d '.' | tr -d '.')-headers
-    inst linux$(uname -r | cut -f 1-2 -d '.' | tr -d '.')-virtualbox-host-modules    
+    inst linux$(uname -r | cut -f 1-2 -d '.' | tr -d '.')-virtualbox-host-modules
 fi
 
 # libvirt service and manager
@@ -297,7 +297,8 @@ inst lua-format
 inst neovim
 
 # Atom
-inst atom-editor-bin
+uninst atom-editor-bin
+uninst atom-editor-git
 
 # utils for editors
 inst shellcheck
@@ -418,16 +419,16 @@ inst ttf-weather-icons
 #################################
 # install all (needed) packages #
 #################################
-yay -S $YAY_ALL - < $PKG_FILE
+yay -S $YAY_ALL - <$PKG_FILE
 errorCheck "install packages"
 
 ###############################
 # uninstall unneeded packages #
 ###############################
-yay -R --noconfirm - < $PKG_UNINST_FILE
+yay -R --noconfirm - <$PKG_UNINST_FILE
 
 ## FINISHING #
-  
+
 # Git config for meld
 git config --global diff.tool code
 git config --global difftool.code.cmd "$(which code) --wait --diff \"\$LOCAL\" \"\$BASE\" \"\$REMOTE\""
