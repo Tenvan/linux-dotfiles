@@ -376,8 +376,6 @@ awful.screen.connect_for_each_screen(
         gdebug.dump(s)
 
         beautiful.at_screen_connect(s)
-        s.systray = wibox.widget.systray()
-        s.systray.visible = true
     end
 )
 -- }}}
@@ -1378,5 +1376,5 @@ client.connect_signal(
 -- }}}
 
 -- Autostart applications
-awful.spawn.with_shell("sh ~/Scripts/autostart-global.sh")
-awful.spawn.with_shell("sh ~/Scripts/autostart-awesome.sh")
+awful.spawn.with_shell("sh $SCRIPTS/autostart-global.sh")
+awful.spawn.with_shell("sh $SCRIPTS/autostart-awesome.sh")

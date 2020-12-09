@@ -3,7 +3,7 @@
 #
 echo "run: .bashrc"
 
-source $HOME/Scripts/defs.sh
+test -f "$SCRIPTS/defs.sh" && source "$SCRIPTS/defs.sh"
 
 #Ibus settings if you need them
 #type ibus-setup in terminal to change settings and start the daemon
@@ -19,26 +19,15 @@ export HISTCONTROL=ignoreboth:erasedups
 
 PS1='[\u@\h \W]\$ '
 
-if [ -d "$HOME/.bin" ]; then
-  PATH="$HOME/.bin:$PATH"
-fi
-
-if [ -d "$HOME/.local/bin" ]; then
-  PATH="$HOME/.local/bin:$PATH"
-fi
-
-if [ -d "$HOME/.doom.d/bin" ]; then
-  PATH="$HOME/.doom.d/bin:$PATH"
-fi
-
-if [ -d "$HOME/.emacs.d/bin" ]; then
-  PATH="$HOME/.emacs.d/bin:$PATH"
-fi
+test -d "$HOME/.bin" && PATH="$HOME/.bin:$PATH"
+test -d "$HOME/.local/bin" && PATH="$HOME/.local/bin:$PATH"
+test -d "$HOME/.doom.d/bin" && PATH="$HOME/.doom.d/bin:$PATH"
+test -d "$HOME/.emacs.d/bin" && PATH="$HOME/.emacs.d/bin:$PATH"
 
 #ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
 
-source ~/.aliasrc
+test -f ~/.aliasrc && source ~/.aliasrc
 
 #Cleanup orphaned packages
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
@@ -128,24 +117,16 @@ complete -cf sudo
 set -o vi
 
 ### BASH POWERLINE ###
-if [ -f ~/Scripts/bash-powerline.sh ]; then
-  source ~/Scripts/bash-powerline.sh
-fi
+test -f $SCRIPTS/bash-powerline.sh && source $SCRIPTS/bash-powerline.sh
 
 ### BROOT ###
-if [ -f ~/.config/broot/launcher/bash/br ]; then
-  source ~/.config/broot/launcher/bash/br
-fi
+test -f ~/.config/broot/launcher/bash/br && source ~/.config/broot/launcher/bash/br
 
 ### BASH INSULTER ###
-if [ -f /usr/share/doc/find-the-command/ftc.bash ]; then
-  source /usr/share/doc/find-the-command/ftc.bash
-fi
+test -f /usr/share/doc/find-the-command/ftc.bash && source /usr/share/doc/find-the-command/ftc.bash
 
 ## QFC Quick Complete (Ctrl-f)
-if [ -f /usr/share/qfc/qfc.sh ]; then
-  source /usr/share/qfc/qfc.sh
-fi
+test -f /usr/share/qfc/qfc.sh && source /usr/share/qfc/qfc.sh
 
 # HSTR configuration - add this to ~/.bashrc
 alias hh=hstr                   # hh to be alias for hstr
@@ -168,13 +149,9 @@ if [[ $- =~ .*i.* ]]; then
   bind '"\C-xk": "\C-a hstr -k \C-j"'
 fi
 
-[[ -f ~/.bashrc-personal.sh ]] && . ~/.bashrc-personal.sh
+test -f ~/.bashrc-personal.sh && . ~/.bashrc-personal.sh
 
-if test -f "/usr/bin/neofetch"; then
-  neofetch
-fi
+test -f "/usr/bin/neofetch" && neofetch
 
 # add android sdk path, if installed
-if [ -d "$HOME/Android/Sdk/tools" ] ; then 
-  PATH="$HOME/Android/Sdk/tools:$PATH"
-fi
+test -d "$HOME/Android/Sdk/tools" && PATH="$HOME/Android/Sdk/tools:$PATH"

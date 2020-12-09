@@ -151,6 +151,13 @@ theme.widget_task = theme.dir .. "/icons/task.png"
 theme.widget_scissors = theme.dir .. "/icons/scissors.png"
 theme.widget_weather = theme.dir .. "/icons/dish.png"
 
+-- Separators
+-- local widget_seperator = wibox.container.margin(nil, theme.margins_width, theme.margins_width) -- wibox.container.textbox()
+local widget_seperator =
+    wibox.container.background(wibox.container.margin(nil, dpi(1)), theme.bg_focus)
+
+local widget_bg_color = theme.bg_color
+
 theme.titlebar_close_button_focus = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal = theme.dir .. "/icons/titlebar/close_normal.png"
 theme.titlebar_ontop_button_focus_active = theme.dir .. "/icons/titlebar/ontop_focus_active.png"
@@ -171,7 +178,6 @@ theme.titlebar_maximized_button_focus_inactive = theme.dir .. "/icons/titlebar/m
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
 
 local markup = lain.util.markup
-local separators = lain.util.separators
 
 -- Textclock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
@@ -284,7 +290,7 @@ vicious.register(memwidget, vicious.widgets.mem, "$1% ($2MiB/$3MiB)", 7)
 -- Graph
 local graph_mem = wibox.widget.graph()
 graph_mem:set_width(100)
-graph_mem:set_background_color(accent_color1)
+graph_mem:set_background_color(widget_bg_color)
 graph_mem:set_color(
     {
         type = "linear",
@@ -303,7 +309,7 @@ vicious.cache(vicious.widgets.cpu)
 
 local cpuHistogrammWidget = wibox.widget.graph()
 cpuHistogrammWidget:set_width(100)
-cpuHistogrammWidget:set_background_color(accent_color1)
+cpuHistogrammWidget:set_background_color(widget_bg_color)
 cpuHistogrammWidget:set_color {
     type = "linear",
     from = {0, 0},
@@ -427,28 +433,15 @@ vicious.cache(vicious.widgets.uptime)
 local upTime = wibox.widget.textbox()
 vicious.register(upTime, vicious.widgets.uptime, "Up: $1d $2h $3m", 60)
 
--- Separators
-local arrowl = separators.arrow_left
-local arrowr = separators.arrow_right
-
 function theme.at_screen_connect(s)
     local screen1LeftWidges = {
         layout = wibox.layout.fixed.horizontal,
-        wibox.container.background(
-            wibox.container.margin(upTime, theme.margins_width, theme.margins_width),
-            accent_color2
-        ),
-        arrowr(accent_color2, accent_color1),
-        wibox.container.background(
-            wibox.container.margin(sysOs, theme.margins_width, theme.margins_width),
-            accent_color1
-        ),
-        arrowr(accent_color1, accent_color2),
-        wibox.container.background(
-            wibox.container.margin(sysHost, theme.margins_width, theme.margins_width),
-            accent_color2
-        ),
-        arrowr(accent_color2, "alpha")
+        wibox.container.background(wibox.container.margin(upTime, theme.margins_width, theme.margins_width)),
+        widget_seperator,
+        wibox.container.background(wibox.container.margin(sysOs, theme.margins_width, theme.margins_width)),
+        widget_seperator,
+        wibox.container.background(wibox.container.margin(sysHost, theme.margins_width, theme.margins_width)),
+        widget_seperator
     }
 
     local screen2LeftWidges = {
@@ -460,110 +453,72 @@ function theme.at_screen_connect(s)
 
     local systray = wibox.widget.systray()
     -- systray:set_base_size(dpi(18))
-    local systrayWidget = wibox.layout.margin(systray, dpi(5), dpi(5), dpi(2), dpi(2))    
+    local systrayWidget = wibox.layout.margin(systray, dpi(5), dpi(5), dpi(2), dpi(2))
 
     local screen1widgets = {
         -- Right widgets
         layout = wibox.layout.fixed.horizontal,
-        -- using separators
-        -- arrow("alpha", accent_color2),
-        -- arrow(accent_color1, accent_color2),
-        -- arrow(accent_color2, accent_color1),
-        arrowl("alpha", accent_color1),
+        widget_seperator,
         wibox.container.background(
             wibox.container.margin(
                 wibox.widget {nil, neticon, net.widget, layout = wibox.layout.align.horizontal},
                 theme.margins_width,
                 theme.margins_width
-            ),
-            accent_color1
+            )
         ),
-        arrowl(accent_color1, accent_color2),
+        widget_seperator,
         wibox.container.background(
-            wibox.container.margin(cpuKernelGridWidget, theme.margins_width, theme.margins_width),
-            accent_color2
+            wibox.container.margin(cpuKernelGridWidget, theme.margins_width, theme.margins_width)
         ),
-        arrowl(accent_color2, accent_color1),
-        wibox.container.background(wibox.container.margin(cpuHistogrammWidget), accent_color1),
-        arrowl(accent_color1, accent_color2),
+        widget_seperator,
+        wibox.container.background(wibox.container.margin(cpuHistogrammWidget)),
+        widget_seperator,
         wibox.container.background(
             wibox.container.margin(
                 wibox.widget {volicon, theme.volume.widget, layout = wibox.layout.align.horizontal},
                 theme.margins_width,
                 theme.margins_width
-            ),
-            accent_color2
+            )
         ),
-        arrowl(accent_color2, accent_color1),
-        wibox.container.background(
-            wibox.container.margin(datewidget, theme.margins_width, theme.margins_width),
-            accent_color1
-        ),
-        arrowl(accent_color1, "alpha"),
+        widget_seperator,
+        wibox.container.background(wibox.container.margin(datewidget, theme.margins_width, theme.margins_width)),
+        widget_seperator,
         systrayWidget
     }
 
     local screen2RightWidgets = {
         -- Right widgets
         layout = wibox.layout.fixed.horizontal,
-        -- using separators
-        -- arrow("alpha", accent_color2),
-        -- arrow(accent_color1, accent_color2),
-        -- arrow(accent_color2, accent_color1),
-        arrowl("alpha", accent_color2),
-        wibox.container.background(
-            wibox.container.margin(fsRootWidget, theme.margins_width, theme.margins_width),
-            accent_color2
-        ),
-        arrowl(accent_color2, accent_color1),
-        wibox.container.background(
-            wibox.container.margin(fsWorkspaceWidget, theme.margins_width, theme.margins_width),
-            accent_color1
-        ),
-        arrowl(accent_color1, accent_color2),
-        wibox.container.background(
-            wibox.container.margin(fsBidataWidget, theme.margins_width, theme.margins_width),
-            accent_color2
-        ),
-        arrowl(accent_color2, accent_color1),
-        wibox.container.background(
-            wibox.container.margin(fsVmWidget, theme.margins_width, theme.margins_width),
-            accent_color1
-        ),
-        arrowl(accent_color1, accent_color2),
-        wibox.container.background(
-            wibox.container.margin(memwidget, theme.margins_width, theme.margins_width),
-            accent_color2
-        ),
-        arrowl(accent_color2, accent_color1),
-        wibox.container.background(
-            wibox.container.margin(graph_mem, theme.margins_width, theme.margins_width),
-            accent_color1
-        ),
-        arrowl(accent_color1, accent_color2),
+        widget_seperator,
+        wibox.container.background(wibox.container.margin(fsRootWidget, theme.margins_width, theme.margins_width)),
+        widget_seperator,
+        wibox.container.background(wibox.container.margin(fsWorkspaceWidget, theme.margins_width, theme.margins_width)),
+        widget_seperator,
+        wibox.container.background(wibox.container.margin(fsBidataWidget, theme.margins_width, theme.margins_width)),
+        widget_seperator,
+        wibox.container.background(wibox.container.margin(fsVmWidget, theme.margins_width, theme.margins_width)),
+        widget_seperator,
+        wibox.container.background(wibox.container.margin(memwidget, theme.margins_width, theme.margins_width)),
+        widget_seperator,
+        wibox.container.background(wibox.container.margin(graph_mem, theme.margins_width, theme.margins_width)),
+        widget_seperator,
         wibox.container.background(
             wibox.container.margin(
                 wibox.widget {tempicon, temp.widget, layout = wibox.layout.align.horizontal},
                 theme.margins_width,
                 theme.margins_width
-            ),
-            accent_color2
+            )
         ),
-        arrowl(accent_color2, accent_color1),
+        widget_seperator,
         wibox.container.background(
             wibox.container.margin(
                 wibox.widget {volicon, theme.volume.widget, layout = wibox.layout.align.horizontal},
                 theme.margins_width,
                 theme.margins_width
-            ),
-            accent_color1
+            )
         ),
-        arrowl(accent_color1, accent_color2),
-        wibox.container.background(
-            wibox.container.margin(datewidget, theme.margins_width, theme.margins_width * 2),
-            accent_color2
-        )
-        -- arrow(accent_color1, "alpha"),
+        widget_seperator,
+        wibox.container.background(wibox.container.margin(datewidget, theme.margins_width, theme.margins_width * 2))
     }
 
     -- Quake application

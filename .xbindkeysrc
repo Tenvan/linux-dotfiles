@@ -41,24 +41,24 @@
 # Menu Hotkeys
 
 # Application Menü
-"sh $HOME/Scripts/menu/app-menu.sh" 
+"sh $SCRIPTS/menu/app-menu.sh" 
   mod4 + a
 
 # Developer Menü
-"sh $HOME/Scripts/menu/develop-menu.sh" 
+"sh $SCRIPTS/menu/develop-menu.sh" 
   mod4 + d
 
 # Edit Configurations Menü
-"sh $HOME/Scripts/menu/edit-configs.sh" 
+"sh $SCRIPTS/menu/edit-configs.sh" 
   mod4 + e
 #
 
 # System Monitors Menü
-"sh $HOME/Scripts/menu/system-monitor.sh" 
+"sh $SCRIPTS/menu/system-monitor.sh" 
   mod4 + m
 
 # System Logout Menü
-"sh $HOME/Scripts/menu/system-menu.sh" 
+"sh $SCRIPTS/menu/system-menu.sh" 
   mod4 + p
 
 # Bitwarden Menü
@@ -102,11 +102,11 @@
   mod4 + F8
 
 # Rofi Default Menü
-"sh $HOME/Scripts/menu/rofi.sh -show combi"
+"sh $SCRIPTS/menu/rofi.sh -show combi"
   mod4 + z
 
 # Rofi Run Menü
-"sh $HOME/Scripts/menu/rofi.sh -show run"
+"sh $SCRIPTS/menu/rofi.sh -show run"
   mod4 + shift + z
 
 # Skippy Toggle
@@ -147,7 +147,7 @@
   Control + mod4 + x
 
 # Toggle Picom
-"sh $HOME/Scripts/picom-toggle-awesome.sh" 
+"sh $SCRIPTS/picom-toggle-awesome.sh" 
   mod4 + t
 
 # Logout

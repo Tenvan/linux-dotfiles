@@ -5,6 +5,11 @@
   <option name="enable_application_indicator_support" value="false"/>
   <!-- valid options are 'appindicator', 'systray' and 'chooser' -->
   <option name="gui_engine" value="systray"/>
-  <option name="active_plugins"><item>Notifications</item><item>History</item><item>Sleep Timer</item></option>
+  <option name="active_plugins">
+    <item>Notifications</item>
+    <item>History</item>
+    <item>Sleep Timer</item>
+  </option>
   <option name="buffer_size" value="164000"/>
-<option name="last_station" value="1Live"/></config>
+  <option name="last_station" value="Radio Hochstift"/>
+</config>
