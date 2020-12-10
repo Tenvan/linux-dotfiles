@@ -75,8 +75,8 @@ theme.border_normal = xres.wm_border_unfocused_color
 theme.border_focus = xres.wm_border_focused_color
 theme.border_marked = accent_color3
 
-theme.bg_normal = xres.header_button_bg_color
-theme.fg_normal = xres.header_button_fg_color
+theme.bg_normal = xres.bg_color
+theme.fg_normal = xres.fg_color
 theme.bg_focus = xres.wm_border_focused_color
 theme.fg_focus = xres.fg_color
 theme.bg_urgent = xres.warning_bg_color
@@ -157,7 +157,7 @@ theme.widget_weather = theme.dir .. "/icons/dish.png"
 local widget_seperator =
     wibox.container.background(wibox.container.margin(nil, dpi(1)), theme.border_normal)
 
-local widget_bg_color = theme.bg_color
+local widget_bg_color = theme.warning_bg_color
 
 theme.titlebar_close_button_focus = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal = theme.dir .. "/icons/titlebar/close_normal.png"
