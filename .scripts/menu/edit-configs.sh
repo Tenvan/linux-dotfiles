@@ -23,7 +23,7 @@ get_config_list() {
            "📁 config dir" "$folderEdit $HOME/.config" \
            "📁 awesome dir" "$folderEdit $HOME/.config/awesome" \
            "📑 x-files" "$filesEdit $HOME/.x* $HOME/.X*" \
-           "📑 bash" "$filesEdit $HOME/.bashrc*" \
+           "📑 bash" "$filesEdit $HOME/.bashrc* $HOME/.alias*" \
            "📑 profile" "$filesEdit $HOME/.profile*" \
            "📑 scripts autostart" "$filesEdit $SCRIPTS/autostart*.sh" \
            "📑 scripts install" "$filesEdit $SCRIPTS/install_all.sh $SCRIPTS/init_install.sh" \

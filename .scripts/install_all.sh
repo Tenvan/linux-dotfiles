@@ -8,9 +8,10 @@ sh $SCRIPTS/defs.sh
 PKG_FILE=pkg_to_install.txt
 PKG_UNINST_FILE=pkg_to_uninstall.txt
 
-YAY_ALL="--needed --batchinstall --topdown \
-    --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu \
-    --norebuild --noredownload --noprovides --useask --noremovemake"
+YAY_ALL="--needed --batchinstall --topdown --combinedupgrade \
+    --nocleanmenu --devel --nodiffmenu --noeditmenu --noupgrademenu \
+    --norebuild --noredownload --noprovides --pgpfetch \
+    --useask --noremovemake"
 
 errorCheck() {
     retVal=$?
@@ -259,7 +260,8 @@ inst qemu
 inst qemu-arch-extra
 inst libvirt
 
-inst picom-ibhagwan-git
+#inst picom-ibhagwan-git
+inst picom-jonaburg-git
 
 #####################################
 # installation of important editors #
@@ -357,7 +359,7 @@ uninst hicolor-icon-theme
 inst paper-icon-theme
 inst papirus-icon-theme
 inst papirus-icon-theme
-inst sardi-icons
+# inst sardi-icons
 
 # fonts
 inst font-manager
