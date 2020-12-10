@@ -74,18 +74,19 @@ theme.wallpaper = theme.dir .. "/wallpaper.jpg"
 theme.border_normal = xres.wm_border_unfocused_color
 theme.border_focus = xres.wm_border_focused_color
 theme.border_marked = accent_color3
-theme.border_width = dpi(8)
-theme.margins_width = dpi(2)
 
-theme.font_size = xres.font_size
-theme.font = xres.font_family .. theme.font_size
-
-theme.bg_normal = xres.bg_color
-theme.fg_normal = xres.fg_color
+theme.bg_normal = xres.header_button_bg_color
+theme.fg_normal = xres.header_button_fg_color
 theme.bg_focus = xres.wm_border_focused_color
 theme.fg_focus = xres.fg_color
 theme.bg_urgent = xres.warning_bg_color
 theme.fg_urgent = xres.warning_color
+
+theme.border_width = dpi(8)
+theme.margins_width = dpi(5)
+
+theme.font_size = xres.font_size
+theme.font = xres.font_family .. theme.font_size
 
 theme.taglist_font = "Twemoji " .. theme.font_size
 theme.taglist_bg_focus = xres.selected_bg_color
@@ -154,7 +155,7 @@ theme.widget_weather = theme.dir .. "/icons/dish.png"
 -- Separators
 -- local widget_seperator = wibox.container.margin(nil, theme.margins_width, theme.margins_width) -- wibox.container.textbox()
 local widget_seperator =
-    wibox.container.background(wibox.container.margin(nil, dpi(1)), theme.bg_focus)
+    wibox.container.background(wibox.container.margin(nil, dpi(1)), theme.border_normal)
 
 local widget_bg_color = theme.bg_color
 
@@ -406,13 +407,13 @@ local net =
 vicious.cache(vicious.widgets.fs)
 
 local fsRootWidget = wibox.widget.textbox()
-vicious.register(fsRootWidget, vicious.widgets.fs, "/:${/ avail_gb}GB", 61)
 local fsWorkspaceWidget = wibox.widget.textbox()
-vicious.register(fsWorkspaceWidget, vicious.widgets.fs, "WS:${/media/WORKSPACE avail_gb}GB", 61)
-local fsBidataWidget = wibox.widget.textbox()
-vicious.register(fsBidataWidget, vicious.widgets.fs, "BD:${/media/BIGDATA avail_gb}GB", 63)
 local fsVmWidget = wibox.widget.textbox()
+local fsBidataWidget = wibox.widget.textbox()
+vicious.register(fsRootWidget, vicious.widgets.fs, "/:${/ avail_gb}GB", 61)
+vicious.register(fsWorkspaceWidget, vicious.widgets.fs, "WS:${/media/WORKSPACE avail_gb}GB", 61)
 vicious.register(fsVmWidget, vicious.widgets.fs, "VM:${/media/VM avail_gb}GB", 67)
+vicious.register(fsBidataWidget, vicious.widgets.fs, "BD:${/media/BIGDATA avail_gb}GB", 63)
 
 -- System Os
 vicious.cache(vicious.widgets.os)
@@ -494,9 +495,9 @@ function theme.at_screen_connect(s)
         widget_seperator,
         wibox.container.background(wibox.container.margin(fsWorkspaceWidget, theme.margins_width, theme.margins_width)),
         widget_seperator,
-        wibox.container.background(wibox.container.margin(fsBidataWidget, theme.margins_width, theme.margins_width)),
-        widget_seperator,
         wibox.container.background(wibox.container.margin(fsVmWidget, theme.margins_width, theme.margins_width)),
+        widget_seperator,
+        wibox.container.background(wibox.container.margin(fsBidataWidget, theme.margins_width, theme.margins_width)),
         widget_seperator,
         wibox.container.background(wibox.container.margin(memwidget, theme.margins_width, theme.margins_width)),
         widget_seperator,
