@@ -32,7 +32,7 @@ select_application() {
         --print-column=2 \
         --hide-column=2 \
         --hide-header \
-        "🇬 Git" "$folderEdit $WORK_DIR" \
+        "🇬 Git" "gitahead $WORK_DIR" \
         "💽 Yarn quick install" "$shellCmd --hold -t OTC:QuickInstall -e $timeCmd yarn install --ignore-scripts" \
         "💽 Yarn full install" "$shellCmd --hold -t OTC:FullInstall -e $timeCmd yarn" \
         "🏄 Start All" "startAll" \

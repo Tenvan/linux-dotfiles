@@ -89,6 +89,7 @@ inst meld
 inst git
 inst gitflow-avh
 inst github-cli
+inst gitahead-bin
 inst libsecret
 inst nodejs-lts-fermium
 inst nodejs-emojione
