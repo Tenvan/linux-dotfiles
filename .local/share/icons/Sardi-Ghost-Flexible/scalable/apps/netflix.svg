@@ -1,0 +1,7 @@
+<svg width="512" height="512" version="1.1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+ <g transform="matrix(1.8106 0 0 1.8106 -91.631 -98.14)" fill="#ffffff">
+  <path d="m216 80h48v224l-48-8z"/>
+  <path d="m120 80v224l48-8v-216z"/>
+  <path d="m120 80 96 216 48 8-96-224z"/>
+ </g>
+</svg>

@@ -1,0 +1,27 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+ <rect fill="#76b7ca" height="42" rx=".5" width="4" x="22" y="3"/>
+ <rect fill="#76b7ca" height="7" rx=".5" transform="matrix(.5 .86603 -.86603 .5 0 0)" width="3" x="19.88" y="-22.8"/>
+ <rect fill="#76b7ca" height="7" rx=".5" transform="matrix(-.5 .86603 .86603 .5 0 0)" width="3" x="-4.12" y="18.77"/>
+ <g fill="#76b7ca" transform="matrix(1 0 0 -1 0 48)">
+  <rect height="7" rx=".5" transform="matrix(.5 .86603 -.86603 .5 0 0)" width="3" x="19.88" y="-22.8"/>
+  <rect height="7" rx=".5" transform="matrix(-.5 .86603 .86603 .5 0 0)" width="3" x="-4.12" y="18.77"/>
+ </g>
+ <rect fill="#76b7ca" height="42" rx=".5" transform="matrix(.5 .86603 -.86603 .5 0 0)" width="4" x="30.79" y="-29.79"/>
+ <g fill="#76b7ca" transform="matrix(.5 .86603 -.86603 .5 32.785 -8.785)">
+  <rect height="7" rx=".5" transform="matrix(.5 .86603 -.86603 .5 0 0)" width="3" x="19.88" y="-22.8"/>
+  <rect height="7" rx=".5" transform="matrix(-.5 .86603 .86603 .5 0 0)" width="3" x="-4.12" y="18.77"/>
+ </g>
+ <g fill="#76b7ca" transform="matrix(.5 .86603 .86603 -.5 -8.785 15.215)">
+  <rect height="7" rx=".5" transform="matrix(.5 .86603 -.86603 .5 0 0)" width="3" x="19.88" y="-22.8"/>
+  <rect height="7" rx=".5" transform="matrix(-.5 .86603 .86603 .5 0 0)" width="3" x="-4.12" y="18.77"/>
+ </g>
+ <rect fill="#76b7ca" height="42" rx=".5" transform="matrix(-.5 .86603 -.86603 -.5 0 0)" width="4" x="6.79" y="-53.78"/>
+ <g fill="#76b7ca" transform="matrix(-.5 .86603 -.86603 -.5 56.785 15.215)">
+  <rect height="7" rx=".5" transform="matrix(.5 .86603 -.86603 .5 0 0)" width="3" x="19.88" y="-22.8"/>
+  <rect height="7" rx=".5" transform="matrix(-.5 .86603 .86603 .5 0 0)" width="3" x="-4.12" y="18.77"/>
+ </g>
+ <g fill="#76b7ca" transform="matrix(-.5 .86603 .86603 .5 15.215 -8.785)">
+  <rect height="7" rx=".5" transform="matrix(.5 .86603 -.86603 .5 0 0)" width="3" x="19.88" y="-22.8"/>
+  <rect height="7" rx=".5" transform="matrix(-.5 .86603 .86603 .5 0 0)" width="3" x="-4.12" y="18.77"/>
+ </g>
+</svg>

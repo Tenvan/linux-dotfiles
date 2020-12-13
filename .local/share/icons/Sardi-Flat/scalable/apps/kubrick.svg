@@ -1,0 +1,18 @@
+<svg width="512" height="512" version="1.1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+ <path d="m471.95 253.05c0 120.9-98.01 218.9-218.9 218.9-120.9 0-218.9-98.01-218.9-218.9 0-120.9 98.01-218.9 218.9-218.9 120.9 0 218.9 98.01 218.9 218.9" fill="#c76767" fill-rule="evenodd"/>
+ <g transform="matrix(11.059 0 0 11.059 -8.5106 -16.398)" fill="#ffffff">
+  <g fill="#ffffff">
+   <g fill="#ffffff">
+    <rect x="13" y="13" width="6" height="6" rx="1"/>
+    <rect x="21" y="13" width="6" height="6" rx="1"/>
+    <rect x="29" y="13" width="6" height="6" rx="1"/>
+    <rect x="13" y="21" width="6" height="6" rx="1"/>
+    <rect x="21" y="21" width="6" height="6" rx="1"/>
+    <rect x="29" y="21" width="6" height="6" rx="1"/>
+    <rect x="13" y="29" width="6" height="6" rx="1"/>
+    <rect x="21" y="29" width="6" height="6" rx="1"/>
+    <rect x="29" y="29" width="6" height="6" rx="1"/>
+   </g>
+  </g>
+ </g>
+</svg>
