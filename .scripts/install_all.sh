@@ -73,7 +73,6 @@ inst openconnect
 
 # Manjaro
 # manjaro only packages
-inst lightdm-gtk-greeter-settings
 inst manjaro-settings-samba
 inst manjaro-pulse
 
@@ -107,9 +106,10 @@ inst jdk-openjdk
 # Unter ArcoLinux TweakTool verwenden. #
 ########################################
 
-inst dmenu-manjaro
+inst manjaro-settings-manager
 # current used settings
-inst manjaro-cinnamon-settings
+# inst manjaro-cinnamon-settings
+inst manjaro-xfce-settings
 
 # awesome packages
 inst awesome
@@ -168,7 +168,7 @@ inst gnome-menu-editor-qt
 
 # polkits
 inst polkit-gnome
-uninst polkit-kde-agent
+#inst polkit-kde-agent
 
 inst xscreensaver
 inst qt-logout
@@ -234,9 +234,7 @@ inst teams
 inst transfig
 inst transmission-gtk
 inst xfig
-uninst krita
-uninst blender
-uninst foxitreader
+inst etcher-bin
 
 # remmina
 inst remmina
@@ -246,20 +244,6 @@ inst remmina-plugin-url
 inst remmina-plugin-folder
 inst remmina-plugin-open
 inst freerdp
-
-# virtualbox
-inst virtualbox
-inst virtualbox-ext-oracle
-
-echo "Install Manjaro Virtualbox"
-inst linux$(uname -r | cut -f 1-2 -d '.' | tr -d '.')-headers
-inst linux$(uname -r | cut -f 1-2 -d '.' | tr -d '.')-virtualbox-host-modules
-
-# libvirt service and manager
-inst virt-manager
-inst qemu
-inst qemu-arch-extra
-inst libvirt
 
 #inst picom-ibhagwan-git
 inst picom-jonaburg-git
@@ -304,7 +288,6 @@ inst manjaro-artwork-extra
 inst manjaro-users-artwork-wallpapers
 inst manjaro-backgrounds
 inst awesome-wallpapers
-inst cinnamon-wallpapers
 inst illyria-wallpaper
 
 # themes
@@ -344,19 +327,10 @@ inst xcursor-chameleon-darkskyblue
 inst xcursor-chameleon-pearl
 inst xcursor-chameleon-skyblue
 inst xcursor-chameleon-white
-uninst xcursor-comix
-uninst xcursor-flatbed
-uninst xcursor-neutral
-uninst xcursor-premium
-uninst xcursor-simpleandsoft
 
 # icons
 inst adwaita-icon-theme
 # inst arc-icon-theme
-uninst faba-icon-theme
-uninst faba-icon-theme
-uninst hicolor-icon-theme
-uninst hicolor-icon-theme
 inst paper-icon-theme
 inst papirus-icon-theme
 inst papirus-icon-theme
@@ -366,31 +340,26 @@ inst papirus-icon-theme
 inst font-manager
 inst awesome-terminal-fonts
 
-uninst nerd-fonts-complete
+#inst nerd-fonts-complete
 inst nerd-fonts-mononoki
 inst nerd-fonts-iosevka
 
 inst noto-fonts-emoji
-uninst noto-fonts-extra
 
-uninst ttf-droid
-uninst ttf-nerd-fonts-symbols
-uninst ttf-font-awesome
-uninst ttf-cascadia-code
 inst ttf-twemoji
 inst ttf-twemoji-color
 inst ttf-weather-icons
+
+###############################
+# uninstall unneeded packages #
+###############################
+yay -R --noconfirm - <$PKG_UNINST_FILE
 
 #################################
 # install all (needed) packages #
 #################################
 yay -S $YAY_ALL - <$PKG_FILE
 errorCheck "install packages"
-
-###############################
-# uninstall unneeded packages #
-###############################
-yay -R --noconfirm - <$PKG_UNINST_FILE
 
 ## FINISHING #
 
@@ -410,10 +379,6 @@ git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
 # nodejs tools for editors
 sudo npm install -g neovim eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
 errorCheck "install required nodejs-tools"
-
-sudo systemctl enable libvirtd.service
-sudo systemctl start libvirtd.service
-errorCheck "libvirtd service"
 
 # Default Browser setzen (vorher $BROWSER Variable entfernen)
 xdg-settings set default-web-browser firefox-developer-edition.desktop

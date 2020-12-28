@@ -11,24 +11,24 @@ function restart() {
 }
 
 # Standard Resources
-if [ -f $HOME/.Xresources ]; then
-    xrdb -merge $HOME/.Xresources
-fi
+#if [ -f $HOME/.Xresources ]; then
+#    xrdb -merge $HOME/.Xresources
+#fi
 
 # Resources for dark themes
-if [ -f $HOME/.Xresources.dark ]; then
-    xrdb -merge $HOME/.Xresources.dark
-fi
+#if [ -f $HOME/.Xresources.dark ]; then
+#    xrdb -merge $HOME/.Xresources.dark
+#fi
 
 # Personal (private) Resources
-if [ -f $HOME/.Xresources.personal ]; then
-    xrdb -merge $HOME/.Xresources.personal
-fi
+#if [ -f $HOME/.Xresources.personal ]; then
+#    xrdb -merge $HOME/.Xresources.personal
+#fi
 
 # Custom resources for monitor namings
-if [ -f $HOME/.Xresources.monitor ]; then
-    xrdb -merge $HOME/.Xresources.monitor
-fi
+#if [ -f $HOME/.Xresources.monitor ]; then
+#    xrdb -merge $HOME/.Xresources.monitor
+#fi
 
 #change your keyboard if you need it
 setxkbmap -layout de

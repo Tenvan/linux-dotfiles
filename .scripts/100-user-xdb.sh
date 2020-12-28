@@ -1,9 +1,5 @@
-#!/bin/sh
-#
-# ~/.xinitrc
-#
-# Executed by startx (run your window manager from here)
-
+#!/usr/bin/env bash
+# Resources for dark themes
 if [ -f "$HOME/.Xresources.theme" ]; then
     xrdb -merge "$HOME/.Xresources.theme"
 fi
@@ -13,18 +9,8 @@ if [ -f "$HOME/.Xresources.personal" ]; then
     xrdb -merge "$HOME/.Xresources.personal"
 fi
 
-# Merge Monitor Settings
 if [ -f "$HOME/.Xresources.monitor" ]; then
     xrdb -merge "$HOME/.Xresources.monitor"
 fi
 
-if [ -d /etc/X11/xinit/xinitrc.d ]; then
-  for f in /etc/X11/xinit/xinitrc.d/*; do
-    [ -x "$f" ] && . "$f"
-  done
-  unset f
-fi
-
-if [systemd-detect-virt = "oracle"];
-	/usr/bin/VBoxClient-all
-fi
+export userdbloaded=true
