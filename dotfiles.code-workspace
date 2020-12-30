@@ -7,16 +7,7 @@
 			"path": ".config/awesome"
 		},
 		{
-			"path": "Scripts/menu"
-		},
-		{
-			"path": "Scripts"
-		},
-		{
-			"path": ".xdg_menu_cache"
-		},
-		{
-			"path": ".xonotic"
+			"path": ".scripts/menu"
 		}
 	],
 	"settings": {
@@ -24,6 +15,7 @@
 		"tsimporter.filesToExclude": [
 		
 		],
-		"lua.targetVersion": "5.3"
+		"lua.targetVersion": "5.3",
+		"svn.ignoreMissingSvnWarning": true
 	}
 }

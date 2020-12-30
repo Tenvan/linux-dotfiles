@@ -9,7 +9,7 @@ timeCmd="/usr/bin/time -v "
 select_application() {
     zenity --list \
         --width=400 \
-        --height=600 \
+        --height=700 \
         --title="Edit Konfiguation" \
         --text="APPLICATIONS" \
         --column=Option \
@@ -28,10 +28,13 @@ select_application() {
         "🌤 Wetter Höxter" "$myTerminal --hold -d 140 44 -t Wetter:Höxter -e curl wttr.in/37671?lang=de" \
         "🌤 Wetter Mainz" "$myTerminal --hold -d 140 44 -t Wetter:Mainz -e curl wttr.in/Mainz?lang=de" \
         "♻ Matrix" "$myTerminal --hold -t matrix -e cmatrix" \
-        "📛 xsession Errors" "$myTerminal -t xsession-errors -d 140 44 -e multitail -i $HOME/.xsession-errors" \
-        "🚧 Awmtt Start" "$myTerminal --hold -t AWMTT -d 140 44 -e awmtt start -N --size 1920x1080" \
-        "🚧 Awmtt Restart" "$myTerminal -t xsession-errors -d 140 44 -e awmtt restart" \
-        "🚧 Awmtt Stop" "$myTerminal -t xsession-errors -d 140 44 -e awmtt stop"
+        "📛 xsession Errors" "$myTerminal -t AWMTT -d 140 44 -e multitail -i $HOME/.xsession-errors" \
+        "🚧 Awmtt Default Start" "$myTerminal --hold -t AWMTT -d 140 44 -e awmtt start -N --size 1920x1080" \
+        "🚧 Awmtt Default Restart" "$myTerminal -t AWMTT -d 140 44 -e awmtt restart" \
+        "🚧 Awmtt Default Stop" "$myTerminal -t AWMTT -d 140 44 -e awmtt stop" \
+        "🚧 Awmtt Xfce Start" "$myTerminal --hold -t AWMTT -d 140 44 -e awmtt start -C $HOME/.config/awesome/rc-xfce.lua -N -D 2 --size 1920x1080" \
+        "🚧 Awmtt Xfce Restart" "$myTerminal --hold -t AWMTT -d 140 44 -e awmtt restart -C $HOME/.config/awesome/rc-xfce.lua -N -D 2 --size 1920x1080" \
+        "🚧 Awmtt Xfce Stop" "awmtt stop"
 }
 
 choice=$(select_application)

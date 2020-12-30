@@ -4,6 +4,8 @@
 #
 echo "run: .bashrc"
 
+[[ $- != *i* ]] && return
+
 export SCRIPTS="$HOME/.scripts"
 
 test -f "$SCRIPTS/defs.sh" && source "$SCRIPTS/defs.sh"
@@ -32,6 +34,12 @@ shopt -s cmdhist # save multi-line commands in history as single line
 shopt -s dotglob
 shopt -s histappend     # do not overwrite history
 shopt -s expand_aliases # expand aliases
+
+# Bash won't get SIGWINCH if another process is in the foreground.
+# Enable checkwinsize so that bash will check the terminal size when
+# it regains control.  #65623
+# http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
+shopt -s checkwinsize
 
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
@@ -90,8 +98,15 @@ colors() {
 
 complete -cf sudo
 
-### SET VI MODE IN BASH SHELL
-set -o vi
+# Change the window title of X terminals
+case ${TERM} in
+	xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*)
+		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
+		;;
+	screen*)
+		PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
+		;;
+esac
 
 ### BASH POWERLINE ###
 eval "$(starship init bash)"

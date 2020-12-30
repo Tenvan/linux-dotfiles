@@ -17,8 +17,6 @@ local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, 
 -- Standard awesome library
 local gears = require("gears") -- Utilities such as color parsing and objects
 local awful = require("awful") -- Everything related to window managment
-local dpi = require("beautiful.xresources").apply_dpi
-
 local gdebug = require("gears.debug")
 
 require("awful.autofocus")
@@ -28,18 +26,8 @@ local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 
-local themes = {
-    "multicolor", -- 1
-    "powerarrow", -- 2
-    "powerarrow-blue", -- 3
-    "blackburn", -- 4
-    "mytheme" -- 5
-}
-
 -- choose your theme here
-local chosen_theme = themes[5]
-
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
+local theme_path = string.format("%s/.config/awesome/themes/xfce/theme.lua", os.getenv("HOME"))
 beautiful.init(theme_path)
 
 -- Notification library
@@ -989,6 +977,14 @@ awful.rules.rules = {
             titlebars_enabled = true
         }
     },
+    -- Dialogs
+    {
+        rule_any = {type = {"dialog"}},
+        properties = {
+            maximized = false,
+            floating = true
+        }
+    },
     -- Set applications to be maximized at startup.
     -- find class or role via xprop command
 
@@ -1137,20 +1133,7 @@ awful.rules.rules = {
             floating = false
         }
     },
-    {
-        rule_any = {
-            name = {
-                "AWMTT"
-            }
-        },
-        properties = {
-            screen = 2,
-            tag = awful.util.tagnames[6],
-            switchtotag = true,
-            maximized = false,
-            floating = false
-        }
-    },
+
     -- Set applications to always map on the tag 5 (Virtual/RDP) on screen 1.
     {
         rule_any = {
@@ -1273,15 +1256,6 @@ awful.rules.rules = {
             tag = awful.util.tagnames[9],
             switchtotag = true
         }
-    },
-    -- Finishings
-    -- Dialogs
-    {
-        rule_any = {type = {"dialog"}},
-        properties = {
-            maximized = false,
-            floating = true
-        }
     }
 }
 -- }}}
@@ -1390,7 +1364,6 @@ client.connect_signal(
 -- }}}
 
 -- Autostart applications
-awful.spawn.with_shell("sh $SCRIPTS/autostart-global.sh")
-awful.spawn.with_shell("sh $SCRIPTS/autostart-awesome.sh")
-
-notify("Awesome Default", "Awesome Default erfolgreich gestartet !!", naughty.config.presets.info)
+-- awful.spawn.with_shell("sh $SCRIPTS/autostart-global.sh")
+-- awful.spawn.with_shell("sh $SCRIPTS/autostart-awesome.sh")
+notify("Awesome XFCE", "Awesome XFCE erfolgreich gestartet !!", naughty.config.presets.info)
