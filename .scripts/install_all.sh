@@ -372,7 +372,19 @@ git config --global merge.tool code
 git config --global mergetool.code.cmd "$(which code) --wait \"\$MERGED\""
 git config --global mergetool.prompt false
 
-git config --global core.editor $(which code)
+git config --global core.editor micro
+
+git config --global user.name "stira"
+git config --global user.email "ralf.stich@infoniqa.com"
+
+sudo git config --system core.editor micro
+
+git config --global credential.helper cache
+git config --global credential.helper 'cache --timeout=25000'
+git config --global push.default simple
+
+git config pull.rebase false  # merge (the default strategy)
+git config pull.ff only       # fast-forward only
 
 git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
 
