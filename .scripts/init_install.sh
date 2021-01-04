@@ -20,8 +20,11 @@ errorCheck() {
 curl -fsSL https://starship.rs/install.sh | bash
 eval "$(starship init bash)"
 
+sudo pacman -S --noconfirm --needed git base-devel colorgcc
+errorCheck "installation base-devel"
+
 # Yay installieren
-sudo pacman -S --noconfirm --needed yay base-devel colorgcc
+# pamac install --no-confirm yay
 errorCheck "installation yay"
 
 # Rust repaprieren/installieren

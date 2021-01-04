@@ -151,7 +151,7 @@
   mod4 + t
 
 # Logout
-"qt-logout" 
+"clearine" 
   mod4 + x
 
 # Kill Prozess

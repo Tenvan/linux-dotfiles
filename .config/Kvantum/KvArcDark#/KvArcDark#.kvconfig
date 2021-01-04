@@ -93,11 +93,11 @@ link.visited.color=#9E4FFF
 progress.indicator.text.color=white
 
 [Hacks]
-transparent_ktitle_label=true
+transparent_ktitle_label=false
 transparent_dolphin_view=true
 transparent_pcmanfm_sidepane=true
 blur_translucent=true
-transparent_menutitle=true
+transparent_menutitle=false
 respect_darkness=true
 kcapacitybar_as_progressbar=true
 force_size_grip=true

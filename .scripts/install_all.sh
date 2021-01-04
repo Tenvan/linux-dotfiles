@@ -40,6 +40,7 @@ rm -f $PKG_UNINST_FILE
 # system packages #
 ###################
 inst exa
+inst cronie
 inst ripgrep
 inst timeshift
 inst alacritty
@@ -71,11 +72,6 @@ inst kindd
 inst multitail
 inst openconnect
 
-# Manjaro
-# manjaro only packages
-inst manjaro-settings-samba
-inst manjaro-pulse
-
 # gimicks
 inst cmatrix
 inst hollywood
@@ -105,11 +101,6 @@ inst jdk-openjdk
 # Installing all used Window Managers  #
 # Unter ArcoLinux TweakTool verwenden. #
 ########################################
-
-inst manjaro-settings-manager
-# current used settings
-# inst manjaro-cinnamon-settings
-inst manjaro-xfce-settings
 
 # awesome packages
 inst awesome
@@ -172,7 +163,10 @@ inst polkit-gnome
 
 inst xscreensaver
 inst qt-logout
-inst oblogout-blurlock
+inst clearine-git
+inst qt5-styleplugins
+inst qt5ct
+inst phonon-qt5-gstreamer
 
 # file manager
 inst pcmanfm
@@ -272,7 +266,6 @@ inst clang
 inst tar
 inst fd
 inst gdb
-inst bashdb
 inst graphviz
 inst python-black
 inst python-pyflakes
@@ -283,38 +276,29 @@ inst python-pytest
 ###############################################
 # install wallpapers, themes, icons and fonts #
 ###############################################
-inst artwork-i3
-inst manjaro-artwork
-inst manjaro-artwork-extra
-inst manjaro-users-artwork-wallpapers
-inst manjaro-backgrounds
-inst awesome-wallpapers
-inst illyria-wallpaper
 
 # themes
-inst arc-themes-breath
-inst arc-themes-maia
-inst arc-themes-solid-breath
-inst arc-themes-solid-maia
+inst arc-gtk-theme-colorpack
+# inst arc-gtk-theme
+inst arc-solid-gtk-theme
+inst deepin-gtk-theme
+inst materia-gtk-theme
+inst kvantum-theme-materia
+inst numix-gtk-theme
+inst zuki-themes
+
+#inst oomox
+inst themix-full-git
 
 # icons
-#inst breeze-maia-icon-themes
-inst manjaro-artwork-icons
-inst papirus-maia-icon-theme
-inst vertex-maia-icon-theme
-#inst arc-maia-icon-theme
-inst breath-icon-theme
-inst breath2-icon-themes
-# cursor
+inst arc-icon-theme
+inst papirus-icon-theme
+inst numix-icon-theme-pack-git
 
 # inst bibata-extra-cursor-git
 inst bibata-extra-cursor-theme
 inst bibata-cursor-theme-bin
 inst bibata-cursor-translucent
-
-# themes
-inst arc-gtk-theme
-inst materia-gtk-theme
 
 # wallpapers
 inst ukui-wallpapers
@@ -363,6 +347,9 @@ yay -S $YAY_ALL - <$PKG_FILE
 errorCheck "install packages"
 
 ## FINISHING #
+
+# refresh icons
+sudo gdk-pixbuf-query-loaders --update-cache
 
 # Git config for meld
 git config --global diff.tool code
