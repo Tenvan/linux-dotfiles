@@ -58,7 +58,6 @@ nitrogen --set-zoom-fill ~/.local/share/wallpapers/shared/floating-world-in-spac
 #starting utility applications at boot time
 run nm-applet &
 run pamac-tray &
-run xfce4-power-manager &
 run radiotray &
 run kteatime &
 

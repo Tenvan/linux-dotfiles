@@ -172,6 +172,7 @@ inst polkit-gnome
 
 inst xscreensaver
 inst qt-logout
+inst oblogout-blurlock
 
 # file manager
 inst pcmanfm
@@ -216,7 +217,7 @@ inst evolution
 inst gimp
 inst gimp-help-de
 inst gparted
-inst grub-customizer
+#inst grub-customizer
 inst hardinfo
 inst imagemagick
 inst inkscape

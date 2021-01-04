@@ -6,7 +6,13 @@ function run() {
     fi
 }
 
+function restart() {
+    killall $1
+}
+
 killall -q picom
+
+run xfce4-power-manager &
 
 while pgrep -u $UID -x "picom" >/dev/null; do sleep 1; done
 
