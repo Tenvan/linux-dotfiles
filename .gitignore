@@ -72,6 +72,8 @@
 !.config/qt-logout/*
 !.config/Kvantum
 !.config/Kvantum/*
+!.config/kitty
+!.config/kitty/*
 !.config/nitrogen
 !.config/nitrogen/*
 !.config/omf

@@ -115,13 +115,13 @@
 
 #####################
 
-"alacritty --hold -t CF:Show -e xbindkeys --show" 
+"kitty --hold --title CF:Show --name CF:Show xbindkeys --show" 
   control + shift + q
 
-"alacritty --hold -t CF:Show -e xbindkeys --key" 
+"kitty --hold --title CF:Show --name CF:Show xbindkeys --key" 
   control + alt + q
 
-"alacritty --hold -t CF:Show -e xbindkeys --multikey" 
+"kitty --hold --title CF:Show --name CF:Show xbindkeys --multikey" 
   mod4 + alt + q
 
 "amixer -d set Master 5%+" 
@@ -139,20 +139,16 @@
 "killall node; fuser -k 4200/tcp; fuser -k 4201/tcp; fuser -k 4202/tcp; notify-send Node 'all nodes-processes and ng-services killed'" 
   control + alt + k
 
-"alacritty" 
+"kitty" 
   mod4 + Return
 
 # Xprop starten
-"alacritty --hold -t CF:XProp -e xprop" 
+"kitty --hold --title CF:XProp --name CF:XProp xprop" 
   Control + mod4 + x
 
 # Toggle Picom
 "sh $SCRIPTS/picom-toggle-awesome.sh" 
   mod4 + t
-
-# Logout
-"clearine" 
-  mod4 + x
 
 # Kill Prozess
 "xkill" 

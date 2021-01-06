@@ -15,6 +15,7 @@ local vicious = require("vicious")
 
 local math, string, os = math, string, os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
+
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
 local fs_widget = require("awesome-wm-widgets.fs-widget.fs-widget")
@@ -309,20 +310,6 @@ graph_mem:set_color(
 vicious.cache(vicious.widgets.mem)
 vicious.register(graph_mem, vicious.widgets.mem, "$1", 7)
 
--- CPU Histogramm
-vicious.cache(vicious.widgets.cpu)
-
-local cpuHistogrammWidget = wibox.widget.graph()
-cpuHistogrammWidget:set_width(100)
-cpuHistogrammWidget:set_background_color(widget_bg_color)
-cpuHistogrammWidget:set_color {
-    type = "linear",
-    from = {0, 0},
-    to = {50, 0},
-    stops = {{0, "#FF5656"}, {0.5, "#88A175"}, {1, "#AECF96"}}
-}
-vicious.register(cpuHistogrammWidget, vicious.widgets.cpu, "$1", 1)
-
 -- Get CPU stats
 local f = io.open("/proc/stat")
 local cpu_kernels = 0
@@ -333,54 +320,6 @@ for line in f:lines() do
     cpu_kernels = cpu_kernels + 1
 end
 f:close()
-
--- CPU Kernels Bar
-local cpuKernelProgress = {}
-
-local cpuKernelGridWidget =
-    wibox.widget {
-    forced_num_cols = cpu_kernels - 1,
-    forced_num_rows = 1,
-    homogeneous = true,
-    expand = true,
-    layout = wibox.layout.grid
-}
-
-for i = 1, cpu_kernels - 1 do
-    cpuKernelProgress[i] = wibox.widget.progressbar()
-
-    local newKernelProgress =
-        wibox.container.margin(
-        wibox.widget {
-            {
-                max_value = 100,
-                value = 0,
-                forced_height = 12,
-                border_width = 0,
-                border_color = accent_color2,
-                background_color = "alpha",
-                color = "#FF5656",
-                widget = cpuKernelProgress[i]
-            },
-            direction = "east",
-            layout = wibox.container.rotate
-        },
-        dpi(1)
-    )
-
-    cpuKernelGridWidget:add(newKernelProgress)
-end
-
-vicious.register(
-    cpuKernelGridWidget,
-    vicious.widgets.cpu,
-    function(widget, args)
-        for i = 2, cpu_kernels do
-            cpuKernelProgress[i - 1]:set_value(args[i])
-        end
-    end,
-    3
-)
 
 -- Coretemp (lain, average)
 local temp =
@@ -406,18 +345,6 @@ local net =
         end
     }
 )
-
--- Storage
-vicious.cache(vicious.widgets.fs)
-
-local fsRootWidget = wibox.widget.textbox()
-local fsWorkspaceWidget = wibox.widget.textbox()
-local fsVmWidget = wibox.widget.textbox()
-local fsBidataWidget = wibox.widget.textbox()
-vicious.register(fsRootWidget, vicious.widgets.fs, "/:${/ avail_gb}GB", 61)
-vicious.register(fsWorkspaceWidget, vicious.widgets.fs, "WS:${/media/WORKSPACE avail_gb}GB", 61)
-vicious.register(fsVmWidget, vicious.widgets.fs, "VM:${/media/VM avail_gb}GB", 67)
-vicious.register(fsBidataWidget, vicious.widgets.fs, "BD:${/media/BIGDATA avail_gb}GB", 63)
 
 -- System Os
 vicious.cache(vicious.widgets.os)
@@ -472,21 +399,14 @@ function theme.at_screen_connect(s)
             )
         ),
         widget_seperator,
-        wibox.container.background(
-            wibox.container.margin(cpuKernelGridWidget, theme.margins_width, theme.margins_width)
-        ),
+        fs_widget({ mounts = { '/', '/home' } }),
         widget_seperator,
-        wibox.container.background(wibox.container.margin(cpuHistogrammWidget)),
-        widget_seperator,
-        -- fs_widget({ mounts = { '/', '/home', '/media/WORKSPACE', '/media/BIGDATA', '/media/VM' } }),
-        fs_widget({ mounts = { '/', '/home', '/media/WORKSPACE', '/media/BIGDATA' } }),
-        widget_seperator,
-        -- cpu_widget({
-        --     width = dpi(200),
-        --     step_width = 10,
-        --     step_spacing = 0,
-        --     color = '#434c5e'
-        -- }),
+        cpu_widget({
+            width = dpi(200),
+            step_width = 10,
+            step_spacing = 0,
+            color = '#434c5e'
+        }),
         widget_seperator,
         wibox.container.background(
             wibox.container.margin(
@@ -503,19 +423,11 @@ function theme.at_screen_connect(s)
         systrayWidget,
         widget_seperator,
         logout_menu_widget(),
-}
+    }
 
     local screen2RightWidgets = {
         -- Right widgets
         layout = wibox.layout.fixed.horizontal,
-        widget_seperator,
-        wibox.container.background(wibox.container.margin(fsRootWidget, theme.margins_width, theme.margins_width)),
-        widget_seperator,
-        wibox.container.background(wibox.container.margin(fsWorkspaceWidget, theme.margins_width, theme.margins_width)),
-        widget_seperator,
-        wibox.container.background(wibox.container.margin(fsVmWidget, theme.margins_width, theme.margins_width)),
-        widget_seperator,
-        wibox.container.background(wibox.container.margin(fsBidataWidget, theme.margins_width, theme.margins_width)),
         widget_seperator,
         wibox.container.background(wibox.container.margin(memwidget, theme.margins_width, theme.margins_width)),
         widget_seperator,

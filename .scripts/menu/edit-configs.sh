@@ -26,7 +26,7 @@ get_config_list() {
            "📑 bash" "$filesEdit $HOME/.bashrc* $HOME/.alias*" \
            "📑 profile" "$filesEdit $HOME/.profile*" \
            "📑 scripts autostart" "$filesEdit $SCRIPTS/autostart*.sh" \
-           "📑 scripts install" "$filesEdit $SCRIPTS/install_all.sh $SCRIPTS/init_install.sh" \
+           "📑 scripts install" "$filesEdit $SCRIPTS/install*" \
            "📑 scripts ldap" "$filesEdit $SCRIPTS/ldap/*.sh" \
            "📁 scripts dir" "$folderEdit $SCRIPTS" \
            "📁 menu dir" "$folderEdit $SCRIPTS/menu" \
@@ -35,7 +35,8 @@ get_config_list() {
            "📁 picom dir" "$folderEdit  $HOME/.config/picom" \
            "📑 polybar" "$filesEdit $HOME/.config/polybar/*.ini $HOME/.config/polybar/*.sh" \
            "☄ starship" "$filesEdit $HOME/.config/starship.toml" \
-           "📑 alacritty" "$filesEdit $HOME/.config/alacritty/alacritty.yml"  \
+           "📁 alacritty" "$folderEdit $HOME/.config/alacritty"  \
+           "📁 kitty" "$folderEdit $HOME/.config/kitty"  \
            "📑 themes" "$filesEdit $HOME/.Xresources* $HOME/.gtkrc-2.0 $HOME/.config/gtk-3.0/* $HOME/.config/gtk-4.0 $HOME/.config/qt5ct/* $HOME/.config/fontconfig/*" \
            "📑 gitignoree" "$filesEdit $HOME/.gitignore"
 }

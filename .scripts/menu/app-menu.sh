@@ -4,6 +4,7 @@ myFileManager="thunar"
 myTerminal="alacritty"
 myBrowser="$BROWSER"
 timeCmd="/usr/bin/time -v "
+myTestLua=$(eval echo $HOME/.config/awesome/rc.test.lua)
 
 # Function create a scale dialog
 select_application() {
@@ -32,9 +33,9 @@ select_application() {
         "🚧 Awmtt Default Start" "$myTerminal --hold -t AWMTT -d 140 44 -e awmtt start -N --size 1920x1080" \
         "🚧 Awmtt Default Restart" "$myTerminal -t AWMTT -d 140 44 -e awmtt restart" \
         "🚧 Awmtt Default Stop" "$myTerminal -t AWMTT -d 140 44 -e awmtt stop" \
-        "🚧 Awmtt Xfce Start" "$myTerminal --hold -t AWMTT -d 140 44 -e awmtt start -C $HOME/.config/awesome/rc-xfce.lua -N -D 2 --size 1920x1080" \
-        "🚧 Awmtt Xfce Restart" "$myTerminal --hold -t AWMTT -d 140 44 -e awmtt restart -C $HOME/.config/awesome/rc-xfce.lua -N -D 2 --size 1920x1080" \
-        "🚧 Awmtt Xfce Stop" "awmtt stop"
+        "🚧 Awmtt Test Start" "$myTerminal --hold -t AWMTT -d 140 44 -e awmtt start -C $myTestLua -D 1 --size 1920x1080" \
+        "🚧 Awmtt Test Restart" "awmtt restart" \
+        "🚧 Awmtt Test Stop" "awmtt stop"
 }
 
 choice=$(select_application)
@@ -42,6 +43,6 @@ choice=$(select_application)
 if [ -z "$choice" ]; then
     echo "abort choice"
 else
-    echo exceute: $choice >>/dev/stderr
+    echo excecute: $choice >>/dev/stderr
     $choice &
 fi

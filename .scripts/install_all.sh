@@ -1,17 +1,12 @@
 #!/usr/bin/env bash
 
-sh $SCRIPTS/defs.sh
+. $SCRIPTS/defs.sh
 
 #####################
 # init distro check #
 #####################
 PKG_FILE=pkg_to_install.txt
 PKG_UNINST_FILE=pkg_to_uninstall.txt
-
-YAY_ALL="--needed --batchinstall --topdown --combinedupgrade \
-    --nocleanmenu --devel --nodiffmenu --noeditmenu --noupgrademenu \
-    --norebuild --noredownload --noprovides --pgpfetch \
-    --useask --noremovemake"
 
 errorCheck() {
     retVal=$?
@@ -39,43 +34,43 @@ rm -f $PKG_UNINST_FILE
 ###################
 # system packages #
 ###################
-inst exa
-inst cronie
-inst ripgrep
-inst timeshift
 inst alacritty
-inst ark
 inst arj
-inst dpkg
-inst lhasa
-inst unrar
-inst p7zip
-inst neofetch
-inst clamav
-inst clamtk
-inst glances
+inst ark
 inst bashtop
 inst bpytop
+inst clamav
+inst clamtk
+inst cronie
+inst dpkg
+inst exa
+inst find-the-command
+inst glances
 inst gtop
+inst hstr
 inst htop
 inst iftop
 inst iotop
 inst iptraf-ng
+inst kindd
+inst kitty
+inst lhasa
+inst multitail
+inst neofetch
+inst openconnect
+inst p7zip
+inst powerline-rs
+inst qfc-git
+inst ripgrep
 inst s-tui
 inst shell-color-scripts
-inst powerline-rs
 inst starship
-inst find-the-command
-inst hstr
-inst qfc-git
-inst kindd
-inst multitail
-inst openconnect
+inst timeshift
+inst unrar
 
 # gimicks
 inst cmatrix
 inst hollywood
-inst cowsay
 
 ##########################
 # Base Development Tools #
@@ -163,7 +158,6 @@ inst polkit-gnome
 
 inst xscreensaver
 inst qt-logout
-inst clearine-git
 inst qt5-styleplugins
 inst qt5ct
 inst phonon-qt5-gstreamer
@@ -181,9 +175,10 @@ inst pulseaudio-equalizer-ladspa
 inst pasystray
 
 # printer setup
+inst brother-mfc-j4420dw
 inst canon-cque
-inst samsung-printers
 inst cups-pdf
+inst samsung-printers
 inst system-config-printer
 
 # Office
@@ -211,7 +206,7 @@ inst evolution
 inst gimp
 inst gimp-help-de
 inst gparted
-#inst grub-customizer
+inst grub-customizer
 inst hardinfo
 inst imagemagick
 inst inkscape
@@ -272,6 +267,8 @@ inst python-pyflakes
 inst python-pipenv
 inst python-nose
 inst python-pytest
+
+inst micro
 
 ###############################################
 # install wallpapers, themes, icons and fonts #
@@ -335,61 +332,27 @@ inst ttf-twemoji
 inst ttf-twemoji-color
 inst ttf-weather-icons
 
+# grub
+inst grub2-theme-archlinux
+inst grub-theme-stylish-git
+inst arch-matrix-grub-theme-git
+inst arch-silence-grub-theme-git
+
 ###############################
 # uninstall unneeded packages #
 ###############################
-yay -R --noconfirm - <$PKG_UNINST_FILE
+# yay -R --noconfirm - <$PKG_UNINST_FILE
+pakku -R --noconfirm - <$PKG_UNINST_FILE
+errorCheck "uninstall packages"
 
 #################################
 # install all (needed) packages #
 #################################
-yay -S $YAY_ALL - <$PKG_FILE
+# yay -S $YAY_ALL - <$PKG_FILE
+pakku -S $PAKKU_ALL - <$PKG_FILE
 errorCheck "install packages"
 
 ## FINISHING #
 
-# refresh icons
-sudo gdk-pixbuf-query-loaders --update-cache
+sh $HOME/.scripts/install_finish.sh
 
-# Git config for meld
-git config --global diff.tool code
-git config --global difftool.code.cmd "$(which code) --wait --diff \"\$LOCAL\" \"\$BASE\" \"\$REMOTE\""
-git config --global difftool.prompt false
-
-git config --global merge.tool code
-git config --global mergetool.code.cmd "$(which code) --wait \"\$MERGED\""
-git config --global mergetool.prompt false
-
-git config --global core.editor micro
-
-git config --global user.name "stira"
-git config --global user.email "ralf.stich@infoniqa.com"
-
-sudo git config --system core.editor micro
-
-git config --global credential.helper cache
-git config --global credential.helper 'cache --timeout=25000'
-git config --global push.default simple
-
-git config pull.rebase false  # merge (the default strategy)
-git config pull.ff only       # fast-forward only
-
-git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
-
-# nodejs tools for editors
-sudo npm install -g neovim eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
-errorCheck "install required nodejs-tools"
-
-# Default Browser setzen (vorher $BROWSER Variable entfernen)
-xdg-settings set default-web-browser firefox-developer-edition.desktop
-
-sudo fc-cache -fv
-errorCheck "fontcache"
-
-rm -f $PKG_FILE
-rm -f $PKG_UNINST_FILE
-
-sudo usermod -aG docker $USER
-sudo systemctl enable docker
-sudo systemctl start docker
-errorCheck "docker service"

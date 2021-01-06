@@ -39,7 +39,7 @@ local themes = {
 -- choose your theme here
 local chosen_theme = themes[5]
 
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.test.lua", os.getenv("HOME"), chosen_theme)
 beautiful.init(theme_path)
 
 -- Notification library
@@ -133,7 +133,7 @@ local escapekey = "Escape"
 -- personal variables
 -- change these variables if you want
 local editorgui = "Geany"
-local terminal = "kitty"
+local terminal = "alacritty"
 
 -- key groups
 local kgAwesome = "awesome"
@@ -403,7 +403,7 @@ local globalkeys =
     my_table.join(
     awful.key({modkey, shiftkey}, "r", awesome.restart, {description = "reload awesome", group = kgAwesome}),
     awful.key(
-        {modkey},
+        {modkey, shiftkey},
         "x",
         function()
             logout_popup.launch()
@@ -1068,15 +1068,14 @@ awful.rules.rules = {
         rule_any = {
             instance = {},
             class = {
-                "Alacritty",
-                "kitty"
+                "Alacritty"
             },
             name = {},
             role = {}
         },
         properties = {
-            maximized = false,
-            floating = false
+            floating = false,
+            opacity = 0.9
         }
     },
     -- Floating clients but centered in screen
@@ -1400,7 +1399,7 @@ client.connect_signal(
 -- }}}
 
 -- Autostart applications
-awful.spawn.with_shell("sh $SCRIPTS/autostart-global.sh")
-awful.spawn.with_shell("sh $SCRIPTS/autostart-awesome.sh")
+-- awful.spawn.with_shell("sh $SCRIPTS/autostart-global.sh")
+-- awful.spawn.with_shell("sh $SCRIPTS/autostart-awesome.sh")
 
-notify("Awesome Default", "Awesome Default erfolgreich gestartet !!", naughty.config.presets.info)
+notify("Awesome TEST", "Awesome Test erfolgreich gestartet !!", naughty.config.presets.info)

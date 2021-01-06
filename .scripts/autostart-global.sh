@@ -10,25 +10,6 @@ function restart() {
     killall $1
 }
 
-# Standard Resources
-#if [ -f $HOME/.Xresources ]; then
-#    xrdb -merge $HOME/.Xresources
-#fi
-
-# Resources for dark themes
-#if [ -f $HOME/.Xresources.dark ]; then
-#    xrdb -merge $HOME/.Xresources.dark
-#fi
-
-# Personal (private) Resources
-#if [ -f $HOME/.Xresources.personal ]; then
-#    xrdb -merge $HOME/.Xresources.personal
-#fi
-
-# Custom resources for monitor namings
-#if [ -f $HOME/.Xresources.monitor ]; then
-#    xrdb -merge $HOME/.Xresources.monitor
-#fi
 
 #change your keyboard if you need it
 setxkbmap -layout de
@@ -46,14 +27,6 @@ xsetroot -cursor_name left_ptr &
 # nitrogen --restore
 nitrogen --set-zoom-fill ~/.local/share/wallpapers/shared/blue-earth-2880x1800.jpg --head=1
 nitrogen --set-zoom-fill ~/.local/share/wallpapers/shared/floating-world-in-space-3000x2357.jpg --head=0
-# run variety &
-
-# Some ways to set your wallpaper besides variety or nitrogen
-# feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
-
-#start the conky to learn the shortcuts
-# killall conky
-# (conky -c $HOME/.xmonad/scripts/system-overview) &
 
 #starting utility applications at boot time
 run nm-applet &
