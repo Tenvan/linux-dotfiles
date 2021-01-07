@@ -21,6 +21,8 @@ eval "$(starship init bash)"
 sudo pacman -S --noconfirm --needed git base-devel colorgcc
 errorCheck "installation base-devel"
 
+git submodule update --init --recursive
+
 # Colored pacman
 sed 's/^#Color$/Color/g' </etc/pacman.conf >pacman.conf
 sudo mv pacman.conf /etc/
@@ -35,7 +37,7 @@ sudo mv pamac.conf /etc/
 sed 's/^.*KeepBuiltPkgs$/KeepBuiltPkgs/g' </etc/pamac.conf >pamac.conf
 sudo mv pamac.conf /etc/
 
-pamac install --no-confirm yay pakku-gitpakku
+pamac install --no-confirm yay pakku-git
 errorCheck "installation yay"
 
 # Rust repaprieren/installieren

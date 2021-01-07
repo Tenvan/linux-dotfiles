@@ -5,8 +5,8 @@
 #####################
 # init distro check #
 #####################
-PKG_FILE=pkg_to_install.txt
-PKG_UNINST_FILE=pkg_to_uninstall.txt
+DEBUG=FALSE
+#DEBUG=TRUE
 
 errorCheck() {
     retVal=$?
@@ -17,15 +17,34 @@ errorCheck() {
 }
 
 inst() {
-    echo $1 >>$PKG_FILE
+    PAKAGE_INST="${PAKAGE_INST} $1"
+    
+    if [ $DEBUG = "TRUE" ]; then
+		pakku -S $PAKKU_ALL $1
+		
+	    retVal=$?
+	    if [ $retVal -ne 0 ]; then
+	        echo "error on install: $1"
+			ERROR_PAKAGE_INST="${ERROR_PAKAGE_INST}
+$1"        
+	    fi
+    fi
 }
 
 uninst() {
-    echo $1 >>$PKG_UNINST_FILE
-}
+    PAKAGE_UNINST="${PAKAGE_UNINST} $1"
 
-rm -f $PKG_FILE
-rm -f $PKG_UNINST_FILE
+    if [ $DEBUG = "TRUE" ]; then
+	    pakku -R --noconfirm $1
+	    
+	    retVal=$?
+	    if [ $retVal -ne 0 ]; then
+	        echo "error on uninstall: $1"
+			ERROR_PAKAGE_UNINST="${ERROR_PAKAGE_UNINST}
+$1"        
+	    fi
+	fi
+}
 
 ###########################
 # collect needed packages #
@@ -59,9 +78,9 @@ inst multitail
 inst neofetch
 inst openconnect
 inst p7zip
-inst powerline-rs
+uninst powerline-rs
 inst qfc-git
-inst ripgrep
+uninst ripgrep
 inst s-tui
 inst shell-color-scripts
 inst starship
@@ -154,13 +173,13 @@ inst gnome-menu-editor-qt
 
 # polkits
 inst polkit-gnome
-#inst polkit-kde-agent
+inst polkit-kde-agent
 
 inst xscreensaver
 inst qt-logout
 inst qt5-styleplugins
 inst qt5ct
-inst phonon-qt5-gstreamer
+#inst phonon-qt5-gstreamer
 
 # file manager
 inst pcmanfm
@@ -208,7 +227,7 @@ inst gimp-help-de
 inst gparted
 inst grub-customizer
 inst hardinfo
-inst imagemagick
+uninst imagemagick
 inst inkscape
 inst ktorrent
 inst nitrogen
@@ -221,9 +240,9 @@ inst python-numpy
 inst qbittorrent
 inst spectacle
 inst teams
-inst transfig
-inst transmission-gtk
-inst xfig
+uninst transfig
+uninst transmission-gtk
+uninst xfig
 inst etcher-bin
 
 # remmina
@@ -244,7 +263,7 @@ inst picom-jonaburg-git
 # vs code
 inst visual-studio-code-bin
 inst bash-completion
-inst lua-format
+uninst lua-format
 
 # neovim
 inst neovim
@@ -275,14 +294,14 @@ inst micro
 ###############################################
 
 # themes
-inst arc-gtk-theme-colorpack
-# inst arc-gtk-theme
+uninst arc-gtk-theme-colorpack
+inst arc-gtk-theme
 inst arc-solid-gtk-theme
-inst deepin-gtk-theme
+uninst deepin-gtk-theme
 inst materia-gtk-theme
 inst kvantum-theme-materia
-inst numix-gtk-theme
-inst zuki-themes
+uninst numix-gtk-theme
+uninst zuki-themes
 
 #inst oomox
 inst themix-full-git
@@ -290,10 +309,10 @@ inst themix-full-git
 # icons
 inst arc-icon-theme
 inst papirus-icon-theme
-inst numix-icon-theme-pack-git
+uninst numix-icon-theme-pack-git
 
 # inst bibata-extra-cursor-git
-inst bibata-extra-cursor-theme
+uninst bibata-extra-cursor-theme
 inst bibata-cursor-theme-bin
 inst bibata-cursor-translucent
 
@@ -301,17 +320,17 @@ inst bibata-cursor-translucent
 inst ukui-wallpapers
 
 # cursor
-inst xcursor-breeze
-inst xcursor-breeze-adapta
-inst xcursor-breeze-serie-obsidian
-inst xcursor-chameleon-anthracite
-inst xcursor-chameleon-darkskyblue
-inst xcursor-chameleon-pearl
-inst xcursor-chameleon-skyblue
-inst xcursor-chameleon-white
+uninst xcursor-breeze
+uninst xcursor-breeze-adapta
+uninst xcursor-breeze-serie-obsidian
+uninst xcursor-chameleon-anthracite
+uninst xcursor-chameleon-darkskyblue
+uninst xcursor-chameleon-pearl
+uninst xcursor-chameleon-skyblue
+uninst xcursor-chameleon-white
 
 # icons
-inst adwaita-icon-theme
+uninst adwaita-icon-theme
 # inst arc-icon-theme
 inst paper-icon-theme
 inst papirus-icon-theme
@@ -320,9 +339,10 @@ inst papirus-icon-theme
 
 # fonts
 inst font-manager
+inst fontmatrix
 inst awesome-terminal-fonts
 
-#inst nerd-fonts-complete
+uninst nerd-fonts-complete
 inst nerd-fonts-mononoki
 inst nerd-fonts-iosevka
 
@@ -331,6 +351,29 @@ inst noto-fonts-emoji
 inst ttf-twemoji
 inst ttf-twemoji-color
 inst ttf-weather-icons
+inst ttf-ms-fonts
+
+# lightdm config
+inst lightdm
+inst lightdm-settings
+inst lightdm-slick-greeter
+inst lightdm-webkit2-greeter
+
+# webkit themes
+inst lightdm-webkit2-clean
+uninst lightdm-webkit2-theme-alter
+inst lightdm-webkit2-theme-glorious
+inst lightdm-webkit2-theme-material2
+uninst lightdm-webkit2-theme-obsidian
+uninst lightdm-webkit2-theme-sapphire
+inst lightdm-webkit-theme-osmos
+inst lightdm-webkit-theme-aether
+uninst lightdm-webkit-theme-contemporary
+uninst lightdm-webkit-theme-luminos
+uninst lightdm-webkit-theme-wisp
+uninst lightdm-webkit-theme-osmos
+uninst lightdm-webkit-theme-petrichor-git
+uninst lightdm-webkit-theme-sequoia-git
 
 # grub
 inst grub2-theme-archlinux
@@ -341,18 +384,22 @@ inst arch-silence-grub-theme-git
 ###############################
 # uninstall unneeded packages #
 ###############################
-# yay -R --noconfirm - <$PKG_UNINST_FILE
-pakku -R --noconfirm - <$PKG_UNINST_FILE
-errorCheck "uninstall packages"
+if [ $DEBUG != "TRUE" ]; then
+	echo "UNINST: $PAKKU_PAKAGE_U"
+	pakku -R --noconfirm $PAKAGE_UNINST
+	#errorCheck "uninstall packages"
+fi
 
 #################################
 # install all (needed) packages #
 #################################
-# yay -S $YAY_ALL - <$PKG_FILE
-pakku -S $PAKKU_ALL - <$PKG_FILE
-errorCheck "install packages"
+if [ $DEBUG != "TRUE" ]; then
+	echo "INST: $PAKKU_PAKAGE"
+	pakku -S $PAKKU_ALL $PAKAGE_INST
+	errorCheck "install packages"
+fi
 
 ## FINISHING #
 
-sh $HOME/.scripts/install_finish.sh
-
+#echo "Error in Uninst: ${ERROR_PAKAGE_UNINST}"
+echo "Error in Inst: ${ERROR_PAKAGE_INST}"

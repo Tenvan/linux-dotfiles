@@ -15,44 +15,12 @@ errorCheck() {
 # refresh icons
 sudo gdk-pixbuf-query-loaders --update-cache
 
-# lightdm config
-pakku -S $PAKKU_ALL lightdm \
-	lightdm-settings \
-	lightdm-slick-greeter \
-	lightdm-webkit-greeter \
-	lightdm-webkit2-clean \
-	lightdm-webkit2-greeter \
-errorCheck "install lightdm"
+# config webkit-greeter
+sed 's/^.*webkit_theme=.*$/webkit_theme=material2/g' </etc/lightdm/lightdm-webkit2-greeter.conf >lightdm-webkit2-greeter.conf
+sudo mv -f lightdm-webkit2-greeter.conf /etc/lightdm
+errorCheck "webkit config"
 
-pakku -S $PAKKU_ALL lightdm-webkit2-theme-alter \
-	lightdm-webkit2-theme-glorious \
-	lightdm-webkit2-theme-material2 \
-	lightdm-webkit2-theme-obsidian \
-	lightdm-webkit2-theme-sapphire
-errorCheck "install webkit2 themes"
-
-pakku -S $PAKKU_ALL lightdm-webkit-theme-osmos
-errorCheck "install webkit theme lightdm-webkit-theme-osmos"
-pakku -S $PAKKU_ALL lightdm-webkit-theme-aether
-errorCheck "install webkit theme lightdm-webkit-theme-aether"
-pakku -S $PAKKU_ALL lightdm-webkit-theme-contemporary
-errorCheck "install webkit theme lightdm-webkit-theme-contemporary"
-pakku -S $PAKKU_ALL lightdm-webkit-theme-luminos
-errorCheck "install webkit theme lightdm-webkit-theme-luminos"
-pakku -S $PAKKU_ALL lightdm-webkit-theme-wisp
-errorCheck "install webkit theme lightdm-webkit-theme-wisp"
-	# lightdm-webkit-theme-archlinux \
-errorCheck "install webkit themes"
-
-pakku -S $PAKKU_ALL lightdm-webkit-theme-osmos
-errorCheck "install webkit theme lightdm-webkit-theme-osmos"
-pakku -S $PAKKU_ALL lightdm-webkit-theme-petrichor-git
-errorCheck "install webkit theme lightdm-webkit-theme-petrichor-git"
-pakku -S $PAKKU_ALL lightdm-webkit-theme-sequoia-git
-errorCheck "install webkit theme lightdm-webkit-theme-sequoia-git"
-
-errorCheck "install git webkit themes"
-
+# config slick-greeter
 echo "[Greeter]
 background=/usr/share/backgrounds/greeter_default.jpg
 background-color=#263138
@@ -63,29 +31,34 @@ font-name='Cantarell 11'
 xft-antialias=true
 xft-hintstyle=hintfull
 enable-hidpi=auto" | sudo tee /etc/lightdm/slick-greeter.conf
+errorCheck "slick greeter config"
 
+# config lightdm greeter
 # sed 's/^.*greeter-session=$/greeter-session=lightdm-slick-greeter/g' </etc/lightdm/lightdm.conf >lightdm.conf
 sed 's/^.*greeter-session=.*$/greeter-session=lightdm-webkit2-greeter/g' </etc/lightdm/lightdm.conf >lightdm.conf
-sudo mv lightdm.conf /etc/lightdm
+sudo mv -f lightdm.conf /etc/lightdm
+errorCheck "lightdm greeter config"
 
 if [ -f $HOME/.screenlayout/screenlayout.sh ]; then
     sed 's/^.*display-setup-script=$/display-setup-script=\/opt\/screenlayout.sh/g' </etc/lightdm/lightdm.conf >lightdm.conf
     sudo cp $HOME/.screenlayout/screenlayout.sh /opt
+	sudo mv lightdm.conf /etc/lightdm
+	errorCheck "screenlayout config"
 fi
-sudo mv lightdm.conf /etc/lightdm
 
 # grub config
 sudo cp -r /usr/share/grub/themes/Stylish/ /boot/grub/themes/
 sed 's/.*GRUB_CMDLINE_LINUX_DEFAULT=.*$/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3"/g' </etc/default/grub >grub
-sudo mv grub /etc/default
+sudo mv -f grub /etc/default
 sed 's/.*GRUB_GFXMODE=.*$/GRUB_GFXMODE="1920x1080,auto"/g' </etc/default/grub >grub
-sudo mv grub /etc/default
-sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/Stylish\/theme.txt"/g' </etc/default/grub >grub
-sudo mv grub /etc/default
+sudo mv -f grub /etc/default
+sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/Archlinux\/theme.txt"/g' </etc/default/grub >grub
+sudo mv -f grub /etc/default
+errorCheck "grub config"
 
 sudo mkinitcpio -P
 sudo grub-mkconfig -o /boot/grub/grub.cfg
-errorCheck "grub config"
+errorCheck "grub mkconfig"
 
 # printer Service
 sudo systemctl enable cups
@@ -122,7 +95,7 @@ sudo npm install -g neovim eslint jshint jsxhint stylelint sass-lint markdownlin
 errorCheck "install required nodejs-tools"
 
 # Default Browser setzen (vorher $BROWSER Variable entfernen)
-xdg-settings set default-web-browser firefox-developer-edition.desktop
+xdg-settings set default-web-browser firefox.desktop
 
 sudo fc-cache -fv
 errorCheck "fontcache"

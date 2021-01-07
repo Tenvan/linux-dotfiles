@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 myFileManager="thunar"
-myTerminal="alacritty"
+myTerminal="kitty"
 myBrowser="$BROWSER"
 workDir=$WORK_DIR
 shellCmd="$myTerminal  "
@@ -24,15 +24,15 @@ select_application() {
            --hide-column=2 \
            --hide-header \
            "💿 System Resourcen" "gnome-system-monitor -r" \
-           "💿 s-tui" "$shellCmd -t SysMon:s-tui -e s-tui" \
-           "💿 bpytop" "$shellCmd -t SysMon:bashtop -e bpytop" \
-           "💿 bashtop" "$shellCmd -t SysMon:bashtop -e bashtop" \
-           "💿 glances" "$shellCmd -t SysMon:glances -e glances" \
-           "💿 gtop" "$shellCmd -t SysMon:gtop -e gtop" \
-           "💿 htop" "$shellCmd -t SysMon:htop -e htop" \
-           "💽 iftop (sudo)" "$shellCmd -t SysMon:iftop -e sudo iftop" \
-           "💽 iotop (sudo)" "$shellCmd -t SysMon:iotop -e sudo iotop" \
-           "💽 iptraf-ng (sudo)" "$shellCmd -t SysMon:iptraf-ng -e sudo iptraf-ng"
+           "💿 s-tui" "$shellCmd --title SysMon:s-tui s-tui" \
+           "💿 bpytop" "$shellCmd --title SysMon:bashtop bpytop" \
+           "💿 bashtop" "$shellCmd --title SysMon:bashtop bashtop" \
+           "💿 glances" "$shellCmd --title SysMon:glances glances" \
+           "💿 gtop" "$shellCmd --title SysMon:gtop gtop" \
+           "💿 htop" "$shellCmd --title SysMon:htop htop" \
+           "💽 iftop (sudo)" "$shellCmd --title SysMon:iftop sudo iftop" \
+           "💽 iotop (sudo)" "$shellCmd --title SysMon:iotop sudo iotop" \
+           "💽 iptraf-ng (sudo)" "$shellCmd --title SysMon:iptraf-ng sudo iptraf-ng"
 }
 
 choice=$(select_application)

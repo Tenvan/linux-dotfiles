@@ -13,4 +13,4 @@ export YAY_ALL="--needed --batchinstall --topdown --combinedupgrade \
     --norebuild --noredownload --noprovides --pgpfetch \
     --useask --noremovemake"
 
-export PAKKU_ALL="--color always --needed --noconfirm --verbose "
+export PAKKU_ALL="--color always --needed --noconfirm "
