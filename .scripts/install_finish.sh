@@ -39,9 +39,9 @@ sed 's/^.*greeter-session=.*$/greeter-session=lightdm-webkit2-greeter/g' </etc/l
 sudo mv -f lightdm.conf /etc/lightdm
 errorCheck "lightdm greeter config"
 
-if [ -f $HOME/.screenlayout/screenlayout.sh ]; then
+if [ -f $HOME/.screenlayout/screenlayout-nvidia.sh ]; then
+    sudo cp $HOME/.screenlayout/screenlayout-nvidia.sh /opt/screenlayout.sh
     sed 's/^.*display-setup-script=$/display-setup-script=\/opt\/screenlayout.sh/g' </etc/lightdm/lightdm.conf >lightdm.conf
-    sudo cp $HOME/.screenlayout/screenlayout.sh /opt
 	sudo mv lightdm.conf /etc/lightdm
 	errorCheck "screenlayout config"
 fi

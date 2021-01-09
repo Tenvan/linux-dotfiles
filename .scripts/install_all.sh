@@ -111,6 +111,9 @@ inst jdk8-openjdk
 inst openjdk8-src
 inst jdk-openjdk
 
+# jetbrains apps
+inst jetbrains-toolbox
+
 ########################################
 # Installing all used Window Managers  #
 # Unter ArcoLinux TweakTool verwenden. #

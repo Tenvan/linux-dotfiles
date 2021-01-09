@@ -27,18 +27,9 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
-if [ -f "$HOME/.Xresources.theme" ]; then
-    xrdb -merge "$HOME/.Xresources.theme"
-fi
-
 # Personal (private) Resources
 if [ -f "$HOME/.Xresources.personal" ]; then
     xrdb -merge "$HOME/.Xresources.personal"
-fi
-
-# Merge Monitor Settings
-if [ -f "$HOME/.Xresources.monitor" ]; then
-    xrdb -merge "$HOME/.Xresources.monitor"
 fi
 
 # start some nice programs
