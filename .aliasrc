@@ -4,9 +4,7 @@
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 # get actual mirrors
-alias mirror="sudo pacman-mirrors -i"
-alias mirrord="sudo pacman-mirrors -c Germany"
-alias mirrors="sudo pacman-mirrors -a"
+alias mirror="pacman-mirrorup -v -m 10 -o mirrorlist; cat mirrorlist; sudo mv mirrorlist /etc/pacman.d/mirrorlist"
 
 #list
 alias ls='ls --color=auto'

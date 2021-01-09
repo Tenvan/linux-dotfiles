@@ -23,11 +23,9 @@ errorCheck "installation base-devel"
 
 git submodule update --init --recursive
 
-# Colored pacman
+# Config pacman
 sed 's/^#Color$/Color/g' </etc/pacman.conf >pacman.conf
 sudo mv pacman.conf /etc/
-
-# Yay installieren
 sed 's/^.*CheckAURUpdates$/CheckAURUpdates/g' </etc/pamac.conf >pamac.conf
 sudo mv pamac.conf /etc/
 sed 's/^.*EnableFlatpak$/EnableFlatpak/g' </etc/pamac.conf >pamac.conf
@@ -37,8 +35,11 @@ sudo mv pamac.conf /etc/
 sed 's/^.*KeepBuiltPkgs$/KeepBuiltPkgs/g' </etc/pamac.conf >pamac.conf
 sudo mv pamac.conf /etc/
 
-pamac install --no-confirm yay pakku-git
+# install yay and pakku
+pamac install --no-confirm yay pakku-git pacman-mirrorup
 errorCheck "installation yay"
+
+pacman-mirrorup -m 10
 
 # Rust repaprieren/installieren
 yay -S $YAY_ALL  rustup

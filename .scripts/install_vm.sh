@@ -5,18 +5,8 @@ sh $SCRIPTS/defs.sh
 #####################
 # init distro check #
 #####################
-PKG_FILE=pkg_to_install.txt
-PKG_UNINST_FILE=pkg_to_uninstall.txt
-
-_YAY_ALL="--needed --batchinstall --topdown --combinedupgrade \
-    --nocleanmenu --devel --nodiffmenu --noeditmenu --noupgrademenu \
-    --norebuild --noredownload --noprovides --pgpfetch \
-    --useask --noremovemake"
-
-YAY_ALL="--needed --batchinstall \
-    --nocleanmenu --devel --nodiffmenu --noeditmenu --noupgrademenu \
-    --norebuild --noredownload --noprovides --pgpfetch \
-    --useask --noremovemake"
+DEBUG=FALSE
+#DEBUG=TRUE
 
 errorCheck() {
     retVal=$?
@@ -27,15 +17,34 @@ errorCheck() {
 }
 
 inst() {
-    echo $1 >>$PKG_FILE
+    PAKAGE_INST="${PAKAGE_INST} $1"
+    
+    if [ $DEBUG = "TRUE" ]; then
+		pakku -S $PAKKU_ALL $1
+		
+	    retVal=$?
+	    if [ $retVal -ne 0 ]; then
+	        echo "error on install: $1"
+			ERROR_PAKAGE_INST="${ERROR_PAKAGE_INST}
+$1"        
+	    fi
+    fi
 }
 
 uninst() {
-    echo $1 >>$PKG_UNINST_FILE
-}
+    PAKAGE_UNINST="${PAKAGE_UNINST} $1"
 
-rm -f $PKG_FILE
-rm -f $PKG_UNINST_FILE
+    if [ $DEBUG = "TRUE" ]; then
+	    pakku -R --noconfirm $1
+	    
+	    retVal=$?
+	    if [ $retVal -ne 0 ]; then
+	        echo "error on uninstall: $1"
+			ERROR_PAKAGE_UNINST="${ERROR_PAKAGE_UNINST}
+$1"        
+	    fi
+	fi
+}
 
 ###########################
 # collect needed packages #
@@ -44,10 +53,8 @@ rm -f $PKG_UNINST_FILE
 # .virtualbox
 inst virtualbox
 inst virtualbox-ext-oracle
-
-echo "Install Manjaro Virtualbox"
-inst linux$(uname -r | cut -f 1-2 -d '.' | tr -d '.')-headers
-inst linux$(uname -r | cut -f 1-2 -d '.' | tr -d '.')-virtualbox-host-modules
+inst virtualbox-host-modules-arch
+inst linux-headers
 
 # libvirt service and manager
 inst virt-manager
@@ -55,17 +62,17 @@ inst qemu
 inst qemu-arch-extra
 inst libvirt
 
-###############################
-# uninstall unneeded packages #
-###############################
-#yay -R --noconfirm - <$PKG_UNINST_FILE
-errorCheck "uninstall packages"
-
 #################################
 # install all (needed) packages #
 #################################
-yay -S $YAY_ALL - <$PKG_FILE
-errorCheck "install packages"
+if [ $DEBUG != "TRUE" ]; then
+	echo "INST: $PAKKU_PAKAGE"
+	pakku -S $PAKKU_ALL $PAKAGE_INST
+	errorCheck "install packages"
+fi
+
+#echo "Error in Uninst: ${ERROR_PAKAGE_UNINST}"
+echo "Error in Inst: ${ERROR_PAKAGE_INST}"
 
 ## FINISHING #
 
