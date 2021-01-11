@@ -12,8 +12,6 @@ function restart() {
 
 killall -q picom
 
-run xfce4-power-manager &
-
 while pgrep -u $UID -x "picom" >/dev/null; do sleep 1; done
 
 sh $SCRIPTS/picom-toggle-awesome.sh &

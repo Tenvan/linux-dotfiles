@@ -11,7 +11,7 @@ export SCRIPTS="$HOME/.scripts"
 export TERM=$(which kitty)
 
 # fix "xdg-open fork-bomb" export your preferred browser from here
-# export BROWSER=$(which firefox-developer-edition)
+# export BROWSER=$(which firefox)
 
 test -f "$HOME/.profile-custom" && source "$HOME/.profile-custom"
 

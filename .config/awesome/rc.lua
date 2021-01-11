@@ -28,18 +28,7 @@ local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 
-local themes = {
-    "multicolor", -- 1
-    "powerarrow", -- 2
-    "powerarrow-blue", -- 3
-    "blackburn", -- 4
-    "mytheme" -- 5
-}
-
--- choose your theme here
-local chosen_theme = themes[5]
-
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
+local theme_path = string.format("%s/.config/awesome/themes/mytheme/theme.lua", os.getenv("HOME"))
 beautiful.init(theme_path)
 
 -- Notification library
@@ -70,6 +59,7 @@ local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popu
 -- when client with a matching name is opened:
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 require("awful.hotkeys_popup.keys")
+
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local dpi = require("beautiful.xresources").apply_dpi
 -- }}}
@@ -294,7 +284,7 @@ lain.layout.cascade.tile.extra_padding = dpi(5)
 lain.layout.cascade.tile.nmaster = 5
 lain.layout.cascade.tile.ncol = 2
 
-beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
+beautiful.init(string.format("%s/.config/awesome/themes/mytheme/theme.lua", os.getenv("HOME")))
 -- }}}
 
 -- {{{ Menu
@@ -406,7 +396,25 @@ local globalkeys =
         {modkey},
         "x",
         function()
-            logout_popup.launch()
+            logout_popup.launch {
+                icon_size = 36,
+                icon_margin = 12,
+                onlogout = function()
+                    awesome.quit()
+                end,
+                onlock = function()
+                    awful.spawn.with_shell("sh $SCRIPTS/session_lock.sh")
+                end,
+                onreboot = function()
+                    awful.spawn.with_shell("sh $SCRIPTS/session_reboot.sh")
+                end,
+                onsuspend = function()
+                    awful.spawn.with_shell("sh $SCRIPTS/session_suspend.sh")
+                end,
+                onpoweroff = function()
+                    awful.spawn.with_shell("sh $SCRIPTS/session_shutdown.sh")
+                end
+            }
         end,
         {description = "Zeige Logout-Dialog", group = kgAwesome}
     ),

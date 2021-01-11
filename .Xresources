@@ -61,7 +61,7 @@ code.color1: #d6d6d6
 Xcursor.theme: Bibata-Modern-Ice
 Xcursor.size:  32
 
-Xft.dpi:       120
+Xft.dpi:       96
 Xft.antialias: true
 Xft.hinting:   true
 Xft.rgba:      rgb

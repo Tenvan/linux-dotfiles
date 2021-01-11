@@ -14,11 +14,10 @@ local dpi = require("beautiful.xresources").apply_dpi
 local vicious = require("vicious")
 
 local math, string, os = math, string, os
-local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
-local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
-local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
 local fs_widget = require("awesome-wm-widgets.fs-widget.fs-widget")
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
 
 local xres = require("beautiful.gtk").get_theme_variables()
 gdebug.dump(xres)
@@ -158,8 +157,7 @@ theme.widget_weather = theme.dir .. "/icons/dish.png"
 
 -- Separators
 -- local widget_seperator = wibox.container.margin(nil, theme.margins_width, theme.margins_width) -- wibox.container.textbox()
-local widget_seperator =
-    wibox.container.background(wibox.container.margin(nil, dpi(1)), theme.border_normal)
+local widget_seperator = wibox.container.background(wibox.container.margin(nil, dpi(1)), theme.border_normal)
 
 local widget_bg_color = theme.warning_bg_color
 
@@ -406,6 +404,29 @@ local net =
         end
     }
 )
+local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
+
+-- ...
+-- Create a textclock widget
+local mytextclock = wibox.widget.textclock()
+
+local cw =
+    calendar_widget(
+    {
+        theme = "outrun",
+        placement = "bottom_right",
+        radius = 8
+    }
+)
+
+mytextclock:connect_signal(
+    "button::press",
+    function(_, _, _, button)
+        if button == 1 then
+            cw.toggle()
+        end
+    end
+)
 
 -- Storage
 vicious.cache(vicious.widgets.fs)
@@ -448,9 +469,9 @@ function theme.at_screen_connect(s)
         wibox.container.background(wibox.container.margin(sysHost, theme.margins_width, theme.margins_width)),
         widget_seperator
     }
-
+    
     local screen2LeftWidges = {
-        layout = wibox.layout.fixed.horizontal
+        layout = wibox.layout.fixed.horizontal,
     }
 
     -- theme.bg_systray = xres.warning_bg_color
@@ -478,8 +499,10 @@ function theme.at_screen_connect(s)
         widget_seperator,
         wibox.container.background(wibox.container.margin(cpuHistogrammWidget)),
         widget_seperator,
+        ram_widget(),
+        widget_seperator,
         -- fs_widget({ mounts = { '/', '/home', '/media/WORKSPACE', '/media/BIGDATA', '/media/VM' } }),
-        fs_widget({ mounts = { '/', '/home', '/media/WORKSPACE', '/media/BIGDATA' } }),
+        fs_widget({mounts = {"/", "/home", "/media/WORKSPACE", "/media/BIGDATA", "/media/VM"}}),
         widget_seperator,
         -- cpu_widget({
         --     width = dpi(200),
@@ -488,22 +511,10 @@ function theme.at_screen_connect(s)
         --     color = '#434c5e'
         -- }),
         widget_seperator,
-        wibox.container.background(
-            wibox.container.margin(
-                wibox.widget {volicon, theme.volume.widget, layout = wibox.layout.align.horizontal},
-                theme.margins_width,
-                theme.margins_width
-            )
-        ),
-        widget_seperator,
         wibox.container.background(wibox.container.margin(datewidget, theme.margins_width, theme.margins_width)),
         widget_seperator,
-        spotify_widget(),
-        widget_seperator,
-        systrayWidget,
-        widget_seperator,
-        logout_menu_widget(),
-}
+        systrayWidget
+    }
 
     local screen2RightWidgets = {
         -- Right widgets
@@ -516,6 +527,8 @@ function theme.at_screen_connect(s)
         wibox.container.background(wibox.container.margin(fsVmWidget, theme.margins_width, theme.margins_width)),
         widget_seperator,
         wibox.container.background(wibox.container.margin(fsBidataWidget, theme.margins_width, theme.margins_width)),
+        widget_seperator,
+        wibox.container.background(wibox.container.margin(ram_widget(), theme.margins_width, theme.margins_width)),
         widget_seperator,
         wibox.container.background(wibox.container.margin(memwidget, theme.margins_width, theme.margins_width)),
         widget_seperator,

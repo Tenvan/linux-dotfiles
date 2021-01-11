@@ -195,6 +195,8 @@ inst pulseaudio-ctl
 inst pulseaudio-qt
 inst pulseaudio-equalizer-ladspa
 inst pasystray
+inst spotify
+inst sp
 
 # printer setup
 inst brother-mfc-j4420dw
