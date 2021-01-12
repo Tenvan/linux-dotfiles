@@ -63,6 +63,7 @@ gdebug.dump(xres)
 -- wm_title_focused_color : #ffffffff (string)
 -- wm_title_unfocused_color : #cfdae7cc (string)
 
+
 local theme = {}
 
 local accent_color1 = "#497B96"
@@ -74,9 +75,15 @@ theme.xres = xres
 theme.dir = os.getenv("HOME") .. "/.config/awesome/themes/mytheme"
 theme.wallpaper = theme.dir .. "/wallpaper.jpg"
 
-theme.border_normal = xres.wm_border_unfocused_color
-theme.border_focus = xres.wm_border_focused_color
-theme.border_marked = accent_color3
+local function makeColorTransparent(colorkey)
+    local alpha = 0xFFFFFF50
+    local newcolorkey = colorkey and 0xFFFFFF00
+    return colorkey
+end
+
+theme.border_normal = makeColorTransparent(xres.wm_border_unfocused_color)
+theme.border_focus = makeColorTransparent(xres.wm_border_focused_color)
+theme.border_marked = makeColorTransparent(accent_color3)
 
 theme.bg_normal = xres.bg_color
 theme.fg_normal = xres.fg_color
@@ -469,9 +476,9 @@ function theme.at_screen_connect(s)
         wibox.container.background(wibox.container.margin(sysHost, theme.margins_width, theme.margins_width)),
         widget_seperator
     }
-    
+
     local screen2LeftWidges = {
-        layout = wibox.layout.fixed.horizontal,
+        layout = wibox.layout.fixed.horizontal
     }
 
     -- theme.bg_systray = xres.warning_bg_color
@@ -479,7 +486,7 @@ function theme.at_screen_connect(s)
 
     local systray = wibox.widget.systray()
     -- systray:set_base_size(dpi(18))
-    local systrayWidget = wibox.layout.margin(systray, dpi(5), dpi(5), dpi(2), dpi(2))
+    local systrayWidget = wibox.container.margin(systray, dpi(5), dpi(5), dpi(2), dpi(2))
 
     local screen1widgets = {
         -- Right widgets

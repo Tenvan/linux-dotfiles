@@ -17,16 +17,7 @@ setxkbmap -layout de
 #cursor active at boot
 xsetroot -cursor_name left_ptr &
 
-#start ArcoLinux Welcome App
-#run dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
-
-######################
-# Settings wallpaper #
-######################
-
-# nitrogen --restore
-nitrogen --set-zoom-fill ~/.local/share/wallpapers/shared/floating-world-in-space-3000x2357.jpg --head=0
-nitrogen --set-zoom-fill ~/.local/share/wallpapers/shared/blue-earth-2880x1800.jpg --head=1
+sh ~/.scripts/set-wallpaper.sh
 
 #starting utility applications at boot time
 run nm-applet &
@@ -44,7 +35,7 @@ run pasystray &
 numlockx on &
 blueman-tray &
 run xscreensaver &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 run copyq &
 run teams &

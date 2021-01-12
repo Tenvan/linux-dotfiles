@@ -56,5 +56,6 @@
     "git-graph.dialog.resetUncommittedChanges.mode": "Hard",
     "git-graph.graph.style": "angular",
     "git-graph.repository.commits.fetchAvatars": true,
-    "git.autorefresh": false
+    "git.autorefresh": false,
+    "workbench.colorTheme": "Cobalt2"
   }

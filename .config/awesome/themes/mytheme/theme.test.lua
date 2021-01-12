@@ -385,7 +385,7 @@ function theme.at_screen_connect(s)
 
     local systray = wibox.widget.systray()
     -- systray:set_base_size(dpi(18))
-    local systrayWidget = wibox.layout.margin(systray, dpi(5), dpi(5), dpi(2), dpi(2))
+    local systrayWidget = wibox.container.margin(systray, dpi(5), dpi(5), dpi(2), dpi(2))
 
     local screen1widgets = {
         -- Right widgets

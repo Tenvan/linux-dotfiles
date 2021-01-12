@@ -94,22 +94,23 @@ inst hollywood
 ##########################
 # Base Development Tools #
 ##########################
-inst meld
+inst dotnet-sdk
 inst git
+inst gitahead-bin
 inst gitflow-avh
 inst github-cli
-inst gitahead-bin
+inst jdk-openjdk
+inst jdk8-openjdk
 inst libsecret
-inst nodejs-lts-fermium
-inst nodejs-emojione
-inst npm
-inst yarn
-inst dotnet-sdk
+inst meld
 inst mono
 inst mono-msbuild
-inst jdk8-openjdk
+inst nodejs-emojione
+inst nodejs-lts-fermium
+inst npm
 inst openjdk8-src
-inst jdk-openjdk
+inst svn
+inst yarn
 
 # jetbrains apps
 inst jetbrains-toolbox
@@ -124,9 +125,10 @@ inst awesome
 inst vicious
 inst xorg-server-xephyr
 inst luacheck
-inst luarocks
-inst lua-luajson
-inst lua-socket
+uninst luarocks
+uninst lua-luajson
+uninst lua-socket
+uninst lua-stdlib
 inst awmtt
 
 #####################################
@@ -142,6 +144,7 @@ inst copyq
 inst genius
 inst lxappearance
 inst notify-send.sh
+inst numlockx
 inst pm-utils
 inst pygtk
 inst python
@@ -249,6 +252,7 @@ uninst transfig
 uninst transmission-gtk
 uninst xfig
 inst etcher-bin
+inst kteatime
 
 # remmina
 inst remmina
