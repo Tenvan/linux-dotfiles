@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export SCRIPTS=~/.scripts
+
 . $SCRIPTS/defs.sh
 
 #####################
@@ -26,6 +28,8 @@ git submodule update --init --recursive
 # Config pacman
 sed 's/^#Color$/Color/g' </etc/pacman.conf >pacman.conf
 sudo mv pacman.conf /etc/
+sed 's/^.*ILoveCandy$/ILoveCandy/g' </etc/pamac.conf >pamac.conf
+sudo mv pamac.conf /etc/
 sed 's/^.*CheckAURUpdates$/CheckAURUpdates/g' </etc/pamac.conf >pamac.conf
 sudo mv pamac.conf /etc/
 sed 's/^.*EnableFlatpak$/EnableFlatpak/g' </etc/pamac.conf >pamac.conf
@@ -42,11 +46,11 @@ errorCheck "installation yay"
 pacman-mirrorup -m 10
 
 # Rust repaprieren/installieren
-yay -S $YAY_ALL  rustup
-errorCheck "installation rustup"
+#pakku -S $YAY_ALL  rustup
+#errorCheck "installation rustup"
 
-rustup install stable
-errorCheck "rustup stable"
+#rustup install stable
+#errorCheck "rustup stable"
 
 # disable sudo password
 echo "Cmnd_Alias INSTALL = /usr/bin/pacman, /usr/share/pacman
@@ -59,11 +63,11 @@ chmod +x $SCRIPTS/100-user-xdb.sh
 sudo cp $SCRIPTS/100-user-xdb.sh /etc/X11/xinit/xinitrc.d
 
 # powerline in linux console
-yay -S --needed --noconfirm terminus-font powerline-fonts
+#yay -S --needed --noconfirm terminus-font powerline-fonts
 
-echo "KEYMAP=de
-FONT=ter-powerline-v12n
-FONT_MAP=" | sudo tee /etc/vconsole.conf
+#echo "KEYMAP=de
+#FONT=ter-powerline-v12n
+#FONT_MAP=" | sudo tee /etc/vconsole.conf
 
 chmod -R -v +xrw ~/.scripts
 errorCheck "set script flags"

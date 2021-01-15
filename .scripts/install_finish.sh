@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export SCRIPTS=~/.scripts
+
 . $SCRIPTS/defs.sh
 
 errorCheck() {
@@ -15,17 +17,12 @@ errorCheck() {
 # refresh icons
 sudo gdk-pixbuf-query-loaders --update-cache
 
-# config webkit-greeter
-sed 's/^.*webkit_theme=.*$/webkit_theme=material2/g' </etc/lightdm/lightdm-webkit2-greeter.conf >lightdm-webkit2-greeter.conf
-sudo mv -f lightdm-webkit2-greeter.conf /etc/lightdm
-errorCheck "webkit config"
-
 # config slick-greeter
 echo "[Greeter]
-background=/usr/share/backgrounds/greeter_default.jpg
+background=/usr/share/slick-greeter/slick-greeter.png
 background-color=#263138
 draw-grid=false
-theme-name=Adapta-Nokto-Eta-Maia
+theme-name=Arc-Dark
 icon-theme-name=Papirus-Dark-Maia
 font-name='Cantarell 11'
 xft-antialias=true
@@ -34,13 +31,12 @@ enable-hidpi=auto" | sudo tee /etc/lightdm/slick-greeter.conf
 errorCheck "slick greeter config"
 
 # config lightdm greeter
-# sed 's/^.*greeter-session=$/greeter-session=lightdm-slick-greeter/g' </etc/lightdm/lightdm.conf >lightdm.conf
-sed 's/^.*greeter-session=.*$/greeter-session=lightdm-webkit2-greeter/g' </etc/lightdm/lightdm.conf >lightdm.conf
+sed 's/^.*greeter-session=$/greeter-session=lightdm-slick-greeter/g' </etc/lightdm/lightdm.conf >lightdm.conf
 sudo mv -f lightdm.conf /etc/lightdm
 errorCheck "lightdm greeter config"
 
-if [ -f $HOME/.screenlayout/screenlayout-nvidia.sh ]; then
-    sudo cp $HOME/.screenlayout/screenlayout-nvidia.sh /opt/screenlayout.sh
+if [ -f $HOME/.screenlayout/screenlayout.sh ]; then
+    sudo cp $HOME/.screenlayout/screenlayout.sh /opt/screenlayout.sh
     sed 's/^.*display-setup-script=$/display-setup-script=\/opt\/screenlayout.sh/g' </etc/lightdm/lightdm.conf >lightdm.conf
 	sudo mv lightdm.conf /etc/lightdm
 	errorCheck "screenlayout config"
@@ -48,13 +44,13 @@ fi
 
 # grub config
 sudo cp -r /usr/share/grub/themes/Stylish/ /boot/grub/themes/
-sed 's/.*GRUB_CMDLINE_LINUX_DEFAULT=.*$/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3"/g' </etc/default/grub >grub
-sudo mv -f grub /etc/default
 sed 's/.*GRUB_GFXMODE=.*$/GRUB_GFXMODE="1920x1080,auto"/g' </etc/default/grub >grub
 sudo mv -f grub /etc/default
-sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/Archlinux\/theme.txt"/g' </etc/default/grub >grub
-sudo mv -f grub /etc/default
+#sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/Archlinux\/theme.txt"/g' </etc/default/grub >grub
+#sudo mv -f grub /etc/default
 errorCheck "grub config"
+
+micro /etc/default/grub
 
 sudo mkinitcpio -P
 sudo grub-mkconfig -o /boot/grub/grub.cfg
@@ -91,7 +87,7 @@ git config pull.ff only       # fast-forward only
 git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
 
 # nodejs tools for editors
-sudo npm install -g neovim eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
+sudo npm install -g eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
 errorCheck "install required nodejs-tools"
 
 # Default Browser setzen (vorher $BROWSER Variable entfernen)
@@ -107,3 +103,7 @@ sudo usermod -aG docker $USER
 sudo systemctl enable docker
 sudo systemctl start docker
 errorCheck "docker service"
+
+sudo systemctl enable webmin
+sudo systemctl start webmin
+errorCheck "webmin service"

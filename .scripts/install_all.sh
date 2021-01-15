@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
+export SCRIPTS=~/.scripts
+
 . $SCRIPTS/defs.sh
 
 #####################
 # init distro check #
 #####################
 DEBUG=FALSE
-#DEBUG=TRUE
+# DEBUG=TRUE
 
 errorCheck() {
     retVal=$?
@@ -60,10 +62,10 @@ inst bashtop
 inst bpytop
 inst clamav
 inst clamtk
-inst cronie
 inst dpkg
 inst exa
 inst find-the-command
+inst fish
 inst glances
 inst gtop
 inst hstr
@@ -78,9 +80,7 @@ inst multitail
 inst neofetch
 inst openconnect
 inst p7zip
-uninst powerline-rs
 inst qfc-git
-uninst ripgrep
 inst s-tui
 inst shell-color-scripts
 inst starship
@@ -125,10 +125,6 @@ inst awesome
 inst vicious
 inst xorg-server-xephyr
 inst luacheck
-uninst luarocks
-uninst lua-luajson
-uninst lua-socket
-uninst lua-stdlib
 inst awmtt
 
 #####################################
@@ -136,16 +132,16 @@ inst awmtt
 # for tiling windows managers (all) #
 #####################################
 # system packages
+#inst pm-utils
 inst appeditor-git
 inst arandr
-inst blueman
 inst checkupdates-aur
 inst copyq
+inst dex
 inst genius
 inst lxappearance
 inst notify-send.sh
 inst numlockx
-inst pm-utils
 inst pygtk
 inst python
 inst python-psutil
@@ -157,6 +153,7 @@ inst python2-distutils-extra
 inst radiotray
 inst rofi
 inst seahorse
+inst skippy-xd-git
 inst systemdgenie
 inst time
 inst xautolock
@@ -165,9 +162,18 @@ inst xclip
 inst xcwd-git
 inst xdotool
 inst xorg-xfd
+inst xorg-xsetroot
 inst xsel
 inst zenity
-inst skippy-xd-git
+inst ibus-daemon
+inst webmin
+inst unclutter
+
+# config tools
+inst lxqt-config
+inst lxappearance
+inst xsettingsd
+inst xsettings-client
 
 # utilities from gnome
 inst gnome-disk-utility
@@ -180,12 +186,13 @@ inst gnome-menu-editor-qt
 # polkits
 inst polkit-gnome
 inst polkit-kde-agent
+inst xfce-polkit
+#inst polkit-dumb-agent
 
 inst xscreensaver
 inst qt-logout
 inst qt5-styleplugins
 inst qt5ct
-#inst phonon-qt5-gstreamer
 
 # file manager
 inst pcmanfm
@@ -201,6 +208,20 @@ inst pasystray
 inst spotify
 inst sp
 
+# bluetooth setup
+inst blueberry
+inst bluetooth-autoconnect
+#inst bluetooth-support
+inst bluez
+inst bluez-hid2hci
+inst bluez-libs
+inst bluez-plugins
+inst bluez-tools
+inst bluez-utils
+inst gnome-bluetooth
+inst pulseaudio-bluetooth
+inst sbc
+
 # printer setup
 inst brother-mfc-j4420dw
 inst canon-cque
@@ -213,14 +234,12 @@ inst libreoffice-fresh
 inst libreoffice-fresh-de
 
 # Browser
-inst firefox-developer-edition
-inst firefox-developer-edition-i18n-de
 inst firefox
 inst firefox-i18n-de
 inst google-chrome
 inst chromium
 inst microsoft-edge-dev-bin
-uninst vivaldi
+inst vivaldi
 
 # optional application packages
 inst aspell
@@ -233,9 +252,9 @@ inst evolution
 inst gimp
 inst gimp-help-de
 inst gparted
-inst grub-customizer
+#inst grub-customizer
 inst hardinfo
-uninst imagemagick
+inst imagemagick
 inst inkscape
 inst ktorrent
 inst nitrogen
@@ -248,11 +267,11 @@ inst python-numpy
 inst qbittorrent
 inst spectacle
 inst teams
-uninst transfig
-uninst transmission-gtk
-uninst xfig
 inst etcher-bin
 inst kteatime
+# inst zoom
+inst zoom-system-qt
+inst zoom-firefox
 
 # remmina
 inst remmina
@@ -272,14 +291,9 @@ inst picom-jonaburg-git
 # vs code
 inst visual-studio-code-bin
 inst bash-completion
-uninst lua-format
 
 # neovim
 inst neovim
-
-# Atom
-uninst atom-editor-bin
-uninst atom-editor-git
 
 # utils for editors
 inst shellcheck
@@ -303,55 +317,36 @@ inst micro
 ###############################################
 
 # themes
-uninst arc-gtk-theme-colorpack
 inst arc-gtk-theme
 inst arc-solid-gtk-theme
-uninst deepin-gtk-theme
 inst materia-gtk-theme
 inst kvantum-theme-materia
-uninst numix-gtk-theme
-uninst zuki-themes
 
 #inst oomox
-inst themix-full-git
+#inst themix-full-git
 
 # icons
-inst arc-icon-theme
+#inst arc-icon-theme
 inst papirus-icon-theme
-uninst numix-icon-theme-pack-git
-
-# inst bibata-extra-cursor-git
-uninst bibata-extra-cursor-theme
-inst bibata-cursor-theme-bin
-inst bibata-cursor-translucent
 
 # wallpapers
 inst ukui-wallpapers
 
 # cursor
-uninst xcursor-breeze
-uninst xcursor-breeze-adapta
-uninst xcursor-breeze-serie-obsidian
-uninst xcursor-chameleon-anthracite
-uninst xcursor-chameleon-darkskyblue
-uninst xcursor-chameleon-pearl
-uninst xcursor-chameleon-skyblue
-uninst xcursor-chameleon-white
+inst bibata-cursor-theme-bin
+inst bibata-cursor-translucent
 
 # icons
-uninst adwaita-icon-theme
-# inst arc-icon-theme
 inst paper-icon-theme
 inst papirus-icon-theme
 inst papirus-icon-theme
-# inst sardi-icons
+inst sardi-icons
 
 # fonts
 inst font-manager
-inst fontmatrix
 inst awesome-terminal-fonts
 
-uninst nerd-fonts-complete
+inst nerd-fonts-cascadia-code
 inst nerd-fonts-mononoki
 inst nerd-fonts-iosevka
 
@@ -367,22 +362,6 @@ inst lightdm
 inst lightdm-settings
 inst lightdm-slick-greeter
 inst lightdm-webkit2-greeter
-
-# webkit themes
-inst lightdm-webkit2-clean
-uninst lightdm-webkit2-theme-alter
-inst lightdm-webkit2-theme-glorious
-inst lightdm-webkit2-theme-material2
-uninst lightdm-webkit2-theme-obsidian
-uninst lightdm-webkit2-theme-sapphire
-inst lightdm-webkit-theme-osmos
-inst lightdm-webkit-theme-aether
-uninst lightdm-webkit-theme-contemporary
-uninst lightdm-webkit-theme-luminos
-uninst lightdm-webkit-theme-wisp
-uninst lightdm-webkit-theme-osmos
-uninst lightdm-webkit-theme-petrichor-git
-uninst lightdm-webkit-theme-sequoia-git
 
 # grub
 inst grub2-theme-archlinux

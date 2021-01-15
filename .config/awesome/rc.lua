@@ -302,7 +302,7 @@ awful.util.mymainmenu =
     freedesktop.menu.build(
     {
         before = {
-            {"Awesome", myawesomemenu}
+            {"Awesome", myawesomemenu, beautiful.awesome_icon}
             -- { "Atom", "atom" },
             -- other triads can be put here
         },
@@ -351,9 +351,12 @@ screen.connect_signal(
         local only_one = #s.tiled_clients == 1
         for _, c in pairs(s.clients) do
             -- special Toolbar handling
-            if (c.class == "Polybar") or (c.class == "Plank") then
+            if
+                (c.class == "firefox") or (c.class == "firefoxdeveloperedition") or (c.class == "Chromium") or
+                    (c.class == "Google-chrome")
+             then
             elseif only_one and not c.floating or c.maximized then
-                c.border_width = 2
+                c.border_width = dpi(1)
             else
                 c.border_width = beautiful.border_width
             end
@@ -807,7 +810,10 @@ local clientkeys =
             c.maximized = not c.maximized
             c:raise()
         end,
-        {description = "toggle maximized", group = kgClient}
+        {
+            description = "toggle maximized",
+            group = kgClient
+        }
     ),
     awful.key(
         {modkey},
@@ -815,18 +821,17 @@ local clientkeys =
         function(c)
             c:kill()
         end,
-        {description = "close", group = kgClient}
+        {
+            description = "close",
+            group = kgClient
+        }
     ),
-    awful.key({modkey}, "space", awful.client.floating.toggle, {description = "toggle floating", group = kgClient}),
     awful.key(
         {modkey, altkey},
         "space",
-        function(c)
-            c.maximized = not c.maximized
-            c:raise()
-        end,
+        awful.client.floating.toggle,
         {
-            description = "toggle maximized",
+            description = "toggle floating",
             group = kgClient
         }
     ),
@@ -1409,6 +1414,5 @@ client.connect_signal(
 
 -- Autostart applications
 awful.spawn.with_shell("sh $SCRIPTS/autostart-global.sh")
-awful.spawn.with_shell("sh $SCRIPTS/autostart-awesome.sh")
 
 notify("Awesome Default", "Awesome Default erfolgreich gestartet !!", naughty.config.presets.info)

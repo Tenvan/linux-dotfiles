@@ -10,8 +10,8 @@ function restart() {
     killall $1
 }
 
-killall -q picom
 
 while pgrep -u $UID -x "picom" >/dev/null; do sleep 1; done
 
+killall -q picom
 sh $SCRIPTS/picom-toggle-awesome.sh &
