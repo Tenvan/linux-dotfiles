@@ -1,5 +1,6 @@
 ## Hide welcome message
 set fish_greeting
+set VIRTUAL_ENV_DISABLE_PROMPT "1"
 
 ## Source .profile to apply its values
 source ~/.profile

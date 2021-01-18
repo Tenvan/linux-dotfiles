@@ -40,9 +40,15 @@ run kteatime
 restart xbindkeys
 
 # Sound Tray Icons
+run start-pulseaudio-x11
 run pasystray
 
+run redshift-gtk
+
 run blueman-tray
+run blueberry-tray
+run blueman-applet
+
 run xscreensaver
 run xsettingsd
 restart /usr/lib/xfce-polkit/xfce-polkit
@@ -52,6 +58,13 @@ restart /usr/lib/xfce-polkit/xfce-polkit
 run copyq
 run xfce4-notes
 run teams
+run paleofetch --recache
+
+run $(which gesettings-data-convert)
+
+run /usr/lib/xapps/sn-watcher/xapp-sn-watcher
+
+run system-config-printer-applet
 
 killall -q picom
 sh $SCRIPTS/picom-toggle-awesome.sh &

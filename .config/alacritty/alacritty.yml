@@ -33,12 +33,12 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  padding:
-    x: 6
-    y: 6
+  #padding:
+  #  x: 0
+  #  y: 0
 
   # Spread additional padding evenly around the terminal content.
-  #dynamic_padding: false
+  dynamic_padding: true
 
   # Window decorations
   #
@@ -49,7 +49,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  #decorations: full
+  decorations: full
 
   # Startup Mode (changes require restart)
   #
@@ -63,7 +63,7 @@ window:
   #startup_mode: Windowed
 
   # Window title
-  title: Alacritty
+  title: Alacritty@Garuda
 
   # Window class (Linux/BSD only):
   class:
@@ -76,31 +76,20 @@ window:
   #
   # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
   # Set this to `None` to use the default theme variant.
-  #gtk_theme_variant: None
+  gtk_theme_variant: dark
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
-  history: 5000
+  history: 10000
 
-  # Number of lines the viewport will move for every line scrolled when
-  # scrollback is enabled (history > 0).
-  #multiplier: 3
-  # Scroll to the bottom when new text is written to the terminal.
-  #auto_scroll: false
-
-# Spaces per Tab (changes require restart)
-#
-# This setting defines the width of a tab in cells.
-#
-# Some applications, like Emacs, rely on knowing about the width of a tab.
-# To prevent unexpected behavior in these applications, it's also required to
-# change the `it` value in terminfo when altering this setting.
-#tabspaces: 8
+  # Scrolling distance multiplier.
+  multiplier: 3
 
 # Font configuration
 font:
   # Normal (roman) font face
+  size: 12
   normal:
     # Font family
     #
@@ -108,7 +97,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    # family: JetBrains Mono Nerd Font
+    # family: MesloLGS NF    # family: JetBrains Mono Nerd Font
     # family: Mononoki Nerd Font
     # family: SauceCodePro Nerd Font
     # family: CodeNewRoman Nerd Font
@@ -128,6 +117,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
+    # family:  MesloLGS NF
     # family: SauceCodePro Nerd Font
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
@@ -147,6 +137,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
+    # family:  MesloLGS NF
     # family: SauceCodePro Nerd Font Mono
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
@@ -157,7 +148,7 @@ font:
     # family: TerminessTTF Nerd Font
     # family: NotoEmoji Nerd Font Mono
     # family: Iosevka Term
-    
+
     # The `style` can be specified to pick a specific face.
     style: Italic
 
@@ -167,6 +158,7 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
+    # family:  MesloLGS NF
     # family: SauceCodePro Nerd Font Mono
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
@@ -182,45 +174,36 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 12.0
+    size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
-  offset:
-    x: 0
-    y: 0
+  #offset:
+  #  x: 0
+  #  y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upwards.
-  # glyph_offset:
-  #   x: 0
-  #   y: 0
+  #glyph_offset:
+  #  x: 0
+  #  y: 0
+
   # Thin stroke font rendering (macOS only)
   #
   # Thin strokes are suitable for retina displays, but for non-retina screens
-  # it is recommended to set `use_thin_strokes` to `false`
-  #
-  # macOS >= 10.14.x:
-  #
-  # If the font quality on non-retina display looks bad then set
-  # `use_thin_strokes` to `true` and enable font smoothing by running the
-  # following command:
-  #   `defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO`
-  #
-  # This is a global setting and will require a log out or restart to take
-  # effect.
+  # it is recommended to set `use_thin_strokes` to `false`.
   #use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-#draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: true
 
-# Colors (Tomorrow Night Bright)
-colors:
+# Colors (Tomorrow Night)
+#colors:
   # Default colors
-  primary:
-    background: '0x292d3e'
-    foreground: '0xbbc5ff'
+  #primary:
+    # background: '0x292d3e'
+    # foreground: '0xbbc5ff'
 
     # Bright and dim foreground colors
     #
@@ -232,42 +215,50 @@ colors:
 
   # Cursor colors
   #
-  # Colors which should be used to draw the terminal cursor. If these are unset,
-  # the cursor color will be the inverse of the cell color.
+  # Colors which should be used to draw the terminal cursor. If these are
+  # unset, the cursor color will be the inverse of the cell color.
   #cursor:
-  #  text: '0x000000'
-  #  cursor: '0xffffff'
+  #  text: '#000000'
+  #  cursor: '#ffffff'
+
+  # Vi mode cursor colors
+  #
+  # Colors for the cursor when the vi mode is active. If these are unset, the
+  # cursor color will be the inverse of the cell color.
+  #vi_mode_cursor:
+  #  text: '#000000'
+  #  cursor: '#ffffff'
 
   # Selection colors
   #
   # Colors which should be used to draw the selection area. If selection
   # background is unset, selection color will be the inverse of the cell colors.
   # If only text is unset the cell text color will remain the same.
-  selection:
-    text: '0x292d3e'
-    background: '0xbbc5ff'
+  #selection:
+  #  text: '0x292d3e'
+  #  background: '0xbbc5ff'
 
   # Normal colors
-  normal:
-    black:   '0x292d3e'
-    red:     '0xf07178'
-    green:   '0xc3e88d'
-    yellow:  '0xffcb6b'
-    blue:    '0x82aaff'
-    magenta: '0xc792ea'
-    cyan:    '0x89ddff'
-    white:   '0xd0d0d0'
+  #normal:
+  #  black:   '0x292d3e'
+  #  red:     '0xf07178'
+  #  green:   '0xc3e88d'
+  #  yellow:  '0xffcb6b'
+  #  blue:    '0x82aaff'
+  #  magenta: '0xc792ea'
+  #  cyan:    '0x89ddff'
+  #  white:   '0xd0d0d0'
 
   # Bright colors
-  bright:
-    black:   '0x434758'
-    red:     '0xff8b92'
-    green:   '0xddffa7'
-    yellow:  '0xffe585'
-    blue:    '0x9cc4ff'
-    magenta: '0xe1acff'
-    cyan:    '0xa3f7ff'
-    white:   '0xffffff'
+  #bright:
+  #  black:   '0x434758'
+  #  red:     '0xff8b92'
+  #  green:   '0xddffa7'
+  #  yellow:  '0xffe585'
+  #  blue:    '0x9cc4ff'
+  #  magenta: '0xe1acff'
+  #  cyan:    '0xa3f7ff'
+  #  white:   '0xffffff'
 
   # Dim colors
   #
@@ -317,13 +308,12 @@ colors:
 #visual_bell:
 #  animation: EaseOutExpo
 #  duration: 0
-#  color: '0xffffff'
+#  color: '#ffffff'
 
 # Background opacity
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-# background_opacity: 1.0
 background_opacity: 0.8
 
 #selection:
@@ -344,9 +334,21 @@ background_opacity: 0.8
   #   - | Beam
   #style: Block
 
+  # Vi mode cursor style
+  #
+  # If the vi mode cursor style is `None` or not specified, it will fall back to
+  # the style of the active value of the normal cursor.
+  #
+  # See `cursor.style` for available options.
+  #vi_mode_style: None
+
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
   #unfocused_hollow: true
+
+  # Thickness of the cursor relative to the cell width as floating point number
+  # from `0.0` to `1.0`.
+  #thickness: 0.15
 
 # Live config reload (changes require restart)
 #live_config_reload: true
@@ -408,7 +410,7 @@ background_opacity: 0.8
   # Record all characters and escape sequences as test data.
   #ref_test: false
 
-#mouse:
+mouse:
   # Click settings
   #
   # The `double_click` and `triple_click` settings control the time
@@ -418,7 +420,7 @@ background_opacity: 0.8
   #triple_click: { threshold: 300 }
 
   # If this is `true`, the cursor is temporarily hidden when typing.
-  #hide_when_typing: false
+  hide_when_typing: true
 
   #url:
     # URL launcher
@@ -426,7 +428,7 @@ background_opacity: 0.8
     # This program is executed when clicking on a text which is recognized as a URL.
     # The URL is always added to the command as the last parameter.
     #
-    # When set to `None`, URL launching will be disabled completely.
+    # When set to `launcher: None`, URL launching will be disabled completely.
     #
     # Default:
     #   - (macOS) open
@@ -446,6 +448,9 @@ background_opacity: 0.8
 #
 # Mouse bindings are specified as a list of objects, much like the key
 # bindings further below.
+#
+# To trigger mouse bindings when an application running within Alacritty captures the mouse, the
+# `Shift` modifier is automatically added as a requirement.
 #
 # Each mouse binding will specify a:
 #
@@ -502,6 +507,7 @@ background_opacity: 0.8
 #
 # - `action`: Execute a predefined action
 #
+#   - ToggleViMode
 #   - Copy
 #   - Paste
 #   - PasteSelection
@@ -521,11 +527,41 @@ background_opacity: 0.8
 #   - ToggleFullscreen
 #   - SpawnNewInstance
 #   - ClearLogNotice
+#   - ClearSelection
 #   - ReceiveChar
 #   - None
 #
+#   (`mode: Vi` only):
+#   - Open
+#   - Up
+#   - Down
+#   - Left
+#   - Right
+#   - First
+#   - Last
+#   - FirstOccupied
+#   - High
+#   - Middle
+#   - Low
+#   - SemanticLeft
+#   - SemanticRight
+#   - SemanticLeftEnd
+#   - SemanticRightEnd
+#   - WordRight
+#   - WordLeft
+#   - WordRightEnd
+#   - WordLeftEnd
+#   - Bracket
+#   - ToggleNormalSelection
+#   - ToggleLineSelection
+#   - ToggleBlockSelection
+#   - ToggleSemanticSelection
+#
 #   (macOS only):
 #   - ToggleSimpleFullscreen: Enters fullscreen without occupying another space
+#
+#   (Linux/BSD only):
+#   - CopySelection: Copies into selection buffer
 #
 # - `command`: Fork and execute a specified command plus arguments
 #
@@ -564,13 +600,16 @@ background_opacity: 0.8
 # binding with the same triggers is defined. To unset a default binding, it can
 # be mapped to the `ReceiveChar` action. Alternatively, you can use `None` for
 # a no-op if you do not wish to receive input characters for that binding.
+#
+# If the same trigger is assigned to multiple actions, all of them are executed
+# at once.
 key_bindings:
     # (Windows, Linux, and BSD only)
   - { key: V,        mods: Control|Shift, action: Paste            }
   - { key: C,        mods: Control|Shift, action: Copy             }
   - { key: Insert,   mods: Shift,         action: PasteSelection   }
   - { key: Key0,     mods: Control,       action: ResetFontSize    }
- 
+
   - { key: Paste,                    action: Paste                            }
   - { key: Copy,                     action: Copy                             }
   - { key: L,         mods: Control, action: ClearLogNotice                   }
