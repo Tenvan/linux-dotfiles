@@ -2,14 +2,11 @@
 
 function run() {
     if command -v $1 &>/dev/null; then
-        echo "autostart: $@"
         #pgrep -u "$USER" -fx "$1" >/dev/null || ($@) &
         if ! pgrep "$1"; then
-            echo "execute: $@"
             $@ &
         fi
     else
-        echo "error Autostart: $@"
         notify-send -t 10000 -u critical "Error Autostart" "Kommando '$1' nicht gefunden"
     fi
 }

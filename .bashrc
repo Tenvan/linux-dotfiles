@@ -6,9 +6,15 @@ echo "run: .bashrc"
 
 [[ $- != *i* ]] && return
 
+csource() {
+  if [[ -r "$@" ]]; then
+    source "$@"
+  fi
+}
+
 export SCRIPTS="$HOME/.scripts"
 
-test -f "$SCRIPTS/defs.sh" && source "$SCRIPTS/defs.sh"
+csource "$SCRIPTS/defs.sh"
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -19,13 +25,11 @@ PS1='[\u@\h \W]\$ '
 
 test -d "$HOME/.bin" && PATH="$HOME/.bin:$PATH"
 test -d "$HOME/.local/bin" && PATH="$HOME/.local/bin:$PATH"
-test -d "$HOME/.doom.d/bin" && PATH="$HOME/.doom.d/bin:$PATH"
-test -d "$HOME/.emacs.d/bin" && PATH="$HOME/.emacs.d/bin:$PATH"
 
 #ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
 
-test -f ~/.aliasrc && source ~/.aliasrc
+csource ~/.aliasrc
 
 #shopt
 shopt -s autocd  # change to named directory
@@ -140,7 +144,5 @@ fi
 
 test -f ~/.bashrc-personal.sh && . ~/.bashrc-personal.sh
 
-test -f "/usr/bin/neofetch" && neofetch
-
-# add android sdk path, if installed
-test -d "$HOME/Android/Sdk/tools" && PATH="$HOME/Android/Sdk/tools:$PATH"
+# test -f "$(which neofetch)" && $(which neofetch)
+test -f "$(which paleofetch)" && $(which paleofetch)
