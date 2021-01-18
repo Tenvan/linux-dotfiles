@@ -9,7 +9,7 @@ export MAIL=$(which thunderbird)
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export SCRIPTS="$HOME/.scripts"
-export TERM=$(which kitty)
+# export TERM=$(which kitty)
 
 # fix "xdg-open fork-bomb" export your preferred browser from here
 # export BROWSER=$(which firefox)

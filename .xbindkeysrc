@@ -90,7 +90,7 @@
 # Appliactions Calls
 
 # Browser
-"xdg-open about:blank" 
+"i3-sensible-browser " 
   mod4 + F1
 
 # AppFinder
@@ -149,6 +149,11 @@
 # Toggle Picom
 "sh $SCRIPTS/picom-toggle-awesome.sh" 
   mod4 + t
+
+# Logout
+"qt-logout" 
+  mod4 + alt + x
+
 
 # Kill Prozess
 "xkill" 

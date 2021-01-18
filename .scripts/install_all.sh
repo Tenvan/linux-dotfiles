@@ -139,6 +139,7 @@ inst checkupdates-aur
 inst copyq
 inst dex
 inst genius
+inst i3-sensible-browser
 inst lxappearance
 inst notify-send.sh
 inst numlockx
@@ -168,9 +169,12 @@ inst zenity
 inst ibus-daemon
 inst webmin
 inst unclutter
-
 # config tools
 inst lxqt-config
+inst lxqt-admin
+inst lxqt-policykit
+inst lxqt-qtplugin
+inst lxqt-sudo
 inst lxappearance
 inst xsettingsd
 inst xsettings-client

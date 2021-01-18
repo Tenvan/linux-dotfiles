@@ -399,25 +399,7 @@ local globalkeys =
         {modkey},
         "x",
         function()
-            logout_popup.launch {
-                icon_size = 36,
-                icon_margin = 12,
-                onlogout = function()
-                    awesome.quit()
-                end,
-                onlock = function()
-                    awful.spawn.with_shell("sh $SCRIPTS/session_lock.sh")
-                end,
-                onreboot = function()
-                    awful.spawn.with_shell("sh $SCRIPTS/session_reboot.sh")
-                end,
-                onsuspend = function()
-                    awful.spawn.with_shell("sh $SCRIPTS/session_suspend.sh")
-                end,
-                onpoweroff = function()
-                    awful.spawn.with_shell("sh $SCRIPTS/session_shutdown.sh")
-                end
-            }
+            awful.spawn.with_shell("sh $SCRIPTS/menu/system-menu.sh")
         end,
         {description = "Zeige Logout-Dialog", group = kgAwesome}
     ),
@@ -602,15 +584,6 @@ local globalkeys =
         {description = "toggle wibox", group = kgLayout}
     ),
     -- Show/Hide SystraySystray
-    awful.key(
-        {modkey},
-        "-",
-        function()
-            awful.screen.focused().systray.visible = not awful.screen.focused().systray.visible
-        end,
-        {description = "Toggle systray visibility", group = kgSystem}
-    ),
-    -- Show/Hide Systray
     awful.key(
         {modkey},
         "KP_Subtract",
