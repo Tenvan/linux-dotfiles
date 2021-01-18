@@ -45,13 +45,6 @@ errorCheck "installation yay"
 
 pacman-mirrorup -m 10
 
-# Rust repaprieren/installieren
-#pakku -S $YAY_ALL  rustup
-#errorCheck "installation rustup"
-
-#rustup install stable
-#errorCheck "rustup stable"
-
 # disable sudo password
 echo "Cmnd_Alias INSTALL = /usr/bin/pacman, /usr/share/pacman
 Cmnd_Alias POWER = /usr/bin/pm-hibernate, /usr/bin/pm-powersave, /usr/bin/pm-suspend-hybrid, /usr/bin/pm-suspend
@@ -61,13 +54,6 @@ $USER ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/100-myrules
 
 chmod +x $SCRIPTS/100-user-xdb.sh
 sudo cp $SCRIPTS/100-user-xdb.sh /etc/X11/xinit/xinitrc.d
-
-# powerline in linux console
-#yay -S --needed --noconfirm terminus-font powerline-fonts
-
-#echo "KEYMAP=de
-#FONT=ter-powerline-v12n
-#FONT_MAP=" | sudo tee /etc/vconsole.conf
 
 chmod -R -v +xrw ~/.scripts
 errorCheck "set script flags"

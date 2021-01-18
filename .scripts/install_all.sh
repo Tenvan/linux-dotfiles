@@ -115,11 +115,10 @@ inst yarn
 # jetbrains apps
 inst jetbrains-toolbox
 
-########################################
-# Installing all used Window Managers  #
-# Unter ArcoLinux TweakTool verwenden. #
-########################################
-
+#####################################
+# installation desktop packages     #
+# for tiling windows managers (all) #
+#####################################
 # awesome packages
 inst awesome
 inst vicious
@@ -127,20 +126,26 @@ inst xorg-server-xephyr
 inst luacheck
 inst awmtt
 
-#####################################
-# installation desktop packages     #
-# for tiling windows managers (all) #
-#####################################
+# config tools
+#inst lxqt-config
+#inst lxqt-admin
+#inst lxqt-policykit
+#inst lxqt-qtplugin
+#inst lxqt-sudo
+#inst lxappearance
+#inst xsettingsd
+#inst xsettings-client
+
 # system packages
-#inst pm-utils
+inst picom-jonaburg-git
+inst pm-utils
 inst appeditor-git
 inst arandr
 inst checkupdates-aur
 inst copyq
 inst dex
 inst genius
-inst i3-sensible-browser
-inst lxappearance
+inst i3-sensible-browser-git
 inst notify-send.sh
 inst numlockx
 inst pygtk
@@ -151,7 +156,6 @@ inst python-requests
 inst python-taskw
 inst python-xkbgroup
 inst python2-distutils-extra
-inst radiotray
 inst rofi
 inst seahorse
 inst skippy-xd-git
@@ -169,15 +173,6 @@ inst zenity
 inst ibus-daemon
 inst webmin
 inst unclutter
-# config tools
-inst lxqt-config
-inst lxqt-admin
-inst lxqt-policykit
-inst lxqt-qtplugin
-inst lxqt-sudo
-inst lxappearance
-inst xsettingsd
-inst xsettings-client
 
 # utilities from gnome
 inst gnome-disk-utility
@@ -188,10 +183,9 @@ inst gnome-calculator
 inst gnome-menu-editor-qt
 
 # polkits
-inst polkit-gnome
-inst polkit-kde-agent
+#inst polkit-gnome
+#inst polkit-kde-agent
 inst xfce-polkit
-#inst polkit-dumb-agent
 
 inst xscreensaver
 inst qt-logout
@@ -209,7 +203,6 @@ inst pulseaudio-ctl
 inst pulseaudio-qt
 inst pulseaudio-equalizer-ladspa
 inst pasystray
-inst spotify
 inst sp
 
 # bluetooth setup
@@ -252,12 +245,14 @@ inst bitwarden-cli-bin
 inst bitwarden-rofi
 inst docker
 inst docker-compose
+inst etcher-bin
 inst evolution
 inst gimp
 inst gimp-help-de
 inst gparted
-#inst grub-customizer
+inst grub-customizer
 inst hardinfo
+inst kteatime
 inst imagemagick
 inst inkscape
 inst ktorrent
@@ -269,10 +264,10 @@ inst pstoedit
 inst python-lxml
 inst python-numpy
 inst qbittorrent
+inst radiotray
 inst spectacle
 inst teams
-inst etcher-bin
-inst kteatime
+
 # inst zoom
 inst zoom-system-qt
 inst zoom-firefox
@@ -285,9 +280,6 @@ inst remmina-plugin-url
 inst remmina-plugin-folder
 inst remmina-plugin-open
 inst freerdp
-
-#inst picom-ibhagwan-git
-inst picom-jonaburg-git
 
 #####################################
 # installation of important editors #

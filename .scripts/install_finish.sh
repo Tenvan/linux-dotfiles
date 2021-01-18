@@ -43,11 +43,23 @@ if [ -f $HOME/.screenlayout/screenlayout.sh ]; then
 fi
 
 # grub config
+
+# powerline in linux console
+pakku -S --needed --noconfirm terminus-font powerline-fonts
+
+echo "KEYMAP=de
+FONT=ter-powerline-v12n
+FONT_MAP=" | sudo tee /etc/vconsole.conf
+
 sudo cp -r /usr/share/grub/themes/Stylish/ /boot/grub/themes/
 sed 's/.*GRUB_GFXMODE=.*$/GRUB_GFXMODE="1920x1080,auto"/g' </etc/default/grub >grub
 sudo mv -f grub /etc/default
-#sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/Archlinux\/theme.txt"/g' </etc/default/grub >grub
-#sudo mv -f grub /etc/default
+if [ $IS_GARUDA ]; then
+	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/garuda\/theme.txt"/g' </etc/default/grub >grub
+else
+	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/Stylish\/theme.txt"/g' </etc/default/grub >grub
+fi
+sudo mv -f grub /etc/default
 errorCheck "grub config"
 
 micro /etc/default/grub

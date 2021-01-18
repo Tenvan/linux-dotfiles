@@ -45,9 +45,9 @@ run pasystray
 run blueman-tray
 run xscreensaver
 run xsettingsd
-killall restart /usr/lib/xfce-polkit/xfce-polkit
-killall restart /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-restart lxqt-policykit-agent
+restart /usr/lib/xfce-polkit/xfce-polkit
+# restart /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# restart lxqt-policykit-agent
 
 run copyq
 run xfce4-notes
