@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
 
-export SCRIPTS=~/.scripts
-
 . $SCRIPTS/defs.sh
 
 #####################
 # init distro check #
 #####################
 DEBUG=FALSE
-# DEBUG=TRUE
+#DEBUG=TRUE
 
 errorCheck() {
     retVal=$?
@@ -52,9 +50,7 @@ $1"
 # collect needed packages #
 ###########################
 
-###################
-# system packages #
-###################
+# system packages
 inst alacritty
 inst arj
 inst ark
@@ -80,20 +76,14 @@ inst multitail
 inst neofetch
 inst openconnect
 inst p7zip
-inst qfc-git
+uninst qfc-git
 inst s-tui
 inst shell-color-scripts
-inst starship
+uninst starship
 inst timeshift
 inst unrar
 
-# gimicks
-inst cmatrix
-inst hollywood
-
-##########################
-# Base Development Tools #
-##########################
+# Base Development Tools
 inst dotnet-sdk
 inst git
 inst gitahead-bin
@@ -102,7 +92,6 @@ inst github-cli
 inst jdk-openjdk
 inst jdk8-openjdk
 inst libsecret
-inst meld
 inst mono
 inst mono-msbuild
 inst nodejs-emojione
@@ -111,14 +100,11 @@ inst npm
 inst openjdk8-src
 inst svn
 inst yarn
+uninst meld
 
 # jetbrains apps
 inst jetbrains-toolbox
 
-#####################################
-# installation desktop packages     #
-# for tiling windows managers (all) #
-#####################################
 # awesome packages
 inst awesome
 inst vicious
@@ -137,17 +123,27 @@ inst awmtt
 #inst xsettings-client
 
 # system packages
-inst picom-jonaburg-git
-inst pm-utils
-inst appeditor-git
 inst arandr
+inst bitwarden-bin
+inst bitwarden-cli-bin
+inst bitwarden-rofi
 inst checkupdates-aur
 inst copyq
 inst dex
+inst docker
+inst docker-compose
+inst etcher-bin
 inst genius
+inst gparted
+inst grub-customizer
+inst hardinfo
 inst i3-sensible-browser-git
+inst ibus-daemon
+inst kteatime
 inst notify-send.sh
 inst numlockx
+inst picom-jonaburg-git
+inst pm-utils
 inst pygtk
 inst python
 inst python-psutil
@@ -157,10 +153,10 @@ inst python-taskw
 inst python-xkbgroup
 inst python2-distutils-extra
 inst rofi
-inst seahorse
-inst skippy-xd-git
 inst systemdgenie
 inst time
+inst unclutter
+inst webmin
 inst xautolock
 inst xbindkeys
 inst xclip
@@ -170,17 +166,16 @@ inst xorg-xfd
 inst xorg-xsetroot
 inst xsel
 inst zenity
-inst ibus-daemon
-inst webmin
-inst unclutter
+inst ktorrent
+inst nitrogen
+inst qbittorrent
+inst spectacle
 
 # utilities from gnome
 inst gnome-disk-utility
 inst gnome-system-monitor
 inst gnome-system-log
-inst gnome-keyring
 inst gnome-calculator
-inst gnome-menu-editor-qt
 
 # polkits
 #inst polkit-gnome
@@ -226,47 +221,10 @@ inst cups-pdf
 inst samsung-printers
 inst system-config-printer
 
-# Office
-inst libreoffice-fresh
-inst libreoffice-fresh-de
-
 # Browser
 inst firefox
 inst firefox-i18n-de
-inst google-chrome
 inst chromium
-inst microsoft-edge-dev-bin
-inst vivaldi
-
-# optional application packages
-inst aspell
-inst bitwarden-bin
-inst bitwarden-cli-bin
-inst bitwarden-rofi
-inst docker
-inst docker-compose
-inst etcher-bin
-inst evolution
-inst gimp
-inst gimp-help-de
-inst gparted
-inst grub-customizer
-inst hardinfo
-inst kteatime
-inst imagemagick
-inst inkscape
-inst ktorrent
-inst nitrogen
-inst partitionmanager
-inst playerctl
-inst pinta
-inst pstoedit
-inst python-lxml
-inst python-numpy
-inst qbittorrent
-inst radiotray
-inst spectacle
-inst teams
 
 # inst zoom
 inst zoom-system-qt
@@ -281,36 +239,31 @@ inst remmina-plugin-folder
 inst remmina-plugin-open
 inst freerdp
 
-#####################################
-# installation of important editors #
-#####################################
+# installation of important editors
+inst micro
+inst neovim
+inst sublime-text-3
+
 # vs code
 inst visual-studio-code-bin
-inst bash-completion
-
-# neovim
-inst neovim
 
 # utils for editors
-inst shellcheck
-inst prettier
-inst ripgrep
+inst bash-completion
 inst clang
-inst tar
 inst fd
 inst gdb
 inst graphviz
+inst prettier
 inst python-black
-inst python-pyflakes
-inst python-pipenv
 inst python-nose
+inst python-pipenv
+inst python-pyflakes
 inst python-pytest
+inst ripgrep
+inst shellcheck
+inst tar
 
-inst micro
-
-###############################################
-# install wallpapers, themes, icons and fonts #
-###############################################
+# wallpapers, themes, icons and fonts
 
 # themes
 inst arc-gtk-theme
@@ -318,12 +271,14 @@ inst arc-solid-gtk-theme
 inst materia-gtk-theme
 inst kvantum-theme-materia
 
-#inst oomox
-#inst themix-full-git
 
 # icons
-#inst arc-icon-theme
+inst arc-icon-theme
+inst paper-icon-theme
 inst papirus-icon-theme
+inst papirus-icon-theme
+inst papirus-icon-theme
+inst sardi-icons
 
 # wallpapers
 inst ukui-wallpapers
@@ -332,26 +287,18 @@ inst ukui-wallpapers
 inst bibata-cursor-theme-bin
 inst bibata-cursor-translucent
 
-# icons
-inst paper-icon-theme
-inst papirus-icon-theme
-inst papirus-icon-theme
-inst sardi-icons
 
 # fonts
 inst font-manager
 inst awesome-terminal-fonts
-
 inst nerd-fonts-cascadia-code
-inst nerd-fonts-mononoki
 inst nerd-fonts-iosevka
-
+inst nerd-fonts-mononoki
 inst noto-fonts-emoji
-
+inst ttf-ms-fonts
 inst ttf-twemoji
 inst ttf-twemoji-color
 inst ttf-weather-icons
-inst ttf-ms-fonts
 
 # lightdm config
 inst lightdm
@@ -360,10 +307,12 @@ inst lightdm-slick-greeter
 inst lightdm-webkit2-greeter
 
 # grub
-inst grub2-theme-archlinux
+uninst grub2-theme-archlinux
 inst grub-theme-stylish-git
-inst arch-matrix-grub-theme-git
+#inst arch-matrix-grub-theme-git
 inst arch-silence-grub-theme-git
+
+sudo rm /var/lib/pacman/db.lck
 
 ###############################
 # uninstall unneeded packages #

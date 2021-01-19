@@ -1120,16 +1120,14 @@ awful.rules.rules = {
         }
     },
     {
-        rule_any = {
-            class = {
-                "Spotify"
-            }
+        rule = {
+            class = "Spotify"
         },
         properties = {
             screen = 2,
-            tag = awful.util.tagnames[3],
-            switchtotag = true,
-            maximized = true,
+            tag = awful.util.tagnames[5],
+            switchtotag = false,
+            maximized = false,
             floating = false
         }
     },
