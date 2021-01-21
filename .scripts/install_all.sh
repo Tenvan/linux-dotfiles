@@ -101,6 +101,7 @@ inst openjdk8-src
 inst svn
 inst yarn
 uninst meld
+inst tk
 
 # jetbrains apps
 inst jetbrains-toolbox

@@ -73,7 +73,7 @@ sudo systemctl enable cups
 sudo systemctl start cups
 errorCheck "printer service"
 
-# Git config for meld
+# Git config for Visual Studio Code
 git config --global diff.tool code
 git config --global difftool.code.cmd "$(which code) --wait --diff \"\$LOCAL\" \"\$BASE\" \"\$REMOTE\""
 git config --global difftool.prompt false
