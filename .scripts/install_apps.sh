@@ -11,7 +11,7 @@ DEBUG=FALSE
 errorCheck() {
     retVal=$?
     if [ $retVal -ne 0 ]; then
-        echo "abort installation script 'install_all': $1"
+        echo "abort installation script 'install_apps': $1"
         exit $retVal
     fi
 }
@@ -62,7 +62,6 @@ inst libreoffice-fresh-de
 inst google-chrome
 inst microsoft-edge-dev-bin
 inst vivaldi
-inst Brave
 
 # optional application packages
 inst aspell

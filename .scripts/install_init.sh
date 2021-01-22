@@ -16,10 +16,6 @@ errorCheck() {
     fi
 }
 
-# Prompt installieren
-curl -fsSL https://starship.rs/install.sh | bash
-eval "$(starship init bash)"
-
 sudo pacman -S --noconfirm --needed git base-devel colorgcc
 errorCheck "installation base-devel"
 
@@ -46,6 +42,9 @@ errorCheck "installation yay"
 if [ $IS_GARUDA != true ]; then
 	pacman-mirrorup -v
 fi
+
+# Prompt installieren
+pakku -S $PAKKU_ALL ttf-meslo-nerd-font-powerlevel10k zsh-theme-powerlevel10k
 
 # disable sudo password
 echo "Cmnd_Alias INSTALL = /usr/bin/pacman, /usr/share/pacman
