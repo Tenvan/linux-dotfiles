@@ -43,7 +43,9 @@ sudo mv pamac.conf /etc/
 pamac install --no-confirm yay pakku-git pacman-mirrorup
 errorCheck "installation yay"
 
-pacman-mirrorup -m 10
+if [ $IS_GARUDA != true ]; then
+	pacman-mirrorup -v
+fi
 
 # disable sudo password
 echo "Cmnd_Alias INSTALL = /usr/bin/pacman, /usr/share/pacman

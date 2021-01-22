@@ -5,8 +5,8 @@
 #####################
 # init distro check #
 #####################
-DEBUG=FALSE
-#DEBUG=TRUE
+DEBUG=false
+#DEBUG=true
 
 errorCheck() {
     retVal=$?
@@ -82,6 +82,9 @@ inst shell-color-scripts
 uninst starship
 inst timeshift
 inst unrar
+if [ $IS_GARUDA = true ]; then
+	inst samba-support
+fi
 
 # Base Development Tools
 inst dotnet-sdk
@@ -195,25 +198,31 @@ inst ranger
 
 # sound setup
 inst paprefs
-inst pulseaudio-ctl
-inst pulseaudio-qt
-inst pulseaudio-equalizer-ladspa
 inst pasystray
 inst sp
+if [ $IS_GARUDA != true ]; then
+	inst pulseaudio-ctl
+	inst pulseaudio-qt
+	inst pulseaudio-equalizer-ladspa
+	inst bluetooth-support
+fi
 
 # bluetooth setup
-inst blueberry
-inst bluetooth-autoconnect
-#inst bluetooth-support
-inst bluez
-inst bluez-hid2hci
-inst bluez-libs
-inst bluez-plugins
-inst bluez-tools
-inst bluez-utils
-inst gnome-bluetooth
-inst pulseaudio-bluetooth
-inst sbc
+if [ $IS_GARUDA = true ]; then
+	inst bluetooth-support
+else
+	inst blueberry
+	inst bluetooth-autoconnect
+	inst pulseaudio-bluetooth
+	inst bluez
+	inst bluez-hid2hci
+	inst bluez-libs
+	inst bluez-plugins
+	inst bluez-tools
+	inst bluez-utils
+	inst gnome-bluetooth
+	inst sbc
+fi
 
 # printer setup
 inst brother-mfc-j4420dw
@@ -318,7 +327,7 @@ sudo rm /var/lib/pacman/db.lck
 ###############################
 # uninstall unneeded packages #
 ###############################
-if [ $DEBUG != "TRUE" ]; then
+if [ $DEBUG != true ]; then
 	echo "UNINST: $PAKKU_PAKAGE_U"
 	pakku -R --noconfirm $PAKAGE_UNINST
 	#errorCheck "uninstall packages"
@@ -327,7 +336,7 @@ fi
 #################################
 # install all (needed) packages #
 #################################
-if [ $DEBUG != "TRUE" ]; then
+if [ $DEBUG != true ]; then
 	echo "INST: $PAKKU_PAKAGE"
 	pakku -S $PAKKU_ALL $PAKAGE_INST
 	errorCheck "install packages"

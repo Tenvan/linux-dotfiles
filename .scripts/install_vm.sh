@@ -11,7 +11,7 @@ DEBUG=FALSE
 errorCheck() {
     retVal=$?
     if [ $retVal -ne 0 ]; then
-        echo "abort installation script 'install_all': $1"
+        echo "abort installation script 'install_vm': $1"
         exit $retVal
     fi
 }
@@ -50,17 +50,25 @@ $1"
 # collect needed packages #
 ###########################
 
-# .virtualbox
-inst virtualbox
-inst virtualbox-ext-oracle
-inst virtualbox-host-modules-arch
-inst linux-headers
+# virtualbox
+if [ $IS_GARUDA = true ]; then
+	inst virtualbox-meta
+else
+	inst virtualbox
+	inst virtualbox-ext-oracle
+	inst virtualbox-host-modules-arch
+	inst linux-headers
+fi
 
 # libvirt service and manager
-inst virt-manager
-inst qemu
-inst qemu-arch-extra
-inst libvirt
+if [ $IS_GARUDA = true ]; then
+	inst virt-manager-meta
+else
+	inst virt-manager
+	inst qemu
+	inst qemu-arch-extra
+	inst libvirt
+fi
 
 #################################
 # install all (needed) packages #
