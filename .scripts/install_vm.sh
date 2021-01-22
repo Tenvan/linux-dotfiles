@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
-sh $SCRIPTS/defs.sh
+source $SCRIPTS/defs.sh
 
 #####################
 # init distro check #
 #####################
-DEBUG=FALSE
-#DEBUG=TRUE
+
+DEBUG=false
+#DEBUG=true
 
 errorCheck() {
     retVal=$?
@@ -84,6 +85,6 @@ echo "Error in Inst: ${ERROR_PAKAGE_INST}"
 
 ## FINISHING #
 
-sudo systemctl enable libvirtd.service
-sudo systemctl start libvirtd.service
+sudo systemctl enable --now libvirtd
+#sudo systemctl start libvirtd.service
 errorCheck "libvirtd service"

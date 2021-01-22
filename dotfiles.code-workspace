@@ -11,6 +11,12 @@
 		},
 		{
 			"path": ".scripts"
+		},
+		{
+			"path": ".config/gtk-4.0"
+		},
+		{
+			"path": ".config/fontconfig/conf.d"
 		}
 	],
 	"settings": {

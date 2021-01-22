@@ -19,20 +19,25 @@ sudo gdk-pixbuf-query-loaders --update-cache
 
 # config slick-greeter
 echo "[Greeter]
-background=/usr/share/slick-greeter/slick-greeter.png
+background=/usr/share/backgrounds/the-mouse.jpg
 background-color=#263138
 draw-grid=false
 theme-name=Arc-Dark
-icon-theme-name=Papirus-Dark-Maia
-font-name='Cantarell 11'
+icon-theme-name=Sardi-Arc
+font-name='Cantarell Bold 14'
 xft-antialias=true
 xft-hintstyle=hintfull
-enable-hidpi=auto" | sudo tee /etc/lightdm/slick-greeter.conf
+enable-hidpi=auto
+draw-user-backgrounds=false
+activate-numlock=true
+show-power=false
+show-a11y=false" | sudo tee /etc/lightdm/slick-greeter.conf
 errorCheck "slick greeter config"
 
 # config lightdm greeter
 sed 's/^.*greeter-session=$/greeter-session=lightdm-slick-greeter/g' </etc/lightdm/lightdm.conf >lightdm.conf
 sudo mv -f lightdm.conf /etc/lightdm
+sed 's/^.*user-session=$/user-session=awesome/g' </etc/lightdm/lightdm.conf >lightdm.conf
 errorCheck "lightdm greeter config"
 
 if [ -f $HOME/.screenlayout/screenlayout.sh ]; then
@@ -45,7 +50,12 @@ fi
 # grub config
 
 # powerline in linux console
-pakku -S --needed --noconfirm terminus-font powerline-fonts
+pakku -S --needed --noconfirm terminus-font powerline-fonts 
+if [ $IS_GARUDA = true ]; then
+    pakku -S $PAKKU_ALL terminess-powerline-font-git terminus-font powerline-fonts 
+else
+    pakku -S $PAKKU_ALL terminus-font powerline-fonts 
+fi
 
 echo "KEYMAP=de
 FONT=ter-powerline-v12n
@@ -67,6 +77,9 @@ micro /etc/default/grub
 sudo mkinitcpio -P
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 errorCheck "grub mkconfig"
+
+# login screen console
+sudo cp $SCRIPTS/issue /etc
 
 # Git config for Visual Studio Code
 git config --global diff.tool code
@@ -113,23 +126,18 @@ sudo usermod -aG docker $USER
 
 # printer Service
 sudo systemctl enable --now cups
-#sudo systemctl start cups
 errorCheck "printer service"
 
-
 sudo systemctl enable --now docker
-#sudo systemctl start docker
 errorCheck "docker service"
 
 sudo systemctl enable --now webmin
-#sudo systemctl start webmin
 errorCheck "webmin service"
 
 sudo systemctl enable --now bluetooth-autoconnect
-#sudo systemctl start webmin
 errorCheck "bluetooth-autoconnect service"
 
-sudo systemctl enable pulseaudio-bluetooth-autoconnect --user --now
-#sudo systemctl start webmin
+mkdir -p ~/.config/systemd/user/
+sudo cp /usr/lib/systemd/user/pulseaudio-bluetooth-autoconnect.service /etc/systemd/user
+systemctl enable pulseaudio-bluetooth-autoconnect --user --now
 errorCheck "pulseaudio-bluetooth-autoconnect service"
-

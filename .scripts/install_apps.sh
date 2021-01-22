@@ -5,8 +5,8 @@
 #####################
 # init distro check #
 #####################
-DEBUG=FALSE
-#DEBUG=TRUE
+DEBUG=false
+#DEBUG=true
 
 errorCheck() {
     retVal=$?
@@ -85,7 +85,7 @@ sudo rm /var/lib/pacman/db.lck
 ###############################
 # uninstall unneeded packages #
 ###############################
-if [ $DEBUG != "TRUE" ]; then
+if [ $DEBUG != true ]; then
 	echo "UNINST: $PAKKU_PAKAGE_U"
 	pakku -R --noconfirm $PAKAGE_UNINST
 	#errorCheck "uninstall packages"
@@ -94,7 +94,7 @@ fi
 #################################
 # install all (needed) packages #
 #################################
-if [ $DEBUG != "TRUE" ]; then
+if [ $DEBUG != true ]; then
 	echo "INST: $PAKKU_PAKAGE"
 	pakku -S $PAKKU_ALL $PAKAGE_INST
 	errorCheck "install packages"

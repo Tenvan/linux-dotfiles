@@ -30,6 +30,7 @@ sh ~/.scripts/set-wallpaper.sh
 #starting utility applications at boot time
 run nm-applet
 run pamac-tray
+run msm_notifier
 run radiotray
 run kteatime
 
@@ -47,10 +48,9 @@ run blueberry-tray
 run blueman-applet
 
 run xscreensaver
-run xsettingsd
-restart /usr/lib/xfce-polkit/xfce-polkit
-# restart /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-# restart lxqt-policykit-agent
+killall /usr/lib/xfce-polkit/xfce-polkit
+killall /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+run lxqt-policykit-agent
 
 run copyq
 run xfce4-notes

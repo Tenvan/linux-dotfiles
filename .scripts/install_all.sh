@@ -76,7 +76,6 @@ inst multitail
 inst neofetch
 inst openconnect
 inst p7zip
-uninst qfc-git
 inst s-tui
 inst shell-color-scripts
 uninst starship

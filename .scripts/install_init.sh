@@ -45,6 +45,7 @@ fi
 
 # Prompt installieren
 pakku -S $PAKKU_ALL ttf-meslo-nerd-font-powerlevel10k zsh-theme-powerlevel10k
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # disable sudo password
 echo "Cmnd_Alias INSTALL = /usr/bin/pacman, /usr/share/pacman
