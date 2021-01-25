@@ -111,6 +111,7 @@ sudo npm install -g eslint jshint jsxhint stylelint sass-lint markdownlint-cli r
 errorCheck "install required nodejs-tools"
 
 # Default Browser setzen (vorher $BROWSER Variable entfernen)
+export BROWSER=
 xdg-settings set default-web-browser firefox.desktop
 
 sudo fc-cache -fv

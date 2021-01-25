@@ -2,7 +2,6 @@
 
 myFileManager="thunar"
 myTerminal="kitty"
-myBrowser="$BROWSER"
 workDir=$WORK_DIR
 shellCmd="$myTerminal  "
 timeCmd="/usr/bin/time -v "

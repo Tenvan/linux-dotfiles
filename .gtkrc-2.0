@@ -1,14 +1,4 @@
 
-###############################################
-# Created by cinnamon-settings - please do not edit or reformat.
-#
-style "cs-scrollbar-style" {
-
-}
-
-class "GtkScrollbar" style "cs-scrollbar-style"
-###############################################
-
 # DO NOT EDIT! This file will be overwritten by LXAppearance.
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 

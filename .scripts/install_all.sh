@@ -102,8 +102,8 @@ inst npm
 inst openjdk8-src
 inst svn
 inst yarn
-uninst meld
 inst tk
+inst xsp
 
 # jetbrains apps
 inst jetbrains-toolbox
@@ -131,6 +131,8 @@ inst bitwarden-bin
 inst bitwarden-cli-bin
 inst bitwarden-rofi
 inst checkupdates-aur
+inst cockpit
+inst cockpit-machines
 inst copyq
 inst dex
 inst docker
@@ -145,6 +147,7 @@ inst ibus-daemon
 inst kteatime
 inst notify-send.sh
 inst numlockx
+inst packagekit
 inst picom-jonaburg-git
 inst pm-utils
 inst pygtk
@@ -279,6 +282,7 @@ inst arc-gtk-theme
 inst arc-solid-gtk-theme
 inst materia-gtk-theme
 inst kvantum-theme-materia
+inst adwaita-dark
 
 
 # icons
@@ -288,6 +292,7 @@ inst papirus-icon-theme
 inst papirus-icon-theme
 inst papirus-icon-theme
 inst sardi-icons
+inst beautyline
 
 # wallpapers
 inst ukui-wallpapers

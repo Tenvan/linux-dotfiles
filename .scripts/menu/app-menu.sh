@@ -2,7 +2,6 @@
 
 myFileManager="thunar"
 myTerminal="kitty"
-myBrowser="$BROWSER"
 timeCmd="/usr/bin/time -v "
 myTestLua=$(eval echo $HOME/.config/awesome/rc.test.lua)
 
@@ -22,7 +21,6 @@ select_application() {
         "🧩 Install Applications" "$myTerminal --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_all.sh" \
         "🧩 Install Updates" "$myTerminal --hold --title Sys:Upall $timeCmd yay -Syu --noconfirm" \
         "🪣 Cleanup Installs" "$myTerminal --hold --title Sys:Cleanup $timeCmd sudo pacman -Rns $(pacman -Qtdq)" \
-        "🌍 Browser" "$myBrowser" \
         "😃 Emoji Test" "$myTerminal --hold curl https://unicode.org/Public/emoji/5.0/emoji-test.txt" \
         "☦ UTF8 Test" "$myTerminal --hold curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html" \
         "🌤 Wetter Brakel" "$myTerminal --hold --title Wetter:Brakel curl wttr.in/33034?lang=de" \

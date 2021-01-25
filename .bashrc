@@ -144,5 +144,5 @@ fi
 
 test -f ~/.bashrc-personal.sh && . ~/.bashrc-personal.sh
 
-# test -f "$(which neofetch)" && $(which neofetch)
-test -f "$(which paleofetch)" && $(which paleofetch)
+test -f "$(which neofetch)" && $(which neofetch)
+#test -f "$(which paleofetch)" && $(which paleofetch)

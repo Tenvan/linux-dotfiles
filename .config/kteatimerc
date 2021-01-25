@@ -1,24 +1,26 @@
 [General]
-Geometry=\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x03\x91\x00\x00\x01_\x00\x00\ti\x00\x00\x05\n\x00\x00\x03\x9d\x00\x00\x01\x8b\x00\x00\t]\x00\x00\x04\xfe\x00\x00\x00\x00\x00\x00\x00\x00\x0f\x00\x00\x00\x03\x9d\x00\x00\x01\x8b\x00\x00\t]\x00\x00\x04\xfe
+Geometry=\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x04\xb8\x00\x00\x02\xea\x00\x00\n\x8c\x00\x00\x06\x8b\x00\x00\x04\xc2\x00\x00\x03\x0e\x00\x00\n\x82\x00\x00\x06\x81\x00\x00\x00\x00\x00\x00\x00\x00\x0f\x00\x00\x00\x04\xc2\x00\x00\x03\x0e\x00\x00\n\x82\x00\x00\x06\x81
 PopupAutoHide=false
 PopupAutoHideTime=30
 ReminderTime=60
-SettingsDialogXPos=913
-SettingsDialogYPos=351
+SettingsDialogXPos=1208
+SettingsDialogYPos=746
 UsePopup=true
 UseReminder=true
 UseVisualize=true
 
 [Tealist]
-Tea0 Name=Schwarzer Tee
-Tea0 Time=180
-Tea1 Name=Earl Grey
-Tea1 Time=300
-Tea2 Name=Früchtetee
-Tea2 Time=480
-Tea3 Name=Grüner Tee
-Tea3 Time=120
-Tea4 Name=Bratapfel
-Tea4 Time=390
-Tea5 Name=Linux Test Tee
-Tea5 Time=10
+Tea0 Name=Minze Zitrone
+Tea0 Time=480
+Tea1 Name=Bratapfel
+Tea1 Time=390
+Tea2 Name=Schwarzer Tee
+Tea2 Time=180
+Tea3 Name=Earl Grey
+Tea3 Time=300
+Tea4 Name=Früchtetee
+Tea4 Time=480
+Tea5 Name=Grüner Tee
+Tea5 Time=120
+Tea6 Name=Linux Test Tee
+Tea6 Time=10
