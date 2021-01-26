@@ -18,8 +18,10 @@ select_application() {
         --print-column=2 \
         --hide-column=2 \
         --hide-header \
-        "🧩 Install Applications" "$myTerminal --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_all.sh" \
-        "🧩 Install Updates" "$myTerminal --hold --title Sys:Upall $timeCmd yay -Syu --noconfirm" \
+        "🧩 Install Base Packages" "$myTerminal --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_base.sh" \
+        "🧩 Install Applications" "$myTerminal --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_apps.sh" \
+        "🧩 Install Virtual Engines" "$myTerminal --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_vm.sh" \
+        "🧩 Install Updates" "$myTerminal --hold --title Sys:Upall $timeCmd paru" \
         "🪣 Cleanup Installs" "$myTerminal --hold --title Sys:Cleanup $timeCmd sudo pacman -Rns $(pacman -Qtdq)" \
         "😃 Emoji Test" "$myTerminal --hold curl https://unicode.org/Public/emoji/5.0/emoji-test.txt" \
         "☦ UTF8 Test" "$myTerminal --hold curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html" \

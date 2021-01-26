@@ -33,8 +33,6 @@ if [ -f $HOME/.screenlayout/screenlayout.sh ]; then
 	errorCheck "screenlayout config"
 fi
 
-# grub config
-
 # powerline in linux console
 pakku -S --needed --noconfirm terminus-font powerline-fonts 
 if [ $IS_GARUDA = true ]; then
@@ -47,15 +45,20 @@ echo "KEYMAP=de
 FONT=ter-powerline-v12n
 FONT_MAP=" | sudo tee /etc/vconsole.conf
 
-sudo cp -r /usr/share/grub/themes/Stylish/ /boot/grub/themes/
+# grub config
+
 sed 's/.*GRUB_GFXMODE=.*$/GRUB_GFXMODE="1920x1080,auto"/g' </etc/default/grub >grub
 sudo mv -f grub /etc/default
 if [ $IS_GARUDA ]; then
+	sudo cp /usr/share/wallpapers/garuda-wallpapers/garuda-boot.png /usr/share/grub/themes/garuda
 	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/garuda\/theme.txt"/g' </etc/default/grub >grub
+	sudo mv -f grub /etc/default
+	sed 's/.*desktop-image:.*$/desktop-image: "garuda-boot.png"/g' </usr/share/grub/themes/garuda/theme.txt >theme.txt
+	sudo mv -f theme.txt /usr/share/grub/themes/garuda
 else
 	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/Stylish\/theme.txt"/g' </etc/default/grub >grub
+	sudo mv -f grub /etc/default
 fi
-sudo mv -f grub /etc/default
 errorCheck "grub config"
 
 micro /etc/default/grub
