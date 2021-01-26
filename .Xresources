@@ -1,53 +1,25 @@
 ! ------------------------------------------------------------------------------
 ! Generic Theme Colors for using in Theme Engines (GTK Awesome etc.)
 ! ------------------------------------------------------------------------------
-!! Theme Ten
-!! https://web.archive.org/web/20090130061234/http://phraktured.net/terminal-colors/
 
-*background:    #2a2a2a
-*foreground:    #d6d6d6
-*tbackground:   #a02a2a2a
-
-code.color0: #2a2a2a
-code.color1: #d6d6d6
-
-!! black dark/light
-*color0:     #000000
-*color8:     #737373
-
-!! red dark/light
-*color1:     #98565e
-*color9:     #cfa3a9
-
-!! green dark/light
-*color2:     #66825d
-*color10:    #caf7bb
-
-!! yellow dark/light
-*color3:     #969176
-*color11:    #fff8bc
-
-!! blue dark/light
-*color4:     #4d6585
-*color12:    #83a3be
-
-!! magenta dark/light
-*color5:     #967395
-*color13:    #bba9cf
-
-!! cyan dark/light
-*color6:     #5f7f7b
-*color14:    #96cccc
-
-!! white dark/light
-*color7:     #b3b3b3
-*color15:    #ffffff
-
-*focused_background:              #3a3a3a
-*focused_foreground:              #f6f6f6
-
-*inactive_background:             #0a0a0a
-*inactive_foreground:             #b6b6b6
+*background:  #303030
+*foreground:  #eeeeee
+*color0:  #3b3f42
+*color1:  #ff8573
+*color2:  #64c138
+*color3:  #b0b23c
+*color4:  #94aaf2
+*color5:  #e89699
+*color6:  #6abbab
+*color7:  #abadaf
+*color8:  #444650
+*color9:  #f6933f
+*color10:  #1bc36f
+*color11:  #c8a966
+*color12:  #4bb8dc
+*color13:  #e38fdd
+*color14:  #36bdbb
+*color15:  #a8bed3
 
 *border:                          #1a1a1a
 

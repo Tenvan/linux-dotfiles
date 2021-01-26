@@ -1,8 +1,8 @@
 # DO NOT EDIT! This file will be overwritten by LXAppearance.
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
-gtk-theme-name="Materia-dark"
-gtk-icon-theme-name="Sardi-Flexible-Arc"
+gtk-theme-name="My-Materia-Dark"
+gtk-icon-theme-name="Sardi-Arc"
 gtk-font-name="Sans Regular 12"
 gtk-cursor-theme-name="Bibata-Modern-Ice"
 gtk-cursor-theme-size=32

@@ -17,6 +17,9 @@
 		},
 		{
 			"path": ".config/fontconfig/conf.d"
+		},
+		{
+			"path": ".config/kitty"
 		}
 	],
 	"settings": {

@@ -57,5 +57,6 @@
     "git-graph.graph.style": "angular",
     "git-graph.repository.commits.fetchAvatars": true,
     "git.autorefresh": false,
-    "workbench.colorTheme": "Materia Darker"
+    "workbench.colorTheme": "Materia Darker",
+    "svn.autorefresh": false
   }

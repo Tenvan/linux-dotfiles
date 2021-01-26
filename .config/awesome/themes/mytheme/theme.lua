@@ -14,10 +14,7 @@ local dpi = require("beautiful.xresources").apply_dpi
 local vicious = require("vicious")
 
 local math, string, os = math, string, os
-local fs_widget = require("awesome-wm-widgets.fs-widget.fs-widget")
-local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
-local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
 
 local xres = require("beautiful.gtk").get_theme_variables()
 gdebug.dump(xres)
@@ -63,12 +60,7 @@ gdebug.dump(xres)
 -- wm_title_focused_color : #ffffffff (string)
 -- wm_title_unfocused_color : #cfdae7cc (string)
 
-
 local theme = {}
-
-local accent_color1 = "#497B96"
-local accent_color2 = "#889FA7"
-local accent_color3 = "#fd9b62"
 
 theme.xres = xres
 
@@ -83,7 +75,7 @@ end
 
 theme.border_normal = makeColorTransparent(xres.wm_border_unfocused_color)
 theme.border_focus = makeColorTransparent(xres.wm_border_focused_color)
-theme.border_marked = makeColorTransparent(accent_color3)
+theme.border_marked = makeColorTransparent(xres.selected_bg_color)
 
 theme.bg_normal = xres.bg_color
 theme.fg_normal = xres.fg_color
@@ -92,8 +84,8 @@ theme.fg_focus = xres.fg_color
 theme.bg_urgent = xres.warning_bg_color
 theme.fg_urgent = xres.warning_color
 
-theme.border_width = dpi(8)
-theme.margins_width = dpi(5)
+theme.border_width = dpi(5)
+theme.margins_width = dpi(10)
 
 theme.font_size = xres.font_size
 theme.font = xres.font_family .. theme.font_size
@@ -361,10 +353,10 @@ for i = 1, cpu_kernels - 1 do
                 max_value = 100,
                 value = 0,
                 forced_height = 12,
-                border_width = 0,
-                border_color = accent_color2,
+                -- border_width = 1,
+                -- border_color =  theme.border_normal,
                 background_color = "alpha",
-                color = "#FF5656",
+                color = xres.warning_bg_color,
                 widget = cpuKernelProgress[i]
             },
             direction = "east",
@@ -466,103 +458,90 @@ vicious.cache(vicious.widgets.uptime)
 local upTime = wibox.widget.textbox()
 vicious.register(upTime, vicious.widgets.uptime, "Up: $1d $2h $3m", 60)
 
+local screen1LeftWidges = {
+    layout = wibox.layout.fixed.horizontal,
+    wibox.container.background(wibox.container.margin(upTime, theme.margins_width, theme.margins_width)),
+    widget_seperator,
+    wibox.container.background(wibox.container.margin(sysOs, theme.margins_width, theme.margins_width)),
+    widget_seperator,
+    wibox.container.background(wibox.container.margin(sysHost, theme.margins_width, theme.margins_width)),
+    widget_seperator
+}
+
+local screen2LeftWidges = {
+    layout = wibox.layout.fixed.horizontal
+}
+
+-- theme.bg_systray = xres.warning_bg_color
+theme.systray_icon_spacing = dpi(2)
+
+local systray = wibox.widget.systray()
+
+-- systray:set_base_size(dpi(18))
+local systrayWidget = wibox.container.margin(systray, dpi(5), dpi(5), dpi(2), dpi(2))
+
+local screen2RightWidgets = {
+    -- Right widgets
+    layout = wibox.layout.fixed.horizontal,
+    widget_seperator,
+    wibox.container.background(wibox.container.margin(fsRootWidget, theme.margins_width, theme.margins_width)),
+    widget_seperator,
+    wibox.container.background(wibox.container.margin(fsWorkspaceWidget, theme.margins_width, theme.margins_width)),
+    widget_seperator,
+    wibox.container.background(wibox.container.margin(fsVmWidget, theme.margins_width, theme.margins_width)),
+    widget_seperator,
+    wibox.container.background(wibox.container.margin(fsBidataWidget, theme.margins_width, theme.margins_width)),
+    widget_seperator,
+    wibox.container.background(wibox.container.margin(ram_widget(), theme.margins_width, theme.margins_width)),
+    widget_seperator,
+    wibox.container.background(wibox.container.margin(memwidget, theme.margins_width, theme.margins_width)),
+    widget_seperator,
+    wibox.container.background(wibox.container.margin(graph_mem, theme.margins_width, theme.margins_width)),
+    widget_seperator,
+    wibox.container.background(
+        wibox.container.margin(
+            wibox.widget {tempicon, temp.widget, layout = wibox.layout.align.horizontal},
+            theme.margins_width,
+            theme.margins_width
+        )
+    ),
+    widget_seperator,
+    wibox.container.background(
+        wibox.container.margin(
+            wibox.widget {volicon, theme.volume.widget, layout = wibox.layout.align.horizontal},
+            theme.margins_width,
+            theme.margins_width
+        )
+    ),
+    widget_seperator,
+    wibox.container.background(wibox.container.margin(datewidget, theme.margins_width, theme.margins_width * 2))
+}
+
+local screen1RightWidgets = {
+    -- Right widgets
+    layout = wibox.layout.fixed.horizontal,
+    widget_seperator,
+    wibox.container.background(
+        wibox.container.margin(
+            wibox.widget {nil, neticon, net.widget, layout = wibox.layout.align.horizontal},
+            theme.margins_width,
+            theme.margins_width
+        )
+    ),
+    widget_seperator,
+    wibox.container.background(wibox.container.margin(cpuKernelGridWidget, theme.margins_width, theme.margins_width)),
+    widget_seperator,
+    ram_widget(),
+    widget_seperator,
+    wibox.container.background(wibox.container.margin(datewidget, theme.margins_width, theme.margins_width)),
+    widget_seperator,
+    systrayWidget
+}
+
 function theme.at_screen_connect(s)
-    local screen1LeftWidges = {
-        layout = wibox.layout.fixed.horizontal,
-        wibox.container.background(wibox.container.margin(upTime, theme.margins_width, theme.margins_width)),
-        widget_seperator,
-        wibox.container.background(wibox.container.margin(sysOs, theme.margins_width, theme.margins_width)),
-        widget_seperator,
-        wibox.container.background(wibox.container.margin(sysHost, theme.margins_width, theme.margins_width)),
-        widget_seperator
-    }
-
-    local screen2LeftWidges = {
-        layout = wibox.layout.fixed.horizontal
-    }
-
-    -- theme.bg_systray = xres.warning_bg_color
-    theme.systray_icon_spacing = dpi(2)
-
-    local systray = wibox.widget.systray()
-    -- systray:set_base_size(dpi(18))
-    local systrayWidget = wibox.container.margin(systray, dpi(5), dpi(5), dpi(2), dpi(2))
-
-    local screen1widgets = {
-        -- Right widgets
-        layout = wibox.layout.fixed.horizontal,
-        widget_seperator,
-        wibox.container.background(
-            wibox.container.margin(
-                wibox.widget {nil, neticon, net.widget, layout = wibox.layout.align.horizontal},
-                theme.margins_width,
-                theme.margins_width
-            )
-        ),
-        widget_seperator,
-        wibox.container.background(
-            wibox.container.margin(cpuKernelGridWidget, theme.margins_width, theme.margins_width)
-        ),
-        widget_seperator,
-        wibox.container.background(wibox.container.margin(cpuHistogrammWidget)),
-        widget_seperator,
-        ram_widget(),
-        widget_seperator,
-        -- fs_widget({ mounts = { '/', '/home', '/media/WORKSPACE', '/media/BIGDATA', '/media/VM' } }),
-        fs_widget({mounts = {"/", "/home", "/media/WORKSPACE", "/media/BIGDATA", "/media/VM"}}),
-        widget_seperator,
-        -- cpu_widget({
-        --     width = dpi(200),
-        --     step_width = 10,
-        --     step_spacing = 0,
-        --     color = '#434c5e'
-        -- }),
-        widget_seperator,
-        wibox.container.background(wibox.container.margin(datewidget, theme.margins_width, theme.margins_width)),
-        widget_seperator,
-        systrayWidget
-    }
-
-    local screen2RightWidgets = {
-        -- Right widgets
-        layout = wibox.layout.fixed.horizontal,
-        widget_seperator,
-        wibox.container.background(wibox.container.margin(fsRootWidget, theme.margins_width, theme.margins_width)),
-        widget_seperator,
-        wibox.container.background(wibox.container.margin(fsWorkspaceWidget, theme.margins_width, theme.margins_width)),
-        widget_seperator,
-        wibox.container.background(wibox.container.margin(fsVmWidget, theme.margins_width, theme.margins_width)),
-        widget_seperator,
-        wibox.container.background(wibox.container.margin(fsBidataWidget, theme.margins_width, theme.margins_width)),
-        widget_seperator,
-        wibox.container.background(wibox.container.margin(ram_widget(), theme.margins_width, theme.margins_width)),
-        widget_seperator,
-        wibox.container.background(wibox.container.margin(memwidget, theme.margins_width, theme.margins_width)),
-        widget_seperator,
-        wibox.container.background(wibox.container.margin(graph_mem, theme.margins_width, theme.margins_width)),
-        widget_seperator,
-        wibox.container.background(
-            wibox.container.margin(
-                wibox.widget {tempicon, temp.widget, layout = wibox.layout.align.horizontal},
-                theme.margins_width,
-                theme.margins_width
-            )
-        ),
-        widget_seperator,
-        wibox.container.background(
-            wibox.container.margin(
-                wibox.widget {volicon, theme.volume.widget, layout = wibox.layout.align.horizontal},
-                theme.margins_width,
-                theme.margins_width
-            )
-        ),
-        widget_seperator,
-        wibox.container.background(wibox.container.margin(datewidget, theme.margins_width, theme.margins_width * 2))
-    }
-
     -- Quake application
     -- s.quake = lain.util.quake({app = awful.util.terminal})
-    s.quake = lain.util.quake({app = "termite", height = 0.50, argname = "--title %s"})
+    s.quake = lain.util.quake({app = "kitty", height = 0.50, argname = "--title %s"})
 
     -- All tags open with layout 1
     awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
@@ -602,12 +581,15 @@ function theme.at_screen_connect(s)
     )
 
     -- Add widgets to the wibox
-    local rightWidgets = screen2RightWidgets
-    local leftWidgets = screen2LeftWidges
+
+    local rightWidgets, leftWidgets
 
     if s.index == 1 then
-        rightWidgets = screen1widgets
+        rightWidgets = screen1RightWidgets
         leftWidgets = screen1LeftWidges
+    else
+        rightWidgets = screen2RightWidgets
+        leftWidgets = screen2LeftWidges
     end
 
     mywibox:setup {

@@ -16,13 +16,11 @@
 
 # Ausnahmen Script Folder
 !.scripts
-!.scripts/*
 !.scripts/**/*
 
-# SpaceVim configs
-!.SpaceVim.d
-!.SpaceVim.d/**
-!.SpaceVim.d/**/*
+# Ausnahmen Themes Folder
+!.themes
+!.themes/**/*
 
 # Ausnahmen im .local folder
 !.local
@@ -73,13 +71,10 @@
 !.config/Kvantum
 !.config/Kvantum/*
 !.config/kitty
-!.config/kitty/*
+!.config/kitty/**/*
 !.config/nitrogen
-!.config/nitrogen/*
-!.config/omf
-!.config/omf/*
+!.config/nitrogen/**/*
 !.config/picom
-!.config/picom/*
 !.config/picom/**/*
 !.config/polybar
 !.config/polybar/**/*
