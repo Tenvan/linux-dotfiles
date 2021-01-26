@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 cd ~
-git checkout light-theme -f
+# git checkout light-theme -f

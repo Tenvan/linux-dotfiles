@@ -317,7 +317,9 @@ inst ttf-weather-icons
 # lightdm config
 inst lightdm
 inst lightdm-settings
+inst lightdm-gtk-greeter-settings
 inst lightdm-slick-greeter
+inst lightdm-gtk-greeter
 inst lightdm-webkit2-greeter
 
 # grub

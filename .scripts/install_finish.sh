@@ -18,21 +18,7 @@ errorCheck() {
 sudo gdk-pixbuf-query-loaders --update-cache
 
 # config slick-greeter
-echo "[Greeter]
-background=/usr/share/backgrounds/the-mouse.jpg
-background-color=#263138
-draw-grid=false
-theme-name=Arc-Dark
-icon-theme-name=Sardi-Arc
-font-name='Cantarell Bold 14'
-xft-antialias=true
-xft-hintstyle=hintfull
-enable-hidpi=auto
-draw-user-backgrounds=false
-activate-numlock=true
-show-power=false
-show-a11y=false" | sudo tee /etc/lightdm/slick-greeter.conf
-errorCheck "slick greeter config"
+sudo cp $SCRIPTS/setup/lightdm-gtk-greeter.conf /etc/lightdm
 
 # config lightdm greeter
 sed 's/^.*greeter-session=$/greeter-session=lightdm-slick-greeter/g' </etc/lightdm/lightdm.conf >lightdm.conf
