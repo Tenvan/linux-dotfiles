@@ -22,7 +22,7 @@
     "python.languageServer": "Microsoft",
     "todo-tree.tree.showScanModeButton": false,
     "vscode-metalua-formatter.luaPath": "/usr/bin/lua5.1",
-    "workbench.iconTheme": "eq-material-theme-icons-darker",
+    "workbench.iconTheme": "material-icon-theme",
     "[lua]": {
       "editor.defaultFormatter": "trixnz.vscode-lua"
     },
@@ -57,5 +57,5 @@
     "git-graph.graph.style": "angular",
     "git-graph.repository.commits.fetchAvatars": true,
     "git.autorefresh": false,
-    "workbench.colorTheme": "Cobalt2"
+    "workbench.colorTheme": "Materia Darker"
   }

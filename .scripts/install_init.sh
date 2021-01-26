@@ -16,7 +16,7 @@ errorCheck() {
     fi
 }
 
-sudo pacman -S --noconfirm --needed git base-devel colorgcc
+sudo pacman -S --noconfirm --needed git base-devel colorgcc go ruby rust
 errorCheck "installation base-devel"
 
 git submodule update --init --recursive
