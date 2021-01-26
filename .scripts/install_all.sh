@@ -116,12 +116,13 @@ inst luacheck
 inst awmtt
 
 # config tools
+# inst lxappearance
+inst lxappearance-gtk3
 #inst lxqt-config
 #inst lxqt-admin
 #inst lxqt-policykit
 #inst lxqt-qtplugin
 #inst lxqt-sudo
-#inst lxappearance
 #inst xsettingsd
 #inst xsettings-client
 
@@ -323,10 +324,11 @@ inst lightdm-gtk-greeter
 inst lightdm-webkit2-greeter
 
 # grub
+inst grub-theme-garuda
 uninst grub2-theme-archlinux
-inst grub-theme-stylish-git
-#inst arch-matrix-grub-theme-git
-inst arch-silence-grub-theme-git
+uninst grub-theme-stylish-git
+uninst arch-matrix-grub-theme-git
+uninst arch-silence-grub-theme-git
 
 sudo rm /var/lib/pacman/db.lck
 
@@ -336,6 +338,7 @@ sudo rm /var/lib/pacman/db.lck
 if [ $DEBUG != true ]; then
 	echo "UNINST: $PAKKU_PAKAGE_U"
 	pakku -R --noconfirm $PAKAGE_UNINST
+	# paru -R --noconfirm $PAKAGE_UNINST
 	#errorCheck "uninstall packages"
 fi
 
@@ -345,6 +348,7 @@ fi
 if [ $DEBUG != true ]; then
 	echo "INST: $PAKKU_PAKAGE"
 	pakku -S $PAKKU_ALL $PAKAGE_INST
+	# paru -S $PAKKU_ALL $PAKAGE_INST
 	errorCheck "install packages"
 fi
 

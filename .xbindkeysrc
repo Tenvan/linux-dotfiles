@@ -105,12 +105,8 @@
 "sh $SCRIPTS/menu/rofi.sh -show combi"
   mod4 + z
 
-# Rofi Run Menü
-"sh $SCRIPTS/menu/rofi.sh -show run"
-  mod4 + shift + z
-
-# Skippy Toggle
-"skippy-xd"
+# Application Toggle
+"alttab"
   alt + Tab
 
 #####################
