@@ -48,8 +48,8 @@ run blueberry-tray
 run blueman-applet
 
 run xscreensaver
-killall /usr/lib/xfce-polkit/xfce-polkit
-killall /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# run /usr/lib/xfce-polkit/xfce-polkit
+# run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 run lxqt-policykit-agent
 
 run copyq

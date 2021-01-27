@@ -137,16 +137,16 @@ local kgTag = "tag"
 
 -- awesome variables
 awful.util.terminal = terminal
--- awful.util.tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }
-awful.util.tagnames = {"󾠮", "󾠯", "󾠰", "󾠱", "󾠲", "󾠳", "󾠴", "󾠵", "󾠶"}
+-- awful.util.tagnames = {"󾠮", "󾠯", "󾠰", "󾠱", "󾠲", "󾠳", "󾠴", "󾠵", "󾠶"}
 -- awful.util.tagnames = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
 -- awful.util.tagnames = { "", "", "", "", "", "", "", "", "" }
 -- awful.util.tagnames = {  "", "", "", "", "", "", "", "", "", "" }
 -- awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
--- awful.util.tagnames = { "⌘", "♐", "⌥", "ℵ" }
 -- awful.util.tagnames = { "www", "edit", "gimp", "inkscape", "music" }
--- Use this : https://fontawesome.com/cheatsheet
--- awful.util.tagnames = { "", "", "", "", "" }
+-- awful.util.tagnames = { "⓵", "⓶", "⓷", "⓸", "⓹", "⓺", "⓻", "⓼", "⓽"}
+-- awful.util.tagnames = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨"}
+awful.util.tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }
+
 awful.layout.suit.tile.left.mirror = true
 
 awful.layout.layouts = {
@@ -1371,6 +1371,7 @@ client.connect_signal(
     "focus",
     function(c)
         c.border_color = beautiful.border_focus
+        -- c.border_color = '#ff000050'
     end
 )
 

@@ -73,9 +73,9 @@ local function makeColorTransparent(colorkey)
     return colorkey
 end
 
-theme.border_normal = makeColorTransparent(xres.wm_border_unfocused_color)
-theme.border_focus = makeColorTransparent(xres.wm_border_focused_color)
-theme.border_marked = makeColorTransparent(xres.selected_bg_color)
+theme.border_normal = xres.wm_border_unfocused_color
+theme.border_focus = xres.wm_border_focused_color
+theme.border_marked = xres.selected_bg_color
 
 theme.bg_normal = xres.bg_color
 theme.fg_normal = xres.fg_color
@@ -90,7 +90,7 @@ theme.margins_width = dpi(10)
 theme.font_size = xres.font_size
 theme.font = xres.font_family .. theme.font_size
 
-theme.taglist_font = "Twemoji " .. theme.font_size
+theme.taglist_font = "Noto Sans Symbol Bold " .. (theme.font_size + 4)
 theme.taglist_bg_focus = xres.selected_bg_color
 theme.taglist_fg_focus = xres.selected_fg_color
 

@@ -29,13 +29,12 @@ get_config_list() {
            "📁 scripts dir" "$folderEdit $SCRIPTS" \
            "📁 menu dir" "$folderEdit $SCRIPTS/menu" \
            "📑 ranger" "$filesEdit $HOME/.config/ranger/*.sh $HOME/.config/ranger/*.conf" \
-           "📁 broot dir" "$folderEdit $HOME/.config/broot" \
            "📁 picom dir" "$folderEdit  $HOME/.config/picom" \
-           "📑 polybar" "$filesEdit $HOME/.config/polybar/*.ini $HOME/.config/polybar/*.sh" \
-           "☄ starship" "$filesEdit $HOME/.config/starship.toml" \
-           "📁 alacritty" "$folderEdit $HOME/.config/alacritty"  \
            "📁 kitty" "$folderEdit $HOME/.config/kitty"  \
+           "📁 neofetch" "$folderEdit $HOME/.config/neofetch"  \
+           "📁 alacritty" "$folderEdit $HOME/.config/alacritty"  \
            "📑 themes" "$filesEdit $HOME/.Xresources* $HOME/.gtkrc-2.0 $HOME/.config/gtk-3.0/* $HOME/.config/gtk-4.0 $HOME/.config/qt5ct/* $HOME/.config/fontconfig/*" \
+           "📑 screenlayout" "$filesEdit $HOME/.screenlayout/*" \
            "📑 gitignoree" "$filesEdit $HOME/.gitignore"
 }
 
