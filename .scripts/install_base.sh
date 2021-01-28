@@ -54,14 +54,15 @@ $1"
 inst alacritty
 inst arj
 inst ark
+inst bat
 inst bashtop
 inst bpytop
 inst clamav
 inst clamtk
 inst dpkg
 inst exa
+inst fd
 inst find-the-command
-inst fish
 inst glances
 inst gtop
 inst hstr
@@ -78,9 +79,12 @@ inst openconnect
 inst p7zip
 inst procs
 inst powershell
+inst ripgrep
 inst s-tui
 inst shell-color-scripts
 inst timeshift
+inst tldr
+inst tokei
 inst unrar
 inst zsh
 
