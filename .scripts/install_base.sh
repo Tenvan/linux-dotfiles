@@ -76,12 +76,18 @@ inst multitail
 inst neofetch
 inst openconnect
 inst p7zip
+inst procs
+inst powershell
 inst s-tui
 inst shell-color-scripts
 inst timeshift
 inst unrar
-inst powershell
 inst zsh
+
+# language files
+inst man-pages-de
+inst aspell-de
+inst mythes-de
 
 if [ $IS_GARUDA = true ]; then
 	inst samba-support
@@ -93,6 +99,7 @@ inst git
 inst gitahead-bin
 inst gitflow-avh
 inst github-cli
+inst git-delta
 inst jdk-openjdk
 inst jdk8-openjdk
 inst libsecret
