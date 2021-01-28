@@ -55,7 +55,7 @@ run lxqt-policykit-agent
 run copyq
 run xfce4-notes
 run teams
-run paleofetch --recache
+restart alttab -n 1
 
 run $(which gesettings-data-convert)
 

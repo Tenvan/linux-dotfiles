@@ -1241,16 +1241,17 @@ awful.rules.rules = {
     {
         rule_any = {
             class = {
+                "Google-chrome",
                 "firefox",
                 "firefoxdeveloperedition"
             }
         },
         properties = {
-            maximized = true,
+            maximized = false,
             floating = false,
             screen = 1,
             tag = awful.util.tagnames[2],
-            switchtotag = true
+            switchtotag = false
         }
     },
     -- System Monitor Consolen auf Screen 2 tag 9 schieben

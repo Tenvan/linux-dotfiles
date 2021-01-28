@@ -28,18 +28,7 @@ local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 
-local themes = {
-    "multicolor", -- 1
-    "powerarrow", -- 2
-    "powerarrow-blue", -- 3
-    "blackburn", -- 4
-    "mytheme" -- 5
-}
-
--- choose your theme here
-local chosen_theme = themes[5]
-
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.test.lua", os.getenv("HOME"), chosen_theme)
+local theme_path = string.format("%s/.config/awesome/themes/mytheme/theme.test.lua", os.getenv("HOME"))
 beautiful.init(theme_path)
 
 -- Notification library
@@ -70,6 +59,7 @@ local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popu
 -- when client with a matching name is opened:
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 require("awful.hotkeys_popup.keys")
+
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local dpi = require("beautiful.xresources").apply_dpi
 -- }}}
@@ -133,7 +123,7 @@ local escapekey = "Escape"
 -- personal variables
 -- change these variables if you want
 local editorgui = "Geany"
-local terminal = "alacritty"
+local terminal = "kitty"
 
 -- key groups
 local kgAwesome = "awesome"
@@ -147,16 +137,16 @@ local kgTag = "tag"
 
 -- awesome variables
 awful.util.terminal = terminal
--- awful.util.tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }
-awful.util.tagnames = {"󾠮", "󾠯", "󾠰", "󾠱", "󾠲", "󾠳", "󾠴", "󾠵", "󾠶"}
+-- awful.util.tagnames = {"󾠮", "󾠯", "󾠰", "󾠱", "󾠲", "󾠳", "󾠴", "󾠵", "󾠶"}
 -- awful.util.tagnames = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
 -- awful.util.tagnames = { "", "", "", "", "", "", "", "", "" }
 -- awful.util.tagnames = {  "", "", "", "", "", "", "", "", "", "" }
 -- awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
--- awful.util.tagnames = { "⌘", "♐", "⌥", "ℵ" }
 -- awful.util.tagnames = { "www", "edit", "gimp", "inkscape", "music" }
--- Use this : https://fontawesome.com/cheatsheet
--- awful.util.tagnames = { "", "", "", "", "" }
+-- awful.util.tagnames = { "⓵", "⓶", "⓷", "⓸", "⓹", "⓺", "⓻", "⓼", "⓽"}
+-- awful.util.tagnames = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨"}
+awful.util.tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }
+
 awful.layout.suit.tile.left.mirror = true
 
 awful.layout.layouts = {
@@ -294,7 +284,7 @@ lain.layout.cascade.tile.extra_padding = dpi(5)
 lain.layout.cascade.tile.nmaster = 5
 lain.layout.cascade.tile.ncol = 2
 
-beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
+beautiful.init(string.format("%s/.config/awesome/themes/mytheme/theme.lua", os.getenv("HOME")))
 -- }}}
 
 -- {{{ Menu
@@ -312,7 +302,7 @@ awful.util.mymainmenu =
     freedesktop.menu.build(
     {
         before = {
-            {"Awesome", myawesomemenu}
+            {"Awesome", myawesomemenu, beautiful.awesome_icon}
             -- { "Atom", "atom" },
             -- other triads can be put here
         },
@@ -361,9 +351,12 @@ screen.connect_signal(
         local only_one = #s.tiled_clients == 1
         for _, c in pairs(s.clients) do
             -- special Toolbar handling
-            if (c.class == "Polybar") or (c.class == "Plank") then
+            if
+                (c.class == "firefox") or (c.class == "firefoxdeveloperedition") or (c.class == "Chromium") or
+                    (c.class == "Google-chrome")
+             then
             elseif only_one and not c.floating or c.maximized then
-                c.border_width = 2
+                c.border_width = dpi(1)
             else
                 c.border_width = beautiful.border_width
             end
@@ -403,10 +396,10 @@ local globalkeys =
     my_table.join(
     awful.key({modkey, shiftkey}, "r", awesome.restart, {description = "reload awesome", group = kgAwesome}),
     awful.key(
-        {modkey, shiftkey},
+        {modkey},
         "x",
         function()
-            logout_popup.launch()
+            awful.spawn.with_shell("sh $SCRIPTS/menu/system-menu.sh")
         end,
         {description = "Zeige Logout-Dialog", group = kgAwesome}
     ),
@@ -591,15 +584,6 @@ local globalkeys =
         {description = "toggle wibox", group = kgLayout}
     ),
     -- Show/Hide SystraySystray
-    awful.key(
-        {modkey},
-        "-",
-        function()
-            awful.screen.focused().systray.visible = not awful.screen.focused().systray.visible
-        end,
-        {description = "Toggle systray visibility", group = kgSystem}
-    ),
-    -- Show/Hide Systray
     awful.key(
         {modkey},
         "KP_Subtract",
@@ -799,7 +783,10 @@ local clientkeys =
             c.maximized = not c.maximized
             c:raise()
         end,
-        {description = "toggle maximized", group = kgClient}
+        {
+            description = "toggle maximized",
+            group = kgClient
+        }
     ),
     awful.key(
         {modkey},
@@ -807,18 +794,17 @@ local clientkeys =
         function(c)
             c:kill()
         end,
-        {description = "close", group = kgClient}
+        {
+            description = "close",
+            group = kgClient
+        }
     ),
-    awful.key({modkey}, "space", awful.client.floating.toggle, {description = "toggle floating", group = kgClient}),
     awful.key(
         {modkey, altkey},
         "space",
-        function(c)
-            c.maximized = not c.maximized
-            c:raise()
-        end,
+        awful.client.floating.toggle,
         {
-            description = "toggle maximized",
+            description = "toggle floating",
             group = kgClient
         }
     ),
@@ -1068,14 +1054,15 @@ awful.rules.rules = {
         rule_any = {
             instance = {},
             class = {
-                "Alacritty"
+                "Alacritty",
+                "kitty"
             },
             name = {},
             role = {}
         },
         properties = {
-            floating = false,
-            opacity = 0.9
+            maximized = false,
+            floating = false
         }
     },
     -- Floating clients but centered in screen
@@ -1133,16 +1120,14 @@ awful.rules.rules = {
         }
     },
     {
-        rule_any = {
-            class = {
-                "Spotify"
-            }
+        rule = {
+            class = "Spotify"
         },
         properties = {
             screen = 2,
-            tag = awful.util.tagnames[3],
-            switchtotag = true,
-            maximized = true,
+            tag = awful.util.tagnames[5],
+            switchtotag = false,
+            maximized = false,
             floating = false
         }
     },
@@ -1256,16 +1241,17 @@ awful.rules.rules = {
     {
         rule_any = {
             class = {
+                "Google-chrome",
                 "firefox",
                 "firefoxdeveloperedition"
             }
         },
         properties = {
-            maximized = true,
+            maximized = false,
             floating = false,
             screen = 1,
             tag = awful.util.tagnames[2],
-            switchtotag = true
+            switchtotag = false
         }
     },
     -- System Monitor Consolen auf Screen 2 tag 9 schieben
@@ -1386,6 +1372,7 @@ client.connect_signal(
     "focus",
     function(c)
         c.border_color = beautiful.border_focus
+        -- c.border_color = '#ff000050'
     end
 )
 
@@ -1400,6 +1387,5 @@ client.connect_signal(
 
 -- Autostart applications
 -- awful.spawn.with_shell("sh $SCRIPTS/autostart-global.sh")
--- awful.spawn.with_shell("sh $SCRIPTS/autostart-awesome.sh")
 
-notify("Awesome TEST", "Awesome Test erfolgreich gestartet !!", naughty.config.presets.info)
+notify("Awesome Test", "Awesome Test erfolgreich gestartet !!", naughty.config.presets.info)

@@ -101,7 +101,7 @@ errorCheck "install required nodejs-tools"
 
 # Default Browser setzen (vorher $BROWSER Variable entfernen)
 export BROWSER=
-xdg-settings set default-web-browser firefox.desktop
+xdg-settings set default-web-browser chromium.desktop
 
 sudo fc-cache -fv
 errorCheck "fontcache"

@@ -61,10 +61,6 @@
 "sh $SCRIPTS/menu/system-menu.sh" 
   mod4 + p
 
-# Bitwarden Menü
-"bwmenu -- -location 2" 
-  mod4 + w
-
 #
 ##################
 
@@ -90,7 +86,7 @@
 # Appliactions Calls
 
 # Browser
-"i3-sensible-browser " 
+"google-chrome-stable " 
   mod4 + F1
 
 # AppFinder
@@ -104,10 +100,6 @@
 # Rofi Default Menü
 "sh $SCRIPTS/menu/rofi.sh -show combi"
   mod4 + z
-
-# Application Toggle
-"alttab"
-  alt + Tab
 
 #####################
 
@@ -132,8 +124,11 @@
 #################
 # System Hotkeys
 
-"killall node; fuser -k 4200/tcp; fuser -k 4201/tcp; fuser -k 4202/tcp; notify-send Node 'all nodes-processes and ng-services killed'" 
+"killall node; fuser -k 4200/tcp; fuser -k 4201/tcp; fuser -k 4202/tcp; notify-send.sh 'Node' 'all nodes-processes and ng-services killed'" 
   control + alt + k
+
+"notify-send.sh Node 'Test Nachricht' 'Dies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.'" 
+  mod4 + alt + t
 
 "kitty" 
   mod4 + Return

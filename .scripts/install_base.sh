@@ -78,9 +78,11 @@ inst openconnect
 inst p7zip
 inst s-tui
 inst shell-color-scripts
-uninst starship
 inst timeshift
 inst unrar
+inst powershell
+inst zsh
+
 if [ $IS_GARUDA = true ]; then
 	inst samba-support
 fi

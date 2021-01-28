@@ -67,21 +67,23 @@ theme.xres = xres
 theme.dir = os.getenv("HOME") .. "/.config/awesome/themes/mytheme"
 theme.wallpaper = theme.dir .. "/wallpaper.jpg"
 
-local function makeColorTransparent(colorkey)
-    local alpha = 0xFFFFFF50
-    local newcolorkey = colorkey and 0xFFFFFF00
-    return colorkey
+local function makeColorTransparent(colorkey, opacity)
+    gdebug.print_warning("ColorKey: " .. colorkey)
+    local colorMain = string.sub(colorkey, 2, 7)
+    local transColor = "#".. colorMain .. opacity
+    gdebug.print_warning("Color: " .. transColor)
+    return transColor
 end
 
-theme.border_normal = xres.wm_border_unfocused_color
-theme.border_focus = xres.wm_border_focused_color
-theme.border_marked = xres.selected_bg_color
+theme.border_normal = makeColorTransparent(xres.wm_border_unfocused_color, "50")
+theme.border_focus = makeColorTransparent(xres.wm_border_focused_color, "30")
+theme.border_marked = makeColorTransparent(xres.selected_bg_color, "60")
 
 theme.bg_normal = xres.bg_color
 theme.fg_normal = xres.fg_color
 theme.bg_focus = xres.wm_border_focused_color
 theme.fg_focus = xres.fg_color
-theme.bg_urgent = xres.warning_bg_color
+theme.bg_urgent = makeColorTransparent(xres.warning_bg_color, "80")
 theme.fg_urgent = xres.warning_color
 
 theme.border_width = dpi(5)
@@ -106,10 +108,10 @@ theme.titlebar_fg_normal = xres.wm_title_unfocused_color
 theme.menu_height = dpi(30)
 theme.menu_width = dpi(300)
 
-theme.notification_opacity = 0.90
-theme.notification_bg = xres.tooltip_bg_color
+theme.notification_opacity = 1
+theme.notification_bg = makeColorTransparent(xres.tooltip_bg_color, "80")
 theme.notification_fg = xres.tooltip_fg_color
-theme.notification_border_color = xres.osd_border_color
+theme.notification_border_color = makeColorTransparent(xres.osd_border_color, "B0")
 
 theme.tasklist_plain_task_name = false
 theme.tasklist_disable_icon = false
@@ -484,31 +486,11 @@ local screen2RightWidgets = {
     -- Right widgets
     layout = wibox.layout.fixed.horizontal,
     widget_seperator,
-    wibox.container.background(wibox.container.margin(fsRootWidget, theme.margins_width, theme.margins_width)),
-    widget_seperator,
-    wibox.container.background(wibox.container.margin(fsWorkspaceWidget, theme.margins_width, theme.margins_width)),
-    widget_seperator,
-    wibox.container.background(wibox.container.margin(fsVmWidget, theme.margins_width, theme.margins_width)),
-    widget_seperator,
-    wibox.container.background(wibox.container.margin(fsBidataWidget, theme.margins_width, theme.margins_width)),
-    widget_seperator,
-    wibox.container.background(wibox.container.margin(ram_widget(), theme.margins_width, theme.margins_width)),
-    widget_seperator,
     wibox.container.background(wibox.container.margin(memwidget, theme.margins_width, theme.margins_width)),
-    widget_seperator,
-    wibox.container.background(wibox.container.margin(graph_mem, theme.margins_width, theme.margins_width)),
     widget_seperator,
     wibox.container.background(
         wibox.container.margin(
             wibox.widget {tempicon, temp.widget, layout = wibox.layout.align.horizontal},
-            theme.margins_width,
-            theme.margins_width
-        )
-    ),
-    widget_seperator,
-    wibox.container.background(
-        wibox.container.margin(
-            wibox.widget {volicon, theme.volume.widget, layout = wibox.layout.align.horizontal},
             theme.margins_width,
             theme.margins_width
         )
