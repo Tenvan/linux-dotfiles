@@ -7,6 +7,8 @@ source $SCRIPTS/defs.sh
 #####################
 DEBUG=false
 #DEBUG=true
+PACKER=paru
+
 INSTALL_VIRTIO=true
 INSTALL_VIRTUALBOX=false
 
@@ -21,8 +23,8 @@ errorCheck() {
 inst() {
 	PAKAGE_INST="${PAKAGE_INST} $1"
 
-	if [ $DEBUG = "TRUE" ]; then
-		pakku -S $PAKKU_ALL $1
+	if [ $DEBUG = true ]; then
+		$PACKER -S $PAKKU_ALL $1
 
 		retVal=$?
 		if [ $retVal -ne 0 ]; then
@@ -36,8 +38,8 @@ $1"
 uninst() {
 	PAKAGE_UNINST="${PAKAGE_UNINST} $1"
 
-	if [ $DEBUG = "TRUE" ]; then
-		pakku -R --noconfirm $1
+	if [ $DEBUG = true ]; then
+		$PACKER -R --noconfirm $1
 
 		retVal=$?
 		if [ $retVal -ne 0 ]; then
@@ -81,7 +83,7 @@ fi
 #################################
 if [ $DEBUG != "TRUE" ]; then
 	echo "INST: $PAKKU_PAKAGE"
-	pakku -S $PAKKU_ALL $PAKAGE_INST
+	$PACKER -S $PAKKU_ALL $PAKAGE_INST
 	errorCheck "install packages"
 fi
 

@@ -20,7 +20,7 @@ errorCheck() {
 inst() {
     PAKAGE_INST="${PAKAGE_INST} $1"
     
-    if [ $DEBUG = "TRUE" ]; then
+    if [ $DEBUG = true ]; then
 		$PACKER -S $PAKKU_ALL $1
 		
 	    retVal=$?
@@ -35,7 +35,7 @@ $1"
 uninst() {
     PAKAGE_UNINST="${PAKAGE_UNINST} $1"
 
-    if [ $DEBUG = "TRUE" ]; then
+    if [ $DEBUG = true ]; then
 	    $PACKER -R --noconfirm $1
 	    
 	    retVal=$?

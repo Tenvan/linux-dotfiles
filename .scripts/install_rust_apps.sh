@@ -10,40 +10,40 @@ DEBUG=true
 PACKER=paru
 
 errorCheck() {
-    retVal=$?
-    if [ $retVal -ne 0 ]; then
-        echo "abort installation script 'install_rust_apps': $1"
-        exit $retVal
-    fi
+	retVal=$?
+	if [ $retVal -ne 0 ]; then
+		echo "abort installation script 'install_rust_apps': $1"
+		exit $retVal
+	fi
 }
 
 inst() {
-    PAKAGE_INST="${PAKAGE_INST} $1"
-    
-    if [ $DEBUG = "TRUE" ]; then
+	PAKAGE_INST="${PAKAGE_INST} $1"
+
+	if [ $DEBUG = true ]; then
 		$PACKER -S $PAKKU_ALL $1
-		
-	    retVal=$?
-	    if [ $retVal -ne 0 ]; then
-	        echo "error on install: $1"
+
+		retVal=$?
+		if [ $retVal -ne 0 ]; then
+			echo "error on install: $1"
 			ERROR_PAKAGE_INST="${ERROR_PAKAGE_INST}
-$1"        
-	    fi
-    fi
+$1"
+		fi
+	fi
 }
 
 uninst() {
-    PAKAGE_UNINST="${PAKAGE_UNINST} $1"
+	PAKAGE_UNINST="${PAKAGE_UNINST} $1"
 
-    if [ $DEBUG = "TRUE" ]; then
-	    $PACKER -R --noconfirm $1
-	    
-	    retVal=$?
-	    if [ $retVal -ne 0 ]; then
-	        echo "error on uninstall: $1"
+	if [ $DEBUG = true ]; then
+		$PACKER -R --noconfirm $1
+
+		retVal=$?
+		if [ $retVal -ne 0 ]; then
+			echo "error on uninstall: $1"
 			ERROR_PAKAGE_UNINST="${ERROR_PAKAGE_UNINST}
-$1"        
-	    fi
+$1"
+		fi
 	fi
 }
 
