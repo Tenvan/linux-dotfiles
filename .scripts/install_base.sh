@@ -7,6 +7,7 @@
 #####################
 DEBUG=false
 #DEBUG=true
+PACKER=paru
 
 errorCheck() {
     retVal=$?
@@ -20,7 +21,7 @@ inst() {
     PAKAGE_INST="${PAKAGE_INST} $1"
     
     if [ $DEBUG = "TRUE" ]; then
-		pakku -S $PAKKU_ALL $1
+		$PACKER -S $PAKKU_ALL $1
 		
 	    retVal=$?
 	    if [ $retVal -ne 0 ]; then
@@ -35,7 +36,7 @@ uninst() {
     PAKAGE_UNINST="${PAKAGE_UNINST} $1"
 
     if [ $DEBUG = "TRUE" ]; then
-	    pakku -R --noconfirm $1
+	    $PACKER -R --noconfirm $1
 	    
 	    retVal=$?
 	    if [ $retVal -ne 0 ]; then
@@ -61,7 +62,6 @@ inst clamav
 inst clamtk
 inst dpkg
 inst exa
-inst fd
 inst find-the-command
 inst glances
 inst gtop
@@ -77,14 +77,11 @@ inst multitail
 inst neofetch
 inst openconnect
 inst p7zip
-inst procs
 inst powershell
-inst ripgrep
 inst s-tui
 inst shell-color-scripts
 inst timeshift
-inst tldr
-inst tokei
+inst tldr++
 inst unrar
 inst zsh
 
@@ -156,7 +153,6 @@ inst genius
 inst gparted
 inst grub-customizer
 inst hardinfo
-inst i3-sensible-browser-git
 inst ibus-daemon
 inst kteatime
 inst notify-send.sh
@@ -180,7 +176,6 @@ inst webmin
 inst xautolock
 inst xbindkeys
 inst xclip
-inst xcwd-git
 inst xdotool
 inst xorg-xfd
 inst xorg-xsetroot
@@ -350,8 +345,7 @@ sudo rm /var/lib/pacman/db.lck
 ###############################
 if [ $DEBUG != true ]; then
 	echo "UNINST: $PAKKU_PAKAGE_U"
-	pakku -R --noconfirm $PAKAGE_UNINST
-	# paru -R --noconfirm $PAKAGE_UNINST
+	$PACKER -R --noconfirm $PAKAGE_UNINST
 	#errorCheck "uninstall packages"
 fi
 
@@ -360,8 +354,7 @@ fi
 #################################
 if [ $DEBUG != true ]; then
 	echo "INST: $PAKKU_PAKAGE"
-	pakku -S $PAKKU_ALL $PAKAGE_INST
-	# paru -S $PAKKU_ALL $PAKAGE_INST
+	$PACKER -S $PAKKU_ALL $PAKAGE_INST
 	errorCheck "install packages"
 fi
 

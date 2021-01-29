@@ -5,14 +5,14 @@
 #####################
 # init distro check #
 #####################
-DEBUG=false
-#DEBUG=true
+#DEBUG=false
+DEBUG=true
 PACKER=paru
 
 errorCheck() {
     retVal=$?
     if [ $retVal -ne 0 ]; then
-        echo "abort installation script 'install_apps': $1"
+        echo "abort installation script 'install_rust_apps': $1"
         exit $retVal
     fi
 }
@@ -47,45 +47,15 @@ $1"
 	fi
 }
 
-#########################
-# collect optional apps #
-#########################
+#####################
+# collect rust apps #
+#####################
 
-# gimicks
-inst cmatrix
-inst hollywood
-
-# Office
-inst libreoffice-fresh
-inst libreoffice-fresh-de
-
-# Browser
-inst google-chrome
-inst microsoft-edge-dev-bin
-inst vivaldi
-
-# optional application packages
-inst aspell
-inst evolution
-inst gimp
-inst gimp-help-de
-inst imagemagick
-inst inkscape
-inst partitionmanager
-inst pinta
-inst playerctl
-inst pstoedit
-inst python-lxml
-inst python-numpy
-inst radiotray
-inst teams
-inst themix-full-git
-# inst themix-gui-git
-# inst themix-icons-numix-git 
-# inst themix-icons-papirus-git
-# inst themix-theme-materia-git 
-# inst themix-theme-arc-git 
-# inst themix-theme-oomox-git
+inst bat
+inst fd
+inst procs
+inst ripgrep
+inst tokei
 
 sudo rm /var/lib/pacman/db.lck
 
@@ -109,4 +79,5 @@ fi
 
 ## FINISHING #
 
+#echo "Error in Uninst: ${ERROR_PAKAGE_UNINST}"
 echo "Error in Inst: ${ERROR_PAKAGE_INST}"

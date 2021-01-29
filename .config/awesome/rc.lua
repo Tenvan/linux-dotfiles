@@ -350,15 +350,17 @@ screen.connect_signal(
     function(s)
         local only_one = #s.tiled_clients == 1
         for _, c in pairs(s.clients) do
-            -- special Toolbar handling
             if
-                (c.class == "firefox") or (c.class == "firefoxdeveloperedition") or (c.class == "Chromium") or
-                    (c.class == "Google-chrome")
-             then
-            elseif only_one and not c.floating or c.maximized then
-                c.border_width = dpi(1)
+                (c.class == "firefox") or 
+                (c.class == "firefoxdeveloperedition") or 
+                (c.class == "Chromium") or
+                (c.class == "Google-chrome") or
+                (c.class == "Microsoft Teams - Preview")
+            then
+            elseif c.maximized or (only_one and not c.floating) then
+                -- c.border_width = 0
             else
-                c.border_width = beautiful.border_width
+                -- c.border_width = beautiful.border_width
             end
         end
     end
