@@ -74,6 +74,8 @@
 !.config/kitty/**/*
 !.config/nitrogen
 !.config/nitrogen/**/*
+!.config/oomox
+!.config/oomox/**/*
 !.config/picom
 !.config/picom/**/*
 !.config/polybar

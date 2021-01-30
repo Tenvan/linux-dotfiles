@@ -6,26 +6,45 @@ csource() {
   fi
 }
 
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+csource "$HOME/.zinit/bin/zinit.zsh"
+
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zinit-zsh/z-a-rust \
+    zinit-zsh/z-a-as-monitor \
+    zinit-zsh/z-a-patch-dl \
+    zinit-zsh/z-a-bin-gem-node
+
+### End of Zinit's installer chunk
+
 #test -f "$(which paleofetch)" && $(which paleofetch)
 test -f "$(which neofetch)" && $(which neofetch)
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-csource "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-
-# Activate powerlevel10k theme
-csource /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+test -f "$(which starship)" && eval "$(starship init zsh)"
 
 ## Plugins section: Enable fish style features
 # Use syntax highlighting
-csource /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# csource /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+zinit light zsh-users/zsh-syntax-highlighting
 
 # Use autosuggestion
 csource /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Use history substring search
-csource /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+# csource /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+zinit load zdharma/history-search-multi-word
 
 # Use fzf
 csource /usr/share/fzf/key-bindings.zsh
@@ -123,14 +142,10 @@ alias fixpacman="sudo rm /var/lib/pacman/db.lck"
 alias untar='tar -zxvf '
 alias wget='wget -c '
 alias speed='speedtest-cli --server 2406 --simple'
-alias path='echo -e ${PATH//:/\\n}'
-alias apt='man pacman'
-alias apt-get='man pacman'
 
 # Set your countries like --country France --country Germany -- or more.
 alias upd='sudo reflector --country Germany --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo pacman -Syu'
 
 csource ~/.aliasrc
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+test -f "$(which starship)" && starship explain

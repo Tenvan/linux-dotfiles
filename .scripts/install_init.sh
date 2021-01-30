@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-export SCRIPTS=~/.scripts
-
-. $SCRIPTS/defs.sh
+. ~/.scripts/defs.sh
 
 #####################
 # init distro check #
@@ -40,11 +38,12 @@ pamac install --no-confirm pakku-git paru-git
 errorCheck "installation aur manager"
 
 # init mirror
-pakku -S $PAKKU_ALL --noconfirm pacman-mirrorup
+paru -S $PAKKU_ALL --noconfirm pacman-mirrorup
 pacman-mirrorup -v
 
 # Prompt installieren
-pakku -S $PAKKU_ALL ttf-meslo-nerd-font-powerlevel10k zsh-theme-powerlevel10k
+paru -S $PAKKU_ALL ttf-meslo-nerd-font-powerlevel10k zsh-theme-powerlevel10k starship-bin
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
 
 # disable sudo password
 echo "Cmnd_Alias INSTALL = /usr/bin/pacman, /usr/share/pacman

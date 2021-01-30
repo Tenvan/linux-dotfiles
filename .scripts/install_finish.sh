@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-export SCRIPTS=~/.scripts
-
-. $SCRIPTS/defs.sh
+. ~/.scripts/defs.sh
 
 errorCheck() {
     retVal=$?
@@ -34,11 +32,11 @@ if [ -f $HOME/.screenlayout/screenlayout.sh ]; then
 fi
 
 # powerline in linux console
-pakku -S --needed --noconfirm terminus-font powerline-fonts 
+$PACKER -S --needed --noconfirm terminus-font powerline-fonts 
 if [ $IS_GARUDA = true ]; then
-    pakku -S $PAKKU_ALL terminess-powerline-font-git terminus-font powerline-fonts 
+    $PACKER -S $PAKKU_ALL terminess-powerline-font-git terminus-font powerline-fonts 
 else
-    pakku -S $PAKKU_ALL terminus-font powerline-fonts 
+    $PACKER -S $PAKKU_ALL terminus-font powerline-fonts 
 fi
 
 echo "KEYMAP=de

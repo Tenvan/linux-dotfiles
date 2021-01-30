@@ -2,13 +2,6 @@
 
 . $SCRIPTS/defs.sh
 
-#####################
-# init distro check #
-#####################
-DEBUG=false
-#DEBUG=true
-PACKER=paru
-
 errorCheck() {
     retVal=$?
     if [ $retVal -ne 0 ]; then
@@ -80,12 +73,7 @@ inst python-numpy
 inst radiotray
 inst teams
 inst themix-full-git
-# inst themix-gui-git
-# inst themix-icons-numix-git 
-# inst themix-icons-papirus-git
-# inst themix-theme-materia-git 
-# inst themix-theme-arc-git 
-# inst themix-theme-oomox-git
+inst themix-theme-arc-git 
 
 sudo rm /var/lib/pacman/db.lck
 

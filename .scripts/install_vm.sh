@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source $SCRIPTS/defs.sh
+. ~/.scripts/defs.sh
 
 #####################
 # init distro check #

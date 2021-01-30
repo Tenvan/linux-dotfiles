@@ -4,9 +4,7 @@ configuration {
 	location: 0;
 	lines: 24;
 	show-icons: true;
-    theme: "android_notification";
-// theme: "Adapta-Nokto";
-// theme: "Paper";
+	theme: "/home/ralf/.config/rofi/rofi.rasi";
 /*	width: 50;*/
 /*	columns: 1;*/
 /*	bw: 1;*/

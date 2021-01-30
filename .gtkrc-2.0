@@ -1,8 +1,8 @@
 # DO NOT EDIT! This file will be overwritten by LXAppearance.
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
-gtk-theme-name="My-Materia-Dark"
-gtk-icon-theme-name="Sardi-Arc"
+gtk-theme-name="oomox-Numix-Dark-Orange"
+gtk-icon-theme-name="oomox-Numix-Dark-Orange"
 gtk-font-name="Sans Regular 12"
 gtk-cursor-theme-name="Bibata-Modern-Ice"
 gtk-cursor-theme-size=32
@@ -17,3 +17,6 @@ gtk-xft-hinting=1
 gtk-xft-hintstyle="hintslight"
 gtk-xft-rgba="rgb"
 gtk-modules="canberra-gtk-module:gail:atk-bridge"
+# begin oomox {{{
+gtk-color-scheme = "bg_color:#303030\nfg_color:#eeeeee\nbase_color:#303030\ntext_color:#eeeeee\nselected_bg_color:#4c4945\nselected_fg_color:#eeeeee\ntooltip_bg_color:#303030\ntooltip_fg_color:#1c1c1c\ntitlebar_bg_color:#303030\ntitlebar_fg_color:#aba9ef\nmenubar_bg_color:#303030\nmenubar_fg_color:#aba9ef\ntoolbar_bg_color:#303030\ntoolbar_fg_color:#d5ab1b\nmenu_bg_color:#303030\nmenu_fg_color:#eeeeee\npanel_bg_color:#303030\npanel_fg_color:#5ec28b\nlink_color:#c7af5b"
+# end oomox }}}

@@ -10,6 +10,10 @@ export IS_ARCH=false
 export IS_ARCO=false
 export IS_MANJARO=false
 export IS_GARUDA=false
+export SCRIPTS="$HOME/.scripts"
+export PACKER=paru
+export DEBUG=false
+export #DEBUG=true
 
 if [ $LINUX_VERSION_NAME = "Archlinux" ]; then
 	export IS_ARCH=true

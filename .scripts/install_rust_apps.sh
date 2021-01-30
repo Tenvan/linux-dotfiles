@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 
-. $SCRIPTS/defs.sh
-
-#####################
-# init distro check #
-#####################
-#DEBUG=false
-DEBUG=true
-PACKER=paru
+. ~/.scripts/defs.sh
 
 errorCheck() {
 	retVal=$?

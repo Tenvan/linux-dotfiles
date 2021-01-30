@@ -20,6 +20,15 @@
 		},
 		{
 			"path": ".config/kitty"
+		},
+		{
+			"path": ".config/alacritty"
+		},
+		{
+			"path": ".config/qt5ct/colors"
+		},
+		{
+			"path": ".config/qt5ct/qss"
 		}
 	],
 	"settings": {

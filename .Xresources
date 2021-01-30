@@ -2,24 +2,57 @@
 ! Generic Theme Colors for using in Theme Engines (GTK Awesome etc.)
 ! ------------------------------------------------------------------------------
 
-*background:  #303030
-*foreground:  #eeeeee
-*color0:  #3b3f42
-*color1:  #ff8573
-*color2:  #64c138
-*color3:  #b0b23c
-*color4:  #94aaf2
-*color5:  #e89699
-*color6:  #6abbab
-*color7:  #abadaf
-*color8:  #444650
-*color9:  #f6933f
-*color10:  #1bc36f
-*color11:  #c8a966
-*color12:  #4bb8dc
-*color13:  #e38fdd
-*color14:  #36bdbb
-*color15:  #a8bed3
+! Base16 oomox-Numix-Dark-Orange
+! Scheme: oomox-Numix-Dark-Orange
+
+#define base00 #303030
+#define base01 #4b3f3b
+#define base02 #4c4945
+#define base03 #8f8f8f
+#define base04 #1c1c1c
+#define base05 #eeeeee
+#define base06 #c0aca5
+#define base07 #c4bdc1
+#define base08 #fb9558
+#define base09 #c7af5b
+#define base0A #d5ab1b
+#define base0B #5ec28b
+#define base0C #45bfc8
+#define base0D #aba9ef
+#define base0E #e096df
+#define base0F #cd8e45
+
+*foreground:   base05
+#ifdef background_opacity
+*background:   [background_opacity]base00
+#else
+*background:   base00
+#endif
+*cursorColor:  base05
+
+*color0:       base00
+*color1:       base08
+*color2:       base0B
+*color3:       base0A
+*color4:       base0D
+*color5:       base0E
+*color6:       base0C
+*color7:       base05
+
+*color8:       base03
+*color9:       base09
+*color10:      base01
+*color11:      base02
+*color12:      base04
+*color13:      base06
+*color14:      base0F
+*color15:      base07
+
+# end of oomox
+
+
+! end of eemox
+
 
 *border:                          #1a1a1a
 

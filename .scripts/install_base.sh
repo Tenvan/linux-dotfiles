@@ -2,13 +2,6 @@
 
 . $SCRIPTS/defs.sh
 
-#####################
-# init distro check #
-#####################
-DEBUG=false
-#DEBUG=true
-PACKER=paru
-
 errorCheck() {
     retVal=$?
     if [ $retVal -ne 0 ]; then
