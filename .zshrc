@@ -20,39 +20,31 @@ csource "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zinit-zsh/z-a-rust \
-    zinit-zsh/z-a-as-monitor \
+zinit wait lucid for \
+  atinit"zicompinit; zicdreplay" \
+	zdharma/fast-syntax-highlighting \
+	zdharma/history-search-multi-word \
+	zinit-zsh/z-a-rust \
+	zinit-zsh/z-a-as-monitor \
     zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-bin-gem-node
+    zinit-zsh/z-a-bin-gem-node \
+    denysdovhan/spaceship-prompt \
+  atload"_zsh_autosuggest_start" \
+      zsh-users/zsh-autosuggestions \
+  blockf atpull'zinit creinstall -q .' \
+      zsh-users/zsh-completions
 
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+           
 ### End of Zinit's installer chunk
 
-#test -f "$(which paleofetch)" && $(which paleofetch)
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+csource "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+
+# test -f "$(which starship)" && eval "$(starship init zsh)"
 test -f "$(which neofetch)" && $(which neofetch)
-test -f "$(which starship)" && eval "$(starship init zsh)"
-
-## Plugins section: Enable fish style features
-# Use syntax highlighting
-# csource /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-zinit light zsh-users/zsh-syntax-highlighting
-
-# Use autosuggestion
-csource /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Use history substring search
-# csource /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-zinit load zdharma/history-search-multi-word
-
-# Use fzf
-csource /usr/share/fzf/key-bindings.zsh
-csource /usr/share/fzf/completion.zsh
-
-# Arch Linux command-not-found support, you must have package pkgfile installed
-# https://wiki.archlinux.org/index.php/Pkgfile#.22Command_not_found.22_hook
-csource /usr/share/doc/pkgfile/command-not-found.zsh
 
 ## Options section
 setopt correct                                                  # Auto correct mistakes
@@ -69,9 +61,6 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushdminus
 
-# Completion.
-autoload -Uz compinit
-compinit
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
 zstyle ':completion:*' rehash true                              # automatically find new executables in path 
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
@@ -149,3 +138,6 @@ alias upd='sudo reflector --country Germany --latest 5 --age 2 --fastest 5 --pro
 csource ~/.aliasrc
 
 test -f "$(which starship)" && starship explain
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

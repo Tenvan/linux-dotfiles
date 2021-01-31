@@ -195,44 +195,42 @@ font:
   # it is recommended to set `use_thin_strokes` to `false`.
   #use_thin_strokes: true
 
-# If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: false
-
 # Base16 oomox-Materia-Dark-Orange - alacritty color config
 # oomox-Materia-Dark-Orange
 colors:
   # Default colors
   primary:
-    background: '0x303030'
+    background: '0x0c0a0a'
     foreground: '0xeeeeee'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x303030'
+    text: '0x0c0a0a'
     cursor: '0xeeeeee'
 
   # Normal colors
   normal:
-    black:   '0x303030'
-    red:     '0xf6933f'
-    green:   '0x1bc36f'
-    yellow:  '0xc8a966'
-    blue:    '0x4bb8dc'
-    magenta: '0xe38fdd'
-    cyan:    '0x36bdbb'
+    black:   '0x0c0a0a'
+    red:     '0xfb9558'
+    green:   '0x5ec28b'
+    yellow:  '0xd5ab1b'
+    blue:    '0xaba9ef'
+    magenta: '0xe096df'
+    cyan:    '0x45bfc8'
     white:   '0xeeeeee'
 
   # Bright colors
   bright:
-    black:   '0x8f8f8f'
-    red:     '0xb0b23c'
-    green:   '0x3b3f42'
-    yellow:  '0x444650'
-    blue:    '0x1c1c1c'
-    magenta: '0xabadaf'
-    cyan:    '0xbf8e29'
-    white:   '0xa8bed3'
+    black:   '0x7d7c7c'
+    red:     '0xc7af5b'
+    green:   '0x4b3f3b'
+    yellow:  '0x4c4945'
+    blue:    '0x000000'
+    magenta: '0xc0aca5'
+    cyan:    '0xcd8e45'
+    white:   '0xc4bdc1'
 
+draw_bold_text_with_bright_colors: false
 
 # Visual Bell
 #

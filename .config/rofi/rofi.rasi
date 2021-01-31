@@ -7,13 +7,13 @@
  */
 
 * {
-    red:                         rgba ( 246, 147, 63, 100 % );
-    blue:                        rgba ( 75, 184, 220, 100 % );
-    lightfg:                     rgba ( 171, 173, 175, 100 % );
-    lightbg:                     rgba ( 59, 63, 66, 100 % );
+    red:                         rgba ( 251, 149, 88, 100 % );
+    blue:                        rgba ( 171, 169, 239, 100 % );
+    lightfg:                     rgba ( 192, 172, 165, 100 % );
+    lightbg:                     rgba ( 75, 63, 59, 100 % );
     foreground:                  rgba ( 238, 238, 238, 100 % );
-    background:                  rgba ( 48, 48, 48, 100 % );
-    background-color:            rgba ( 48, 48, 48, 0 % );
+    background:                  rgba ( 12, 10, 10, 100 % );
+    background-color:            rgba ( 12, 10, 10, 0 % );
     separatorcolor:              @foreground;
     border-color:                @foreground;
     selected-normal-foreground:  @lightbg;
@@ -38,8 +38,8 @@
 }
 window {
     background-color: @background;
-    border:           5;
-    padding:          15;
+    border:           1;
+    padding:          5;
 }
 mainbox {
     border:           0;

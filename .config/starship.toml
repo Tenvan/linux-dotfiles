@@ -3,7 +3,8 @@ add_newline = false
 
 # Use custom format
 format = """
-$time $username@$hostname \
+[┌───────────────────>](bold green)
+[│](bold green)$time $username@$hostname \
 $shlvl\
 $hg_branch\
 $docker_context\
@@ -31,10 +32,9 @@ $memory_usage\
 $openstack\
 $env_var\
 $crystal\
-$cmd_duration\
 $custom\
 $line_break\
-$lua\
+[│](bold green)$lua\
 $jobs\
 $battery\
 $dotnet\
@@ -45,25 +45,42 @@ $git_commit\
 $git_state\
 $git_status\
 $status\
-\n$directory$character\
+$cmd_duration\
+$directory
+[└─](bold green)$character\
 """
 
+scan_timeout = 4
+
+[aws]
+symbol = " "
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character]                            # The name of the module we are configuring is "character"
-# success_symbol = "[➜](bold green):"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-# error_symbol = "[✗](bold red):"
+#success_symbol = "[➜](bold green):"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+#error_symbol = "[✗](bold red):"
 
 [cmd_duration]
 min_time = 100
-format = "duration [$duration](bold yellow)"
+format = " [$duration](bold yellow)"
 show_notifications=true
+show_milliseconds=true
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
 
 [directory]
+#read_only = " "
 format="[$path]($style)[$read_only]($read_only_style) "
 truncation_length = 8
-# truncation_symbol = "…/"
+truncation_symbol = "…/"
 truncate_to_repo=true
+
+[docker]
+symbol = " "
 
 [docker_context]
 # disabled=true
@@ -75,7 +92,14 @@ symbol = "🥅 "
 style = "green"
 heuristic = false
 
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
 [git_branch]
+symbol = " "
 # symbol = "🌱 "
 always_show_remote=true
 format="[$symbol$branch]($style) "
@@ -102,20 +126,59 @@ staged = '[++\($count\)](green)'
 renamed = "👅 "
 deleted = "🗑 "
 
+[golang]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+
 [memory_usage]
+symbol = " "
 disabled=false
 threshold=-1
-# symbol=" "
 style="bold dimmed green"
 
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
 [nodejs]
+symbol = " "
 format = "\\[NodeJS [🤖 $version](bold green)\\] "
 
 # Disable the package module, hiding it from the prompt completely
 [package]
+symbol = " "
 disabled=true
 display_private=true
 format = "[🎁 $version](208 bold) "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[python]
+symbol = " "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
 
 [shlvl]
 disabled=false
@@ -127,6 +190,9 @@ disabled=false
 style="bg:blue"
 symbol="💣 "
 format='[\[$symbol$status\]]($style)'
+
+[swift]
+symbol = "ﯣ "
 
 [time]
 disabled = false
@@ -147,3 +213,4 @@ style_root = "black bold"
 format = "[$user]($style)"
 disabled = false
 show_always = true
+
