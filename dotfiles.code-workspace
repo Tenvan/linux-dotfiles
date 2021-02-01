@@ -26,9 +26,6 @@
 		},
 		{
 			"path": ".config/qt5ct/colors"
-		},
-		{
-			"path": ".config/qt5ct/qss"
 		}
 	],
 	"settings": {

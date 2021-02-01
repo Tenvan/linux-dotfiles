@@ -20,13 +20,10 @@ errorCheck "installation base-devel"
 git submodule update --init --recursive
 
 # Config pacman
+sudo pacman -S pamac-all
 sed 's/^#Color$/Color/g' </etc/pacman.conf >pacman.conf
 sudo mv pacman.conf /etc/
 sed 's/^.*ILoveCandy$/ILoveCandy/g' </etc/pamac.conf >pamac.conf
-sudo mv pamac.conf /etc/
-sed 's/^.*CheckAURUpdates$/CheckAURUpdates/g' </etc/pamac.conf >pamac.conf
-sudo mv pamac.conf /etc/
-sed 's/^.*EnableFlatpak$/EnableFlatpak/g' </etc/pamac.conf >pamac.conf
 sudo mv pamac.conf /etc/
 sed 's/^.*EnableAUR$/EnableAUR/g' </etc/pamac.conf >pamac.conf
 sudo mv pamac.conf /etc/

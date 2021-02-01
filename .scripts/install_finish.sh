@@ -116,14 +116,21 @@ sudo usermod -aG docker $USER
 sudo systemctl enable --now cups
 errorCheck "printer service"
 
+# docker
 sudo systemctl enable --now docker
 errorCheck "docker service"
 
+# webmin
 sudo systemctl enable --now webmin
 errorCheck "webmin service"
 
 sudo systemctl enable --now bluetooth-autoconnect
 errorCheck "bluetooth-autoconnect service"
+
+# pamac
+sudo systemctl enable --now snapd.socket
+sudo systemctl enable --now apparmor.service
+sudo systemctl enable --now snapd.apparmor.service
 
 mkdir -p ~/.config/systemd/user/
 sudo cp /usr/lib/systemd/user/pulseaudio-bluetooth-autoconnect.service /etc/systemd/user

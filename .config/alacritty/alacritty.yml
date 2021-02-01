@@ -195,42 +195,50 @@ font:
   # it is recommended to set `use_thin_strokes` to `false`.
   #use_thin_strokes: true
 
-# Base16 oomox-Materia-Dark-Orange - alacritty color config
-# oomox-Materia-Dark-Orange
-colors:
-  # Default colors
-  primary:
-    background: '0x0c0a0a'
-    foreground: '0xeeeeee'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0x0c0a0a'
-    cursor: '0xeeeeee'
-
-  # Normal colors
-  normal:
-    black:   '0x0c0a0a'
-    red:     '0xfb9558'
-    green:   '0x5ec28b'
-    yellow:  '0xd5ab1b'
-    blue:    '0xaba9ef'
-    magenta: '0xe096df'
-    cyan:    '0x45bfc8'
-    white:   '0xeeeeee'
-
-  # Bright colors
-  bright:
-    black:   '0x7d7c7c'
-    red:     '0xc7af5b'
-    green:   '0x4b3f3b'
-    yellow:  '0x4c4945'
-    blue:    '0x000000'
-    magenta: '0xc0aca5'
-    cyan:    '0xcd8e45'
-    white:   '0xc4bdc1'
-
-draw_bold_text_with_bright_colors: false
+# Base16 oomox-Materia-Dark-Orange 256 - alacritty color config
+    # oomox-Materia-Dark-Orange
+    colors:
+      # Default colors
+      primary:
+        background: '0x303030'
+        foreground: '0xe0e0e0'
+    
+      # Colors the cursor will use if `custom_cursor_colors` is true
+      cursor:
+        text: '0x303030'
+        cursor: '0xe0e0e0'
+    
+      # Normal colors
+      normal:
+        black:   '0x303030'
+        red:     '0xf74627'
+        green:   '0x708439'
+        yellow:  '0xff951e'
+        blue:    '0x967e94'
+        magenta: '0xed8784'
+        cyan:    '0x8aa88f'
+        white:   '0xe0e0e0'
+    
+      # Bright colors
+      bright:
+        black:   '0x888888'
+        red:     '0xf74627'
+        green:   '0x708439'
+        yellow:  '0xff951e'
+        blue:    '0x967e94'
+        magenta: '0xed8784'
+        cyan:    '0x8aa88f'
+        white:   '0xfffffd'
+    
+      indexed_colors:
+        - { index: 16, color: '0xffad34' }
+        - { index: 17, color: '0xe76519' }
+        - { index: 18, color: '0x745435' }
+        - { index: 19, color: '0x846445' }
+        - { index: 20, color: '0x1c1c1c' }
+        - { index: 21, color: '0xc5a586' }
+   
+draw_bold_text_with_bright_colors: true
 
 # Visual Bell
 #
@@ -262,7 +270,7 @@ draw_bold_text_with_bright_colors: false
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.8
+background_opacity: 0.95
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

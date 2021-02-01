@@ -1,0 +1,21 @@
+{
+    "name": "oomox-numix-dark-orange",
+    "displayName": "oomox-numix-dark-orange",
+    "description": "",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.52.0"
+    },
+    "categories": [
+        "Themes"
+    ],
+    "contributes": {
+        "themes": [
+            {
+                "label": "Numix Dark Orange",
+                "uiTheme": "vs-dark",
+                "path": "./themes/Numix Dark Orange-color-theme.json"
+            }
+        ]
+    }
+}

@@ -22,7 +22,7 @@ get_config_list() {
            "🇬 Workspace" "code -r $HOME/dotfiles.code-workspace" \
            "📁 config dir" "$folderEdit $HOME/.config" \
            "📁 awesome dir" "$folderEdit $HOME/.config/awesome" \
-           "📑 shell configs" "$filesEdit $HOME/.bashrc* $HOME/.alias* $HOME/.profile* $HOME/.x* $HOME/.X* $HOME/.zsh*" \
+           "📑 shell configs" "$filesEdit $HOME/.bashrc* $HOME/.alias* $HOME/.profile* $HOME/.x* $HOME/.X* $HOME/.zsh* $HOME/.*.zsh" \
            "📑 scripts autostart" "$filesEdit $SCRIPTS/autostart*.sh" \
            "📑 scripts install" "$filesEdit $SCRIPTS/install*" \
            "📑 scripts ldap" "$filesEdit $SCRIPTS/ldap/*.sh" \

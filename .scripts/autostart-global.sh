@@ -57,10 +57,6 @@ run xfce4-notes
 run teams
 restart alttab -n 1
 
-run $(which gesettings-data-convert)
-
-run /usr/lib/xapps/sn-watcher/xapp-sn-watcher
-
 run system-config-printer-applet
 
 killall -q picom

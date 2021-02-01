@@ -28,7 +28,6 @@ zinit wait lucid for \
 	zinit-zsh/z-a-as-monitor \
     zinit-zsh/z-a-patch-dl \
     zinit-zsh/z-a-bin-gem-node \
-    denysdovhan/spaceship-prompt \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
   blockf atpull'zinit creinstall -q .' \
@@ -137,7 +136,11 @@ alias upd='sudo reflector --country Germany --latest 5 --age 2 --fastest 5 --pro
 
 csource ~/.aliasrc
 
-test -f "$(which starship)" && starship explain
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if [[ $DISPLAY ]]; then
+  print "Init Powershell10k for XWindows"
+  [[ ! -f ~/.p10k-x.zsh ]] || source ~/.p10k-x.zsh
+else 
+  print "Init Powershell10k for vconsole"
+  [[ ! -f ~/.p10k-x.zsh ]] || source ~/.p10k-v.zsh
+fi

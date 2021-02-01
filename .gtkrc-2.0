@@ -1,7 +1,6 @@
 # DO NOT EDIT! This file will be overwritten by LXAppearance.
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
-include "/home/ralf/.gtkrc-2.0.mine"
 gtk-theme-name="oomox-Materia-Dark-Orange"
 gtk-icon-theme-name="oomox-Materia-Dark-Orange"
 gtk-font-name="Sans Regular 12"
@@ -19,17 +18,15 @@ gtk-xft-hintstyle="hintslight"
 gtk-xft-rgba="rgb"
 gtk-modules="canberra-gtk-module:gail:atk-bridge"
 
-gtk-auto-mnemonics=true
-
-gtk-color-scheme = "bg_color:#0c0a0a
-color0:#0c0a0a
-text_color:#eeeeee
-selected_bg_color:#4c4945
-selected_fg_color:#eeeeee
-tooltip_bg_color:#0c0a0a
-tooltip_fg_color:#eeeeee
-titlebar_bg_color:#0c0a0a
-titlebar_fg_color:#eeeeee
-menu_bg_color:#0c0a0a
-menu_fg_color:#eeeeee
-link_color:#4c4945"
+gtk-color-scheme = "bg_color:#303030
+color0:#303030
+text_color:#e0e0e0
+selected_bg_color:#846445
+selected_fg_color:#e0e0e0
+tooltip_bg_color:#303030
+tooltip_fg_color:#e0e0e0
+titlebar_bg_color:#303030
+titlebar_fg_color:#e0e0e0
+menu_bg_color:#303030
+menu_fg_color:#e0e0e0
+link_color:#846445"

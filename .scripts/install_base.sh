@@ -56,6 +56,7 @@ inst clamtk
 inst dpkg
 inst exa
 inst find-the-command
+inst flatpak
 inst glances
 inst gtop
 inst hstr
