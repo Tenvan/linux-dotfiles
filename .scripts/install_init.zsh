@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
-. ~/.scripts/defs.sh
+. ~/.scripts/defs.zsh
 
 #####################
 # init distro check #
@@ -9,10 +9,12 @@
 errorCheck() {
     retVal=$?
     if [ $retVal -ne 0 ]; then
-        echo "abort installation script 'install_all': $1"
+        print "abort installation script 'install_all': $1"
         exit $retVal
     fi
 }
+
+sudo rm /var/lib/pacman/db.lck
 
 sudo pacman -S --noconfirm --needed git base-devel colorgcc go ruby rust
 errorCheck "installation base-devel"

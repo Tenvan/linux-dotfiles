@@ -31,7 +31,7 @@ sh ~/.scripts/set-wallpaper.sh
 run nm-applet
 run pamac-tray
 run msm_notifier
-run radiotray
+run radiotray-ng --play
 run kteatime
 
 # killall xbindkeys
@@ -48,9 +48,9 @@ run blueberry-tray
 run blueman-applet
 
 run xscreensaver
-# run /usr/lib/xfce-polkit/xfce-polkit
+restart /usr/lib/xfce-polkit/xfce-polkit
 # run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-run lxqt-policykit-agent
+# run lxqt-policykit-agent
 
 run copyq
 run xfce4-notes

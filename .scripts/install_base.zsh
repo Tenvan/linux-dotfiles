@@ -1,11 +1,11 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
-. $SCRIPTS/defs.sh
+. ~/.scripts/defs.zsh
 
 errorCheck() {
     retVal=$?
     if [ $retVal -ne 0 ]; then
-        echo "abort installation script 'install_all': $1"
+        print "abort installation script 'install_base': $1"
         exit $retVal
     fi
 }
@@ -14,11 +14,11 @@ inst() {
     PAKAGE_INST="${PAKAGE_INST} $1"
     
     if [ $DEBUG = true ]; then
-		$PACKER -S $PAKKU_ALL $1
+		eval "$PACKER -S $PAKKU_ALL $1"
 		
 	    retVal=$?
 	    if [ $retVal -ne 0 ]; then
-	        echo "error on install: $1"
+	        print "error on install: $1"
 			ERROR_PAKAGE_INST="${ERROR_PAKAGE_INST}
 $1"        
 	    fi
@@ -29,11 +29,11 @@ uninst() {
     PAKAGE_UNINST="${PAKAGE_UNINST} $1"
 
     if [ $DEBUG = true ]; then
-	    $PACKER -R --noconfirm $1
+	    eval "$PACKER -R --noconfirm $1"
 	    
 	    retVal=$?
 	    if [ $retVal -ne 0 ]; then
-	        echo "error on uninstall: $1"
+	        print "error on uninstall: $1"
 			ERROR_PAKAGE_UNINST="${ERROR_PAKAGE_UNINST}
 $1"        
 	    fi
@@ -46,6 +46,7 @@ $1"
 
 # system packages
 inst alacritty
+inst alttab
 inst arj
 inst ark
 inst bat
@@ -71,13 +72,15 @@ inst multitail
 inst neofetch
 inst openconnect
 inst p7zip
-inst powershell
+inst powershell-bin
+inst radiotray-ng
+inst redshift
 inst s-tui
 inst shell-color-scripts
+inst teams
 inst timeshift
 inst tldr++
 inst unrar
-inst zsh
 
 # language files
 inst man-pages-de
@@ -145,7 +148,6 @@ inst docker-compose
 inst etcher-bin
 inst genius
 inst gparted
-inst grub-customizer
 inst hardinfo
 inst ibus-daemon
 inst kteatime
@@ -153,8 +155,6 @@ inst notify-send.sh
 inst numlockx
 inst packagekit
 inst picom-jonaburg-git
-inst pm-utils
-inst pygtk
 inst python
 inst python-psutil
 inst python-pygit2
@@ -179,6 +179,9 @@ inst ktorrent
 inst nitrogen
 inst qbittorrent
 inst spectacle
+if [ $IS_MANJARO != true ]; then
+	inst pm-utils
+fi
 
 # utilities from gnome
 inst gnome-disk-utility
@@ -205,28 +208,30 @@ inst ranger
 inst paprefs
 inst pasystray
 inst sp
+
 if [ $IS_GARUDA != true ]; then
-	inst pulseaudio-ctl
-	inst pulseaudio-qt
-	inst pulseaudio-equalizer-ladspa
-	inst bluetooth-support
+	print 'install sound packages'
+	#inst pulseaudio-ctl
+	#inst pulseaudio-qt
+	#inst pulseaudio-equalizer-ladspa
 fi
 
 # bluetooth setup
 if [ $IS_GARUDA = true ]; then
 	inst bluetooth-support
 else
-	inst blueberry
-	inst bluetooth-autoconnect
-	inst pulseaudio-bluetooth
-	inst bluez
-	inst bluez-hid2hci
-	inst bluez-libs
-	inst bluez-plugins
-	inst bluez-tools
-	inst bluez-utils
-	inst gnome-bluetooth
-	inst sbc
+	print 'install bluetooth packages'
+	#inst blueberry
+	#inst bluetooth-autoconnect
+	#inst pulseaudio-bluetooth
+	#inst bluez
+	#inst bluez-hid2hci
+	#inst bluez-libs
+	#inst bluez-plugins
+	#inst bluez-tools
+	#inst bluez-utils
+	# inst gnome-bluetooth
+	#inst sbc
 fi
 
 # printer setup
@@ -281,21 +286,17 @@ inst tar
 # wallpapers, themes, icons and fonts
 
 # themes
-inst arc-gtk-theme
-inst arc-solid-gtk-theme
 inst materia-gtk-theme
 inst kvantum-theme-materia
 inst adwaita-dark
 
 
 # icons
-inst arc-icon-theme
 inst paper-icon-theme
 inst papirus-icon-theme
 inst papirus-icon-theme
 inst papirus-icon-theme
 inst sardi-icons
-inst beautyline
 
 # wallpapers
 inst ukui-wallpapers
@@ -312,7 +313,6 @@ inst nerd-fonts-cascadia-code
 inst nerd-fonts-iosevka
 inst nerd-fonts-mononoki
 inst noto-fonts-emoji
-inst ttf-ms-fonts
 inst ttf-twemoji
 inst ttf-twemoji-color
 inst ttf-weather-icons
@@ -326,11 +326,15 @@ inst lightdm-gtk-greeter
 inst lightdm-webkit2-greeter
 
 # grub
-inst grub-theme-garuda
-uninst grub2-theme-archlinux
-uninst grub-theme-stylish-git
-uninst arch-matrix-grub-theme-git
-uninst arch-silence-grub-theme-git
+if [ $IS_GARUDA = true ]; then
+	inst grub-theme-garuda
+fi
+if [ $IS_MANJARO != true ]; then
+	inst grub2-theme-archlinux
+	inst grub-theme-stylish-git
+	inst arch-matrix-grub-theme-git
+	inst arch-silence-grub-theme-git
+fi
 
 sudo rm /var/lib/pacman/db.lck
 
@@ -338,21 +342,20 @@ sudo rm /var/lib/pacman/db.lck
 # uninstall unneeded packages #
 ###############################
 if [ $DEBUG != true ]; then
-	echo "UNINST: $PAKKU_PAKAGE_U"
-	$PACKER -R --noconfirm $PAKAGE_UNINST
-	#errorCheck "uninstall packages"
+	eval "$PACKER -R --noconfirm $PAKAGE_UNINST"
 fi
 
 #################################
 # install all (needed) packages #
 #################################
 if [ $DEBUG != true ]; then
-	echo "INST: $PAKKU_PAKAGE"
-	$PACKER -S $PAKKU_ALL $PAKAGE_INST
+	eval "$PACKER -S $PAKKU_ALL $PAKAGE_INST"
 	errorCheck "install packages"
 fi
 
 ## FINISHING #
-
-#echo "Error in Uninst: ${ERROR_PAKAGE_UNINST}"
-echo "Error in Inst: ${ERROR_PAKAGE_INST}"
+if [ $ERROR_PAKAGE_UNINST ]; then
+	print 'No Errors on Install'
+else
+	print "Error in Inst: ${ERROR_PAKAGE_INST}"
+fi

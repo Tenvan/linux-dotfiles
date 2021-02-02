@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-echo "run: defs.sh"
+#!/usr/bin/env zsh
 
 #####################
 # init distro check #
@@ -12,8 +10,9 @@ export IS_MANJARO=false
 export IS_GARUDA=false
 export SCRIPTS="$HOME/.scripts"
 export PACKER=paru
+
 export DEBUG=false
-export #DEBUG=true
+#export DEBUG=true
 
 if [ $LINUX_VERSION_NAME = "Archlinux" ]; then
 	export IS_ARCH=true
@@ -23,23 +22,19 @@ if [ $LINUX_VERSION_NAME = "Arcolinux" ]; then
 	export IS_ARCO=true
 fi
 
-if [ $LINUX_VERSION_NAME = "Manjaro" ]; then
+if [ $LINUX_VERSION_NAME = "ManjaroLinux" ]; then
 	export IS_MANJARO=true
 fi
 
 if [ $LINUX_VERSION_NAME = "Garuda" ]; then
 	export IS_GARUDA=true
 fi
-echo "IsArch:    $IS_ARCH"
-echo "IsArco:    $IS_ARCO"
-echo "IsGaruda:  $IS_GARUDA"
-echo "IsManjaro: $IS_MANJARO"
+
+print "Linux Version: $LINUX_VERSION_NAME"
+print "IsArch:        $IS_ARCH"
+print "IsArco:        $IS_ARCO"
+print "IsGaruda:      $IS_GARUDA"
+print "IsManjaro:     $IS_MANJARO"
 
 export MAKEFLAGS="-j$(nproc)"
-
-export YAY_ALL="--needed --batchinstall --topdown --combinedupgrade \
-    --nocleanmenu --devel --nodiffmenu --noeditmenu --noupgrademenu \
-    --norebuild --noredownload --noprovides --pgpfetch \
-    --useask --noremovemake"
-
 export PAKKU_ALL="--color always --needed --noconfirm "

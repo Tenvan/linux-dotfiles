@@ -1,16 +1,18 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
-. ~/.scripts/defs.sh
+. ~/.scripts/defs.zsh
 
 errorCheck() {
     retVal=$?
     if [ $retVal -ne 0 ]; then
-        echo "abort installation script 'install_all': $1"
+        print "abort installation script 'install_all': $1"
         exit $retVal
     fi
 }
 
 ## FINISHING #
+
+sudo rm /var/lib/pacman/db.lck
 
 # refresh icons
 sudo gdk-pixbuf-query-loaders --update-cache
@@ -32,11 +34,11 @@ if [ -f $HOME/.screenlayout/screenlayout.sh ]; then
 fi
 
 # powerline in linux console
-$PACKER -S --needed --noconfirm terminus-font powerline-fonts 
+eval "$PACKER -S --needed --noconfirm terminus-font powerline-fonts"
 if [ $IS_GARUDA = true ]; then
-    $PACKER -S $PAKKU_ALL terminess-powerline-font-git terminus-font powerline-fonts 
+    eval "$PACKER -S $PAKKU_ALL terminess-powerline-font-git terminus-font powerline-fonts"
 else
-    $PACKER -S $PAKKU_ALL terminus-font powerline-fonts 
+    eval "$PACKER -S $PAKKU_ALL terminus-font powerline-fonts"
 fi
 
 echo "KEYMAP=de
@@ -47,13 +49,20 @@ FONT_MAP=" | sudo tee /etc/vconsole.conf
 
 sed 's/.*GRUB_GFXMODE=.*$/GRUB_GFXMODE="1920x1080,auto"/g' </etc/default/grub >grub
 sudo mv -f grub /etc/default
-if [ $IS_GARUDA ]; then
+if [ $IS_GARUDA = true ]; then
 	sudo cp /usr/share/wallpapers/garuda-wallpapers/garuda-boot.png /usr/share/grub/themes/garuda
 	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/garuda\/theme.txt"/g' </etc/default/grub >grub
 	sudo mv -f grub /etc/default
 	sed 's/.*desktop-image:.*$/desktop-image: "garuda-boot.png"/g' </usr/share/grub/themes/garuda/theme.txt >theme.txt
 	sudo mv -f theme.txt /usr/share/grub/themes/garuda
-else
+fi
+
+if [ $IS_MANJARO = true ]; then
+	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/manjaro\/theme.txt"/g' </etc/default/grub >grub
+	sudo mv -f grub /etc/default
+fi
+
+if [ $IS_MANJARO != true ]; then
 	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/Stylish\/theme.txt"/g' </etc/default/grub >grub
 	sudo mv -f grub /etc/default
 fi
@@ -88,8 +97,7 @@ git config --global credential.helper cache
 git config --global credential.helper 'cache --timeout=25000'
 git config --global push.default simple
 
-git config pull.rebase false  # merge (the default strategy)
-git config pull.ff only       # fast-forward only
+git config pull.rebase true   # merge (the default strategy)
 
 git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
 
