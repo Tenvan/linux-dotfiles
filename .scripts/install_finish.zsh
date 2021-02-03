@@ -17,21 +17,32 @@ sudo rm /var/lib/pacman/db.lck
 # refresh icons
 sudo gdk-pixbuf-query-loaders --update-cache
 
-# config slick-greeter
-sudo cp $SCRIPTS/setup/lightdm-gtk-greeter.conf /etc/lightdm
-
-# config lightdm greeter
-sed 's/^.*greeter-session=$/greeter-session=lightdm-slick-greeter/g' </etc/lightdm/lightdm.conf >lightdm.conf
-sudo mv -f lightdm.conf /etc/lightdm
-sed 's/^.*user-session=$/user-session=awesome/g' </etc/lightdm/lightdm.conf >lightdm.conf
-errorCheck "lightdm greeter config"
-
-if [ -f $HOME/.screenlayout/screenlayout.sh ]; then
-    sudo cp $HOME/.screenlayout/screenlayout.sh /opt/screenlayout.sh
-    sed 's/^.*display-setup-script=$/display-setup-script=\/opt\/screenlayout.sh/g' </etc/lightdm/lightdm.conf >lightdm.conf
-	sudo mv lightdm.conf /etc/lightdm
-	errorCheck "screenlayout config"
+if [ ! -f $HOME/.screenlayout/screenlayout.sh ]; then
+	print 'Fehler: keine .screenlayout.sh gefunden'
+	exit -1
 fi
+
+# config lightdm config
+sudo mkdir -p /etc/lightdm/lightdm.conf.d
+echo "[LightDM]
+log-directory=/var/log/lightdm
+run-directory=/run/lightdm
+
+[Seat:*]
+greeter-session=lightdm-slick-greeter
+user-session=xfce
+display-setup-script=/opt/screenlayout.sh
+"  | sudo tee /etc/lightdm/lightdm.conf.d/10-my-lightdm.conf
+errorCheck "lightdm config"
+
+# config slick-greeter
+echo "[Greeter]
+background=/usr/share/backgrounds/manjaro-wallpapers-18.0/Manjaro-Light2.jpg
+theme-name=Materia-dark
+icon-theme-name=Papirus-Dark
+activate-numlock=true
+" | sudo tee /etc/lightdm/slick-greeter.conf
+errorCheck "lightdm greeter config"
 
 # powerline in linux console
 eval "$PACKER -S --needed --noconfirm terminus-font powerline-fonts"

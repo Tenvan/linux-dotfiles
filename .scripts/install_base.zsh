@@ -324,6 +324,9 @@ inst lightdm-gtk-greeter-settings
 inst lightdm-slick-greeter
 inst lightdm-gtk-greeter
 inst lightdm-webkit2-greeter
+if [ $IS_MANJARO != true ]; then
+  inst manjaro-slick-greeter-theme-light
+fi
 
 # grub
 if [ $IS_GARUDA = true ]; then

@@ -3,9 +3,11 @@
 # ~/.xinitrc
 #
 # Executed by startx (run your window manager from here)
+#
+
+echo 'Running ~/.xinitrc'
 
 userresources=$HOME/.Xresources
-customrsources=$HOME/.Xresources.personal
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
@@ -14,21 +16,18 @@ SESSION=${1:-xfce}
 
 # merge in defaults and keymaps
 
-if [ -f "$sysresources" ]; then
-    xrdb -merge "$sysresources"
+if [ -f $sysresources ]; then
+	echo "Merge $sysresources"
+    xrdb -merge $sysresources
 fi
 
-if [ -f "$sysmodmap" ]; then
-    xmodmap "$sysmodmap"
+if [ -f $sysmodmap ]; then
+    xmodmap $sysmodmap
 fi
 
 if [ -f "$userresources" ]; then
+	echo "Merge $userresources"
     xrdb -merge "$userresources"
-fi
-
-# Personal (private) Resources
-if [ -f "$customrsources" ]; then
-    xrdb -merge "$customrsources"
 fi
 
 if [ -f "$usermodmap" ]; then
@@ -46,7 +45,7 @@ fi
 
 get_session(){
 	local dbus_args=(--sh-syntax --exit-with-session)
-	case "$SESSION" in
+	case "$1" in
 		awesome) dbus_args+=(awesome) ;;
 		bspwm) dbus_args+=(bspwm-session) ;;
 		budgie) dbus_args+=(budgie-desktop) ;;
@@ -57,16 +56,17 @@ get_session(){
 		gnome) dbus_args+=(gnome-session) ;;
 		i3|i3wm) dbus_args+=(i3 --shmlog-size 0) ;;
 		jwm) dbus_args+=(jwm) ;;
-		kde) dbus_args+=(startkde) ;;
+		kde) dbus_args+=(startplasma-x11) ;;
 		lxde) dbus_args+=(startlxde) ;;
 		lxqt) dbus_args+=(lxqt-session) ;;
 		mate) dbus_args+=(mate-session) ;;
 		xfce) dbus_args+=(xfce4-session) ;;
 		openbox) dbus_args+=(openbox-session) ;;
-		*) dbus_args+=("$SESSION") ;;
+		sway) dbus_args+=(sway --my-next-gpu-wont-be-nvidia) ;;
+		*) dbus_args+=("$1") ;;
 	esac
 
 	echo "dbus-launch ${dbus_args[*]}"
 }
 
-exec $(get_session)
+exec $(get_session "$1")

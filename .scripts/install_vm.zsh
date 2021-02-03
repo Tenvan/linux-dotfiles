@@ -72,6 +72,8 @@ if [ $INSTALL_VIRTIO = true ]; then
 		inst qemu
 		inst qemu-arch-extra
 		inst libvirt
+		inst ebtables 
+		inst dnsmasq
 	fi
 fi
 

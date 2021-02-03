@@ -69,11 +69,10 @@
 *pointerColorBackground:          #2B2C2B
 *pointerColorForeground:          #16A085
 
-!! Xcursor.theme: Chameleon-Pearl-Large-0.5
 Xcursor.theme: Bibata-Modern-Ice
 Xcursor.size:  32
+! Xft.dpi:       96
 
-Xft.dpi:       96
 Xft.antialias: true
 Xft.hinting:   true
 Xft.rgba:      rgb

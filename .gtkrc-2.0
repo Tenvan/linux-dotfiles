@@ -1,8 +1,9 @@
 # DO NOT EDIT! This file will be overwritten by LXAppearance.
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
-gtk-theme-name="oomox-Materia-Dark-Orange"
-gtk-icon-theme-name="oomox-Materia-Dark-Orange"
+include "~/.gtkrc-2.0.mine"
+gtk-theme-name="oomox-Numix-Dark-Orange"
+gtk-icon-theme-name="Sardi-Arc"
 gtk-font-name="Sans Regular 12"
 gtk-cursor-theme-name="Bibata-Modern-Ice"
 gtk-cursor-theme-size=32
@@ -16,17 +17,4 @@ gtk-xft-antialias=1
 gtk-xft-hinting=1
 gtk-xft-hintstyle="hintslight"
 gtk-xft-rgba="rgb"
-gtk-modules="canberra-gtk-module:gail:atk-bridge"
-
-gtk-color-scheme = "bg_color:#303030
-color0:#303030
-text_color:#e0e0e0
-selected_bg_color:#846445
-selected_fg_color:#e0e0e0
-tooltip_bg_color:#303030
-tooltip_fg_color:#e0e0e0
-titlebar_bg_color:#303030
-titlebar_fg_color:#e0e0e0
-menu_bg_color:#303030
-menu_fg_color:#e0e0e0
-link_color:#846445"
+gtk-modules="canberra-gtk-module"

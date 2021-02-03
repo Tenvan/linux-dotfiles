@@ -1,0 +1,10 @@
+{
+	"bookmarks" : "/home/ralf/.config/radiotray-ng/bookmarks.json",
+	"last-station" : "FFN",
+	"last-station-group" : "Germany",
+	"last-station-notifications" : true,
+	"notification-verbose" : true,
+	"notifications" : true,
+	"split-title" : true,
+	"volume-level" : 100
+}

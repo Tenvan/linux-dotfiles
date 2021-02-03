@@ -34,12 +34,6 @@
 !.local/share/wallpapers/shared/**
 !.local/share/wallpapers/shared/**/*
 
-!.local/share/radiotray
-!.local/share/radiotray/*
-!.local/share/radiotray/**
-!.local/share/radiotray/**/*
-.local/share/radiotray/*.log
-
 # Ausnahmen im .config folder
 !.config
 !.config/compton*.conf
@@ -82,6 +76,8 @@
 !.config/picom/**/*
 !.config/polybar
 !.config/polybar/**/*
+!.config/radiotray-ng
+!.config/radiotray-ng/**/*
 !.config/ranger
 !.config/ranger/*.conf
 !.config/ranger/*.sh

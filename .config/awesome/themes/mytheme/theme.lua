@@ -214,7 +214,7 @@ theme.margins_width = dpi(10)
 theme.font_size = xres.font_size
 theme.font = xres.font_family .. theme.font_size
 
-theme.taglist_font = "Noto Sans Symbol Bold " .. (theme.font_size + 4)
+theme.taglist_font = "Noto Sans Symbol Bold " .. (theme.font_size * 2)
 theme.taglist_bg_focus = xres.selected_bg_color
 theme.taglist_fg_focus = xres.selected_fg_color
 

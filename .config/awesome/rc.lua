@@ -144,8 +144,8 @@ awful.util.terminal = terminal
 -- awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
 -- awful.util.tagnames = { "www", "edit", "gimp", "inkscape", "music" }
 -- awful.util.tagnames = { "⓵", "⓶", "⓷", "⓸", "⓹", "⓺", "⓻", "⓼", "⓽"}
--- awful.util.tagnames = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨"}
-awful.util.tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }
+awful.util.tagnames = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨"}
+-- awful.util.tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }
 
 awful.layout.suit.tile.left.mirror = true
 

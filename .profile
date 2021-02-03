@@ -1,5 +1,15 @@
+#!/bin/bash
+echo 'Running ~/.profile'
 
 ibus-daemon -d -x
+
+userresources=$HOME/.Xresources-custom
+userprofile=$HOME/.profile-custom
+
+if [ -f "$userresources" ]; then
+	echo "Merge $userresources"
+	xrdb -merge "$userresources"
+fi
 
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export EDITOR=$(which micro)
@@ -8,7 +18,6 @@ export MAIL=$(which thunderbird)
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export SCRIPTS="$HOME/.scripts"
-# export TERM=$(which kitty)
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -25,8 +34,12 @@ fi
 # fix "xdg-open fork-bomb" export your preferred browser from here
 # export BROWSER=$(which firefox)
 
-test -f "$HOME/.profile-custom" && source "$HOME/.profile-custom"
+if [ -f "$userprofile" ]; then
+	echo "Source $userprofile"
+	. "$userresources"
+fi
 
 # Some Vars settings in '.profile.custom':
 # export WORK_DIR=<Work Folder>
 # export BW_SESSION=<Bitwarden Session Token>
+
