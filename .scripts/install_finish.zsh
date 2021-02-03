@@ -37,7 +37,7 @@ errorCheck "lightdm config"
 
 # config slick-greeter
 echo "[Greeter]
-background=/usr/share/backgrounds/manjaro-wallpapers-18.0/Manjaro-Light2.jpg
+background=/usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg
 theme-name=Materia-dark
 icon-theme-name=Papirus-Dark
 activate-numlock=true
@@ -61,16 +61,24 @@ FONT_MAP=" | sudo tee /etc/vconsole.conf
 sed 's/.*GRUB_GFXMODE=.*$/GRUB_GFXMODE="1920x1080,auto"/g' </etc/default/grub >grub
 sudo mv -f grub /etc/default
 if [ $IS_GARUDA = true ]; then
-	sudo cp /usr/share/wallpapers/garuda-wallpapers/garuda-boot.png /usr/share/grub/themes/garuda
+	sudo cp $SCRIPTS/setup/manjaro-cat.png /usr/share/grub/themes/garuda/background.png
 	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/garuda\/theme.txt"/g' </etc/default/grub >grub
 	sudo mv -f grub /etc/default
-	sed 's/.*desktop-image:.*$/desktop-image: "garuda-boot.png"/g' </usr/share/grub/themes/garuda/theme.txt >theme.txt
-	sudo mv -f theme.txt /usr/share/grub/themes/garuda
 fi
 
 if [ $IS_MANJARO = true ]; then
+	sudo cp $SCRIPTS/setup/manjaro-cat.png /usr/share/grub/themes/manjaro/background.png
 	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/manjaro\/theme.txt"/g' </etc/default/grub >grub
 	sudo mv -f grub /etc/default
+	echo '#
+#
+# ==> ADD "bootsplash.bootfile=bootsplash-themes/manjaro/bootsplash" to GRUB_CMDLINE_LINUX_DEFAULT
+#' | sudo tee -a /etc/default/grub
+
+	echo '#
+#
+# ==> ADD "bootsplash-manjaro" to HOOKS
+#' | sudo tee -a /etc/mkinitcpio.conf
 fi
 
 if [ $IS_MANJARO != true ]; then
@@ -79,10 +87,12 @@ if [ $IS_MANJARO != true ]; then
 fi
 errorCheck "grub config"
 
-micro /etc/default/grub
+sudo micro /etc/mkinitcpio.conf
+sudo micro /etc/default/grub
 
 sudo mkinitcpio -P
-sudo grub-mkconfig -o /boot/grub/grub.cfg
+update-grub
+
 errorCheck "grub mkconfig"
 
 # login screen console

@@ -60,6 +60,7 @@ inst microsoft-edge-dev-bin
 inst aspell
 inst gimp
 inst gimp-help-de
+inst gwenview
 inst imagemagick
 inst inkscape
 inst partitionmanager

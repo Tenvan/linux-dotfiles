@@ -2,7 +2,7 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "~/.gtkrc-2.0.mine"
-gtk-theme-name="oomox-Numix-Dark-Orange"
+gtk-theme-name="oomox-Numix-Dark-Manjaro"
 gtk-icon-theme-name="Sardi-Arc"
 gtk-font-name="Sans Regular 12"
 gtk-cursor-theme-name="Bibata-Modern-Ice"

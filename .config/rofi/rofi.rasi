@@ -1,17 +1,17 @@
 /**
- * Base16 oomox-Materia-Dark-Orange ROFI Color theme
+ * Base16 oomox-Numix-Dark-Manjaro ROFI Color theme
  *
  * Authors
- *  Scheme: oomox-Materia-Dark-Orange
+ *  Scheme: oomox-Numix-Dark-Manjaro
  *  Template: Jordi Pakey-Rodriguez (https://github.com/0xdec), Andrea Scarpino (https://github.com/ilpianista)
  */
 
 * {
-    red:                         rgba ( 247, 70, 39, 100 % );
-    blue:                        rgba ( 150, 126, 148, 100 % );
-    lightfg:                     rgba ( 197, 165, 134, 100 % );
-    lightbg:                     rgba ( 116, 84, 53, 100 % );
-    foreground:                  rgba ( 224, 224, 224, 100 % );
+    red:                         rgba ( 177, 74, 76, 100 % );
+    blue:                        rgba ( 80, 130, 185, 100 % );
+    lightfg:                     rgba ( 127, 169, 171, 100 % );
+    lightbg:                     rgba ( 46, 88, 90, 100 % );
+    foreground:                  rgba ( 250, 250, 250, 100 % );
     background:                  rgba ( 48, 48, 48, 100 % );
     background-color:            rgba ( 48, 48, 48, 0 % );
     separatorcolor:              @foreground;
@@ -34,12 +34,12 @@
     alternate-active-background: @lightbg;
     alternate-urgent-foreground: @red;
     alternate-urgent-background: @lightbg;
-    spacing:                     2;
 }
+
 window {
     background-color: @background;
-    border:           1;
-    padding:          5;
+    border:           5;
+    padding:          15;
 }
 mainbox {
     border:           0;

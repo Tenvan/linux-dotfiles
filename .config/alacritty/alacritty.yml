@@ -195,50 +195,50 @@ font:
   # it is recommended to set `use_thin_strokes` to `false`.
   #use_thin_strokes: true
 
-# Base16 oomox-Materia-Dark-Orange 256 - alacritty color config
-    # oomox-Materia-Dark-Orange
-    colors:
-      # Default colors
-      primary:
-        background: '0x303030'
-        foreground: '0xe0e0e0'
-    
-      # Colors the cursor will use if `custom_cursor_colors` is true
-      cursor:
-        text: '0x303030'
-        cursor: '0xe0e0e0'
-    
-      # Normal colors
-      normal:
-        black:   '0x303030'
-        red:     '0xf74627'
-        green:   '0x708439'
-        yellow:  '0xff951e'
-        blue:    '0x967e94'
-        magenta: '0xed8784'
-        cyan:    '0x8aa88f'
-        white:   '0xe0e0e0'
-    
-      # Bright colors
-      bright:
-        black:   '0x888888'
-        red:     '0xf74627'
-        green:   '0x708439'
-        yellow:  '0xff951e'
-        blue:    '0x967e94'
-        magenta: '0xed8784'
-        cyan:    '0x8aa88f'
-        white:   '0xfffffd'
-    
-      indexed_colors:
-        - { index: 16, color: '0xffad34' }
-        - { index: 17, color: '0xe76519' }
-        - { index: 18, color: '0x745435' }
-        - { index: 19, color: '0x846445' }
-        - { index: 20, color: '0x1c1c1c' }
-        - { index: 21, color: '0xc5a586' }
-   
-draw_bold_text_with_bright_colors: true
+# Base16 oomox-Numix-Dark-Manjaro 256 - alacritty color config
+# oomox-Numix-Dark-Manjaro
+colors:
+  # Default colors
+  primary:
+    background: '0x303030'
+    foreground: '0xfafafa'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0x303030'
+    cursor: '0xfafafa'
+
+  # Normal colors
+  normal:
+    black:   '0x303030'
+    red:     '0xb14a4c'
+    green:   '0x2a885e'
+    yellow:  '0xc09943'
+    blue:    '0x5082b9'
+    magenta: '0xa78ba9'
+    cyan:    '0x44acb4'
+    white:   '0xfafafa'
+
+  # Bright colors
+  bright:
+    black:   '0x949494'
+    red:     '0xb14a4c'
+    green:   '0x2a885e'
+    yellow:  '0xc09943'
+    blue:    '0x5082b9'
+    magenta: '0xa78ba9'
+    cyan:    '0x44acb4'
+    white:   '0xf6ffff'
+
+  indexed_colors:
+    - { index: 16, color: '0xdab159' }
+    - { index: 17, color: '0xb1693e' }
+    - { index: 18, color: '0x2e585a' }
+    - { index: 19, color: '0x3e686a' }
+    - { index: 20, color: '0x1c1c1c' }
+    - { index: 21, color: '0x7fa9ab' }
+
+
 
 # Visual Bell
 #

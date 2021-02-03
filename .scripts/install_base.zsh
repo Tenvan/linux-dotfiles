@@ -51,6 +51,8 @@ inst arj
 inst ark
 inst bat
 inst bashtop
+inst bootsplash-systemd
+inst bootsplash-theme-manjaro
 inst bpytop
 inst clamav
 inst clamtk

@@ -43,3 +43,33 @@ fi
 # export WORK_DIR=<Work Folder>
 # export BW_SESSION=<Bitwarden Session Token>
 
+# Base16 oomox-Numix-Dark-Manjaro
+# Author: oomox-Numix-Dark-Manjaro
+
+_gen_fzf_default_opts() {
+
+local color00='#303030'
+local color01='#2e585a'
+local color02='#3e686a'
+local color03='#949494'
+local color04='#1c1c1c'
+local color05='#fafafa'
+local color06='#7fa9ab'
+local color07='#f6ffff'
+local color08='#b14a4c'
+local color09='#dab159'
+local color0A='#c09943'
+local color0B='#2a885e'
+local color0C='#44acb4'
+local color0D='#5082b9'
+local color0E='#a78ba9'
+local color0F='#b1693e'
+
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
+" --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D"\
+" --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C"\
+" --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"
+
+}
+
+_gen_fzf_default_opts

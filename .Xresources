@@ -2,25 +2,25 @@
 ! Generic Theme Colors for using in Theme Engines (GTK Awesome etc.)
 ! ------------------------------------------------------------------------------
 
-! Base16 oomox-Materia-Dark-Orange
-! Scheme: oomox-Materia-Dark-Orange
+! Base16 oomox-Numix-Dark-Manjaro
+! Scheme: oomox-Numix-Dark-Manjaro
 
 #define base00 #303030
-#define base01 #745435
-#define base02 #846445
-#define base03 #888888
+#define base01 #2e585a
+#define base02 #3e686a
+#define base03 #949494
 #define base04 #1c1c1c
-#define base05 #e0e0e0
-#define base06 #c5a586
-#define base07 #fffffd
-#define base08 #f74627
-#define base09 #ffad34
-#define base0A #ff951e
-#define base0B #708439
-#define base0C #8aa88f
-#define base0D #967e94
-#define base0E #ed8784
-#define base0F #e76519
+#define base05 #fafafa
+#define base06 #7fa9ab
+#define base07 #f6ffff
+#define base08 #b14a4c
+#define base09 #dab159
+#define base0A #c09943
+#define base0B #2a885e
+#define base0C #44acb4
+#define base0D #5082b9
+#define base0E #a78ba9
+#define base0F #b1693e
 
 *foreground:   base05
 #ifdef background_opacity
@@ -56,7 +56,6 @@
 *color19:      base02
 *color20:      base04
 *color21:      base06
-
 
 ! end of eemox
 

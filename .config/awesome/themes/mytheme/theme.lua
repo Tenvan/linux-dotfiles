@@ -61,8 +61,8 @@ gdebug.dump(xres)
 -- wm_title_unfocused_color : #cfdae7cc (string)
 
 --
--- Base16 oomox-Materia-Dark-Orange
--- Author: oomox-Materia-Dark-Orange
+-- Base16 oomox-Numix-Dark-Manjaro
+-- Author: oomox-Numix-Dark-Manjaro
 --
 
 function hex2rgb(hex)
@@ -71,21 +71,21 @@ function hex2rgb(hex)
 end
 
 local base00 = "#303030" -- ----
-local base01 = "#745435" -- ---
-local base02 = "#846445" -- --
-local base03 = "#888888" -- -
+local base01 = "#2e585a" -- ---
+local base02 = "#3e686a" -- --
+local base03 = "#949494" -- -
 local base04 = "#1c1c1c" -- +
-local base05 = "#e0e0e0" -- ++
-local base06 = "#c5a586" -- +++
-local base07 = "#fffffd" -- ++++
-local base08 = "#f74627" -- red
-local base09 = "#ffad34" -- orange
-local base0A = "#ff951e" -- yellow
-local base0B = "#708439" -- green
-local base0C = "#8aa88f" -- aqua/cyan
-local base0D = "#967e94" -- blue
-local base0E = "#ed8784" -- purple
-local base0F = "#e76519" -- brown
+local base05 = "#fafafa" -- ++
+local base06 = "#7fa9ab" -- +++
+local base07 = "#f6ffff" -- ++++
+local base08 = "#b14a4c" -- red
+local base09 = "#dab159" -- orange
+local base0A = "#c09943" -- yellow
+local base0B = "#2a885e" -- green
+local base0C = "#44acb4" -- aqua/cyan
+local base0D = "#5082b9" -- blue
+local base0E = "#a78ba9" -- purple
+local base0F = "#b1693e" -- brown
 
 local theme = {}
 
