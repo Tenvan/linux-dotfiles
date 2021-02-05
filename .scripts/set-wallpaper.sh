@@ -10,12 +10,13 @@ WALLPAPER2=/usr/share/wallpapers/garuda-wallpapers/linesma-wp-sgs.png
 #WALLPAPER_DUAL=dropletno7revisited.jpg
 #WALLPAPER_DUAL=mesh3isostudy.jpg
 #WALLPAPER_DUAL=extrudedsimplicesbstudy.jpg
-#WALLPAPER_DUAL=large-dual-screen-wallpaper1.jpg
 #WALLPAPER_DUAL=softshading.jpg
 #WALLPAPER_DUAL=verticaldesireblack.jpg
 #WALLPAPER_DUAL=honeycombs.jpg
 #WALLPAPER_DUAL=elementalfists.jpg
-WALLPAPER_DUAL=0bonv.jpg
+#WALLPAPER_DUAL=0bonv.jpg
+WALLPAPER_DUAL=large-dual-screen-wallpaper1.jpg
+#WALLPAPER_DUAL=0bonv_x_flip.jpg
 
 DUAL_PATH="$HOME/.local/share/wallpapers/shared/wallpapers-multimonitor"
 

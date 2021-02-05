@@ -153,6 +153,9 @@ errorCheck "docker service"
 sudo systemctl enable --now webmin
 errorCheck "webmin service"
 
+# cockpit
+sudo systemctl enable --now cockpit.socket
+
 sudo systemctl enable --now bluetooth-autoconnect
 errorCheck "bluetooth-autoconnect service"
 

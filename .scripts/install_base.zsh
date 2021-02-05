@@ -47,42 +47,88 @@ $1"
 # system packages
 inst alacritty
 inst alttab
+inst arandr
 inst arj
 inst ark
-inst bat
 inst bashtop
+inst bat
+inst bitwarden-bin
+inst bitwarden-cli-bin
+inst bitwarden-rofi
 inst bootsplash-systemd
 inst bootsplash-theme-manjaro
 inst bpytop
+inst checkupdates-aur
 inst clamav
 inst clamtk
+inst cockpit
+inst cockpit-machines
+inst copyq
+inst dex
+inst docker
+inst docker-compose
 inst dpkg
 inst exa
 inst find-the-command
 inst flatpak
+inst genius
 inst glances
+inst gparted
 inst gtop
+inst hardinfo
 inst hstr
 inst htop
+inst ibus-daemon
 inst iftop
 inst iotop
 inst iptraf-ng
 inst kindd
 inst kitty
+inst kteatime
 inst lhasa
 inst multitail
 inst neofetch
+inst nitrogen
+inst notify-send.sh
+inst numlockx
 inst openconnect
 inst p7zip
+inst packagekit
+inst picom-jonaburg-git
 inst powershell-bin
+inst python
+inst python-psutil
+inst python-pygit2
+inst python-requests
+inst python-taskw
+inst python-xkbgroup
+inst python2-distutils-extra
+inst qbittorrent
 inst radiotray-ng
 inst redshift
+inst rofi
+inst rsyslog
 inst s-tui
 inst shell-color-scripts
-inst teams
+inst spectacle
+inst time
 inst timeshift
 inst tldr++
+inst unclutter
 inst unrar
+inst usermin
+inst webmin
+inst xautolock
+inst xbindkeys
+inst xclip
+inst xdotool
+inst xorg-xfd
+inst xorg-xsetroot
+inst xsel
+inst zenity
+inst pm-utils
+
+uninst tlp
 
 # language files
 inst man-pages-de
@@ -108,7 +154,6 @@ inst mono-msbuild
 inst nodejs-emojione
 inst nodejs-lts-fermium
 inst npm
-inst openjdk8-src
 inst svn
 inst yarn
 inst tk
@@ -134,56 +179,6 @@ inst lxappearance-gtk3
 #inst lxqt-sudo
 #inst xsettingsd
 #inst xsettings-client
-
-# system packages
-inst arandr
-inst bitwarden-bin
-inst bitwarden-cli-bin
-inst bitwarden-rofi
-inst checkupdates-aur
-inst cockpit
-inst cockpit-machines
-inst copyq
-inst dex
-inst docker
-inst docker-compose
-inst etcher-bin
-inst genius
-inst gparted
-inst hardinfo
-inst ibus-daemon
-inst kteatime
-inst notify-send.sh
-inst numlockx
-inst packagekit
-inst picom-jonaburg-git
-inst python
-inst python-psutil
-inst python-pygit2
-inst python-requests
-inst python-taskw
-inst python-xkbgroup
-inst python2-distutils-extra
-inst rofi
-inst systemdgenie
-inst time
-inst unclutter
-inst webmin
-inst xautolock
-inst xbindkeys
-inst xclip
-inst xdotool
-inst xorg-xfd
-inst xorg-xsetroot
-inst xsel
-inst zenity
-inst ktorrent
-inst nitrogen
-inst qbittorrent
-inst spectacle
-if [ $IS_MANJARO != true ]; then
-	inst pm-utils
-fi
 
 # utilities from gnome
 inst gnome-disk-utility
@@ -248,10 +243,6 @@ inst firefox
 inst firefox-i18n-de
 inst chromium
 
-# inst zoom
-inst zoom-system-qt
-inst zoom-firefox
-
 # remmina
 inst remmina
 inst remmina-plugin-open
@@ -264,9 +255,6 @@ inst freerdp
 # installation of important editors
 inst micro
 inst neovim
-inst sublime-text-3
-
-# vs code
 inst visual-studio-code-bin
 
 # utils for editors
@@ -292,11 +280,8 @@ inst materia-gtk-theme
 inst kvantum-theme-materia
 inst adwaita-dark
 
-
 # icons
 inst paper-icon-theme
-inst papirus-icon-theme
-inst papirus-icon-theme
 inst papirus-icon-theme
 inst sardi-icons
 
@@ -306,7 +291,6 @@ inst ukui-wallpapers
 # cursor
 inst bibata-cursor-theme-bin
 inst bibata-cursor-translucent
-
 
 # fonts
 inst font-manager
@@ -325,7 +309,6 @@ inst lightdm-settings
 inst lightdm-gtk-greeter-settings
 inst lightdm-slick-greeter
 inst lightdm-gtk-greeter
-inst lightdm-webkit2-greeter
 if [ $IS_MANJARO != true ]; then
   inst manjaro-slick-greeter-theme-light
 fi
@@ -337,8 +320,6 @@ fi
 if [ $IS_MANJARO != true ]; then
 	inst grub2-theme-archlinux
 	inst grub-theme-stylish-git
-	inst arch-matrix-grub-theme-git
-	inst arch-silence-grub-theme-git
 fi
 
 sudo rm /var/lib/pacman/db.lck

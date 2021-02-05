@@ -58,6 +58,7 @@ inst microsoft-edge-dev-bin
 
 # optional application packages
 inst aspell
+inst etcher-bin
 inst gimp
 inst gimp-help-de
 inst gwenview
@@ -69,8 +70,13 @@ inst playerctl
 inst pstoedit
 inst python-lxml
 inst python-numpy
+inst teams
 inst themix-full-git
 inst themix-theme-arc-git 
+
+# inst zoom
+inst zoom-system-qt
+inst zoom-firefox
 
 sudo rm /var/lib/pacman/db.lck
 
