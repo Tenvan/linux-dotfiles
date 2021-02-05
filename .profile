@@ -26,6 +26,10 @@ export SCRIPTS="$HOME/.scripts"
 if [ -d "$HOME/.local/bin" ]; then
     export PATH=$HOME/.local/bin:$PATH
 fi
+# yarn bin path
+if [ -d "$HOME/.yarn/bin" ]; then
+    export PATH=$HOME/.yarn/bin:$PATH
+fi
 # add android sdk path, if installed
 if [ -d "$HOME/Android/Sdk/tools" ]; then
     export PATH="$HOME/Android/Sdk/tools:$PATH"
