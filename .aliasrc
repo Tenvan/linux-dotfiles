@@ -3,7 +3,6 @@
 # usefull
 alias path='echo -e ${PATH//:/\\n}'
 
-
 # Cleanup orphaned packages
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 

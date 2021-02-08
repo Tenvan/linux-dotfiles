@@ -283,7 +283,6 @@ inst adwaita-dark
 # icons
 inst paper-icon-theme
 inst papirus-icon-theme
-inst sardi-icons
 
 # wallpapers
 inst ukui-wallpapers

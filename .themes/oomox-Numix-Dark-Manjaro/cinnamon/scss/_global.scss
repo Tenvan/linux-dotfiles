@@ -15,8 +15,8 @@ $dark_fg_color: #fafafa;
 $dark_bg_color_trans: fade-out(#212121, 1 - (0.9 / 2));
 
 // used to calculate gradients for gradient values > 0
-$lighten_amount: 1 + (0.0 / 2);
-$darken_amount: 1 - (0.0 / 2);
+$lighten_amount: 1 + (0.5 / 2);
+$darken_amount: 1 - (0.5 / 2);
 
 // main background surface gradient start and end colors
 $light_bg_grad: if($lighten_amount > 1, lighten($dark_bg_color, ($lighten_amount - 1) * lightness($dark_bg_color)), $dark_bg_color);
@@ -76,7 +76,7 @@ $info_fg_color: #303030;
 $info_bg_color: #5082b9;
 
 // used for border-radius throughout theme
-$roundness: 0px;
+$roundness: 2px;
 
 // used for buttons, entrys, panel spacing, and menu item spacing.
 $spacing: 4px;

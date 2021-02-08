@@ -1,16 +1,15 @@
-## Base16 oomox-Numix-Dark-Manjaro
-# Author: oomox-Numix-Dark-Manjaro
-# In file gtk-2.0/gtkrc, delete "gtk-color-scheme" including everything between quotes (don't delete gtk-auto-mnemonics) and inject this.
+/*
+Base16 oomox-autumn
+Author: oomox-autumn
+In files gtk-3.0/gtk.css and gtk-3.20/gtk.css, delete section "Default color scheme" and inject this
+*/
 
-gtk-color-scheme = "bg_color:#303030
-color0:#303030
-text_color:#fafafa
-selected_bg_color:#3e686a
-selected_fg_color:#fafafa
-tooltip_bg_color:#303030
-tooltip_fg_color:#fafafa
-titlebar_bg_color:#303030
-titlebar_fg_color:#fafafa
-menu_bg_color:#303030
-menu_fg_color:#fafafa
-link_color:#3e686a"
+@define-color bg_color #804541;
+@define-color fg_color #eed7a8;
+@define-color base_color #eed7a8;
+@define-color text_color #eed7a8;
+@define-color text_color_disabled #b78e74;
+@define-color selected_bg_color #d86376;
+@define-color selected_fg_color #eed7a8;
+@define-color tooltip_bg_color #804541;
+@define-color tooltip_fg_color #eed7a8;

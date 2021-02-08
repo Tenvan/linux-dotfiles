@@ -77,5 +77,6 @@
     "workbench.settings.openDefaultKeybindings": true,
     "workbench.settings.openDefaultSettings": true,
     "workbench.editor.decorations.colors": true,
-    "search.mode": "reuseEditor"
+    "search.mode": "reuseEditor",
+    "editor.semanticHighlighting.enabled": true
   }

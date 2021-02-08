@@ -23,16 +23,22 @@ if [ ! -f $HOME/.screenlayout/screenlayout.sh ]; then
 fi
 
 # config lightdm config
+suco cp $SCRIPTS/setup/Xsession-custom /etc/lightdm
+test -f /etc/lightdm/lightdm.conf && sudo mv /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
+
 sudo mkdir -p /etc/lightdm/lightdm.conf.d
-echo "[LightDM]
+echo "[Seat:*]
+[LightDM]
 log-directory=/var/log/lightdm
 run-directory=/run/lightdm
 
 [Seat:*]
 greeter-session=lightdm-slick-greeter
 user-session=xfce
+session-wrapper=/etc/lightdm/Xsession-custom
 display-setup-script=/opt/screenlayout.sh
-"  | sudo tee /etc/lightdm/lightdm.conf.d/10-my-lightdm.conf
+[XDMCPServer]
+[VNCServer]"  | sudo tee /etc/lightdm/lightdm.conf.d/10-my-lightdm.conf
 errorCheck "lightdm config"
 
 # config slick-greeter

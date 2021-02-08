@@ -16,6 +16,8 @@ function restart() {
     run $@
 }
 
+ibus-daemon -d -x
+
 #change your keyboard if you need it
 run setxkbmap -layout de
 run numlockx on
@@ -61,3 +63,5 @@ run system-config-printer-applet
 
 killall -q picom
 sh $SCRIPTS/picom-toggle-awesome.sh &
+
+notify-send -t 10000 "Global Autostart" "Autostart ausgeführt!"

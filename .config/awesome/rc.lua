@@ -1388,6 +1388,4 @@ client.connect_signal(
 -- }}}
 
 -- Autostart applications
-awful.spawn.with_shell("sh $SCRIPTS/autostart-global.sh")
-
 notify("Awesome Default", "Awesome Default erfolgreich gestartet !!", naughty.config.presets.info)

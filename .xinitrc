@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # ~/.xinitrc
 #
@@ -6,6 +6,8 @@
 #
 
 echo 'Running ~/.xinitrc'
+
+sh ~/.scripts/autostart-global.sh &
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
