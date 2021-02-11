@@ -71,7 +71,9 @@ echo "X session wrapper complete, running session $@"
 SESSION=${1:-awesome}
 
 get_session(){
-	local dbus_args=(--sh-syntax --exit-with-session)
+	#local dbus_args=(--sh-syntax --exit-with-session)
+	local dbus_args=()
+	
 	case "$1" in
 		awesome) dbus_args+=(awesome) ;;
 		bspwm) dbus_args+=(bspwm-session) ;;
@@ -93,11 +95,11 @@ get_session(){
 		*) dbus_args+=("$1") ;;
 	esac
 
-	echo "dbus-launch ${dbus_args[*]}"
-	# echo "${dbus_args[*]}"
+	echo "${dbus_args[*]}"
 }
 
-LAUNCHER=$(get_session "$SESSION")
+LAUNCHER="$(get_session "$SESSION")"
 
 echo "Launch: $LAUNCHER"
+
 exec $LAUNCHER

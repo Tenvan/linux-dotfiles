@@ -47,7 +47,15 @@ background=/usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg
 theme-name=Materia-dark
 icon-theme-name=Papirus-Dark
 activate-numlock=true
-" | sudo tee /etc/lightdm/slick-greeter.conf
+cursor-theme-name=Bibata-Modern-Ice
+font-name='Cantarell Bold 14'
+xft-antialias=true
+xft-hintstyle=hintfull
+enable-hidpi=auto
+draw-user-backgrounds=false
+activate-numlock=true
+show-power=false
+show-a11y=false" | sudo tee /etc/lightdm/slick-greeter.conf
 errorCheck "lightdm greeter config"
 
 # powerline in linux console

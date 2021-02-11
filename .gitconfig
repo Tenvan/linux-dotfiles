@@ -129,6 +129,7 @@
 	cpa = cherry-pick -v --abort
 	cpc = cherry-pick -v --continue
 	#############
+	sum = diff -v --compact-summary
 	d = diff -v
 	dp = diff -v --patience
 	dc = diff -v --cached

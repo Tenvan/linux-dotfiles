@@ -746,7 +746,8 @@ local globalkeys =
         {},
         "XF86AudioPlay",
         function()
-            awful.util.spawn("playerctl play-pause")
+            notify("playerctl play-pause")
+            os.execute("playerctl play-pause")
         end,
         {description = "Player Start/Pause", group = kgSound}
     ),
@@ -754,7 +755,8 @@ local globalkeys =
         {},
         "XF86AudioNext",
         function()
-            awful.util.spawn("playerctl next")
+            notify("playerctl next")
+            os.execute("playerctl next")
         end,
         {description = "Player Next", group = kgSound}
     ),
@@ -762,7 +764,8 @@ local globalkeys =
         {},
         "XF86AudioPrev",
         function()
-            awful.util.spawn("playerctl previous")
+            notify("playerctl previous")
+            os.execute("playerctl previous")
         end,
         {description = "Player Zurück", group = kgSound}
     ),
@@ -770,7 +773,8 @@ local globalkeys =
         {},
         "XF86AudioStop",
         function()
-            awful.util.spawn("Player Stop")
+            notify("playerctl stop")
+            os.execute("playerctl stop")
         end
     )
 )
@@ -1128,7 +1132,7 @@ awful.rules.rules = {
         properties = {
             screen = 2,
             tag = awful.util.tagnames[5],
-            switchtotag = false,
+            switchtotag = true,
             maximized = false,
             floating = false
         }

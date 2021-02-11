@@ -16,7 +16,7 @@ function restart() {
     run $@
 }
 
-ibus-daemon -d -x
+run ibus-daemon -d -x
 
 #change your keyboard if you need it
 run setxkbmap -layout de
@@ -33,7 +33,7 @@ sh ~/.scripts/set-wallpaper.sh
 run nm-applet
 run pamac-tray
 run msm_notifier
-run radiotray-ng --play
+run radiotray-ng
 run kteatime
 
 # killall xbindkeys
@@ -50,18 +50,14 @@ run blueberry-tray
 run blueman-applet
 
 run xscreensaver
-restart /usr/lib/xfce-polkit/xfce-polkit
+run /usr/lib/xfce-polkit/xfce-polkit
 # run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # run lxqt-policykit-agent
 
 run copyq
-run xfce4-notes
-run teams
 restart alttab -n 1
 
 run system-config-printer-applet
 
 killall -q picom
 sh $SCRIPTS/picom-toggle-awesome.sh &
-
-notify-send -t 10000 "Global Autostart" "Autostart ausgeführt!"

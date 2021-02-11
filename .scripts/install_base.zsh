@@ -140,7 +140,7 @@ if [ $IS_GARUDA = true ]; then
 fi
 
 # Base Development Tools
-inst dotnet-sdk
+inst dotnet-sdk-bin
 inst git
 inst gitahead-bin
 inst gitflow-avh

@@ -69,6 +69,8 @@ if [ $INSTALL_VIRTIO = true ]; then
 		inst virt-manager-meta
 	else
 		inst virt-manager
+		inst virt-viewer
+		inst virt-backup
 		inst qemu
 		inst qemu-arch-extra
 		inst libvirt
