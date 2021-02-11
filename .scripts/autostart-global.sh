@@ -50,6 +50,8 @@ run blueberry-tray
 run blueman-applet
 
 run xscreensaver
+
+killall xfce-polkit
 run /usr/lib/xfce-polkit/xfce-polkit
 # run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # run lxqt-policykit-agent
@@ -61,3 +63,6 @@ run system-config-printer-applet
 
 killall -q picom
 sh $SCRIPTS/picom-toggle-awesome.sh &
+
+CUSTOM_AUTOSTART="$HOME/.autostart-custom"
+test -f $CUSTOM_AUTOSTART && sh $CUSTOM_AUTOSTART

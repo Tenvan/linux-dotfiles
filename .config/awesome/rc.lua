@@ -144,7 +144,7 @@ awful.util.terminal = terminal
 -- awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
 -- awful.util.tagnames = { "www", "edit", "gimp", "inkscape", "music" }
 -- awful.util.tagnames = { "⓵", "⓶", "⓷", "⓸", "⓹", "⓺", "⓻", "⓼", "⓽"}
-awful.util.tagnames = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨"}
+awful.util.tagnames = {"①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨"}
 -- awful.util.tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }
 
 awful.layout.suit.tile.left.mirror = true
@@ -351,12 +351,10 @@ screen.connect_signal(
         local only_one = #s.tiled_clients == 1
         for _, c in pairs(s.clients) do
             if
-                (c.class == "firefox") or 
-                (c.class == "firefoxdeveloperedition") or 
-                (c.class == "Chromium") or
-                (c.class == "Google-chrome") or
-                (c.class == "Microsoft Teams - Preview")
-            then
+                (c.class == "firefox") or (c.class == "firefoxdeveloperedition") or (c.class == "Chromium") or
+                    (c.class == "Google-chrome") or
+                    (c.class == "Microsoft Teams - Preview")
+             then
             elseif c.maximized or (only_one and not c.floating) then
                 -- c.border_width = 0
             else
@@ -396,7 +394,15 @@ root.buttons(
 -- {{{ Key bindings
 local globalkeys =
     my_table.join(
-    awful.key({modkey, shiftkey}, "r", awesome.restart, {description = "reload awesome", group = kgAwesome}),
+    awful.key(
+        {modkey, shiftkey},
+        "r",
+        function()
+            awful.spawn.with_shell("sh $SCRIPTS/autostart-global.sh")
+            awesome.restart()
+        end,
+        {description = "reload awesome", group = kgAwesome}
+    ),
     awful.key(
         {modkey},
         "x",
