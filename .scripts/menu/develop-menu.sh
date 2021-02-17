@@ -19,11 +19,16 @@ startAll() {
     $shellCmd --hold --title OTC:StartDefault yarn --cwd src/client start &
 }
 
+LINECOUNT=23
+LINEHEIGHT=$(($LINECOUNT * 40))
+OFFSET=120
+HEIGHT=$(($LINEHEIGHT + $OFFSET))
+
 # Function create a scale dialog
 select_application() {
     zenity --list \
         --width=400 \
-        --height=950 \
+        --height=$HEIGHT \
         --title="Edit Konfiguation" \
         --text="DEVELOP" \
         --column="Option" \

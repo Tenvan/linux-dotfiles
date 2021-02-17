@@ -58,6 +58,9 @@ inst microsoft-edge-dev-bin
 
 # optional application packages
 inst aspell
+inst cpu-x
+inst i-nex
+inst baobab
 inst etcher-bin
 inst gimp
 inst gimp-help-de

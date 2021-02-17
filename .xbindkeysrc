@@ -124,7 +124,7 @@
 #################
 # System Hotkeys
 
-"killall node; fuser -k 4200/tcp; fuser -k 4201/tcp; fuser -k 4202/tcp; notify-send.sh 'Node' 'all nodes-processes and ng-services killed'" 
+"killall node -s KILL; fuser -k 4200/tcp; fuser -k 4201/tcp; fuser -k 4202/tcp; notify-send.sh 'Node' 'all nodes-processes and ng-services killed'" 
   control + alt + k
 
 "notify-send.sh Node 'Test Nachricht' 'Dies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.'" 

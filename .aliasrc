@@ -7,7 +7,8 @@ alias path='echo -e ${PATH//:/\\n}'
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 # get actual mirrors
-alias mirror="pacman-mirrorup -v -m 10 -o mirrorlist; cat mirrorlist; sudo mv mirrorlist /etc/pacman.d/mirrorlist"
+alias mirror_arch="pacman-mirrorup -v -m 10 -o mirrorlist; cat mirrorlist; sudo mv mirrorlist /etc/pacman.d/mirrorlist"
+alias mirror_manjaro="sudo pacman-mirrors -c Germany"
 
 #list
 alias ls='ls --color=auto'
@@ -47,9 +48,8 @@ alias merge="xrdb -merge ~/.Xresources"
 alias pacman='sudo pacman --color auto'
 alias update='sudo pacman -Syyu'
 
-# pakku as aur helper - updates everything
-alias pksyua="pakku -Syu --noconfirm"
-alias upall="pakku -Syu --noconfirm"
+# paru as aur helper - updates everything
+alias upall="paru -Syyu --noconfirm"
 alias upkeys="sudo pacman-key --refresh-keys"
 
 #ps

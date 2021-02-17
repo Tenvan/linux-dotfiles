@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 
+LINECOUNT=9
+LINEHEIGHT=$(($LINECOUNT * 40))
+OFFSET=120
+HEIGHT=$(($LINEHEIGHT + $OFFSET))
+
 # Function create a scale dialog
 select_system_action() {
     zenity --list \
            --width=400 \
-           --height=450 \
+           --height=$HEIGHT \
            --title="Edit Konfiguation" \
            --text="System Menü" \
            --column=Option \

@@ -6,10 +6,15 @@ folderEdit="code -a --folder-uri"
 # filesEdit="atom "
 # folderEdit="atom "
 
+LINECOUNT=19
+LINEHEIGHT=$(($LINECOUNT * 40))
+OFFSET=120
+HEIGHT=$(($LINEHEIGHT + $OFFSET))
+
 get_config_list() {
     zenity --list \
            --width=400 \
-           --height=850 \
+           --height=$HEIGHT \
            --title="Edit Konfiguation" \
            --text="Konfig file" \
            --column="Option" \

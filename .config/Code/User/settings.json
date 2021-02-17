@@ -40,7 +40,8 @@
       "editor.defaultFormatter": "vscode.json-language-features"
     },
     "files.associations": {
-      "*.bpmn": "bpmn"
+      "*.bpmn": "bpmn",
+      "*.JSON5": "jsonc"
     },
     "[xml]": {
       "editor.defaultFormatter": "DotJoshJohnson.xml"

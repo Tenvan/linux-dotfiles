@@ -5,11 +5,16 @@ myTerminal="kitty"
 timeCmd="/usr/bin/time -v "
 myTestLua=$(eval echo $HOME/.config/awesome/rc.test.lua)
 
+LINECOUNT=19
+LINEHEIGHT=$(($LINECOUNT * 40))
+OFFSET=120
+HEIGHT=$(($LINEHEIGHT + $OFFSET))
+
 # Function create a scale dialog
 select_application() {
     zenity --list \
         --width=400 \
-        --height=700 \
+        --height=$HEIGHT \
         --title="Edit Konfiguation" \
         --text="APPLICATIONS" \
         --column=Option \
@@ -18,8 +23,8 @@ select_application() {
         --print-column=2 \
         --hide-column=2 \
         --hide-header \
-        "🪄 Install Updates" "$myTerminal --hold --title Sys:Upall $timeCmd paru" \
-        "🪣 Cleanup Installs" "$myTerminal --hold --title Sys:Cleanup $timeCmd sudo pacman -Rns $(pacman -Qtdq)" \
+        "🪄 Install Updates" "$myTerminal --hold --title Sys:Upall $timeCmd paru -Syyu --noconfirm" \
+        "🪣 Cleanup Installs" "$myTerminal --hold --title Sys:Cleanup $timeCmd paru -c --noconfirm" \
         "🧩 Install Base Packages" "$myTerminal --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_base.sh" \
         "🧩 Install Applications" "$myTerminal --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_apps.sh" \
         "🧩 Install Rust Apps" "$myTerminal --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_rust_apps.sh" \

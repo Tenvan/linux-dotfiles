@@ -146,6 +146,7 @@ inst gitahead-bin
 inst gitflow-avh
 inst github-cli
 inst git-delta
+inst gradle
 inst jdk-openjdk
 inst jdk8-openjdk
 inst libsecret

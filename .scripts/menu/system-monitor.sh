@@ -9,11 +9,16 @@ timeCmd="/usr/bin/time -v "
 filesEdit="code -r --file-uri"
 folderEdit="code -r --folder-uri"
 
+LINECOUNT=10
+LINEHEIGHT=$(($LINECOUNT * 40))
+OFFSET=120
+HEIGHT=$(($LINEHEIGHT + $OFFSET))
+
 # Function create a scale dialog
 select_application() {
     zenity --list \
            --width=400 \
-           --height=450 \
+           --height=$HEIGHT \
            --title="System Monitors" \
            --text="MONITOR" \
            --column="Option" \
