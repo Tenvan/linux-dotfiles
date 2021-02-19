@@ -161,6 +161,9 @@
 	mc = merge -v --continue
 	ms = merge -v --skip
 	#############
+	swm = switch master
+	swd = switch develop
+	#############
 	o = checkout -v
 	om = checkout -v master
 	ob = checkout -v -b

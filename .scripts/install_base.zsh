@@ -154,6 +154,7 @@ inst mono
 inst mono-msbuild
 inst nodejs-emojione
 inst nodejs-lts-fermium
+inst nuget
 inst npm
 inst svn
 inst yarn
