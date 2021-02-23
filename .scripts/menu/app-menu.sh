@@ -10,19 +10,7 @@ LINEHEIGHT=$(($LINECOUNT * 40))
 OFFSET=120
 HEIGHT=$(($LINEHEIGHT + $OFFSET))
 
-# Function create a scale dialog
-select_application() {
-    zenity --list \
-        --width=400 \
-        --height=$HEIGHT \
-        --title="Edit Konfiguation" \
-        --text="APPLICATIONS" \
-        --column=Option \
-        --column="Aktion" \
-        --separator=" " \
-        --print-column=2 \
-        --hide-column=2 \
-        --hide-header \
+ACTIONS=(
         "🪄 Install Updates" "$myTerminal --hold --title Sys:Upall $timeCmd paru -Syyu --noconfirm" \
         "🪣 Cleanup Installs" "$myTerminal --hold --title Sys:Cleanup $timeCmd paru -c --noconfirm" \
         "🧩 Install Base Packages" "$myTerminal --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_base.sh" \
@@ -42,6 +30,22 @@ select_application() {
         "🚧 Awmtt Test Start" "$myTerminal --hold --title AWMTT awmtt start -C $myTestLua -D 1 --size 1920x1080" \
         "🚧 Awmtt Test Restart" "awmtt restart" \
         "🚧 Awmtt Test Stop" "awmtt stop"
+)
+
+# Function create a scale dialog
+select_application() {
+    zenity --list \
+        --width=400 \
+        --height=$HEIGHT \
+        --title="Edit Konfiguation" \
+        --text="APPLICATIONS" \
+        --column=Option \
+        --column="Aktion" \
+        --separator=" " \
+        --print-column=2 \
+        --hide-column=2 \
+        --hide-header \
+        "${ACTIONS[@]}"
 }
 
 choice=$(select_application)

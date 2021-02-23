@@ -24,6 +24,32 @@ LINEHEIGHT=$(($LINECOUNT * 40))
 OFFSET=120
 HEIGHT=$(($LINEHEIGHT + $OFFSET))
 
+ACTIONS=(
+    "🇬 Git" "gitahead $WORK_DIR"
+    "💽 Yarn quick install" "$shellCmd --hold --title OTC:QuickInstall $timeCmd yarn install --ignore-scripts"
+    "💽 Yarn full install" "$shellCmd --hold --title OTC:FullInstall $timeCmd yarn"
+    "🏄 Start All" "startAll"
+    "🏄 Start Server" "$shellCmd --hold --title OTC:StartServer yarn server:dev"
+    "🇵 Pug watch" "$shellCmd --hold --title OTC:PugWatch yarn --cwd src/client pug:watch"
+    "🇵 Pug once" "$shellCmd --hold --title OTC:PugOnce yarn --cwd src/client pug:once"
+    "🛫 Start" "fuser -k 4200/tcp & $shellCmd --hold --title OTC:StartDefault $timeCmd yarn --cwd src/client start"
+    "⚗ Generate" "$shellCmd --hold --title OTC:Generate $timeCmd yarn generate"
+    "🇺 Check Client Updates" "$shellCmd --hold --title OTC:CheckClientUpdates $timeCmd yarn outdated"
+    "🇺 Check Server Updates" "$shellCmd --hold --title OTC:CheckServerUpdates $timeCmd yarn --cwd src/server4 outdated"
+    "🆙 Client Upgrade" "$shellCmd --hold --title OTC:ClientUpgrade $timeCmd yarn upgrade"
+    "🆙 Server Upgrade" "$shellCmd --hold --title OTC:ServerUpgrade $timeCmd yarn --cwd src/server4 upgrade"
+    "🥋 Upgrade Full" "$shellCmd --hold --title OTC:FullUpgrade $timeCmd yarn run update:all"
+    "💉 Doctor" "$shellCmd --hold --title OTC:Doctor $timeCmd yarn doctor"
+    "☑ Doctor Check" "$shellCmd --hold --title OTC:DoctorCheck $timeCmd yarn doctor:check"
+    "☑ Client Check" "$shellCmd --hold --title OTC:ClientCheck $timeCmd yarn client:check"
+    "✅ Prod Check" "$shellCmd --hold --title OTC:ClientCheck $timeCmd yarn client:check:prod"
+    "💻 Shell" "$shellCmd --hold --title OTC:Shell"
+    "🛻 SQL-Server Stop" "$shellCmd --hold --title OTC:SqlServer $timeCmd sudo systemctl stop mssql-server"
+    "🛻 SQL-Server Start" "$shellCmd --hold --title OTC:SqlServer $timeCmd sudo systemctl start mssql-server"
+    "🛻 SQL-Server Restart" "$shellCmd --hold --title OTC:SqlServer $timeCmd sudo systemctl restart mssql-server"
+    "📑 Dateien" "$myFileManager $workDir"
+)
+
 # Function create a scale dialog
 select_application() {
     zenity --list \
@@ -36,29 +62,7 @@ select_application() {
         --print-column=2 \
         --hide-column=2 \
         --hide-header \
-        "🇬 Git" "gitahead $WORK_DIR" \
-        "💽 Yarn quick install" "$shellCmd --hold --title OTC:QuickInstall $timeCmd yarn install --ignore-scripts" \
-        "💽 Yarn full install" "$shellCmd --hold --title OTC:FullInstall $timeCmd yarn" \
-        "🏄 Start All" "startAll" \
-        "🏄 Start Server" "$shellCmd --hold --title OTC:StartServer yarn server:dev" \
-        "🇵 Pug watch" "$shellCmd --hold --title OTC:PugWatch yarn --cwd src/client pug:watch" \
-        "🇵 Pug once" "$shellCmd --hold --title OTC:PugOnce yarn --cwd src/client pug:once" \
-        "🛫 Start" "fuser -k 4200/tcp & $shellCmd --hold --title OTC:StartDefault $timeCmd yarn --cwd src/client start" \
-        "⚗ Generate" "$shellCmd --hold --title OTC:Generate $timeCmd yarn generate" \
-        "🇺 Check Client Updates" "$shellCmd --hold --title OTC:CheckClientUpdates $timeCmd yarn outdated" \
-        "🇺 Check Server Updates" "$shellCmd --hold --title OTC:CheckServerUpdates $timeCmd yarn --cwd src/server4 outdated" \
-        "🆙 Client Upgrade" "$shellCmd --hold --title OTC:ClientUpgrade $timeCmd yarn upgrade" \
-        "🆙 Server Upgrade" "$shellCmd --hold --title OTC:ServerUpgrade $timeCmd yarn --cwd src/server4 upgrade" \
-        "🥋 Upgrade Full" "$shellCmd --hold --title OTC:FullUpgrade $timeCmd yarn run update:all" \
-        "💉 Doctor" "$shellCmd --hold --title OTC:Doctor $timeCmd yarn doctor" \
-        "☑ Doctor Check" "$shellCmd --hold --title OTC:DoctorCheck $timeCmd yarn doctor:check" \
-        "☑ Client Check" "$shellCmd --hold --title OTC:ClientCheck $timeCmd yarn client:check" \
-        "✅ Prod Check" "$shellCmd --hold --title OTC:ClientCheck $timeCmd yarn client:check:prod" \
-        "💻 Shell" "$shellCmd --hold --title OTC:Shell" \
-        "🛻 SQL-Server Stop" "$shellCmd --hold --title OTC:SqlServer $timeCmd sudo systemctl stop mssql-server" \
-        "🛻 SQL-Server Start" "$shellCmd --hold --title OTC:SqlServer $timeCmd sudo systemctl start mssql-server" \
-        "🛻 SQL-Server Restart" "$shellCmd --hold --title OTC:SqlServer $timeCmd sudo systemctl restart mssql-server" \
-        "📑 Dateien" "$myFileManager $workDir"
+        "${ACTIONS[@]}"
 }
 
 choice=$(select_application)
