@@ -1,8 +1,7 @@
 # Awesome Desktop
 
-- Komplette Konfiguration eines Awesome-Desktops.
-- Fest ausgelegt auf Dual-Monitor
-- Umschaltung zwischen Light/Dark Theme
+- Komplett konfigurierter Awesome-Desktop.
+- Support für Dual-Monitor
 
 Als Basis dient eine Manajaro Full Cinnamon Installation, oder eine vergleichbare.
 
@@ -11,46 +10,27 @@ Als Basis dient eine Manajaro Full Cinnamon Installation, oder eine vergleichbar
 Repository klonen
 
 ```bash
-git clone http://gitlab.ihr.infoniqa.local/one-time-de/linux-environments/dotfiles-developer-workstation.git
+git clone https://github.com/Tenvan/desktop-dotfiles.git
 ```
 
 und in das Homeverzeichnis verschieben:
 ```bash
 shopt -s dotglob
-rsync -vrlptgo --include ".*" dotfiles-developer-workstation/* ~/
-rm -fr dotfiles-developer-workstation/
+rsync -vrlptgo --include ".*" desktop-dotfiles/* ~/
+rm -fr desktop-dotfiles/
 ```
 
 Fehlende Pakete werden mit folgendem Batch nachinstalliert:
 
 ```bash
-sh ~/Scripts/init_install.sh
-sh ~/Scripts/install_all.sh
+sh ~/.scipts/install_init.sh
+sh ~/.scipts/install_base.sh
+sh ~/.scipts/install_apps.sh
+sh ~/.scipts/install_rust_apps.sh
+sh ~/.scipts/install_finish.sh
 ```
 
 ## Manuelle Konfiguration
-
-Einzige z.Zt. nötige manuelle Konfiguration ist die Anschlussdefinition der beiden Monitore.
-
-### Konfiguration der Anschlussnamen
-Hierfür muss im Homeverzeichnis eine Datei '.Xresources.monitor' angelegt werden, die folgenden Aufbau hat:
-
-```
-*monitor1: DP2
-*monitor2: DP3
-```
-
-Ermittelt werden können diese durch:
-
-```
-echo "*monitor1: DP2
-*monitor2: DP3"  > .Xresources.monitor
-
-xrandr | grep connected -w >> .Xresources.monitor
-code .Xresources.monitor
-```
-
-Mit Code die Datei dann entsprechend den Anschlüssen korrigieren.
 
 ### Monitor Definition erstellen
 Mit 'arandr' die Monitoreinstellung vornehmen und in der Datei '~/.screenlayout/screenlayout.sh' speichern.
