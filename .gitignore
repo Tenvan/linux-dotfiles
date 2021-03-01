@@ -21,8 +21,6 @@
 # Ausnahmen Themes Folder
 !.themes
 !.themes/**/*
-!.icons
-!.icons/**/*
 
 # Ausnahmen im .local folder
 !.local
