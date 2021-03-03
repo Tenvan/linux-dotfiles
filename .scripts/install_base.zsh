@@ -130,11 +130,6 @@ inst pm-utils
 
 uninst tlp
 
-# language files
-inst man-pages-de
-inst aspell-de
-inst mythes-de
-
 if [ $IS_GARUDA = true ]; then
 	inst samba-support
 fi
@@ -207,6 +202,10 @@ inst ranger
 inst paprefs
 inst pasystray
 inst sp
+
+# other
+inst dockbarx
+inst bleachbit
 
 if [ $IS_GARUDA != true ]; then
 	print 'install sound packages'

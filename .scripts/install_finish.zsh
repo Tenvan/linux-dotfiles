@@ -173,10 +173,8 @@ sudo systemctl enable --now cockpit.socket
 sudo systemctl enable --now bluetooth-autoconnect
 errorCheck "bluetooth-autoconnect service"
 
-# pamac
-sudo systemctl enable --now snapd.socket
-sudo systemctl enable --now apparmor.service
-sudo systemctl enable --now snapd.apparmor.service
+sudo systemctl enable --now fstrim.timer
+errorCheck "fstrim service"
 
 mkdir -p ~/.config/systemd/user/
 sudo cp /usr/lib/systemd/user/pulseaudio-bluetooth-autoconnect.service /etc/systemd/user
