@@ -13,6 +13,7 @@ function run() {
 
 function restart() {
     killall "$1"
+    sleep 1
     run $@
 }
 
@@ -43,18 +44,11 @@ restart xbindkeys
 run start-pulseaudio-x11
 run pasystray
 
-run redshift-gtk
-
 run blueman-tray
 run blueberry-tray
 run blueman-applet
 
 run xscreensaver
-
-killall xfce-polkit
-run /usr/lib/xfce-polkit/xfce-polkit
-# run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-# run lxqt-policykit-agent
 
 run copyq
 restart alttab -n 1
@@ -62,7 +56,16 @@ restart alttab -n 1
 run system-config-printer-applet
 
 killall -q picom
+sleep 1
 sh $SCRIPTS/picom-toggle-awesome.sh &
 
+killall xfce-polkit
+sleep 1
+run /usr/lib/xfce-polkit/xfce-polkit
+# run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# run lxqt-policykit-agent
+
 CUSTOM_AUTOSTART="$HOME/.autostart-custom"
-test -f $CUSTOM_AUTOSTART && sh $CUSTOM_AUTOSTART
+if [ -f $CUSTOM_AUTOSTART ]; then 
+	sh $CUSTOM_AUTOSTART
+fi

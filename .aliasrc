@@ -17,6 +17,22 @@ alias ll='ls -la'
 alias l='ls'
 alias l.="ls -A | egrep '^\.'"
 
+# Changing "ls" to "exa"
+if [ $(which exa) ]; then
+	alias ls='exa -alghHi --color=always --colour-scale --group-directories-first' # my preferred listing
+	alias la='exa -alghHi --color=always --colour-scale --group-directories-first' # all files and dirs
+	alias ll='exa -alghHi --color=always --colour-scale --group-directories-first' # long format
+	alias lt='exa -aT -L3 --color=always --colour-scale --group-directories-first' # tree listing
+fi
+
+# Changing "ls" to "lsd"
+if [ $(which lsd) ]; then
+	alias ls='lsd -ahiLF' # my preferred listing
+	alias la='lsd -alhiLF' # all files and dirs
+	alias ll='lsd -alhiLF' # long format
+	alias lt='lsd -ahiLF --tree --depth 3 ' # tree listing
+fi
+
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
@@ -142,14 +158,6 @@ alias ~='cd $HOME'
 
 # vim
 alias ed=$EDITOR
-
-# Changing "ls" to "exa"
-if [ $(which exa) ]; then
-	alias ls='exa -alghHi --color=always --colour-scale --group-directories-first' # my preferred listing
-	alias la='exa -alghHi --color=always --colour-scale --group-directories-first' # all files and dirs
-	alias ll='exa -alghHi --color=always --colour-scale --group-directories-first' # long format
-	alias lt='exa -aT -L3 --color=always --colour-scale --group-directories-first' # tree listing
-fi
 
 # adding flags
 alias df='df -h'     # human-readable sizes

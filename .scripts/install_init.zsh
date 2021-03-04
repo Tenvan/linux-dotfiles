@@ -6,14 +6,6 @@
 # init distro check #
 #####################
 
-errorCheck() {
-    retVal=$?
-    if [ $retVal -ne 0 ]; then
-        print "abort installation script 'install_all': $1"
-        exit $retVal
-    fi
-}
-
 sudo rm /var/lib/pacman/db.lck
 
 sudo pacman -S --noconfirm --needed git base-devel colorgcc go ruby rust

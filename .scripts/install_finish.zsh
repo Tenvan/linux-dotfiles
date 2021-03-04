@@ -2,14 +2,6 @@
 
 . ~/.scripts/defs.zsh
 
-errorCheck() {
-    retVal=$?
-    if [ $retVal -ne 0 ]; then
-        print "abort installation script 'install_all': $1"
-        exit $retVal
-    fi
-}
-
 ## FINISHING #
 
 sudo rm /var/lib/pacman/db.lck
