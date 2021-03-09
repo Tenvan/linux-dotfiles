@@ -92,13 +92,17 @@ if [ $IS_MANJARO != true ]; then
 	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/Stylish\/theme.txt"/g' </etc/default/grub >grub
 	sudo mv -f grub /etc/default
 fi
+if [ $IS_ARCO != true ]; then
+	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/Stylish\/theme.txt"/g' </etc/default/grub >grub
+	sudo mv -f grub /etc/default
+fi
 errorCheck "grub config"
 
 sudo micro /etc/mkinitcpio.conf
 sudo micro /etc/default/grub
 
 sudo mkinitcpio -P
-update-grub
+sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 errorCheck "grub mkconfig"
 

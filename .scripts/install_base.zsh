@@ -11,17 +11,13 @@ initInstall "install_base"
 
 # system packages
 inst alacritty
-inst alttab
+inst alttab-git
 inst arandr
 inst arj
 inst ark
 inst bashtop
 inst bat
 inst bitwarden-bin
-inst bitwarden-cli-bin
-inst bitwarden-rofi
-inst bootsplash-systemd
-inst bootsplash-theme-manjaro
 inst bpytop
 inst checkupdates-aur
 inst clamav
@@ -47,7 +43,6 @@ inst ibus-daemon
 inst iftop
 inst iotop
 inst iptraf-ng
-inst kindd
 inst kitty
 inst kteatime
 inst lhasa
@@ -105,7 +100,7 @@ inst git
 inst gitahead-bin
 inst gitflow-avh
 inst github-cli
-inst git-delta
+inst git-delta-bin
 inst gradle
 inst jdk-openjdk
 inst jdk8-openjdk
@@ -113,13 +108,17 @@ inst libsecret
 inst mono
 inst mono-msbuild
 inst nodejs-emojione
-inst nodejs-lts-fermium
+inst nodejs
 inst nuget
 inst npm
 inst svn
 inst yarn
 inst tk
-inst xsp
+
+if [ $IS_MANJARO = true ]; then
+	inst bootsplash-systemd
+	inst bootsplash-theme-manjaro
+fi
 
 # jetbrains apps
 inst jetbrains-toolbox
@@ -132,8 +131,12 @@ inst luacheck
 inst awmtt
 
 # config tools
-# inst lxappearance
-inst lxappearance-gtk3
+
+if [ $IS_ARCO = true ]; then
+	inst lxappearance
+else
+	inst lxappearance-gtk3
+fi
 #inst lxqt-config
 #inst lxqt-admin
 #inst lxqt-policykit
@@ -169,7 +172,6 @@ inst pasystray
 inst sp
 
 # other
-inst dockbarx
 inst bleachbit
 
 if [ $IS_GARUDA != true ]; then
@@ -254,7 +256,11 @@ inst papirus-icon-theme
 inst ukui-wallpapers
 
 # cursor
-inst bibata-cursor-theme-bin
+if [ $IS_ARCO = true ]; then
+	inst bibata-cursor-theme
+else
+	inst bibata-cursor-theme-bin
+fi
 inst bibata-cursor-translucent
 
 # fonts
@@ -269,12 +275,15 @@ inst ttf-twemoji-color
 inst ttf-weather-icons
 
 # lightdm config
-inst lightdm
-inst lightdm-settings
-inst lightdm-gtk-greeter-settings
-inst lightdm-slick-greeter
-inst lightdm-gtk-greeter
-if [ $IS_MANJARO != true ]; then
+if [ $IS_ARCO != true ]; then
+	inst lightdm
+	inst lightdm-settings
+	inst lightdm-gtk-greeter-settings
+	inst lightdm-slick-greeter
+	inst lightdm-gtk-greeter
+fi
+
+if [ $IS_MANJARO = true ]; then
   inst manjaro-slick-greeter-theme-light
 fi
 
@@ -282,7 +291,7 @@ fi
 if [ $IS_GARUDA = true ]; then
 	inst grub-theme-garuda
 fi
-if [ $IS_MANJARO != true ]; then
+if [ $IS_MANJARO != true -a $IS_ARCO != true ]; then
 	inst grub2-theme-archlinux
 	inst grub-theme-stylish-git
 fi

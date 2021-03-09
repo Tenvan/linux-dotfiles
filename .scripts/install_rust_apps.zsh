@@ -11,9 +11,9 @@ initInstall "install_rust_apps"
 
 inst bat
 inst fd
-inst procs
 inst ripgrep
 inst tokei
+#inst procs
 
 ###############################
 # uninstall unneeded packages #

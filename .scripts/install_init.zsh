@@ -15,7 +15,7 @@ errorCheck "installation base-devel"
 git submodule update --init --recursive
 
 # Config pacman
-sudo pacman -S pamac-all
+sudo pacman -S --noconfirm --needed pamac-all
 sed 's/^#Color$/Color/g' </etc/pacman.conf >pacman.conf
 sudo mv pacman.conf /etc/
 sed 's/^.*ILoveCandy$/ILoveCandy/g' </etc/pamac.conf >pamac.conf
@@ -26,7 +26,12 @@ sed 's/^.*KeepBuiltPkgs$/KeepBuiltPkgs/g' </etc/pamac.conf >pamac.conf
 sudo mv pamac.conf /etc/
 
 # install aur manager
-pamac install --no-confirm pakku-git paru-git
+if [ $IS_ARCO = true -o $IS_MANJARO = true ]; then
+	yay -S --noconfirm --needed paru-bin
+else
+	yay -S --noconfirm --needed paru
+fi
+
 errorCheck "installation aur manager"
 
 # Prompt installieren

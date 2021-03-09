@@ -18,11 +18,11 @@ DEBUG=false
 ERROR_PAKAGE_UNINST=
 ERROR_PAKAGE_INST=
 
-if [ $LINUX_VERSION_NAME = "Archlinux" ]; then
+if [ $LINUX_VERSION_NAME = "ArchLinux" ]; then
 	IS_ARCH=true
 fi
 
-if [ $LINUX_VERSION_NAME = "Arcolinux" ]; then
+if [ $LINUX_VERSION_NAME = "ArcoLinux" ]; then
 	IS_ARCO=true
 fi
 
@@ -46,7 +46,7 @@ PAKKU_ALL="--color always --needed --noconfirm "
 initInstall() {
 	INSTALL_SCRIPT=$1
 	echo "Step: init Install '$INSTALL_SCRIPT'"
-	sudo rm /var/lib/pacman/db.lck	
+	sudo rm /var/lib/pacman/db.lck 2&> /dev/null	
 }
 
 inst() {
@@ -66,8 +66,8 @@ inst() {
 fullInstall() {
 	echo "Step: full Install"
 	if [ $DEBUG != true -a "$PAKAGE_INST" != "" ]; then
-		eval "$PACKER -S --color always --noconfirm $PAKAGE_INST"
-		errorCheck "install packages"
+		eval "$PACKER -S --color always --needed $PAKAGE_INST"
+		# errorCheck "install packages"
 	fi
 }
 

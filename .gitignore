@@ -72,17 +72,11 @@
 !.config/oomox/**/*
 !.config/picom
 !.config/picom/**/*
-!.config/polybar
-!.config/polybar/**/*
 !.config/radiotray-ng
 !.config/radiotray-ng/**/*
 !.config/ranger
 !.config/ranger/*.conf
 !.config/ranger/*.sh
-!.config/rofi
-!.config/rofi/*
-!.config/termite
-!.config/termite/*
 !.config/xsettingsd
 !.config/xsettingsd/*
 

@@ -46,12 +46,13 @@ inst pstoedit
 inst python-lxml
 inst python-numpy
 inst teams
-inst themix-full-git
-inst themix-theme-arc-git 
 
-# inst zoom
-inst zoom-system-qt
-inst zoom-firefox
+if [ $IS_ARCO = true ]; then
+	inst themix-full
+	inst themix-icons-numix
+else
+	inst themix-full-git
+fi
 
 ###############################
 # uninstall unneeded packages #
