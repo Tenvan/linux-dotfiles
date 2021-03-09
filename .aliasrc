@@ -70,6 +70,8 @@ alias jctl="journalctl -p 3 -xb"
 
 ### ALIASES ###
 
+alias killx="sudo systemctl stop lightdm; sleep 1; sudo systemctl start lightdm"
+
 # navigation
 alias ..='cd ..'
 alias ...='cd ../..'

@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 csource() {
-  if [[ -r "$@" ]]; then
+  if [ -r "$@" ]; then
     source "$@"
   fi
 }
@@ -42,8 +42,9 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 # confirmations, etc.) must go above this block; everything else may go below.
 csource "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
-# test -f "$(which starship)" && eval "$(starship init zsh)"
-test -f "$(which neofetch)" && $(which neofetch)
+if [ -f "$(which neofetch)" ]; then
+	$(which neofetch)
+fi
 
 ## Options section
 setopt correct                                                  # Auto correct mistakes

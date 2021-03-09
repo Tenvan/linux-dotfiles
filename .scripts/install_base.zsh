@@ -174,29 +174,21 @@ inst sp
 # other
 inst bleachbit
 
-if [ $IS_GARUDA != true ]; then
-	print 'install sound packages'
-	#inst pulseaudio-ctl
-	#inst pulseaudio-qt
-	#inst pulseaudio-equalizer-ladspa
-fi
-
 # bluetooth setup
 if [ $IS_GARUDA = true ]; then
 	inst bluetooth-support
-else
+elif [ $IS_GARUDA = true ]; then
+elif [ $IS_ARCO = true ]; then
 	print 'install bluetooth packages'
-	#inst blueberry
-	#inst bluetooth-autoconnect
+	inst bluetooth-autoconnect
 	#inst pulseaudio-bluetooth
+	inst blueman
 	#inst bluez
 	#inst bluez-hid2hci
 	#inst bluez-libs
 	#inst bluez-plugins
 	#inst bluez-tools
 	#inst bluez-utils
-	# inst gnome-bluetooth
-	#inst sbc
 fi
 
 # printer setup

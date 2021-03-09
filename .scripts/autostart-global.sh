@@ -1,21 +1,6 @@
 #!/usr/bin/env bash
 
-function run() {
-    if command -v $1 &>/dev/null; then
-        #pgrep -u "$USER" -fx "$1" >/dev/null || ($@) &
-        if ! pgrep "$1"; then
-            $@ &
-        fi
-    else
-        notify-send -t 10000 -u critical "Error Autostart" "Kommando '$1' nicht gefunden"
-    fi
-}
-
-function restart() {
-    killall "$1"
-    sleep 1
-    run $@
-}
+. ~/.scripts/defs.zsh
 
 run ibus-daemon -d -x
 
@@ -33,7 +18,6 @@ sh ~/.scripts/set-wallpaper.sh
 #starting utility applications at boot time
 run nm-applet
 run pamac-tray
-run msm_notifier
 run radiotray-ng
 run kteatime
 
@@ -64,6 +48,10 @@ sleep 1
 run /usr/lib/xfce-polkit/xfce-polkit
 # run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # run lxqt-policykit-agent
+
+if [ $IS_MANJARO = true -o $IS_GARUDA = true ]; then
+	run msm_notifier
+fi
 
 CUSTOM_AUTOSTART="$HOME/.autostart-custom"
 if [ -f $CUSTOM_AUTOSTART ]; then 

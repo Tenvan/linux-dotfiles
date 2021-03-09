@@ -115,3 +115,20 @@ finish() {
 		echo "Error on Install: ${ERROR_PAKAGE_INST}"
 	fi	
 }
+
+function run() {
+    if command -v $1 &>/dev/null; then
+        #pgrep -u "$USER" -fx "$1" >/dev/null || ($@) &
+        if ! pgrep "$1"; then
+            $@ &
+        fi
+    else
+        notify-send -t 10000 -u critical "Error Autostart" "Kommando '$1' nicht gefunden"
+    fi
+}
+
+function restart() {
+    killall "$1"
+    sleep 1
+    run $@
+}

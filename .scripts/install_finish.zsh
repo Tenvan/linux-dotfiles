@@ -5,38 +5,86 @@
 # Init Install
 initInstall "install_finish"
 
+# Install packages for finishing
+if [ $IS_MANJARO = true ]; then
+	inst manjaro-wallpapers-18.0
+fi
+inst libmagick
+
+# powerline in linux console
+if [ $IS_GARUDA = true ]; then
+    inst terminess-powerline-font-git
+    inst terminus-font
+    inst powerline-fonts
+else
+	inst terminus-font
+	inst powerline-fonts
+fi
+
+###############################
+# uninstall unneeded packages #
+###############################
+fullUninstall
+
+#################################
+# install all (needed) packages #
+#################################
+fullInstall
+
 ## FINISHING #
+finish
 
 # refresh icons
 sudo gdk-pixbuf-query-loaders --update-cache
 
-if [ ! -f $HOME/.screenlayout/screenlayout.sh ]; then
+if [ ! -f "$HOME/.screenlayout/screenlayout.sh" ]; then
 	print 'Fehler: keine .screenlayout.sh gefunden'
 	exit -1
 fi
 
-# config lightdm config
-suco cp $SCRIPTS/setup/Xsession-custom /etc/lightdm
-test -f /etc/lightdm/lightdm.conf && sudo mv /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
+sudo cp $HOME/.screenlayout/screenlayout.sh /opt
+errorCheck "copy screenlayout"
 
-sudo mkdir -p /etc/lightdm/lightdm.conf.d
+# config lightdm config
+sudo cp $SCRIPTS/setup/Xsession /etc/lightdm
+sudo chmod +x /etc/lightdm/Xsession
+errorCheck "copy Xsession"
+
+if [ -f /etc/lightdm/lightdm.conf ]; then
+	sudo mv /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
+fi
+
+if [ $IS_MANJARO = true ]; then
+	GREETER="lightdm-slick-greeter"
+else
+	GREETER="lightdm-gtk-greeter"
+fi
+
 echo "[Seat:*]
 [LightDM]
 log-directory=/var/log/lightdm
 run-directory=/run/lightdm
 
 [Seat:*]
-greeter-session=lightdm-slick-greeter
+greeter-session=$GREETER
 user-session=xfce
-session-wrapper=/etc/lightdm/Xsession-custom
+session-wrapper=/etc/lightdm/Xsession
 display-setup-script=/opt/screenlayout.sh
 [XDMCPServer]
-[VNCServer]"  | sudo tee /etc/lightdm/lightdm.conf.d/10-my-lightdm.conf
+[VNCServer]"  | sudo tee /etc/lightdm/lightdm.conf
 errorCheck "lightdm config"
 
 # config slick-greeter
+if [ $IS_MANJARO = true ]; then
+	GREETER_BACKGROUND="/usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg"
+elif [ $IS_ARCO = true ]; then
+	GREETER_BACKGROUND="/usr/share/backgrounds/arcolinux/arco-wallpaper.jpg"
+else
+	GREETER_BACKGROUND="/usr/share/backgrounds/desert.png"
+fi
+
 echo "[Greeter]
-background=/usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg
+background=$GREETER_BACKGROUND
 theme-name=Materia-dark
 icon-theme-name=Papirus-Dark
 activate-numlock=true
@@ -51,29 +99,20 @@ show-power=false
 show-a11y=false" | sudo tee /etc/lightdm/slick-greeter.conf
 errorCheck "lightdm greeter config"
 
-# powerline in linux console
-eval "$PACKER -S --needed --noconfirm terminus-font powerline-fonts"
-if [ $IS_GARUDA = true ]; then
-    eval "$PACKER -S $PAKKU_ALL terminess-powerline-font-git terminus-font powerline-fonts"
-else
-    eval "$PACKER -S $PAKKU_ALL terminus-font powerline-fonts"
-fi
-
 echo "KEYMAP=de
 FONT=ter-powerline-v12n
 FONT_MAP=" | sudo tee /etc/vconsole.conf
 
 # grub config
-
 sed 's/.*GRUB_GFXMODE=.*$/GRUB_GFXMODE="1920x1080,auto"/g' </etc/default/grub >grub
 sudo mv -f grub /etc/default
-if [ $IS_GARUDA = true ]; then
-	sudo cp $SCRIPTS/setup/manjaro-cat.png /usr/share/grub/themes/garuda/background.png
-	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/garuda\/theme.txt"/g' </etc/default/grub >grub
-	sudo mv -f grub /etc/default
-fi
 
 if [ $IS_MANJARO = true ]; then
+	sudo convert /usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg /usr/share/grub/themes/manjaro/background.png
+	errorCheck "convert manjaro grub image"
+	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/manjaro\/theme.txt"/g' </etc/default/grub >grub
+	sudo mv -f grub /etc/default
+	errorCheck "move manjaro grub file"
 	sudo cp $SCRIPTS/setup/manjaro-cat.png /usr/share/grub/themes/manjaro/background.png
 	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/manjaro\/theme.txt"/g' </etc/default/grub >grub
 	sudo mv -f grub /etc/default
@@ -86,13 +125,18 @@ if [ $IS_MANJARO = true ]; then
 #
 # ==> ADD "bootsplash-manjaro" to HOOKS
 #' | sudo tee -a /etc/mkinitcpio.conf
-fi
-
-if [ $IS_MANJARO != true ]; then
+elif [ $IS_ARCO = true ]; then
+	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/Vimix\/theme.txt"/g' </etc/default/grub >grub
+	sudo mv -f grub /etc/default
+	errorCheck "move arco grub file"
+elif [ $IS_ARCO != true ]; then
 	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/Stylish\/theme.txt"/g' </etc/default/grub >grub
 	sudo mv -f grub /etc/default
-fi
-if [ $IS_ARCO != true ]; then
+elif [ $IS_GARUDA = true ]; then
+	sudo cp $SCRIPTS/setup/manjaro-cat.png /usr/share/grub/themes/garuda/background.png
+	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/garuda\/theme.txt"/g' </etc/default/grub >grub
+	sudo mv -f grub /etc/default
+else
 	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/Stylish\/theme.txt"/g' </etc/default/grub >grub
 	sudo mv -f grub /etc/default
 fi
@@ -177,17 +221,3 @@ mkdir -p ~/.config/systemd/user/
 sudo cp /usr/lib/systemd/user/pulseaudio-bluetooth-autoconnect.service /etc/systemd/user
 systemctl enable pulseaudio-bluetooth-autoconnect --user --now
 errorCheck "pulseaudio-bluetooth-autoconnect service"
-
-
-###############################
-# uninstall unneeded packages #
-###############################
-fullUninstall
-
-#################################
-# install all (needed) packages #
-#################################
-fullInstall
-
-## FINISHING #
-finish
