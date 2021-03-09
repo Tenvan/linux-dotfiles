@@ -2,6 +2,9 @@
 
 . ~/.scripts/defs.zsh
 
+# Init Install
+initInstall "install_vm"
+
 #####################
 # init distro check #
 #####################
@@ -38,23 +41,25 @@ if [ $INSTALL_VIRTIO = true ]; then
 		inst libvirt
 		inst ebtables 
 		inst dnsmasq
+		inst ssh-askpass-fullscreen
+		#inst blub
 	fi
 fi
+
+###############################
+# uninstall unneeded packages #
+###############################
+fullUninstall
 
 #################################
 # install all (needed) packages #
 #################################
-if [ $DEBUG != "TRUE" ]; then
-	eval "$PACKER -S $PAKKU_ALL $PAKAGE_INST"
-	errorCheck "install packages"
-fi
+fullInstall
+
+## FINISHING #
+finish
 
 sudo systemctl enable --now libvirtd
 errorCheck "libvirtd service"
 
-## FINISHING #
-if [ $ERROR_PAKAGE_UNINST ]; then
-	print 'No Errors on Install'
-else
-	print "Error in Inst: ${ERROR_PAKAGE_INST}"
-fi
+sudo ln -s /usr/lib/openssh/ssh-askpass-fullscreen /usr/lib/ssh/ssh-askpass

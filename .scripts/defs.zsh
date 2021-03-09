@@ -3,31 +3,35 @@
 #####################
 # init distro check #
 #####################
-export LINUX_VERSION_NAME=$(lsb_release -si)
-export IS_ARCH=false
-export IS_ARCO=false
-export IS_MANJARO=false
-export IS_GARUDA=false
-export SCRIPTS="$HOME/.scripts"
-export PACKER=paru
+LINUX_VERSION_NAME=$(lsb_release -si)
+IS_ARCH=false
+IS_ARCO=false
+IS_MANJARO=false
+IS_GARUDA=false
 
-export DEBUG=false
-#export DEBUG=true
+SCRIPTS="$HOME/.scripts"
+
+PACKER=paru
+DEBUG=false
+
+#DEBUG=true
+ERROR_PAKAGE_UNINST=
+ERROR_PAKAGE_INST=
 
 if [ $LINUX_VERSION_NAME = "Archlinux" ]; then
-	export IS_ARCH=true
+	IS_ARCH=true
 fi
 
 if [ $LINUX_VERSION_NAME = "Arcolinux" ]; then
-	export IS_ARCO=true
+	IS_ARCO=true
 fi
 
 if [ $LINUX_VERSION_NAME = "ManjaroLinux" ]; then
-	export IS_MANJARO=true
+	IS_MANJARO=true
 fi
 
 if [ $LINUX_VERSION_NAME = "Garuda" ]; then
-	export IS_GARUDA=true
+	IS_GARUDA=true
 fi
 
 print "Linux Version: $LINUX_VERSION_NAME"
@@ -36,8 +40,14 @@ print "IsArco:        $IS_ARCO"
 print "IsGaruda:      $IS_GARUDA"
 print "IsManjaro:     $IS_MANJARO"
 
-export MAKEFLAGS="-j$(nproc)"
-export PAKKU_ALL="--color always --needed --noconfirm "
+MAKEFLAGS="-j$(nproc)"
+PAKKU_ALL="--color always --needed --noconfirm "
+
+initInstall() {
+	INSTALL_SCRIPT=$1
+	echo "Step: init Install '$INSTALL_SCRIPT'"
+	sudo rm /var/lib/pacman/db.lck	
+}
 
 inst() {
     PAKAGE_INST="${PAKAGE_INST} $1"
@@ -47,11 +57,18 @@ inst() {
 		
 	    retVal=$?
 	    if [ $retVal -ne 0 ]; then
-	        print "error on install: $1"
-			ERROR_PAKAGE_INST="${ERROR_PAKAGE_INST}
-$1"        
+	        echo "error on install: $1"
+			ERROR_PAKAGE_INST="${ERROR_PAKAGE_INST} $1"        
 	    fi
     fi
+}
+
+fullInstall() {
+	echo "Step: full Install"
+	if [ $DEBUG != true -a "$PAKAGE_INST" != "" ]; then
+		eval "$PACKER -S --color always --noconfirm $PAKAGE_INST"
+		errorCheck "install packages"
+	fi
 }
 
 uninst() {
@@ -62,17 +79,39 @@ uninst() {
 	    
 	    retVal=$?
 	    if [ $retVal -ne 0 ]; then
-	        print "error on uninstall: $1"
-			ERROR_PAKAGE_UNINST="${ERROR_PAKAGE_UNINST}
-$1"        
+	        echo "error on uninstall: $1"
+			ERROR_PAKAGE_UNINST="${ERROR_PAKAGE_UNINST} $1"        
 	    fi
+	fi
+}
+
+fullUninstall() {
+	printf "Step: full Uninstall"
+	if [ $DEBUG != true -a "$PAKAGE_UNINST" != "" ]; then
+		eval "$PACKER -R --noconfirm $PAKAGE_UNINST"
 	fi
 }
 
 errorCheck() {
     retVal=$?
     if [ $retVal -ne 0 ]; then
-        print "abort installation script 'install_apps': $1"
+        echo "abort installation script '$INSTALL_SCRIPT': $1 ($retVal)"
         exit $retVal
     fi
+}
+
+finish() {
+	echo "Step: finish Install"
+
+	if [ "$ERROR_PAKAGE_UNINST" = "" ]; then
+		echo 'No Errors on Uninstall'
+	else
+		echo "Error on Uninstall: ${ERROR_PAKAGE_UNINST}"
+	fi	
+
+	if [ "$ERROR_PAKAGE_INST" = "" ]; then
+		echo 'No Errors on Install'
+	else
+		echo "Error on Install: ${ERROR_PAKAGE_INST}"
+	fi	
 }

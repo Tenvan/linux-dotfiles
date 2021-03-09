@@ -2,11 +2,12 @@
 
 . ~/.scripts/defs.zsh
 
+# Init Install
+initInstall "install_init"
+
 #####################
 # init distro check #
 #####################
-
-sudo rm /var/lib/pacman/db.lck
 
 sudo pacman -S --noconfirm --needed git base-devel colorgcc go ruby rust
 errorCheck "installation base-devel"
@@ -28,15 +29,10 @@ sudo mv pamac.conf /etc/
 pamac install --no-confirm pakku-git paru-git
 errorCheck "installation aur manager"
 
-# init mirror
-paru -S $PAKKU_ALL --noconfirm pacman-mirrorup
-pacman-mirrorup -v
-
 # Prompt installieren
-paru -S $PAKKU_ALL ttf-meslo-nerd-font-powerlevel10k zsh-theme-powerlevel10k starship-bin
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
-
-zinit creinstall zsh-users/zsh-completions
+inst ttf-meslo-nerd-font-powerlevel10k
+inst zsh-theme-powerlevel10k
+inst starship-bin
 
 # disable sudo password
 echo "Cmnd_Alias INSTALL = /usr/bin/pacman, /usr/share/pacman
@@ -47,3 +43,20 @@ $USER ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/100-myrules
 
 chmod -R -v +xrw ~/.scripts
 errorCheck "set script flags"
+
+###############################
+# uninstall unneeded packages #
+###############################
+fullUninstall
+
+#################################
+# install all (needed) packages #
+#################################
+fullInstall
+
+## FINISHING #
+finish
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+
+#zinit creinstall zsh-users/zsh-completions

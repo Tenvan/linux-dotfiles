@@ -2,9 +2,10 @@
 
 . ~/.scripts/defs.zsh
 
-## FINISHING #
+# Init Install
+initInstall "install_finish"
 
-sudo rm /var/lib/pacman/db.lck
+## FINISHING #
 
 # refresh icons
 sudo gdk-pixbuf-query-loaders --update-cache
@@ -172,3 +173,17 @@ mkdir -p ~/.config/systemd/user/
 sudo cp /usr/lib/systemd/user/pulseaudio-bluetooth-autoconnect.service /etc/systemd/user
 systemctl enable pulseaudio-bluetooth-autoconnect --user --now
 errorCheck "pulseaudio-bluetooth-autoconnect service"
+
+
+###############################
+# uninstall unneeded packages #
+###############################
+fullUninstall
+
+#################################
+# install all (needed) packages #
+#################################
+fullInstall
+
+## FINISHING #
+finish
