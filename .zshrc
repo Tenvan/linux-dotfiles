@@ -138,10 +138,13 @@ alias upd='sudo reflector --country Germany --latest 5 --age 2 --fastest 5 --pro
 csource ~/.aliasrc
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-if [[ $DISPLAY ]]; then
-  print "Init Powershell10k for XWindows"
-  [[ ! -f ~/.p10k-x.zsh ]] || source ~/.p10k-x.zsh
-else 
-  print "Init Powershell10k for vconsole"
-  [[ ! -f ~/.p10k-x.zsh ]] || source ~/.p10k-v.zsh
-fi
+case ${TERM} in
+	xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
+  		print "Init Powershell10k for XWindows"
+		[[ ! -f ~/.p10k-x.zsh ]] || source ~/.p10k-x.zsh
+    ;;
+    screen*)
+  		print "Init Powershell10k for vconsole"
+		[[ ! -f ~/.p10k-v.zsh ]] || source ~/.p10k-v.zsh
+    ;;
+esac
