@@ -6,7 +6,7 @@ folderEdit="code -a --folder-uri"
 # filesEdit="atom "
 # folderEdit="atom "
 
-LINECOUNT=19
+LINECOUNT=20
 LINEHEIGHT=$(($LINECOUNT * 40))
 OFFSET=120
 HEIGHT=$(($LINEHEIGHT + $OFFSET))
@@ -16,10 +16,11 @@ ACTIONS=(
     "🇬 Workspace" "code -r $HOME/dotfiles.code-workspace"
     "📁 config dir" "$folderEdit $HOME/.config"
     "📁 awesome dir" "$folderEdit $HOME/.config/awesome"
+    "📁 ulauncher dir" "$folderEdit $HOME/.config/ulauncher"
+    "📁 themix templates" "$folderEdit $HOME/.config/oomox/base16/templates"
     "📑 shell configs" "$filesEdit $HOME/.profile* $HOME/.x* $HOME/.X* $HOME/.zsh* $HOME/.*.zsh $HOME/.alias* $HOME/.bashrc*"
     "📑 scripts autostart" "$filesEdit $SCRIPTS/autostart*.sh"
     "📑 scripts install" "$filesEdit $SCRIPTS/install*"
-    "📑 scripts ldap" "$filesEdit $SCRIPTS/ldap/*.sh"
     "📁 scripts dir" "$folderEdit $SCRIPTS"
     "📁 menu dir" "$folderEdit $SCRIPTS/menu"
     "📑 ranger" "$filesEdit $HOME/.config/ranger/*.sh $HOME/.config/ranger/*.conf"

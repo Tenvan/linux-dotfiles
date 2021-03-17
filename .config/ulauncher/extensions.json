@@ -1,0 +1,51 @@
+{
+    "com.github.hippo-o-matic.ulauncher-qalc": {
+        "id": "com.github.hippo-o-matic.ulauncher-qalc",
+        "url": "https://github.com/hippo-o-matic/ulauncher-qalc",
+        "updated_at": "2021-03-14T19:23:59.527796",
+        "last_commit": "45882831f57c265ee3b4bf47cdb862379d47a89a",
+        "last_commit_time": "2021-03-03T03:33:36"
+    },
+    "com.github.kazumasan.ulauncher-sessions": {
+        "id": "com.github.kazumasan.ulauncher-sessions",
+        "url": "https://github.com/Kazumasan/ulauncher-sessions",
+        "updated_at": "2021-03-14T19:24:46.769840",
+        "last_commit": "7e48b0191aa74bcdf101c25dd106e67d0974b1b5",
+        "last_commit_time": "2021-03-14T02:45:15"
+    },
+    "com.github.melianmiko.ulauncher-bluetoothd": {
+        "id": "com.github.melianmiko.ulauncher-bluetoothd",
+        "url": "https://github.com/melianmiko/ulauncher-bluetoothd",
+        "updated_at": "2021-03-14T19:25:25.186048",
+        "last_commit": "1ec383e4efca5728a94b4941ef8e0db480ccc72a",
+        "last_commit_time": "2021-03-06T09:31:31"
+    },
+    "com.github.behrensger.thesaurus_cc_ulauncher": {
+        "id": "com.github.behrensger.thesaurus_cc_ulauncher",
+        "url": "https://github.com/behrensger/thesaurus_cc_ulauncher",
+        "updated_at": "2021-03-14T19:25:55.670760",
+        "last_commit": "375575ce2790fbe40cdfae8fa7b471d06ead683a",
+        "last_commit_time": "2020-12-22T20:33:18"
+    },
+    "com.github.nastuzzisamy.ulauncher-translate": {
+        "id": "com.github.nastuzzisamy.ulauncher-translate",
+        "url": "https://github.com/NastuzziSamy/ulauncher-translate",
+        "updated_at": "2021-03-14T19:27:56.706474",
+        "last_commit": "563a5eb4503fb445265a430ef29baf3e4e07abb9",
+        "last_commit_time": "2021-02-26T11:17:31"
+    },
+    "com.github.manahter.ulauncher-ip-analysis": {
+        "id": "com.github.manahter.ulauncher-ip-analysis",
+        "url": "https://github.com/manahter/ulauncher-IP-Analysis",
+        "updated_at": "2021-03-14T19:28:29.092565",
+        "last_commit": "c4e51706049eb4d59378a6029ef87058e8624101",
+        "last_commit_time": "2021-02-26T14:59:36"
+    },
+    "com.github.kbialek.ulauncher-bitwarden": {
+        "id": "com.github.kbialek.ulauncher-bitwarden",
+        "url": "https://github.com/kbialek/ulauncher-bitwarden",
+        "updated_at": "2021-03-14T19:30:21.035346",
+        "last_commit": "aaa8f4331b4dad350f1fe4e76e64b3e9d73074d5",
+        "last_commit_time": "2020-11-14T17:09:56"
+    }
+}

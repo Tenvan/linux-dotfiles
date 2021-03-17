@@ -74,6 +74,7 @@ inst spectacle
 inst time
 inst timeshift
 inst tldr++
+inst ulauncher
 inst unclutter
 inst unrar
 inst usermin

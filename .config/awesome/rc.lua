@@ -998,7 +998,16 @@ awful.rules.rules = {
     },
     -- Set applications to be maximized at startup.
     -- find class or role via xprop command
-
+    
+    {
+        rule_any = {
+            class = {"Ulauncher"}
+        },
+        properties = {
+            border_width = 0,
+            titlebars_enabled = false
+        }
+    },
     {
         rule = {
             class = "Geany"

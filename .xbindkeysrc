@@ -98,8 +98,15 @@
   mod4 + F8
 
 # Rofi Default Menü
-"sh $SCRIPTS/menu/rofi.sh -show combi"
+#"sh $SCRIPTS/menu/rofi.sh -show combi"
+#  mod4 + z
+
+# Ulauncher
+"ulauncher"
   mod4 + z
+
+"killall ulauncher; sleep 0.5; ulauncher"
+  mod4 + space
 
 #####################
 
@@ -140,11 +147,6 @@
 # Toggle Picom
 "sh $SCRIPTS/picom-toggle-awesome.sh" 
   mod4 + t
-
-# Logout
-"qt-logout" 
-  mod4 + alt + x
-
 
 # Kill Prozess
 "xkill" 

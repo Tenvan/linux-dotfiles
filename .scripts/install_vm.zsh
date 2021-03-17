@@ -36,6 +36,7 @@ if [ $INSTALL_VIRTIO = true ]; then
 		inst virt-manager
 		inst virt-viewer
 		inst virt-backup
+		inst virtio-win
 		inst qemu
 		inst qemu-arch-extra
 		inst libvirt

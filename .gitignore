@@ -77,6 +77,10 @@
 !.config/ranger
 !.config/ranger/*.conf
 !.config/ranger/*.sh
+!.config/ulauncher
+!.config/ulauncher/*
+!.config/ulauncher/user-themes
+!.config/ulauncher/user-themes/**/*
 !.config/xsettingsd
 !.config/xsettingsd/*
 
