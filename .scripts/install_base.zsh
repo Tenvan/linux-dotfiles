@@ -34,6 +34,7 @@ inst dpkg
 inst exa
 inst find-the-command
 inst flatpak
+inst fzf
 inst genius
 inst glances
 inst gparted
@@ -261,10 +262,8 @@ inst bibata-cursor-translucent
 # fonts
 inst font-manager
 inst awesome-terminal-fonts
-inst nerd-fonts-cascadia-code
-inst nerd-fonts-iosevka
-inst nerd-fonts-mononoki
-inst noto-fonts-emoji
+inst nerd-fonts-complete
+inst ttf-devicons
 inst ttf-twemoji
 inst ttf-twemoji-color
 inst ttf-weather-icons
