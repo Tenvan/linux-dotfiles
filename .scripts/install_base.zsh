@@ -9,6 +9,8 @@ initInstall "install_base"
 # collect needed packages #
 ###########################
 
+uninst tlp
+
 # system packages
 inst alacritty
 inst alttab-git
@@ -46,6 +48,7 @@ inst iptraf-ng
 inst kitty
 inst kteatime
 inst lhasa
+inst lxqt-openssh-askpass
 inst multitail
 inst neofetch
 inst nitrogen
@@ -89,7 +92,6 @@ inst xsel
 inst zenity
 inst pm-utils
 
-uninst tlp
 
 if [ $IS_GARUDA = true ]; then
 	inst samba-support

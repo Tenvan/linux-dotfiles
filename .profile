@@ -6,6 +6,7 @@ export SCRIPTS="$HOME/.scripts"
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export EDITOR=$(which micro)
 export MAIL=$(which thunderbird)
+export SSH_ASKPASS=$(which lxqt-openssh-askpass)
 # fix "xdg-open fork-bomb" export your preferred browser from here
 # export BROWSER=$(which firefox)
 export BROWSER=
