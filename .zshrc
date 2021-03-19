@@ -143,7 +143,7 @@ case ${TERM} in
   		print "Init Powershell10k for XWindows"
 		[[ ! -f ~/.p10k-x.zsh ]] || source ~/.p10k-x.zsh
     ;;
-    screen*)
+    *)
   		print "Init Powershell10k for vconsole"
 		[[ ! -f ~/.p10k-v.zsh ]] || source ~/.p10k-v.zsh
     ;;
