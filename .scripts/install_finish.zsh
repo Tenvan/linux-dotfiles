@@ -193,6 +193,25 @@ rm -f $PKG_UNINST_FILE
 
 sudo usermod -aG docker $USER
 
+#############
+# ulauncher
+echo "[Unit]
+Description=Linux Application Launcher
+Documentation=https://ulauncher.io/
+After=display-manager.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/usr/bin/ulauncher --hide-window
+
+[Install]
+WantedBy=graphical.target" > $HOME/.config/systemd/user/ulauncher.service
+
+systemctl --user enable --now ulauncher.service
+errorCheck "ulauncher service"
+
 ###########################
 # enable services
 
