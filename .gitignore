@@ -81,6 +81,7 @@
 !.config/ulauncher/*
 !.config/ulauncher/user-themes
 !.config/ulauncher/user-themes/**/*
+.config/ulauncher/user-themes/**/generated.css
 !.config/xsettingsd
 !.config/xsettingsd/*
 

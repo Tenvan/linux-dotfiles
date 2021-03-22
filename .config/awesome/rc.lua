@@ -998,7 +998,7 @@ awful.rules.rules = {
     },
     -- Set applications to be maximized at startup.
     -- find class or role via xprop command
-    
+
     {
         rule_any = {
             class = {"Ulauncher"}
@@ -1023,25 +1023,6 @@ awful.rules.rules = {
         },
         properties = {
             maximized = false
-        }
-    },
-    {
-        rule = {
-            class = "Vivaldi-stable"
-        },
-        properties = {
-            maximized = false,
-            floating = false
-        }
-    },
-    {
-        rule = {
-            class = "Vivaldi-stable"
-        },
-        properties = {
-            callback = function(c)
-                c.maximized = false
-            end
         }
     },
     -- Maximized clients.
@@ -1076,7 +1057,8 @@ awful.rules.rules = {
             instance = {},
             class = {
                 "Alacritty",
-                "kitty"
+                "kitty",
+                "Thunar"
             },
             name = {},
             role = {}

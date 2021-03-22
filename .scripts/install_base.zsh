@@ -166,7 +166,12 @@ inst qt5-styleplugins
 inst qt5ct
 
 # file manager
-inst pcmanfm
+inst thunar 
+inst thunar-archive-plugin 
+inst thunar-shares-plugin-manjaro 
+inst thunar-vcs-plugin 
+inst thunar-volman    
+inst gtkhash-thunar
 inst mc
 inst ranger
 

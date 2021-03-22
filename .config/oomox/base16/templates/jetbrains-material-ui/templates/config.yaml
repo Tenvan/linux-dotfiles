@@ -1,0 +1,3 @@
+material-ui:
+    extension: -gtk.css
+    output: material-ui
