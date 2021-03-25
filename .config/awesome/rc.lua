@@ -1041,6 +1041,7 @@ awful.rules.rules = {
             instance = {},
             class = {
                 "inkscape",
+                "Mailspring",
                 "VirtualBox Machine",
                 "Vlc"
             },
@@ -1129,6 +1130,18 @@ awful.rules.rules = {
         properties = {
             screen = 2,
             tag = awful.util.tagnames[5],
+            switchtotag = true,
+            maximized = false,
+            floating = false
+        }
+    },
+    {
+        rule = {
+            class = "Code"
+        },
+        properties = {
+            screen = 1,
+            tag = awful.util.tagnames[9],
             switchtotag = true,
             maximized = false,
             floating = false
@@ -1224,7 +1237,28 @@ awful.rules.rules = {
         properties = {
             screen = 2,
             tag = awful.util.tagnames[2],
-            switchtotag = true
+            switchtotag = true,
+            maximized = false,
+            floating = false
+        }
+    },
+    {
+        rule_any = {
+            class = {
+                "URxtv",
+                "XTerm"
+            }
+            -- instance = {
+            --     "urxtv",
+            --     "xterm"
+            -- }
+        },
+        properties = {
+            screen = 2,
+            tag = awful.util.tagnames[2],
+            switchtotag = true,
+            maximized = false,
+            floating = false
         }
     },
     -- Chromium Debugger Instanz auf Screen 2 tag 2 schieben

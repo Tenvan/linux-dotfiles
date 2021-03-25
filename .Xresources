@@ -2,25 +2,27 @@
 ! Generic Theme Colors for using in Theme Engines (GTK Awesome etc.)
 ! ------------------------------------------------------------------------------
 
-! Base16 oomox-Numix-Dark-Manjaro
-! Scheme: oomox-Numix-Dark-Manjaro
+! Base16 oomox-Materia-Dark-Manjaro
+! Scheme: oomox-Materia-Dark-Manjaro
 
 #define base00 #303030
-#define base01 #2e585a
-#define base02 #3e686a
+#define base01 #3a6d66
+#define base02 #4a7d76
 #define base03 #949494
 #define base04 #1c1c1c
 #define base05 #fafafa
-#define base06 #7fa9ab
-#define base07 #f6ffff
-#define base08 #b14a4c
-#define base09 #dab159
-#define base0A #c09943
-#define base0B #2a885e
-#define base0C #44acb4
-#define base0D #5082b9
-#define base0E #a78ba9
-#define base0F #b1693e
+#define base06 #8bbeb7
+#define base07 #ffffff
+#define base08 #bd5f58
+#define base09 #e6c665
+#define base0A #ccae4f
+#define base0B #369d6a
+#define base0C #50c1c0
+#define base0D #5c97c5
+#define base0E #b3a0b5
+#define base0F #bd7e4a
+
+#define background_opacity 90
 
 *foreground:   base05
 #ifdef background_opacity
@@ -59,7 +61,6 @@
 
 ! end of eemox
 
-
 *border:                          #1a1a1a
 
 *fading:                          8
@@ -93,31 +94,32 @@ xterm*saveLines: 2000
 xterm*charClass: 33:4835:4837:4843:4845-47:4864:4895:48126:48
 xterm*termName: xterm-color
 xterm*eightBitInput: false
-xterm*foreground: rgb:d9/d4/d4
-xterm*background: rgb:32/32/32
-xterm*color0: rgb:00/00/00
-xterm*color1: rgb:a8/00/00
-xterm*color2: rgb:00/a8/00
-xterm*color3: rgb:a8/54/00
-xterm*color4: rgb:5f/81/9d
-xterm*color5: rgb:a8/00/a8
-xterm*color6: rgb:00/a8/a8
-xterm*color7: rgb:70/78/80
-xterm*color8: rgb:54/54/54
-xterm*color9: rgb:fc/54/54
-xterm*color10: rgb:54/fc/54
-xterm*color11: rgb:fc/fc/54
-xterm*color12: rgb:81/a2/be
-xterm*color13: rgb:fc/54/fc
-xterm*color14: rgb:54/fc/fc
-xterm*color15: rgb:c5/c8/c6
+xterm*foreground: base05
+xterm*background: base00
+
+xterm*color0:       base00
+xterm*color1:       base08
+xterm*color2:       base0B
+xterm*color3:       base0A
+xterm*color4:       base0D
+xterm*color5:       base0E
+xterm*color6:       base0C
+xterm*color7:       base05
+
+xterm*color8:       base03
+xterm*color9:       base08
+xterm*color10:      base0B
+xterm*color11:      base0A
+xterm*color12:      base0D
+xterm*color13:      base0E
+xterm*color14:      base0C
+xterm*color15:      base07
+
 xterm*boldMode: false
 
 ! ------------------------------------------------------------------------------
 ! URxvt standard arcolinux theme - Reload with xrdb -merge ~/.Xresources
 ! ------------------------------------------------------------------------------
-
-
 
 ! general settings
 URxvt*saveline:         15000
@@ -128,62 +130,71 @@ URxvt*iso14755:         false
 URxvt*iso14755_52:      false
 URxvt*meta8:            false
 URxvt*metaSendsEscape:  true
-URxvt*iconFile:  		/usr/share/icons/Sardi-Mono/scalable/apps/terminal.svg
+URxvt*iconFile:  		    ~/.config/awesome/awesome-buttons/icons/terminal.svg
 
 ! appearance
-URxvt*depth:             32
-!URxvt*transparent:      true
-URxvt*shading:          30
-URxvt*background:       rgba:2222/2222/2222/AAAA
-!URxvt*background:       [80]#404552
-!URxvt*background:       [70]#3F424A
-!URxvt*background:        [80]#282A36
-URxvt*foreground:        #F8F8FF
-URxvt*underlineColor:    #4682B4
-URxvt*highlightColor:    #4682B4
-URxvt*throughColor:      Blue
-URxvt*cursorColor:       #c5c8c6
-URxvt*scrollBar:         false
-URxvt*scrollTtyOutput:   false
-URxvt*scrollWithBuffer:  true
-URxvt*scrollTtyKeypress: true
-URxvt*internalBorder:    0
-URxvt*externalBorder:    0
-URxvt*colorIT:      	 #87af5f
-URxvt*colorBD:      	 #c5c8c6
-URxvt*colorUL:      	 #87afd7
+URxvt*depth:              32
+!URxvt*transparent:        true
+URxvt*shading:            30
 
+#ifdef background_opacity
+URxvt*background:         [background_opacity]base00
+#else
+URxvt*background:         base00
+#endif
+
+URxvt*foreground:         base05
+URxvt*underlineColor:     #4682B4
+URxvt*highlightColor:     #4682B4
+URxvt*throughColor:       Blue
+URxvt*cursorColor:        #c5c8c6
+URxvt*scrollBar:          false
+URxvt*scrollTtyOutput:    false
+URxvt*scrollWithBuffer:   true
+URxvt*scrollTtyKeypress:  true
+URxvt*internalBorder:     0
+URxvt*externalBorder:     0
+URxvt*colorIT:            #87af5f
+URxvt*colorBD:      	    #c5c8c6
+URxvt*colorUL:      	    #87afd7
 
 ! colors
-URxvt*color0: #3f3f3f
-URxvt*color1: #ac3c3c
-URxvt*color2: #60b48a
-URxvt*color3: #dfaf8f
-URxvt*color4: #506070
-URxvt*color5: #dc8cc3
-URxvt*color6: #8cd0d3
-URxvt*color7: #dcdccc
-URxvt*color8: #79A9FF
-URxvt*color9: #da6e6e
-URxvt*color10: #c3bf9f
-URxvt*color11: #f0dfaf
-URxvt*color12: #94bff3
-URxvt*color13: #ec93d3
-URxvt*color14: #93e0e3
-URxvt*color15: #ffffff
+URxvt*color0: base00
+URxvt*color1: base01
+URxvt*color2: base02
+URxvt*color3: base03
+URxvt*color4: base04
+URxvt*color5: base05
+URxvt*color6: base06
+URxvt*color7: base07
+URxvt*color8: base08
+URxvt*color9: base09
+URxvt*color10: base10
+URxvt*color11: base11
+URxvt*color12: base12
+URxvt*color13: base13
+URxvt*color14: base14
+URxvt*color15: base15
 
 ! fonts
 URxvt*letterSpace: 	    		  -2
-URxvt*font:                 	xft:monospace:regular:size=12
-URxvt*imFont:               	xft:monospace:regular:size=12
-URxvt*boldFont:             	xft:monospace:bold:size=12
-URxvt*italicFont:           	xft:monospace:italic:size=12
-URxvt*boldItalicFont:     		xft:monospace:regular:size=12
+!URxvt*font:                 	xft:monospace:regular:size=14
+!URxvt*imFont:               	xft:monospace:regular:size=14
+!URxvt*boldFont:             	xft:monospace:bold:size=14
+!URxvt*italicFont:           	xft:monospace:italic:size=14
+!URxvt*boldItalicFont:     		xft:monospace:regular:size=14
+
+URxvt*font:                 	xft:monospace:regular
+URxvt*imFont:               	xft:monospace:regular
+URxvt*boldFont:             	xft:monospace:bold
+URxvt*italicFont:           	xft:monospace:italic
+URxvt*boldItalicFont:     		xft:monospace:regular
+
 ! run :.!fc-list | grep <font-name>
 
 ! perl extensions
-URxvt*perl-ext-common:  defaultclipboardurl-selectkeyboard-selectresize-font
-!URxvt*perl-ext-common:  defaultclipboardurl-selectkeyboard-selecttabbed
+URxvt*perl-ext-common:        defaultclipboardurl-selectkeyboard-selectresize-font
+!URxvt*perl-ext-common:       defaultclipboardurl-selectkeyboard-selecttabbed
 
 ! macros for clipboard and selection
 URxvt*copyCommand:      xclip -i -selection clipboard
@@ -217,7 +228,6 @@ URxvt*keysym.Control-Shift-V: perl:clipboard:paste
 ! termtype
 UXTerm*termName: xterm-256color
 
-
 UXTerm*cursorColor:        white
 UXTerm*VT100.geometry:     90x30
 UXTerm*font:               monospace
@@ -235,8 +245,8 @@ UXTerm*multiScroll:        true
 UXTerm*toolBar:            false
 
 ! fix colors
-UXTerm*background: rgb:63/63/63
-UXTerm*foreground: rgb:00/00/00
+UXTerm*background: base00
+UXTerm*foreground: base05
 UXTerm*color0: rgb:00/00/00
 UXTerm*color1: rgb:a8/00/00
 UXTerm*color2: rgb:00/a8/00
@@ -257,8 +267,8 @@ UXTerm*boldMode: false
 UXTerm*colorBDMode: true
 UXTerm*colorBD: rgb:3f/3f/3f
 
-alttab*background:       #1a1a1a
-alttab*foreground:       #d6d6d6
+alttab*background:       base00
+alttab*foreground:       base05
 alttab*windowmanager:    1
 alttab*desktops:         1
 alttab*screens:          0

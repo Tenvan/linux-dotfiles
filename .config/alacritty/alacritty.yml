@@ -195,8 +195,8 @@ font:
   # it is recommended to set `use_thin_strokes` to `false`.
   #use_thin_strokes: true
 
-# Base16 oomox-Numix-Dark-Manjaro 256 - alacritty color config
-# oomox-Numix-Dark-Manjaro
+# Base16 oomox-Materia-Dark-Manjaro 256 - alacritty color config
+# oomox-Materia-Dark-Manjaro
 colors:
   # Default colors
   primary:
@@ -211,34 +211,32 @@ colors:
   # Normal colors
   normal:
     black:   '0x303030'
-    red:     '0xb14a4c'
-    green:   '0x2a885e'
-    yellow:  '0xc09943'
-    blue:    '0x5082b9'
-    magenta: '0xa78ba9'
-    cyan:    '0x44acb4'
+    red:     '0xbd5f58'
+    green:   '0x369d6a'
+    yellow:  '0xccae4f'
+    blue:    '0x5c97c5'
+    magenta: '0xb3a0b5'
+    cyan:    '0x50c1c0'
     white:   '0xfafafa'
 
   # Bright colors
   bright:
     black:   '0x949494'
-    red:     '0xb14a4c'
-    green:   '0x2a885e'
-    yellow:  '0xc09943'
-    blue:    '0x5082b9'
-    magenta: '0xa78ba9'
-    cyan:    '0x44acb4'
-    white:   '0xf6ffff'
+    red:     '0xbd5f58'
+    green:   '0x369d6a'
+    yellow:  '0xccae4f'
+    blue:    '0x5c97c5'
+    magenta: '0xb3a0b5'
+    cyan:    '0x50c1c0'
+    white:   '0xffffff'
 
   indexed_colors:
-    - { index: 16, color: '0xdab159' }
-    - { index: 17, color: '0xb1693e' }
-    - { index: 18, color: '0x2e585a' }
-    - { index: 19, color: '0x3e686a' }
+    - { index: 16, color: '0xe6c665' }
+    - { index: 17, color: '0xbd7e4a' }
+    - { index: 18, color: '0x3a6d66' }
+    - { index: 19, color: '0x4a7d76' }
     - { index: 20, color: '0x1c1c1c' }
-    - { index: 21, color: '0x7fa9ab' }
-
-
+    - { index: 21, color: '0x8bbeb7' }
 
 # Visual Bell
 #

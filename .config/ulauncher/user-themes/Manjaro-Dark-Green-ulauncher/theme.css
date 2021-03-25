@@ -1,6 +1,6 @@
 /*
-Base16 oomox-Numix-Dark-Manjaro
-Author: oomox-Numix-Dark-Manjaro
+Base16 oomox-Materia-Dark-Manjaro
+Author: oomox-Materia-Dark-Manjaro
 */
 
 /* App Window */
@@ -10,7 +10,7 @@ Author: oomox-Numix-Dark-Manjaro
 @define-color prefs_backgroud darker(#fafafa);
 
 /* Input */
-@define-color selected_bg_color #3e686a;
+@define-color selected_bg_color #4a7d76;
 @define-color selected_fg_color #fafafa;
 @define-color input_color #fafafa;
 @define-color caret_color darker(#fafafa);
@@ -18,13 +18,13 @@ Author: oomox-Numix-Dark-Manjaro
 /* Result items */
 @define-color item_name #fafafa;
 @define-color item_text darker(#fafafa);
-@define-color item_box_selected #3e686a;
+@define-color item_box_selected #4a7d76;
 @define-color item_text_selected #fafafa;
 @define-color item_name_selected #fafafa;
 @define-color item_shortcut_color darker(#fafafa);
 @define-color item_shortcut_shadow darker(#303030);
 @define-color item_shortcut_color_sel #fafafa;
-@define-color item_shortcut_shadow_sel darker(#3e686a);
+@define-color item_shortcut_shadow_sel darker(#4a7d76);
 
 .app {
     min-width: 1000px;
