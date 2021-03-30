@@ -18,10 +18,6 @@
 !.scripts
 !.scripts/**/*
 
-# Ausnahmen Themes Folder
-!.themes
-!.themes/**/*
-
 # Ausnahmen im .local folder
 !.local
 !.local/share

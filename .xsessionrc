@@ -8,9 +8,6 @@
 
 echo 'Running ~/.xsessionrc'
 
-# for qt5 apps
-export QT_STYLE_OVERRIDE=GTK+
-
 # include sbin in PATH
 if [ -d "/sbin" ] ; then
     PATH="/sbin:$PATH"

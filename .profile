@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 echo 'Running ~/.profile'
 
+# for qt5 apps
+# export QT_STYLE_OVERRIDE=GTK+
+export QT_QPA_PLATFORMTHEME=qt5ct
+
 export SCRIPTS="$HOME/.scripts"
 
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export EDITOR=$(which micro)
 export MAIL=$(which thunderbird)
 export SSH_ASKPASS=$(which lxqt-openssh-askpass)
+
 # fix "xdg-open fork-bomb" export your preferred browser from here
 # export BROWSER=$(which firefox)
 export BROWSER=
