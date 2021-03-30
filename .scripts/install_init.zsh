@@ -63,5 +63,3 @@ fullInstall
 finish
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
-
-#zinit creinstall zsh-users/zsh-completions

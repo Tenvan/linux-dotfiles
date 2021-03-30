@@ -10,7 +10,7 @@ initInstall "install_vm"
 #####################
 
 INSTALL_VIRTIO=true
-INSTALL_VIRTUALBOX=false
+INSTALL_VIRTUALBOX=true
 
 ###########################
 # collect needed packages #
@@ -20,6 +20,9 @@ INSTALL_VIRTUALBOX=false
 if [ $INSTALL_VIRTUALBOX = true ]; then
 	if [ $IS_GARUDA = true ]; then
 		inst virtualbox-meta
+	elif [ $IS_MANJARO = true ]; then
+		inst virtualbox
+		inst virtualbox-ext-oracle
 	else
 		inst virtualbox
 		inst virtualbox-ext-oracle
@@ -43,7 +46,6 @@ if [ $INSTALL_VIRTIO = true ]; then
 		inst ebtables 
 		inst dnsmasq
 		inst ssh-askpass-fullscreen
-		#inst blub
 	fi
 fi
 

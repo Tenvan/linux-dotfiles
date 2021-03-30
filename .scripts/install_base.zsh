@@ -21,11 +21,12 @@ inst bashtop
 inst bat
 inst bitwarden-bin
 inst bpytop
-inst checkupdates-aur
+uninst checkupdates-aur
 inst clamav
 inst clamtk
 inst cockpit
 inst cockpit-machines
+inst cockpit-pcp
 inst copyq
 inst dex
 inst docker
@@ -61,16 +62,16 @@ inst packagekit
 inst picom-jonaburg-git
 inst powershell-bin
 inst python
-inst python-psutil
-inst python-pygit2
-inst python-requests
-inst python-taskw
-inst python-xkbgroup
-inst python2-distutils-extra
+#inst python-psutil
+uninst python-pygit2
+#inst python-requests
+uninst python-taskw
+uninst python-xkbgroup
+uninst python2-distutils-extra
 inst qbittorrent
 inst radiotray-ng
-inst redshift
-inst rofi
+uninst redshift
+uninst rofi
 inst rsyslog
 inst s-tui
 inst shell-color-scripts
@@ -98,12 +99,17 @@ if [ $IS_GARUDA = true ]; then
 	inst samba-support
 fi
 
+if [ $IS_MANJARO = true ]; then
+	inst samba
+	inst manjaro-settings-samba
+fi
+
 # Base Development Tools
 inst dotnet-sdk-bin
 inst git
-inst gitahead-bin
+uninst gitahead-bin
 inst gitflow-avh
-inst github-cli
+uninst github-cli
 inst git-delta-bin
 inst gradle
 inst jdk-openjdk
@@ -118,11 +124,6 @@ inst npm
 inst svn
 inst yarn
 inst tk
-
-if [ $IS_MANJARO = true ]; then
-	inst bootsplash-systemd
-	inst bootsplash-theme-manjaro
-fi
 
 # jetbrains apps
 inst jetbrains-toolbox
@@ -186,7 +187,8 @@ inst bleachbit
 # bluetooth setup
 if [ $IS_GARUDA = true ]; then
 	inst bluetooth-support
-elif [ $IS_GARUDA = true ]; then
+elif [ $IS_MANJARO = true ]; then
+	inst manjaro-bluetooth
 elif [ $IS_ARCO = true ]; then
 	print 'install bluetooth packages'
 	inst bluetooth-autoconnect

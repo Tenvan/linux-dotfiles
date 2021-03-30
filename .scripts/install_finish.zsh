@@ -6,19 +6,19 @@
 initInstall "install_finish"
 
 # Install packages for finishing
+inst libmagick
+inst terminus-font
+inst powerline-fonts
+
 if [ $IS_MANJARO = true ]; then
 	inst manjaro-wallpapers-18.0
+	inst bootsplash-systemd
+	inst bootsplash-theme-manjaro
 fi
-inst libmagick
 
 # powerline in linux console
 if [ $IS_GARUDA = true ]; then
     inst terminess-powerline-font-git
-    inst terminus-font
-    inst powerline-fonts
-else
-	inst terminus-font
-	inst powerline-fonts
 fi
 
 ###############################
@@ -153,32 +153,9 @@ errorCheck "grub mkconfig"
 # login screen console
 sudo cp $SCRIPTS/issue /etc
 
-# Git config for Visual Studio Code
-git config --global diff.tool code
-git config --global difftool.code.cmd "$(which code) --wait --diff \"\$LOCAL\" \"\$BASE\" \"\$REMOTE\""
-git config --global difftool.prompt false
-
-git config --global merge.tool code
-git config --global mergetool.code.cmd "$(which code) --wait \"\$MERGED\""
-git config --global mergetool.prompt false
-
-git config --global core.editor micro
-
-git config --global user.name "stira"
-git config --global user.email "ralf.stich@infoniqa.com"
-
-sudo git config --system core.editor micro
-
-git config --global credential.helper cache
-git config --global credential.helper 'cache --timeout=25000'
-git config --global push.default simple
-
-git config pull.rebase true   # merge (the default strategy)
-
-git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
-
 # nodejs tools for editors
-sudo npm install -g eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
+sudo npm uninstall -g eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
+yarn global add eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
 errorCheck "install required nodejs-tools"
 
 # Default Browser setzen (vorher $BROWSER Variable entfernen)

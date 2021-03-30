@@ -33,7 +33,7 @@ inst aspell
 inst cpu-x
 inst i-nex
 inst baobab
-inst etcher-bin
+uninst etcher-bin
 inst gimp
 inst gimp-help-de
 inst gwenview
@@ -43,8 +43,8 @@ inst partitionmanager
 inst pinta
 inst playerctl
 inst pstoedit
-inst python-lxml
-inst python-numpy
+uninst python-lxml
+uninst python-numpy
 inst teams
 
 if [ $IS_ARCO = true ]; then
