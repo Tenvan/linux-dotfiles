@@ -274,6 +274,7 @@ inst ttf-devicons
 inst ttf-twemoji
 inst ttf-twemoji-color
 inst ttf-weather-icons
+inst ttf-ms-win10-auto
 
 # lightdm config
 if [ $IS_ARCO != true ]; then
