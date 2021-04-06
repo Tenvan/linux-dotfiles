@@ -14,8 +14,14 @@ errorCheck "installation base-devel"
 
 git submodule update --init --recursive
 
+inst pamac-cli
+inst pamac-common
+inst pamac-flatpak-plugin
+inst pamac-gtk
+inst pamac-snap-plugin
+
 # Config pacman
-sudo pacman -S --noconfirm --needed pamac-all
+sudo pacman -S --noconfirm --needed yay
 sed 's/^#Color$/Color/g' </etc/pacman.conf >pacman.conf
 sudo mv pacman.conf /etc/
 sed 's/^.*ILoveCandy$/ILoveCandy/g' </etc/pamac.conf >pamac.conf

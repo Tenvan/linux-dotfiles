@@ -10,7 +10,7 @@ initInstall "install_vm"
 #####################
 
 INSTALL_VIRTIO=true
-INSTALL_VIRTUALBOX=true
+INSTALL_VIRTUALBOX=false
 
 ###########################
 # collect needed packages #

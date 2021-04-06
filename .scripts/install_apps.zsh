@@ -43,8 +43,6 @@ inst partitionmanager
 inst pinta
 inst playerctl
 inst pstoedit
-uninst python-lxml
-uninst python-numpy
 inst teams
 
 if [ $IS_ARCO = true ]; then

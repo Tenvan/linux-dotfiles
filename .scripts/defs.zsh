@@ -41,7 +41,7 @@ print "IsGaruda:      $IS_GARUDA"
 print "IsManjaro:     $IS_MANJARO"
 
 MAKEFLAGS="-j$(nproc)"
-PAKKU_ALL="--color always --needed --noconfirm "
+PAKKU_ALL="--color always --needed "
 
 initInstall() {
 	INSTALL_SCRIPT=$1

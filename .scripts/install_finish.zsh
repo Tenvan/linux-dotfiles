@@ -155,8 +155,10 @@ sudo cp $SCRIPTS/issue /etc
 
 # nodejs tools for editors
 sudo npm uninstall -g eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
+errorCheck "uninstall global npm"
+yarn global upgrade
 yarn global add eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
-errorCheck "install required nodejs-tools"
+errorCheck "install global yarn"
 
 # Default Browser setzen (vorher $BROWSER Variable entfernen)
 export BROWSER=

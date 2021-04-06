@@ -61,13 +61,6 @@ inst p7zip
 inst packagekit
 inst picom-jonaburg-git
 inst powershell-bin
-inst python
-#inst python-psutil
-uninst python-pygit2
-#inst python-requests
-uninst python-taskw
-uninst python-xkbgroup
-uninst python2-distutils-extra
 inst qbittorrent
 inst radiotray-ng
 uninst redshift
@@ -181,6 +174,22 @@ inst paprefs
 inst pasystray
 inst sp
 
+# Python libs
+inst python
+#inst python-psutil
+uninst python-pygit2
+#inst python-requests
+uninst python-taskw
+uninst python-xkbgroup
+uninst python2-distutils-extra
+uninst python-black
+uninst python-nose
+uninst python-pipenv
+uninst python-pyflakes
+uninst python-pytest
+#inst python-lxml
+uninst python-numpy
+
 # other
 inst bleachbit
 
@@ -235,11 +244,6 @@ inst fd
 inst gdb
 inst graphviz
 inst prettier
-inst python-black
-inst python-nose
-inst python-pipenv
-inst python-pyflakes
-inst python-pytest
 inst ripgrep
 inst shellcheck
 inst tar
@@ -269,7 +273,12 @@ inst bibata-cursor-translucent
 # fonts
 inst font-manager
 inst awesome-terminal-fonts
-inst nerd-fonts-complete
+
+#inst nerd-fonts-complete
+inst nerd-fonts-cascadia-code
+inst nerd-fonts-iosevka 
+inst ttf-nerd-fonts-symbols
+
 inst ttf-devicons
 inst ttf-twemoji
 inst ttf-twemoji-color
