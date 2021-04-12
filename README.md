@@ -23,11 +23,11 @@ rm -fr desktop-dotfiles/
 Fehlende Pakete werden mit folgendem Batch nachinstalliert:
 
 ```bash
-sh ~/.scipts/install_init.sh
-sh ~/.scipts/install_base.sh
-sh ~/.scipts/install_apps.sh
-sh ~/.scipts/install_rust_apps.sh
-sh ~/.scipts/install_finish.sh
+zsh ~/.scipts/install_init.zsh
+zsh ~/.scipts/install_base.zsh
+zsh ~/.scipts/install_apps.zsh
+zsh ~/.scipts/install_rust_apps.zsh
+zsh ~/.scipts/install_finish.zsh
 ```
 
 ## Manuelle Konfiguration
