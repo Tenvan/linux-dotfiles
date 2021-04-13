@@ -29,7 +29,6 @@ run start-pulseaudio-x11
 run pasystray
 
 run blueman-tray
-run blueberry-tray
 run blueman-applet
 
 run xscreensaver

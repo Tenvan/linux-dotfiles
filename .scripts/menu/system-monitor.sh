@@ -10,13 +10,13 @@ filesEdit="code -r --file-uri"
 folderEdit="code -r --folder-uri"
 
 LINECOUNT=10
-LINEHEIGHT=$(($LINECOUNT * 40))
+LINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
 OFFSET=120
 HEIGHT=$(($LINEHEIGHT + $OFFSET))
 
 ACTIONS=(
     "💿 System Resourcen" "gnome-system-monitor -r"
-    "💿 s-tui" "$shellCmd --title SysMon:s-tui s-tui"
+    "💿 s-tui" "$shellCmd --hold --title SysMon:s-tui s-tui"
     "💿 bpytop" "$shellCmd --title SysMon:bashtop bpytop"
     "💿 bashtop" "$shellCmd --title SysMon:bashtop bashtop"
     "💿 glances" "$shellCmd --title SysMon:glances glances"

@@ -6,7 +6,7 @@ timeCmd="/usr/bin/time -v "
 myTestLua=$(eval echo $HOME/.config/awesome/rc.test.lua)
 
 LINECOUNT=19
-LINEHEIGHT=$(($LINECOUNT * 40))
+LINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
 OFFSET=120
 HEIGHT=$(($LINEHEIGHT + $OFFSET))
 

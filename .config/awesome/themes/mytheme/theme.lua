@@ -605,7 +605,7 @@ theme.systray_icon_spacing = dpi(2)
 local systray = wibox.widget.systray()
 
 -- systray:set_base_size(dpi(18))
-local systrayWidget = wibox.container.margin(systray, dpi(5), dpi(5), dpi(2), dpi(2))
+local systrayWidget = wibox.container.margin(systray, dpi(5), dpi(5), dpi(8), dpi(2))
 
 local screen2RightWidgets = {
     -- Right widgets

@@ -7,7 +7,7 @@ folderEdit="code -a --folder-uri"
 # folderEdit="atom "
 
 LINECOUNT=19
-LINEHEIGHT=$(($LINECOUNT * 40))
+LINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
 OFFSET=120
 HEIGHT=$(($LINEHEIGHT + $OFFSET))
 

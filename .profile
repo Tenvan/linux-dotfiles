@@ -6,6 +6,8 @@ echo 'Running ~/.profile'
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 export SCRIPTS="$HOME/.scripts"
+export LINEHEIGHT=28
+export WORK_DIR=/media/WORKSPACE/$USER/Node/OneTime
 
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export EDITOR=$(which micro)

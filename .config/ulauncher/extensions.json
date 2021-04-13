@@ -1,11 +1,4 @@
 {
-    "com.github.hippo-o-matic.ulauncher-qalc": {
-        "id": "com.github.hippo-o-matic.ulauncher-qalc",
-        "url": "https://github.com/hippo-o-matic/ulauncher-qalc",
-        "updated_at": "2021-03-18T08:34:34.386705",
-        "last_commit": "45882831f57c265ee3b4bf47cdb862379d47a89a",
-        "last_commit_time": "2021-03-03T03:33:36"
-    },
     "com.github.kazumasan.ulauncher-sessions": {
         "id": "com.github.kazumasan.ulauncher-sessions",
         "url": "https://github.com/Kazumasan/ulauncher-sessions",
@@ -26,13 +19,6 @@
         "updated_at": "2021-03-18T08:34:40.277138",
         "last_commit": "375575ce2790fbe40cdfae8fa7b471d06ead683a",
         "last_commit_time": "2020-12-22T20:33:18"
-    },
-    "com.github.nastuzzisamy.ulauncher-translate": {
-        "id": "com.github.nastuzzisamy.ulauncher-translate",
-        "url": "https://github.com/NastuzziSamy/ulauncher-translate",
-        "updated_at": "2021-03-18T08:34:41.333005",
-        "last_commit": "563a5eb4503fb445265a430ef29baf3e4e07abb9",
-        "last_commit_time": "2021-02-26T11:17:31"
     },
     "com.github.manahter.ulauncher-ip-analysis": {
         "id": "com.github.manahter.ulauncher-ip-analysis",

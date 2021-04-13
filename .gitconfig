@@ -88,8 +88,8 @@
 [alias]
   	logp = log --pretty=format:'%h %ad | %fs%d [%an]' --graph --date=short
   	lg   = log --graph --decorate --date-order --first-parent --pretty=format:'%C(auto)%h%Creset %C(auto)%d%Creset %fs %C(green)(%cr) %C(bold cyan)<%an>%Creset'
-  	lgb  = log --graph --decorate --date-order --branches --first-parent --pretty=format:'%C(auto)%h%Creset %C(auto)%d%Creset %fs %C(green)(%cr) %C(bold cyan)<%an>%Creset'
 	lga  = log --graph --decorate --date-order --all --pretty=format:'%C(auto)%h%Creset %C(auto)%d%Creset %fs %C(green)(%cr) %C(bold cyan)<%an>%Creset'
+  	lgb  = log --graph --decorate --date-order --branches --first-parent --pretty=format:'%C(auto)%h%Creset %C(auto)%d%Creset %fs %C(green)(%cr) %C(bold cyan)<%an>%Creset'
 
 	h   = help -a -g
 	ha   = help -a

@@ -9,30 +9,43 @@ timeCmd="/usr/bin/time -v "
 filesEdit="code -r --file-uri"
 folderEdit="code -r --folder-uri"
 
+startServer() {
+    $shellCmd --hold --title OTC:StartServer yarn workspace onetime-server run start &
+}
+
+startPugWatch() {
+    $shellCmd --hold --title OTC:PugWatch yarn workspace onetime-client pug_once &
+}
+
+startCompiler() {
+    $shellCmd --hold --title OTC:StartDefault yarn workspace onetime-client  start &
+}
+
 startAll() {
     killall node
     fuser -k 4200/tcp
     fuser -k 4201/tcp
     fuser -k 4202/tcp
-    $shellCmd --hold --title OTC:StartServer yarn server:dev &
-    $shellCmd --hold --title OTC:PugWatch yarn --cwd src/client pug:watch &
-    $shellCmd --hold --title OTC:StartDefault yarn --cwd src/client start &
+    startServer
+    startPugWatch
+    startCompiler
 }
 
+
 LINECOUNT=23
-LINEHEIGHT=$(($LINECOUNT * 40))
+LINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
 OFFSET=120
 HEIGHT=$(($LINEHEIGHT + $OFFSET))
 
 ACTIONS=(
     "🇬 Git" "gitahead $WORK_DIR"
-    "💽 Yarn quick install" "$shellCmd --hold --title OTC:QuickInstall $timeCmd yarn install --ignore-scripts"
+    "💽 Yarn quick install" "$shellCmd --hold --title OTC:QuickInstall $timeCmd yarn install"
     "💽 Yarn full install" "$shellCmd --hold --title OTC:FullInstall $timeCmd yarn"
+    "🏄 Start Server" "startServer"
+    "🇵 Pug watch" "startPugWatch"
+    "🛫 Start" "startCompiler"
     "🏄 Start All" "startAll"
-    "🏄 Start Server" "$shellCmd --hold --title OTC:StartServer yarn server:dev"
-    "🇵 Pug watch" "$shellCmd --hold --title OTC:PugWatch yarn --cwd src/client pug:watch"
-    "🇵 Pug once" "$shellCmd --hold --title OTC:PugOnce yarn --cwd src/client pug:once"
-    "🛫 Start" "fuser -k 4200/tcp & $shellCmd --hold --title OTC:StartDefault $timeCmd yarn --cwd src/client start"
+    "🇵 Pug once" "$shellCmd --hold --title OTC:PugOnce yarn workspace onetime-client pug_once"
     "⚗ Generate" "$shellCmd --hold --title OTC:Generate $timeCmd yarn generate"
     "🇺 Check Client Updates" "$shellCmd --hold --title OTC:CheckClientUpdates $timeCmd yarn outdated"
     "🇺 Check Server Updates" "$shellCmd --hold --title OTC:CheckServerUpdates $timeCmd yarn --cwd src/server4 outdated"
