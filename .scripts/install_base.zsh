@@ -117,6 +117,7 @@ inst npm
 inst svn
 inst yarn
 inst tk
+inst nsis
 
 # jetbrains apps
 inst jetbrains-toolbox
@@ -212,11 +213,18 @@ elif [ $IS_ARCO = true ]; then
 fi
 
 # printer setup
+if [ $IS_MANJARO = true ]; then
+	inst manjaro-printer
+fi
 inst brother-mfc-j4420dw
 inst canon-cque
 inst cups-pdf
 inst samsung-printers
 inst system-config-printer
+inst print-manager
+inst xsane
+inst simple-scan
+inst skanlite
 
 # Browser
 inst firefox
@@ -274,10 +282,10 @@ inst bibata-cursor-translucent
 inst font-manager
 inst awesome-terminal-fonts
 
-#inst nerd-fonts-complete
-inst nerd-fonts-cascadia-code
-inst nerd-fonts-iosevka 
-inst ttf-nerd-fonts-symbols
+inst nerd-fonts-complete
+# inst nerd-fonts-cascadia-code
+# inst nerd-fonts-iosevka 
+# inst ttf-nerd-fonts-symbols
 
 inst ttf-devicons
 inst ttf-twemoji
