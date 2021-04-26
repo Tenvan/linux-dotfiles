@@ -18,7 +18,7 @@ startPugWatch() {
 }
 
 startCompiler() {
-    $shellCmd --hold --title OTC:StartDefault yarn workspace onetime-client  start &
+    $shellCmd --hold --title OTC:StartDefault yarn workspace onetime-client start &
 }
 
 startAll() {
@@ -31,12 +31,6 @@ startAll() {
     startCompiler
 }
 
-
-LINECOUNT=23
-LINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
-OFFSET=120
-HEIGHT=$(($LINEHEIGHT + $OFFSET))
-
 ACTIONS=(
     "🇬 Git" "gitahead $WORK_DIR"
     "💽 Yarn quick install" "$shellCmd --hold --title OTC:QuickInstall $timeCmd yarn install"
@@ -47,11 +41,7 @@ ACTIONS=(
     "🏄 Start All" "startAll"
     "🇵 Pug once" "$shellCmd --hold --title OTC:PugOnce yarn workspace onetime-client pug_once"
     "⚗ Generate" "$shellCmd --hold --title OTC:Generate $timeCmd yarn generate"
-    "🇺 Check Client Updates" "$shellCmd --hold --title OTC:CheckClientUpdates $timeCmd yarn outdated"
-    "🇺 Check Server Updates" "$shellCmd --hold --title OTC:CheckServerUpdates $timeCmd yarn --cwd src/server4 outdated"
-    "🆙 Client Upgrade" "$shellCmd --hold --title OTC:ClientUpgrade $timeCmd yarn upgrade"
-    "🆙 Server Upgrade" "$shellCmd --hold --title OTC:ServerUpgrade $timeCmd yarn --cwd src/server4 upgrade"
-    "🥋 Upgrade Full" "$shellCmd --hold --title OTC:FullUpgrade $timeCmd yarn run update:all"
+    "🇺 Check Updates" "$shellCmd --hold --title OTC:CheckClientUpdates $timeCmd yarn upgrade-interactive"
     "💉 Doctor" "$shellCmd --hold --title OTC:Doctor $timeCmd yarn doctor"
     "☑ Doctor Check" "$shellCmd --hold --title OTC:DoctorCheck $timeCmd yarn doctor:check"
     "☑ Client Check" "$shellCmd --hold --title OTC:ClientCheck $timeCmd yarn client:check"
@@ -62,6 +52,11 @@ ACTIONS=(
     "🛻 SQL-Server Restart" "$shellCmd --hold --title OTC:SqlServer $timeCmd sudo systemctl restart mssql-server"
     "📑 Dateien" "$myFileManager $workDir"
 )
+
+LINECOUNT=$(expr ${#ACTIONS[*]} / 2)
+LINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
+OFFSET=120
+HEIGHT=$(($LINEHEIGHT + $OFFSET))
 
 # Function create a scale dialog
 select_application() {

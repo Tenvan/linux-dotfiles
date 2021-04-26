@@ -6,11 +6,6 @@ folderEdit="code -a --folder-uri"
 # filesEdit="atom "
 # folderEdit="atom "
 
-LINECOUNT=19
-LINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
-OFFSET=120
-HEIGHT=$(($LINEHEIGHT + $OFFSET))
-
 ACTIONS=(
     "🇬 Editor" "code"
     "🇬 Workspace" "code -r $HOME/dotfiles.code-workspace"
@@ -32,6 +27,11 @@ ACTIONS=(
     "📑 screenlayout" "$filesEdit $HOME/.screenlayout/*"
     "📑 gitignore" "$filesEdit $HOME/.gitignore"
 )
+
+LINECOUNT=$(expr ${#ACTIONS[*]} / 2)
+LINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
+OFFSET=120
+HEIGHT=$(($LINEHEIGHT + $OFFSET))
 
 get_config_list() {
     zenity --list \

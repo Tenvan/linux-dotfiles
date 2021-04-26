@@ -5,11 +5,6 @@ myTerminal="kitty"
 timeCmd="/usr/bin/time -v "
 myTestLua=$(eval echo $HOME/.config/awesome/rc.test.lua)
 
-LINECOUNT=19
-LINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
-OFFSET=120
-HEIGHT=$(($LINEHEIGHT + $OFFSET))
-
 ACTIONS=(
         "🪄 Install Updates" "$myTerminal --hold --title Sys:Upall $timeCmd paru -Syyu --noconfirm" \
         "🪣 Cleanup Installs" "$myTerminal --hold --title Sys:Cleanup $timeCmd paru -c --noconfirm" \
@@ -31,6 +26,11 @@ ACTIONS=(
         "🚧 Awmtt Test Restart" "awmtt restart" \
         "🚧 Awmtt Test Stop" "awmtt stop"
 )
+
+LINECOUNT=$(expr ${#ACTIONS[*]} / 2)
+LINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
+OFFSET=120
+HEIGHT=$(($LINEHEIGHT + $OFFSET))
 
 # Function create a scale dialog
 select_application() {

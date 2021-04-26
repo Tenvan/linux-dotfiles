@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-LINECOUNT=9
-LINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
-OFFSET=120
-HEIGHT=$(($LINEHEIGHT + $OFFSET))
-
 ACTIONS=(
     "📲 Abmelden" "sh $SCRIPTS/session_logout.sh"
     "◽ Light Theme" "sh $SCRIPTS/lighttheme.sh"
@@ -16,6 +11,11 @@ ACTIONS=(
     "🪃 Neustart" "sh $SCRIPTS/session_reboot.sh"
     "📴 Runterfahren" "sh $SCRIPTS/session_shutdown.sh"
 )
+
+LINECOUNT=$(expr ${#ACTIONS[*]} / 2)
+LINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
+OFFSET=120
+HEIGHT=$(($LINEHEIGHT + $OFFSET))
 
 # Function create a scale dialog
 select_system_action() {
