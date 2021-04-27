@@ -33,7 +33,6 @@ inst aspell
 inst cpu-x
 inst i-nex
 inst baobab
-uninst etcher-bin
 inst gimp
 inst gimp-help-de
 inst gwenview
@@ -43,7 +42,9 @@ inst partitionmanager
 inst pinta
 inst playerctl
 inst pstoedit
+inst psst
 inst teams
+inst teams-insider
 
 if [ $IS_ARCO = true ]; then
 	inst themix-full
@@ -64,3 +65,7 @@ fullInstall
 
 ## FINISHING #
 finish
+
+# Fix Teams Black Screen
+sudo ln -f -s /bin/true /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
+sudo ln -f -s /bin/true /usr/share/teams-insiders/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay

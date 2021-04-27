@@ -353,7 +353,7 @@ screen.connect_signal(
             if
                 (c.class == "firefox") or (c.class == "firefoxdeveloperedition") or (c.class == "Chromium") or
                     (c.class == "Google-chrome") or
-                    (c.class == "Microsoft Teams - Preview")
+                    (c.class == "Microsoft Teams.*")
              then
             elseif c.maximized or (only_one and not c.floating) then
                 -- c.border_width = 0
@@ -1123,9 +1123,13 @@ awful.rules.rules = {
             floating = true
         }
     },
+    -- Spotify Clients
     {
-        rule = {
-            class = "Spotify"
+        rule_any = {
+            class = {
+                "Spotify",
+                "Psst-gui"
+            }
         },
         properties = {
             screen = 2,
@@ -1204,7 +1208,7 @@ awful.rules.rules = {
     {
         -- Teams Hauptfenster
         rule = {
-            class = "Microsoft Teams - Preview",
+            class = "Microsoft Teams.*",
             type = "normal"
         },
         properties = {
@@ -1218,8 +1222,8 @@ awful.rules.rules = {
     {
         -- Teams Messagebox
         rule = {
-            class = "Microsoft Teams - Preview",
-            name = "Microsoft Teams-Benachrichtigung"
+            class = "Microsoft Teams*",
+            name = ".*Benachrichtigung.*"
             --~ type = "notification",
             -- name = "Microsoft Teams-Benachrichtigung"
         },

@@ -79,5 +79,7 @@
     "workbench.settings.openDefaultSettings": true,
     "workbench.editor.decorations.colors": true,
     "search.mode": "reuseEditor",
-    "editor.semanticHighlighting.enabled": true
+    "editor.semanticHighlighting.enabled": true,
+    "tabnine.experimentalAutoImports": true,
+    "Lua.telemetry.enable": true
   }

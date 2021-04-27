@@ -63,8 +63,11 @@ inst picom-jonaburg-git
 inst powershell-bin
 inst qbittorrent
 inst radiotray-ng
-uninst redshift
-uninst rofi
+inst rofi
+inst rofi-emoji 
+inst rofi-mpc 
+inst rofi-mpd 
+inst rofi-translate-git
 inst rsyslog
 inst s-tui
 inst shell-color-scripts
@@ -282,10 +285,17 @@ inst bibata-cursor-translucent
 inst font-manager
 inst awesome-terminal-fonts
 
-inst nerd-fonts-complete
-# inst nerd-fonts-cascadia-code
-# inst nerd-fonts-iosevka 
-# inst ttf-nerd-fonts-symbols
+# inst nerd-fonts-complete
+inst nerd-fonts-cascadia-code
+inst nerd-fonts-dejavu-complete
+inst nerd-fonts-fira-code
+inst nerd-fonts-iosevka 
+inst nerd-fonts-noto-sans-mono
+inst nerd-fonts-noto-sans-regular-complete
+inst nerd-fonts-roboto-mono
+inst nerd-fonts-source-code-pro
+inst nerd-fonts-terminus
+inst ttf-meslo-nerd-font-powerlevel10k
 
 inst ttf-devicons
 inst ttf-twemoji

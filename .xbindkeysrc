@@ -98,15 +98,8 @@
   mod4 + F8
 
 # Rofi Default Menü
-#"sh $SCRIPTS/menu/rofi.sh -show combi"
-#  mod4 + z
-
-# Ulauncher
-"ulauncher"
+"sh $SCRIPTS/menu/rofi.sh -show combi"
   mod4 + z
-
-"killall ulauncher; sleep 0.5; ulauncher"
-  mod4 + space
 
 #####################
 

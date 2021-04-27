@@ -1,6 +1,6 @@
 configuration {
-  modi: "window,drun,ssh,run,keys";
-	combi-modi: "window,ssh,drun";
+  modi: "window,windowcd,drun,calc,file-browser";
+	combi-modi: "window,windowcd,drun,calc";
 	location: 0;
 	lines: 24;
 	show-icons: true;
