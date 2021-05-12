@@ -26,6 +26,15 @@
 		},
 		{
 			"path": ".config/qt5ct/colors"
+		},
+		{
+			"path": ".config/gtk-3.0"
+		},
+		{
+			"path": ".config/qt5ct"
+		},
+		{
+			"path": ".config/fontconfig"
 		}
 	],
 	"settings": {

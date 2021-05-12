@@ -24,8 +24,7 @@ ACTIONS=(
 
 LINECOUNT=$(expr ${#ACTIONS[*]} / 2)
 LINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
-OFFSET=120
-HEIGHT=$(($LINEHEIGHT + $OFFSET))
+HEIGHT=$(($LINEHEIGHT + $LINEOFFSET))
 
 # Function create a scale dialog
 select_application() {

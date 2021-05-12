@@ -13,10 +13,6 @@ startServer() {
     $shellCmd --hold --title OTC:StartServer yarn workspace onetime-server run start &
 }
 
-startPugWatch() {
-    $shellCmd --hold --title OTC:PugWatch yarn workspace onetime-client pug_once &
-}
-
 startCompiler() {
     $shellCmd --hold --title OTC:StartDefault yarn workspace onetime-client start &
 }
@@ -27,7 +23,6 @@ startAll() {
     fuser -k 4201/tcp
     fuser -k 4202/tcp
     startServer
-    startPugWatch
     startCompiler
 }
 
@@ -55,8 +50,7 @@ ACTIONS=(
 
 LINECOUNT=$(expr ${#ACTIONS[*]} / 2)
 LINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
-OFFSET=120
-HEIGHT=$(($LINEHEIGHT + $OFFSET))
+HEIGHT=$(($LINEHEIGHT + $LINEOFFSET))
 
 # Function create a scale dialog
 select_application() {

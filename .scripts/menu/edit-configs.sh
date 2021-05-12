@@ -30,8 +30,7 @@ ACTIONS=(
 
 LINECOUNT=$(expr ${#ACTIONS[*]} / 2)
 LINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
-OFFSET=120
-HEIGHT=$(($LINEHEIGHT + $OFFSET))
+HEIGHT=$(($LINEHEIGHT + $LINEOFFSET))
 
 get_config_list() {
     zenity --list \

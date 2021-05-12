@@ -61,8 +61,8 @@ gdebug.dump(xres)
 -- wm_title_unfocused_color : #cfdae7cc (string)
 
 --
--- Base16 oomox-Materia-Dark-Manjaro
--- Author: oomox-Materia-Dark-Manjaro
+-- Base16 oomox-Numix-Dark-Orange
+-- Author: oomox-Numix-Dark-Orange
 --
 
 function hex2rgb(hex)
@@ -71,21 +71,21 @@ function hex2rgb(hex)
 end
 
 local base00 = "#303030" -- ----
-local base01 = "#3a6d66" -- ---
-local base02 = "#4a7d76" -- --
+local base01 = "#3b6248" -- ---
+local base02 = "#4b7258" -- --
 local base03 = "#949494" -- -
 local base04 = "#1c1c1c" -- +
 local base05 = "#fafafa" -- ++
-local base06 = "#8bbeb7" -- +++
+local base06 = "#8cb399" -- +++
 local base07 = "#ffffff" -- ++++
-local base08 = "#bd5f58" -- red
-local base09 = "#e6c665" -- orange
-local base0A = "#ccae4f" -- yellow
-local base0B = "#369d6a" -- green
-local base0C = "#50c1c0" -- aqua/cyan
-local base0D = "#5c97c5" -- blue
-local base0E = "#b3a0b5" -- purple
-local base0F = "#bd7e4a" -- brown
+local base08 = "#be543a" -- red
+local base09 = "#e7bb47" -- orange
+local base0A = "#cda331" -- yellow
+local base0B = "#37924c" -- green
+local base0C = "#51b6a2" -- aqua/cyan
+local base0D = "#5d8ca7" -- blue
+local base0E = "#b49597" -- purple
+local base0F = "#be732c" -- brown
 
 local theme = {}
 
@@ -182,7 +182,6 @@ theme.font      = "12px monospace"
 theme.hint_font = "10px monospace, courier, sans-serif"
 
 -- vim: et:sw=4:ts=8:sts=4:tw=80:ft=lua
-
 
 -- End of oomox
 
