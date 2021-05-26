@@ -163,15 +163,19 @@ inst qt-logout
 inst qt5-styleplugins
 inst qt5ct
 
+# xfce developer
+inst xfce4-meta
+
 # file manager
-inst thunar 
+inst thunar-devel
 inst thunar-archive-plugin 
 inst thunar-shares-plugin-manjaro 
 inst thunar-vcs-plugin 
-inst thunar-volman    
+inst thunar-volman-devel
 inst gtkhash-thunar
 inst mc
 inst ranger
+
 
 # sound setup
 inst paprefs

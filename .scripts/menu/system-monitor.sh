@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 
-myFileManager="thunar"
-myTerminal="kitty"
-workDir=$WORK_DIR
-shellCmd="$myTerminal  "
-timeCmd="/usr/bin/time -v "
-
-filesEdit="code -r --file-uri"
-folderEdit="code -r --folder-uri"
+shellCmd="kitty "
 
 ACTIONS=(
     "💿 System Resourcen" "gnome-system-monitor -r"
@@ -18,7 +11,7 @@ ACTIONS=(
     "💿 gtop" "$shellCmd --title SysMon:gtop gtop"
     "💿 htop" "$shellCmd --title SysMon:htop htop"
     "💽 iftop (sudo)" "$shellCmd --title SysMon:iftop sudo iftop"
-    "💽 iotop (sudo)" "$shellCmd --title SysMon:iotop sudo iotop"
+    "💽 iotop (sudo)" "$shellCmd --title SysMon:iotop sudo iotop -Pao"
     "💽 iptraf-ng (sudo)" "$shellCmd --title SysMon:iptraf-ng sudo iptraf-ng"
 )
 
@@ -35,7 +28,7 @@ select_application() {
         --text="MONITOR" \
         --column="Option" \
         --column="Aktion" \
-        --separator=" " \
+        --print-column=2 \
         --hide-column=2 \
         --hide-header \
         "${ACTIONS[@]}"
