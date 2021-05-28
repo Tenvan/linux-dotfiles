@@ -289,16 +289,16 @@ inst bibata-cursor-translucent
 inst font-manager
 inst awesome-terminal-fonts
 
-# inst nerd-fonts-complete
-inst nerd-fonts-cascadia-code
-inst nerd-fonts-dejavu-complete
-inst nerd-fonts-fira-code
-inst nerd-fonts-iosevka 
-inst nerd-fonts-noto-sans-mono
-inst nerd-fonts-noto-sans-regular-complete
-inst nerd-fonts-roboto-mono
-inst nerd-fonts-source-code-pro
-inst nerd-fonts-terminus
+inst nerd-fonts-complete
+#inst nerd-fonts-cascadia-code
+#inst nerd-fonts-dejavu-complete
+#inst nerd-fonts-fira-code
+#inst nerd-fonts-iosevka 
+#inst nerd-fonts-noto-sans-mono
+#inst nerd-fonts-noto-sans-regular-complete
+#inst nerd-fonts-roboto-mono
+#inst nerd-fonts-source-code-pro
+#inst nerd-fonts-terminus
 inst ttf-meslo-nerd-font-powerlevel10k
 
 inst ttf-devicons
