@@ -33,7 +33,7 @@ sudo mv pamac.conf /etc/
 
 # install aur manager
 if [ $IS_ARCO = true -o $IS_MANJARO = true ]; then
-	yay -S --noconfirm --needed paru-bin
+	yay -S --noconfirm --needed pikaur paru-bin
 else
 	yay -S --noconfirm --needed paru
 fi

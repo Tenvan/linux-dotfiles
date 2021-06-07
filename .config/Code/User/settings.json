@@ -58,7 +58,7 @@
     "git-graph.graph.style": "angular",
     "git-graph.repository.commits.fetchAvatars": true,
     "git.autorefresh": false,
-    "workbench.colorTheme": "Materia Darker",
+    "workbench.colorTheme": "Carbon Theme",
     "svn.autorefresh": false,
     "vscode_custom_css.imports": [],
     "vscode_custom_css.policy": true,

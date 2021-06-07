@@ -52,8 +52,9 @@ alias userlist="cut -d: -f1 /etc/passwd"
 alias pacman='sudo pacman --color auto'
 alias update='sudo pacman -Syyu'
 
-# paru as aur helper - updates everything
-alias upall="paru -Syyu --noconfirm"
+#package manager
+alias inst="pikaur"
+alias upall="pikaur -Syyu --noconfirm"
 alias upkeys="sudo pacman-key --refresh-keys"
 
 #grub update
