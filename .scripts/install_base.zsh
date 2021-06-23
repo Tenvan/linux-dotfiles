@@ -10,6 +10,12 @@ initInstall "install_base"
 ###########################
 
 uninst tlp
+uninst usermin
+uninst webmin
+uninst checkupdates-aur
+uninst cockpit
+uninst cockpit-machines
+uninst cockpit-pcp
 
 # system packages
 inst alacritty
@@ -21,12 +27,8 @@ inst bashtop
 inst bat
 inst bitwarden-bin
 inst bpytop
-uninst checkupdates-aur
 inst clamav
 inst clamtk
-inst cockpit
-inst cockpit-machines
-inst cockpit-pcp
 inst copyq
 inst dex
 inst docker
@@ -78,8 +80,6 @@ inst tldr++
 inst ulauncher
 inst unclutter
 inst unrar
-inst usermin
-inst webmin
 inst xautolock
 inst xbindkeys
 inst xclip
@@ -101,18 +101,13 @@ if [ $IS_MANJARO = true ]; then
 fi
 
 # Base Development Tools
-inst dotnet-sdk-bin
 inst git
-uninst gitahead-bin
 inst gitflow-avh
-uninst github-cli
 inst git-delta-bin
 inst gradle
 inst jdk-openjdk
 inst jdk8-openjdk
 inst libsecret
-inst mono
-inst mono-msbuild
 inst nodejs-emojione
 inst nodejs
 inst nuget
@@ -121,6 +116,11 @@ inst svn
 inst yarn
 inst tk
 inst nsis
+
+# DotNet/Mono Setup
+inst dotnet-sdk
+inst mono
+inst mono-msbuild
 
 # jetbrains apps
 inst jetbrains-toolbox

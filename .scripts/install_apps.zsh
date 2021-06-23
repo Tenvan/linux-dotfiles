@@ -36,15 +36,18 @@ inst baobab
 inst gimp
 inst gimp-help-de
 inst gwenview
-inst imagemagick
+inst imagemagick-full
 inst inkscape
 inst partitionmanager
 inst pinta
 inst playerctl
 inst pstoedit
-inst psst
+inst psst-git
 inst teams
-inst teams-insider
+inst teams-insiders
+
+inst glfw-x11
+inst phonon-qt5-vlc
 
 if [ $IS_ARCO = true ]; then
 	inst themix-full

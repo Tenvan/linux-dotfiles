@@ -44,7 +44,7 @@
       "*.JSON5": "jsonc"
     },
     "[xml]": {
-      "editor.defaultFormatter": "DotJoshJohnson.xml"
+      "editor.defaultFormatter": "redhat.vscode-xml"
     },
     "pascal.formatter.engine": "ptop",
     "pascal.formatter.enginePath": "/usr/bin/ptop",
@@ -81,5 +81,15 @@
     "search.mode": "reuseEditor",
     "editor.semanticHighlighting.enabled": true,
     "tabnine.experimentalAutoImports": true,
-    "Lua.telemetry.enable": true
+    "Lua.telemetry.enable": true,
+    "xmlTools.enforcePrettySelfClosingTagOnFormat": true,
+    "xmlTools.splitAttributesOnFormat": true,
+    "redhat.telemetry.enabled": true,
+    "xml.codeLens.enabled": true,
+    "xml.format.joinCDATALines": true,
+    "xml.format.joinCommentLines": true,
+    "xml.format.joinContentLines": true,
+    "xml.format.splitAttributes": true,
+    "xml.format.xsiSchemaLocationSplit": "onPair",
+    "vsicons.dontShowNewVersionMessage": true
   }

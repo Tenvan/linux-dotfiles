@@ -6,8 +6,8 @@ timeCmd="/usr/bin/time -v "
 myTestLua=$(eval echo $HOME/.config/awesome/rc.test.lua)
 
 ACTIONS=(
-        "🪄 Install Updates" "$myTerminal --hold --title Sys:Upall $timeCmd paru -Syyu --noconfirm" \
-        "🪣 Cleanup Installs" "$myTerminal --hold --title Sys:Cleanup $timeCmd paru -c --noconfirm" \
+        "🪄 Install Updates" "$myTerminal --hold --title Sys:Upall $timeCmd pikaur -Syyu --noconfirm" \
+        "🪣 Cleanup Installs" "$myTerminal --hold --title Sys:Cleanup $timeCmd pikaur -c --noconfirm" \
         "🧩 Install Base Packages" "$myTerminal --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_base.sh" \
         "🧩 Install Applications" "$myTerminal --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_apps.sh" \
         "🧩 Install Rust Apps" "$myTerminal --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_rust_apps.sh" \

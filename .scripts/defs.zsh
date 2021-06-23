@@ -12,7 +12,7 @@ IS_GARUDA=false
 SCRIPTS="$HOME/.scripts"
 
 #PACKER=pikaur
-PACKER=pikaur
+PACKER=yay
 DEBUG=false
 
 #DEBUG=true
@@ -54,7 +54,7 @@ inst() {
     PAKAGE_INST="${PAKAGE_INST} $1"
     
     if [ $DEBUG = true ]; then
-		eval "$PACKER -S --needed --noconfirm $PAKKU_ALL $1"
+		eval "$PACKER -S --needed $PAKKU_ALL $1"
 		
 	    retVal=$?
 	    if [ $retVal -ne 0 ]; then
@@ -67,7 +67,7 @@ inst() {
 fullInstall() {
 	echo "Step: full Install"
 	if [ $DEBUG != true -a "$PAKAGE_INST" != "" ]; then
-		eval "$PACKER -S --color always --needed --noconfirm $PAKAGE_INST"
+		eval "$PACKER -S --color always --needed $PAKAGE_INST"
 		# errorCheck "install packages"
 	fi
 }
@@ -75,15 +75,13 @@ fullInstall() {
 uninst() {
     PAKAGE_UNINST="${PAKAGE_UNINST} $1"
 
-    if [ $DEBUG = true ]; then
-	    eval "$PACKER -R --noconfirm $1"
-	    
-	    retVal=$?
-	    if [ $retVal -ne 0 ]; then
-	        echo "error on uninstall: $1"
-			ERROR_PAKAGE_UNINST="${ERROR_PAKAGE_UNINST} $1"        
-	    fi
-	fi
+    eval "$PACKER -R $1"
+    
+    retVal=$?
+    if [ $retVal -ne 0 ]; then
+        echo "error on uninstall: $1"
+		ERROR_PAKAGE_UNINST="${ERROR_PAKAGE_UNINST} $1"        
+    fi
 }
 
 fullUninstall() {
