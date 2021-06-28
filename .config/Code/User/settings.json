@@ -91,5 +91,6 @@
     "xml.format.joinContentLines": true,
     "xml.format.splitAttributes": true,
     "xml.format.xsiSchemaLocationSplit": "onPair",
-    "vsicons.dontShowNewVersionMessage": true
+    "vsicons.dontShowNewVersionMessage": true,
+    "security.workspace.trust.untrustedFiles": "open"
   }

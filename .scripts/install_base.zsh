@@ -40,6 +40,7 @@ inst flatpak
 inst fzf
 inst genius
 inst glances
+inst glogg
 inst gparted
 inst gtop
 inst hardinfo
@@ -151,6 +152,7 @@ fi
 inst gnome-disk-utility
 inst gnome-system-monitor
 inst gnome-system-log
+inst gnome-logs
 inst gnome-calculator
 
 # polkits
@@ -289,23 +291,23 @@ inst bibata-cursor-translucent
 inst font-manager
 inst awesome-terminal-fonts
 
-inst nerd-fonts-complete
-#inst nerd-fonts-cascadia-code
-#inst nerd-fonts-dejavu-complete
-#inst nerd-fonts-fira-code
-#inst nerd-fonts-iosevka 
-#inst nerd-fonts-noto-sans-mono
-#inst nerd-fonts-noto-sans-regular-complete
-#inst nerd-fonts-roboto-mono
-#inst nerd-fonts-source-code-pro
-#inst nerd-fonts-terminus
+uninst nerd-fonts-complete
+inst nerd-fonts-cascadia-code
+inst nerd-fonts-dejavu-complete
+inst nerd-fonts-fira-code
+inst nerd-fonts-iosevka 
+inst nerd-fonts-noto-sans-mono
+inst nerd-fonts-noto-sans-regular-complete
+inst nerd-fonts-roboto-mono
+inst nerd-fonts-source-code-pro
+inst nerd-fonts-terminus
 inst ttf-meslo-nerd-font-powerlevel10k
 
 inst ttf-devicons
 inst ttf-twemoji
 inst ttf-twemoji-color
 inst ttf-weather-icons
-inst ttf-ms-win10-auto
+uninst ttf-ms-win10-auto
 
 # lightdm config
 if [ $IS_ARCO != true ]; then

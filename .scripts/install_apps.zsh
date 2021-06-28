@@ -31,7 +31,6 @@ inst microsoft-edge-dev-bin
 # optional application packages
 inst aspell
 inst cpu-x
-inst i-nex
 inst baobab
 inst gimp
 inst gimp-help-de
@@ -41,7 +40,6 @@ inst inkscape
 inst partitionmanager
 inst pinta
 inst playerctl
-inst pstoedit
 inst psst-git
 inst teams
 inst teams-insiders
@@ -55,6 +53,13 @@ if [ $IS_ARCO = true ]; then
 else
 	inst themix-full-git
 fi
+
+# rust apps
+inst bat
+inst fd
+inst ripgrep
+inst tokei
+inst procs
 
 ###############################
 # uninstall unneeded packages #

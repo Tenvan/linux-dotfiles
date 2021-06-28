@@ -53,6 +53,10 @@
   mod4 + e
 #
 
+# System Tools Menü
+"sh $SCRIPTS/menu/system-tools.sh" 
+  mod4 + t
+
 # System Monitors Menü
 "sh $SCRIPTS/menu/system-monitor.sh" 
   mod4 + m
@@ -139,7 +143,7 @@
 
 # Toggle Picom
 "sh $SCRIPTS/picom-toggle-awesome.sh" 
-  mod4 + t
+  Ctrol + mod4 + t
 
 # Kill Prozess
 "xkill" 

@@ -11,7 +11,6 @@ IS_GARUDA=false
 
 SCRIPTS="$HOME/.scripts"
 
-#PACKER=pikaur
 PACKER=yay
 DEBUG=false
 
