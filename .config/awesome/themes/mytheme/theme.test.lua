@@ -17,6 +17,10 @@ local math, string, os = math, string, os
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 
 local xres = require("beautiful.gtk").get_theme_variables()
+if xres == nil then
+    xres = {}
+end
+
 gdebug.dump(xres)
 
 -- current Values
@@ -68,6 +72,9 @@ theme.dir = os.getenv("HOME") .. "/.config/awesome/themes/mytheme"
 theme.wallpaper = theme.dir .. "/wallpaper.jpg"
 
 local function makeColorTransparent(colorkey, opacity)
+    if colorkey == nil then
+        return colorkey
+    end
     gdebug.print_warning("ColorKey: " .. colorkey)
     local colorMain = string.sub(colorkey, 2, 7)
     local transColor = "#".. colorMain .. opacity

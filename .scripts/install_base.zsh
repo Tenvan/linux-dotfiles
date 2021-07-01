@@ -9,14 +9,6 @@ initInstall "install_base"
 # collect needed packages #
 ###########################
 
-uninst tlp
-uninst usermin
-uninst webmin
-uninst checkupdates-aur
-uninst cockpit
-uninst cockpit-machines
-uninst cockpit-pcp
-
 # system packages
 inst alacritty
 inst alttab-git
@@ -55,6 +47,8 @@ inst kteatime
 inst lhasa
 inst lxqt-openssh-askpass
 inst multitail
+inst networkmanager
+inst networkmanager-openconnect
 inst neofetch
 inst nitrogen
 inst notify-send.sh
@@ -78,7 +72,6 @@ inst spectacle
 inst time
 inst timeshift
 inst tldr++
-inst ulauncher
 inst unclutter
 inst unrar
 inst xautolock
@@ -127,7 +120,7 @@ inst mono-msbuild
 inst jetbrains-toolbox
 
 # awesome packages
-inst awesome
+inst awesome-git
 inst vicious
 inst xorg-server-xephyr
 inst luacheck
@@ -135,11 +128,7 @@ inst awmtt
 
 # config tools
 
-if [ $IS_ARCO = true ]; then
-	inst lxappearance
-else
-	inst lxappearance-gtk3
-fi
+inst lxappearance
 #inst lxqt-config
 #inst lxqt-admin
 #inst lxqt-policykit
@@ -171,7 +160,11 @@ inst xfce4-meta
 # file manager
 inst thunar-devel
 inst thunar-archive-plugin 
-inst thunar-shares-plugin-manjaro 
+if [ $IS_MANJARO = true ]; then
+	inst thunar-shares-plugin-manjaro 
+else
+	inst thunar-shares-plugin
+fi
 inst thunar-vcs-plugin 
 inst thunar-volman-devel
 inst gtkhash-thunar
@@ -326,9 +319,9 @@ fi
 if [ $IS_GARUDA = true ]; then
 	inst grub-theme-garuda
 fi
+
 if [ $IS_MANJARO != true -a $IS_ARCO != true ]; then
 	inst grub2-theme-archlinux
-	inst grub-theme-stylish-git
 fi
 
 ###############################

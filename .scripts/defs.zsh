@@ -8,10 +8,11 @@ IS_ARCH=false
 IS_ARCO=false
 IS_MANJARO=false
 IS_GARUDA=false
+IS_ENDEA=false
 
 SCRIPTS="$HOME/.scripts"
 
-PACKER=yay
+PACKER=paru
 DEBUG=false
 
 #DEBUG=true
@@ -34,11 +35,16 @@ if [ $LINUX_VERSION_NAME = "Garuda" ]; then
 	IS_GARUDA=true
 fi
 
-print "Linux Version: $LINUX_VERSION_NAME"
-print "IsArch:        $IS_ARCH"
-print "IsArco:        $IS_ARCO"
-print "IsGaruda:      $IS_GARUDA"
-print "IsManjaro:     $IS_MANJARO"
+if [ $LINUX_VERSION_NAME = "EndeavourOS" ]; then
+	IS_ENDEA=true
+fi
+
+echo "Linux Version: $LINUX_VERSION_NAME"
+echo "IsArch:        $IS_ARCH"
+echo "IsArco:        $IS_ARCO"
+echo "IsGaruda:      $IS_GARUDA"
+echo "IsManjaro:     $IS_MANJARO"
+echo "IsEndeavourOS: $IS_ENDEA"
 
 MAKEFLAGS="-j$(nproc)"
 PAKKU_ALL="--color always --needed "

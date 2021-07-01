@@ -4,10 +4,6 @@
 
 run ibus-daemon -d -x
 
-#change your keyboard if you need it
-run setxkbmap -layout de
-run numlockx on
-
 run unclutter --root --timeout 3
 
 #cursor active at boot
@@ -38,9 +34,9 @@ restart alttab -n 1
 
 run system-config-printer-applet
 
-killall -q picom
-sleep 1
-sh $SCRIPTS/picom-toggle-awesome.sh &
+# killall -q picom
+# sleep 1
+# sh $SCRIPTS/picom-toggle-awesome.sh &
 
 killall xfce-polkit
 sleep 1

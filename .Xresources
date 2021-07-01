@@ -69,7 +69,7 @@
 
 Xcursor.theme: Bibata-Modern-Ice
 Xcursor.size:  32
-! Xft.dpi:       96
+Xft.dpi:       96
 
 Xft.antialias: true
 Xft.hinting:   true

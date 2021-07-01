@@ -40,7 +40,6 @@ inst inkscape
 inst partitionmanager
 inst pinta
 inst playerctl
-inst psst-git
 inst teams
 inst teams-insiders
 

@@ -6,7 +6,7 @@
 initInstall "install_finish"
 
 # Install packages for finishing
-inst libmagick
+inst libmagick-full
 inst terminus-font
 inst powerline-fonts
 
@@ -44,11 +44,6 @@ fi
 
 sudo cp $HOME/.screenlayout/screenlayout.sh /opt
 errorCheck "copy screenlayout"
-
-# config lightdm config
-sudo cp $SCRIPTS/setup/Xsession /etc/lightdm
-sudo chmod +x /etc/lightdm/Xsession
-errorCheck "copy Xsession"
 
 if [ -f /etc/lightdm/lightdm.conf ]; then
 	sudo mv /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
@@ -102,6 +97,59 @@ errorCheck "lightdm greeter config"
 echo "KEYMAP=de
 FONT=ter-powerline-v12n
 FONT_MAP=" | sudo tee /etc/vconsole.conf
+
+# Default Browser setzen (vorher $BROWSER Variable entfernen)
+export BROWSER=
+xdg-settings set default-web-browser google-chrome.desktop
+
+sudo fc-cache -fv
+errorCheck "fontcache"
+
+rm -f $PKG_FILE
+rm -f $PKG_UNINST_FILE
+
+sudo usermod -aG docker $USER
+
+#############
+# ulauncher
+echo "[Unit]
+Description=Linux Application Launcher
+Documentation=https://ulauncher.io/
+After=display-manager.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/usr/bin/ulauncher --hide-window
+
+[Install]
+WantedBy=graphical.target" > $HOME/.config/systemd/user/ulauncher.service
+
+systemctl --user enable --now ulauncher.service
+errorCheck "ulauncher service"
+
+###########################
+# enable services
+
+# printer Service
+sudo systemctl enable --now cups
+errorCheck "printer service"
+
+# docker
+sudo systemctl enable --now docker
+errorCheck "docker service"
+
+#sudo systemctl enable --now bluetooth-autoconnect
+#errorCheck "bluetooth-autoconnect service"
+
+sudo systemctl enable --now fstrim.timer
+errorCheck "fstrim service"
+
+mkdir -p ~/.config/systemd/user/
+sudo cp /usr/lib/systemd/user/pulseaudio-bluetooth-autoconnect.service /etc/systemd/user
+systemctl enable pulseaudio-bluetooth-autoconnect --user --now
+errorCheck "pulseaudio-bluetooth-autoconnect service"
 
 # grub config
 sed 's/.*GRUB_GFXMODE=.*$/GRUB_GFXMODE="1920x1080,auto"/g' </etc/default/grub >grub
@@ -159,63 +207,3 @@ errorCheck "uninstall global npm"
 yarn global upgrade
 yarn global add eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
 errorCheck "install global yarn"
-
-# Default Browser setzen (vorher $BROWSER Variable entfernen)
-export BROWSER=
-xdg-settings set default-web-browser google-chrome.desktop
-
-sudo fc-cache -fv
-errorCheck "fontcache"
-
-rm -f $PKG_FILE
-rm -f $PKG_UNINST_FILE
-
-sudo usermod -aG docker $USER
-
-#############
-# ulauncher
-echo "[Unit]
-Description=Linux Application Launcher
-Documentation=https://ulauncher.io/
-After=display-manager.service
-
-[Service]
-Type=simple
-Restart=always
-RestartSec=1
-ExecStart=/usr/bin/ulauncher --hide-window
-
-[Install]
-WantedBy=graphical.target" > $HOME/.config/systemd/user/ulauncher.service
-
-systemctl --user enable --now ulauncher.service
-errorCheck "ulauncher service"
-
-###########################
-# enable services
-
-# printer Service
-sudo systemctl enable --now cups
-errorCheck "printer service"
-
-# docker
-sudo systemctl enable --now docker
-errorCheck "docker service"
-
-# webmin
-sudo systemctl enable --now webmin
-errorCheck "webmin service"
-
-# cockpit
-sudo systemctl enable --now cockpit.socket
-
-sudo systemctl enable --now bluetooth-autoconnect
-errorCheck "bluetooth-autoconnect service"
-
-sudo systemctl enable --now fstrim.timer
-errorCheck "fstrim service"
-
-mkdir -p ~/.config/systemd/user/
-sudo cp /usr/lib/systemd/user/pulseaudio-bluetooth-autoconnect.service /etc/systemd/user
-systemctl enable pulseaudio-bluetooth-autoconnect --user --now
-errorCheck "pulseaudio-bluetooth-autoconnect service"
