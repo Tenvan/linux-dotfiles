@@ -97,7 +97,11 @@ fi
 # Base Development Tools
 inst git
 inst gitflow-avh
-inst git-delta-bin
+if [ $IS_ENDEA = true -o $IS_ARCH = true ]; then
+	inst git-delta-git
+else
+	inst git-delta-bin
+fi
 inst gradle
 inst jdk-openjdk
 inst jdk8-openjdk
