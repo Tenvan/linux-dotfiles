@@ -202,10 +202,15 @@ if [ $IS_GARUDA = true ]; then
 	inst bluetooth-support
 elif [ $IS_MANJARO = true ]; then
 	inst manjaro-bluetooth
-else 
+elif [ $IS_ENDEA = true ]; then
+	inst bluez 
+	inst bluez-utils 
+	inst pulseaudio-bluetooth
+	inst blueman
+elif [ $IS_ARCO = true ]; then
 	print 'install bluetooth packages'
-	inst bluetooth-autoconnect
-	#inst pulseaudio-bluetooth
+	#inst bluetooth-autoconnect
+	inst pulseaudio-bluetooth
 	inst blueman
 	#inst bluez
 	#inst bluez-hid2hci
@@ -213,6 +218,7 @@ else
 	#inst bluez-plugins
 	#inst bluez-tools
 	#inst bluez-utils
+
 fi
 
 # printer setup
@@ -223,8 +229,21 @@ inst brother-mfc-j4420dw
 inst canon-cque
 inst cups-pdf
 inst samsung-printers
+inst hplip
 inst system-config-printer
 inst print-manager
+
+inst ghostscript 
+inst gsfonts 
+inst foomatic-db-engine 
+inst foomatic-db 
+inst foomatic-db-ppds 
+inst foomatic-db-nonfree 
+inst foomatic-db-nonfree-ppds 
+inst foomatic-db-gutenprint-ppds
+inst gutenprint 
+
+# scanner setup
 uninst xsane
 uninst simple-scan
 uninst skanlite

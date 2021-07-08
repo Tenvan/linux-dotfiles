@@ -133,7 +133,8 @@ errorCheck "ulauncher service"
 # enable services
 
 # printer Service
-sudo systemctl enable --now cups
+sudo systemctl enable --now cups.socket
+sudo systemctl enable --now cups.service
 errorCheck "printer service"
 
 # docker
@@ -207,6 +208,7 @@ sudo cp $SCRIPTS/issue /etc
 # nodejs tools for editors
 sudo npm uninstall -g eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
 errorCheck "uninstall global npm"
+
 yarn global upgrade
 yarn global add eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
 errorCheck "install global yarn"

@@ -51,6 +51,8 @@ alias userlist="cut -d: -f1 /etc/passwd"
 # pacman or pm
 alias pacman='sudo pacman --color auto'
 alias update='sudo pacman -Syyu'
+alias update-fc='sudo fc-cache -fv'
+
 
 #package manager
 alias inst="paru --color always --needed --stats --news --skipreview --newsonupgrade"
