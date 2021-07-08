@@ -8,6 +8,10 @@ initInstall "install_apps"
 #########################
 # collect optional apps #
 #########################
+uninst epdfview
+uninst tracker3-miners
+uninst nautilus
+uninst poppler-glib
 
 # gimicks
 inst cmatrix

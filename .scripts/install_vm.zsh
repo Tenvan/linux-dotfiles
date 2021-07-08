@@ -43,7 +43,8 @@ if [ $INSTALL_VIRTIO = true ]; then
 		inst qemu
 		inst qemu-arch-extra
 		inst libvirt
-		inst ebtables 
+		inst iptables-nft
+		inst ebtables
 		inst dnsmasq
 		inst ssh-askpass-fullscreen
 	fi

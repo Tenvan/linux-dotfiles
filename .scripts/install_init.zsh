@@ -32,11 +32,7 @@ sed 's/^.*KeepBuiltPkgs$/KeepBuiltPkgs/g' </etc/pamac.conf >pamac.conf
 sudo mv pamac.conf /etc/
 
 # install aur manager
-if [ $IS_ARCO = true -o $IS_MANJARO = true ]; then
-	yay -S --noconfirm --needed pikaur paru-bin
-else
-	yay -S --noconfirm --needed paru
-fi
+yay -S --noconfirm --needed pikaur paru-bin
 
 errorCheck "installation aur manager"
 

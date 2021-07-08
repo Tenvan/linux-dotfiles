@@ -47,7 +47,7 @@ echo "IsManjaro:     $IS_MANJARO"
 echo "IsEndeavourOS: $IS_ENDEA"
 
 MAKEFLAGS="-j$(nproc)"
-PAKKU_ALL="--color always --needed "
+PAKKU_ALL="--color always --needed --stats --news --skipreview --newsonupgrade"
 
 initInstall() {
 	INSTALL_SCRIPT=$1
@@ -59,7 +59,7 @@ inst() {
     PAKAGE_INST="${PAKAGE_INST} $1"
     
     if [ $DEBUG = true ]; then
-		eval "$PACKER -S --needed $PAKKU_ALL $1"
+		eval "$PACKER -S $PAKKU_ALL $1"
 		
 	    retVal=$?
 	    if [ $retVal -ne 0 ]; then
@@ -72,7 +72,7 @@ inst() {
 fullInstall() {
 	echo "Step: full Install"
 	if [ $DEBUG != true -a "$PAKAGE_INST" != "" ]; then
-		eval "$PACKER -S --color always --needed $PAKAGE_INST"
+		eval "$PACKER -S $PAKKU_ALL $PAKAGE_INST"
 		# errorCheck "install packages"
 	fi
 }

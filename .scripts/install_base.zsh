@@ -166,6 +166,7 @@ else
 	inst thunar-shares-plugin
 fi
 inst thunar-vcs-plugin 
+uninst thunar-volman
 inst thunar-volman-devel
 inst gtkhash-thunar
 inst mc
@@ -201,7 +202,7 @@ if [ $IS_GARUDA = true ]; then
 	inst bluetooth-support
 elif [ $IS_MANJARO = true ]; then
 	inst manjaro-bluetooth
-elif [ $IS_ARCO = true ]; then
+else 
 	print 'install bluetooth packages'
 	inst bluetooth-autoconnect
 	#inst pulseaudio-bluetooth
@@ -224,9 +225,11 @@ inst cups-pdf
 inst samsung-printers
 inst system-config-printer
 inst print-manager
-inst xsane
-inst simple-scan
-inst skanlite
+uninst xsane
+uninst simple-scan
+uninst skanlite
+uninst colord-sane
+uninst sane
 
 # Browser
 inst firefox

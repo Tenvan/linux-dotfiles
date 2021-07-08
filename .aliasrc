@@ -53,8 +53,8 @@ alias pacman='sudo pacman --color auto'
 alias update='sudo pacman -Syyu'
 
 #package manager
-alias inst="yay"
-alias upall="yay -Syyu --noconfirm"
+alias inst="paru --color always --needed --stats --news --skipreview --newsonupgrade"
+alias upall="paru -Syyu --color always --needed --stats --news --skipreview --newsonupgrade"
 alias upkeys="sudo pacman-key --refresh-keys"
 
 #grub update
