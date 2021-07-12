@@ -55,7 +55,7 @@ alias update-fc='sudo fc-cache -fv'
 
 
 #package manager
-alias inst="paru --color always --needed --stats --news --skipreview --newsonupgrade"
+alias inst="paru --color always --needed --stats --news --skipreview --newsonupgrade --bottomup"
 alias upall="paru -Syyu --color always --needed --stats --news --skipreview --newsonupgrade"
 alias upkeys="sudo pacman-key --refresh-keys"
 
