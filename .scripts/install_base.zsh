@@ -342,6 +342,10 @@ if [ $IS_MANJARO = true ]; then
 fi
 
 # grub
+if [ $IS_ENDEA == true -o $IS_ARCH == true ]; then
+	inst grub-customizer
+fi
+
 if [ $IS_GARUDA = true ]; then
 	inst grub-theme-garuda
 fi

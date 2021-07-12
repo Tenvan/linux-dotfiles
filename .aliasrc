@@ -79,8 +79,9 @@ alias killx="sudo systemctl stop lightdm; sleep 1; sudo systemctl start lightdm"
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ~='cd $HOME'
+alias cdw='cd /media/WORKSPACE/$USER'
 alias cdd='cd /media/WORKSPACE/$USER/DotNet'
-alias cdn='cd /media/WORKSPACE/$USER/Node'
+alias cdd='cd /media/WORKSPACE/$USER/Node'
 
 alias ed=$EDITOR
 
