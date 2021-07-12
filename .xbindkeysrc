@@ -63,7 +63,7 @@
 
 # System Logout Menü
 "sh $SCRIPTS/menu/system-menu.sh" 
-  mod4 + p
+  mod4 + x
 
 #
 ##################

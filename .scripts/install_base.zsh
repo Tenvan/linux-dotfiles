@@ -27,7 +27,6 @@ inst docker
 inst docker-compose
 inst dpkg
 inst exa
-inst find-the-command
 inst flatpak
 inst fzf
 inst genius
@@ -83,7 +82,6 @@ inst xorg-xsetroot
 inst xsel
 inst zenity
 inst pm-utils
-
 
 if [ $IS_GARUDA = true ]; then
 	inst samba-support
@@ -154,7 +152,6 @@ inst gnome-calculator
 inst xfce-polkit
 
 inst xscreensaver
-inst qt-logout
 inst qt5-styleplugins
 inst qt5ct
 
@@ -286,17 +283,9 @@ inst tar
 
 # wallpapers, themes, icons and fonts
 
-# themes
-inst materia-gtk-theme
-inst kvantum-theme-materia
-inst adwaita-dark
-
 # icons
 inst paper-icon-theme
 inst papirus-icon-theme
-
-# wallpapers
-inst ukui-wallpapers
 
 # cursor
 if [ $IS_ARCO = true ]; then
@@ -353,6 +342,12 @@ fi
 if [ $IS_MANJARO != true -a $IS_ARCO != true ]; then
 	inst grub2-theme-archlinux
 fi
+
+# btrfs tools
+inst grub-btrfs
+inst snap-pac
+inst snap-pac-grub
+inst snapper-gui
 
 ###############################
 # uninstall unneeded packages #

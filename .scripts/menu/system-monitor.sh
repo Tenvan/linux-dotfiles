@@ -21,7 +21,9 @@ HEIGHT=$(($MLINEHEIGHT + $LINEOFFSET))
 
 # Function create a scale dialog
 select_application() {
-    zenity --list \
+    yad --center --on-top --sticky \
+        --list \
+        --no-headers \
         --width=400 \
         --height=$HEIGHT \
         --title="Monitor Apps" \
@@ -30,7 +32,6 @@ select_application() {
         --column="Aktion" \
         --print-column=2 \
         --hide-column=2 \
-        --hide-header \
         "${ACTIONS[@]}"
 }
 

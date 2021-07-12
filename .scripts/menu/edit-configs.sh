@@ -28,7 +28,9 @@ MLINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
 HEIGHT=$(($MLINEHEIGHT + $LINEOFFSET))
 
 get_config_list() {
-    zenity --list \
+    yad --center --on-top --sticky \
+        --list \
+        --no-headers \
         --width=400 \
         --height=$HEIGHT \
         --title="Edit Konfiguation" \
@@ -38,7 +40,6 @@ get_config_list() {
         --separator=" " \
         --print-column=2 \
         --hide-column=2 \
-        --hide-header \
         "${ACTIONS[@]}"
 }
 

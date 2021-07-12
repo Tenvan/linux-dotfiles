@@ -8,12 +8,6 @@ export WORK_DIR=/media/WORKSPACE/$USER/Node/OneTime
 
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export EDITOR=$(which micro)
-export LINEOFFSET=130
-export LINEHEIGHT=28
-
-# fix "xdg-open fork-bomb" export your preferred browser from here
-# export BROWSER=$(which firefox)
-export BROWSER=
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH

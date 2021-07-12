@@ -49,11 +49,7 @@ if [ -f /etc/lightdm/lightdm.conf ]; then
 	sudo mv /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
 fi
 
-if [ $IS_MANJARO = true ]; then
-	GREETER="lightdm-slick-greeter"
-else
-	GREETER="lightdm-gtk-greeter"
-fi
+GREETER="lightdm-slick-greeter"
 
 echo "[Seat:*]
 [LightDM]
@@ -62,8 +58,8 @@ run-directory=/run/lightdm
 
 [Seat:*]
 greeter-session=$GREETER
-user-session=xfce
-session-wrapper=/etc/lightdm/Xsession
+#user-session=xfce
+#session-wrapper=/etc/lightdm/Xsession
 display-setup-script=/opt/screenlayout.sh
 [XDMCPServer]
 [VNCServer]"  | sudo tee /etc/lightdm/lightdm.conf

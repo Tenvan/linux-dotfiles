@@ -403,14 +403,6 @@ local globalkeys =
         end,
         {description = "reload awesome", group = kgAwesome}
     ),
-    awful.key(
-        {modkey},
-        "x",
-        function()
-            awful.spawn.with_shell("sh $SCRIPTS/menu/system-menu.sh")
-        end,
-        {description = "Zeige Logout-Dialog", group = kgAwesome}
-    ),
     -- alt + ...
     -- Hotkeys Awesome
     awful.key({modkey}, "s", hotkeys_popup.show_help, {description = "show help", group = kgAwesome}),
@@ -1103,8 +1095,7 @@ awful.rules.rules = {
             }
         },
         properties = {
-            floating = true,
-            opacity = 0.7
+            floating = true
         }
     },
     -- Special applications mappings
@@ -1427,4 +1418,5 @@ client.connect_signal(
 -- }}}
 
 -- Autostart applications
+awful.spawn.with_shell("sh ~/.scripts/autostart-awesome.sh")
 notify("Awesome Default", "Awesome Default erfolgreich gestartet !!", naughty.config.presets.info)

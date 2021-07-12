@@ -18,7 +18,9 @@ HEIGHT=$(($MLINEHEIGHT + $LINEOFFSET))
 
 # Function create a scale dialog
 select_system_action() {
-    zenity --list \
+    yad --center --on-top --sticky \
+        --list \
+        --no-headers \
         --width=400 \
         --height=$HEIGHT \
         --title="Edit Konfiguation" \
@@ -28,7 +30,6 @@ select_system_action() {
         --separator=" " \
         --print-column=2 \
         --hide-column=2 \
-        --hide-header \
         "${ACTIONS[@]}"
 }
 
