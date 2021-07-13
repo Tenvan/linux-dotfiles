@@ -10,8 +10,10 @@
      lain : https://github.com/lcpz/lain
 
 --]] -- {{{ Required libraries
-local awesome, client, mouse, screen, tag = awesome, client, mouse, screen, tag
-local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, table, tostring, tonumber, type
+local awesome, client, screen = awesome, client, screen
+local ipairs, string, os, tostring = ipairs, string, os, tostring
+
+local is_initialized = false
 
 -- https://awesomewm.org/doc/api/documentation/05-awesomerc.md.html
 -- Standard awesome library
@@ -38,7 +40,11 @@ naughty.config.defaults["border_width"] = beautiful.border_width
 naughty.config.defaults["border_width"] = beautiful.border_width
 naughty.config.defaults["position"] = "bottom_right"
 
-local function notify(titel, message, category)
+local function sound(soundFile)
+    awful.spawn("paplay " .. soundFile)
+end
+
+local function notify(titel, message, category, playSound)
     naughty.notify(
         {
             presets = category,
@@ -46,6 +52,14 @@ local function notify(titel, message, category)
             title = titel
         }
     )
+
+    if playSound ~= false then
+        if category == naughty.config.presets.critical then
+            sound("/usr/share/sounds/Smooth/stereo/dialog-error.oga")
+        else
+            sound("/usr/share/sounds/Smooth/stereo/dialog-information.oga")
+        end
+    end
 end
 
 -- local menubar       = require("menubar")
@@ -70,24 +84,6 @@ local dpi = require("beautiful.xresources").apply_dpi
 if awesome.startup_errors then
     notify("Oops, there were errors during startup!", awesome.startup_errors, naughty.config.presets.critical)
 end
-
--- Handle runtime errors after startup
-do
-    local in_error = false
-    awesome.connect_signal(
-        "debug::error",
-        function(err)
-            if in_error then
-                return
-            end
-            in_error = true
-
-            notify("Oops, an error happened!", tostring(err), naughty.config.presets.critical)
-            in_error = false
-        end
-    )
-end
--- }}}
 
 -- {{{ Autostart windowless processes
 local function run_once(cmd_arr)
@@ -321,8 +317,14 @@ awful.util.mymainmenu =
         }
     }
 )
+
 -- hide menu when mouse leaves it
--- awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function() awful.util.mymainmenu:hide() end)
+awful.util.mymainmenu.wibox:connect_signal(
+    "mouse::leave",
+    function()
+        awful.util.mymainmenu:hide()
+    end
+)
 
 -- menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
 -- }}}
@@ -332,15 +334,9 @@ awful.util.mymainmenu =
 screen.connect_signal(
     "property::geometry",
     function(s)
+        -- notify("Window", "'property::geometry' event raised: " .. s.name)
         -- Wallpaper
-        if beautiful.wallpaper then
-            local wallpaper = beautiful.wallpaper
-            -- If wallpaper is a function, call it with the screen
-            if type(wallpaper) == "function" then
-                wallpaper = wallpaper(s)
-            end
-            gears.wallpaper.maximized(wallpaper, s, true)
-        end
+        awful.spawn.with_shell("sh ~/.scripts/set-wallpaper.sh")
     end
 )
 
@@ -348,6 +344,7 @@ screen.connect_signal(
 screen.connect_signal(
     "arrange",
     function(s)
+        -- notify("Window", "'arange' event raised: " .. s.name)
         local only_one = #s.tiled_clients == 1
         for _, c in pairs(s.clients) do
             if
@@ -368,7 +365,7 @@ screen.connect_signal(
 awful.screen.connect_for_each_screen(
     function(s)
         gdebug.print_warning("Screen " .. s.index)
-        gdebug.dump(s)
+        gdebug.dump(s, "Screen", 3)
 
         beautiful.at_screen_connect(s)
     end
@@ -398,7 +395,6 @@ local globalkeys =
         {modkey, shiftkey},
         "r",
         function()
-            awful.spawn.with_shell("sh $SCRIPTS/autostart-global.sh")
             awesome.restart()
         end,
         {description = "reload awesome", group = kgAwesome}
@@ -1313,18 +1309,91 @@ awful.rules.rules = {
 }
 -- }}}
 
--- {{{ Signals
+-- {{{ Client Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal(
     "manage",
     function(c)
-        -- Set the windows at the slave,
-        -- i.e. put it at the end of others instead of setting it master.
-        -- if not awesome.startup then awful.client.setslave(c) end
+        if is_initialized then
+            -- notify("Client", "'manage' event raised:" .. c.name)
+            -- sound("/usr/share/sounds/Smooth/stereo/window-switch.oga")
+            -- Set the windows at the slave,
+            -- i.e. put it at the end of others instead of setting it master.
+            -- if not awesome.startup then awful.client.setslave(c) end
 
-        if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
-            -- Prevent clients from being unreachable after screen count changes.
-            awful.placement.no_offscreen(c)
+            if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
+                -- Prevent clients from being unreachable after screen count changes.
+                awful.placement.no_offscreen(c)
+            end
+        end
+    end
+)
+
+client.connect_signal(
+    "swapped",
+    function(c, source, is_source)
+        if is_initialized and not is_source then
+            -- notify("Client", "'swapped' event raised: " .. c.name)
+            sound("/usr/share/sounds/Smooth/stereo/window-switch.oga")
+        end
+    end
+)
+
+client.connect_signal(
+    "raised",
+    function(c)
+        if is_initialized then
+            -- notify("Client", "'raised' event raised: " .. c.name)
+            sound("/usr/share/sounds/Smooth/stereo/notebook-tab-changed.oga")
+        end
+    end
+)
+
+client.connect_signal(
+    "lowered",
+    function(c)
+        if is_initialized then
+        -- notify("Client", "'lowered' event raised: " .. c.name)
+        end
+    end
+)
+
+client.connect_signal(
+    "request::activate",
+    function(c)
+        if is_initialized then
+        -- notify("Client", "'request::activate' event raised: " .. c.name)
+        end
+    end
+)
+
+client.connect_signal(
+    "request::geometry",
+    function(c, context, Additional)
+        if is_initialized and context ~= "mouse.move" and context ~= "mouse.resize" then
+            if context == "maximized" then
+                notify("Client", "Maximized: " .. c.name)
+            else
+                -- notify("Client", "'request::geometry' event raised: " .. c.name .. " Context: " .. context)
+            end
+        end
+    end
+)
+
+client.connect_signal(
+    "property::window",
+    function(c)
+        if is_initialized then
+        -- notify("Client", "'property::window' event raised: " .. c.name)
+        end
+    end
+)
+
+client.connect_signal(
+    "property::size",
+    function(c)
+        if is_initialized then
+        -- notify("Client", "'property::size' event raised: " .. c.name)
         end
     end
 )
@@ -1333,6 +1402,7 @@ client.connect_signal(
 client.connect_signal(
     "request::titlebars",
     function(c)
+        -- notify("Client", "'request::titlebars' event raised: " .. c.name)
         -- Custom
         if beautiful.titlebar_fun then
             beautiful.titlebar_fun(c)
@@ -1381,6 +1451,7 @@ client.connect_signal(
             {
                 -- Right
                 awful.titlebar.widget.floatingbutton(c),
+                awful.titlebar.widget.minimizebutton(c),
                 awful.titlebar.widget.maximizedbutton(c),
                 awful.titlebar.widget.stickybutton(c),
                 awful.titlebar.widget.ontopbutton(c),
@@ -1403,20 +1474,94 @@ client.connect_signal(
 client.connect_signal(
     "focus",
     function(c)
-        c.border_color = beautiful.border_focus
+        if is_initialized then
+            -- notify("Window", "'focus' event raised: " .. c.name)
+            c.border_color = beautiful.border_focus
         -- c.border_color = '#ff000050'
+        end
     end
 )
 
 client.connect_signal(
     "unfocus",
     function(c)
-        c.border_color = beautiful.border_normal
+        if is_initialized then
+            -- notify("Window", "'unfocus' event raised: " .. c.name)
+            c.border_color = beautiful.border_normal
+        end
     end
 )
 
 -- }}}
 
--- Autostart applications
-awful.spawn.with_shell("sh ~/.scripts/autostart-awesome.sh")
-notify("Awesome Default", "Awesome Default erfolgreich gestartet !!", naughty.config.presets.info)
+-- {{{ Awesome Signals
+-- Handle runtime errors after startup
+local in_error = false
+awesome.connect_signal(
+    "debug::error",
+    function(err)
+        notify("Awesome", "'debug::error' event raised")
+        if in_error then
+            return
+        end
+        in_error = true
+
+        notify("Oops, an error happened!", tostring(err), naughty.config.presets.critical)
+        in_error = false
+    end
+)
+
+awesome.connect_signal(
+    "debug::deprecation",
+    function(hint, see, args)
+        -- notify("Awesome", "'debug::deprecation' event raised")
+        notify("Deprecated Function called!", tostring(hint), naughty.config.presets.critical)
+    end
+)
+
+awesome.connect_signal(
+    "spawn::initiated",
+    function(arg)
+        -- notify("Awesome", "'spawn::initiated' event raised: ".. arg.id, naughty.config.presets.info)
+        -- gdebug.dump(arg, "spawn::initiated".. arg.id, 2)
+    end
+)
+
+awesome.connect_signal(
+    "spawn::changed",
+    function(arg)
+        -- notify("Awesome", "'spawn::changed' event raised: ".. arg.id, naughty.config.presets.info)
+        -- gdebug.dump(arg, "spawn::changed" .. arg.id, 2)
+    end
+)
+
+awesome.connect_signal(
+    "spawn::timeout",
+    function(arg)
+        -- notify("Awesome", "'spawn::timeout' event raised: ".. arg.id, naughty.config.presets.info)
+        -- gdebug.dump(arg, "spawn::timeout".. arg.id, 2)
+    end
+)
+
+awesome.connect_signal(
+    "spawn::completed",
+    function(arg)
+        -- notify("Awesome", "'spawn::completed' event raised: ".. arg.id, naughty.config.presets.info)
+        -- gdebug.dump(arg, "spawn::completed".. arg.id, 2)
+    end
+)
+
+awesome.connect_signal(
+    "startup",
+    function(hint, see, args)
+        sound("/usr/share/sounds/LinuxMint/stereo/desktop-login.ogg")
+
+        -- Autostart applications
+        awful.spawn.with_shell("sh ~/.scripts/autostart-awesome.sh")
+
+        -- notify("Awesome", "'Autostart' callback raised")
+        is_initialized = true
+        notify("Awesome Default", "Awesome Default erfolgreich gestartet !!", naughty.config.presets.critical, false)
+    end
+)
+-- }}}

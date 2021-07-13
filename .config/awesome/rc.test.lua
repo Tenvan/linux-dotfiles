@@ -145,7 +145,7 @@ awful.util.terminal = terminal
 -- awful.util.tagnames = { "www", "edit", "gimp", "inkscape", "music" }
 -- awful.util.tagnames = { "⓵", "⓶", "⓷", "⓸", "⓹", "⓺", "⓻", "⓼", "⓽"}
 -- awful.util.tagnames = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨"}
-awful.util.tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }
+awful.util.tagnames = {"➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒"}
 
 awful.layout.suit.tile.left.mirror = true
 
@@ -322,7 +322,12 @@ awful.util.mymainmenu =
     }
 )
 -- hide menu when mouse leaves it
--- awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function() awful.util.mymainmenu:hide() end)
+awful.util.mymainmenu.wibox:connect_signal(
+    "mouse::leave",
+    function()
+        awful.util.mymainmenu:hide()
+    end
+)
 
 -- menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
 -- }}}

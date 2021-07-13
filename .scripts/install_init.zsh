@@ -19,6 +19,7 @@ inst pamac-common
 inst pamac-flatpak-plugin
 inst pamac-gtk
 inst pamac-snap-plugin
+inst archlinux-keyring
 
 # Config pacman
 sudo pacman -S --noconfirm --needed yay

@@ -10,6 +10,7 @@ initInstall "install_base"
 ###########################
 
 # system packages
+inst acpid
 inst alacritty
 inst alttab-git
 inst arandr
@@ -175,9 +176,16 @@ inst ranger
 
 
 # sound setup
+inst alsa-utils
+inst alsa-oss
 inst paprefs
 inst pasystray
 inst sp
+inst sound-theme-smooth
+inst gst123
+inst livecd-sounds
+# inst oxygen-sounds
+inst mint-sounds
 
 # Python libs
 inst python
@@ -333,6 +341,7 @@ fi
 # grub
 if [ $IS_ENDEA == true -o $IS_ARCH == true ]; then
 	inst grub-customizer
+	inst update-grub
 fi
 
 if [ $IS_GARUDA = true ]; then

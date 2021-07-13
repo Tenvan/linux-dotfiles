@@ -26,3 +26,5 @@ if [ -f "$file" ]; then
 	echo "merge $file"
     . "$file"
 fi
+
+# paplay gst123 /usr/share/sounds/Smooth/stereo/desktop-login.oga

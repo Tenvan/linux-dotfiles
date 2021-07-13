@@ -13,7 +13,9 @@ run xsetroot -cursor_name left_ptr -bg "#2a2a2a" -fg "#d6d6d6"
 run start-pulseaudio-x11
 run pasystray
 
-run blueman-tray
+killall blueman-tray
+killall blueman-applet
+# run blueman-tray
 run blueman-applet
 
 run xscreensaver

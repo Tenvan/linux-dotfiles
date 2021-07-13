@@ -55,14 +55,11 @@ alias update-fc='sudo fc-cache -fv'
 
 
 #package manager
-alias inst="paru --color always --needed --stats --news --skipreview --newsonupgrade"
+alias inst="paru -S --color always --needed --stats --news --skipreview --newsonupgrade"
 alias uninst="paru -Rcn --color always --stats --skipreview"
 alias upall="paru -Syyu --color always --needed --stats --news --skipreview --newsonupgrade"
 alias search="paru --color always --stats --news --skipreview --newsonupgrade --bottomup"
 alias upkeys="sudo pacman-key --refresh-keys"
-
-#grub update
-alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
 #hardware info --short
 alias hw="hwinfo --short"

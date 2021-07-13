@@ -7,6 +7,8 @@ myTestLua=$(eval echo $HOME/.config/awesome/rc.test.lua)
 
 ACTIONS=(
         "🪄 Install Updates" "$myTerminal --hold --title Sys:Upall $timeCmd yay -Syyu --noconfirm" \
+        "🪄 Grub Update (BTRFS Snapshots)" "$myTerminal --hold --title Sys:Grubup $timeCmd sudo grub-mkconfig -o /boot/grub/grub.cfg" \
+        "🔫 Snapper-Gui (BTRFS Snapshots)" "sudo snapper-gui" \
         "🪣 Cleanup Installs" "$myTerminal --hold --title Sys:Cleanup $timeCmd yay -c --noconfirm" \
         "📚 Belegung Verzeichnisse" "baobab" \
         "🖥 Monitor einrichten" "arandr" \
@@ -40,7 +42,7 @@ select_application() {
     yad --center --on-top --sticky \
         --list \
         --no-headers \
-        --width=400 \
+        --width=500 \
         --height=$HEIGHT \
         --title="Edit Konfiguation" \
         --text="APPLICATIONS" \

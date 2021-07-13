@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
-echo "Logout from session..."
+notify-send.sh -t 3000 -u critical System "Sitzung wird beendet..."
+paplay /usr/share/sounds/LinuxMint/stereo/desktop-logout.ogg
 sudo systemctl restart lightdm
-sudo systemctl restart lightdm-plymouth
+# sudo systemctl restart lightdm-plymouth
+# pkill awesome
