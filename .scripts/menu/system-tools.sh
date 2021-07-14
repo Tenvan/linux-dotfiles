@@ -6,7 +6,7 @@ timeCmd="/usr/bin/time -v "
 myTestLua=$(eval echo $HOME/.config/awesome/rc.test.lua)
 
 ACTIONS=(
-        "🪄 Install Updates" "$myTerminal --hold --title Sys:Upall $timeCmd paru" \
+        "🪄 Install Updates" "$myTerminal --hold --title Sys:Upall $timeCmd yay -Syyu --needed" \
         "🪄 ReInstall All Packages" "$myTerminal --hold --title Sys:Upall $timeCmd pacman -Qqn | pacman -S -" \
         "🪄 Grub Update (BTRFS Snapshots)" "$myTerminal --hold --title Sys:Grubup $timeCmd sudo grub-mkconfig -o /boot/grub/grub.cfg" \
         "🔫 Snapper-Gui (BTRFS Snapshots)" "sudo snapper-gui" \

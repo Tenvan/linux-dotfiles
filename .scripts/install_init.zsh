@@ -14,10 +14,6 @@ errorCheck "installation base-devel"
 
 git submodule update --init --recursive
 
-# install aur manager
-yay -S --noconfirm --needed pikaur paru-bin
-errorCheck "installation aur manager"
-
 # Prompt installieren
 inst ttf-meslo-nerd-font-powerlevel10k
 inst zsh-theme-powerlevel10k

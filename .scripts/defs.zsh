@@ -12,7 +12,7 @@ IS_ENDEA=false
 
 SCRIPTS="$HOME/.scripts"
 
-PACKER=paru
+PACKER=yay
 DEBUG=false
 
 #DEBUG=true
@@ -47,8 +47,7 @@ echo "IsManjaro:     $IS_MANJARO"
 echo "IsEndeavourOS: $IS_ENDEA"
 
 MAKEFLAGS="-j$(nproc)"
-# PAKKU_ALL="--overwrite \* --color always --needed --stats --news --skipreview --newsonupgrade --rebuild --batchinstall --install --noconfirm"
-PAKKU_ALL="--color always --needed --stats --news --skipreview --newsonupgrade --rebuild --noconfirm"
+PAKKER_ALL="--color always --needed --stats --news --skipreview --newsonupgrade --rebuild --noconfirm"
 
 initInstall() {
 	INSTALL_SCRIPT=$1
@@ -60,7 +59,7 @@ inst() {
     PAKAGE_INST="${PAKAGE_INST} $1"
     
     if [ $DEBUG = true ]; then
-		eval "$PACKER -S $PAKKU_ALL $1"
+		eval "$PACKER -S $PAKKER_ALL $1"
 		
 	    retVal=$?
 	    if [ $retVal -ne 0 ]; then
@@ -73,7 +72,7 @@ inst() {
 fullInstall() {
 	echo "Step: full Install"
 	if [ $DEBUG != true -a "$PAKAGE_INST" != "" ]; then
-		eval "$PACKER -S $PAKKU_ALL $PAKAGE_INST"
+		eval "$PACKER -S $PAKKER_ALL $PAKAGE_INST"
 		# errorCheck "install packages"
 	fi
 }
