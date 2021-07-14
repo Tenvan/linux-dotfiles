@@ -6,11 +6,13 @@ timeCmd="/usr/bin/time -v "
 myTestLua=$(eval echo $HOME/.config/awesome/rc.test.lua)
 
 ACTIONS=(
-        "🪄 Install Updates" "$myTerminal --hold --title Sys:Upall $timeCmd yay -Syyu --noconfirm" \
+        "🪄 Install Updates" "$myTerminal --hold --title Sys:Upall $timeCmd paru" \
+        "🪄 ReInstall All Packages" "$myTerminal --hold --title Sys:Upall $timeCmd pacman -Qqn | pacman -S -" \
         "🪄 Grub Update (BTRFS Snapshots)" "$myTerminal --hold --title Sys:Grubup $timeCmd sudo grub-mkconfig -o /boot/grub/grub.cfg" \
         "🔫 Snapper-Gui (BTRFS Snapshots)" "sudo snapper-gui" \
-        "🪣 Cleanup Installs" "$myTerminal --hold --title Sys:Cleanup $timeCmd yay -c --noconfirm" \
-        "📚 Belegung Verzeichnisse" "baobab" \
+        "🕰 Timeshift" "timeshift-launcher" \
+        "🕰 Timeshift create Snapshot" "$myTerminal --hold --title Sys:Install $timeCmd sudo timeshift --create" \
+        "🗂 Belegung Verzeichnisse" "baobab" \
         "🖥 Monitor einrichten" "arandr" \
         "🎫 Erscheinungsbild" "xfce4-appearance-settings" \
         "🎫 Erscheinungsbild (Xfce4)" "xfce4-appearance-settings" \

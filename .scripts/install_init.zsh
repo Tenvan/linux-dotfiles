@@ -9,32 +9,13 @@ initInstall "install_init"
 # init distro check #
 #####################
 
-sudo pacman -S --noconfirm --needed git base-devel colorgcc go ruby rust
+sudo pacman -S --noconfirm --needed git base-devel colorgcc go ruby rust yay
 errorCheck "installation base-devel"
 
 git submodule update --init --recursive
 
-inst pamac-cli
-inst pamac-common
-inst pamac-flatpak-plugin
-inst pamac-gtk
-inst pamac-snap-plugin
-inst archlinux-keyring
-
-# Config pacman
-sudo pacman -S --noconfirm --needed yay
-sed 's/^#Color$/Color/g' </etc/pacman.conf >pacman.conf
-sudo mv pacman.conf /etc/
-sed 's/^.*ILoveCandy$/ILoveCandy/g' </etc/pamac.conf >pamac.conf
-sudo mv pamac.conf /etc/
-sed 's/^.*EnableAUR$/EnableAUR/g' </etc/pamac.conf >pamac.conf
-sudo mv pamac.conf /etc/
-sed 's/^.*KeepBuiltPkgs$/KeepBuiltPkgs/g' </etc/pamac.conf >pamac.conf
-sudo mv pamac.conf /etc/
-
 # install aur manager
 yay -S --noconfirm --needed pikaur paru-bin
-
 errorCheck "installation aur manager"
 
 # Prompt installieren

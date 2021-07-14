@@ -58,8 +58,8 @@ run-directory=/run/lightdm
 
 [Seat:*]
 greeter-session=$GREETER
-#user-session=xfce
-#session-wrapper=/etc/lightdm/Xsession
+user-session=awesome
+session-wrapper=/etc/lightdm/Xsession
 display-setup-script=/opt/screenlayout.sh
 [XDMCPServer]
 [VNCServer]"  | sudo tee /etc/lightdm/lightdm.conf
@@ -106,25 +106,6 @@ rm -f $PKG_UNINST_FILE
 
 sudo usermod -aG docker $USER
 
-#############
-# ulauncher
-echo "[Unit]
-Description=Linux Application Launcher
-Documentation=https://ulauncher.io/
-After=display-manager.service
-
-[Service]
-Type=simple
-Restart=always
-RestartSec=1
-ExecStart=/usr/bin/ulauncher --hide-window
-
-[Install]
-WantedBy=graphical.target" > $HOME/.config/systemd/user/ulauncher.service
-
-systemctl --user enable --now ulauncher.service
-errorCheck "ulauncher service"
-
 ###########################
 # enable services
 
@@ -137,8 +118,8 @@ errorCheck "printer service"
 sudo systemctl enable --now docker
 errorCheck "docker service"
 
-#sudo systemctl enable --now bluetooth-autoconnect
-#errorCheck "bluetooth-autoconnect service"
+sudo systemctl enable --now bluetooth-autoconnect
+errorCheck "bluetooth-autoconnect service"
 
 sudo systemctl enable --now fstrim.timer
 errorCheck "fstrim service"
@@ -195,7 +176,6 @@ sudo micro /etc/default/grub
 
 sudo mkinitcpio -P
 sudo grub-mkconfig -o /boot/grub/grub.cfg
-
 errorCheck "grub mkconfig"
 
 # login screen console

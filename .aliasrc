@@ -50,9 +50,7 @@ alias userlist="cut -d: -f1 /etc/passwd"
 # Aliases for software managment
 # pacman or pm
 alias pacman='sudo pacman --color auto'
-alias update='sudo pacman -Syyu'
 alias update-fc='sudo fc-cache -fv'
-
 
 #package manager
 alias inst="paru -S --color always --needed --stats --news --skipreview --newsonupgrade"
@@ -61,11 +59,8 @@ alias upall="paru -Syyu --color always --needed --stats --news --skipreview --ne
 alias search="paru --color always --stats --news --skipreview --newsonupgrade --bottomup"
 alias upkeys="sudo pacman-key --refresh-keys"
 
-#hardware info --short
-alias hw="hwinfo --short"
-
-#Cleanup orphaned packages
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+#package cleanup (old and cache)
+alias cleanup='paru -c --noconfirm; pacman -Sccd --noconfirm; paru -Sccd --noconfirm; yay -Sccd --noconfirm; pikaur -Sccd --noconfirm'
 
 #get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"

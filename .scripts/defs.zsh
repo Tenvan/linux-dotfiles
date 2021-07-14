@@ -47,7 +47,8 @@ echo "IsManjaro:     $IS_MANJARO"
 echo "IsEndeavourOS: $IS_ENDEA"
 
 MAKEFLAGS="-j$(nproc)"
-PAKKU_ALL="--color always --needed --stats --news --skipreview --newsonupgrade"
+# PAKKU_ALL="--overwrite \* --color always --needed --stats --news --skipreview --newsonupgrade --rebuild --batchinstall --install --noconfirm"
+PAKKU_ALL="--color always --needed --stats --news --skipreview --newsonupgrade --rebuild --noconfirm"
 
 initInstall() {
 	INSTALL_SCRIPT=$1

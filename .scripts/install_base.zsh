@@ -10,7 +10,6 @@ initInstall "install_base"
 ###########################
 
 # system packages
-inst acpid
 inst alacritty
 inst alttab-git
 inst arandr
@@ -28,7 +27,6 @@ inst docker
 inst docker-compose
 inst dpkg
 inst exa
-inst flatpak
 inst fzf
 inst genius
 inst glances
@@ -97,7 +95,7 @@ fi
 inst git
 inst gitflow-avh
 if [ $IS_ENDEA = true -o $IS_ARCH = true ]; then
-	inst git-delta-git
+	inst git-delta
 else
 	inst git-delta-bin
 fi
@@ -339,7 +337,7 @@ if [ $IS_MANJARO = true ]; then
 fi
 
 # grub
-if [ $IS_ENDEA == true -o $IS_ARCH == true ]; then
+if [ $IS_ENDEA = true -o $IS_ARCH = true ]; then
 	inst grub-customizer
 	inst update-grub
 fi
@@ -354,8 +352,7 @@ fi
 
 # btrfs tools
 inst grub-btrfs
-inst snap-pac
-inst snap-pac-grub
+inst snapper
 inst snapper-gui
 
 ###############################
