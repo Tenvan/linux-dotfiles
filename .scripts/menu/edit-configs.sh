@@ -9,6 +9,7 @@ folderEdit="code -a --folder-uri"
 ACTIONS=(
     "🇬 Editor" "code"
     "🇬 Workspace" "code -r $HOME/dotfiles.code-workspace"
+    "📁 bin dir" "$folderEdit $HOME/.bin"
     "📁 config dir" "$folderEdit $HOME/.config"
     "📁 awesome dir" "$folderEdit $HOME/.config/awesome"
     "📁 terminal configs" "$filesEdit $HOME/.config/alacritty/* $HOME/.config/kitty/* $HOME/.Xresources*"

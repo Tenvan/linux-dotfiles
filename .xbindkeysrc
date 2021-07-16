@@ -119,7 +119,7 @@
 "amixer -d set Master 5%+" 
   mod4 + alt + KP_Add
 
-"amixer -d set Master 5%-" 
+"amixer -d set Master 5%-" https://my.visualstudio.com/ProductKeys?mkt=de-de#
   mod4 + alt + KP_Subtract
 
 "amixer -d set Master toggle" 
@@ -161,21 +161,6 @@
 #
 #################
 
-
-#"xterm -geom 50x20+20+20"
-#   Shift+Mod2+alt + s
-#
-## set directly keycode (here control+alt+mod2 + f with my keyboard)
-#"xterm"
-#  alt + c:0x29 + m:4 + mod2
-#
-## Control+Shift+a  release event starts rxvt
-#"rxvt"
-#  release+control+shift + a
-#
-## Control + mouse button 2 release event starts rxvt
-#"rxvt"
-#  Control + b:2 + Release
 
 ##################################
 # End of xbindkeys configuration #

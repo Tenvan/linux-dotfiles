@@ -182,8 +182,8 @@ inst sp
 inst sound-theme-smooth
 inst gst123
 inst livecd-sounds
-# inst oxygen-sounds
 inst mint-sounds
+inst tvolnoti
 
 # Python libs
 inst python

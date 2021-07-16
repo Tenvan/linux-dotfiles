@@ -53,7 +53,7 @@ alias pacman='sudo pacman --color auto'
 alias update-fc='sudo fc-cache -fv'
 
 #package manager
-alias inst="yay -S --color always --needed --stats --news --skipreview --newsonupgrade --noconfirm"
+alias inst="yay -S --color always --needed --noconfirm"
 alias uninst="yay -Rcn"
 alias upall="yay -Syyu --needed"
 alias search="yay --bottomup"
@@ -75,7 +75,7 @@ alias ...='cd ../..'
 alias ~='cd $HOME'
 alias cdw='cd /media/WORKSPACE/$USER'
 alias cdd='cd /media/WORKSPACE/$USER/DotNet'
-alias cdd='cd /media/WORKSPACE/$USER/Node'
+alias cdn='cd /media/WORKSPACE/$USER/Node'
 
 alias ed=$EDITOR
 

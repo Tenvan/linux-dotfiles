@@ -12,6 +12,7 @@ run xsetroot -cursor_name left_ptr -bg "#2a2a2a" -fg "#d6d6d6"
 # Sound Tray Icons
 run start-pulseaudio-x11
 run pasystray
+run .bin/volume-osd.sh
 
 killall blueman-tray
 killall blueman-applet
