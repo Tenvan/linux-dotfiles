@@ -184,6 +184,7 @@ inst gst123
 inst livecd-sounds
 inst mint-sounds
 inst tvolnoti
+inst ponymix
 
 # Python libs
 inst python

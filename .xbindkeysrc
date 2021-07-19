@@ -116,10 +116,16 @@
 "kitty --hold --title CF:Show --name CF:Show xbindkeys --multikey" 
   mod4 + alt + q
 
+"$HOME/.bin/audio-next.sh" 
+  mod4 + control + KP_Add
+
+"$HOME/.bin/audio-prev.sh"
+  mod4 + control + KP_Subtract
+
 "amixer -d set Master 5%+" 
   mod4 + alt + KP_Add
 
-"amixer -d set Master 5%-" https://my.visualstudio.com/ProductKeys?mkt=de-de#
+"amixer -d set Master 5%-"
   mod4 + alt + KP_Subtract
 
 "amixer -d set Master toggle" 

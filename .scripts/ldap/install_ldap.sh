@@ -3,7 +3,7 @@
 . ./ldap_config.sh
 
 # LDAP Container erstellen und starten
-sudo docker run \
+sudo docker run -dit --privileged --restart unless-stopped \
      -p 389:389 -p 636:636 \
      --name $ldap_container_name \
      --hostname $ldap_host_name \
@@ -18,7 +18,8 @@ sudo docker run \
 sudo docker exec $ldap_container_name ldapsearch -x -H ldap://localhost -b dc=$domain_host,dc=$domain_suffix -D "cn=$admin,dc=$domain_host,dc=$domain_suffix" -w $adminpw
 
 # Admin Container erstellen und starten
-sudo docker run -p $admin_port:443 \
+sudo docker run -dit --privileged --restart unless-stopped \
+	 -p $admin_port:443 \
      --name $admin_container_name \
      --hostname $admin_host_name \
      --link $ldap_container_name:ldap-host \
