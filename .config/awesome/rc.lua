@@ -40,9 +40,7 @@ naughty.config.defaults["border_width"] = beautiful.border_width
 naughty.config.defaults["border_width"] = beautiful.border_width
 naughty.config.defaults["position"] = "bottom_right"
 
-local function sound(soundFile)
-    awful.spawn("paplay " .. soundFile)
-end
+local sound_path = string.format("%s/.scripts/play-sound.zsh", os.getenv("HOME"))
 
 local function notify(titel, message, category, playSound)
     naughty.notify(
@@ -52,14 +50,19 @@ local function notify(titel, message, category, playSound)
             title = titel
         }
     )
-
+    
     if playSound ~= false then
         if category == naughty.config.presets.critical then
-            sound("/usr/share/sounds/Smooth/stereo/dialog-error.oga")
+            awful.spawn(sound_path .. " " .. "notify-error")
         else
-            sound("/usr/share/sounds/Smooth/stereo/dialog-information.oga")
+            awful.spawn(sound_path .. " " .. "notify")
         end
     end
+end
+
+local function sound(soundFile)
+    -- notify("Play Sound", soundFile, naughty.config.presets.info, false)
+    awful.spawn(sound_path .. " " .. soundFile)
 end
 
 -- local menubar       = require("menubar")
@@ -323,6 +326,7 @@ awful.util.mymainmenu.wibox:connect_signal(
     "mouse::leave",
     function()
         awful.util.mymainmenu:hide()
+        sound("menu-popdown")
     end
 )
 
@@ -380,6 +384,8 @@ root.buttons(
             3,
             function()
                 awful.util.mymainmenu:toggle()
+                sound("menu-popup")
+
             end
         ),
         awful.button({}, 4, awful.tag.viewnext),
@@ -1316,7 +1322,7 @@ client.connect_signal(
     function(c)
         if is_initialized then
             -- notify("Client", "'manage' event raised:" .. c.name)
-            -- sound("/usr/share/sounds/Smooth/stereo/window-switch.oga")
+            -- sound("window-switch")
             -- Set the windows at the slave,
             -- i.e. put it at the end of others instead of setting it master.
             -- if not awesome.startup then awful.client.setslave(c) end
@@ -1333,8 +1339,7 @@ client.connect_signal(
     "swapped",
     function(c, source, is_source)
         if is_initialized and not is_source then
-            -- notify("Client", "'swapped' event raised: " .. c.name)
-            sound("/usr/share/sounds/Smooth/stereo/window-switch.oga")
+            sound("window-switch")
         end
     end
 )
@@ -1343,8 +1348,7 @@ client.connect_signal(
     "raised",
     function(c)
         if is_initialized then
-            -- notify("Client", "'raised' event raised: " .. c.name)
-            sound("/usr/share/sounds/Smooth/stereo/notebook-tab-changed.oga")
+            -- sound("window-attention-active")
         end
     end
 )
@@ -1353,7 +1357,7 @@ client.connect_signal(
     "lowered",
     function(c)
         if is_initialized then
-        -- notify("Client", "'lowered' event raised: " .. c.name)
+            -- sound("window-attention-inactive")
         end
     end
 )
@@ -1554,14 +1558,14 @@ awesome.connect_signal(
 awesome.connect_signal(
     "startup",
     function(hint, see, args)
-        sound("/usr/share/sounds/LinuxMint/stereo/desktop-login.ogg")
+        sound("desktop-login")
 
         -- Autostart applications
         awful.spawn.with_shell("sh ~/.scripts/autostart-awesome.sh")
 
         -- notify("Awesome", "'Autostart' callback raised")
         is_initialized = true
-        notify("Awesome Default", "Awesome Default erfolgreich gestartet !!", naughty.config.presets.critical, false)
+        -- notify("Awesome Default", "Awesome Default erfolgreich gestartet !!", naughty.config.presets.critical, false)
     end
 )
 -- }}}

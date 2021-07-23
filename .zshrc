@@ -123,15 +123,6 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-# Add useful aliases 
-alias aup="pamac upgrade --aur"
-alias grubup="sudo update-grub"
-alias orphaned="sudo pacman -Rns $(pacman -Qtdq)"
-alias fixpacman="sudo rm /var/lib/pacman/db.lck"
-alias untar='tar -zxvf '
-alias wget='wget -c '
-alias speed='speedtest-cli --server 2406 --simple'
-
 # Set your countries like --country France --country Germany -- or more.
 alias upd='sudo reflector --country Germany --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo pacman -Syu'
 

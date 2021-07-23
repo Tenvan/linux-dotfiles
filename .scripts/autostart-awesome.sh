@@ -6,18 +6,15 @@ run ibus-daemon -d -x
 
 run unclutter --root --timeout 3
 
-#cursor active at boot
-run xsetroot -cursor_name left_ptr -bg "#2a2a2a" -fg "#d6d6d6"
-
 # Sound Tray Icons
-run start-pulseaudio-x11
-run pasystray
-run .bin/volume-osd.sh
+restart start-pulseaudio-x11
+restart pasystray
+run .bin/volume-osd
 
 killall blueman-tray
 killall blueman-applet
 # run blueman-tray
-run blueman-applet
+restart blueman-applet
 
 run xscreensaver
 
@@ -37,3 +34,6 @@ run /usr/lib/xfce-polkit/xfce-polkit
 if [ $IS_MANJARO = true -o $IS_GARUDA = true ]; then
 	run msm_notifier
 fi
+
+#cursor active at boot
+run xsetroot -cursor_name left_ptr -bg "#2a2a2a" -fg "#d6d6d6"

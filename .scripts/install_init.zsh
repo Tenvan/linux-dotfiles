@@ -1,6 +1,9 @@
 #!/usr/bin/env zsh
 
 . ~/.scripts/defs.zsh
+. ~/.scripts/sounds
+
+sound count-down
 
 # Init Install
 initInstall "install_init"
@@ -26,7 +29,8 @@ Defaults timestamp_timeout=300
 $USER ALL=(ALL) NOPASSWD:INSTALL,POWER
 $USER ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/100-myrules
 
-chmod -R -v +xrw ~/.scripts
+chmod -R -v +x ~/.scripts
+chmod -R -v +x ~/.bin
 errorCheck "set script flags"
 
 ###############################

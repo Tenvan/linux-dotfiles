@@ -92,5 +92,15 @@
     "xml.format.splitAttributes": true,
     "xml.format.xsiSchemaLocationSplit": "onPair",
     "vsicons.dontShowNewVersionMessage": true,
-    "security.workspace.trust.untrustedFiles": "open"
+    "security.workspace.trust.untrustedFiles": "open",
+    "[shellscript]": {
+      "editor.defaultFormatter": "shakram02.bash-beautify"
+    },
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorWidth": 2,
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.env.linux": {
+  
+    },
+    "editor.multiCursorModifier": "ctrlCmd"
   }

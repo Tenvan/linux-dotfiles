@@ -88,5 +88,9 @@
   {
     "key": "alt+numpad_multiply",
     "command": "editor.action.fontZoomReset"
+  },
+  {
+    "key": "ctrl+shift+m",
+    "command": "workbench.action.toggleMultiCursorModifier"
   }
 ]

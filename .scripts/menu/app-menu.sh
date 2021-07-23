@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+. ~/.scripts/sounds
 
 myFileManager="thunar"
 myTerminal="kitty"
@@ -9,6 +10,8 @@ ACTIONS=(
         "🇯 JetBrains Toolbox" "jetbrains-toolbox"
         "🇹 Teams" "teams-insiders"
         "🇫 Font Manager" "font-manager"
+        "🇻 Virtio Manager" "virt-manager"
+        "🇷 Remmina" "remmina"
         "😃 Emoji Test" "$myTerminal --hold curl https://unicode.org/Public/emoji/5.0/emoji-test.txt"
         "☦ UTF8 Test" "$myTerminal --hold curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html"
         "🌤 Wetter Brakel" "$myTerminal --hold --title Wetter:Brakel curl wttr.in/33034?lang=de"
@@ -37,6 +40,7 @@ select_application() {
         "${ACTIONS[@]}"
 }
 
+sound menu-popup &
 choice=$(select_application)
 
 if [ -z "$choice" ]; then

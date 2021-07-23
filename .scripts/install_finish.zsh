@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 . ~/.scripts/defs.zsh
+. ~/.scripts/sounds
 
 # Init Install
 initInstall "install_finish"
@@ -45,24 +46,18 @@ fi
 sudo cp $HOME/.screenlayout/screenlayout.sh /opt
 errorCheck "copy screenlayout"
 
-if [ -f /etc/lightdm/lightdm.conf ]; then
-	sudo mv /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
-fi
+#GREETER="lightdm-gtk-greeter"
+#GREETER="lightdm-slick-greeter"
+GREETER="lightdm-webkit2-greeter"
 
-GREETER="lightdm-slick-greeter"
+sudo sed -i "s/^.*greeter-session=.*$/greeter-session=$GREETER/g" /etc/lightdm/lightdm.conf
+sudo sed -i "s/^.*display-setup-script=.*$/display-setup-script=\/opt\/screenlayout.sh/g" /etc/lightdm/lightdm.conf
+# sudo sed -i "s/^.*greeter-setup-script\s*=.*$/greeter-setup-script=\/opt\/system-ready.sh/g" /etc/lightdm/lightdm.conf
 
-echo "[Seat:*]
-[LightDM]
-log-directory=/var/log/lightdm
-run-directory=/run/lightdm
+sudo cp $oxygen/system-ready.oga /opt/system-ready.oga
+echo "paplay /opt/system-ready.oga" | sudo tee /opt/system-ready.sh
+sudo chmod +x /opt/system-ready.sh
 
-[Seat:*]
-greeter-session=$GREETER
-user-session=awesome
-session-wrapper=/etc/lightdm/Xsession
-display-setup-script=/opt/screenlayout.sh
-[XDMCPServer]
-[VNCServer]"  | sudo tee /etc/lightdm/lightdm.conf
 errorCheck "lightdm config"
 
 # config slick-greeter
@@ -89,6 +84,12 @@ activate-numlock=true
 show-power=false
 show-a11y=false" | sudo tee /etc/lightdm/slick-greeter.conf
 errorCheck "lightdm greeter config"
+
+# config webkit2 greeter
+# Set default lightdm greeter to lightdm-webkit2-greeter
+sudo sed -i 's/^\(#?greeter\)-session\s*=\s*\(.*\)/greeter-session = lightdm-webkit2-greeter #\1/ #\2g' /etc/lightdm/lightdm.conf
+sudo sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode = true #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+sudo sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = glorious #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 
 echo "KEYMAP=de
 FONT=ter-powerline-v12n
@@ -118,8 +119,8 @@ errorCheck "printer service"
 sudo systemctl enable --now docker
 errorCheck "docker service"
 
-sudo systemctl enable --now bluetooth-autoconnect
-errorCheck "bluetooth-autoconnect service"
+#sudo systemctl enable --now bluetooth-autoconnect
+#errorCheck "bluetooth-autoconnect service"
 
 sudo systemctl enable --now fstrim.timer
 errorCheck "fstrim service"
@@ -188,3 +189,5 @@ errorCheck "uninstall global npm"
 yarn global upgrade
 yarn global add eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
 errorCheck "install global yarn"
+
+sound complete

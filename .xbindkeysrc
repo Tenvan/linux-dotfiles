@@ -116,10 +116,10 @@
 "kitty --hold --title CF:Show --name CF:Show xbindkeys --multikey" 
   mod4 + alt + q
 
-"$HOME/.bin/audio-next.sh" 
+"$HOME/.bin/audio-next" 
   mod4 + control + KP_Add
 
-"$HOME/.bin/audio-prev.sh"
+"$HOME/.bin/audio-prev"
   mod4 + control + KP_Subtract
 
 "amixer -d set Master 5%+" 
@@ -149,7 +149,7 @@
 
 # Toggle Picom
 "sh $SCRIPTS/picom-toggle-awesome.sh" 
-  Ctrol + mod4 + t
+  control + mod4 + t
 
 # Kill Prozess
 "xkill" 

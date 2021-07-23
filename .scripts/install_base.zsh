@@ -67,6 +67,7 @@ inst rsyslog
 inst s-tui
 inst shell-color-scripts
 inst spectacle
+inst speedtest-cli
 inst time
 inst timeshift
 inst tldr++
@@ -158,19 +159,22 @@ inst qt5ct
 inst xfce4-meta
 
 # file manager
-inst thunar-devel
+inst mc
+inst ranger
+
 inst thunar-archive-plugin 
+inst thunar-media-tags-plugin
 if [ $IS_MANJARO = true ]; then
 	inst thunar-shares-plugin-manjaro 
 else
 	inst thunar-shares-plugin
 fi
 inst thunar-vcs-plugin 
-uninst thunar-volman
-inst thunar-volman-devel
+inst thunar-volman
 inst gtkhash-thunar
-inst mc
-inst ranger
+
+#inst thunar-devel
+#inst thunar-volman-devel
 
 
 # sound setup
@@ -329,8 +333,12 @@ if [ $IS_ARCO != true ]; then
 	inst lightdm
 	inst lightdm-settings
 	inst lightdm-gtk-greeter-settings
-	inst lightdm-slick-greeter
 	inst lightdm-gtk-greeter
+	inst lightdm-slick-greeter
+	inst lightdm-webkit2-greeter
+	inst lightdm-webkit2-theme-glorious
+	inst lightdm-webkit2-clean
+	inst lightdm-webkit2-theme-obsidian
 fi
 
 if [ $IS_MANJARO = true ]; then

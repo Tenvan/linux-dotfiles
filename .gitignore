@@ -28,6 +28,8 @@
 !.local/share/wallpapers/shared/**
 !.local/share/wallpapers/shared/**/*
 
+!.local/share/sounds
+
 # Ausnahmen im .config folder
 !.config
 !.config/compton*.conf
