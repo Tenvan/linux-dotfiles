@@ -1,20 +1,21 @@
 # DO NOT EDIT! This file will be overwritten by LXAppearance.
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
-gtk-theme-name="oomox-Numix-Dark-Orange"
-gtk-icon-theme-name="oomox-Numix-Dark-Orange"
-gtk-font-name="Sans Regular 12"
-gtk-cursor-theme-size=32
-gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ
-gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
 gtk-button-images=1
-gtk-menu-images=1
+gtk-cursor-theme-name="Bibata-Modern-Ice"
+gtk-cursor-theme-size=24
+gtk-enable-animations=1
 gtk-enable-event-sounds=1
 gtk-enable-input-feedback-sounds=1
+gtk-font-name="Noto Sans,  10"
+gtk-icon-theme-name="breeze"
+gtk-menu-images=1
+gtk-modules="canberra-gtk-module"
+gtk-primary-button-warps-slider=0
+gtk-theme-name="oomox-Numix-Dark-Orange"
+gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
+gtk-toolbar-style=3
 gtk-xft-antialias=1
 gtk-xft-hinting=1
 gtk-xft-hintstyle="hintslight"
 gtk-xft-rgba="rgb"
-gtk-modules="canberra-gtk-module"
-
-gtk-color-scheme = "bg_color:#303030\nfg_color:#fafafa\nbase_color:#303030\ntext_color:#fafafa\nselected_bg_color:#4b7258\nselected_fg_color:#fafafa\ntooltip_bg_color:#303030\ntooltip_fg_color:#1c1c1c\ntitlebar_bg_color:#303030\ntitlebar_fg_color:#5d8ca7\nmenubar_bg_color:#303030\nmenubar_fg_color:#5d8ca7\ntoolbar_bg_color:#303030\ntoolbar_fg_color:#cda331\nmenu_bg_color:#303030\nmenu_fg_color:#fafafa\npanel_bg_color:#303030\npanel_fg_color:#37924c\nlink_color:#e7bb47"

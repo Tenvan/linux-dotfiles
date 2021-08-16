@@ -6,9 +6,6 @@ run ibus-daemon -d -x
 
 run unclutter --root --timeout 3
 
-# Sound Tray Icons
-restart start-pulseaudio-x11
-restart pasystray
 run .bin/volume-osd
 
 killall blueman-tray

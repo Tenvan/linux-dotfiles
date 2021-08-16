@@ -51,7 +51,7 @@ local function notify(titel, message, category, playSound)
         }
     )
     
-    if playSound ~= false then
+    if playSound == true then
         if category == naughty.config.presets.critical then
             awful.spawn(sound_path .. " " .. "notify-error")
         else
@@ -61,7 +61,7 @@ local function notify(titel, message, category, playSound)
 end
 
 local function sound(soundFile)
-    -- notify("Play Sound", soundFile, naughty.config.presets.info, false)
+    notify("Play Sound", soundFile, naughty.config.presets.info)
     awful.spawn(sound_path .. " " .. soundFile)
 end
 
@@ -85,7 +85,7 @@ local dpi = require("beautiful.xresources").apply_dpi
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
-    notify("Oops, there were errors during startup!", awesome.startup_errors, naughty.config.presets.critical)
+    notify("Oops, there were errors during startup!", awesome.startup_errors, naughty.config.presets.critical, true)
 end
 
 -- {{{ Autostart windowless processes
@@ -837,7 +837,8 @@ local clientkeys =
             notify(
                 "Oops, dies ist eine Test-Benachrichtung!",
                 "Dolor et est dolor sed labore dolores, lorem sea kasd sed accusam.\nNonumy ipsum elitr aliquyam eirmod.\nNo sit lorem.",
-                naughty.config.presets.critical
+                naughty.config.presets.critical,
+                true
             )
         end,
         {description = "toggle keep on top", group = kgClient}
@@ -1504,13 +1505,12 @@ local in_error = false
 awesome.connect_signal(
     "debug::error",
     function(err)
-        notify("Awesome", "'debug::error' event raised")
         if in_error then
             return
         end
         in_error = true
 
-        notify("Oops, an error happened!", tostring(err), naughty.config.presets.critical)
+        notify("Oops, an error happened!", tostring(err), naughty.config.presets.critical, true)
         in_error = false
     end
 )
@@ -1518,8 +1518,7 @@ awesome.connect_signal(
 awesome.connect_signal(
     "debug::deprecation",
     function(hint, see, args)
-        -- notify("Awesome", "'debug::deprecation' event raised")
-        notify("Deprecated Function called!", tostring(hint), naughty.config.presets.critical)
+        notify("Deprecated Function called!", tostring(hint), naughty.config.presets.critical, true)
     end
 )
 

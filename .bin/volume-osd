@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+. ~/.scripts/sounds
+
+OLD_VOL=0
+OLD_MUTE="[on]"
+
+killall tvolnoti
+tvolnoti
+
+echo "tvolnoti daemon startet"
+
+LANGUAGE=en pactl subscribe | grep --line-buffered "sink" |
+while read; do
+    VOL=$(amixer get Master | grep -Po "[0-9]+(?=%)" | tail -1)
+    MUTE=$(amixer get Master | grep -Po "\[off\]" | tail -1)
+    
+    if [[ "$MUTE" == "$OLD_MUTE" ]]; then
+        if [[ "$VOL" != "$OLD_VOL" && "$MUTE" != "[off]" ]]; then
+            echo "VOL CHANGED => $OLD_VOL -> $VOL MUTE: $MUTE/$OLD_MUTE"
+            tvolnoti-show $VOL
+            OLD_VOL=$VOL
+            sound audio-volume-change
+        fi
+    else
+        echo "MUTE CHANGED => $OLD_MUTE -> $MUTE  VOL: $VOL/$OLD_VOL"
+        if  [[ "$MUTE" == "[off]" ]]; then
+            tvolnoti-show -m
+        else
+            tvolnoti-show $VOL
+            OLD_MUTE=0
+        fi
+        OLD_MUTE=$MUTE
+        sound audio-volume-change
+    fi
+    
+done

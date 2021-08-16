@@ -38,8 +38,8 @@ sound() {
         "dialog-question") sound=$oxygen/dialog-question.oga;;
         "dialog-warning") sound=$freedesktop/dialog-warning.ogg;;
         "lock-screen") sound=$oxygen/desktop-login.oga;;
-        "menu-popdown") sound=$enchanted/menu-popdown.ogg;;
-        "menu-popup") sound=$enchanted/menu-popup.ogg;;
+        "menu-popdown") sound=$mac/Blow.wav;;
+        "menu-popup") sound=$mac/Morse.wav;;
         "menu-replace") sound=$enchanted/menu-replace.ogg;;
         "notebook-tab-changed") sound=$enchanted/notebook-tab-changed.ogg;;
         "notify-error") sound=$oxygen/dialog-error.oga;;
@@ -69,5 +69,6 @@ sound() {
     esac
     
     echo "Play: $sound"
+    # notify-send.sh -t 1000 Sound $sound
     paplay $sound
 }

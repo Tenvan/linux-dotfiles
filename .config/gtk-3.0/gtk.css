@@ -13,3 +13,5 @@ In files gtk-3.0/gtk.css and gtk-3.20/gtk.css, delete section "Default color sch
 @define-color selected_fg_color #fafafa;
 @define-color tooltip_bg_color #303030;
 @define-color tooltip_fg_color #fafafa;
+
+@import 'colors.css';
