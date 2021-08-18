@@ -121,12 +121,17 @@ inst mono-msbuild
 # jetbrains apps
 inst jetbrains-toolbox
 
-# awesome packages
+# awesome
 inst awesome-git
 inst vicious
 inst xorg-server-xephyr
 inst luacheck
 inst awmtt
+
+# plasma
+if [ $IS_ENDEA = true -o $IS_ARCH = true ]; then
+	inst plasma-meta
+fi
 
 # config tools
 

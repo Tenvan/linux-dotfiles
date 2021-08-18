@@ -38,7 +38,7 @@ if [ $INSTALL_VIRTIO = true ]; then
 	else
 		inst virt-manager
 		inst virt-viewer
-		inst virt-backup
+		uninst virt-backup
 		inst virtio-win
 		inst qemu
 		inst qemu-arch-extra
@@ -46,7 +46,7 @@ if [ $INSTALL_VIRTIO = true ]; then
 		inst iptables-nft
 		inst ebtables
 		inst dnsmasq
-		inst ssh-askpass-fullscreen
+		#inst ssh-askpass-fullscreen
 	fi
 fi
 
@@ -65,5 +65,3 @@ finish
 
 sudo systemctl enable --now libvirtd
 errorCheck "libvirtd service"
-
-sudo ln -s /usr/lib/openssh/ssh-askpass-fullscreen /usr/lib/ssh/ssh-askpass

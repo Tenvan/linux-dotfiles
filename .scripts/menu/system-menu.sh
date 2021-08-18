@@ -2,7 +2,8 @@
 
 ACTIONS=(
     "📲 Abmelden" "sh $SCRIPTS/session_logout.sh"
-    "◽ Light Theme" "sh $SCRIPTS/lighttheme.sh"
+    "◽ Monitor Default" "sh $HOME/.screenlayout/screenlayout.sh"
+    "◽ Monitor Gaming" "sh $HOME/.screenlayout/screenlayout-gaming.sh"
     "📵 Sperren" "sh $SCRIPTS/session_lock.sh"
     "📵 Bildschirm sperren" "sh $SCRIPTS/session_lock_screen.sh"
     "🙅 Benutzerwechsel" "sh $SCRIPTS/session_switch_user.sh"

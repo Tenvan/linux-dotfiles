@@ -18,6 +18,7 @@ ACTIONS=(
     "📑 scripts autostart" "$filesEdit $SCRIPTS/autostart*.sh"
     "📑 scripts install" "$filesEdit $SCRIPTS/install*"
     "📁 menu dir" "$folderEdit $SCRIPTS/menu"
+    "📁 screenlayouts" "$folderEdit $HOME/.screenlayout"
     "📑 themes Files" "$filesEdit $HOME/.Xresources* $HOME/.gtkrc-*"
     "📁 themes FolderQT5" "$folderEdit  $HOME/.config/gtk-3.0 $HOME/.config/gtk-4.0 $HOME/.config/qt5ct $HOME/.config/fontconfig"
     "📑 screenlayout" "$filesEdit $HOME/.screenlayout/*"

@@ -47,7 +47,7 @@ echo "IsManjaro:     $IS_MANJARO"
 echo "IsEndeavourOS: $IS_ENDEA"
 
 MAKEFLAGS="-j$(nproc)"
-PAKKER_ALL="--color always --needed --noconfirm"
+PAKKER_ALL="--color always --needed $@"
 
 initInstall() {
 	INSTALL_SCRIPT=$1

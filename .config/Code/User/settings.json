@@ -10,8 +10,10 @@
     "editor.renderControlCharacters": true,
     "files.autoSave": "onFocusChange",
     "files.watcherExclude": {
-      "**/.git/objects/**": true,
-      "**/.git/subtree-cache/**": true,
+      "**/.git/*/**": true,
+      "**/.git/objects/**": false,
+      "**/.git/subtree-cache/**": false,
+      "**/.hg/store/**": false,
       "**/node_modules/*/**": true
     },
     "editor.suggestSelection": "first",
