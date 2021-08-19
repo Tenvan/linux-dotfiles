@@ -30,7 +30,6 @@ inst exa
 inst fzf
 inst genius
 inst glances
-inst glogg
 inst gparted
 inst gtop
 inst hardinfo
