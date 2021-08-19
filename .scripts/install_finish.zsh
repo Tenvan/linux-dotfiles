@@ -128,7 +128,7 @@ errorCheck "fstrim service"
 mkdir -p ~/.config/systemd/user/
 sudo cp /usr/lib/systemd/user/pulseaudio-bluetooth-autoconnect.service /etc/systemd/user
 systemctl enable pulseaudio-bluetooth-autoconnect --user --now
-errorCheck "pulseaudio-bluetooth-autoconnect service"
+#errorCheck "pulseaudio-bluetooth-autoconnect service"
 
 # grub config
 sed 's/.*GRUB_GFXMODE=.*$/GRUB_GFXMODE="1920x1080,auto"/g' </etc/default/grub >grub
