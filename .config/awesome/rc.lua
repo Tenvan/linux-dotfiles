@@ -776,6 +776,13 @@ local globalkeys =
             notify("playerctl stop")
             os.execute("playerctl stop")
         end
+    ),
+    awful.key(
+        {},
+        "XF86Calculator",
+        function()
+            awful.spawn("gnome-calculator")
+        end
     )
 )
 
@@ -815,7 +822,7 @@ local clientkeys =
         }
     ),
     awful.key(
-        {modkey, controlkey},
+        {modkey, altkey},
         "m",
         function(c)
             c:swap(awful.client.getmaster())

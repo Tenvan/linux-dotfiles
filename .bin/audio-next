@@ -17,7 +17,7 @@ ponymix set-default --sink -d "$NEXT_SINK"
 NEXT_SINK_LINE=$(expr ${NEXT_SINK} + 1)
 NEXT_SINK_SHORT=$(ponymix list-short | sed -n "$NEXT_SINK_LINE"p | cut -f4-)
 
-sound device-changed
+sound device-changed &
 notify-send "Next Sound Card" "$NEXT_SINK_LINE: $NEXT_SINK_SHORT"
 
 VOL=$(amixer get Master | grep -Po "[0-9]+(?=%)" | tail -1)

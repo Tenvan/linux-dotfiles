@@ -20,7 +20,7 @@ while read; do
             echo "VOL CHANGED => $OLD_VOL -> $VOL MUTE: $MUTE/$OLD_MUTE"
             tvolnoti-show $VOL
             OLD_VOL=$VOL
-            sound audio-volume-change
+            sound audio-volume-change &
         fi
     else
         echo "MUTE CHANGED => $OLD_MUTE -> $MUTE  VOL: $VOL/$OLD_VOL"
@@ -31,7 +31,7 @@ while read; do
             OLD_MUTE=0
         fi
         OLD_MUTE=$MUTE
-        sound audio-volume-change
+        sound audio-volume-change &
     fi
     
 done
