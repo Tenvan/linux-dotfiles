@@ -8,7 +8,8 @@
 	pager = delta
 
 [credential]
-	helper = /usr/lib/git-core/git-credential-libsecret
+	helper = /usr/bin/git-credential-manager-core
+	credentialStore = cache
 
 [color]
 	ui = auto
@@ -298,3 +299,5 @@
 	develop = develop
 [gitflow "path"]
 	hooks = /media/WORKSPACE/ralf/DotNet/OtStimulsoft/.git/hooks
+[credential "https://dev.azure.com"]
+	useHttpPath = true
