@@ -130,6 +130,7 @@ inst awmtt
 # plasma
 if [ $IS_ENDEA = true -o $IS_ARCH = true ]; then
 	inst plasma-meta
+	inst kde-gtk-config
 fi
 
 # config tools

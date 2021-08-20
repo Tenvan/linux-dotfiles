@@ -14,9 +14,9 @@ ACTIONS=(
         "🕰 Timeshift create Snapshot" "$shellCmd --hold --title Sys:Install $timeCmd sudo timeshift --create" \
         "🗂 Belegung Verzeichnisse" "baobab" \
         "🖥 Monitor einrichten" "arandr" \
-        "🎫 Erscheinungsbild" "xfce4-appearance-settings" \
+        "🎫 Erscheinungsbild (Lx)" "lxappearance" \
         "🎫 Erscheinungsbild (Xfce4)" "xfce4-appearance-settings" \
-        "🎫 Erscheinungsbild (Qt5)" "xfce4-appearance-settings" \
+        "🎫 Erscheinungsbild (Qt5)" "qt5ct" \
         "🧩 Install Base Packages" "$shellCmd --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_base.zsh" \
         "🧩 Install Applications" "$shellCmd --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_apps.zsh" \
         "🧩 Install Virtual Engines" "$shellCmd --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_vm.zsh" \
