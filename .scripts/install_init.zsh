@@ -12,6 +12,22 @@ initInstall "install_init"
 # init distro check #
 #####################
 
+# Config pacman
+sed 's/^#Color$/Color/g' </etc/pacman.conf >pacman.conf
+sudo mv pacman.conf /etc/
+sed 's/^.*ParallelDownloads.*$/ParallelDownloads = 5/g' </etc/pacman.conf >pacman.conf
+sudo mv pacman.conf /etc/
+errorCheck "pacman config"
+
+# Config pamac
+sed 's/^.*ILoveCandy$/ILoveCandy/g' </etc/pamac.conf >pamac.conf
+sudo mv pamac.conf /etc/
+sed 's/^.*EnableAUR$/EnableAUR/g' </etc/pamac.conf >pamac.conf
+sudo mv pamac.conf /etc/
+sed 's/^.*KeepBuiltPkgs$/KeepBuiltPkgs/g' </etc/pamac.conf >pamac.conf
+sudo mv pamac.conf /etc/
+errorCheck "pamac config"
+
 sudo pacman -S --noconfirm --needed git base-devel colorgcc go ruby rust yay
 errorCheck "installation base-devel"
 
