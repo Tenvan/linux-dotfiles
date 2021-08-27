@@ -82,6 +82,10 @@ inst xsel
 inst zenity
 inst pm-utils
 
+if [ $IS_ARCO = true ]; then
+	inst arcolinux-meta-samba
+fi
+
 if [ $IS_GARUDA = true ]; then
 	inst samba-support
 fi
@@ -94,11 +98,7 @@ fi
 # Base Development Tools
 inst git
 inst gitflow-avh
-if [ $IS_ENDEA = true -o $IS_ARCH = true ]; then
-	inst git-delta
-else
-	inst git-delta-bin
-fi
+inst git-delta
 inst gradle
 inst jdk-openjdk
 inst jdk8-openjdk
@@ -169,11 +169,15 @@ inst ranger
 
 inst thunar-archive-plugin 
 inst thunar-media-tags-plugin
+
 if [ $IS_MANJARO = true ]; then
 	inst thunar-shares-plugin-manjaro 
-else
+fi
+
+if [ $IS_ARCO = true ]; then
 	inst thunar-shares-plugin
 fi
+
 inst thunar-vcs-plugin 
 inst thunar-volman
 inst gtkhash-thunar
@@ -225,7 +229,6 @@ elif [ $IS_ENDEA = true ]; then
 	inst pulseaudio-bluetooth
 	inst blueman
 elif [ $IS_ARCO = true ]; then
-	print 'install bluetooth packages'
 	#inst bluetooth-autoconnect
 	inst pulseaudio-bluetooth
 	inst blueman
@@ -334,27 +337,23 @@ inst ttf-weather-icons
 uninst ttf-ms-win10-auto
 
 # lightdm config
-if [ $IS_ARCO != true ]; then
-	inst lightdm
-	inst lightdm-settings
-	inst lightdm-gtk-greeter-settings
-	inst lightdm-gtk-greeter
-	inst lightdm-slick-greeter
-	inst lightdm-webkit2-greeter
-	inst lightdm-webkit2-theme-glorious
-	inst lightdm-webkit2-clean
-	inst lightdm-webkit2-theme-obsidian
-fi
+inst lightdm
+inst lightdm-settings
+inst lightdm-gtk-greeter-settings
+inst lightdm-gtk-greeter
+inst lightdm-slick-greeter
+inst lightdm-webkit2-greeter
+inst lightdm-webkit2-theme-glorious
+inst lightdm-webkit2-clean
+inst lightdm-webkit2-theme-obsidian
 
 if [ $IS_MANJARO = true ]; then
   inst manjaro-slick-greeter-theme-light
 fi
 
 # grub
-if [ $IS_ENDEA = true -o $IS_ARCH = true ]; then
-	inst grub-customizer
-	inst update-grub
-fi
+inst grub-customizer
+inst update-grub
 
 if [ $IS_GARUDA = true ]; then
 	inst grub-theme-garuda
@@ -368,6 +367,7 @@ fi
 inst grub-btrfs
 inst snapper
 inst snapper-gui
+inst timeshift-autosnap
 
 ###############################
 # uninstall unneeded packages #

@@ -49,12 +49,8 @@ inst teams-insiders
 inst glfw-x11
 inst phonon-qt5-vlc
 
-if [ $IS_ARCO = true ]; then
-	inst themix-full
-	inst themix-icons-numix
-else
-	inst themix-full-git
-fi
+inst themix-full
+inst themix-icons-numix
 
 # rust apps
 inst bat

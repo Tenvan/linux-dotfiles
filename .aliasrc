@@ -93,6 +93,12 @@ alias wb="curl -H 'Accept-Language: de' wttr.in/33034"
 alias sys-emoji="curl https://unicode.org/Public/emoji/5.0/emoji-test.txt"
 alias sys-utf8="curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html"
 
+# display manager handling
+alias to-lightdm="sudo systemctl disable --now ly; sudo systemctl disable --now sddm; sudo systemctl enable --now lightdm; sudo systemctl start lightdm "
+
+# ssh 
+alias ssh="kitty +kitten ssh"
+
 # man pages
 xman() {
 	MAN_PAGE="https://man.archlinux.org/man/${1}"

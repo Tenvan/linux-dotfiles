@@ -19,7 +19,7 @@ DEBUG=false
 ERROR_PAKAGE_UNINST=
 ERROR_PAKAGE_INST=
 
-if [ $LINUX_VERSION_NAME = "ArchLinux" ]; then
+if [ $LINUX_VERSION_NAME = "Arch" ]; then
 	IS_ARCH=true
 fi
 
