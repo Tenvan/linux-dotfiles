@@ -61,48 +61,43 @@ gdebug.dump(xres)
 -- wm_title_unfocused_color : #cfdae7cc (string)
 
 --
--- Base16 oomox-Numix-Dark-Orange
--- Author: oomox-Numix-Dark-Orange
+-- Base16 oomox-arc-dark
+-- Author: oomox-arc-dark
 --
 
 function hex2rgb(hex)
-    local hex = hex:gsub("#", "")
-    return string.format(
-        "%s, %s, %s",
-        tonumber("0x" .. hex:sub(1, 2)),
-        tonumber("0x" .. hex:sub(3, 4)),
-        tonumber("0x" .. hex:sub(5, 6))
-    )
+    local hex = hex:gsub("#","")
+    return string.format("%s, %s, %s",tonumber("0x"..hex:sub(1,2)), tonumber("0x"..hex:sub(3,4)), tonumber("0x"..hex:sub(5,6)))
 end
 
-local base00 = "#303030" -- ----
-local base01 = "#3b6248" -- ---
-local base02 = "#4b7258" -- --
-local base03 = "#949494" -- -
-local base04 = "#1c1c1c" -- +
-local base05 = "#fafafa" -- ++
-local base06 = "#8cb399" -- +++
-local base07 = "#ffffff" -- ++++
-local base08 = "#be543a" -- red
-local base09 = "#e7bb47" -- orange
-local base0A = "#cda331" -- yellow
-local base0B = "#37924c" -- green
-local base0C = "#51b6a2" -- aqua/cyan
-local base0D = "#5d8ca7" -- blue
-local base0E = "#b49597" -- purple
-local base0F = "#be732c" -- brown
+local base00 = "#404552" -- ----
+local base01 = "#2f3b4c" -- ---
+local base02 = "#443e58" -- --
+local base03 = "#898f9a" -- -
+local base04 = "#545966" -- +
+local base05 = "#d3dae3" -- ++
+local base06 = "#a0a9c8" -- +++
+local base07 = "#afbabd" -- ++++
+local base08 = "#fa8a5c" -- red
+local base09 = "#bea919" -- orange
+local base0A = "#cca429" -- yellow
+local base0B = "#66bc56" -- green
+local base0C = "#39b8c5" -- aqua/cyan
+local base0D = "#90a5f7" -- blue
+local base0E = "#d88de6" -- purple
+local base0F = "#c88526" -- brown
 
 local theme = {}
 
 -- Default settings
-theme.fg = base00
-theme.bg = base07
+theme.fg   = base00
+theme.bg   = base07
 
 -- Genaral colours
 theme.success_fg = base0C
-theme.loaded_fg = base0D
-theme.error_fg = base00
-theme.error_bg = base08
+theme.loaded_fg  = base0D
+theme.error_fg   = base00
+theme.error_bg   = base08
 
 -- Warning colours
 theme.warning_fg = base00
@@ -113,80 +108,78 @@ theme.notif_fg = base00
 theme.notif_bg = base05
 
 -- Menu colours
-theme.menu_fg = base05
-theme.menu_bg = base00
-theme.menu_selected_fg = base01
-theme.menu_selected_bg = base0A
+theme.menu_fg                   = base05
+theme.menu_bg                   = base00
+theme.menu_selected_fg          = base01
+theme.menu_selected_bg          = base0A
 
-theme.menu_title_bg = base00
-theme.menu_primary_title_fg = base05
-theme.menu_secondary_title_fg = base04
+theme.menu_title_bg             = base00
+theme.menu_primary_title_fg     = base05
+theme.menu_secondary_title_fg   = base04
 
 theme.menu_disabled_fg = base03
 theme.menu_disabled_bg = theme.menu_bg
-theme.menu_enabled_fg = theme.menu_fg
-theme.menu_enabled_bg = theme.menu_bg
-theme.menu_active_fg = base06
-theme.menu_active_bg = theme.menu_bg
+theme.menu_enabled_fg  = theme.menu_fg
+theme.menu_enabled_bg  = theme.menu_bg
+theme.menu_active_fg   = base06
+theme.menu_active_bg   = theme.menu_bg
 
 -- Proxy manager
-theme.proxy_active_menu_fg = base05
-theme.proxy_active_menu_bg = base00
-theme.proxy_inactive_menu_fg = base03
-theme.proxy_inactive_menu_bg = base00
+theme.proxy_active_menu_fg      = base05
+theme.proxy_active_menu_bg      = base00
+theme.proxy_inactive_menu_fg    = base03
+theme.proxy_inactive_menu_bg    = base00
 
 -- Statusbar specific
-theme.sbar_fg = base05
-theme.sbar_bg = base00
+theme.sbar_fg         = base05
+theme.sbar_bg         = base00
 
 -- Downloadbar specific
-theme.dbar_fg = base00
-theme.dbar_bg = base0D
-theme.dbar_error_fg = base08
+theme.dbar_fg         = base00
+theme.dbar_bg         = base0D
+theme.dbar_error_fg   = base08
 
 -- Input bar specific
-theme.ibar_fg = base05
-theme.ibar_bg = base00
+theme.ibar_fg           = base05
+theme.ibar_bg           = base00
 
 -- Tab label
-theme.tab_fg = base05
-theme.tab_bg = base00
-theme.tab_hover_bg = base03
-theme.tab_ntheme = base03
-theme.selected_fg = base05
-theme.selected_bg = base03
-theme.selected_ntheme = base00
-theme.loading_fg = base0D
-theme.loading_bg = base00
+theme.tab_fg            = base05
+theme.tab_bg            = base00
+theme.tab_hover_bg      = base03
+theme.tab_ntheme        = base03
+theme.selected_fg       = base05
+theme.selected_bg       = base03
+theme.selected_ntheme   = base00
+theme.loading_fg        = base0D
+theme.loading_bg        = base00
 
 theme.selected_private_tab_bg = base05
-theme.private_tab_bg = base03
+theme.private_tab_bg          = base03
 
 -- Trusted/untrusted ssl colours
-theme.trust_fg = base0B
-theme.notrust_fg = base0D
+theme.trust_fg          = base0B
+theme.notrust_fg        = base0D
 
 -- Follow mode hints
-theme.hint_fg = base00
-theme.hint_bg = base0A
+theme.hint_fg     = base00
+theme.hint_bg     = base0A
 theme.hint_border = string.format("1px dashed %s", base0A)
 
-theme.hint_overlay_bg = string.format("rgba(%s, 0.3)", hex2rgb(base07))
+theme.hint_overlay_bg     = string.format("rgba(%s, 0.3)", hex2rgb(base07))
 theme.hint_overlay_border = string.format("1px dotted %s", base07)
 
-theme.hint_overlay_selected_bg = string.format("rgba(%s, 0.3)", hex2rgb(base0B))
+theme.hint_overlay_selected_bg     = string.format("rgba(%s, 0.3)", hex2rgb(base0B))
 theme.hint_overlay_selected_border = theme.hint_overlay_border
 
 -- General colour pairings
-theme.ok = {fg = base05, bg = base00}
-theme.warn = {fg = base00, bg = base0E}
-theme.error = {fg = base08, bg = base00}
+theme.ok    = { fg = base05, bg = base00 }
+theme.warn  = { fg = base00, bg = base0E }
+theme.error = { fg = base08, bg = base00 }
 
 -- Font
-theme.font = "12px monospace"
+theme.font      = "12px monospace"
 theme.hint_font = "10px monospace, courier, sans-serif"
-
--- vim: et:sw=4:ts=8:sts=4:tw=80:ft=lua
 
 -- End of oomox
 

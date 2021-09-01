@@ -1,25 +1,25 @@
--- Base16 oomox-Numix-Dark-Orange color 
--- Author: oomox-Numix-Dark-Orange
+-- Base16 oomox-arc-dark color 
+-- Author: oomox-arc-dark
 -- to be use in your theme.lua
 -- symlink or copy to config folder `local color = require('color')`
 
 local M = {}
 
-M.base00 = "#303030" -- ----
-M.base01 = "#3b6248" -- ---
-M.base02 = "#4b7258" -- --
-M.base03 = "#949494" -- -
-M.base04 = "#1c1c1c" -- +
-M.base05 = "#fafafa" -- ++
-M.base06 = "#8cb399" -- +++
-M.base07 = "#ffffff" -- ++++
-M.base08 = "#be543a" -- red
-M.base09 = "#e7bb47" -- orange
-M.base0A = "#cda331" -- yellow
-M.base0B = "#37924c" -- green
-M.base0C = "#51b6a2" -- aqua/cyan
-M.base0D = "#5d8ca7" -- blue
-M.base0E = "#b49597" -- purple
-M.base0F = "#be732c" -- brown
+M.base00 = "#404552" -- ----
+M.base01 = "#2f3b4c" -- ---
+M.base02 = "#443e58" -- --
+M.base03 = "#898f9a" -- -
+M.base04 = "#545966" -- +
+M.base05 = "#d3dae3" -- ++
+M.base06 = "#a0a9c8" -- +++
+M.base07 = "#afbabd" -- ++++
+M.base08 = "#fa8a5c" -- red
+M.base09 = "#bea919" -- orange
+M.base0A = "#cca429" -- yellow
+M.base0B = "#66bc56" -- green
+M.base0C = "#39b8c5" -- aqua/cyan
+M.base0D = "#90a5f7" -- blue
+M.base0E = "#d88de6" -- purple
+M.base0F = "#c88526" -- brown
 
 return M

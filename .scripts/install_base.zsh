@@ -11,6 +11,7 @@ initInstall "install_base"
 
 # system packages
 inst alacritty
+inst albert
 inst alttab-git
 inst arandr
 inst arj
@@ -57,11 +58,6 @@ inst picom-jonaburg-git
 inst powershell-bin
 inst qbittorrent
 inst radiotray-ng
-inst rofi
-inst rofi-emoji 
-inst rofi-mpc 
-inst rofi-mpd 
-inst rofi-translate-git
 inst rsyslog
 inst s-tui
 inst shell-color-scripts

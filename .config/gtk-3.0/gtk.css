@@ -1,17 +1,15 @@
 /*
-Base16 oomox-Numix-Dark-Orange
-Author: oomox-Numix-Dark-Orange
+Base16 oomox-arc-dark
+Author: oomox-arc-dark
 In files gtk-3.0/gtk.css and gtk-3.20/gtk.css, delete section "Default color scheme" and inject this
 */
 
-@define-color bg_color #303030;
-@define-color fg_color #fafafa;
-@define-color base_color #3b6248;
-@define-color text_color #fafafa;
-@define-color text_color_disabled #949494;
-@define-color selected_bg_color #4b7258;
-@define-color selected_fg_color #fafafa;
-@define-color tooltip_bg_color #303030;
-@define-color tooltip_fg_color #fafafa;
-
-@import 'colors.css';
+@define-color bg_color #404552;
+@define-color fg_color #d3dae3;
+@define-color base_color #2f3b4c;
+@define-color text_color #d3dae3;
+@define-color text_color_disabled #898f9a;
+@define-color selected_bg_color #443e58;
+@define-color selected_fg_color #d3dae3;
+@define-color tooltip_bg_color #404552;
+@define-color tooltip_fg_color #d3dae3;
