@@ -18,6 +18,8 @@ run pasystray
 run xbindkeys
 run copyq
 
+run albert
+
 CUSTOM_AUTOSTART="$HOME/.autostart-custom"
 if [ -f $CUSTOM_AUTOSTART ]; then 
 	sh $CUSTOM_AUTOSTART

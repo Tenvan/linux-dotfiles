@@ -50,7 +50,7 @@ local function notify(titel, message, category, playSound)
             title = titel
         }
     )
-    
+
     if playSound == true then
         if category == naughty.config.presets.critical then
             awful.spawn(sound_path .. " " .. "notify-error")
@@ -385,7 +385,6 @@ root.buttons(
             function()
                 awful.util.mymainmenu:toggle()
                 sound("menu-popup")
-
             end
         ),
         awful.button({}, 4, awful.tag.viewnext),
@@ -531,7 +530,8 @@ local globalkeys =
             end
         end,
         {description = "focus right", group = kgClient}
-    ), -- Layout manipulation
+    ),
+    -- Layout manipulation
     awful.key(
         {modkey},
         "Down",
@@ -585,15 +585,6 @@ local globalkeys =
         end,
         {description = "toggle wibox", group = kgLayout}
     ),
-    -- Show/Hide SystraySystray
-    awful.key(
-        {modkey},
-        "KP_Subtract",
-        function()
-            awful.screen.focused().systray.visible = not awful.screen.focused().systray.visible
-        end,
-        {description = "Toggle systray visibility", group = kgSystem}
-    ),
     -- On the fly useless gaps change
     awful.key(
         {modkey, altkey},
@@ -611,6 +602,7 @@ local globalkeys =
         end,
         {description = "decrement useless gaps", group = kgLayout}
     ),
+    -- On the fly master handling
     awful.key(
         {modkey, controlkey},
         "m",
@@ -655,6 +647,7 @@ local globalkeys =
             group = kgLayout
         }
     ),
+    -- On the fly layout handling
     awful.key(
         {modkey, shiftkey},
         "space",
@@ -1356,7 +1349,7 @@ client.connect_signal(
     "raised",
     function(c)
         if is_initialized then
-            -- sound("window-attention-active")
+        -- sound("window-attention-active")
         end
     end
 )
@@ -1365,7 +1358,7 @@ client.connect_signal(
     "lowered",
     function(c)
         if is_initialized then
-            -- sound("window-attention-inactive")
+        -- sound("window-attention-inactive")
         end
     end
 )
