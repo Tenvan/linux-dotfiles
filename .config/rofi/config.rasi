@@ -1,5 +1,5 @@
 configuration {
-    modi: "window,windowcd,drun,file-browser";
+  modi: "window,windowcd,drun,filebrowser";
 	combi-modi: "window,windowcd,drun,calc";
 	location: 0;
 	lines: 24;

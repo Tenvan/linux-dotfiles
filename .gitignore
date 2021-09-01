@@ -10,10 +10,6 @@
 !.xbindkeysrc
 !README.MD
 
-# Ausnahmen VS Code
-!.vscode
-!.vscode/*
-
 # Ausnahmen Script Folder
 !.scripts
 !.scripts/**/*
@@ -37,9 +33,6 @@
 !.config/alacritty/*
 !.config/awesome
 !.config/awesome/**/*
-!.config/Code
-!.config/Code/User
-!.config/Code/User/*.json
 !.config/copyq
 !.config/copyq/copyq.conf
 !.config/copyq/themes
