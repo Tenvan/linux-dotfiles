@@ -101,32 +101,6 @@
 "thunar" 
   mod4 + F8
 
-#####################
-
-"kitty --hold --title CF:Show --name CF:Show xbindkeys --show" 
-  control + shift + q
-
-"kitty --hold --title CF:Show --name CF:Show xbindkeys --key" 
-  control + alt + q
-
-"kitty --hold --title CF:Show --name CF:Show xbindkeys --multikey" 
-  mod4 + alt + q
-
-"$HOME/.bin/audio-next" 
-  mod4 + control + KP_Add
-
-"$HOME/.bin/audio-prev"
-  mod4 + control + KP_Subtract
-
-"amixer -d set Master 5%+" 
-  mod4 + alt + KP_Add
-
-"amixer -d set Master 5%-"
-  mod4 + alt + KP_Subtract
-
-"amixer -d set Master toggle" 
-  mod4 + alt + KP_Multiply
-
 #################
 # System Hotkeys
 

@@ -693,6 +693,7 @@ local globalkeys =
     -- {description = "show filesystem", group = "widgets"}),
     -- awful.key({ altkey, }, "w", function () if beautiful.weather then beautiful.weather.show(7) end end,
     -- {description = "show weather", group = "widgets"}),
+
     -- Brightness
     awful.key(
         {},
@@ -710,10 +711,36 @@ local globalkeys =
         end,
         {description = "-10% Helligkeit", group = kgSound}
     ),
+    -- ALSA device control
+    awful.key(
+        {modkey, controlkey},
+        "KP_Add",
+        function()
+             os.execute("~/.bin/audio-next")
+        end,
+        {description = "Nächste Soundkarte", group = kgSound}
+    ),
+    awful.key(
+        {modkey, controlkey},
+        "KP_Subtract",
+        function()
+             os.execute("~/.bin/audio-prev")
+        end,
+        {description = "Vorherige Soundkarte", group = kgSound}
+    ),
+
     -- ALSA volume control
     awful.key(
         {},
         "XF86AudioRaiseVolume",
+        function()
+            os.execute("amixer -d set Master 5%+")
+        end,
+        {description = "+5% Volume", group = kgSound}
+    ),
+    awful.key(
+        {modkey, altkey},
+        "KP_Add",
         function()
             os.execute("amixer -d set Master 5%+")
         end,
@@ -728,8 +755,24 @@ local globalkeys =
         {description = "-5% Volume", group = kgSound}
     ),
     awful.key(
+        {modkey, altkey},
+        "KP_Subtract",
+        function()
+            os.execute("amixer -d set Master 5%-")
+        end,
+        {description = "-5% Volume", group = kgSound}
+    ),
+    awful.key(
         {},
         "XF86AudioMute",
+        function()
+            os.execute("amixer -q set Master toggle")
+        end,
+        {description = "Mute Volume", group = kgSound}
+    ),
+    awful.key(
+        {modkey, altkey},
+        "KP_Multiply",
         function()
             os.execute("amixer -q set Master toggle")
         end,
@@ -770,6 +813,7 @@ local globalkeys =
             os.execute("playerctl stop")
         end
     ),
+    -- other media keys
     awful.key(
         {},
         "XF86Calculator",
