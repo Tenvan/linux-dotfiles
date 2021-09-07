@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 print "Starte Messung deutscher Mirror Server..."
-reflector -c Germany -p http -p https --sort rate -n 10 --verbose | sudo tee /etc/pacman.d/mirrorlist
+sudo reflector --country Germany --latest 5 --age 2 --fastest 5 --protocol https --sort rate --verbose --save /etc/pacman.d/mirrorlist
+cat /etc/pacman.d/mirrorlist 
 print "Messung abgeschlossen, Test der Server starten..."
 rankmirrors -n 0 -t /etc/pacman.d/mirrorlist
+print "Update Pacman"
+sudo pacman -Syu

@@ -123,9 +123,6 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-# Set your countries like --country France --country Germany -- or more.
-alias upd='sudo reflector --country Germany --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo pacman -Syu'
-
 csource ~/.aliasrc
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

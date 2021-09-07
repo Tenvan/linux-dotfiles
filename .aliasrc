@@ -12,8 +12,7 @@ alias speed='speedtest-cli --server 2406 --simple'
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 # get actual mirrors
-alias mirror_arch="pacman-mirrorup -v -m 10 -o mirrorlist; cat mirrorlist; sudo mv mirrorlist /etc/pacman.d/mirrorlist"
-alias mirror_manjaro="sudo pacman-mirrors -c Germany"
+alias mirror-upd="$HOME/.bin/update-mirrors"
 
 #list
 alias ls='ls --color=auto'

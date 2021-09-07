@@ -20,6 +20,8 @@ export SSH_ASKPASS=$(which lxqt-openssh-askpass)
 # fix "xdg-open fork-bomb" export your preferred browser from here
 # export BROWSER=$(which firefox)
 export BROWSER=
+export VISUAL=micro
+export EDITOR=micro
 
 # custom profile
 file="$HOME/.xprofile-custom"
