@@ -1,19 +1,19 @@
 /**
- * Base16 oomox-Numix-Dark-Orange ROFI Color theme
+ * Base16 oomox-arc-dark ROFI Color theme
  *
  * Authors
- *  Scheme: oomox-Numix-Dark-Orange
+ *  Scheme: oomox-arc-dark
  *  Template: Jordi Pakey-Rodriguez (https://github.com/0xdec), Andrea Scarpino (https://github.com/ilpianista)
  */
 
 * {
-    red:                         rgba ( 190, 84, 58, 100 % );
-    blue:                        rgba ( 93, 140, 167, 100 % );
-    lightfg:                     rgba ( 140, 179, 153, 100 % );
-    lightbg:                     rgba ( 59, 98, 72, 100 % );
-    foreground:                  rgba ( 250, 250, 250, 100 % );
-    background:                  rgba ( 48, 48, 48, 100 % );
-    background-color:            rgba ( 48, 48, 48, 0 % );
+    red:                         rgba ( 250, 138, 92, 100 % );
+    blue:                        rgba ( 144, 165, 247, 100 % );
+    lightfg:                     rgba ( 160, 169, 200, 100 % );
+    lightbg:                     rgba ( 47, 59, 76, 100 % );
+    foreground:                  rgba ( 211, 218, 227, 100 % );
+    background:                  rgba ( 64, 69, 82, 100 % );
+    background-color:            rgba ( 64, 69, 82, 0 % );
     separatorcolor:              @foreground;
     border-color:                @foreground;
     selected-normal-foreground:  @lightbg;

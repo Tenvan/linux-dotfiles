@@ -9,7 +9,7 @@
 
 [credential]
 	helper = /usr/bin/git-credential-manager-core
-	credentialStore = cache
+	credentialStore = secretservice
 
 [color]
 	ui = auto

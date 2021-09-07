@@ -110,6 +110,12 @@ sudo usermod -aG docker $USER
 ###########################
 # enable services
 
+# display manager
+sudo systemctl disable ly.service
+sudo systemctl disable sddm.service
+sudo systemctl enable --now lightdm.service
+errorCheck "lightdm service"
+
 # printer Service
 sudo systemctl enable --now cups.socket
 sudo systemctl enable --now cups.service

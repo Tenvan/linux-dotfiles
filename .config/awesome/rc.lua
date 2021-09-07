@@ -75,7 +75,7 @@ local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popu
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 local hotkeys_popup = require("awful.hotkeys_popup").widget
-require("awful.hotkeys_popup.keys")
+-- require("awful.hotkeys_popup.keys")
 
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local dpi = require("beautiful.xresources").apply_dpi
@@ -95,7 +95,6 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({"unclutter -root"}) -- entries must be comma-separated
 -- }}}
 
 -- This function implements the XDG autostart specification
@@ -125,14 +124,17 @@ local editorgui = "Geany"
 local terminal = "kitty"
 
 -- key groups
-local kgAwesome = "awesome"
-local kgClient = "client"
-local kgLayout = "layout"
-local kgMaster = "master"
-local kgScreen = "screen"
-local kgSound = "sound"
-local kgSystem = "system"
-local kgTag = "tag"
+local kgAwesome = "AwesomeWM"
+local kgApps = "Anwendungen"
+local kgMenus = "Menüs"
+local kgClient = "Client Aktionen"
+local kgLayout = "Layout Aktionen"
+local kgMaster = "Master Aktionen"
+local kgScreen = "Screen Aktionen"
+local kgScreenshot = "Screenshot"
+local kgSound = "Audio"
+local kgSystem = "System"
+local kgTag = "Tags"
 
 -- awesome variables
 awful.util.terminal = terminal
@@ -684,15 +686,40 @@ local globalkeys =
         function()
             awful.screen.focused().quake:toggle()
         end,
-        {description = "dropdown application", group = kgSystem}
+        {description = "dropdown application", group = kgAwesome}
     ),
+    -- TODO Widgets einbauen
     -- Widgets popups
-    -- awful.key({ altkey, }, "c", function () lain.widget.calendar.show(7) end,
-    -- {description = "show calendar", group = "widgets"}),
-    -- awful.key({ altkey, }, "h", function () if beautiful.fs then beautiful.fs.show(7) end end,
-    -- {description = "show filesystem", group = "widgets"}),
-    -- awful.key({ altkey, }, "w", function () if beautiful.weather then beautiful.weather.show(7) end end,
-    -- {description = "show weather", group = "widgets"}),
+    -- awful.key(
+    --     {modkey},
+    --     "c",
+    --     function()
+    --         if lain.widget.calendar then
+    --             lain.widget.calendar.show(7)
+    --         end
+    --     end,
+    --     {description = "show calendar", group = "widgets"}
+    -- ),
+    -- awful.key(
+    --     {modkey},
+    --     "h",
+    --     function()
+    --         if beautiful.fs then
+    --             beautiful.fs.show(7)
+    --         end
+    --     end,
+    --     {description = "show filesystem", group = "widgets"}
+    -- ),
+    -- awful.key(
+    --     {modkey},
+    --     "w",
+    --     function()
+    --         if beautiful.weather then
+    --             beautiful.weather.show(7)
+    --         end
+    --     end,
+    --     {description = "show weather", group = "widgets"}
+    -- ),
 
     -- Brightness
     awful.key(
@@ -716,7 +743,7 @@ local globalkeys =
         {modkey, controlkey},
         "KP_Add",
         function()
-             os.execute("~/.bin/audio-next")
+            awful.spawn.with_shell("~/.bin/audio-next")
         end,
         {description = "Nächste Soundkarte", group = kgSound}
     ),
@@ -724,11 +751,10 @@ local globalkeys =
         {modkey, controlkey},
         "KP_Subtract",
         function()
-             os.execute("~/.bin/audio-prev")
+            awful.spawn.with_shell("~/.bin/audio-prev")
         end,
         {description = "Vorherige Soundkarte", group = kgSound}
     ),
-
     -- ALSA volume control
     awful.key(
         {},
@@ -820,6 +846,163 @@ local globalkeys =
         function()
             awful.spawn("gnome-calculator")
         end
+    ),
+    -- Menu Shortcuts
+    awful.key(
+        {modkey},
+        "F2",
+        function()
+            awful.spawn("xfce4-appfinder")
+        end,
+        {description = "Anwendungs Finder", group = kgMenus}
+    ),
+    awful.key(
+        {modkey},
+        "z",
+        function()
+            awful.spawn.with_shell("sh ~/.scripts/menu/rofi.sh -show combi")
+        end,
+        {description = "Rofi Menü", group = kgMenus}
+    ),
+    awful.key(
+        {modkey},
+        "a",
+        function()
+            awful.spawn.with_shell("sh ~/.scripts/menu/app-menu.sh")
+        end,
+        {description = "Applikations Menü", group = kgMenus}
+    ),
+    awful.key(
+        {modkey},
+        "d",
+        function()
+            awful.spawn.with_shell("sh ~/.scripts/menu/develop-menu.sh")
+        end,
+        {description = "Developer Menü", group = kgMenus}
+    ),
+    awful.key(
+        {modkey},
+        "e",
+        function()
+            awful.spawn.with_shell("sh ~/.scripts/menu/edit-configs.sh")
+        end,
+        {description = "System Edit Menü", group = kgMenus}
+    ),
+    awful.key(
+        {modkey},
+        "t",
+        function()
+            awful.spawn.with_shell("sh ~/.scripts/menu/system-tools.sh")
+        end,
+        {description = "System Tools Menü", group = kgMenus}
+    ),
+    awful.key(
+        {modkey},
+        "m",
+        function()
+            awful.spawn.with_shell("sh ~/.scripts/menu/system-monitor.sh")
+        end,
+        {description = "System Monitors Menü", group = kgMenus}
+    ),
+    awful.key(
+        {modkey},
+        "x",
+        function()
+            awful.spawn.with_shell("sh ~/.scripts/menu/system-menu.sh")
+        end,
+        {description = "System Power Menü", group = kgMenus}
+    ),
+    -- Printer Shortcuts
+    awful.key(
+        {},
+        "Print",
+        function()
+            awful.spawn("spectacle -i")
+        end,
+        {description = "Screenshot App", group = kgScreenshot}
+    ),
+    awful.key(
+        {altkey},
+        "Print",
+        function()
+            awful.spawn("spectacle -i -r")
+        end,
+        {description = "Screenshot Rect", group = kgScreenshot}
+    ),
+    awful.key(
+        {controlkey},
+        "Print",
+        function()
+            awful.spawn("spectacle -i -a")
+        end,
+        {description = "Screenshot Fenster", group = kgScreenshot}
+    ),
+    -- Shortcuts to Applications
+    awful.key(
+        {modkey},
+        "F1",
+        function()
+            awful.spawn("google-chrome-stable")
+        end,
+        {description = "Web Browser", group = kgApps}
+    ),
+    awful.key(
+        {modkey},
+        "F8",
+        function()
+            awful.spawn("thunar")
+        end,
+        {description = "Dateimanager", group = kgApps}
+    ),
+    -- System Tools
+    awful.key(
+        {controlkey, altkey},
+        "k",
+        function()
+            awful.spawn("killall node -s KILL; fuser -k 4200/tcp; fuser -k 4201/tcp; fuser -k 4202/tcp; notify-send.sh 'Node' 'all nodes-processes and ng-services killed'")
+            notify("Kill Node.js", "Alle laufenden Node.js Tasks wurden beendet!")
+        end,
+        {description = "Nodejs killen", group = kgSystem}
+    ),
+    awful.key(
+        {modkey, altkey},
+        "t",
+        function()
+            notify("Test Nachricht", "Dies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.")
+        end,
+        {description = "Test Benachrichtigung", group = kgSystem}
+    ),
+    awful.key(
+        {modkey},
+        "Return",
+        function()
+            awful.spawn("kitty")
+        end,
+        {description = "Terminal starten", group = kgSystem}
+    ),
+    awful.key(
+        {modkey, controlkey},
+        "x",
+        function()
+            awful.spawn.with_shell("kitty --hold --title CF:XProp --name CF:XProp xprop")
+        end,
+        {description = "Xprop", group = kgSystem}
+    ),
+    awful.key(
+        {modkey, controlkey},
+        "t",
+        function()
+            awful.spawn.with_shell("sh ~/.scripts/picom-toggle-awesome.sh")
+        end,
+        {description = "Picom Toggle", group = kgSystem}
+    ),
+    awful.key(
+        {modkey},
+        "Escape",
+        function()
+            awful.spawn("xkill")
+        end,
+        {description = "XKill", group = kgSystem}
     )
 )
 
@@ -1040,11 +1223,13 @@ awful.rules.rules = {
 
     {
         rule_any = {
-            class = {"Ulauncher"}
+            class = {"Steam"}
         },
         properties = {
             border_width = 0,
-            titlebars_enabled = false
+            titlebars_enabled = false,
+            maximized = false,
+            floating = false
         }
     },
     {
@@ -1131,7 +1316,6 @@ awful.rules.rules = {
             instance = {},
             class = {},
             name = {
-                "CF:.*",
                 "Wetter:.*",
                 "XBindKey: Hit a key"
             },
@@ -1207,12 +1391,25 @@ awful.rules.rules = {
     {
         rule_any = {
             class = {
-                "VirtualBox*"
+                "Virt-manager"
             }
         },
         properties = {
             screen = 1,
             tag = awful.util.tagnames[5],
+            switchtotag = false
+        }
+    },
+    -- Set applications to always map on the tag 6 (RemoteDesktops) on screen 1.
+    {
+        rule_any = {
+            class = {
+                "org.remmina.Remmina"
+            }
+        },
+        properties = {
+            screen = 1,
+            tag = awful.util.tagnames[6],
             switchtotag = true
         }
     },
@@ -1311,9 +1508,8 @@ awful.rules.rules = {
         },
         properties = {
             floating = false,
-            screen = 2,
-            tag = awful.util.tagnames[2],
-            switchtotag = true
+            tag = awful.util.tagnames[1],
+            switchtotag = false
         }
     },
     -- Firefox Develop Edition auf Screen 2 tag 2 schieben
@@ -1328,8 +1524,7 @@ awful.rules.rules = {
         properties = {
             maximized = false,
             floating = false,
-            screen = 1,
-            tag = awful.util.tagnames[2],
+            tag = awful.util.tagnames[1],
             switchtotag = false
         }
     },
@@ -1338,13 +1533,15 @@ awful.rules.rules = {
         rule_any = {
             name = {
                 "SysMon:*",
-                "Sys:*"
+                "Sys:*",
+                "CF:*"
             },
             class = {"Gnome-system-monitor"}
         },
         properties = {
             screen = 2,
             tag = awful.util.tagnames[9],
+            floating = false,
             switchtotag = true
         }
     },
