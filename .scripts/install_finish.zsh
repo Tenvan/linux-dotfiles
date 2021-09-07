@@ -6,20 +6,10 @@
 # Init Install
 initInstall "install_finish"
 
-# Install packages for finishing
-inst libmagick-full
-inst terminus-font
-inst powerline-fonts
-
 if [ $IS_MANJARO = true ]; then
 	inst manjaro-wallpapers-18.0
 	inst bootsplash-systemd
 	inst bootsplash-theme-manjaro
-fi
-
-# powerline in linux console
-if [ $IS_GARUDA = true ]; then
-    inst terminess-powerline-font-git
 fi
 
 ###############################
@@ -47,8 +37,8 @@ sudo cp $HOME/.screenlayout/screenlayout.sh /opt
 errorCheck "copy screenlayout"
 
 #GREETER="lightdm-gtk-greeter"
-#GREETER="lightdm-slick-greeter"
-GREETER="lightdm-webkit2-greeter"
+GREETER="lightdm-slick-greeter"
+#GREETER="lightdm-webkit2-greeter"
 
 sudo sed -i "s/^.*greeter-session=.*$/greeter-session=$GREETER/g" /etc/lightdm/lightdm.conf
 sudo sed -i "s/^.*display-setup-script=.*$/display-setup-script=\/opt\/screenlayout.sh/g" /etc/lightdm/lightdm.conf
@@ -86,8 +76,8 @@ show-a11y=false" | sudo tee /etc/lightdm/slick-greeter.conf
 errorCheck "lightdm greeter config"
 
 # config webkit2 greeter
-# Set default lightdm greeter to lightdm-webkit2-greeter
-sudo sed -i 's/^\(#?greeter\)-session\s*=\s*\(.*\)/greeter-session = lightdm-webkit2-greeter #\1/ #\2g' /etc/lightdm/lightdm.conf
+# Set default lightdm greeter
+sudo sed -i 's/^\(#?greeter\)-session\s*=\s*\(.*\)/greeter-session = $GREETER #\1/ #\2g' /etc/lightdm/lightdm.conf
 sudo sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode = true #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 sudo sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = glorious #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 
@@ -97,7 +87,7 @@ FONT_MAP=" | sudo tee /etc/vconsole.conf
 
 # Default Browser setzen (vorher $BROWSER Variable entfernen)
 export BROWSER=
-xdg-settings set default-web-browser google-chrome.desktop
+xdg-settings set default-web-browser vivaldi-stable.desktop
 
 sudo fc-cache -fv
 errorCheck "fontcache"
@@ -111,29 +101,28 @@ sudo usermod -aG docker $USER
 # enable services
 
 # display manager
-sudo systemctl disable ly.service
 sudo systemctl disable sddm.service
-sudo systemctl enable --now lightdm.service
+sudo systemctl enable lightdm.service
 errorCheck "lightdm service"
 
 # printer Service
-sudo systemctl enable --now cups.socket
-sudo systemctl enable --now cups.service
+sudo systemctl enable cups.socket
+sudo systemctl enable cups.service
 errorCheck "printer service"
 
 # docker
-sudo systemctl enable --now docker
+sudo systemctl enable docker
 errorCheck "docker service"
 
 #sudo systemctl enable --now bluetooth-autoconnect
 #errorCheck "bluetooth-autoconnect service"
 
-sudo systemctl enable --now fstrim.timer
+sudo systemctl enable fstrim.timer
 errorCheck "fstrim service"
 
 mkdir -p ~/.config/systemd/user/
 sudo cp /usr/lib/systemd/user/pulseaudio-bluetooth-autoconnect.service /etc/systemd/user
-systemctl enable pulseaudio-bluetooth-autoconnect --user --now
+systemctl enable pulseaudio-bluetooth-autoconnect --user
 #errorCheck "pulseaudio-bluetooth-autoconnect service"
 
 # grub config
@@ -164,10 +153,6 @@ elif [ $IS_ARCO = true ]; then
 	errorCheck "move arco grub file"
 elif [ $IS_ARCO != true ]; then
 	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/Stylish\/theme.txt"/g' </etc/default/grub >grub
-	sudo mv -f grub /etc/default
-elif [ $IS_GARUDA = true ]; then
-	sudo cp $SCRIPTS/setup/manjaro-cat.png /usr/share/grub/themes/garuda/background.png
-	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/garuda\/theme.txt"/g' </etc/default/grub >grub
 	sudo mv -f grub /etc/default
 elif [ $IS_ENDEA = false ]; then
 	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/EndeavourOS\/theme.txt"/g' </etc/default/grub >grub

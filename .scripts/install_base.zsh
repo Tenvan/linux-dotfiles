@@ -42,7 +42,6 @@ inst iptraf-ng
 inst kitty
 inst kteatime
 inst lhasa
-inst lxqt-openssh-askpass
 inst multitail
 inst networkmanager
 inst networkmanager-openconnect
@@ -61,7 +60,6 @@ inst rsyslog
 inst s-tui
 inst shell-color-scripts
 inst spectacle
-inst speedtest-cli
 inst time
 inst timeshift
 inst tldr++
@@ -81,16 +79,18 @@ if [ $IS_ARCO = true ]; then
 	inst arcolinux-meta-samba
 fi
 
-if [ $IS_GARUDA = true ]; then
-	inst samba-support
-fi
-
 if [ $IS_MANJARO = true ]; then
 	inst samba
 	inst manjaro-settings-samba
 fi
 
+# ssh 
+inst openssh
+#inst lxqt-openssh-askpass
+inst ssh-askpass-fullscreen
+
 # Base Development Tools
+inst base-devel
 inst git
 inst gitflow-avh
 inst git-delta
@@ -198,27 +198,12 @@ inst ponymix
 
 # Python libs
 inst python
-#inst python-psutil
-uninst python-pygit2
-#inst python-requests
-uninst python-taskw
-uninst python-xkbgroup
-uninst python2-distutils-extra
-uninst python-black
-uninst python-nose
-uninst python-pipenv
-uninst python-pyflakes
-uninst python-pytest
-#inst python-lxml
-uninst python-numpy
 
 # other
 inst bleachbit
 
 # bluetooth setup
-if [ $IS_GARUDA = true ]; then
-	inst bluetooth-support
-elif [ $IS_MANJARO = true ]; then
+if [ $IS_MANJARO = true ]; then
 	inst manjaro-bluetooth
 elif [ $IS_ENDEA = true ]; then
 	inst bluez 
@@ -261,11 +246,11 @@ inst foomatic-db-gutenprint-ppds
 inst gutenprint 
 
 # scanner setup
-uninst xsane
-uninst simple-scan
-uninst skanlite
-uninst colord-sane
-uninst sane
+#inst xsane
+#inst simple-scan
+#inst skanlite
+#inst colord-sane
+#inst sane
 
 # Browser
 inst firefox
@@ -313,25 +298,28 @@ inst bibata-cursor-translucent
 
 # fonts
 inst font-manager
+
+# powerline in linux console
 inst awesome-terminal-fonts
+inst terminus-font
+inst powerline-fonts
 
-uninst nerd-fonts-complete
-inst nerd-fonts-cascadia-code
-inst nerd-fonts-dejavu-complete
-inst nerd-fonts-fira-code
-inst nerd-fonts-iosevka 
-inst nerd-fonts-noto-sans-mono
-inst nerd-fonts-noto-sans-regular-complete
-inst nerd-fonts-roboto-mono
-inst nerd-fonts-source-code-pro
-inst nerd-fonts-terminus
+inst nerd-fonts-complete
+#inst nerd-fonts-cascadia-code
+#inst nerd-fonts-dejavu-complete
+#inst nerd-fonts-fira-code
+#inst nerd-fonts-iosevka 
+#inst nerd-fonts-noto-sans-mono
+#inst nerd-fonts-noto-sans-regular-complete
+#inst nerd-fonts-roboto-mono
+#inst nerd-fonts-source-code-pro
+#inst nerd-fonts-terminus
 inst ttf-meslo-nerd-font-powerlevel10k
-
 inst ttf-devicons
 inst ttf-twemoji
 inst ttf-twemoji-color
 inst ttf-weather-icons
-uninst ttf-ms-win10-auto
+
 
 # lightdm config
 inst lightdm
@@ -352,10 +340,6 @@ fi
 inst grub-customizer
 inst update-grub
 
-if [ $IS_GARUDA = true ]; then
-	inst grub-theme-garuda
-fi
-
 if [ $IS_MANJARO != true -a $IS_ARCO != true ]; then
 	inst grub2-theme-archlinux
 fi
@@ -369,10 +353,7 @@ inst timeshift-autosnap
 #########################
 # collect optional apps #
 #########################
-uninst epdfview
-uninst tracker3-miners
-uninst nautilus
-uninst poppler-glib
+#inst epdfview
 
 # gimicks
 inst cmatrix
@@ -390,7 +371,11 @@ inst libmythes
 inst languagetool
 
 # Browser
-inst google-chrome
+if [ $IS_ARCO != true ]; then
+	inst google-chrome
+else
+	inst vivaldi
+fi
 inst microsoft-edge-dev-bin
 
 # optional application packages
@@ -400,6 +385,7 @@ inst gimp
 inst gimp-help-de
 inst gwenview
 inst imagemagick-full
+inst libmagick-full
 inst inkscape
 inst partitionmanager
 inst pinta

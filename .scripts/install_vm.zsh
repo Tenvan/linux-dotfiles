@@ -18,9 +18,7 @@ INSTALL_VIRTUALBOX=false
 
 # virtualbox
 if [ $INSTALL_VIRTUALBOX = true ]; then
-	if [ $IS_GARUDA = true ]; then
-		inst virtualbox-meta
-	elif [ $IS_MANJARO = true ]; then
+	if [ $IS_MANJARO = true ]; then
 		inst virtualbox
 		inst virtualbox-ext-oracle
 	else
@@ -33,20 +31,14 @@ fi
 
 # libvirt service and manager
 if [ $INSTALL_VIRTIO = true ]; then
-	if [ $IS_GARUDA = true ]; then
-		inst virt-manager-meta
-	else
-		inst virt-manager
-		inst virt-viewer
-		inst virtio-win
-		inst qemu
-		inst qemu-arch-extra
-		inst libvirt
-		inst iptables-nft
-		inst ebtables
-		inst dnsmasq
-		inst ssh-askpass-fullscreen
-	fi
+	inst virt-manager
+	inst virtio-win
+	inst qemu
+	inst qemu-arch-extra
+	inst libvirt
+	inst iptables-nft
+	inst ebtables
+	inst dnsmasq
 fi
 
 ###############################

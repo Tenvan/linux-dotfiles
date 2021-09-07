@@ -942,9 +942,9 @@ local globalkeys =
         {modkey},
         "F1",
         function()
-            awful.spawn("google-chrome-stable")
+            awful.spawn.with_shell("$(xdg-settings get default-web-browser | cut -f1 -d '.')")
         end,
-        {description = "Web Browser", group = kgApps}
+        {description = "Standard Browser", group = kgApps}
     ),
     awful.key(
         {modkey},
@@ -1517,6 +1517,7 @@ awful.rules.rules = {
         rule_any = {
             class = {
                 "Google-chrome",
+                "Vivaldi*",
                 "firefox",
                 "firefoxdeveloperedition"
             }

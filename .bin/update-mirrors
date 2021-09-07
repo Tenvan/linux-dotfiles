@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+print "Starte Messung deutscher Mirror Server..."
+reflector -c Germany -p http -p https --sort rate -n 10 --verbose | sudo tee /etc/pacman.d/mirrorlist
+print "Messung abgeschlossen, Test der Server starten..."
+rankmirrors -n 0 -t /etc/pacman.d/mirrorlist
