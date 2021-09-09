@@ -37,6 +37,7 @@ sound() {
         "dialog-information") sound=$freedesktop/dialog-information.ogg;;
         "dialog-question") sound=$oxygen/dialog-question.oga;;
         "dialog-warning") sound=$freedesktop/dialog-warning.ogg;;
+        "error") sound=$freedesktop/bell.ogg;;
         "lock-screen") sound=$oxygen/desktop-login.oga;;
         "menu-popdown") sound=$mac/Blow.wav;;
         "menu-popup") sound=$mac/Morse.wav;;
@@ -68,7 +69,7 @@ sound() {
         *) sound=$enchanted/dialog-error.ogg;;
     esac
     
-    echo "Play: $sound"
+    # echo "Play: $sound"
     # notify-send.sh -t 1000 Sound $sound
     paplay $sound
 }

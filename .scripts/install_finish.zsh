@@ -1,10 +1,10 @@
 #!/usr/bin/env zsh
 
 . ~/.scripts/defs.zsh
-. ~/.scripts/sounds
 
 # Init Install
 initInstall "install_finish"
+sound count-down
 
 if [ $IS_MANJARO = true ]; then
 	inst manjaro-wallpapers-18.0

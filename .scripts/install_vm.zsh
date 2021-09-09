@@ -4,6 +4,7 @@
 
 # Init Install
 initInstall "install_vm"
+sound count-down
 
 #####################
 # init distro check #
@@ -56,3 +57,5 @@ finish
 
 sudo systemctl enable --now libvirtd
 errorCheck "libvirtd service"
+
+sound complete

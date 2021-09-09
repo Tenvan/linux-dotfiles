@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+. ~/.scripts/sounds
+
 #####################
 # init distro check #
 #####################
@@ -11,8 +13,12 @@ IS_ENDEA=false
 
 SCRIPTS="$HOME/.scripts"
 
-PACKER=yay
 DEBUG=false
+PACKER=yay
+
+if [ -x "$(command -v paru)" ]; then
+	PACKER=paru
+fi
 
 #DEBUG=true
 ERROR_PAKAGE_UNINST=
@@ -39,6 +45,7 @@ echo "IsArch:        $IS_ARCH"
 echo "IsArco:        $IS_ARCO"
 echo "IsManjaro:     $IS_MANJARO"
 echo "IsEndeavourOS: $IS_ENDEA"
+echo "AUR Manager: 	 $PACKER"
 
 MAKEFLAGS="-j$(nproc)"
 PAKKER_ALL="--color always --needed $@" 
@@ -58,6 +65,7 @@ inst() {
 	    retVal=$?
 	    if [ $retVal -ne 0 ]; then
 	        echo "error on install: $1"
+			sound error
 			ERROR_PAKAGE_INST="${ERROR_PAKAGE_INST} $1"        
 	    fi
     fi
@@ -67,7 +75,7 @@ fullInstall() {
 	echo "Step: full Install"
 	if [ $DEBUG != true -a "$PAKAGE_INST" != "" ]; then
 		eval "$PACKER -S $PAKKER_ALL $PAKAGE_INST"
-		# errorCheck "install packages"
+		errorCheck "install packages"
 	fi
 }
 
@@ -78,6 +86,7 @@ uninst() {
     
     retVal=$?
     if [ $retVal -ne 0 ]; then
+		sound error &
         echo "error on uninstall: $1"
 		ERROR_PAKAGE_UNINST="${ERROR_PAKAGE_UNINST} $1"        
     fi
@@ -93,6 +102,7 @@ fullUninstall() {
 errorCheck() {
     retVal=$?
     if [ $retVal -ne 0 ]; then
+		sound error &
         echo "abort installation script '$INSTALL_SCRIPT': $1 ($retVal)"
         exit $retVal
     fi

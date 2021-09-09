@@ -1,12 +1,10 @@
 #!/usr/bin/env zsh
 
 . ~/.scripts/defs.zsh
-. ~/.scripts/sounds
-
-sound count-down
 
 # Init Install
 initInstall "install_init"
+sound count-down &
 
 #####################
 # init distro check #
@@ -38,7 +36,6 @@ errorCheck "installation base-devel"
 # Prompt installieren
 inst ttf-meslo-nerd-font-powerlevel10k
 inst zsh-theme-powerlevel10k
-inst starship-bin
 
 # disable sudo password
 echo "Cmnd_Alias INSTALL = /usr/bin/pacman, /usr/share/pacman
@@ -65,3 +62,5 @@ fullInstall
 finish
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+
+sound complete
