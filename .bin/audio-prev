@@ -1,24 +1,12 @@
 #!/usr/bin/env bash
 
 . ~/.scripts/sounds
+. ~/.bin/audio-test
 
-SINK_COUNT=$(ponymix list-short --sink | wc -l)
-CURRENT_SINK=$(ponymix defaults | grep -Eo "sink [0-9]+:" | grep -Eo "[0-9]+")
-
-NEXT_SINK=$(expr ${CURRENT_SINK} - 1)
-
-if [ $NEXT_SINK = "-1" ]; then
-  NEXT_SINK=$(expr ${SINK_COUNT} - 1)
-fi
-
-echo $DEFAULT
-ponymix set-default --sink -d "$NEXT_SINK"
-
-NEXT_SINK_LINE=$(expr ${NEXT_SINK} + 1)
-NEXT_SINK_SHORT=$(ponymix list-short | sed -n "$NEXT_SINK_LINE"p | cut -f4-)
+ponymix set-default --sink -d "$SINK_PREV"
 
 sound device-changed &
-notify-send "Prev Sound Card" "$NEXT_SINK_LINE: $NEXT_SINK_SHORT"
+notify-send "Prev Sound Card" "$CARD_PREV"
 
 VOL=$(amixer get Master | grep -Po "[0-9]+(?=%)" | tail -1)
 MUTE=$(amixer get Master | grep -Po "\[off\]" | tail -1)

@@ -51,28 +51,66 @@ sudo chmod +x /opt/system-ready.sh
 errorCheck "lightdm config"
 
 # config slick-greeter
+GREETER_THEME="Adwaita-dark"
 if [ $IS_MANJARO = true ]; then
 	GREETER_BACKGROUND="/usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg"
 elif [ $IS_ARCO = true ]; then
 	GREETER_BACKGROUND="/usr/share/backgrounds/arcolinux/arco-wallpaper.jpg"
+	GREETER_THEME="Arc-dark"
 else
 	GREETER_BACKGROUND="/usr/share/backgrounds/desert.png"
 fi
 
-echo "[Greeter]
+echo "# LightDM GTK+ Configuration
+# Available configuration options listed below.
+#
+# activate-numlock=Whether to activate numlock. This features requires the installation of numlockx. (true or false)
+# background=Background file to use, either an image path or a color (e.g. #772953)
+# background-color=Background color (e.g. #772953), set before wallpaper is seen
+# draw-user-backgrounds=Whether to draw user backgrounds (true or false)
+# draw-grid=Whether to draw an overlay grid (true or false)
+# show-hostname=Whether to show the hostname in the menubar (true or false)
+# show-power=Whether to show the power indicator in the menubar (true or false)
+# show-a11y=Whether to show the accessibility options in the menubar (true or false)
+# show-keyboard=Whether to show the keyboard indicator in the menubar (true or false)
+# show-clock=Whether to show the clock in the menubar (true or false)
+# show-quit=Whether to show the quit menu in the menubar (true or false)
+# logo=Logo file to use
+# other-monitors-logo=Logo file to use for other monitors
+# theme-name=GTK+ theme to use
+# icon-theme-name=Icon theme to use
+# font-name=Font to use
+# xft-antialias=Whether to antialias Xft fonts (true or false)
+# xft-dpi=Resolution for Xft in dots per inch
+# xft-hintstyle=What degree of hinting to use (hintnone/hintslight/hintmedium/hintfull)
+# xft-rgba=Type of subpixel antialiasing (none/rgb/bgr/vrgb/vbgr)
+# onscreen-keyboard=Whether to enable the onscreen keyboard (true or false)
+# high-contrast=Whether to use a high contrast theme (true or false)
+# screen-reader=Whether to enable the screen reader (true or false)
+# play-ready-sound=A sound file to play when the greeter is ready
+# hidden-users=List of usernames that are hidden until a special key combination is hit
+# group-filter=List of groups that users must be part of to be shown (empty list shows all users)
+# enable-hidpi=Whether to enable HiDPI support (on/off/auto)
+# only-on-monitor=Sets the monitor on which to show the login window, -1 means "follow the mouse"
+# stretch-background-across-monitors=Whether to stretch the background across multiple monitors (false by default)
+# clock-format=What clock format to use (e.g., %H:%M or %l:%M %p)
+[Greeter]
+activate-numlock=true
 background=$GREETER_BACKGROUND
-theme-name=Materia-dark
-icon-theme-name=Papirus-Dark
-activate-numlock=true
-cursor-theme-name=Bibata-Modern-Ice
-font-name='Cantarell Bold 14'
-xft-antialias=true
-xft-hintstyle=hintfull
-enable-hidpi=auto
 draw-user-backgrounds=false
-activate-numlock=true
-show-power=false
-show-a11y=false" | sudo tee /etc/lightdm/slick-greeter.conf
+draw-grid=true
+show-hostname=true
+show-power=true
+show-a11y=false
+show-quit=true
+theme-name=$GREETER_THEME
+icon-theme-name=Papirus-Dark
+font-name='Noto Sans Bold 20'
+xft-antialias=true
+xft-dpi=200
+xft-hintstyle=hintfull
+enable-hidpi=on
+cursor-theme-name=Bibata-Modern-Ice" | sudo tee /etc/lightdm/slick-greeter.conf
 errorCheck "lightdm greeter config"
 
 # config webkit2 greeter
