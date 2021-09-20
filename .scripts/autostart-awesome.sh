@@ -27,8 +27,8 @@ run xsetroot -cursor_name left_ptr -bg "#2a2a2a" -fg "#d6d6d6"
 # Desktop Tools
 #---------------
 pkill -f volume-osd
-# sleep 1
-# ~/.bin/volume-osd &
+sleep 1
+~/.bin/volume-osd &
 
 restart alttab -n 1
 run pamac-tray
