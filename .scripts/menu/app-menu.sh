@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 . ~/.scripts/sounds
 
-myFileManager="thunar"
+myFileManager="nemo"
 myTerminal="kitty"
 timeCmd="/usr/bin/time -v "
 myTestLua=$(eval echo $HOME/.config/awesome/rc.test.lua)
@@ -12,6 +12,7 @@ ACTIONS=(
     "🇫 Font Manager" "font-manager"
     "🇻 Virtio Manager" "virt-manager"
     "🇷 Remmina" "remmina"
+    "🗂 Dateimanager" "$myFileManager"
     "😃 Emoji Test" "$myTerminal --hold curl https://unicode.org/Public/emoji/5.0/emoji-test.txt"
     "☦ UTF8 Test" "$myTerminal --hold curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html"
     "🌤 Wetter Brakel" "$myTerminal --hold --title Wetter:Brakel curl wttr.in/33034?lang=de"

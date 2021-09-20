@@ -25,6 +25,10 @@
 !.local/share/wallpapers/shared/**/*
 
 !.local/share/sounds
+!.local/share/nemo
+!.local/share/nemo/*
+!.local/share/nemo/**
+!.local/share/nemo/**/*
 
 # Ausnahmen im .config folder
 !.config

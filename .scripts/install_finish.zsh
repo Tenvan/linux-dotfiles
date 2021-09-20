@@ -127,6 +127,9 @@ FONT_MAP=" | sudo tee /etc/vconsole.conf
 export BROWSER=
 xdg-settings set default-web-browser vivaldi-stable.desktop
 
+# Standard Dateimanager setzen
+xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+
 sudo fc-cache -fv
 errorCheck "fontcache"
 

@@ -157,7 +157,9 @@ inst xfce4-meta
 # file manager
 inst mc
 inst ranger
+inst ufraw-thumbnailer
 
+# Thunar
 inst thunar-archive-plugin 
 inst thunar-media-tags-plugin
 
@@ -169,12 +171,27 @@ if [ $IS_ARCO = true ]; then
 	inst thunar-shares-plugin
 fi
 
+inst folder-color-switcher
+inst gtkhash-thunar
 inst thunar-vcs-plugin 
 inst thunar-volman
-inst gtkhash-thunar
 
-#inst thunar-devel
-#inst thunar-volman-devel
+# Nemo
+inst cinnamon-translations
+inst gtkhash-nemo
+inst nemo
+inst nemo-audio-tab
+inst nemo-compare
+inst nemo-emblems
+inst nemo-fileroller
+inst nemo-image-converter
+inst nemo-media-columns
+inst nemo-mediainfo-tab
+inst nemo-preview
+inst nemo-qml-plugin-notifications
+inst nemo-repairer
+inst nemo-seahorse
+inst nemo-share
 
 # Rofi Configs
 if [ $IS_ARCO = true ]; then

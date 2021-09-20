@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-myFileManager="thunar"
+myFileManager="nemo"
 myTerminal="kitty"
 workDir=$WORK_DIR
 shellCmd="$myTerminal --directory $workDir"
@@ -40,7 +40,7 @@ ACTIONS=(
     "💉 Doctor Check" "$shellCmd --hold --title OTC:DoctorCheck $timeCmd yarn doctor:check"
     "☑ Client Check" "$shellCmd --hold --title OTC:ClientCheck $timeCmd yarn client:check"
     "✅ Prod Check" "$shellCmd --hold --title OTC:ClientCheck $timeCmd yarn client:check:prod"
-    "📑 Dateien" "$myFileManager $workDir"
+    "🗂 Dateien" "$myFileManager $workDir"
     "💻 Shell" "$shellCmd --hold --title OTC:Shell"
 )
 
