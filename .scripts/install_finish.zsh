@@ -167,7 +167,7 @@ systemctl enable pulseaudio-bluetooth-autoconnect --user
 #errorCheck "pulseaudio-bluetooth-autoconnect service"
 
 # grub config
-sed 's/.*GRUB_GFXMODE=.*$/GRUB_GFXMODE="1920x1080,auto"/g' </etc/default/grub >grub
+sed 's/.*GRUB_GFXMODE=.*$/GRUB_GFXMODE="3840x2160,2560x1080,1920x1080,auto"/g' </etc/default/grub >grub
 sudo mv -f grub /etc/default
 
 if [ $IS_MANJARO = true ]; then
