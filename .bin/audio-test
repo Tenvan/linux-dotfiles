@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+. ~/.scripts/sounds
+
+SINK_COUNT=$(ponymix list-short --sink | wc -l)
+SINKS_JOB="$(ponymix list-short --sink)"
+
+DEFAULTS_JOB="$(ponymix defaults)"
+
+DEFAULTS=()
+COUNTER=0
+while read -r line
+do
+    COUNTER=$(expr ${COUNTER} + 1)
+    
+    DEFAULTS[${#DEFAULTS[@]}]=$line
+    if [ $COUNTER = 2 ]; then
+        CURRENT_SINK=$line
+    fi
+    if [ $COUNTER = 5 ]; then
+        CURRENT_SOURCE=$line
+    fi
+done <<<"$DEFAULTS_JOB"
+
+SINKS=()
+DEVICES=()
+CARDS=()
+COUNTER=0
+CURRENT_SINK_INDEX=0
+while read -r line
+do
+    SINK=$(echo "$line" | cut -f2)
+    DEVICE=$(echo "$line" | cut -f3)
+    CARD=$(echo "$line" | cut -f4-)
+    SINKS[${#SINKS[@]}]=$SINK
+    DEVICES[${#DEVICES[@]}]=$DEVICE
+    CARDS[${#CARDS[@]}]=$CARD
+
+    if [[ $CURRENT_SINK == $CARD ]]; then
+        CURRENT_SINK_INDEX=$COUNTER
+    fi
+    COUNTER=$(expr ${COUNTER} + 1)
+done <<<"$SINKS_JOB"
+
+NEXT_SINK_INDEX=$(expr ${CURRENT_SINK_INDEX} + 1)
+if [ $NEXT_SINK_INDEX = $SINK_COUNT ]; then
+    NEXT_SINK_INDEX=0
+fi
+
+PREV_SINK_INDEX=$(expr ${CURRENT_SINK_INDEX} - 1)
+if [ $NEXT_SINK_INDEX = "-1" ]; then
+    PREV_SINK_INDEX=$(expr ${SINK_COUNT} - 1)
+fi
+
+export SINK_NEXT=${SINKS[NEXT_SINK_INDEX]}
+export CARD_NEXT=${CARDS[NEXT_SINK_INDEX]}
+export SINK_PREV=${SINKS[PREV_SINK_INDEX]}
+export CARD_PREV=${CARDS[PREV_SINK_INDEX]}
