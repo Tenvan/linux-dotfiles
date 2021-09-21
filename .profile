@@ -12,6 +12,11 @@ export EDITOR=$(which micro)
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Set $PATH if ~/.bin exist
+if [ -d "$HOME/.bin" ]; then
+    export PATH=$HOME/.bin:$PATH
+fi
+
 # Set $PATH if ~/.local/bin exist
 if [ -d "$HOME/.local/bin" ]; then
     export PATH=$HOME/.local/bin:$PATH

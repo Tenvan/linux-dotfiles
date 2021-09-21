@@ -30,4 +30,22 @@ if [ -f "$file" ]; then
     . "$file"
 fi
 
-# paplay gst123 /usr/share/sounds/Smooth/stereo/desktop-login.oga
+# Set $PATH if ~/.bin exist
+if [ -d "$HOME/.bin" ]; then
+    export PATH=$HOME/.bin:$PATH
+fi
+
+# Set $PATH if ~/.local/bin exist
+if [ -d "$HOME/.local/bin" ]; then
+    export PATH=$HOME/.local/bin:$PATH
+fi
+
+# yarn bin path
+if [ -d "$HOME/.yarn/bin" ]; then
+    export PATH=$HOME/.yarn/bin:$PATH
+fi
+
+# add android sdk path, if installed
+if [ -d "$HOME/Android/Sdk/tools" ]; then
+    export PATH="$HOME/Android/Sdk/tools:$PATH"
+fi
