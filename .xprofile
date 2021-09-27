@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-set -x
-
-echo 'Running ~/.xprofile'
+export DOT_XPROFILE="initialised"
 
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
@@ -20,32 +18,9 @@ export SSH_ASKPASS=$(which lxqt-openssh-askpass)
 # fix "xdg-open fork-bomb" export your preferred browser from here
 # export BROWSER=$(which firefox)
 export BROWSER=
-export VISUAL=micro
-export EDITOR=micro
 
 # custom profile
 file="$HOME/.xprofile-custom"
 if [ -f "$file" ]; then
-	echo "merge $file"
     . "$file"
-fi
-
-# Set $PATH if ~/.bin exist
-if [ -d "$HOME/.bin" ]; then
-    export PATH=$HOME/.bin:$PATH
-fi
-
-# Set $PATH if ~/.local/bin exist
-if [ -d "$HOME/.local/bin" ]; then
-    export PATH=$HOME/.local/bin:$PATH
-fi
-
-# yarn bin path
-if [ -d "$HOME/.yarn/bin" ]; then
-    export PATH=$HOME/.yarn/bin:$PATH
-fi
-
-# add android sdk path, if installed
-if [ -d "$HOME/Android/Sdk/tools" ]; then
-    export PATH="$HOME/Android/Sdk/tools:$PATH"
 fi

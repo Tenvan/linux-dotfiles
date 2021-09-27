@@ -109,8 +109,5 @@ alias bupskel='cp -Rf /etc/skel ~/.skel-backup-$(date +%Y.%m.%d-%H.%M.%S)'
 #copy /etc/skel/.zshrc over on ~/.zshrc - cb= copy zshrc
 alias cz='sudo cp /etc/skel/.zshrc ~/.zshrc && exec zsh'
 
-# man pages
-xman() {
-	MAN_PAGE="https://man.archlinux.org/man/${1}"
-	xdg-open "$MAN_PAGE"
-}
+alias xm="xman"
+alias exp="expand"

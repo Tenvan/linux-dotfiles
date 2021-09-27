@@ -143,7 +143,7 @@ restart() {
 
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
-ex() {
+expand() {
   if [ -f $1 ]; then
     case $1 in
     *.tar.bz2) tar xjf $1 ;;
@@ -165,4 +165,10 @@ ex() {
   else
     echo "'$1' is not a valid file"
   fi
+}
+
+# man pages
+xman() {
+	MAN_PAGE="https://man.archlinux.org/man/${1}"
+	xdg-open "$MAN_PAGE"
 }

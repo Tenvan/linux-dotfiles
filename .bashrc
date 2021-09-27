@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
-#
-# ~/.bashrc
-#
-echo "run: .bashrc"
+export DOT_BASHRC="initialised"
 
 [[ $- != *i* ]] && return
 
@@ -29,6 +26,7 @@ test -d "$HOME/.local/bin" && PATH="$HOME/.local/bin:$PATH"
 #ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
 
+csource ~/.profile
 csource ~/.aliasrc
 
 #shopt

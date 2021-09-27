@@ -1223,7 +1223,7 @@ awful.rules.rules = {
 
     {
         rule_any = {
-            class = {"Steam"}
+            class = {}
         },
         properties = {
             border_width = 0,
@@ -1360,6 +1360,35 @@ awful.rules.rules = {
             switchtotag = true,
             maximized = false,
             floating = false
+        }
+    },
+    -- Steam
+    {
+        rule_any = {
+            class = {"RuneScape"}
+        },
+        properties = {
+            border_width = 5,
+            titlebars_enabled = false,
+            maximized = true,
+            floating = false,
+            screen = 1,
+            tag = awful.util.tagnames[7],
+            switchtotag = true
+        }
+    },
+    {
+        rule_any = {
+            class = {"Steam"}
+        },
+        properties = {
+            border_width = 5,
+            titlebars_enabled = false,
+            maximized = false,
+            floating = false,
+            screen = 1,
+            tag = awful.util.tagnames[7],
+            switchtotag = true
         }
     },
     {

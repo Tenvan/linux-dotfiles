@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
-set -x
-
-echo 'Running ~/.profile'
+export DOT_PROFILE="initialised"
 
 export SCRIPTS="$HOME/.scripts"
-export WORK_DIR=/media/WORKSPACE/$USER/Node/OneTime
-
-export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export EDITOR=$(which micro)
+export VISUAL=$EDITOR
+
+# Development profile
+export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
+export WORK_DIR=/media/WORKSPACE/$USER/Node/OneTime
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -15,6 +16,10 @@ export EDITOR=$(which micro)
 # Set $PATH if ~/.bin exist
 if [ -d "$HOME/.bin" ]; then
     export PATH=$HOME/.bin:$PATH
+fi
+
+if [ -d "$HOME/.scripts" ]; then
+    export PATH=$HOME/.scripts:$PATH
 fi
 
 # Set $PATH if ~/.local/bin exist
@@ -35,6 +40,5 @@ fi
 # custom profile
 file="$HOME/.profile-custom"
 if [ -f "$file" ]; then
-	echo "merge $file"
     . "$file"
 fi

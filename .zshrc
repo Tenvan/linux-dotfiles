@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+export DOT_ZSHRC="initialised"
 
 csource() {
   if [ -r "$@" ]; then

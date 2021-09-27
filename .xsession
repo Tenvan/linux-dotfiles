@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -x
+export DOT_XSESSION="initialised"
 
 #
 # ~/.xsession
@@ -17,4 +17,11 @@ if [ -f "$file" ]; then
 fi
 
 echo "do run autostarts"
+$HOME/.screenlayout/screenlayout.sh
 $HOME/.scripts/autostart-global.sh
+
+# custom session
+file="$HOME/.xsession-custom"
+if [ -f "$file" ]; then
+    . "$file"
+fi

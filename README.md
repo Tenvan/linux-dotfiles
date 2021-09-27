@@ -7,7 +7,7 @@ Als Basis dient eine Manajaro Full Cinnamon Installation, oder eine vergleichbar
 
 ## Installation
 
-Repository klonen
+### Repository klonen
 
 ```bash
 git clone https://github.com/Tenvan/desktop-dotfiles.git
@@ -20,14 +20,19 @@ rsync -vrlptgo --include ".*" desktop-dotfiles/* ~/
 rm -fr desktop-dotfiles/
 ```
 
-Fehlende Pakete werden mit folgendem Batch nachinstalliert:
+### Vorbereitung der weiteren Installation
+Die Scripte ausführbar machen, falls noch nicht geschehen:
 
 ```bash
-zsh ~/.scipts/install_init.zsh
-zsh ~/.scipts/install_base.zsh
-zsh ~/.scipts/install_apps.zsh
-zsh ~/.scipts/install_rust_apps.zsh
-zsh ~/.scipts/install_finish.zsh
+chmod +x .bin/*
+chmod +x .scripts/*
+```
+### Installation Softwarepaket mit folgenden Scripten:
+
+```bash
+install_init.zsh
+install_base.zsh
+install_finish.zsh
 ```
 
 ## Manuelle Konfiguration
@@ -36,3 +41,14 @@ zsh ~/.scipts/install_finish.zsh
 Mit 'arandr' die Monitoreinstellung vornehmen und in der Datei '~/.screenlayout/screenlayout.sh' speichern.
 
 Das Install-Script nochmal laufen lassen, anschließend neu booten.
+
+### Environment konfigurieren
+
+LightDm lädt die User-Konfigurationsdateien in folgender Reihenfolge:
+
+    - .profile [.profile-custom]
+    - .xprofile [.xprofile-custom]
+    - .XResources
+    - .Xkbmap
+    - .Xmodmap
+    - .xsession [.Xresources-custom, screenlayout, autostart-global, .xsession-custom]
