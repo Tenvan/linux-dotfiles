@@ -294,10 +294,7 @@
 	
 [http]
 	sslVerify = false
+	
 [gitflow "branch"]
 	master = master
 	develop = develop
-[gitflow "path"]
-	hooks = /media/WORKSPACE/ralf/DotNet/OtStimulsoft/.git/hooks
-[credential "https://dev.azure.com"]
-	useHttpPath = true

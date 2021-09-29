@@ -284,6 +284,7 @@ inst remmina-plugin-url
 inst remmina-plugin-folder
 inst remmina-plugin-open
 inst freerdp
+inst remote-desktop-manager-free
 
 # installation of important editors
 inst micro
@@ -323,16 +324,10 @@ inst awesome-terminal-fonts
 inst terminus-font
 inst powerline-fonts
 
-inst nerd-fonts-complete
-#inst nerd-fonts-cascadia-code
-#inst nerd-fonts-dejavu-complete
-#inst nerd-fonts-fira-code
-#inst nerd-fonts-iosevka 
-#inst nerd-fonts-noto-sans-mono
-#inst nerd-fonts-noto-sans-regular-complete
-#inst nerd-fonts-roboto-mono
-#inst nerd-fonts-source-code-pro
-#inst nerd-fonts-terminus
+inst nerd-fonts-fira-code
+inst nerd-fonts-noto
+inst nerd-fonts-roboto-mono
+inst nerd-fonts-terminus
 inst ttf-meslo-nerd-font-powerlevel10k
 inst ttf-devicons
 inst ttf-twemoji
