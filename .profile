@@ -7,7 +7,7 @@ export VISUAL=$EDITOR
 
 # Development profile
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
-export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
+export JAVA_HOME="/usr/lib/jvm/java-16-openjdk"
 export WORK_DIR=/media/WORKSPACE/$USER/Node/OneTime
 
 # If you come from bash you might have to change your $PATH.
