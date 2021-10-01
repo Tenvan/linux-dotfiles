@@ -32,6 +32,7 @@ inst fzf
 inst genius
 inst glances
 inst gparted
+inst grive
 inst gtop
 inst hardinfo
 inst hstr
@@ -56,7 +57,6 @@ inst packagekit
 inst picom-jonaburg-git
 inst powershell-bin
 inst qbittorrent
-inst radiotray-ng
 inst rsyslog
 inst s-tui
 inst starship
@@ -176,6 +176,10 @@ inst gtkhash-thunar
 inst thunar-vcs-plugin 
 inst thunar-volman
 
+# Audio Radio
+inst radiotray-ng
+inst shortwave
+
 # Nemo
 inst cinnamon-translations
 inst gtkhash-nemo
@@ -290,6 +294,7 @@ inst remote-desktop-manager-free
 inst micro
 inst neovim
 inst visual-studio-code-bin
+inst typora
 
 # utils for editors
 inst bash-completion
