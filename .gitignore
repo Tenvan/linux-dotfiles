@@ -13,6 +13,12 @@
 # Ausnahmen Script Folder
 !.scripts
 !.scripts/**/*
+!.bin
+!.bin/**/*
+
+# Ausnahmen Samples in Custom Folder
+!.custom
+!.custom/*.sample
 
 # Ausnahmen im .local folder
 !.local
@@ -49,16 +55,7 @@
 !.config/fontconfig/**/*
 !.config/fish
 !.config/fish/*
-!.config/gtk-3.0
-!.config/gtk-3.0/*
-!.config/gtk-4.0
-!.config/gtk-4.0/*
-!.config/qt5ct
-!.config/qt5ct/*
-!.config/qt-logout
-!.config/qt-logout/*
-!.config/Kvantum
-!.config/Kvantum/*
+
 !.config/kitty
 !.config/kitty/**/*
 !.config/nitrogen

@@ -1,15 +1,7 @@
-[user]
-	email = ralf.stich@infoniqa.com
-	name = stira
-
 [core]
 	editor = micro
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	pager = delta
-
-[credential]
-	helper = /usr/bin/git-credential-manager-core
-	credentialStore = secretservice
 
 [color]
 	ui = auto
@@ -82,9 +74,6 @@
 [pull]
 	verbose = true
 	rebase = true
-
-[web]
-	browser = firefox
 
 [alias]
   	logp = log --pretty=format:'%h %ad | %fs%d [%an]' --graph --date=short
@@ -298,3 +287,4 @@
 [gitflow "branch"]
 	master = master
 	develop = develop
+

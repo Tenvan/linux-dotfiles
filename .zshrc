@@ -125,15 +125,16 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 fi
 
 csource ~/.aliasrc
+csource ~/.profile
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 case ${TERM} in
 	xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
   		print "Init Powershell10k for XWindows"
-		[[ ! -f ~/.p10k-x.zsh ]] || source ~/.p10k-x.zsh
+		  csource ~/.bin/.p10k-x.zsh
     ;;
     *)
   		print "Init Powershell10k for vconsole"
-		[[ ! -f ~/.p10k-v.zsh ]] || source ~/.p10k-v.zsh
+      csource ~/.bin/.p10k-v.zsh
     ;;
 esac

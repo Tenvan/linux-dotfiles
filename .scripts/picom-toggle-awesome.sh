@@ -5,10 +5,10 @@ if pgrep -x "picom" >/dev/null; then
     killall -q picom
     while pgrep -u $UID -x "picom" >/dev/null; do sleep 1; done
 else
-    if test -f "$HOME/.config/picom/picom-awesome-private.conf"; then
+    if [ -f "$HOME/.config/picom/picom-awesome-private.conf" ]; then
         notify-send "Picom loaded:<br>$HOME/.config/picom/picom-awesome-private.conf"
         picom --config "$HOME/.config/picom/picom-awesome-private.conf" &
-    elif test -f "$HOME/.config/picom/picom-awesome-custom.conf"; then
+    elif [ -f "$HOME/.config/picom/picom-awesome-custom.conf" ]; then
         notify-send "Picom loaded:<br>$HOME/.config/picom/picom-awesome-custom.conf"
         picom --config "$HOME/.config/picom/picom-awesome-custom.conf" &
     else

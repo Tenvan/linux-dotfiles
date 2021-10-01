@@ -1,0 +1,12 @@
+[user]
+	email = <email adress>
+	name = <short name>
+
+[credential]
+	# Linux
+	helper = /usr/bin/git-credential-manager-core
+	credentialStore = secretservice
+
+[web]
+	# Vivaldi Browser
+	browser = vivaldi
