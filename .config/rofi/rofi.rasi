@@ -15,25 +15,29 @@
     background:                  rgba ( 64, 69, 82, 100 % );
     background-color:            rgba ( 64, 69, 82, 0 % );
     separatorcolor:              @foreground;
-    border-color:                @foreground;
-    selected-normal-foreground:  @lightbg;
-    selected-normal-background:  @lightfg;
-    selected-active-foreground:  @background;
-    selected-active-background:  @blue;
-    selected-urgent-foreground:  @background;
-    selected-urgent-background:  @red;
-    normal-foreground:           @foreground;
-    normal-background:           @background;
-    active-foreground:           @blue;
-    active-background:           @background;
-    urgent-foreground:           @red;
+
     urgent-background:           @background;
-    alternate-normal-foreground: @foreground;
-    alternate-normal-background: @lightbg;
-    alternate-active-foreground: @blue;
+    urgent-background:           rgba ( 39, 50, 56, 100 % );
+    urgent-foreground:           @red;
+    urgent-foreground:           rgba ( 255, 24, 68, 100 % );
+
+    active-background:           @background;
+    active-foreground:           @blue;
     alternate-active-background: @lightbg;
-    alternate-urgent-foreground: @red;
+    alternate-active-foreground: @active-foreground;
+    alternate-normal-background: @lightbg;
+    alternate-normal-foreground: @foreground;
     alternate-urgent-background: @lightbg;
+    alternate-urgent-foreground: @urgent-foreground;
+    border-color:                @foreground;
+    normal-background:           @background;
+    normal-foreground:           @foreground;
+    selected-active-background:  @blue;
+    selected-active-foreground:  @background;
+    selected-normal-background:  @lightfg;
+    selected-normal-foreground:  @lightbg;
+    selected-urgent-background:  @red;
+    selected-urgent-foreground:  @background;
     spacing:                     2;
 }
 window {
@@ -64,6 +68,10 @@ listview {
 element {
     border:           0;
     padding:          1px ;
+}
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
 }
 element normal.normal {
     background-color: @normal-background;
@@ -108,9 +116,9 @@ scrollbar {
     handle-width:     8px ;
     padding:          0;
 }
-sidebar {
-    border:           2px dash 0px 0px ;
-    border-color:     @separatorcolor;
+mode-switcher {
+    border:       2px dash 0px 0px ;
+    border-color: @separatorcolor;
 }
 button {
     spacing:          0;
@@ -123,7 +131,7 @@ button selected {
 inputbar {
     spacing:          0px;
     text-color:       @normal-foreground;
-    padding:          1px ;
+    padding:          5px ;
     children:         [ prompt,textbox-prompt-colon,entry,case-indicator ];
 }
 case-indicator {

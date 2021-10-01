@@ -4,8 +4,9 @@ configuration {
 	location: 0;
 	lines: 36;
 	show-icons: true;
+	font: "Mono 18";
+//	theme: "android_notification";
 	theme: "~/.config/rofi/rofi.rasi";
-	// theme: "~/.config/rofi/base16-default-dark.rasi";
 /*	width: 50;*/
 	columns: 1;
 /*	bw: 1;*/
