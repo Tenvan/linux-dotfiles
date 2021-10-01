@@ -1,5 +1,3 @@
 #!/usr/bin/env bash
 
 . ~/.scripts/defs.zsh
-
-nitrogen --set-zoom-fill $WALLPAPER_FILE
