@@ -50,3 +50,8 @@ run system-config-printer-applet
 killall -q picom
 sleep 1
 sh $SCRIPTS/picom-toggle-awesome.sh &
+
+file=$HOME/.custom/autostart
+if [ -f "$file" ]; then
+    . "$file"
+fi

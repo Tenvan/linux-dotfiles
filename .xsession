@@ -7,6 +7,9 @@ export DOT_XSESSION="initialised"
 # WALLPAPER1=~/.local/share/wallpapers/shared/floating-world-in-space-3000x2357.jpg
 # WALLPAPER2=~/.local/share/wallpapers/shared/blue-earth-2880x1800.jpg
 
+export SHARED_WALLPAPERS="$HOME/.local/share/wallpapers/shared"
+export DUAL_MONITOR_WALLPAPERS="$SHARED_WALLPAPERS/wallpapers-multimonitor"
+
 #WALLPAPER_DUAL=dropletno7revisited.jpg
 #WALLPAPER_DUAL=mesh3isostudy.jpg
 #WALLPAPER_DUAL=extrudedsimplicesbstudy.jpg
@@ -18,9 +21,7 @@ WALLPAPER_DUAL=elementalfists.jpg
 #WALLPAPER_DUAL=large-dual-screen-wallpaper1.jpg
 #WALLPAPER_DUAL=0bonv_x_flip.jpg
 
-DUAL_PATH="$HOME/.local/share/wallpapers/shared/wallpapers-multimonitor"
-export WALLPAPER_FILE=$DUAL_PATH/$WALLPAPER_DUAL
-#
+export WALLPAPER_FILE=$DUAL_MONITOR_WALLPAPERS/$WALLPAPER_DUAL
 ######################
 
 # Load custom resources
@@ -38,9 +39,4 @@ fi
 
 echo "do run autostarts"
 $HOME/.screenlayout/screenlayout.sh
-$HOME/.scripts/autostart-awesome.sh
-
-file=$HOME/.custom/autostart
-if [ -f "$file" ]; then
-    . "$file"
-fi
+$HOME/.bin/autostart
