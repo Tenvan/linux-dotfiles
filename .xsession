@@ -38,4 +38,7 @@ fi
 
 echo "do run autostarts"
 $HOME/.screenlayout/screenlayout.sh
-$HOME/.scripts/autostart-global.sh
+file=$HOME/.custom/autostart
+if [ -f "$file" ]; then
+    . "$file"
+fi

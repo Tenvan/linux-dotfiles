@@ -10,6 +10,10 @@ export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/java-16-openjdk"
 export WORK_DIR=/media/WORKSPACE/$USER/Node/OneTime
 
+# mods korrigieren
+chmod +x .bin/*
+chmod +x .scripts/*
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
