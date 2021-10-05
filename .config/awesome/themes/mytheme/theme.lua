@@ -196,9 +196,9 @@ local function makeColorTransparent(colorkey, opacity)
     return transColor
 end
 
-theme.border_normal = makeColorTransparent(xres.wm_border_unfocused_color, "50")
-theme.border_focus = makeColorTransparent(xres.wm_border_focused_color, "30")
-theme.border_marked = makeColorTransparent(xres.selected_bg_color, "60")
+theme.border_normal = makeColorTransparent(xres.wm_border_unfocused_color, "70")
+theme.border_focus = makeColorTransparent(xres.wm_border_focused_color, "80")
+theme.border_marked = xres.selected_bg_color
 
 theme.bg_normal = xres.bg_color
 theme.fg_normal = xres.fg_color

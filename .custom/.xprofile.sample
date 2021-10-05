@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+export DOT_XPROFILE_CUSTOM="initialised"
+
+export BW_SESSION=<token>
+
+# Leinheight bei 144dpi
+export LINEHEIGHT=40

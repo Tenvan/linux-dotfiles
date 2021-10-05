@@ -439,7 +439,7 @@ fullInstall
 finish
 
 # Fix Teams Black Screen
-# sudo ln -f -s /bin/true /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
-# sudo ln -f -s /bin/true /usr/share/teams-insiders/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
+sudo ln -f -s /bin/true /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
+sudo ln -f -s /bin/true /usr/share/teams-insiders/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
 
 sound complete

@@ -125,7 +125,7 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 fi
 
 csource ~/.aliasrc
-csource ~/.profile
+# csource ~/.profile
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 case ${TERM} in

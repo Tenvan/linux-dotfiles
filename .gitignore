@@ -17,7 +17,6 @@
 !.bin/**/*
 
 # Ausnahmen Samples in Custom Folder
-!.custom
 !.custom/*.sample
 
 # Ausnahmen im .local folder

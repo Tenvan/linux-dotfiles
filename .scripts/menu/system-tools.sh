@@ -35,7 +35,6 @@ ACTIONS=(
         "🚧 Awmtt Test Stop" "awmtt stop"
 )
 
-
 LINECOUNT=$(expr ${#ACTIONS[*]} / 2)
 MLINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
 HEIGHT=$(($MLINEHEIGHT + $LINEOFFSET))

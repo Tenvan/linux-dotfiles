@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
+set -x
 export DOT_PROFILE="initialised"
 
 export SCRIPTS="$HOME/.scripts"
+export CUSTOMS="$HOME/.custom"
 export EDITOR=$(which micro)
 export VISUAL=$EDITOR
 
@@ -42,7 +44,7 @@ if [ -d "$HOME/Android/Sdk/tools" ]; then
 fi
 
 # custom profile
-file="$HOME/.profile-custom"
+file="$CUSTOMS/.profile"
 if [ -f "$file" ]; then
     . "$file"
 fi

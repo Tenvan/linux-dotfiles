@@ -9,7 +9,7 @@ folderEdit="code -a --folder-uri"
 ACTIONS=(
     "🇬 Editor" "code"
     "🇬 Workspace" "code -r $HOME/dotfiles.code-workspace"
-    "📑 shell configs" "$filesEdit $HOME/.profile* $HOME/.xsession* $HOME/.Xresources* $HOME/.zshrc* $HOME/.alias* $HOME/.bashrc*"
+    "📑 shell configs" "$filesEdit $HOME/.profile* $HOME/.xprofile* $HOME/.xsession* $HOME/.Xresources* $HOME/.zshrc* $HOME/.alias* $HOME/.bashrc*"
     "📑 custom config dir" "$folderEdit $HOME/.custom"
     "📁 config dir" "$folderEdit $HOME/.config"
     "📁 awesome dir" "$folderEdit $HOME/.config/awesome"
