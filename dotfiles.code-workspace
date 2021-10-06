@@ -13,22 +13,16 @@
 			"path": ".scripts"
 		},
 		{
-			"path": ".config/gtk-4.0"
+			"path": ".bin"
 		},
 		{
-			"path": ".config/fontconfig/conf.d"
-		},
-		{
-			"path": ".config/kitty"
-		},
-		{
-			"path": ".config/alacritty"
-		},
-		{
-			"path": ".config/qt5ct/colors"
+			"path": ".custom"
 		},
 		{
 			"path": ".config/gtk-3.0"
+		},
+		{
+			"path": ".config/gtk-4.0"
 		},
 		{
 			"path": ".config/qt5ct"
