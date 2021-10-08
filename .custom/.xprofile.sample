@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-echo "# --> $BASH_SOURCE"
-
 export BW_SESSION=<token>
 
 # Lineheight bei 144dpi

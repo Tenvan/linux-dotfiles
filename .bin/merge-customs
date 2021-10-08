@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
-echo "# --> $BASH_SOURCE"
-
 . $SCRIPTS/defs
 
 CUSTOM_FOLDER="$HOME/.custom"

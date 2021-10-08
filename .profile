@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-echo "#"
-echo "# --> $BASH_SOURCE"
-echo "#"
+. $SCRIPTS/defs
 
 export DOT_PROFILE="initialised"
 
@@ -16,7 +14,7 @@ export TIME="/usr/bin/time -v "
 # Development profile
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
-export WORK_DIR=/media/WORKSPACE/$USER/Node/OneTime
+export WORKSPACE=/media/WORKSPACE/$USER
 
 # mods korrigieren
 chmod +x .bin/*
@@ -49,8 +47,4 @@ if [ -d "$HOME/Android/Sdk/tools" ]; then
     export PATH="$HOME/Android/Sdk/tools:$PATH"
 fi
 
-# custom profile
-file="$CUSTOMS/.profile"
-if [ -f "$file" ]; then
-    . "$file"
-fi
+csource "$CUSTOMS/${0##*/}"

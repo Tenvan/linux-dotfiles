@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-echo "#"
-echo "# --> $BASH_SOURCE"
-echo "#"
 
 # Add useful aliases 
 alias path='echo -e ${PATH//:/\\n}'

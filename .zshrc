@@ -1,13 +1,5 @@
 #!/usr/bin/env zsh
-echo "#"
-echo "# --> $BASH_SOURCE"
-echo "#"
-
-csource() {
-  if [ -r "$@" ]; then
-    source "$@"
-  fi
-}
+. $SCRIPTS/defs
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -126,8 +118,7 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-csource ~/.aliasrc
-# csource ~/.profile
+csource "$HOME/.aliasrc"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 case ${TERM} in
@@ -140,3 +131,5 @@ case ${TERM} in
       csource ~/.bin/.p10k-v.zsh
     ;;
 esac
+
+csource "$CUSTOMS/${0##*/}"

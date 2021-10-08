@@ -1,5 +1,37 @@
 #!/usr/bin/env bash
 
+export WORK_ONETIME=$WORKSPACE/Node/OneTime
+ONETIME_SHELL="$TERMINAL --directory $WORK_ONETIME"
+
+startServer() {
+    $ONETIME_SHELL --hold --title OTC:StartServer yarn workspace onetime-server run start &
+}
+
+startCompiler() {
+    $ONETIME_SHELL --hold --title OTC:StartDefault yarn workspace onetime-client start &
+}
+
+startAll() {
+    killall node
+    fuser -k 4200/tcp
+    fuser -k 4201/tcp
+    fuser -k 4202/tcp
+    startServer
+    startCompiler
+}
+
 export CUSTOM_BOTTOM_ACTIONS=(
-    "🇺 Check Updates" "$shellCmd --hold --title OTC:CheckClientUpdates $TIME yarn upgrade-interactive"
+    "🗂 OT: Dateien" "$FILEMANAGER $WORK_DIR"
+    "💻 OT: Shell" "$shellCmd --hold --title OTC:Shell"
+    "🇬 OT: Git" "code $WORK_ONETIME"
+    "🏄 OT: Start Server" "startServer"
+    "🛫 OT: Start Compiler" "startCompiler"
+    "🏄 OT: Start All" "startAll"
+    "🇬 OT: Generate" "$ONETIME_SHELL --hold --title OTC:Generate $TIME yarn generate"
+    "🇩 OT: Deploy Build" "$ONETIME_SHELL --hold --title OTC:DeployBuild yarn deploy_build"
+    "💉 OT: Doctor" "$ONETIME_SHELL --hold --title OTC:Doctor $TIME yarn doctor"
+    "💉 OT: Doctor Check" "$ONETIME_SHELL --hold --title OTC:DoctorCheck $TIME yarn doctor:check"
+    "☑ OT: Client Check" "$ONETIME_SHELL --hold --title OTC:ClientCheck $TIME yarn client:check"
+    "✅ OT: Prod Check" "$ONETIME_SHELL --hold --title OTC:ClientCheck $TIME yarn client:check:prod"
+    "🇺 OT: Check Updates" "$ONETIME_SHELL --hold --title OTC:CheckClientUpdates $TIME yarn upgrade-interactive"
 )

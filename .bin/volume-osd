@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-echo "# --> $BASH_SOURCE"
-
 . $SCRIPTS/defs
 
 OLD_VOL=0

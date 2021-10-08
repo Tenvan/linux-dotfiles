@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-echo "#"
-echo "# --> $BASH_SOURCE"
-echo "#"
+. $SCRIPTS/defs
 
 export DOT_XPROFILE="initialised"
 
@@ -46,8 +44,4 @@ WALLPAPER_DUAL=elementalfists.jpg
 export WALLPAPER_FILE=$DUAL_MONITOR_WALLPAPERS/$WALLPAPER_DUAL
 ######################
 
-# custom profile
-file="$CUSTOMS/.xprofile"
-if [ -f "$file" ]; then
-    . "$file"
-fi
+csource "$CUSTOMS/${0##*/}"

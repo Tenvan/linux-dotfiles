@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-echo "# --> $BASH_SOURCE"
-
 . $SCRIPTS/defs
 
 SINK_COUNT=$(ponymix list-short --sink | wc -l)

@@ -1,18 +1,24 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 echo "##############################"
-echo "# arguments called with --->  ${@}     "
-echo "# \$1 ---------------------->  $1       "
-echo "# \$2 ---------------------->  $2       "
-echo "# path to me -------------->  ${0}     "
-echo "# parent path ------------->  ${0%/*}  "
-echo "# my name ----------------->  ${0##*/} "
+echo "# arguments called with --->  ${@}"
+echo "# \$1 ---------------------->  $1"
+echo "# \$2 ---------------------->  $2"
+echo "# path to me -------------->  ${0}"
+echo "# parent path ------------->  ${0%/*}"
+echo "# my name ----------------->  ${0##*/}"
+if [[ $BASH_SOURCE ]]; then
+  echo "# Shell Context -----------> BASH ($SHELL)"
+  SCRIPTFILE="$BASH_SOURCE"
+else
+  echo "# Shell Context -----------> ZSH ($SHELL)"
+  SCRIPTFILE="${(%):-%N}"
+fi
+echo "# Scriptfile --------------> $SCRIPTFILE"
 echo "##############################"
-
-echo "# --> $BASH_SOURCE"
 
 csource() {
   if [ -r "$@" ]; then
-    source "$@"
+    . "$@"
   fi
 }
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-echo "# --> $BASH_SOURCE"
+echo "# --> ${(%):-%N}"
 
 . $SCRIPTS/defs
 

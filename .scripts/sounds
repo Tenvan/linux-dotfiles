@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
-echo "# --> $BASH_SOURCE"
-
 # Sound themes
 
 # freedesktop

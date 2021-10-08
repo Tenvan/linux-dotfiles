@@ -1,17 +1,7 @@
 #!/usr/bin/env bash
-echo "#"
-echo "# --> $BASH_SOURCE"
-echo "#"
-
 [[ $- != *i* ]] && return
 
-csource() {
-  if [[ -r "$@" ]]; then
-    source "$@"
-  fi
-}
-
-export SCRIPTS="$HOME/.scripts"
+. $SCRIPTS/defs
 
 csource "$SCRIPTS/defs.sh"
 
@@ -28,7 +18,6 @@ test -d "$HOME/.local/bin" && PATH="$HOME/.local/bin:$PATH"
 #ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
 
-csource ~/.profile
 csource ~/.aliasrc
 
 #shopt
@@ -113,7 +102,7 @@ case ${TERM} in
 esac
 
 ### BASH POWERLINE ###
-eval "$(starship init bash)"
+# eval "$(starship init bash)"
 
 ### BASH INSULTER ###
 test -f /usr/share/doc/find-the-command/ftc.bash && source /usr/share/doc/find-the-command/ftc.bash
@@ -142,7 +131,6 @@ if [[ $- =~ .*i.* ]]; then
   bind '"\C-xk": "\C-a hstr -k \C-j"'
 fi
 
-test -f ~/.bashrc-personal.sh && . ~/.bashrc-personal.sh
-
 test -f "$(which neofetch)" && $(which neofetch)
-#test -f "$(which paleofetch)" && $(which paleofetch)
+
+csource "$CUSTOMS/${0##*/}"

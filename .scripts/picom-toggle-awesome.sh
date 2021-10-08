@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-echo "# --> $BASH_SOURCE"
-
 if pgrep -x "picom" >/dev/null; then
     notify-send "Picom disabled !"
     killall -q picom
