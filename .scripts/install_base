@@ -180,6 +180,7 @@ inst thunar-volman
 # Audio Radio
 inst radiotray-ng
 inst shortwave
+inst libadwaita-shortwave
 
 # Nemo
 inst cinnamon-translations

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+export CUSTOM_BOTTOM_ACTIONS=(
+    "💿 bashtop" "$shellCmd --title SysMon:bashtop bashtop" \
+    "💿 s-tui" "$shellCmd --hold --title SysMon:s-tui s-tui" \
+)

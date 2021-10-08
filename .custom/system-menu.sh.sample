@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+export CUSTOM_BOTTOM_ACTIONS=(
+    "◽ Monitor Default" "sh $HOME/.screenlayout/screenlayout.sh"
+    "◽ Monitor Gaming" "sh $HOME/.screenlayout/screenlayout-gaming.sh"
+)

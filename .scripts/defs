@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 echo "##############################"
 echo "# arguments called with --->  ${@}     "
 echo "# \$1 ---------------------->  $1       "
@@ -10,7 +10,13 @@ echo "##############################"
 
 echo "# --> $BASH_SOURCE"
 
-. ~/.scripts/sounds
+csource() {
+  if [ -r "$@" ]; then
+    source "$@"
+  fi
+}
+
+csource ~/.scripts/sounds
 
 #####################
 # init distro check #
@@ -103,7 +109,7 @@ uninst() {
 }
 
 fullUninstall() {
-	printf "Step: full Uninstall"
+	echo "Step: full Uninstall"
 	if [ $DEBUG != true -a "$PAKAGE_UNINST" != "" ]; then
 		eval "$PACKER -R --noconfirm $PAKAGE_UNINST"
 	fi
@@ -175,10 +181,4 @@ expand() {
   else
     echo "'$1' is not a valid file"
   fi
-}
-
-# man pages
-xman() {
-	MAN_PAGE="https://man.archlinux.org/man/${1}"
-	xdg-open "$MAN_PAGE"
 }

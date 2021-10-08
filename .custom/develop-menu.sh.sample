@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export CUSTOM_BOTTOM_ACTIONS=(
+    "🇺 Check Updates" "$shellCmd --hold --title OTC:CheckClientUpdates $TIME yarn upgrade-interactive"
+)

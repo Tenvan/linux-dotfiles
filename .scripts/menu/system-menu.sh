@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
+. $SCRIPTS/defs
 
-ACTIONS=(
+SYSTEM_ACTIONS=(
     "📲 Abmelden" "sh $SCRIPTS/session_logout.sh"
-    "◽ Monitor Default" "sh $HOME/.screenlayout/screenlayout.sh"
-    "◽ Monitor Gaming" "sh $HOME/.screenlayout/screenlayout-gaming.sh"
     "📵 Sperren" "sh $SCRIPTS/session_lock.sh"
     "📵 Bildschirm sperren" "sh $SCRIPTS/session_lock_screen.sh"
     "🙅 Benutzerwechsel" "sh $SCRIPTS/session_switch_user.sh"
@@ -13,6 +12,9 @@ ACTIONS=(
     "📴 Runterfahren" "sh $SCRIPTS/session_shutdown.sh"
 )
 
+csource "$CUSTOMS/${0##*/}"
+
+ACTIONS=("${CUSTOM_TOP_ACTIONS[@]}" "${SYSTEM_ACTIONS[@]}" "${CUSTOM_BOTTOM_ACTIONS[@]}")
 LINECOUNT=$(expr ${#ACTIONS[*]} / 2)
 MLINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
 HEIGHT=$(($MLINEHEIGHT + $LINEOFFSET))

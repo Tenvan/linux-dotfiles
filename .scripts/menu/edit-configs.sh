@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-echo "# --> $BASH_SOURCE"
+. $SCRIPTS/defs
 
 # Function create a scale dialog
 filesEdit="code -a --file-uri"
@@ -7,9 +7,8 @@ folderEdit="code -a --folder-uri"
 # filesEdit="atom "
 # folderEdit="atom "
 
-ACTIONS=(
+SYSTEM_ACTIONS=(
     "🇬 Editor" "code"
-    "🇬 Workspace" "code -r $HOME/dotfiles.code-workspace"
     "📑 shell configs" "$filesEdit $HOME/.profile* $HOME/.xprofile* $HOME/.xsession* $HOME/.Xresources* $HOME/.zshrc* $HOME/.alias* $HOME/.bashrc*"
     "📁 custom dir" "$folderEdit $HOME/.custom"
     "📁 config dir" "$folderEdit $HOME/.config"
@@ -21,9 +20,11 @@ ACTIONS=(
     "📑 themes Files" "$filesEdit $HOME/.Xresources* $HOME/.gtkrc-*"
     "📁 themes Folder" "$folderEdit  $HOME/.config/gtk-3.0 $HOME/.config/gtk-4.0 $HOME/.config/qt5ct $HOME/.config/fontconfig"
     "📑 screenlayout" "$filesEdit $HOME/.screenlayout/*"
-    "📑 git files" "$filesEdit $HOME/.gitignore* $HOME/.gitconfig*"
 )
 
+csource "$CUSTOMS/${0##*/}"
+
+ACTIONS=("${CUSTOM_TOP_ACTIONS[@]}" "${SYSTEM_ACTIONS[@]}" "${CUSTOM_BOTTOM_ACTIONS[@]}")
 LINECOUNT=$(expr ${#ACTIONS[*]} / 2)
 MLINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
 HEIGHT=$(($MLINEHEIGHT + $LINEOFFSET))

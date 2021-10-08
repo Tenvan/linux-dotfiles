@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+CUSTOM_TOP_ACTIONS=(
+        "🔫 Snapper-Gui (BTRFS Snapshots)" "sudo snapper-gui" \
+        "🧩 Install Base Packages" "$shellCmd --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_base.zsh" \
+        "🧩 Install Virtual Engines" "$shellCmd --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_vm.zsh" \
+)
+
+CUSTOM_BOTTOM_ACTIONS=(
+        "🛻 SQL-Server Stop" "$shellCmd --hold --title OTC:SqlServer $timeCmd sudo systemctl stop mssql-server"
+        "🛻 SQL-Server Start" "$shellCmd --hold --title OTC:SqlServer $timeCmd sudo systemctl start mssql-server"
+        "🛻 SQL-Server Restart" "$shellCmd --hold --title OTC:SqlServer $timeCmd sudo systemctl restart mssql-server"
+        "🚧 Awmtt Default Start" "$shellCmd --hold --title AWMTT awmtt start -N --size 1920x1080" \
+        "🚧 Awmtt Default Restart" "$shellCmd --title AWMTT awmtt restart" \
+        "🚧 Awmtt Default Stop" "$shellCmd --title AWMTT awmtt stop" \
+        "🚧 Awmtt Test Start" "$shellCmd --hold --title AWMTT awmtt start -C $myTestLua -D 1 --size 1920x1080" \
+        "🚧 Awmtt Test Restart" "awmtt restart" \
+        "🚧 Awmtt Test Stop" "awmtt stop"
+)

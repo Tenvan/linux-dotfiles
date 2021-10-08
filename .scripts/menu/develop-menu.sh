@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
+. $SCRIPTS/defs
 
-myFileManager="nemo"
-myTerminal="kitty"
-workDir=$WORK_DIR
-shellCmd="$myTerminal --directory $workDir"
-timeCmd="/usr/bin/time -v "
+shellCmd="$TERMINAL --directory $workDir"
 
 filesEdit="code -r --file-uri"
 folderEdit="code -r --folder-uri"
@@ -26,24 +23,26 @@ startAll() {
     startCompiler
 }
 
-ACTIONS=(
+SYSTEM_ACTIONS=(
     "🇬 Git" "code $WORK_DIR"
     "🏄 Start Server" "startServer"
     "🛫 Start Compiler" "startCompiler"
     "🏄 Start All" "startAll"
-    "🇬 Generate" "$shellCmd --hold --title OTC:Generate $timeCmd yarn generate"
+    "🇬 Generate" "$shellCmd --hold --title OTC:Generate $TIME yarn generate"
     "🇩 Deploy Build" "$shellCmd --hold --title OTC:DeployBuild yarn deploy_build"
-    "💽 Yarn quick install" "$shellCmd --hold --title OTC:QuickInstall $timeCmd yarn install"
-    "💽 Yarn full install" "$shellCmd --hold --title OTC:FullInstall $timeCmd yarn"
-    "🇺 Check Updates" "$shellCmd --hold --title OTC:CheckClientUpdates $timeCmd yarn upgrade-interactive"
-    "💉 Doctor" "$shellCmd --hold --title OTC:Doctor $timeCmd yarn doctor"
-    "💉 Doctor Check" "$shellCmd --hold --title OTC:DoctorCheck $timeCmd yarn doctor:check"
-    "☑ Client Check" "$shellCmd --hold --title OTC:ClientCheck $timeCmd yarn client:check"
-    "✅ Prod Check" "$shellCmd --hold --title OTC:ClientCheck $timeCmd yarn client:check:prod"
-    "🗂 Dateien" "$myFileManager $workDir"
+    "💽 Yarn quick install" "$shellCmd --hold --title OTC:QuickInstall $TIME yarn install"
+    "💽 Yarn full install" "$shellCmd --hold --title OTC:FullInstall $TIME yarn"
+    "💉 Doctor" "$shellCmd --hold --title OTC:Doctor $TIME yarn doctor"
+    "💉 Doctor Check" "$shellCmd --hold --title OTC:DoctorCheck $TIME yarn doctor:check"
+    "☑ Client Check" "$shellCmd --hold --title OTC:ClientCheck $TIME yarn client:check"
+    "✅ Prod Check" "$shellCmd --hold --title OTC:ClientCheck $TIME yarn client:check:prod"
+    "🗂 Dateien" "$FILEMANAGER $WORK_DIR"
     "💻 Shell" "$shellCmd --hold --title OTC:Shell"
 )
 
+csource "$CUSTOMS/${0##*/}"
+
+ACTIONS=("${CUSTOM_TOP_ACTIONS[@]}" "${SYSTEM_ACTIONS[@]}" "${CUSTOM_BOTTOM_ACTIONS[@]}")
 LINECOUNT=$(expr ${#ACTIONS[*]} / 2)
 LINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
 HEIGHT=$(($LINEHEIGHT + $LINEOFFSET))

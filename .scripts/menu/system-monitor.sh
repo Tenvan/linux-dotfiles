@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
+. $SCRIPTS/defs
 
-shellCmd="kitty "
+shellCmd="$TERMINAL "
 
-ACTIONS=(
+SYSTEM_ACTIONS=(
     "💿 System Resourcen" "gnome-system-monitor -r" \
-    "💿 s-tui" "$shellCmd --hold --title SysMon:s-tui s-tui" \
     "💿 bpytop" "$shellCmd --title SysMon:bashtop bpytop" \
-    "💿 bashtop" "$shellCmd --title SysMon:bashtop bashtop" \
     "💿 glances" "$shellCmd --title SysMon:glances glances" \
     "💿 gtop" "$shellCmd --title SysMon:gtop gtop" \
     "💿 htop" "$shellCmd --title SysMon:htop htop" \
@@ -15,6 +14,9 @@ ACTIONS=(
     "💽 iptraf-ng (sudo)" "$shellCmd --title SysMon:iptraf-ng sudo iptraf-ng" \
 )
 
+csource "$CUSTOMS/${0##*/}"
+
+ACTIONS=("${CUSTOM_TOP_ACTIONS[@]}" "${SYSTEM_ACTIONS[@]}" "${CUSTOM_BOTTOM_ACTIONS[@]}")
 LINECOUNT=$(expr ${#ACTIONS[*]} / 2)
 MLINEHEIGHT=$(($LINECOUNT * $LINEHEIGHT))
 HEIGHT=$(($MLINEHEIGHT + $LINEOFFSET))
