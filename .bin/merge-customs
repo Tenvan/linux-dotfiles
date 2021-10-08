@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
+echo "# --> $BASH_SOURCE"
 
-. ~/.scripts/sounds
+. $SCRIPTS/defs
+
 CUSTOM_FOLDER="$HOME/.custom"
 
 # Aufbazu Array:

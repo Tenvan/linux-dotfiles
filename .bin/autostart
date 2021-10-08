@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-set -x
+echo "# --> $BASH_SOURCE"
 
-. $SCRIPTS/defs.zsh
+. $SCRIPTS/defs
 
 $SCRIPTS/set-wallpaper.sh
 

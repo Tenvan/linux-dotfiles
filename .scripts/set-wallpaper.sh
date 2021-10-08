@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+echo "# --> $BASH_SOURCE"
+
 ######################
 # Settings wallpaper #
 ######################

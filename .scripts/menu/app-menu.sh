@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-. ~/.scripts/sounds
+. $SCRIPTS/defs
 
 myFileManager="nemo"
 myTerminal="kitty"

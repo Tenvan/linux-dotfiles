@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-set -x
+echo "#"
+echo "# --> $BASH_SOURCE"
+echo "#"
+
 export DOT_PROFILE="initialised"
 
 export SCRIPTS="$HOME/.scripts"

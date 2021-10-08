@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
+echo "# --> $BASH_SOURCE"
 
-. ~/.scripts/sounds
+. $SCRIPTS/defs
 
 OLD_VOL=0
 OLD_MUTE="[on]"

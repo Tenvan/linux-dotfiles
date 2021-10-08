@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-export DOT_BASHRC="initialised"
+echo "#"
+echo "# --> $BASH_SOURCE"
+echo "#"
 
 [[ $- != *i* ]] && return
 

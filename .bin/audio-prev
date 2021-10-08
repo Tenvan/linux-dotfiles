@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
+echo "# --> $BASH_SOURCE"
 
-. ~/.scripts/sounds
+. $SCRIPTS/defs
 . ~/.bin/audio-test
 
 ponymix set-default --sink -d "$SINK_PREV"

@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
-export DOT_ZSHRC="initialised"
+echo "#"
+echo "# --> $BASH_SOURCE"
+echo "#"
 
 csource() {
   if [ -r "$@" ]; then

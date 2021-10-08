@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
+echo "# --> $BASH_SOURCE"
 
-. ~/.scripts/defs.zsh
+. $SCRIPTS/defs

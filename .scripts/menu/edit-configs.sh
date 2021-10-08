@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+echo "# --> $BASH_SOURCE"
 
 # Function create a scale dialog
 filesEdit="code -a --file-uri"

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
+echo "# --> $BASH_SOURCE"
 
-. ~/.scripts/sounds
+. $SCRIPTS/defs
 
 sound session-switch-user &
 notify-send.sh -t 3000 -u critical System "Benutzerwechsel..."

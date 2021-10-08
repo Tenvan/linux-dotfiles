@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
+echo "# --> $BASH_SOURCE"
 
-. ~/.scripts/defs.zsh
+. $SCRIPTS/defs
 
 # Init Install
 initInstall "install_base"

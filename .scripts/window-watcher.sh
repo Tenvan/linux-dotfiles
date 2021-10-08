@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+echo "# --> $BASH_SOURCE"
+
 class_name=$1
 
 # regex for extracting hex id's
