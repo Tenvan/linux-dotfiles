@@ -959,7 +959,9 @@ local globalkeys =
         {controlkey, altkey},
         "k",
         function()
-            awful.spawn("killall node -s KILL; fuser -k 4200/tcp; fuser -k 4201/tcp; fuser -k 4202/tcp; notify-send.sh 'Node' 'all nodes-processes and ng-services killed'")
+            awful.spawn(
+                "killall node -s KILL; fuser -k 4200/tcp; fuser -k 4201/tcp; fuser -k 4202/tcp; notify-send.sh 'Node' 'all nodes-processes and ng-services killed'"
+            )
             notify("Kill Node.js", "Alle laufenden Node.js Tasks wurden beendet!")
         end,
         {description = "Nodejs killen", group = kgSystem}
@@ -968,7 +970,10 @@ local globalkeys =
         {modkey, altkey},
         "t",
         function()
-            notify("Test Nachricht", "Dies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.")
+            notify(
+                "Test Nachricht",
+                "Dies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et."
+            )
         end,
         {description = "Test Benachrichtigung", group = kgSystem}
     ),
@@ -1502,7 +1507,12 @@ awful.rules.rules = {
     },
     -- Develop Consolen auf Screen 2 tag 2 schieben
     {
-        rule = {name = "OTC:*"},
+        rule_any = {
+            name = {
+                "OTC:*",
+                "OMC:*"
+            }
+        },
         properties = {
             screen = 2,
             tag = awful.util.tagnames[2],

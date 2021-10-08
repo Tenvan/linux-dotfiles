@@ -1,11 +1,11 @@
 #!/usr/bin/env zsh
 echo "##############################"
-echo "# arguments called with --->  ${@}"
-echo "# \$1 ---------------------->  $1"
-echo "# \$2 ---------------------->  $2"
-echo "# path to me -------------->  ${0}"
-echo "# parent path ------------->  ${0%/*}"
-echo "# my name ----------------->  ${0##*/}"
+echo "# arguments called with ---> ${@}"
+echo "# \$1 ----------------------> $1"
+echo "# \$2 ----------------------> $2"
+echo "# path to me --------------> ${0}"
+echo "# parent path -------------> ${0%/*}"
+echo "# my name -----------------> ${0##*/}"
 if [[ $BASH_SOURCE ]]; then
   echo "# Shell Context -----------> BASH ($SHELL)"
   SCRIPTFILE="$BASH_SOURCE"
@@ -62,12 +62,12 @@ if [ $LINUX_VERSION_NAME = "EndeavourOS" ]; then
 	IS_ENDEA=true
 fi
 
-echo "Linux Version.: $LINUX_VERSION_NAME"
-echo "IsArch........: $IS_ARCH"
-echo "IsArco........: $IS_ARCO"
-echo "IsManjaro.....: $IS_MANJARO"
-echo "IsEndeavourOS.: $IS_ENDEA"
-echo "AUR Manager...: $PACKER"
+# echo "Linux Version.: $LINUX_VERSION_NAME"
+# echo "IsArch........: $IS_ARCH"
+# echo "IsArco........: $IS_ARCO"
+# echo "IsManjaro.....: $IS_MANJARO"
+# echo "IsEndeavourOS.: $IS_ENDEA"
+# echo "AUR Manager...: $PACKER"
 
 MAKEFLAGS="-j$(nproc)"
 PAKKER_ALL="--color always --needed $@" 

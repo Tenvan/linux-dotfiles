@@ -1,17 +1,24 @@
 #!/usr/bin/env bash
 
 export WORK_ONETIME=$WORKSPACE/Node/OneTime
-ONETIME_SHELL="$TERMINAL --directory $WORK_ONETIME"
+export WORK_ONEMOBILE=$WORKSPACE/Node/OneMobile
 
-startServer() {
+ONETIME_SHELL="$TERMINAL --directory $WORK_ONETIME"
+ONEMOBILE_SHELL="$TERMINAL --directory $WORK_ONEMOBILE"
+
+startServer_OT() {
     $ONETIME_SHELL --hold --title OTC:StartServer yarn workspace onetime-server run start &
 }
 
-startCompiler() {
+startCompiler_OT() {
     $ONETIME_SHELL --hold --title OTC:StartDefault yarn workspace onetime-client start &
 }
 
-startAll() {
+startCompiler_OM() {
+    $ONEMOBILE_SHELL --hold --title OMC:StartDefault yarn start &
+}
+
+startAll_OT() {
     killall node
     fuser -k 4200/tcp
     fuser -k 4201/tcp
@@ -20,13 +27,22 @@ startAll() {
     startCompiler
 }
 
+export CUSTOM_TOP_ACTIONS=(
+    "🗂 OM: Dateien" "$FILEMANAGER $WORK_ONEMOBILE"
+    "💻 OM: Shell" "$ONEMOBILE_SHELL --hold --title OTC:Shell"
+    "🇬 OM: Git" "code $ONEMOBILE_SHELL"
+    "🛫 OM: Start Compiler" "startCompiler_OM"
+    "🛫 OM: Build Android" "$ONEMOBILE_SHELL --hold --title OMC:BuildAndroid $TIME yarn android:build"
+    "🇺 OM: Check Updates" "$ONEMOBILE_SHELL --hold --title OMC:CheckUpdates $TIME yarn outdated"
+)
+
 export CUSTOM_BOTTOM_ACTIONS=(
-    "🗂 OT: Dateien" "$FILEMANAGER $WORK_DIR"
-    "💻 OT: Shell" "$shellCmd --hold --title OTC:Shell"
+    "🗂 OT: Dateien" "$FILEMANAGER $WORK_ONEMOBILE"
+    "💻 OT: Shell" "$ONETIME_SHELL --hold --title OTC:Shell"
     "🇬 OT: Git" "code $WORK_ONETIME"
-    "🏄 OT: Start Server" "startServer"
-    "🛫 OT: Start Compiler" "startCompiler"
-    "🏄 OT: Start All" "startAll"
+    "🏄 OT: Start Server" "startServer_OT"
+    "🛫 OT: Start Compiler" "startCompiler_OT"
+    "🏄 OT: Start All" "startAll_OT"
     "🇬 OT: Generate" "$ONETIME_SHELL --hold --title OTC:Generate $TIME yarn generate"
     "🇩 OT: Deploy Build" "$ONETIME_SHELL --hold --title OTC:DeployBuild yarn deploy_build"
     "💉 OT: Doctor" "$ONETIME_SHELL --hold --title OTC:Doctor $TIME yarn doctor"
