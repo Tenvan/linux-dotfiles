@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 [[ $- != *i* ]] && return
 
-. $SCRIPTS/defs
+. ~/.scripts/defs
 
 csource "$SCRIPTS/defs.sh"
 

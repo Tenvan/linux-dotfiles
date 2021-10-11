@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-. $SCRIPTS/defs
+. ~/.scripts/defs
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
