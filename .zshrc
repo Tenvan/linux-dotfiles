@@ -132,4 +132,4 @@ case ${TERM} in
     ;;
 esac
 
-csource "$CUSTOMS/${0##*/}"
+csource "$CUSTOMS/.zshrc"

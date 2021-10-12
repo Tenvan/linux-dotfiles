@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-. ~/.scripts/defs
-
 export DOT_XPROFILE="initialised"
+
+. ~/.scripts/defs
 
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
@@ -44,4 +44,4 @@ WALLPAPER_DUAL=elementalfists.jpg
 export WALLPAPER_FILE=$DUAL_MONITOR_WALLPAPERS/$WALLPAPER_DUAL
 ######################
 
-csource "$CUSTOMS/${0##*/}"
+csource "$CUSTOMS/.xprofile"

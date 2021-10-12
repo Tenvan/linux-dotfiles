@@ -33,8 +33,8 @@ sudo pacman -S --noconfirm --needed git base-devel colorgcc go ruby rust
 errorCheck "installation base-devel"
 
 # Prompt installieren
-inst ttf-meslo-nerd-font-powerlevel10k
-inst zsh-theme-powerlevel10k
+install ttf-meslo-nerd-font-powerlevel10k
+install zsh-theme-powerlevel10k
 
 # disable sudo password
 echo "Cmnd_Alias INSTALL = /usr/bin/pacman, /usr/share/pacman

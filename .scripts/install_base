@@ -10,420 +10,421 @@ sound count-down
 ###########################
 
 # system packages
-inst alacritty
-inst alttab-git
-inst arandr
-inst arj
-inst ark
-inst bashtop
-inst bat
-inst bitwarden-bin
-inst bpytop
-inst clamav
-inst clamtk
-inst copyq
-inst dex
-inst docker
-inst docker-compose
-inst dpkg
-inst exa
-inst fzf
-inst genius
-inst glances
-inst gparted
-inst grive
-inst gtop
-inst hardinfo
-inst hstr
-inst htop
-inst ibus-daemon
-inst iftop
-inst iotop
-inst iptraf-ng
-inst kitty
-inst kteatime
-inst lhasa
-inst multitail
-inst networkmanager
-inst networkmanager-openconnect
-inst neofetch
-inst nitrogen
-inst notify-send.sh
-inst numlockx
-inst openconnect
-inst p7zip
-inst packagekit
-inst picom-jonaburg-git
-inst powershell-bin
-inst qbittorrent
-inst rsyslog
-inst s-tui
-inst starship
-inst shell-color-scripts
-inst spectacle
-inst time
-inst timeshift
-inst tldr++
-inst unclutter
-inst unrar
-inst xautolock
-inst xbindkeys
-inst xclip
-inst xdotool
-inst xorg-xfd
-inst xorg-xsetroot
-inst xsel
-inst zenity
-inst pm-utils
+install alacritty
+install alttab-git
+install arandr
+install arj
+install ark
+install bashtop
+install bat
+install bitwarden-bin
+install bpytop
+install clamav
+install clamtk
+install copyq
+install dex
+install docker
+install docker-compose
+install dpkg
+install exa
+install fzf
+install genius
+install glances
+install gparted
+install grive
+install gtop
+install hardinfo
+install hstr
+install htop
+install ibus-daemon
+install iftop
+install iotop
+install iptraf-ng
+install kitty
+install kteatime
+install lhasa
+install multitail
+install networkmanager
+install networkmanager-openconnect
+install neofetch
+install nitrogen
+install notify-send.sh
+install numlockx
+install openconnect
+install p7zip
+install packagekit
+install picom-jonaburg-git
+install powershell-bin
+install qbittorrent
+install rsyslog
+install s-tui
+install starship
+install shell-color-scripts
+install spectacle
+install time
+install timeshift
+install tldr++
+install unclutter
+install unrar
+install xautolock
+install xbindkeys
+install xclip
+install xdotool
+install xorg-xfd
+install xorg-xsetroot
+install xsel
+install zenity
+install pm-utils
 
 if [ $IS_ARCO = true ]; then
-	inst arcolinux-meta-samba
+	install arcolinux-meta-samba
 fi
 
 if [ $IS_MANJARO = true ]; then
-	inst samba
-	inst manjaro-settings-samba
+	install samba
+	install manjaro-settings-samba
 fi
 
 # ssh 
-inst openssh
-#inst lxqt-openssh-askpass
-inst ssh-askpass-fullscreen
+install openssh
+#install lxqt-openssh-askpass
+install ssh-askpass-fullscreen
 
 # Base Development Tools
-inst base-devel
-inst git
-inst gitflow-avh
-inst git-delta
-inst pass
-inst git-credential-manager-core-bin
-inst gradle
-inst jdk-openjdk
-inst jdk8-openjdk
-inst libsecret
-inst nodejs-emojione
-inst nodejs
-inst nuget
-inst npm
-inst svn
-inst yarn
-inst tk
-inst nsis
+install base-devel
+install git
+install gitflow-avh
+install git-delta
+install pass
+install git-credential-manager-core-bin
+install gradle
+install jdk-openjdk
+install jdk8-openjdk
+install libsecret
+install nodejs-emojione
+install nodejs
+install nuget
+install npm
+install svn
+install yarn
+install tk
+install nsis
 
 # DotNet/Mono Setup
-inst dotnet-sdk
-inst mono
-inst mono-msbuild
+install dotnet-sdk
+install mono
+install mono-msbuild
 
 # jetbrains apps
-inst jetbrains-toolbox
+install jetbrains-toolbox
 
 # awesome
-inst awesome-git
-inst vicious
-inst xorg-server-xephyr
-inst luacheck
-inst awmtt
+install awesome-git
+install vicious
+install xorg-server-xephyr
+install luacheck
+install awmtt
 
 # plasma
 if [ $IS_ENDEA = true -o $IS_ARCH = true ]; then
-	inst plasma-meta
-	inst kde-gtk-config
+	install plasma-meta
+	install kde-gtk-config
 fi
 
 # config tools
-inst lxappearance
+install lxappearance
 
 # utilities from gnome
-inst gnome-disk-utility
-inst gnome-system-monitor
-inst gnome-system-log
-inst gnome-logs
-inst gnome-calculator
+install gnome-disk-utility
+install gnome-system-monitor
+install gnome-system-log
+install gnome-logs
+install gnome-calculator
 
 # polkits
-#inst polkit-gnome
-#inst polkit-kde-agent
-inst xfce-polkit
+#install polkit-gnome
+#install polkit-kde-agent
+install xfce-polkit
 
-inst xscreensaver
-inst qt5-styleplugins
-inst qt5ct
+install xscreensaver
+install qt5-styleplugins
+install qt5ct
 
 # xfce developer
-inst xfce4-meta
+install xfce4-meta
 
 # file manager
-inst mc
-inst ranger
-inst ufraw-thumbnailer
+install mc
+install ranger
+install ufraw-thumbnailer
 
 # Thunar
-inst thunar-archive-plugin 
-inst thunar-media-tags-plugin
+install thunar-archive-plugin 
+install thunar-media-tags-plugin
 
 if [ $IS_MANJARO = true ]; then
-	inst thunar-shares-plugin-manjaro 
+	install thunar-shares-plugin-manjaro 
 fi
 
 if [ $IS_ARCO = true ]; then
-	inst thunar-shares-plugin
+	install thunar-shares-plugin
 fi
 
-inst folder-color-switcher
-inst gtkhash-thunar
-inst thunar-vcs-plugin 
-inst thunar-volman
+install folder-color-switcher
+install gtkhash-thunar
+install thunar-vcs-plugin 
+install thunar-volman
 
 # Audio Radio
-inst radiotray-ng
-inst shortwave
-inst libadwaita-shortwave
+install radiotray-ng
+install shortwave
+install libadwaita-shortwave
 
 # Nemo
-inst cinnamon-translations
-inst gtkhash-nemo
-inst nemo
-inst nemo-audio-tab
-inst nemo-compare
-inst nemo-emblems
-inst nemo-fileroller
-inst nemo-image-converter
-inst nemo-media-columns
-inst nemo-mediainfo-tab
-inst nemo-preview
-inst nemo-qml-plugin-notifications
-inst nemo-repairer
-inst nemo-seahorse
-inst nemo-share
+install cinnamon-translations
+install gtkhash-nemo
+install nemo
+install nemo-audio-tab
+install nemo-compare
+install nemo-emblems
+install nemo-fileroller
+install nemo-image-converter
+install nemo-media-columns
+install nemo-mediainfo-tab
+install nemo-preview
+install nemo-qml-plugin-notifications
+install nemo-repairer
+install nemo-seahorse
+install nemo-share
 
 # Rofi Configs
 if [ $IS_ARCO = true ]; then
-	inst arcolinux-rofi-git
-	inst arcolinux-rofi-themes-git
+	install arcolinux-rofi-git
+	install arcolinux-rofi-themes-git
 fi
-inst rofi
-inst rofimoji
-inst rofi-emoji
+install rofi
+install rofimoji
+install rofi-emoji
 
 # sound setup
-inst alsa-utils
-inst alsa-oss
-inst paprefs
-inst pasystray
-inst sp
-inst sound-theme-smooth
-inst gst123
-inst livecd-sounds
-inst mint-sounds
-inst tvolnoti
-inst ponymix
+install alsa-utils
+install alsa-oss
+install paprefs
+install pasystray
+install sp
+install sound-theme-smooth
+install gst123
+install livecd-sounds
+install mint-sounds
+install tvolnoti
+install ponymix
 
 # Python libs
-inst python
+install python
 
 # other
-inst bleachbit
+install bleachbit
 
 # bluetooth setup
 if [ $IS_MANJARO = true ]; then
-	inst manjaro-bluetooth
+	install manjaro-bluetooth
 elif [ $IS_ENDEA = true ]; then
-	inst bluez 
-	inst bluez-utils 
-	inst pulseaudio-bluetooth
-	inst blueman
+	install bluez 
+	install bluez-utils 
+	install pulseaudio-bluetooth
+	install blueman
 elif [ $IS_ARCO = true ]; then
-	#inst bluetooth-autoconnect
-	inst pulseaudio-bluetooth
-	inst blueman
-	#inst bluez
-	#inst bluez-hid2hci
-	#inst bluez-libs
-	#inst bluez-plugins
-	#inst bluez-tools
-	#inst bluez-utils
+	#install bluetooth-autoconnect
+	install pulseaudio-bluetooth
+	install blueman
+	#install bluez
+	#install bluez-hid2hci
+	#install bluez-libs
+	#install bluez-plugins
+	#install bluez-tools
+	#install bluez-utils
 
 fi
 
 # printer setup
 if [ $IS_MANJARO = true ]; then
-	inst manjaro-printer
+	install manjaro-printer
 fi
-inst brother-mfc-j4420dw
-inst canon-cque
-inst cups-pdf
-inst samsung-printers
-inst hplip
-inst system-config-printer
-inst print-manager
+install brother-mfc-j4420dw
+install canon-cque
+install cups-pdf
+install samsung-printers
+install hplip
+install system-config-printer
+install print-manager
 
-inst ghostscript 
-inst gsfonts 
-inst foomatic-db-engine 
-inst foomatic-db 
-inst foomatic-db-ppds 
-inst foomatic-db-nonfree 
-inst foomatic-db-nonfree-ppds 
-inst foomatic-db-gutenprint-ppds
-inst gutenprint 
+install ghostscript 
+install gsfonts 
+install foomatic-db-engine 
+install foomatic-db 
+install foomatic-db-ppds 
+install foomatic-db-nonfree 
+install foomatic-db-nonfree-ppds 
+install foomatic-db-gutenprint-ppds
+install gutenprint 
 
 # scanner setup
-#inst xsane
-#inst simple-scan
-#inst skanlite
-#inst colord-sane
-#inst sane
+#install xsane
+#install simple-scan
+#install skanlite
+#install colord-sane
+#install sane
 
 # Browser
-inst firefox
-inst firefox-i18n-de
-inst chromium
+install firefox
+install firefox-i18n-de
+install chromium
 
 # remmina
-inst remmina
-inst remmina-plugin-open
-inst remmina-plugin-rdesktop
-inst remmina-plugin-url
-inst remmina-plugin-folder
-inst remmina-plugin-open
-inst freerdp
-inst remote-desktop-manager-free
+install remmina
+install remmina-plugin-open
+install remmina-plugin-rdesktop
+install remmina-plugin-url
+install remmina-plugin-folder
+install remmina-plugin-open
+install freerdp
+install remote-desktop-manager-free
 
 # installation of important editors
-inst micro
-inst neovim
-inst visual-studio-code-bin
-inst typora
+install micro
+install neovim
+install visual-studio-code-bin
+install typora
 
 # utils for editors
-inst bash-completion
-inst clang
-inst fd
-inst gdb
-inst graphviz
-inst prettier
-inst ripgrep
-inst shellcheck
-inst tar
+install bash-completion
+install clang
+install fd
+install gdb
+install graphviz
+install prettier
+install ripgrep
+install shellcheck
+install tar
 
 # wallpapers, themes, icons and fonts
 
 # icons
-inst paper-icon-theme
-inst papirus-icon-theme
+install paper-icon-theme
+install papirus-icon-theme
 
 # cursor
 if [ $IS_ARCO = true ]; then
-	inst bibata-cursor-theme
+	install bibata-cursor-theme
 else
-	inst bibata-cursor-theme-bin
+	install bibata-cursor-theme-bin
 fi
-inst bibata-cursor-translucent
+install bibata-cursor-translucent
 
 # fonts
-inst font-manager
+install font-manager
 
 # powerline in linux console
-inst awesome-terminal-fonts
-inst terminus-font
-inst powerline-fonts
+install awesome-terminal-fonts
+install terminus-font
+install powerline-fonts
 
-inst nerd-fonts-fira-code
-inst nerd-fonts-noto
-inst nerd-fonts-roboto-mono
-inst nerd-fonts-terminus
-inst ttf-meslo-nerd-font-powerlevel10k
-inst ttf-devicons
-inst ttf-twemoji
-inst ttf-twemoji-color
-inst ttf-weather-icons
+install nerd-fonts-fira-code
+install nerd-fonts-noto
+install nerd-fonts-roboto-mono
+install nerd-fonts-terminus
+install ttf-meslo-nerd-font-powerlevel10k
+install ttf-devicons
+install ttf-twemoji
+install ttf-twemoji-color
+install ttf-weather-icons
 
 
 # lightdm config
-inst lightdm
-inst lightdm-settings
-inst lightdm-gtk-greeter-settings
-inst lightdm-gtk-greeter
-inst lightdm-slick-greeter
-inst lightdm-webkit2-greeter
-inst lightdm-webkit2-theme-glorious
-inst lightdm-webkit2-clean
-inst lightdm-webkit2-theme-obsidian
+install lightdm
+install lightdm-settings
+install lightdm-gtk-greeter-settings
+install lightdm-gtk-greeter
+install lightdm-slick-greeter
+install lightdm-webkit2-greeter
+install lightdm-webkit2-theme-glorious
+install lightdm-webkit2-clean
+install lightdm-webkit2-theme-obsidian
+install lightdm-webkit-theme-aether
 
 if [ $IS_MANJARO = true ]; then
-  inst manjaro-slick-greeter-theme-light
+  install manjaro-slick-greeter-theme-light
 fi
 
 # grub
-inst grub-customizer
-inst update-grub
+install grub-customizer
+install update-grub
 
 if [ $IS_MANJARO != true -a $IS_ARCO != true ]; then
-	inst grub2-theme-archlinux
+	install grub2-theme-archlinux
 fi
 
 # btrfs tools
-inst grub-btrfs
-inst snapper
-inst snapper-gui
-inst timeshift-autosnap
+install grub-btrfs
+install snapper
+install snapper-gui
+install timeshift-autosnap
 
 #########################
 # collect optional apps #
 #########################
-#inst epdfview
+#install epdfview
 
 # gimicks
-inst cmatrix
-inst hollywood
+install cmatrix
+install hollywood
 
 # Office
-inst libreoffice-fresh
-inst libreoffice-fresh-de
+install libreoffice-fresh
+install libreoffice-fresh-de
 
 # language files
-inst man-pages-de
-inst aspell-de
-inst mythes-de
-inst libmythes
-inst languagetool
+install man-pages-de
+install aspell-de
+install mythes-de
+install libmythes
+install languagetool
 
 # Browser
 if [ $IS_ARCO != true ]; then
-	inst google-chrome
+	install google-chrome
 else
-	inst vivaldi
+	install vivaldi
 fi
-inst microsoft-edge-dev-bin
+install microsoft-edge-dev-bin
 
 # optional application packages
-inst aspell
-inst baobab
-inst gimp
-inst gimp-help-de
-inst gwenview
-inst imagemagick-full
-inst libmagick-full
-inst inkscape
-inst partitionmanager
-inst pinta
-inst playerctl
-inst teams
-inst teams-insiders
+install aspell
+install baobab
+install gimp
+install gimp-help-de
+install gwenview
+install imagemagick-full
+install libmagick-full
+install inkscape
+install partitionmanager
+install pinta
+install playerctl
+install teams
+install teams-insiders
 
-inst glfw-x11
-inst phonon-qt5-vlc
+install glfw-x11
+install phonon-qt5-vlc
 
-inst themix-full
-inst themix-icons-numix
+install themix-full
+install themix-icons-numix
 
 # rust apps
-inst bat
-inst fd
-inst ripgrep
-inst tokei
-inst procs
+install bat
+install fd
+install ripgrep
+install tokei
+install procs
 
 ###############################
 # uninstall unneeded packages #

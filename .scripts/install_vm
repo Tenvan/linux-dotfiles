@@ -19,26 +19,26 @@ INSTALL_VIRTUALBOX=false
 # virtualbox
 if [ $INSTALL_VIRTUALBOX = true ]; then
 	if [ $IS_MANJARO = true ]; then
-		inst virtualbox
-		inst virtualbox-ext-oracle
+		install virtualbox
+		install virtualbox-ext-oracle
 	else
-		inst virtualbox
-		inst virtualbox-ext-oracle
-		inst virtualbox-host-modules-arch
-		inst linux-headers
+		install virtualbox
+		install virtualbox-ext-oracle
+		install virtualbox-host-modules-arch
+		install linux-headers
 	fi
 fi
 
 # libvirt service and manager
 if [ $INSTALL_VIRTIO = true ]; then
-	inst virt-manager
-	inst virtio-win
-	inst qemu
-	inst qemu-arch-extra
-	inst libvirt
-	inst iptables-nft
-	inst ebtables
-	inst dnsmasq
+	install virt-manager
+	install virtio-win
+	install qemu
+	install qemu-arch-extra
+	install libvirt
+	install iptables-nft
+	install ebtables
+	install dnsmasq
 fi
 
 ###############################

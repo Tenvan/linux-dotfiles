@@ -1,20 +1,20 @@
 #!/usr/bin/env zsh
-echo "##############################"
-echo "# arguments called with ---> ${@}"
-echo "# \$1 ----------------------> $1"
-echo "# \$2 ----------------------> $2"
-echo "# path to me --------------> ${0}"
-echo "# parent path -------------> ${0%/*}"
-echo "# my name -----------------> ${0##*/}"
-if [[ $BASH_SOURCE ]]; then
-  echo "# Shell Context -----------> BASH ($SHELL)"
-  SCRIPTFILE="$BASH_SOURCE"
-else
-  echo "# Shell Context -----------> ZSH ($SHELL)"
-  SCRIPTFILE="${(%):-%N}"
-fi
-echo "# Scriptfile --------------> $SCRIPTFILE"
-echo "##############################"
+# echo "##############################"
+# echo "# arguments called with ---> ${@}"
+# echo "# \$1 ----------------------> $1"
+# echo "# \$2 ----------------------> $2"
+# echo "# path to me --------------> ${0}"
+# echo "# parent path -------------> ${0%/*}"
+# echo "# my name -----------------> ${0##*/}"
+# if [[ $BASH_SOURCE ]]; then
+  # echo "# Shell Context -----------> BASH ($SHELL)"
+  # SCRIPTFILE="$BASH_SOURCE"
+# else
+  # echo "# Shell Context -----------> ZSH ($SHELL)"
+  # SCRIPTFILE="${(%):-%N}"
+# fi
+# echo "# Scriptfile --------------> $SCRIPTFILE"
+# echo "##############################"
 
 csource() {
   if [ -r "$@" ]; then
@@ -78,7 +78,7 @@ initInstall() {
 	sudo rm /var/lib/pacman/db.lck 2&> /dev/null	
 }
 
-inst() {
+install() {
     PAKAGE_INST="${PAKAGE_INST} $1"
     
     if [ $DEBUG = true ]; then
@@ -101,7 +101,7 @@ fullInstall() {
 	fi
 }
 
-uninst() {
+uninstall() {
     PAKAGE_UNINST="${PAKAGE_UNINST} $1"
 
     eval "$PACKER -R $1"

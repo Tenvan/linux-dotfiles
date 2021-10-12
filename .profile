@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-. ~/.scripts/defs
-
 export DOT_PROFILE="initialised"
+
+. ~/.scripts/defs
 
 export SCRIPTS="$HOME/.scripts"
 export CUSTOMS="$HOME/.custom"
@@ -47,4 +47,4 @@ if [ -d "$HOME/Android/Sdk/tools" ]; then
     export PATH="$HOME/Android/Sdk/tools:$PATH"
 fi
 
-csource "$CUSTOMS/${0##*/}"
+csource "$CUSTOMS/.profile"

@@ -133,4 +133,4 @@ fi
 
 test -f "$(which neofetch)" && $(which neofetch)
 
-csource "$CUSTOMS/${0##*/}"
+csource "$CUSTOMS/.bashrc"

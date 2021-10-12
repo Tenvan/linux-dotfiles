@@ -8,9 +8,9 @@ initInstall "install_finish"
 sound count-down
 
 if [ $IS_MANJARO = true ]; then
-	inst manjaro-wallpapers-18.0
-	inst bootsplash-systemd
-	inst bootsplash-theme-manjaro
+	install manjaro-wallpapers-18.0
+	install bootsplash-systemd
+	install bootsplash-theme-manjaro
 fi
 
 ###############################
@@ -38,8 +38,8 @@ sudo cp $HOME/.screenlayout/screenlayout.sh /opt
 errorCheck "copy screenlayout"
 
 #GREETER="lightdm-gtk-greeter"
-GREETER="lightdm-slick-greeter"
-#GREETER="lightdm-webkit2-greeter"
+#GREETER="lightdm-slick-greeter"
+GREETER="lightdm-webkit2-greeter"
 
 sudo sed -i "s/^.*greeter-session=.*$/greeter-session=$GREETER/g" /etc/lightdm/lightdm.conf
 sudo sed -i "s/^.*display-setup-script=.*$/display-setup-script=\/opt\/screenlayout.sh/g" /etc/lightdm/lightdm.conf
@@ -117,8 +117,8 @@ errorCheck "lightdm greeter config"
 # config webkit2 greeter
 # Set default lightdm greeter
 sudo sed -i 's/^\(#?greeter\)-session\s*=\s*\(.*\)/greeter-session = $GREETER #\1/ #\2g' /etc/lightdm/lightdm.conf
-sudo sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode = true #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
-sudo sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = glorious #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+#sudo sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode = true #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+sudo sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = lightdm-webkit-theme-aether #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 
 echo "KEYMAP=de
 FONT=ter-powerline-v12n
