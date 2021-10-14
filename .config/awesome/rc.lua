@@ -1351,12 +1351,13 @@ awful.rules.rules = {
             floating = true
         }
     },
-    -- Spotify Clients
+    -- Audio Clients
     {
         rule_any = {
             class = {
                 "Spotify",
-                "Psst-gui"
+                "Psst-gui",
+                "Shortwave"
             }
         },
         properties = {
