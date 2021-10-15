@@ -7,3 +7,4 @@ file:///usr/share/sounds sounds
 smb://.;fileuser@192.168.123.47/shared/ shared auf 192.168.123.47
 smb://.;fileuser@nas_hx/iso/ iso auf nas_hx
 smb://.;fileuser@nas_hx/transfer/ transfer auf nas_hx
+smb://this.InstanceName;Administrator@192.168.123.41/d$/ D$ auf DB4

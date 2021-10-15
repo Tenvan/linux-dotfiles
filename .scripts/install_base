@@ -411,7 +411,6 @@ install partitionmanager
 install pinta
 install playerctl
 install teams
-install teams-insiders
 
 install glfw-x11
 install phonon-qt5-vlc

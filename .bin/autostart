@@ -25,11 +25,15 @@ run blueman-tray
 run blueman-applet
 run nm-applet
 
+run teams
+run jetbrains-toolbox
+
 # Sound Tray Icons
 # restart start-pulseaudio-x11
 run pasystray
 
-run radiotray-ng
+# run radiotray-ng
+run shortwave
 run kteatime
 run copyq
 
