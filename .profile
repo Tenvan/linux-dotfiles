@@ -43,8 +43,8 @@ if [ -d "$HOME/.yarn/bin" ]; then
 fi
 
 # add android sdk path, if installed
-if [ -d "$HOME/Android/Sdk/tools" ]; then
-    export PATH="$HOME/Android/Sdk/tools:$PATH"
+if [ -d "$ANDROID_SDK_ROOT/tools" ]; then
+    export PATH="$HOME/tools:$ANDROID_SDK_ROOT/platform-tools:$PATH"
 fi
 
 csource "$CUSTOMS/.profile"
