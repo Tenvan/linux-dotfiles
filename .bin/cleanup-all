@@ -1,0 +1,5 @@
+pacman -Sccd --noconfirm
+yay -Sccd --noconfirm
+paru -Sccd --noconfirm
+sudo rm -fr "$HOME/.cache/yay"
+sudo rm -fr "$HOME/.cache/paru"

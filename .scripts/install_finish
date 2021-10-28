@@ -29,21 +29,20 @@ finish
 # refresh icons
 sudo gdk-pixbuf-query-loaders --update-cache
 
-if [ ! -f "$HOME/.screenlayout/screenlayout.sh" ]; then
-	print 'Fehler: keine .screenlayout.sh gefunden'
+layoutscript="$HOME/.screenlayout/screenlayout-system.sh"
+if [ ! -f "$layoutscript" ]; then
+	print 'Fehler: keine .screenlayout-system.sh gefunden'
 	exit -1
 fi
 
-sudo cp $HOME/.screenlayout/screenlayout.sh /opt
+sudo cp "$layoutscript" /opt/screenlayout.sh
 errorCheck "copy screenlayout"
 
 #GREETER="lightdm-gtk-greeter"
-#GREETER="lightdm-slick-greeter"
-GREETER="lightdm-webkit2-greeter"
+GREETER="lightdm-slick-greeter"
 
-sudo sed -i "s/^.*greeter-session=.*$/greeter-session=$GREETER/g" /etc/lightdm/lightdm.conf
-sudo sed -i "s/^.*display-setup-script=.*$/display-setup-script=\/opt\/screenlayout.sh/g" /etc/lightdm/lightdm.conf
-# sudo sed -i "s/^.*greeter-setup-script\s*=.*$/greeter-setup-script=\/opt\/system-ready.sh/g" /etc/lightdm/lightdm.conf
+sudo sed -i "s/^greeter-session.*=.*$/greeter-session=$GREETER/g" /etc/lightdm/lightdm.conf
+sudo sed -i "s/^display-setup-script.*=.*$/display-setup-script=\/opt\/screenlayout.sh/g" /etc/lightdm/lightdm.conf
 
 sudo cp $oxygen/system-ready.oga /opt/system-ready.oga
 echo "paplay /opt/system-ready.oga" | sudo tee /opt/system-ready.sh
@@ -113,12 +112,6 @@ xft-hintstyle=hintfull
 enable-hidpi=on
 cursor-theme-name=Bibata-Modern-Ice" | sudo tee /etc/lightdm/slick-greeter.conf
 errorCheck "lightdm greeter config"
-
-# config webkit2 greeter
-# Set default lightdm greeter
-sudo sed -i 's/^\(#?greeter\)-session\s*=\s*\(.*\)/greeter-session = $GREETER #\1/ #\2g' /etc/lightdm/lightdm.conf
-#sudo sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode = true #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
-sudo sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = lightdm-webkit-theme-aether #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 
 echo "KEYMAP=de
 FONT=ter-powerline-v12n

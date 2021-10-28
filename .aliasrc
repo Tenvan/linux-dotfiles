@@ -57,14 +57,14 @@ alias pacman='sudo pacman --color auto'
 alias update-fc='sudo fc-cache -fv'
 
 #package manager
-alias inst="yay -S --color always --needed --noconfirm"
-alias uninst="yay -Rcn"
-alias upall="yay -Syyu --needed"
-alias search="yay --bottomup"
+alias inst="paru -S --color always --needed --noconfirm"
+alias uninst="paru -Rcn"
+alias upall="paru -Syyu --needed"
+alias search="paru --bottomup"
 alias upkeys="sudo pacman-key --refresh-keys"
 
 #package cleanup (old and cache)
-alias cleanup='yay -c --noconfirm; pacman -Sccd --noconfirm; yay -Sccd --noconfirm'
+alias cleanup='cleanup-all'
 
 #get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"

@@ -39,6 +39,10 @@ if [ $INSTALL_VIRTIO = true ]; then
 	install iptables-nft
 	install ebtables
 	install dnsmasq
+	install vde2 
+	install bridge-utils 
+	install openbsd-netcat 
+	install ovmf
 fi
 
 ###############################
