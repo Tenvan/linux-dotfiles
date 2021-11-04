@@ -217,3 +217,5 @@ yarn global add eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-
 errorCheck "install global yarn"
 
 sound complete
+
+sed -i 's/end\s{2,}file/stuff\nend\nfile\neof/g' sample.txt

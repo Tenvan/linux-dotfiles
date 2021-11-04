@@ -31,10 +31,6 @@ run jetbrains-toolbox
 # Sound Tray Icons
 # restart start-pulseaudio-x11
 run pasystray
-
-# run radiotray-ng
-run shortwave
-run kteatime
 run copyq
 
 sh $SCRIPTS/picom-toggle-awesome.sh &
