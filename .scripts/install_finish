@@ -56,7 +56,7 @@ if [ $IS_MANJARO = true ]; then
 	GREETER_BACKGROUND="/usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg"
 elif [ $IS_ARCO = true ]; then
 	GREETER_BACKGROUND="/usr/share/backgrounds/arcolinux/arco-wallpaper.jpg"
-	GREETER_THEME="Arc-dark"
+	GREETER_THEME="Arc-Paper-dark"
 else
 	GREETER_BACKGROUND="/usr/share/backgrounds/desert.png"
 fi
@@ -107,9 +107,9 @@ theme-name=$GREETER_THEME
 icon-theme-name=Papirus-Dark
 font-name='Noto Sans Bold 20'
 xft-antialias=true
-xft-dpi=200
+xft-dpi=144
 xft-hintstyle=hintfull
-enable-hidpi=on
+enable-hidpi=off
 cursor-theme-name=Bibata-Modern-Ice" | sudo tee /etc/lightdm/slick-greeter.conf
 errorCheck "lightdm greeter config"
 
