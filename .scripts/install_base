@@ -256,12 +256,6 @@ install cups-pdf
 install hplip
 install system-config-printer
 install print-manager
-# TODO Nur für ArcoLinux ??
-if [ $IS_ARCO = true ]; then
-	install samsung-unified-driver
-else
-	install samsung-printers
-fi 
 
 install ghostscript 
 install gsfonts 
@@ -293,7 +287,6 @@ install remmina-plugin-url
 install remmina-plugin-folder
 install remmina-plugin-open
 install freerdp
-install remote-desktop-manager-free
 
 # installation of important editors
 install micro

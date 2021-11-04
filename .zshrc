@@ -129,6 +129,7 @@ case ${TERM} in
     *)
   		print "Init Powershell10k for vconsole"
       csource ~/.bin/.p10k-v.zsh
+	  csource "$HOME/.profile"
     ;;
 esac
 
