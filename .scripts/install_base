@@ -439,4 +439,9 @@ finish
 # Fix Teams Black Screen
 sudo ln -f -s /bin/true /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
 
+# micro plugins
+micro -plugin install comment bounce editorconfig joinLines quoter filemanager bookmark \
+	jump detectindent go snippets crystal quickfix wc manipulator \
+	monokai-dark gotham-colors nordcolors 
+
 sound complete

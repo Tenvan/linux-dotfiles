@@ -17,6 +17,7 @@ x-scheme-handler/unknown=vivaldi-stable.desktop
 text/html=vivaldi-stable.desktop
 inode/directory=nemo.desktop
 application/x-gnome-saved-search=nemo.desktop
+text/markdown=typora.desktop
 
 [Added Associations]
 application/gzip=org.gnome.FileRoller.desktop;
@@ -77,7 +78,7 @@ image/vnd.microsoft.icon=org.nomacs.ImageLounge.desktop;
 image/x-xcf=gimp.desktop;
 inode/directory=org.kde.dolphin.desktop;exo-file-manager.desktop;thunar
 text/css=sublime_text.desktop;code-oss.desktop;visual-studio-code.desktop;
-text/markdown=sublime_text.desktop;code-oss.desktop;visual-studio-code.desktop;
+text/markdown=typora.desktop;code-oss.desktop;visual-studio-code.desktop;
 text/plain=sublime_text.desktop;code-oss.desktop;visual-studio-code.desktop;
 text/x-changelog=sublime_text.desktop;code-oss.desktop;visual-studio-code.desktop;
 text/x-chdr=sublime_text.desktop;code-oss.desktop;visual-studio-code.desktop;

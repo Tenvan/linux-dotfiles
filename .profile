@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 export DOT_PROFILE="initialised"
 
-. ~/.scripts/defs
-
 export SCRIPTS="$HOME/.scripts"
+
+. $SCRIPTS/defs
+
 export CUSTOMS="$HOME/.custom"
-export EDITOR=$(which micro)
-export VISUAL=$EDITOR
+export EDITOR=editor
+# export PAGER=mypager
+# export VISUAL="$EDITOR"
 export FILEMANAGER="nemo"
 export TERMINAL="kitty"
 export TIME="/usr/bin/time -v "
@@ -17,8 +19,8 @@ export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
 export WORKSPACE=/media/WORKSPACE/$USER
 
 # mods korrigieren
-chmod +x .bin/*
-chmod +x .scripts/*
+chmod +x $HOME/.bin/*
+chmod +x $HOME/.scripts/*
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
