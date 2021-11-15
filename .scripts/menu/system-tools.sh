@@ -8,7 +8,7 @@ myTestLua=$(eval echo $HOME/.config/awesome/rc.test.lua)
 SYSTEM_ACTIONS=(
         "🪄 Install Updates" "$shellCmd --hold --title Sys:Upall $timeCmd yay -Syyu --needed" \
         "🪄 ReInstall All Packages" "$shellCmd --hold --title Sys:Upall pacman -Qqn | pacman -S -" \
-        "🪄 Grub Update (BTRFS Snapshots)" "$shellCmd --hold --title Sys:Grubup $timeCmd sudo grub-mkconfig -o /boot/grub/grub.cfg" \
+        "🪄 Grub Update (BTRFS Snapshots)" "$shellCmd --hold --title Sys:Grubup $timeCmd sudo update-grub" \
         "🕰 Timeshift" "timeshift-launcher" \
         "🕰 Timeshift create Snapshot" "$shellCmd --hold --title Sys:Install $timeCmd sudo timeshift --create" \
         "🗂 Belegung Verzeichnisse" "baobab" \
