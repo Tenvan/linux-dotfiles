@@ -650,8 +650,25 @@ local screen1RightWidgets = {
 
 function theme.at_screen_connect(s)
     -- Quake application
-    s.quake = lain.util.quake({app = awful.util.terminal, height = 0.50, argname = "--title %s"})
-    
+    s.quake =
+        lain.util.quake {
+        app = "kitty",
+        name = "QuakeDD",
+        settings = function(c)
+            c.sticky = true
+            c.opacity = 0.8
+            c.ontop = true
+        end,
+        argname = "--name %s",
+        followtag = true,
+        border = 5,
+        overlap = false,
+        height = 0.66,
+        width = 0.80,
+        horiz = "center"
+    }
+    -- s.quake = lain.util.quake()
+
     -- Create a taglist widget
     local taglist =
         awful.widget.taglist {

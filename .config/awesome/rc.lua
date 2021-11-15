@@ -779,9 +779,8 @@ local globalkeys =
         returnkey,
         function()
             awful.screen.focused().quake:toggle()
-            notify("Toggle", "Toggle Quake Window")
         end,
-        {description = "dropdown application", group = kgAwesome}
+        {description = "Quake Terminal", group = kgAwesome}
     ),
     -- TODO Widgets einbauen
     -- Widgets popups
