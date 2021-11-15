@@ -138,19 +138,17 @@ local kgTag = "Tags"
 
 -- awesome variables
 awful.util.terminal = terminal
--- awful.util.tagnames = {"󾠮", "󾠯", "󾠰", "󾠱", "󾠲", "󾠳", "󾠴", "󾠵", "󾠶"}
--- awful.util.tagnames = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
--- awful.util.tagnames = { "", "", "", "", "", "", "", "", "" }
--- awful.util.tagnames = {  "", "", "", "", "", "", "", "", "", "" }
--- awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
--- awful.util.tagnames = { "www", "edit", "gimp", "inkscape", "music" }
--- awful.util.tagnames = { "⓵", "⓶", "⓷", "⓸", "⓹", "⓺", "⓻", "⓼", "⓽"}
-awful.util.tagnames = {"①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨"}
--- awful.util.tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }
+-- local tagnames = {"󾠮", "󾠯", "󾠰", "󾠱", "󾠲", "󾠳", "󾠴", "󾠵", "󾠶"}
+-- local tagnames = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
+-- local tagnames = { "", "", "", "", "", "", "", "", "" }
+-- local tagnames = {  "", "", "", "", "", "", "", "", "", "" }
+-- local tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
+-- local tagnames = { "www", "edit", "gimp", "inkscape", "music" }
+-- local tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }
+local tagnames = {"①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨"}
+awful.util.tagnames = {}
 
-awful.layout.suit.tile.left.mirror = true
-
-awful.layout.layouts = {
+local defaultLayouts = {
     awful.layout.suit.tile,
     awful.layout.suit.floating,
     awful.layout.suit.tile.left,
@@ -158,8 +156,8 @@ awful.layout.layouts = {
     awful.layout.suit.tile.top,
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
+    -- awful.layout.suit.spiral,
+    -- awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier
@@ -174,6 +172,102 @@ awful.layout.layouts = {
     --~ lain.layout.termfair,
     --~ lain.layout.termfair.center,
 }
+
+local tags = {
+    {
+        layout = awful.layout.suit.max,
+        layouts = {
+            awful.layout.suit.tile,
+            awful.layout.suit.max,
+            awful.layout.suit.max.fullscreen,
+            awful.layout.suit.magnifier
+        },
+        master_fill_policy = "expand",
+        --master_fill_policy = "master_width_factor",
+        gap_single_client = false,
+        gap = 5,
+        selected = true
+    },
+    {
+        layout = awful.layout.suit.tile,
+        layouts = defaultLayouts,
+        master_fill_policy = "master_width_factor",
+        gap_single_client = true,
+        gap = 2
+    },
+    {
+        layout = awful.layout.suit.tile,
+        layouts = defaultLayouts,
+        master_fill_policy = "expand",
+        -- master_fill_policy = "master_width_factor",
+        gap_single_client = false,
+        gap = 5
+    },
+    {
+        layout = awful.layout.suit.tile,
+        layouts = defaultLayouts,
+        master_fill_policy = "expand",
+        -- master_fill_policy = "master_width_factor",
+        gap_single_client = false,
+        gap = 5
+    },
+    {
+        layout = awful.layout.suit.tile,
+        layouts = defaultLayouts,
+        master_fill_policy = "expand",
+        -- master_fill_policy = "master_width_factor",
+        gap_single_client = false,
+        gap = 5
+    },
+    {
+        layout = awful.layout.suit.tile,
+        layouts = defaultLayouts,
+        master_fill_policy = "expand",
+        -- master_fill_policy = "master_width_factor",
+        gap_single_client = false,
+        gap = 5
+    },
+    {
+        layout = awful.layout.suit.tile,
+        layouts = defaultLayouts,
+        master_fill_policy = "expand",
+        -- master_fill_policy = "master_width_factor",
+        gap_single_client = false,
+        gap = 5
+    },
+    {
+        layout = awful.layout.suit.tile,
+        layouts = defaultLayouts,
+        master_fill_policy = "expand",
+        -- master_fill_policy = "master_width_factor",
+        gap_single_client = false,
+        gap = 5
+    },
+    {
+        layout = awful.layout.suit.tile,
+        layouts = defaultLayouts,
+        master_fill_policy = "expand",
+        -- master_fill_policy = "master_width_factor",
+        gap_single_client = false,
+        gap = 5
+    }
+}
+
+gdebug.dump(tagnames)
+gdebug.dump(tags)
+
+for s in screen do
+    for i = 1, 9 do
+        local props = tags[i]
+        props.screen = s
+        awful.tag.add(tagnames[i], props)
+    end
+end
+
+awful.layout.suit.tile.left.mirror = true
+
+awful.layout.append_default_layouts = defaultLayouts
+awful.layout.layouts = defaultLayouts
 
 awful.util.taglist_buttons =
     my_table.join(
@@ -685,6 +779,7 @@ local globalkeys =
         returnkey,
         function()
             awful.screen.focused().quake:toggle()
+            notify("Toggle", "Toggle Quake Window")
         end,
         {description = "dropdown application", group = kgAwesome}
     ),

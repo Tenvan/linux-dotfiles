@@ -10,8 +10,10 @@
      lain : https://github.com/lcpz/lain
 
 --]] -- {{{ Required libraries
-local awesome, client, mouse, screen, tag = awesome, client, mouse, screen, tag
-local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, table, tostring, tonumber, type
+local awesome, client, screen = awesome, client, screen
+local ipairs, string, os, tostring = ipairs, string, os, tostring
+
+local is_initialized = false
 
 -- https://awesomewm.org/doc/api/documentation/05-awesomerc.md.html
 -- Standard awesome library
@@ -38,7 +40,9 @@ naughty.config.defaults["border_width"] = beautiful.border_width
 naughty.config.defaults["border_width"] = beautiful.border_width
 naughty.config.defaults["position"] = "bottom_right"
 
-local function notify(titel, message, category)
+local sound_path = string.format("%s/.scripts/play-sound.zsh", os.getenv("HOME"))
+
+local function notify(titel, message, category, playSound)
     naughty.notify(
         {
             presets = category,
@@ -46,6 +50,19 @@ local function notify(titel, message, category)
             title = titel
         }
     )
+
+    if playSound == true then
+        if category == naughty.config.presets.critical then
+            awful.spawn(sound_path .. " " .. "notify-error")
+        else
+            awful.spawn(sound_path .. " " .. "notify")
+        end
+    end
+end
+
+local function sound(soundFile)
+    notify("Play Sound", soundFile, naughty.config.presets.info)
+    awful.spawn(sound_path .. " " .. soundFile)
 end
 
 -- local menubar       = require("menubar")
@@ -58,7 +75,7 @@ local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popu
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 local hotkeys_popup = require("awful.hotkeys_popup").widget
-require("awful.hotkeys_popup.keys")
+-- require("awful.hotkeys_popup.keys")
 
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local dpi = require("beautiful.xresources").apply_dpi
@@ -68,26 +85,8 @@ local dpi = require("beautiful.xresources").apply_dpi
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
-    notify("Oops, there were errors during startup!", awesome.startup_errors, naughty.config.presets.critical)
+    notify("Oops, there were errors during startup!", awesome.startup_errors, naughty.config.presets.critical, true)
 end
-
--- Handle runtime errors after startup
-do
-    local in_error = false
-    awesome.connect_signal(
-        "debug::error",
-        function(err)
-            if in_error then
-                return
-            end
-            in_error = true
-
-            notify("Oops, an error happened!", tostring(err), naughty.config.presets.critical)
-            in_error = false
-        end
-    )
-end
--- }}}
 
 -- {{{ Autostart windowless processes
 local function run_once(cmd_arr)
@@ -96,7 +95,6 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({"unclutter -root"}) -- entries must be comma-separated
 -- }}}
 
 -- This function implements the XDG autostart specification
@@ -126,30 +124,31 @@ local editorgui = "Geany"
 local terminal = "kitty"
 
 -- key groups
-local kgAwesome = "awesome"
-local kgClient = "client"
-local kgLayout = "layout"
-local kgMaster = "master"
-local kgScreen = "screen"
-local kgSound = "sound"
-local kgSystem = "system"
-local kgTag = "tag"
+local kgAwesome = "AwesomeWM"
+local kgApps = "Anwendungen"
+local kgMenus = "Menüs"
+local kgClient = "Client Aktionen"
+local kgLayout = "Layout Aktionen"
+local kgMaster = "Master Aktionen"
+local kgScreen = "Screen Aktionen"
+local kgScreenshot = "Screenshot"
+local kgSound = "Audio"
+local kgSystem = "System"
+local kgTag = "Tags"
 
 -- awesome variables
 awful.util.terminal = terminal
--- awful.util.tagnames = {"󾠮", "󾠯", "󾠰", "󾠱", "󾠲", "󾠳", "󾠴", "󾠵", "󾠶"}
--- awful.util.tagnames = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
--- awful.util.tagnames = { "", "", "", "", "", "", "", "", "" }
--- awful.util.tagnames = {  "", "", "", "", "", "", "", "", "", "" }
--- awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
--- awful.util.tagnames = { "www", "edit", "gimp", "inkscape", "music" }
--- awful.util.tagnames = { "⓵", "⓶", "⓷", "⓸", "⓹", "⓺", "⓻", "⓼", "⓽"}
--- awful.util.tagnames = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨"}
-awful.util.tagnames = {"➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒"}
+-- local tagnames = {"󾠮", "󾠯", "󾠰", "󾠱", "󾠲", "󾠳", "󾠴", "󾠵", "󾠶"}
+-- local tagnames = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
+-- local tagnames = { "", "", "", "", "", "", "", "", "" }
+-- local tagnames = {  "", "", "", "", "", "", "", "", "", "" }
+-- local tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
+-- local tagnames = { "www", "edit", "gimp", "inkscape", "music" }
+-- local tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }
+local tagnames = {"①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨"}
+awful.util.tagnames = {}
 
-awful.layout.suit.tile.left.mirror = true
-
-awful.layout.layouts = {
+local defaultLayouts = {
     awful.layout.suit.tile,
     awful.layout.suit.floating,
     awful.layout.suit.tile.left,
@@ -157,8 +156,8 @@ awful.layout.layouts = {
     awful.layout.suit.tile.top,
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
+    -- awful.layout.suit.spiral,
+    -- awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier
@@ -173,6 +172,89 @@ awful.layout.layouts = {
     --~ lain.layout.termfair,
     --~ lain.layout.termfair.center,
 }
+
+local tags = {
+    {
+        layout = awful.layout.suit.max,
+        layouts = {
+            awful.layout.suit.tile,
+            awful.layout.suit.max,
+            awful.layout.suit.max.fullscreen,
+            awful.layout.suit.magnifier
+        },
+        master_fill_policy = "expand",
+        gap_single_client = false,
+        gap = 5,
+        selected = true
+    },
+    {
+        layout = awful.layout.suit.tile,
+        layouts = defaultLayouts,
+        master_fill_policy = "expand",
+        gap_single_client = true,
+        gap = 2,
+    },
+    {
+        layout = awful.layout.suit.tile,
+        layouts = defaultLayouts,
+        master_fill_policy = "master_width_factor",
+        gap_single_client = true,
+        gap = 5,
+    },
+    {
+        layout = awful.layout.suit.tile,
+        layouts = defaultLayouts,
+        master_fill_policy = "master_width_factor",
+        gap_single_client = true,
+        gap = 5,
+    },
+    {
+        layout = awful.layout.suit.tile,
+        layouts = defaultLayouts,
+        master_fill_policy = "master_width_factor",
+        gap_single_client = true,
+        gap = 5,
+    },
+    {
+        layout = awful.layout.suit.tile,
+        layouts = defaultLayouts,
+        master_fill_policy = "master_width_factor",
+        gap_single_client = true,
+        gap = 5,
+    },
+    {
+        layout = awful.layout.suit.tile,
+        layouts = defaultLayouts,
+        master_fill_policy = "master_width_factor",
+        gap_single_client = true,
+        gap = 5,
+    },
+    {
+        layout = awful.layout.suit.tile,
+        layouts = defaultLayouts,
+        master_fill_policy = "master_width_factor",
+        gap_single_client = true,
+        gap = 5,
+    },
+    {
+        layout = awful.layout.suit.tile,
+        layouts = defaultLayouts,
+        master_fill_policy = "expand",
+        gap_single_client = true,
+        gap = 10,
+    }
+}
+gdebug.dump(tagnames)
+gdebug.dump(tags)
+-- awful.tag({"①", "②", "③"})
+for i = 1, tags do
+    awful.tag.add(tagnames[i], tags[i])
+end
+
+awful.layout.suit.tile.left.mirror = true
+
+awful.layout.append_default_layouts = defaultLayouts
+awful.layout.layouts = defaultLayouts
 
 awful.util.taglist_buttons =
     my_table.join(
@@ -321,11 +403,13 @@ awful.util.mymainmenu =
         }
     }
 )
+
 -- hide menu when mouse leaves it
 awful.util.mymainmenu.wibox:connect_signal(
     "mouse::leave",
     function()
         awful.util.mymainmenu:hide()
+        sound("menu-popdown")
     end
 )
 
@@ -337,15 +421,9 @@ awful.util.mymainmenu.wibox:connect_signal(
 screen.connect_signal(
     "property::geometry",
     function(s)
+        -- notify("Window", "'property::geometry' event raised: " .. s.name)
         -- Wallpaper
-        if beautiful.wallpaper then
-            local wallpaper = beautiful.wallpaper
-            -- If wallpaper is a function, call it with the screen
-            if type(wallpaper) == "function" then
-                wallpaper = wallpaper(s)
-            end
-            gears.wallpaper.maximized(wallpaper, s, true)
-        end
+        awful.spawn.with_shell("sh ~/.scripts/set-wallpaper.sh")
     end
 )
 
@@ -353,17 +431,18 @@ screen.connect_signal(
 screen.connect_signal(
     "arrange",
     function(s)
+        -- notify("Window", "'arange' event raised: " .. s.name)
         local only_one = #s.tiled_clients == 1
         for _, c in pairs(s.clients) do
-            -- special Toolbar handling
             if
                 (c.class == "firefox") or (c.class == "firefoxdeveloperedition") or (c.class == "Chromium") or
-                    (c.class == "Google-chrome")
+                    (c.class == "Google-chrome") or
+                    (c.class == "Microsoft Teams.*")
              then
-            elseif only_one and not c.floating or c.maximized then
-                c.border_width = dpi(1)
+            elseif c.maximized or (only_one and not c.floating) then
+                -- c.border_width = 0
             else
-                c.border_width = beautiful.border_width
+                -- c.border_width = beautiful.border_width
             end
         end
     end
@@ -373,7 +452,7 @@ screen.connect_signal(
 awful.screen.connect_for_each_screen(
     function(s)
         gdebug.print_warning("Screen " .. s.index)
-        gdebug.dump(s)
+        gdebug.dump(s, "Screen", 3)
 
         beautiful.at_screen_connect(s)
     end
@@ -388,6 +467,7 @@ root.buttons(
             3,
             function()
                 awful.util.mymainmenu:toggle()
+                sound("menu-popup")
             end
         ),
         awful.button({}, 4, awful.tag.viewnext),
@@ -399,14 +479,13 @@ root.buttons(
 -- {{{ Key bindings
 local globalkeys =
     my_table.join(
-    awful.key({modkey, shiftkey}, "r", awesome.restart, {description = "reload awesome", group = kgAwesome}),
     awful.key(
-        {modkey},
-        "x",
+        {modkey, shiftkey},
+        "r",
         function()
-            awful.spawn.with_shell("sh $SCRIPTS/menu/system-menu.sh")
+            awesome.restart()
         end,
-        {description = "Zeige Logout-Dialog", group = kgAwesome}
+        {description = "reload awesome", group = kgAwesome}
     ),
     -- alt + ...
     -- Hotkeys Awesome
@@ -534,7 +613,8 @@ local globalkeys =
             end
         end,
         {description = "focus right", group = kgClient}
-    ), -- Layout manipulation
+    ),
+    -- Layout manipulation
     awful.key(
         {modkey},
         "Down",
@@ -588,15 +668,6 @@ local globalkeys =
         end,
         {description = "toggle wibox", group = kgLayout}
     ),
-    -- Show/Hide SystraySystray
-    awful.key(
-        {modkey},
-        "KP_Subtract",
-        function()
-            awful.screen.focused().systray.visible = not awful.screen.focused().systray.visible
-        end,
-        {description = "Toggle systray visibility", group = kgSystem}
-    ),
     -- On the fly useless gaps change
     awful.key(
         {modkey, altkey},
@@ -614,6 +685,7 @@ local globalkeys =
         end,
         {description = "decrement useless gaps", group = kgLayout}
     ),
+    -- On the fly master handling
     awful.key(
         {modkey, controlkey},
         "m",
@@ -658,6 +730,7 @@ local globalkeys =
             group = kgLayout
         }
     ),
+    -- On the fly layout handling
     awful.key(
         {modkey, shiftkey},
         "space",
@@ -694,15 +767,41 @@ local globalkeys =
         function()
             awful.screen.focused().quake:toggle()
         end,
-        {description = "dropdown application", group = kgSystem}
+        {description = "dropdown application", group = kgAwesome}
     ),
+    -- TODO Widgets einbauen
     -- Widgets popups
-    -- awful.key({ altkey, }, "c", function () lain.widget.calendar.show(7) end,
-    -- {description = "show calendar", group = "widgets"}),
-    -- awful.key({ altkey, }, "h", function () if beautiful.fs then beautiful.fs.show(7) end end,
-    -- {description = "show filesystem", group = "widgets"}),
-    -- awful.key({ altkey, }, "w", function () if beautiful.weather then beautiful.weather.show(7) end end,
-    -- {description = "show weather", group = "widgets"}),
+    -- awful.key(
+    --     {modkey},
+    --     "c",
+    --     function()
+    --         if lain.widget.calendar then
+    --             lain.widget.calendar.show(7)
+    --         end
+    --     end,
+    --     {description = "show calendar", group = "widgets"}
+    -- ),
+    -- awful.key(
+    --     {modkey},
+    --     "h",
+    --     function()
+    --         if beautiful.fs then
+    --             beautiful.fs.show(7)
+    --         end
+    --     end,
+    --     {description = "show filesystem", group = "widgets"}
+    -- ),
+    -- awful.key(
+    --     {modkey},
+    --     "w",
+    --     function()
+    --         if beautiful.weather then
+    --             beautiful.weather.show(7)
+    --         end
+    --     end,
+    --     {description = "show weather", group = "widgets"}
+    -- ),
+
     -- Brightness
     awful.key(
         {},
@@ -720,10 +819,35 @@ local globalkeys =
         end,
         {description = "-10% Helligkeit", group = kgSound}
     ),
+    -- ALSA device control
+    awful.key(
+        {modkey, controlkey},
+        "KP_Add",
+        function()
+            awful.spawn.with_shell("~/.bin/audio-next")
+        end,
+        {description = "Nächste Soundkarte", group = kgSound}
+    ),
+    awful.key(
+        {modkey, controlkey},
+        "KP_Subtract",
+        function()
+            awful.spawn.with_shell("~/.bin/audio-prev")
+        end,
+        {description = "Vorherige Soundkarte", group = kgSound}
+    ),
     -- ALSA volume control
     awful.key(
         {},
         "XF86AudioRaiseVolume",
+        function()
+            os.execute("amixer -d set Master 5%+")
+        end,
+        {description = "+5% Volume", group = kgSound}
+    ),
+    awful.key(
+        {modkey, altkey},
+        "KP_Add",
         function()
             os.execute("amixer -d set Master 5%+")
         end,
@@ -738,8 +862,24 @@ local globalkeys =
         {description = "-5% Volume", group = kgSound}
     ),
     awful.key(
+        {modkey, altkey},
+        "KP_Subtract",
+        function()
+            os.execute("amixer -d set Master 5%-")
+        end,
+        {description = "-5% Volume", group = kgSound}
+    ),
+    awful.key(
         {},
         "XF86AudioMute",
+        function()
+            os.execute("amixer -q set Master toggle")
+        end,
+        {description = "Mute Volume", group = kgSound}
+    ),
+    awful.key(
+        {modkey, altkey},
+        "KP_Multiply",
         function()
             os.execute("amixer -q set Master toggle")
         end,
@@ -749,7 +889,8 @@ local globalkeys =
         {},
         "XF86AudioPlay",
         function()
-            awful.util.spawn("playerctl play-pause")
+            notify("playerctl play-pause")
+            os.execute("playerctl play-pause")
         end,
         {description = "Player Start/Pause", group = kgSound}
     ),
@@ -757,7 +898,8 @@ local globalkeys =
         {},
         "XF86AudioNext",
         function()
-            awful.util.spawn("playerctl next")
+            notify("playerctl next")
+            os.execute("playerctl next")
         end,
         {description = "Player Next", group = kgSound}
     ),
@@ -765,7 +907,8 @@ local globalkeys =
         {},
         "XF86AudioPrev",
         function()
-            awful.util.spawn("playerctl previous")
+            notify("playerctl previous")
+            os.execute("playerctl previous")
         end,
         {description = "Player Zurück", group = kgSound}
     ),
@@ -773,8 +916,179 @@ local globalkeys =
         {},
         "XF86AudioStop",
         function()
-            awful.util.spawn("Player Stop")
+            notify("playerctl stop")
+            os.execute("playerctl stop")
         end
+    ),
+    -- other media keys
+    awful.key(
+        {},
+        "XF86Calculator",
+        function()
+            awful.spawn("gnome-calculator")
+        end
+    ),
+    -- Menu Shortcuts
+    awful.key(
+        {modkey},
+        "F2",
+        function()
+            awful.spawn("xfce4-appfinder")
+        end,
+        {description = "Anwendungs Finder", group = kgMenus}
+    ),
+    awful.key(
+        {modkey},
+        "z",
+        function()
+            awful.spawn.with_shell("sh ~/.scripts/menu/rofi.sh -show combi")
+        end,
+        {description = "Rofi Menü", group = kgMenus}
+    ),
+    awful.key(
+        {modkey},
+        "a",
+        function()
+            awful.spawn.with_shell("sh ~/.scripts/menu/app-menu.sh")
+        end,
+        {description = "Applikations Menü", group = kgMenus}
+    ),
+    awful.key(
+        {modkey},
+        "d",
+        function()
+            awful.spawn.with_shell("sh ~/.scripts/menu/develop-menu.sh")
+        end,
+        {description = "Developer Menü", group = kgMenus}
+    ),
+    awful.key(
+        {modkey},
+        "e",
+        function()
+            awful.spawn.with_shell("sh ~/.scripts/menu/edit-configs.sh")
+        end,
+        {description = "System Edit Menü", group = kgMenus}
+    ),
+    awful.key(
+        {modkey},
+        "t",
+        function()
+            awful.spawn.with_shell("sh ~/.scripts/menu/system-tools.sh")
+        end,
+        {description = "System Tools Menü", group = kgMenus}
+    ),
+    awful.key(
+        {modkey},
+        "m",
+        function()
+            awful.spawn.with_shell("sh ~/.scripts/menu/system-monitor.sh")
+        end,
+        {description = "System Monitors Menü", group = kgMenus}
+    ),
+    awful.key(
+        {modkey},
+        "x",
+        function()
+            awful.spawn.with_shell("sh ~/.scripts/menu/system-menu.sh")
+        end,
+        {description = "System Power Menü", group = kgMenus}
+    ),
+    -- Printer Shortcuts
+    awful.key(
+        {},
+        "Print",
+        function()
+            awful.spawn("spectacle -i")
+        end,
+        {description = "Screenshot App", group = kgScreenshot}
+    ),
+    awful.key(
+        {altkey},
+        "Print",
+        function()
+            awful.spawn("spectacle -i -r")
+        end,
+        {description = "Screenshot Rect", group = kgScreenshot}
+    ),
+    awful.key(
+        {controlkey},
+        "Print",
+        function()
+            awful.spawn("spectacle -i -a")
+        end,
+        {description = "Screenshot Fenster", group = kgScreenshot}
+    ),
+    -- Shortcuts to Applications
+    awful.key(
+        {modkey},
+        "F1",
+        function()
+            awful.spawn.with_shell("$(xdg-settings get default-web-browser | cut -f1 -d '.')")
+        end,
+        {description = "Standard Browser", group = kgApps}
+    ),
+    awful.key(
+        {modkey},
+        "F8",
+        function()
+            awful.spawn("nemo")
+        end,
+        {description = "Dateimanager", group = kgApps}
+    ),
+    -- System Tools
+    awful.key(
+        {controlkey, altkey},
+        "k",
+        function()
+            awful.spawn(
+                "killall node -s KILL; fuser -k 4200/tcp; fuser -k 4201/tcp; fuser -k 4202/tcp; notify-send.sh 'Node' 'all nodes-processes and ng-services killed'"
+            )
+            notify("Kill Node.js", "Alle laufenden Node.js Tasks wurden beendet!")
+        end,
+        {description = "Nodejs killen", group = kgSystem}
+    ),
+    awful.key(
+        {modkey, altkey},
+        "t",
+        function()
+            notify(
+                "Test Nachricht",
+                "Dies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et."
+            )
+        end,
+        {description = "Test Benachrichtigung", group = kgSystem}
+    ),
+    awful.key(
+        {modkey},
+        "Return",
+        function()
+            awful.spawn("kitty")
+        end,
+        {description = "Terminal starten", group = kgSystem}
+    ),
+    awful.key(
+        {modkey, controlkey},
+        "x",
+        function()
+            awful.spawn.with_shell("kitty --hold --title CF:XProp --name CF:XProp xprop")
+        end,
+        {description = "Xprop", group = kgSystem}
+    ),
+    awful.key(
+        {modkey, controlkey},
+        "t",
+        function()
+            awful.spawn.with_shell("sh ~/.scripts/picom-toggle-awesome.sh")
+        end,
+        {description = "Picom Toggle", group = kgSystem}
+    ),
+    awful.key(
+        {modkey},
+        "Escape",
+        function()
+            awful.spawn("xkill")
+        end,
+        {description = "XKill", group = kgSystem}
     )
 )
 
@@ -814,7 +1128,7 @@ local clientkeys =
         }
     ),
     awful.key(
-        {modkey, controlkey},
+        {modkey, altkey},
         "m",
         function(c)
             c:swap(awful.client.getmaster())
@@ -836,7 +1150,8 @@ local clientkeys =
             notify(
                 "Oops, dies ist eine Test-Benachrichtung!",
                 "Dolor et est dolor sed labore dolores, lorem sea kasd sed accusam.\nNonumy ipsum elitr aliquyam eirmod.\nNo sit lorem.",
-                naughty.config.presets.critical
+                naughty.config.presets.critical,
+                true
             )
         end,
         {description = "toggle keep on top", group = kgClient}
@@ -993,6 +1308,17 @@ awful.rules.rules = {
     -- find class or role via xprop command
 
     {
+        rule_any = {
+            class = {}
+        },
+        properties = {
+            border_width = 0,
+            titlebars_enabled = false,
+            maximized = false,
+            floating = false
+        }
+    },
+    {
         rule = {
             class = "Geany"
         },
@@ -1007,25 +1333,6 @@ awful.rules.rules = {
         },
         properties = {
             maximized = false
-        }
-    },
-    {
-        rule = {
-            class = "Vivaldi-stable"
-        },
-        properties = {
-            maximized = false,
-            floating = false
-        }
-    },
-    {
-        rule = {
-            class = "Vivaldi-stable"
-        },
-        properties = {
-            callback = function(c)
-                c.maximized = false
-            end
         }
     },
     -- Maximized clients.
@@ -1044,6 +1351,7 @@ awful.rules.rules = {
             instance = {},
             class = {
                 "inkscape",
+                "Mailspring",
                 "VirtualBox Machine",
                 "Vlc"
             },
@@ -1060,7 +1368,9 @@ awful.rules.rules = {
             instance = {},
             class = {
                 "Alacritty",
-                "kitty"
+                "kitty",
+                "Thunar",
+                "Nemo"
             },
             name = {},
             role = {}
@@ -1093,7 +1403,6 @@ awful.rules.rules = {
             instance = {},
             class = {},
             name = {
-                "CF:.*",
                 "Wetter:.*",
                 "XBindKey: Hit a key"
             },
@@ -1104,8 +1413,7 @@ awful.rules.rules = {
             }
         },
         properties = {
-            floating = true,
-            opacity = 0.7
+            floating = true
         }
     },
     -- Special applications mappings
@@ -1124,14 +1432,60 @@ awful.rules.rules = {
             floating = true
         }
     },
+    -- Audio Clients
     {
-        rule = {
-            class = "Spotify"
+        rule_any = {
+            class = {
+                "Spotify",
+                "Psst-gui",
+                "Shortwave"
+            }
         },
         properties = {
             screen = 2,
             tag = awful.util.tagnames[5],
-            switchtotag = false,
+            switchtotag = true,
+            maximized = false,
+            floating = false
+        }
+    },
+    -- Steam
+    {
+        rule_any = {
+            class = {"RuneScape"}
+        },
+        properties = {
+            border_width = 5,
+            titlebars_enabled = false,
+            maximized = true,
+            floating = false,
+            screen = 1,
+            tag = awful.util.tagnames[7],
+            switchtotag = true
+        }
+    },
+    {
+        rule_any = {
+            class = {"Steam"}
+        },
+        properties = {
+            border_width = 5,
+            titlebars_enabled = false,
+            maximized = false,
+            floating = false,
+            screen = 1,
+            tag = awful.util.tagnames[7],
+            switchtotag = true
+        }
+    },
+    {
+        rule = {
+            class = "Code"
+        },
+        properties = {
+            screen = 1,
+            tag = awful.util.tagnames[9],
+            switchtotag = true,
             maximized = false,
             floating = false
         }
@@ -1154,12 +1508,25 @@ awful.rules.rules = {
     {
         rule_any = {
             class = {
-                "VirtualBox*"
+                "Virt-manager"
             }
         },
         properties = {
             screen = 1,
             tag = awful.util.tagnames[5],
+            switchtotag = false
+        }
+    },
+    -- Set applications to always map on the tag 6 (RemoteDesktops) on screen 1.
+    {
+        rule_any = {
+            class = {
+                "org.remmina.Remmina"
+            }
+        },
+        properties = {
+            screen = 1,
+            tag = awful.util.tagnames[6],
             switchtotag = true
         }
     },
@@ -1193,7 +1560,7 @@ awful.rules.rules = {
     {
         -- Teams Hauptfenster
         rule = {
-            class = "Microsoft Teams - Preview",
+            class = "Microsoft Teams.*",
             type = "normal"
         },
         properties = {
@@ -1207,8 +1574,8 @@ awful.rules.rules = {
     {
         -- Teams Messagebox
         rule = {
-            class = "Microsoft Teams - Preview",
-            name = "Microsoft Teams-Benachrichtigung"
+            class = "Microsoft Teams*",
+            name = ".*Benachrichtigung.*"
             --~ type = "notification",
             -- name = "Microsoft Teams-Benachrichtigung"
         },
@@ -1222,11 +1589,37 @@ awful.rules.rules = {
     },
     -- Develop Consolen auf Screen 2 tag 2 schieben
     {
-        rule = {name = "OTC:*"},
+        rule_any = {
+            name = {
+                "OTC:*",
+                "OMC:*"
+            }
+        },
         properties = {
             screen = 2,
             tag = awful.util.tagnames[2],
-            switchtotag = true
+            switchtotag = true,
+            maximized = false,
+            floating = false
+        }
+    },
+    {
+        rule_any = {
+            class = {
+                "URxtv",
+                "XTerm"
+            }
+            -- instance = {
+            --     "urxtv",
+            --     "xterm"
+            -- }
+        },
+        properties = {
+            screen = 2,
+            tag = awful.util.tagnames[2],
+            switchtotag = true,
+            maximized = false,
+            floating = false
         }
     },
     -- Chromium Debugger Instanz auf Screen 2 tag 2 schieben
@@ -1237,9 +1630,8 @@ awful.rules.rules = {
         },
         properties = {
             floating = false,
-            screen = 2,
-            tag = awful.util.tagnames[2],
-            switchtotag = true
+            tag = awful.util.tagnames[1],
+            switchtotag = false
         }
     },
     -- Firefox Develop Edition auf Screen 2 tag 2 schieben
@@ -1247,6 +1639,7 @@ awful.rules.rules = {
         rule_any = {
             class = {
                 "Google-chrome",
+                "Vivaldi*",
                 "firefox",
                 "firefoxdeveloperedition"
             }
@@ -1254,8 +1647,7 @@ awful.rules.rules = {
         properties = {
             maximized = false,
             floating = false,
-            screen = 1,
-            tag = awful.util.tagnames[2],
+            tag = awful.util.tagnames[1],
             switchtotag = false
         }
     },
@@ -1264,13 +1656,15 @@ awful.rules.rules = {
         rule_any = {
             name = {
                 "SysMon:*",
-                "Sys:*"
+                "Sys:*",
+                "CF:*"
             },
             class = {"Gnome-system-monitor"}
         },
         properties = {
             screen = 2,
             tag = awful.util.tagnames[9],
+            floating = false,
             switchtotag = true
         }
     },
@@ -1286,18 +1680,89 @@ awful.rules.rules = {
 }
 -- }}}
 
--- {{{ Signals
+-- {{{ Client Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal(
     "manage",
     function(c)
-        -- Set the windows at the slave,
-        -- i.e. put it at the end of others instead of setting it master.
-        -- if not awesome.startup then awful.client.setslave(c) end
+        if is_initialized then
+            -- notify("Client", "'manage' event raised:" .. c.name)
+            -- sound("window-switch")
+            -- Set the windows at the slave,
+            -- i.e. put it at the end of others instead of setting it master.
+            -- if not awesome.startup then awful.client.setslave(c) end
 
-        if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
-            -- Prevent clients from being unreachable after screen count changes.
-            awful.placement.no_offscreen(c)
+            if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
+                -- Prevent clients from being unreachable after screen count changes.
+                awful.placement.no_offscreen(c)
+            end
+        end
+    end
+)
+
+client.connect_signal(
+    "swapped",
+    function(c, source, is_source)
+        if is_initialized and not is_source then
+            sound("window-switch")
+        end
+    end
+)
+
+client.connect_signal(
+    "raised",
+    function(c)
+        if is_initialized then
+        -- sound("window-attention-active")
+        end
+    end
+)
+
+client.connect_signal(
+    "lowered",
+    function(c)
+        if is_initialized then
+        -- sound("window-attention-inactive")
+        end
+    end
+)
+
+client.connect_signal(
+    "request::activate",
+    function(c)
+        if is_initialized then
+        -- notify("Client", "'request::activate' event raised: " .. c.name)
+        end
+    end
+)
+
+client.connect_signal(
+    "request::geometry",
+    function(c, context, Additional)
+        if is_initialized and context ~= "mouse.move" and context ~= "mouse.resize" then
+            if context == "maximized" then
+                notify("Client", "Maximized: " .. c.name)
+            else
+                -- notify("Client", "'request::geometry' event raised: " .. c.name .. " Context: " .. context)
+            end
+        end
+    end
+)
+
+client.connect_signal(
+    "property::window",
+    function(c)
+        if is_initialized then
+        -- notify("Client", "'property::window' event raised: " .. c.name)
+        end
+    end
+)
+
+client.connect_signal(
+    "property::size",
+    function(c)
+        if is_initialized then
+        -- notify("Client", "'property::size' event raised: " .. c.name)
         end
     end
 )
@@ -1306,6 +1771,7 @@ client.connect_signal(
 client.connect_signal(
     "request::titlebars",
     function(c)
+        -- notify("Client", "'request::titlebars' event raised: " .. c.name)
         -- Custom
         if beautiful.titlebar_fun then
             beautiful.titlebar_fun(c)
@@ -1354,6 +1820,7 @@ client.connect_signal(
             {
                 -- Right
                 awful.titlebar.widget.floatingbutton(c),
+                awful.titlebar.widget.minimizebutton(c),
                 awful.titlebar.widget.maximizedbutton(c),
                 awful.titlebar.widget.stickybutton(c),
                 awful.titlebar.widget.ontopbutton(c),
@@ -1376,18 +1843,89 @@ client.connect_signal(
 client.connect_signal(
     "focus",
     function(c)
-        c.border_color = beautiful.border_focus
+        if is_initialized then
+            -- notify("Window", "'focus' event raised: " .. c.name)
+            c.border_color = beautiful.border_focus
         -- c.border_color = '#ff000050'
+        end
     end
 )
 
 client.connect_signal(
     "unfocus",
     function(c)
-        c.border_color = beautiful.border_normal
+        if is_initialized then
+            -- notify("Window", "'unfocus' event raised: " .. c.name)
+            c.border_color = beautiful.border_normal
+        end
     end
 )
 
 -- }}}
 
-notify("Awesome Test", "Awesome Test erfolgreich gestartet !!", naughty.config.presets.info)
+-- {{{ Awesome Signals
+-- Handle runtime errors after startup
+local in_error = false
+awesome.connect_signal(
+    "debug::error",
+    function(err)
+        if in_error then
+            return
+        end
+        in_error = true
+
+        notify("Oops, an error happened!", tostring(err), naughty.config.presets.critical, true)
+        in_error = false
+    end
+)
+
+awesome.connect_signal(
+    "debug::deprecation",
+    function(hint, see, args)
+        notify("Deprecated Function called!", tostring(hint), naughty.config.presets.critical, true)
+    end
+)
+
+awesome.connect_signal(
+    "spawn::initiated",
+    function(arg)
+        -- notify("Awesome", "'spawn::initiated' event raised: ".. arg.id, naughty.config.presets.info)
+        -- gdebug.dump(arg, "spawn::initiated".. arg.id, 2)
+    end
+)
+
+awesome.connect_signal(
+    "spawn::changed",
+    function(arg)
+        -- notify("Awesome", "'spawn::changed' event raised: ".. arg.id, naughty.config.presets.info)
+        -- gdebug.dump(arg, "spawn::changed" .. arg.id, 2)
+    end
+)
+
+awesome.connect_signal(
+    "spawn::timeout",
+    function(arg)
+        -- notify("Awesome", "'spawn::timeout' event raised: ".. arg.id, naughty.config.presets.info)
+        -- gdebug.dump(arg, "spawn::timeout".. arg.id, 2)
+    end
+)
+
+awesome.connect_signal(
+    "spawn::completed",
+    function(arg)
+        -- notify("Awesome", "'spawn::completed' event raised: ".. arg.id, naughty.config.presets.info)
+        -- gdebug.dump(arg, "spawn::completed".. arg.id, 2)
+    end
+)
+
+awesome.connect_signal(
+    "startup",
+    function(hint, see, args)
+        sound("desktop-login")
+
+        -- notify("Awesome", "'Autostart' callback raised")
+        is_initialized = true
+        -- notify("Awesome Default", "Awesome Default erfolgreich gestartet !!", naughty.config.presets.critical, false)
+    end
+)
+-- }}}

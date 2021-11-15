@@ -206,6 +206,13 @@ install rofi
 install rofimoji
 install rofi-emoji
 
+# File Indexing
+install cerebro-git
+install synapse
+install synapse-admin-git
+install fsearch
+install recoll
+
 # sound setup
 install alsa-utils
 install alsa-oss
@@ -389,11 +396,9 @@ install libmythes
 install languagetool
 
 # Browser
-if [ $IS_ARCO != true ]; then
-	install google-chrome
-else
-	install vivaldi
-fi
+install google-chrome
+install vivaldi
+install firefox-develop-edition-i18n-de
 install microsoft-edge-dev-bin
 
 # optional application packages
