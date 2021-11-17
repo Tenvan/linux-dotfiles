@@ -19,6 +19,7 @@ zinit wait lucid for \
   atinit"zicompinit; zicdreplay" \
 	zdharma/fast-syntax-highlighting \
 	zdharma/history-search-multi-word \
+  marzocchi/zsh-notify \
 	zinit-zsh/z-a-rust \
 	zinit-zsh/z-a-as-monitor \
     zinit-zsh/z-a-patch-dl \
@@ -69,6 +70,16 @@ zstyle ':completion:*:descriptions' format '%U%F{cyan}%d%f%u'
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zcache
+
+# notify
+zstyle ':notify:*' error-title "Command failed (in #{time_elapsed} seconds)"
+zstyle ':notify:*' success-title "Command finished (in #{time_elapsed} seconds)"
+
+#zstyle ':notify:*' error-icon "/path/to/error-icon.png"
+#zstyle ':notify:*' success-icon "/path/to/success-icon.png"
+
+#zstyle ':notify:*' error-sound "Glass"
+#zstyle ':notify:*' success-sound "default"
 
 # automatically load bash completion functions
 autoload -U +X bashcompinit && bashcompinit
