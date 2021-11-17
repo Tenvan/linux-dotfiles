@@ -958,6 +958,14 @@ local globalkeys =
         {description = "Rofi Menü", group = kgMenus}
     ),
     awful.key(
+        {controlkey, modkey},
+        "z",
+        function()
+            awful.spawn.with_shell("recoll")
+        end,
+        {description = "Recoll (lokale Textsuche)", group = kgMenus}
+    ),
+    awful.key(
         {modkey},
         "a",
         function()
