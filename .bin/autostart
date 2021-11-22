@@ -25,8 +25,6 @@ run blueman-tray
 run blueman-applet
 run nm-applet
 
-run jetbrains-toolbox
-
 # Sound Tray Icons
 # restart start-pulseaudio-x11
 run pasystray

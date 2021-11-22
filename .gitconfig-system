@@ -23,6 +23,11 @@
 	changed = yellow bold
 	untracked = red bold
 
+[delta]
+	side-by-side = true
+	line-numbers = true
+	diff-so-fancy = true
+	
 [delta "decorations"]
 	minus-style = red bold normal
 	plus-style = green bold normal
