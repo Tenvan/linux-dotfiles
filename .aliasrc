@@ -60,7 +60,7 @@ alias update-fc='sudo fc-cache -fv'
 alias inst="paru -S --color always --needed --noconfirm"
 alias uninst="paru -Rcn"
 alias upall="paru -Syyu --needed"
-alias search="paru --bottomup"
+alias search="paru -Ss --bottomup"
 alias upkeys="sudo pacman-key --refresh-keys"
 
 #package cleanup (old and cache)

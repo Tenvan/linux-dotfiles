@@ -145,7 +145,7 @@ awful.util.terminal = terminal
 -- local tagnames = { "www", "edit", "gimp", "inkscape", "music" }
 -- local tagnames = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }
 local tagnames = {"①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨"}
-awful.util.tagnames = {}
+awful.util.tagnames = tagnames
 
 local defaultLayouts = {
     awful.layout.suit.tile,
@@ -182,7 +182,6 @@ local tags = {
             awful.layout.suit.magnifier
         },
         master_fill_policy = "expand",
-        --master_fill_policy = "master_width_factor",
         gap_single_client = false,
         gap = 5,
         selected = true
@@ -190,7 +189,7 @@ local tags = {
     {
         layout = awful.layout.suit.tile,
         layouts = defaultLayouts,
-        master_fill_policy = "master_width_factor",
+        master_fill_policy = "expand",
         gap_single_client = true,
         gap = 2
     },
@@ -198,7 +197,6 @@ local tags = {
         layout = awful.layout.suit.tile,
         layouts = defaultLayouts,
         master_fill_policy = "expand",
-        -- master_fill_policy = "master_width_factor",
         gap_single_client = false,
         gap = 5
     },
@@ -206,7 +204,6 @@ local tags = {
         layout = awful.layout.suit.tile,
         layouts = defaultLayouts,
         master_fill_policy = "expand",
-        -- master_fill_policy = "master_width_factor",
         gap_single_client = false,
         gap = 5
     },
@@ -214,7 +211,6 @@ local tags = {
         layout = awful.layout.suit.tile,
         layouts = defaultLayouts,
         master_fill_policy = "expand",
-        -- master_fill_policy = "master_width_factor",
         gap_single_client = false,
         gap = 5
     },
@@ -222,7 +218,6 @@ local tags = {
         layout = awful.layout.suit.tile,
         layouts = defaultLayouts,
         master_fill_policy = "expand",
-        -- master_fill_policy = "master_width_factor",
         gap_single_client = false,
         gap = 5
     },
@@ -230,7 +225,6 @@ local tags = {
         layout = awful.layout.suit.tile,
         layouts = defaultLayouts,
         master_fill_policy = "expand",
-        -- master_fill_policy = "master_width_factor",
         gap_single_client = false,
         gap = 5
     },
@@ -238,7 +232,6 @@ local tags = {
         layout = awful.layout.suit.tile,
         layouts = defaultLayouts,
         master_fill_policy = "expand",
-        -- master_fill_policy = "master_width_factor",
         gap_single_client = false,
         gap = 5
     },
@@ -246,7 +239,6 @@ local tags = {
         layout = awful.layout.suit.tile,
         layouts = defaultLayouts,
         master_fill_policy = "expand",
-        -- master_fill_policy = "master_width_factor",
         gap_single_client = false,
         gap = 5
     }
@@ -1584,7 +1576,7 @@ awful.rules.rules = {
             type = "normal"
         },
         properties = {
-            maximized = true,
+            maximized = false,
             floating = false,
             screen = 2,
             tag = awful.util.tagnames[4],
@@ -1942,9 +1934,6 @@ awesome.connect_signal(
     "startup",
     function(hint, see, args)
         sound("desktop-login")
-
-        -- Autostart applications
-        awful.spawn.with_shell("sh ~/.scripts/autostart-awesome.sh")
 
         -- notify("Awesome", "'Autostart' callback raised")
         is_initialized = true

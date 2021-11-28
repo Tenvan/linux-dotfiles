@@ -17,7 +17,11 @@ install arj
 install ark
 install bashtop
 install bat
-install bitwarden-bin
+if [ $IS_ARCO = true ]; then
+	install bitwarden
+else
+	install bitwarden-bin
+fi
 install bpytop
 install clamav
 install clamtk
@@ -58,7 +62,6 @@ install powershell-bin
 install qbittorrent
 install rsyslog
 install s-tui
-install starship
 install shell-color-scripts
 install spectacle
 install time
@@ -282,7 +285,6 @@ install gutenprint
 #install sane
 
 # Browser
-install firefox
 install firefox-i18n-de
 install chromium
 
@@ -334,10 +336,13 @@ install awesome-terminal-fonts
 install terminus-font
 install powerline-fonts
 
-install nerd-fonts-fira-code
-install nerd-fonts-noto
-install nerd-fonts-roboto-mono
-install nerd-fonts-terminus
+install nerd-fonts-complete
+# install nerd-fonts-fira-code
+# install nerd-fonts-noto
+install noto-fonts-main
+install noto-fonts-emoji
+# install nerd-fonts-roboto-mono
+# install nerd-fonts-terminus
 install ttf-meslo-nerd-font-powerlevel10k
 install ttf-devicons
 install ttf-twemoji
@@ -398,7 +403,6 @@ install languagetool
 # Browser
 install google-chrome
 install vivaldi
-install firefox-develop-edition-i18n-de
 install microsoft-edge-dev-bin
 
 # optional application packages
@@ -443,6 +447,7 @@ finish
 
 # Fix Teams Black Screen
 sudo ln -f -s /bin/true /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
+sudo ln -f -s /bin/true /usr/share/teams-insiders/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
 
 # micro plugins
 micro -plugin install comment bounce editorconfig joinLines quoter filemanager bookmark \

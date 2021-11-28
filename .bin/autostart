@@ -1,4 +1,7 @@
+
 #!/usr/bin/env bash
+export SCRIPTS="$HOME/.scripts"
+
 . $SCRIPTS/defs
 
 $SCRIPTS/set-wallpaper.sh
@@ -7,7 +10,7 @@ $SCRIPTS/set-wallpaper.sh
 # System tools
 #==============
 run /usr/lib/xfce-polkit/xfce-polkit
-# run lxqt-policykit-agent
+#run lxqt-policykit-agent
 
 run ibus-daemon -d -x
 run unclutter --root --timeout 3
@@ -29,7 +32,7 @@ run nm-applet
 # restart start-pulseaudio-x11
 run pasystray
 
-sh $SCRIPTS/picom-toggle-awesome.sh &
+$SCRIPTS/picom-toggle-awesome.sh
 
 file=$HOME/.custom/autostart
 if [ -f "$file" ]; then

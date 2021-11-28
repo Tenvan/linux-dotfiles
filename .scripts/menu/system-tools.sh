@@ -20,7 +20,7 @@ SYSTEM_ACTIONS=(
         "📛 Log Viewer (Gui)" "glogg" \
         "📛 System Logs (Gui)" "sudo ksystemlog" \
         "📛 System Logs (Console)" "$shellCmd --hold --title Sys:Install $timeCmd journalctl" \
-        "📛 xsession Errors" "$shellCmd --title AWMTT multitail -i $HOME/.xsession-errors" \
+        "📛 xsession Errors" "$shellCmd --title AWMTT multitail -cs -i $HOME/.xsession-errors" \
 )
 
 csource "$CUSTOMS/${0##*/}"
