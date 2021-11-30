@@ -129,10 +129,12 @@ install luacheck
 install awmtt
 
 # plasma
-if [ $IS_ENDEA = true -o $IS_ARCH = true ]; then
-	install plasma-meta
-	install kde-gtk-config
-fi
+install kde-gtk-config	
+install plasma-meta
+install plasma-desktop
+install plasma-framework
+install plasma-integration
+install plasma-workspace
 
 # config tools
 install lxappearance
