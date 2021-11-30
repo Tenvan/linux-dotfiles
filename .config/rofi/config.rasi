@@ -6,7 +6,7 @@ configuration {
 	show-icons: true;
 	font: "Mono 18";
 //	theme: "android_notification";
-	theme: "~/.config/rofi/rofi.rasi";
+//	theme "~/.config/rofi/rofi.rasi";
 /*	width: 50;*/
 	columns: 1;
 /*	bw: 1;*/
