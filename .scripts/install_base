@@ -79,8 +79,17 @@ install xsel
 install zenity
 install pm-utils
 
+# ArcoLinux Packages
 if [ $IS_ARCO = true ]; then
+	# Meta Packages
+	install arcolinux-meta-fun
+	install arcolinux-meta-log
 	install arcolinux-meta-samba
+	install arcolinux-meta-utilities
+
+	# Interesting Packages
+	install arcolinux-candy-beauty-git
+	
 fi
 
 if [ $IS_MANJARO = true ]; then
@@ -127,14 +136,6 @@ install vicious
 install xorg-server-xephyr
 install luacheck
 install awmtt
-
-# plasma
-install kde-gtk-config	
-install plasma-meta
-install plasma-desktop
-install plasma-framework
-install plasma-integration
-install plasma-workspace
 
 # config tools
 install lxappearance
@@ -198,7 +199,6 @@ install nemo-media-columns
 install nemo-mediainfo-tab
 install nemo-preview
 install nemo-qml-plugin-notifications
-install nemo-repairer
 install nemo-seahorse
 install nemo-share
 
@@ -318,7 +318,14 @@ install tar
 
 # wallpapers, themes, icons and fonts
 
+# themes
+if [ $IS_ARCO = true ]; then
+	install arcolinux-arc-theme-git
+fi
+install materia-gtk-theme
+
 # icons
+install arc-icon-theme
 install paper-icon-theme
 install papirus-icon-theme
 
@@ -347,10 +354,11 @@ install noto-fonts-emoji
 # install nerd-fonts-terminus
 install ttf-meslo-nerd-font-powerlevel10k
 install ttf-devicons
+install ttf-jetbrains-mono
+install ttf-proggy-clean
 install ttf-twemoji
 install ttf-twemoji-color
 install ttf-weather-icons
-
 
 # lightdm config
 install lightdm
@@ -379,6 +387,7 @@ fi
 # btrfs tools
 install grub-btrfs
 install snapper
+install snapper-rollback
 install snapper-gui
 install timeshift-autosnap
 
@@ -410,16 +419,21 @@ install microsoft-edge-dev-bin
 # optional application packages
 install aspell
 install baobab
-install gimp
-install gimp-help-de
 install gwenview
+install partitionmanager
+install playerctl
+install teams
+
+# graphics
 install imagemagick-full
 install libmagick-full
 install inkscape
-install partitionmanager
+install gimp
+install gimp-help-de
 install pinta
-install playerctl
-install teams
+install blender
+install krita
+install digikam
 
 install glfw-x11
 install phonon-qt5-vlc
