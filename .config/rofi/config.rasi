@@ -5,8 +5,6 @@ configuration {
 	lines: 36;
 	show-icons: true;
 	font: "Mono 18";
-//	theme: "android_notification";
-//	theme "~/.config/rofi/rofi.rasi";
 /*	width: 50;*/
 	columns: 1;
 /*	bw: 1;*/
@@ -145,3 +143,4 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
+@theme "~/.config/rofi/rofi.rasi"

@@ -1533,12 +1533,26 @@ awful.rules.rules = {
     {
         rule_any = {
             class = {
-                "org.remmina.Remmina"
+                "org.remmina.Remmina",
             }
         },
         properties = {
             screen = 1,
             tag = awful.util.tagnames[6],
+            switchtotag = true
+        }
+    },
+    {
+        rule_any = {
+            class = {
+                "RemoteDesktopManager.*"
+            }
+        },
+        properties = {
+            screen = 1,
+            tag = awful.util.tagnames[6],
+            -- maximized = false,
+            -- floating = false,
             switchtotag = true
         }
     },

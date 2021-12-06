@@ -19,6 +19,7 @@ inode/directory=nemo.desktop
 application/x-gnome-saved-search=nemo.desktop
 text/markdown=typora.desktop
 x-scheme-handler/tg=userapp-Telegram Desktop-X6OBC1.desktop
+x-scheme-handler/jetbrains-gateway=jetbrains-gateway.desktop
 
 [Added Associations]
 application/gzip=org.gnome.FileRoller.desktop;
