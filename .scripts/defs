@@ -38,10 +38,6 @@ SCRIPTS="$HOME/.scripts"
 DEBUG=false
 PACKER=yay
 
-if [ -x "$(command -v paru)" ]; then
-	PACKER=paru
-fi
-
 #DEBUG=true
 ERROR_PAKAGE_UNINST=
 ERROR_PAKAGE_INST=

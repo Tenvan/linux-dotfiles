@@ -132,10 +132,21 @@ install jetbrains-toolbox
 
 # awesome
 install awesome-git
-install vicious
+
 install xorg-server-xephyr
 install luacheck
 install awmtt
+
+install eminent-git
+install vicious
+# install vicious-git
+install lain-git
+install shifty-git
+install obvious-git
+
+if [ $IS_ARCO = true ]; then
+	install arcolinux-config-awesome-git
+fi
 
 # config tools
 install lxappearance
