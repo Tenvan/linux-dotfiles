@@ -9,12 +9,14 @@ $SCRIPTS/set-wallpaper.sh
 #==============
 # System tools
 #==============
-run /usr/lib/xfce-polkit/xfce-polkit
+#run /usr/lib/xfce-polkit/xfce-polkit
 #run lxqt-policykit-agent
+run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
 
 run ibus-daemon -d -x
 run unclutter --root --timeout 3
 run xscreensaver
+# run xfce4-power-manager
 
 #---------------
 # Desktop Tools

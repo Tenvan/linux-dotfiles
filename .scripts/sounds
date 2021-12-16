@@ -37,7 +37,7 @@ sound() {
         "dialog-question") sound=$oxygen/dialog-question.oga;;
         "dialog-warning") sound=$freedesktop/dialog-warning.ogg;;
         "error") sound=$freedesktop/bell.ogg;;
-        "lock-screen") sound=$oxygen/desktop-login.oga;;
+        "lock-screen") sound=$freedesktop/service-logout.oga;;
         "menu-popdown") sound=$mac/Blow.wav;;
         "menu-popup") sound=$mac/Morse.wav;;
         "menu-replace") sound=$enchanted/menu-replace.ogg;;

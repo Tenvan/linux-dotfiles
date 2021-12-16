@@ -114,3 +114,4 @@ x-scheme-handler/mailto=vivaldi-stable.desktop;exo-mail-reader.desktop
 x-scheme-handler/trash=vivaldi-stable.desktop;exo-file-manager.desktop
 x-scheme-handler/unknown=vivaldi-stable.desktop;firefox.desktop
 x-scheme-handler/tg=userapp-Telegram Desktop-X6OBC1.desktop;
+application/vnd.appimage=com.appimage-installer.desktop;

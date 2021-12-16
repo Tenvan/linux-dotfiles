@@ -6,9 +6,10 @@ export DOT_XPROFILE="initialised"
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
 # for qt5 apps
+export XDG_CURRENT_DESKTOP=Unity
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
-export QT_QPA_PLATFORMTHEME="qt5ct"
-# export QT_QPA_PLATFORM_THEME=gtk2
+# export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_QPA_PLATFORM_THEME=gtk2
 # export QT_STYLE_OVERRIDE="qt5ct-style"
 
 export LINEOFFSET=140
@@ -20,28 +21,5 @@ export SSH_ASKPASS=$(which lxqt-openssh-askpass)
 # fix "xdg-open fork-bomb" export your preferred browser from here
 # export BROWSER=$(which firefox)
 export BROWSER=
-
-######################
-# Settings wallpaper #
-######################
-# WALLPAPER1=~/.local/share/wallpapers/shared/floating-world-in-space-3000x2357.jpg
-# WALLPAPER2=~/.local/share/wallpapers/shared/blue-earth-2880x1800.jpg
-
-export SHARED_WALLPAPERS="$HOME/.local/share/wallpapers/shared"
-export DUAL_MONITOR_WALLPAPERS="$SHARED_WALLPAPERS/wallpapers-multimonitor"
-
-#WALLPAPER_DUAL=dropletno7revisited.jpg
-#WALLPAPER_DUAL=mesh3isostudy.jpg
-#WALLPAPER_DUAL=extrudedsimplicesbstudy.jpg
-#WALLPAPER_DUAL=softshading.jpg
-#WALLPAPER_DUAL=verticaldesireblack.jpg
-#WALLPAPER_DUAL=honeycombs.jpg
-WALLPAPER_DUAL=elementalfists.jpg
-#WALLPAPER_DUAL=0bonv.jpg
-#WALLPAPER_DUAL=large-dual-screen-wallpaper1.jpg
-#WALLPAPER_DUAL=0bonv_x_flip.jpg
-
-export WALLPAPER_FILE=$DUAL_MONITOR_WALLPAPERS/$WALLPAPER_DUAL
-######################
 
 csource "$CUSTOMS/.xprofile"

@@ -64,6 +64,7 @@ install rsyslog
 install s-tui
 install shell-color-scripts
 install spectacle
+install flameshot
 install time
 install timeshift
 install tldr++
@@ -73,11 +74,13 @@ install xautolock
 install xbindkeys
 install xclip
 install xdotool
+install xorg-xbacklight
 install xorg-xfd
 install xorg-xsetroot
 install xsel
 install zenity
 install pm-utils
+install i3lock-fancy
 
 # ArcoLinux Packages
 if [ $IS_ARCO = true ]; then
@@ -86,10 +89,8 @@ if [ $IS_ARCO = true ]; then
 	install arcolinux-meta-log
 	install arcolinux-meta-samba
 	install arcolinux-meta-utilities
-
 	# Interesting Packages
-	install arcolinux-candy-beauty-git
-	
+	install arcolinux-candy-beauty-git	
 fi
 
 if [ $IS_MANJARO = true ]; then
@@ -157,18 +158,22 @@ install gnome-system-monitor
 install gnome-system-log
 install gnome-logs
 install gnome-calculator
+install network-manager-gnome
 
 # polkits
-#install polkit-gnome
-#install polkit-kde-agent
+install polkit
+install polkit-qt5
+install polkit-gnome
 install xfce-polkit
 
 install xscreensaver
-install qt5-styleplugins
+
 install qt5ct
+install qt5-styleplugins
 
 # xfce developer
 install xfce4-meta
+install xfce4-power-manager
 
 # file manager
 install mc
@@ -213,6 +218,9 @@ install nemo-qml-plugin-notifications
 install nemo-seahorse
 install nemo-share
 
+# Nautilus
+install nautilus
+
 # Rofi Configs
 if [ $IS_ARCO = true ]; then
 	install arcolinux-rofi-git
@@ -241,6 +249,7 @@ install livecd-sounds
 install mint-sounds
 install tvolnoti
 install ponymix
+install pnmixer 
 
 # Python libs
 install python
@@ -334,6 +343,7 @@ if [ $IS_ARCO = true ]; then
 	install arcolinux-arc-theme-git
 fi
 install materia-gtk-theme
+install materia-theme
 
 # icons
 install arc-icon-theme

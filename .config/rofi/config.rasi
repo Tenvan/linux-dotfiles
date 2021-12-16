@@ -1,12 +1,9 @@
 configuration {
   	modi: "window,windowcd,drun,filebrowser,ssh,emoji";
 	combi-modi: "window,windowcd,drun,calc";
-	location: 0;
-	lines: 36;
 	show-icons: true;
-	font: "Mono 18";
-/*	width: 50;*/
-	columns: 1;
+	columns: 2;
+	dpi: 200;
 /*	bw: 1;*/
 	padding: 15;
 /*	yoffset: 0;*/
@@ -41,11 +38,8 @@ configuration {
 	line-margin: 4;
 	line-padding: 5;
 /*	filter: ;*/
-/*	separator-style: "dash";*/
+//	separator-style: "dash";
 /*	hide-scrollbar: false;*/
-/*	fullscreen: false;*/
-/*	fake-transparency: false;*/
-/*	dpi: -1;*/
 /*	threads: 0;*/
 /*	scrollbar-width: 8;*/
 /*	scroll-method: 0;*/
@@ -143,4 +137,4 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
-@theme "~/.config/rofi/rofi.rasi"
+@theme "~/.config/rofi/sidebar.rasi"
