@@ -92,5 +92,25 @@
   {
     "key": "ctrl+shift+m",
     "command": "workbench.action.toggleMultiCursorModifier"
+  },
+  {
+    "key": "alt+pagedown",
+    "command": "editor.action.marker.next",
+    "when": "editorFocus"
+  },
+  {
+    "key": "alt+f8",
+    "command": "-editor.action.marker.next",
+    "when": "editorFocus"
+  },
+  {
+    "key": "alt+pageup",
+    "command": "editor.action.marker.prev",
+    "when": "editorFocus"
+  },
+  {
+    "key": "shift+alt+f8",
+    "command": "-editor.action.marker.prev",
+    "when": "editorFocus"
   }
 ]

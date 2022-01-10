@@ -199,7 +199,7 @@ install thunar-volman
 
 # Audio Radio
 install radiotray-ng
-install shortwave
+install shortwave-git
 install libadwaita-shortwave
 
 # Nemo
@@ -253,6 +253,7 @@ install pnmixer
 
 # Python libs
 install python
+install python-pip
 
 # other
 install bleachbit

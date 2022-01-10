@@ -19,7 +19,7 @@ SYSTEM_ACTIONS=(
         "📛 Boot Logs" "qjournalctl" \
         "📛 Log Viewer (Gui)" "glogg" \
         "📛 System Logs (Gui)" "sudo ksystemlog" \
-        "📛 System Logs (Console)" "$shellCmd --hold --title Sys:Install $timeCmd journalctl" \
+        "📛 System Logs (Console)" "$shellCmd --hold --title Sys:Install $timeCmd journalctl -f" \
         "📛 xsession Errors" "$shellCmd --title AWMTT multitail -cs -i $HOME/.xsession-errors" \
 )
 

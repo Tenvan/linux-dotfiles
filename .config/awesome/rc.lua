@@ -1043,7 +1043,7 @@ local globalkeys =
         {modkey},
         "F8",
         function()
-            awful.spawn("nemo")
+            awful.spawn("thunar")
         end,
         {description = "Dateimanager", group = kgApps}
     ),

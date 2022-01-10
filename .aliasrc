@@ -79,6 +79,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ~='cd $HOME'
 alias cdw='cd /media/WORKSPACE/$USER'
+alias cda='cd /media/WORKSPACE/$USER/Arduino'
 alias cdd='cd /media/WORKSPACE/$USER/DotNet'
 alias cdn='cd /media/WORKSPACE/$USER/Node'
 

@@ -23,7 +23,7 @@ x-scheme-handler/jetbrains-gateway=jetbrains-gateway.desktop
 
 [Added Associations]
 application/gzip=org.gnome.FileRoller.desktop;
-application/json=sublime_text.desktop;code-oss.desktop;visual-studio-code.desktop;
+application/json=micro.desktop;sublime_text.desktop;code-oss.desktop;visual-studio-code.desktop;
 application/octet-stream=sublime_text.desktop;code-oss.desktop;visual-studio-code.desktop;
 application/pdf=org.kde.okular.desktop;org.gnome.Evince.desktop;
 application/pgp-encrypted=sublime_text.desktop;code-oss.desktop;visual-studio-code.desktop;
@@ -115,3 +115,6 @@ x-scheme-handler/trash=vivaldi-stable.desktop;exo-file-manager.desktop
 x-scheme-handler/unknown=vivaldi-stable.desktop;firefox.desktop
 x-scheme-handler/tg=userapp-Telegram Desktop-X6OBC1.desktop;
 application/vnd.appimage=com.appimage-installer.desktop;
+text/x-arduino=micro.desktop;
+text/csv=micro.desktop;libreoffice-calc.desktop;
+application/javascript=micro.desktop;
