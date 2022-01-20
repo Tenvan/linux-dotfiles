@@ -2,7 +2,7 @@
 . $SCRIPTS/defs
 
 SYSTEM_ACTIONS=(
-    "🗂 Dateien allgemeiner Arbeitsbereich" "$FILEMANAGER $WORKSPACE"
+    "🗂 Dateien WORKSPACE" "$FILEMANAGER $WORKSPACE"
 )
 
 csource "$CUSTOMS/${0##*/}"

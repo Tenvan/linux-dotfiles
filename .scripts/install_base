@@ -115,7 +115,8 @@ install jdk-openjdk
 install jdk8-openjdk
 install libsecret
 install nodejs-emojione
-install nodejs
+install nodejs-lts
+install nvm
 install nuget
 install npm
 install svn
