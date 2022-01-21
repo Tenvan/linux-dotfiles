@@ -1,13 +1,10 @@
 #!/usr/bin/env zsh
+
 . ~/.scripts/defs
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/z-shell/zinit/main/doc/install.sh)"
 fi
 
 csource "$HOME/.zinit/bin/zinit.zsh"
@@ -17,13 +14,8 @@ autoload -Uz _zinit
 
 zinit wait lucid for \
   atinit"zicompinit; zicdreplay" \
-	zdharma/fast-syntax-highlighting \
-	zdharma/history-search-multi-word \
-  marzocchi/zsh-notify \
-	zinit-zsh/z-a-rust \
-	zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-bin-gem-node \
+	zdharma-continuum/fast-syntax-highlighting \
+	zdharma-continuum/history-search-multi-word \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
   blockf atpull'zinit creinstall -q .' \
@@ -70,16 +62,6 @@ zstyle ':completion:*:descriptions' format '%U%F{cyan}%d%f%u'
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zcache
-
-# notify
-zstyle ':notify:*' error-title "Command failed (in #{time_elapsed} seconds)"
-zstyle ':notify:*' success-title "Command finished (in #{time_elapsed} seconds)"
-
-#zstyle ':notify:*' error-icon "/path/to/error-icon.png"
-#zstyle ':notify:*' success-icon "/path/to/success-icon.png"
-
-#zstyle ':notify:*' error-sound "Glass"
-#zstyle ':notify:*' success-sound "default"
 
 # automatically load bash completion functions
 autoload -U +X bashcompinit && bashcompinit

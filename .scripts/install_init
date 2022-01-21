@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-. $SCRIPTS/defs
+. ~/.scripts/defs
 
 # Init Install
 initInstall "install_init"
@@ -15,6 +15,8 @@ if [ -f /etc/pacman.conf ]; then
 	sudo mv pacman.conf /etc/
 	sed 's/^.*ParallelDownloads.*$/ParallelDownloads = 5/g' </etc/pacman.conf >pacman.conf
 	sudo mv pacman.conf /etc/
+	sed 's/^.*VerbosePkgLists.*$/VerbosePkgLists/g' </etc/pacman.conf >pacman.conf
+	sudo mv pacman.conf /etc/
 	errorCheck "pacman config"
 fi
 
@@ -29,7 +31,8 @@ if [ -f /etc/pamac.conf ]; then
 	errorCheck "pamac config"
 fi
 
-sudo pacman -S --noconfirm --needed git base-devel colorgcc go ruby rust
+sudo pacman -S --noconfirm --needed git base-devel yay curl \
+	colorgcc go ruby rust git-credential-manager-core-bin
 errorCheck "installation base-devel"
 
 # Prompt installieren
@@ -60,6 +63,10 @@ fullInstall
 ## FINISHING #
 finish
 
+git submodule update --init --recursive
+errorCheck "gib submodule init"
+
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+errorCheck "zinit init"
 
 sound complete

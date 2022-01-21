@@ -11,6 +11,6 @@ fi
 
 echo "do run autostarts"
 $HOME/.screenlayout/screenlayout.sh
-$HOME/.bin/autostart
+# $HOME/.bin/autostart
 
 csource "$CUSTOMS/.xsession"

@@ -57,7 +57,7 @@ alias pacman='sudo pacman --color auto'
 alias update-fc='sudo fc-cache -fv'
 
 #package manager
-alias inst="yay -S --color always --needed --noconfirm"
+alias inst="yay -S --color always --needed"
 alias uninst="yay -Rcn"
 alias upall="yay -Syyu --needed"
 alias search="yay -Ss --bottomup"

@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-. $SCRIPTS/defs
+. ~/.scripts/defs
 
 # Init Install
 initInstall "install_base"
@@ -17,11 +17,7 @@ install arj
 install ark
 install bashtop
 install bat
-if [ $IS_ARCO = true ]; then
-	install bitwarden
-else
-	install bitwarden-bin
-fi
+install bitwarden
 install bpytop
 install clamav
 install clamtk
@@ -35,7 +31,6 @@ install fzf
 install genius
 install glances
 install gparted
-install grive
 install gtop
 install hardinfo
 install hstr
@@ -100,8 +95,9 @@ fi
 
 # ssh 
 install openssh
-#install lxqt-openssh-askpass
-install ssh-askpass-fullscreen
+# TODO
+# install lxqt-openssh-askpass
+# install ssh-askpass-fullscreen
 
 # Base Development Tools
 install base-devel
@@ -115,7 +111,7 @@ install jdk-openjdk
 install jdk8-openjdk
 install libsecret
 install nodejs-emojione
-install nodejs-lts
+install nodejs-lts-gallium
 install nvm
 install nuget
 install npm
@@ -132,6 +128,12 @@ install mono-msbuild
 # jetbrains apps
 install jetbrains-toolbox
 
+# Microcontroler Develop
+install platformio
+install esphome
+install linuxcnc-bin
+install arduino
+
 # awesome
 install awesome-git
 
@@ -141,7 +143,6 @@ install awmtt
 
 install eminent-git
 install vicious
-# install vicious-git
 install lain-git
 install shifty-git
 install obvious-git
@@ -159,7 +160,11 @@ install gnome-system-monitor
 install gnome-system-log
 install gnome-logs
 install gnome-calculator
-install network-manager-gnome
+if [ $IS_ARCO = true ]; then
+	install network-manager-gnome
+else
+	install network-manager-applet
+fi
 
 # polkits
 install polkit
@@ -177,26 +182,9 @@ install xfce4-meta
 install xfce4-power-manager
 
 # file manager
-install mc
+# install mc
 install ranger
 install ufraw-thumbnailer
-
-# Thunar
-install thunar-archive-plugin 
-install thunar-media-tags-plugin
-
-if [ $IS_MANJARO = true ]; then
-	install thunar-shares-plugin-manjaro 
-fi
-
-if [ $IS_ARCO = true ]; then
-	install thunar-shares-plugin
-fi
-
-install folder-color-switcher
-install gtkhash-thunar
-install thunar-vcs-plugin 
-install thunar-volman
 
 # Audio Radio
 install radiotray-ng
@@ -218,9 +206,6 @@ install nemo-preview
 install nemo-qml-plugin-notifications
 install nemo-seahorse
 install nemo-share
-
-# Nautilus
-install nautilus
 
 # Rofi Configs
 if [ $IS_ARCO = true ]; then
@@ -325,7 +310,7 @@ install freerdp
 install micro
 install neovim
 install visual-studio-code-bin
-install typora
+install typora-free
 
 # utils for editors
 install bash-completion
@@ -371,8 +356,8 @@ install powerline-fonts
 install nerd-fonts-complete
 # install nerd-fonts-fira-code
 # install nerd-fonts-noto
-install noto-fonts-main
-install noto-fonts-emoji
+# install noto-fonts-main
+# install noto-fonts-emoji
 # install nerd-fonts-roboto-mono
 # install nerd-fonts-terminus
 install ttf-meslo-nerd-font-powerlevel10k
@@ -400,8 +385,10 @@ if [ $IS_MANJARO = true ]; then
 fi
 
 # grub
-install grub-customizer
-install update-grub
+if [ $IS_MANJARO = false ]; then
+	install grub-customizer
+	install update-grub
+fi
 
 if [ $IS_MANJARO != true -a $IS_ARCO != true ]; then
 	install grub2-theme-archlinux
@@ -448,8 +435,8 @@ install playerctl
 install teams
 
 # graphics
-install imagemagick-full
-install libmagick-full
+# install imagemagick-full
+# install libmagick-full
 install inkscape
 install gimp
 install gimp-help-de
@@ -460,9 +447,6 @@ install digikam
 
 install glfw-x11
 install phonon-qt5-vlc
-
-install themix-full
-install themix-icons-numix
 
 # rust apps
 install bat

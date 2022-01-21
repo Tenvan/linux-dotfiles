@@ -9,13 +9,13 @@ $SCRIPTS/set-wallpaper.sh
 #==============
 # System tools
 #==============
-#run /usr/lib/xfce-polkit/xfce-polkit
-#run lxqt-policykit-agent
-run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
+# run /usr/lib/xfce-polkit/xfce-polkit
+# run lxqt-policykit-agent
+# run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
 
-run ibus-daemon -d -x
-run unclutter --root --timeout 3
-run xscreensaver
+# run ibus-daemon -d -x
+# run unclutter --root --timeout 3
+# run xscreensaver
 # run xfce4-power-manager
 
 #---------------
@@ -23,18 +23,18 @@ run xscreensaver
 #---------------
 $HOME/.bin/volume-osd &
 
-run alttab -n 1
-run pamac-tray
+# run alttab -n 1
+# run pamac-tray
 
-run blueman-tray
-run blueman-applet
-run nm-applet
+# run blueman-tray
+# run blueman-applet
+# run nm-applet
 
 # Sound Tray Icons
 # restart start-pulseaudio-x11
-run pasystray
+# run pasystray
 
-$SCRIPTS/picom-toggle-awesome.sh
+# $SCRIPTS/picom-toggle-awesome.sh
 
 file=$HOME/.custom/autostart
 if [ -f "$file" ]; then
@@ -42,4 +42,4 @@ if [ -f "$file" ]; then
 fi
 
 #cursor active at boot
-run xsetroot -cursor_name left_ptr -bg "#2a2a2a" -fg "#d6d6d6"
+# run xsetroot -cursor_name left_ptr -bg "#2a2a2a" -fg "#d6d6d6"

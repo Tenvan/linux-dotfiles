@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 echo "# --> ${(%):-%N}"
 
-. $SCRIPTS/defs
+. ~/.scripts/defs
 
 # Init Install
 initInstall "install_finish"
