@@ -151,6 +151,7 @@ run() {
         if ! pgrep "$1"; then
             $@ &
         fi
+        notify-send -t 10000 "AUTOSTART" "Kommando:\n'$1'"
     else
         notify-send -t 10000 -u critical "Error Start" "Kommando '$1' nicht gefunden"
     fi

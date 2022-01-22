@@ -16,9 +16,6 @@ local vicious = require("vicious")
 local math, string, os = math, string, os
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 
-local xres = require("beautiful.gtk").get_theme_variables()
-gdebug.dump(xres)
-
 -- current Values
 -- base_color : #404552ff (string)
 -- bg_color : #383c4aff (string)
@@ -93,6 +90,24 @@ local base0E = "#d88de6" -- purple
 local base0F = "#c88526" -- brown
 
 local theme = {}
+
+theme.font          = "Noto Sans Regular 10"
+
+theme.bg_normal     = "#222D32"
+theme.bg_focus      = "#2C3940"
+theme.bg_urgent     = "#000000"
+theme.bg_minimize   = "#101010"
+theme.bg_systray    = theme.bg_normal
+
+theme.fg_normal     = "#ffffff"
+theme.fg_focus      = "#ffffff"
+theme.fg_urgent     = "#ff0000"
+theme.fg_minimize   = "#ffffff"
+
+theme.border_width  = 1
+theme.border_normal = "#000000"
+theme.border_focus  = "#16A085"
+theme.border_marked = "#16A085"
 
 -- Default settings
 theme.fg = base00
@@ -188,56 +203,56 @@ theme.hint_font = "10px monospace, courier, sans-serif"
 
 -- End of oomox
 
-theme.xres = xres
-
 theme.dir = os.getenv("HOME") .. "/.config/awesome/themes/mytheme"
 theme.wallpaper = theme.dir .. "/wallpaper.jpg"
 
 local function makeColorTransparent(colorkey, opacity)
-    gdebug.print_warning("ColorKey: " .. colorkey)
+    -- gdebug.print_warning("ColorKey: " .. colorkey)
     local colorMain = string.sub(colorkey, 2, 7)
     local transColor = "#" .. colorMain .. opacity
-    gdebug.print_warning("Color: " .. transColor)
+    -- gdebug.print_warning("Color: " .. transColor)
     return transColor
 end
 
-theme.border_normal = makeColorTransparent(xres.wm_border_unfocused_color, "70")
-theme.border_focus = makeColorTransparent(xres.wm_border_focused_color, "80")
-theme.border_marked = xres.selected_bg_color
 
-theme.bg_normal = xres.bg_color
-theme.fg_normal = xres.fg_color
-theme.bg_focus = xres.wm_border_focused_color
-theme.fg_focus = xres.fg_color
-theme.bg_urgent = makeColorTransparent(xres.warning_bg_color, "80")
-theme.fg_urgent = xres.warning_color
+-- theme.border_normal = makeColorTransparent(xres.wm_border_unfocused_color, "70")
+-- theme.border_focus = makeColorTransparent(xres.wm_border_focused_color, "80")
+-- theme.border_marked = xres.selected_bg_color
+
+-- theme.bg_normal = xres.bg_color
+-- theme.fg_normal = xres.fg_color
+-- theme.bg_focus = xres.wm_border_focused_color
+-- theme.fg_focus = xres.fg_color
+-- theme.bg_urgent = makeColorTransparent(xres.warning_bg_color, "80")
+-- theme.fg_urgent = xres.warning_color
 
 theme.border_width = dpi(5)
 theme.margins_width = dpi(10)
 
-theme.font_size = xres.font_size
-theme.font = xres.font_family .. theme.font_size
+theme.font_size = dpi(14)
+
+-- theme.font = xres.font_family .. theme.font_size
 
 theme.taglist_font = "Noto Sans Symbol Bold " .. (theme.font_size * 2)
-theme.taglist_bg_focus = xres.selected_bg_color
-theme.taglist_fg_focus = xres.selected_fg_color
-
-theme.tasklist_bg_focus = xres.menubar_bg_color
-theme.tasklist_fg_focus = xres.menubar_fg_color
-
-theme.titlebar_bg_focus = xres.menubar_bg_color
-theme.titlebar_fg_focus = xres.wm_title_focused_color
-theme.titlebar_bg_normal = xres.menubar_bg_color
-theme.titlebar_fg_normal = xres.wm_title_unfocused_color
+-- theme.taglist_bg_focus = xres.selected_bg_color
+-- theme.taglist_fg_focus = xres.selected_fg_color
+-- 
+-- theme.tasklist_bg_focus = xres.menubar_bg_color
+-- theme.tasklist_fg_focus = xres.menubar_fg_color
+-- 
+-- theme.titlebar_bg_focus = xres.menubar_bg_color
+-- theme.titlebar_fg_focus = xres.wm_title_focused_color
+-- theme.titlebar_bg_normal = xres.menubar_bg_color
+-- theme.titlebar_fg_normal = xres.wm_title_unfocused_color
 
 -- theme.menu_bar = dpi(theme.font_size + theme.margins_width)
 theme.menu_height = dpi(30)
 theme.menu_width = dpi(300)
 
 theme.notification_opacity = 1
-theme.notification_bg = makeColorTransparent(xres.tooltip_bg_color, "80")
-theme.notification_fg = xres.tooltip_fg_color
-theme.notification_border_color = makeColorTransparent(xres.osd_border_color, "B0")
+-- theme.notification_bg = makeColorTransparent(xres.tooltip_bg_color, "80")
+-- theme.notification_fg = xres.tooltip_fg_color
+-- theme.notification_border_color = makeColorTransparent(xres.osd_border_color, "B0")
 
 theme.tasklist_plain_task_name = false
 theme.tasklist_disable_icon = false
@@ -486,7 +501,7 @@ for i = 1, cpu_kernels - 1 do
                 -- border_width = 1,
                 -- border_color =  theme.border_normal,
                 background_color = "alpha",
-                color = xres.warning_bg_color,
+                -- color = xres.warning_bg_color,
                 widget = cpuKernelProgress[i]
             },
             direction = "east",

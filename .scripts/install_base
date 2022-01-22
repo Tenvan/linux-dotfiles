@@ -74,6 +74,7 @@ install xorg-xfd
 install xorg-xsetroot
 install xsel
 install zenity
+install yad
 install pm-utils
 install i3lock-fancy
 
@@ -133,6 +134,7 @@ install platformio
 install esphome
 install linuxcnc-bin
 install arduino
+install watchexec
 
 # awesome
 install awesome-git

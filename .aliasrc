@@ -58,6 +58,7 @@ alias update-fc='sudo fc-cache -fv'
 
 #package manager
 alias inst="yay -S --color always --needed"
+alias inst_over="yay -S --color always --needed --overwrite \*"
 alias uninst="yay -Rcn"
 alias upall="yay -Syyu --needed"
 alias search="yay -Ss --bottomup"

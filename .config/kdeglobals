@@ -144,10 +144,14 @@ BrowserApplication=vivaldi-stable.desktop
 Name=Breath Light
 TerminalApplication=kitty
 TerminalService=kitty.desktop
+XftAntialias=true
+XftHintStyle=hintslight
+XftSubPixel=rgb
+font=Noto Sans,10,-1,5,57,0,0,0,0,0,Medium
 shadeSortColumn=true
 
 [Icons]
-Theme=Papirus-Dark
+Theme=ePapirus-Dark
 
 [KDE]
 LookAndFeelPackage=org.manjaro.breath-dark.desktop
@@ -174,8 +178,8 @@ Speedbar Width=188
 View Style=DetailTree
 
 [KScreen]
-ScaleFactor=1
-ScreenScaleFactors=DP-0=1;DP-1=1;DP-2=1.25;DP-3=1;DP-4=1;DP-5=1;DP-6=1;DP-7=1;
+ScaleFactor=1.25
+ScreenScaleFactors=DP-0=1.25;DP-1=1.25;DP-2=1.25;DP-3=1.25;DP-4=1.25;DP-5=1.25;DP-6=1.25;DP-7=1.25;
 
 [PreviewSettings]
 MaximumRemoteSize=0

@@ -30,7 +30,7 @@ local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 
-local theme_path = string.format("%s/.config/awesome/themes/mytheme/theme.lua", os.getenv("HOME"))
+local theme_path = os.getenv("HOME") .. "/.config/awesome/themes/blackburn/theme.lua"
 beautiful.init(theme_path)
 
 -- Notification library
@@ -101,9 +101,7 @@ end
 awful.spawn.with_shell(
     'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;' ..
     'xrdb -merge <<< "awesome.started:true";' ..
-    -- list each of your autostart commands, followed by ; inside single quotes, followed by ..
-    -- 'dex --environment Awesome --autostart --search-paths "$XDG_CONFIG_DIRS/autostart:$XDG_CONFIG_HOME/autostart:$HOME/.config/autostart"' -- https://github.com/jceb/dex
-    'dex --autostart --search-paths "$HOME/.config/autostart"' -- https://github.com/jceb/dex
+    'dex --autostart --search-paths "$HOME/.config/autostart";'
 )
 -- }}}
 
@@ -243,9 +241,6 @@ local tags = {
         gap = 5
     }
 }
-
-gdebug.dump(tagnames)
-gdebug.dump(tags)
 
 for s in screen do
     for i = 1, 9 do
@@ -455,9 +450,6 @@ screen.connect_signal(
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(
     function(s)
-        gdebug.print_warning("Screen " .. s.index)
-        gdebug.dump(s, "Screen", 3)
-
         beautiful.at_screen_connect(s)
     end
 )
@@ -1949,7 +1941,7 @@ awesome.connect_signal(
     function(hint, see, args)
         sound("desktop-login")
 
-        -- notify("Awesome", "'Autostart' callback raised")
+        notify("Awesome", "'Autostart' callback raised")
         is_initialized = true
         -- notify("Awesome Default", "Awesome Default erfolgreich gestartet !!", naughty.config.presets.critical, false)
     end
