@@ -3,8 +3,7 @@
      Powerarrow Awesome WM theme
      github.com/lcpz
 
---]]
-local gears = require("gears")
+--]] local gears = require("gears")
 local gdebug = require("gears.debug")
 
 local lain = require("lain")
@@ -16,60 +15,18 @@ local vicious = require("vicious")
 local math, string, os = math, string, os
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 
--- current Values
--- base_color : #404552ff (string)
--- bg_color : #383c4aff (string)
--- button_bg_color : #444a58ff (string)
--- button_border_color : #2b2e39ff (string)
--- button_border_radius : 3.0 (number)
--- button_border_width : 1.0 (number)
--- button_fg_color : #d3dae3ff (string)
--- error_bg_color : #f04a50ff (string)
--- error_color : #fc4138ff (string)
--- error_fg_color : #ffffffff (string)
--- fg_color : #d3dae3ff (string)
--- font_family : Sans (string)
--- font_size : 15.36 (number)
--- header_button_bg_color : #2f343f00 (string)
--- header_button_border_color : #2f343f00 (string)
--- header_button_fg_color : #cfdae7cc (string)
--- menubar_bg_color : #2f343fff (string)
--- menubar_fg_color : #cfdae7cc (string)
--- osd_bg_color : #383c4aff (string)
--- osd_border_color : #d3dae3ff (string)
--- osd_fg_color : #d3dae3ff (string)
--- selected_bg_color : #5294e2ff (string)
--- selected_fg_color : #ffffffff (string)
--- success_bg_color : #73d216ff (string)
--- success_color : #73d216ff (string)
--- success_fg_color : #ffffffff (string)
--- text_color : #d3dae3ff (string)
--- tooltip_bg_color : #383c4aff (string)
--- tooltip_fg_color : #d3dae3ff (string)
--- warning_bg_color : #f27835ff (string)
--- warning_color : #f27835ff (string)
--- warning_fg_color : #ffffffff (string)
--- wm_bg_color : #2f343fff (string)
--- wm_border_focused_color : #5294e2ff (string)
--- wm_border_unfocused_color : #2f343fff (string)
--- wm_icons_focused_color : #ffffffff (string)
--- wm_icons_unfocused_color : #cfdae7cc (string)
--- wm_title_focused_color : #ffffffff (string)
--- wm_title_unfocused_color : #cfdae7cc (string)
-
---
--- Base16 oomox-arc-dark
--- Author: oomox-arc-dark
---
-
-function hex2rgb(hex)
+local function hex2rgb(hex)
     local hex = hex:gsub("#", "")
-    return string.format(
-        "%s, %s, %s",
-        tonumber("0x" .. hex:sub(1, 2)),
-        tonumber("0x" .. hex:sub(3, 4)),
-        tonumber("0x" .. hex:sub(5, 6))
-    )
+    return string.format("%s, %s, %s", tonumber("0x" .. hex:sub(1, 2)), tonumber("0x" .. hex:sub(3, 4)),
+        tonumber("0x" .. hex:sub(5, 6)))
+end
+
+local function makeColorTransparent(colorkey, opacity)
+    -- gdebug.print_warning("ColorKey: " .. colorkey)
+    local colorMain = string.sub(colorkey, 2, 7)
+    local transColor = "#" .. colorMain .. opacity
+    -- gdebug.print_warning("Color: " .. transColor)
+    return transColor
 end
 
 local base00 = "#404552" -- ----
@@ -91,27 +48,27 @@ local base0F = "#c88526" -- brown
 
 local theme = {}
 
-theme.font          = "Noto Sans Regular 10"
+theme.bg_normal = "#222D32"
+theme.bg_focus = "#2C3940"
+theme.bg_urgent = "#000000"
+theme.bg_minimize = "#101010"
+theme.bg_systray = theme.bg_normal
 
-theme.bg_normal     = "#222D32"
-theme.bg_focus      = "#2C3940"
-theme.bg_urgent     = "#000000"
-theme.bg_minimize   = "#101010"
-theme.bg_systray    = theme.bg_normal
+theme.fg_normal = "#ffffff"
+theme.fg_focus = "#ffffff"
+theme.fg_urgent = "#ff0000"
+theme.fg_minimize = "#ffffff"
 
-theme.fg_normal     = "#ffffff"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ff0000"
-theme.fg_minimize   = "#ffffff"
+theme.border_width = dpi(5)
+theme.margins_width = dpi(10)
 
-theme.border_width  = 1
-theme.border_normal = "#000000"
-theme.border_focus  = "#16A085"
-theme.border_marked = "#16A085"
+theme.border_normal = makeColorTransparent(base04, "50")
+theme.border_focus = makeColorTransparent(base0B, "80")
+theme.border_marked = base03
 
 -- Default settings
-theme.fg = base00
-theme.bg = base07
+theme.fg = theme.fg_normal
+theme.bg = theme.bg_normal
 
 -- Genaral colours
 theme.success_fg = base0C
@@ -193,66 +150,55 @@ theme.hint_overlay_selected_bg = string.format("rgba(%s, 0.3)", hex2rgb(base0B))
 theme.hint_overlay_selected_border = theme.hint_overlay_border
 
 -- General colour pairings
-theme.ok = {fg = base05, bg = base00}
-theme.warn = {fg = base00, bg = base0E}
-theme.error = {fg = base08, bg = base00}
+theme.ok = {
+    fg = base05,
+    bg = base00
+}
+theme.warn = {
+    fg = base00,
+    bg = base0E
+}
+theme.error = {
+    fg = base08,
+    bg = base00
+}
 
 -- Font
-theme.font = "12px monospace"
-theme.hint_font = "10px monospace, courier, sans-serif"
+theme.font_family = "Noto Sans Regular"
+theme.hint_font = theme.font_base
 
 -- End of oomox
 
 theme.dir = os.getenv("HOME") .. "/.config/awesome/themes/mytheme"
 theme.wallpaper = theme.dir .. "/wallpaper.jpg"
 
-local function makeColorTransparent(colorkey, opacity)
-    -- gdebug.print_warning("ColorKey: " .. colorkey)
-    local colorMain = string.sub(colorkey, 2, 7)
-    local transColor = "#" .. colorMain .. opacity
-    -- gdebug.print_warning("Color: " .. transColor)
-    return transColor
-end
+theme.bg_urgent = makeColorTransparent(theme.warning_bg, "80")
+theme.fg_urgent = theme.warning_fg
 
+theme.font_size = dpi(10)
 
--- theme.border_normal = makeColorTransparent(xres.wm_border_unfocused_color, "70")
--- theme.border_focus = makeColorTransparent(xres.wm_border_focused_color, "80")
--- theme.border_marked = xres.selected_bg_color
-
--- theme.bg_normal = xres.bg_color
--- theme.fg_normal = xres.fg_color
--- theme.bg_focus = xres.wm_border_focused_color
--- theme.fg_focus = xres.fg_color
--- theme.bg_urgent = makeColorTransparent(xres.warning_bg_color, "80")
--- theme.fg_urgent = xres.warning_color
-
-theme.border_width = dpi(5)
-theme.margins_width = dpi(10)
-
-theme.font_size = dpi(14)
-
--- theme.font = xres.font_family .. theme.font_size
+theme.font = theme.font_family .. " " .. theme.font_size
 
 theme.taglist_font = "Noto Sans Symbol Bold " .. (theme.font_size * 2)
--- theme.taglist_bg_focus = xres.selected_bg_color
--- theme.taglist_fg_focus = xres.selected_fg_color
--- 
--- theme.tasklist_bg_focus = xres.menubar_bg_color
--- theme.tasklist_fg_focus = xres.menubar_fg_color
--- 
--- theme.titlebar_bg_focus = xres.menubar_bg_color
--- theme.titlebar_fg_focus = xres.wm_title_focused_color
--- theme.titlebar_bg_normal = xres.menubar_bg_color
--- theme.titlebar_fg_normal = xres.wm_title_unfocused_color
+theme.taglist_bg_focus = theme.selected_bg
+theme.taglist_fg_focus = theme.selected_fg
+
+theme.tasklist_bg_focus = theme.menu_bg
+theme.tasklist_fg_focus = theme.menu_fg
+
+theme.titlebar_bg_focus = theme.menu_bg
+theme.titlebar_fg_focus = theme.menu_fg
+theme.titlebar_bg_normal = theme.menu_bg
+theme.titlebar_fg_normal = theme.menu_bg
 
 -- theme.menu_bar = dpi(theme.font_size + theme.margins_width)
 theme.menu_height = dpi(30)
 theme.menu_width = dpi(300)
 
 theme.notification_opacity = 1
--- theme.notification_bg = makeColorTransparent(xres.tooltip_bg_color, "80")
--- theme.notification_fg = xres.tooltip_fg_color
--- theme.notification_border_color = makeColorTransparent(xres.osd_border_color, "B0")
+theme.notification_bg = makeColorTransparent(theme.hint_bg, "80")
+theme.notification_fg = theme.hint_fg
+theme.notification_border_color = makeColorTransparent(theme.hint_bg, "B0")
 
 theme.tasklist_plain_task_name = false
 theme.tasklist_disable_icon = false
@@ -328,30 +274,22 @@ local markup = lain.util.markup
 
 -- Textclock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
-local clock =
-    awful.widget.watch(
-    "date +'%a %d %b %R'",
-    60,
-    function(widget, stdout)
-        widget:set_markup(" " .. markup.font(theme.font, stdout))
-    end
-)
+local clock = awful.widget.watch("date +'%a %d %b %R'", 60, function(widget, stdout)
+    widget:set_markup(" " .. markup.font(theme.font, stdout))
+end)
 
 local datewidget = wibox.widget.textbox()
 vicious.register(datewidget, vicious.widgets.date, "%b %d, %R")
 
 -- Calendar
-theme.cal =
-    lain.widget.cal(
-    {
-        attach_to = {clock},
-        notification_preset = {
-            font = theme.font,
-            fg = theme.fg_normal,
-            bg = theme.bg_normal
-        }
+theme.cal = lain.widget.cal({
+    attach_to = {clock},
+    notification_preset = {
+        font = theme.font,
+        fg = theme.fg_normal,
+        bg = theme.bg_normal
     }
-)
+})
 
 theme.tasklist_widget_template = {
     {
@@ -383,51 +321,45 @@ theme.tasklist_widget_template = {
 
 -- Battery
 local baticon = wibox.widget.imagebox(theme.widget_battery)
-local bat =
-    lain.widget.bat(
-    {
-        settings = function()
-            if bat_now.status and bat_now.status ~= "N/A" then
-                if bat_now.ac_status == 1 then
-                    widget:set_markup(markup.font(theme.font, " AC "))
-                    baticon:set_image(theme.widget_ac)
-                    return
-                elseif not bat_now.perc and tonumber(bat_now.perc) <= 5 then
-                    baticon:set_image(theme.widget_battery_empty)
-                elseif not bat_now.perc and tonumber(bat_now.perc) <= 15 then
-                    baticon:set_image(theme.widget_battery_low)
-                else
-                    baticon:set_image(theme.widget_battery)
-                end
-                widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
-            else
-                widget:set_markup()
+local bat = lain.widget.bat({
+    settings = function()
+        if bat_now.status and bat_now.status ~= "N/A" then
+            if bat_now.ac_status == 1 then
+                widget:set_markup(markup.font(theme.font, " AC "))
                 baticon:set_image(theme.widget_ac)
+                return
+            elseif not bat_now.perc and tonumber(bat_now.perc) <= 5 then
+                baticon:set_image(theme.widget_battery_empty)
+            elseif not bat_now.perc and tonumber(bat_now.perc) <= 15 then
+                baticon:set_image(theme.widget_battery_low)
+            else
+                baticon:set_image(theme.widget_battery)
             end
+            widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
+        else
+            widget:set_markup()
+            baticon:set_image(theme.widget_ac)
         end
-    }
-)
+    end
+})
 
 -- ALSA volume
 local volicon = wibox.widget.imagebox(theme.widget_vol)
-theme.volume =
-    lain.widget.alsa(
-    {
-        settings = function()
-            if volume_now.status == "off" then
-                volicon:set_image(theme.widget_vol_mute)
-            elseif tonumber(volume_now.level) == 0 then
-                volicon:set_image(theme.widget_vol_no)
-            elseif tonumber(volume_now.level) <= 50 then
-                volicon:set_image(theme.widget_vol_low)
-            else
-                volicon:set_image(theme.widget_vol)
-            end
-
-            widget:set_markup(markup.font(theme.font, " " .. volume_now.level .. "% "))
+theme.volume = lain.widget.alsa({
+    settings = function()
+        if volume_now.status == "off" then
+            volicon:set_image(theme.widget_vol_mute)
+        elseif tonumber(volume_now.level) == 0 then
+            volicon:set_image(theme.widget_vol_no)
+        elseif tonumber(volume_now.level) <= 50 then
+            volicon:set_image(theme.widget_vol_low)
+        else
+            volicon:set_image(theme.widget_vol)
         end
-    }
-)
+
+        widget:set_markup(markup.font(theme.font, " " .. volume_now.level .. "% "))
+    end
+})
 
 -- MEM
 local memwidget = wibox.widget.textbox()
@@ -438,14 +370,12 @@ vicious.register(memwidget, vicious.widgets.mem, "$1% ($2MiB/$3MiB)", 7)
 local graph_mem = wibox.widget.graph()
 graph_mem:set_width(100)
 graph_mem:set_background_color(widget_bg_color)
-graph_mem:set_color(
-    {
-        type = "linear",
-        from = {0, 0},
-        to = {50, 0},
-        stops = {{0, "#FF5656"}, {0.5, "#88A175"}, {1, "#AECF96"}}
-    }
-)
+graph_mem:set_color({
+    type = "linear",
+    from = {0, 0},
+    to = {50, 0},
+    stops = {{0, "#FF5656"}, {0.5, "#88A175"}, {1, "#AECF96"}}
+})
 
 -- Register widget
 vicious.cache(vicious.widgets.mem)
@@ -457,7 +387,7 @@ vicious.cache(vicious.widgets.cpu)
 local cpuHistogrammWidget = wibox.widget.graph()
 cpuHistogrammWidget:set_width(100)
 cpuHistogrammWidget:set_background_color(widget_bg_color)
-cpuHistogrammWidget:set_color {
+cpuHistogrammWidget:set_color{
     type = "linear",
     from = {0, 0},
     to = {50, 0},
@@ -479,8 +409,7 @@ f:close()
 -- CPU Kernels Bar
 local cpuKernelProgress = {}
 
-local cpuKernelGridWidget =
-    wibox.widget {
+local cpuKernelGridWidget = wibox.widget {
     forced_num_cols = cpu_kernels - 1,
     forced_num_rows = 1,
     homogeneous = true,
@@ -491,86 +420,64 @@ local cpuKernelGridWidget =
 for i = 1, cpu_kernels - 1 do
     cpuKernelProgress[i] = wibox.widget.progressbar()
 
-    local newKernelProgress =
-        wibox.container.margin(
-        wibox.widget {
-            {
-                max_value = 100,
-                value = 0,
-                forced_height = 12,
-                -- border_width = 1,
-                -- border_color =  theme.border_normal,
-                background_color = "alpha",
-                -- color = xres.warning_bg_color,
-                widget = cpuKernelProgress[i]
-            },
-            direction = "east",
-            layout = wibox.container.rotate
+    local newKernelProgress = wibox.container.margin(wibox.widget {
+        {
+            max_value = 100,
+            value = 0,
+            forced_height = 12,
+            -- border_width = 1,
+            -- border_color =  theme.border_normal,
+            background_color = "alpha",
+            -- color = xres.warning_bg_color,
+            widget = cpuKernelProgress[i]
         },
-        dpi(1)
-    )
+        direction = "east",
+        layout = wibox.container.rotate
+    }, dpi(1))
 
     cpuKernelGridWidget:add(newKernelProgress)
 end
 
-vicious.register(
-    cpuKernelGridWidget,
-    vicious.widgets.cpu,
-    function(widget, args)
-        for i = 2, cpu_kernels do
-            cpuKernelProgress[i - 1]:set_value(args[i])
-        end
-    end,
-    3
-)
+vicious.register(cpuKernelGridWidget, vicious.widgets.cpu, function(widget, args)
+    for i = 2, cpu_kernels do
+        cpuKernelProgress[i - 1]:set_value(args[i])
+    end
+end, 3)
 
 -- Coretemp (lain, average)
-local temp =
-    lain.widget.temp(
-    {
-        settings = function()
-            widget:set_markup(markup.font(theme.font, " " .. coretemp_now .. "°C "))
-        end
-    }
-)
---]]
+local temp = lain.widget.temp({
+    settings = function()
+        widget:set_markup(markup.font(theme.font, " " .. coretemp_now .. "°C "))
+    end
+})
+-- ]]
 local tempicon = wibox.widget.imagebox(theme.widget_temp)
 
 -- Net
 local neticon = wibox.widget.imagebox(theme.widget_net)
-local net =
-    lain.widget.net(
-    {
-        settings = function()
-            widget:set_markup(
-                markup.fontfg(theme.font, "#FEFEFE", " " .. net_now.received .. " ↓↑ " .. net_now.sent .. " ")
-            )
-        end
-    }
-)
+local net = lain.widget.net({
+    settings = function()
+        widget:set_markup(markup.fontfg(theme.font, "#FEFEFE",
+            " " .. net_now.received .. " ↓↑ " .. net_now.sent .. " "))
+    end
+})
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
 
 -- ...
 -- Create a textclock widget
 local mytextclock = wibox.widget.textclock()
 
-local cw =
-    calendar_widget(
-    {
-        theme = "outrun",
-        placement = "bottom_right",
-        radius = 8
-    }
-)
+local cw = calendar_widget({
+    theme = "outrun",
+    placement = "bottom_right",
+    radius = 8
+})
 
-mytextclock:connect_signal(
-    "button::press",
-    function(_, _, _, button)
-        if button == 1 then
-            cw.toggle()
-        end
+mytextclock:connect_signal("button::press", function(_, _, _, button)
+    if button == 1 then
+        cw.toggle()
     end
-)
+end)
 
 -- Storage
 vicious.cache(vicious.widgets.fs)
@@ -631,13 +538,11 @@ local screen2RightWidgets = {
     widget_seperator,
     wibox.container.background(wibox.container.margin(memwidget, theme.margins_width, theme.margins_width)),
     widget_seperator,
-    wibox.container.background(
-        wibox.container.margin(
-            wibox.widget {tempicon, temp.widget, layout = wibox.layout.align.horizontal},
-            theme.margins_width,
-            theme.margins_width
-        )
-    ),
+    wibox.container.background(wibox.container.margin(wibox.widget {
+        tempicon,
+        temp.widget,
+        layout = wibox.layout.align.horizontal
+    }, theme.margins_width, theme.margins_width)),
     widget_seperator,
     wibox.container.background(wibox.container.margin(datewidget, theme.margins_width, theme.margins_width * 2))
 }
@@ -646,13 +551,12 @@ local screen1RightWidgets = {
     -- Right widgets
     layout = wibox.layout.fixed.horizontal,
     widget_seperator,
-    wibox.container.background(
-        wibox.container.margin(
-            wibox.widget {nil, neticon, net.widget, layout = wibox.layout.align.horizontal},
-            theme.margins_width,
-            theme.margins_width
-        )
-    ),
+    wibox.container.background(wibox.container.margin(wibox.widget {
+        nil,
+        neticon,
+        net.widget,
+        layout = wibox.layout.align.horizontal
+    }, theme.margins_width, theme.margins_width)),
     widget_seperator,
     wibox.container.background(wibox.container.margin(cpuKernelGridWidget, theme.margins_width, theme.margins_width)),
     widget_seperator,
@@ -665,8 +569,7 @@ local screen1RightWidgets = {
 
 function theme.at_screen_connect(s)
     -- Quake application
-    s.quake =
-        lain.util.quake {
+    s.quake = lain.util.quake {
         app = "kitty",
         name = "QuakeDD",
         settings = function(c)
@@ -685,16 +588,14 @@ function theme.at_screen_connect(s)
     -- s.quake = lain.util.quake()
 
     -- Create a taglist widget
-    local taglist =
-        awful.widget.taglist {
+    local taglist = awful.widget.taglist {
         screen = s,
         filter = awful.widget.taglist.filter.all,
         buttons = awful.util.taglist_buttons
     }
 
     -- Create a tasklist widget
-    local tasklist =
-        awful.widget.tasklist {
+    local tasklist = awful.widget.tasklist {
         screen = s,
         filter = awful.widget.tasklist.filter.currenttags,
         buttons = awful.util.tasklist_buttons,
@@ -707,16 +608,13 @@ function theme.at_screen_connect(s)
     }
 
     -- Create the wibox
-    local mywibox =
-        awful.wibar(
-        {
-            position = "top",
-            screen = s,
-            height = theme.menu_bar,
-            bg = theme.bg_normal,
-            fg = theme.fg_normal
-        }
-    )
+    local mywibox = awful.wibar({
+        position = "top",
+        screen = s,
+        height = theme.menu_bar,
+        bg = theme.bg_normal,
+        fg = theme.fg_normal
+    })
 
     -- Add widgets to the wibox
 
@@ -730,7 +628,7 @@ function theme.at_screen_connect(s)
         leftWidgets = screen2LeftWidges
     end
 
-    mywibox:setup {
+    mywibox:setup{
         layout = wibox.layout.align.horizontal,
         {
             -- Left widgets

@@ -278,9 +278,6 @@
 	subrepo = !sh -c 'git filter-branch --prune-empty --subdirectory-filter $1 master' -
 	human = name-rev --name-only --refs=refs/heads/*
 	
-[http]
-	sslVerify = false
-	
 [gitflow "branch"]
 	master = master
 	develop = develop
@@ -292,6 +289,9 @@
 	hotfix = hotfix/
 	support = support/
 
+[http]
+	sslVerify = false
+	
 [credential]
 	# Linux
 	helper = /usr/bin/git-credential-manager-core

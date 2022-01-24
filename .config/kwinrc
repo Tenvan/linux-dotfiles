@@ -36,5 +36,4 @@ LayoutName=org.manjaro.breath-dark.desktop
 LayoutName=org.manjaro.breath-dark.desktop
 
 [org.kde.kdecoration2]
-ButtonsOnLeft=MLSFB
-ButtonsOnRight=HNIAX
+ButtonsOnLeft=MLS

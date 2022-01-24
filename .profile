@@ -6,9 +6,9 @@ export SCRIPTS="$HOME/.scripts"
 . $SCRIPTS/defs
 
 export CUSTOMS="$HOME/.custom"
-export EDITOR=editor
+export EDITOR=micro
 # export PAGER=mypager
-# export VISUAL="$EDITOR"
+export VISUAL="$EDITOR"
 export FILEMANAGER="nemo"
 export TERMINAL="kitty"
 export TIME="/usr/bin/time -v "
