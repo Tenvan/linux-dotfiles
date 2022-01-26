@@ -73,18 +73,17 @@ install xorg-xbacklight
 install xorg-xfd
 install xorg-xsetroot
 install xsel
-install zenity
 install yad
 install pm-utils
 install i3lock-fancy
 install gnome-keyring
 install libsecret 
 install libgnome-keyring
+install watchexec
 
 # ArcoLinux Packages
 if [ $IS_ARCO = true ]; then
 	# Meta Packages
-	install arcolinux-meta-fun
 	install arcolinux-meta-log
 	install arcolinux-meta-samba
 	install arcolinux-meta-utilities
@@ -123,21 +122,6 @@ install yarn
 install tk
 install nsis
 
-# DotNet/Mono Setup
-install dotnet-sdk
-install mono
-install mono-msbuild
-
-# jetbrains apps
-install jetbrains-toolbox
-
-# Microcontroler Develop
-install platformio
-install esphome
-install linuxcnc-bin
-install arduino
-install watchexec
-
 # awesome
 install awesome-git
 
@@ -155,6 +139,14 @@ if [ $IS_ARCO = true ]; then
 	install arcolinux-config-awesome-git
 fi
 
+# DotNet/Mono Setup
+install dotnet-sdk
+install mono
+install mono-msbuild
+
+# jetbrains apps
+install jetbrains-toolbox
+
 # config tools
 install lxappearance
 
@@ -164,11 +156,7 @@ install gnome-system-monitor
 install gnome-system-log
 install gnome-logs
 install gnome-calculator
-if [ $IS_ARCO = true ]; then
-	install network-manager-gnome
-else
-	install network-manager-applet
-fi
+install network-manager-applet
 
 # polkits
 install polkit
@@ -192,8 +180,6 @@ install ufraw-thumbnailer
 
 # Audio Radio
 install radiotray-ng
-install shortwave-git
-install libadwaita-shortwave
 
 # Nemo
 install cinnamon-translations
@@ -331,7 +317,7 @@ install tar
 
 # themes
 if [ $IS_ARCO = true ]; then
-	install arcolinux-arc-theme-git
+	install arcolinux-arc-themes-git
 fi
 install materia-gtk-theme
 install materia-theme
@@ -357,7 +343,7 @@ install awesome-terminal-fonts
 install terminus-font
 install powerline-fonts
 
-install nerd-fonts-complete
+# install nerd-fonts-complete
 # install nerd-fonts-fira-code
 # install nerd-fonts-noto
 # install noto-fonts-main

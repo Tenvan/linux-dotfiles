@@ -1,0 +1,61 @@
+#!/usr/bin/env zsh
+. ~/.scripts/defs
+
+# Init Install
+initInstall "install_arduino"
+sound count-down
+
+###########################
+# collect needed packages #
+###########################
+
+# arduino and other microcontroler development
+
+# IDEs
+install jetbrains-toolbox
+install visual-studio-code-bin
+install arduino
+
+# Microcontroler Develop
+install platformio
+install esphome
+
+# cnc tools
+install freecad-weekly-appimage
+install inkscape
+install blender
+
+# utils for editors
+install clang
+install gdb
+install graphviz
+install prettier
+install shellcheck
+
+# other utils
+install font-manager
+#install nerd-fonts-complete
+
+if [ $IS_MANJARO = true ]; then
+fi
+
+# graphics
+install imagemagick-full
+install libmagick-full
+
+###############################
+# uninstall unneeded packages #
+###############################
+fullUninstall
+
+#################################
+# install all (needed) packages #
+#################################
+fullInstall
+
+yarn global add cncjs
+
+## FINISHING #
+finish
+
+sound complete

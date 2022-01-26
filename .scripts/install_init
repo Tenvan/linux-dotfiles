@@ -31,8 +31,9 @@ if [ -f /etc/pamac.conf ]; then
 	errorCheck "pamac config"
 fi
 
-sudo pacman -S --noconfirm --needed git base-devel yay curl \
-	colorgcc go ruby rust git-credential-manager-core-bin
+sudo pacman -S --needed git base-devel yay curl colorgcc go ruby rust 
+yay -Sy git-credential-manager-core-bin
+	
 errorCheck "installation base-devel"
 
 # Prompt installieren
@@ -65,8 +66,5 @@ finish
 
 git submodule update --init --recursive
 errorCheck "gib submodule init"
-
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
-errorCheck "zinit init"
 
 sound complete
