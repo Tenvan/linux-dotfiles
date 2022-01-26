@@ -27,14 +27,19 @@ install docker
 install docker-compose
 install dpkg
 install exa
+install flameshot
+install fzf
 install fzf
 install genius
 install glances
+install gnome-keyring
 install gparted
+install grc
 install gtop
 install hardinfo
 install hstr
 install htop
+install i3lock-fancy
 install ibus-daemon
 install iftop
 install iotop
@@ -42,10 +47,12 @@ install iptraf-ng
 install kitty
 install kteatime
 install lhasa
+install libgnome-keyring
+install libsecret 
 install multitail
+install neofetch
 install networkmanager
 install networkmanager-openconnect
-install neofetch
 install nitrogen
 install notify-send.sh
 install numlockx
@@ -53,18 +60,20 @@ install openconnect
 install p7zip
 install packagekit
 install picom-jonaburg-git
+install pm-utils
 install powershell-bin
 install qbittorrent
 install rsyslog
 install s-tui
 install shell-color-scripts
 install spectacle
-install flameshot
+install stow
 install time
 install timeshift
 install tldr++
 install unclutter
 install unrar
+install watchexec
 install xautolock
 install xbindkeys
 install xclip
@@ -74,12 +83,6 @@ install xorg-xfd
 install xorg-xsetroot
 install xsel
 install yad
-install pm-utils
-install i3lock-fancy
-install gnome-keyring
-install libsecret 
-install libgnome-keyring
-install watchexec
 
 # ArcoLinux Packages
 if [ $IS_ARCO = true ]; then

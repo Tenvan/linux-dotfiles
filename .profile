@@ -3,7 +3,11 @@ export DOT_PROFILE="initialised"
 
 export SCRIPTS="$HOME/.scripts"
 
-. $SCRIPTS/defs
+# mods korrigieren
+chmod +x "$HOME/.bin/*"
+chmod +x "$SCRIPTS/*"
+
+. "$SCRIPTS/defs"
 
 export CUSTOMS="$HOME/.custom"
 export EDITOR=micro
@@ -18,35 +22,26 @@ export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
 export WORKSPACE=/media/WORKSPACE/$USER
 
-# mods korrigieren
-chmod +x $HOME/.bin/*
-chmod +x $HOME/.scripts/*
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Set $PATH if ~/.bin exist
-if [ -d "$HOME/.bin" ]; then
-    export PATH=$HOME/.bin:$PATH
-fi
-
-if [ -d "$HOME/.scripts" ]; then
-    export PATH=$HOME/.scripts:$PATH
-fi
-
-# Set $PATH if ~/.local/bin exist
-if [ -d "$HOME/.local/bin" ]; then
-    export PATH=$HOME/.local/bin:$PATH
-fi
-
-# yarn bin path
-if [ -d "$HOME/.yarn/bin" ]; then
-    export PATH=$HOME/.yarn/bin:$PATH
-fi
-
-# add android sdk path, if installed
-if [ -d "$ANDROID_SDK_ROOT/tools" ]; then
-    export PATH="$HOME/tools:$ANDROID_SDK_ROOT/platform-tools:$PATH"
-fi
+# Conditional PATH additions
+for path_candidate in /Applications/Xcode.app/Contents/Developer/usr/bin \
+  /opt/local/bin \
+  /opt/local/sbin \
+  /usr/local/bin \
+  /usr/local/sbin \
+  ~/.cabal/bin \
+  ~/.cargo/bin \
+  ~/.rbenv/bin \
+  ~/.bin \
+  ~/.scripts \
+  ~/.local/bin \
+  ~/.yarn/bin \
+  ~/src/gocode/bin \
+  ~/gocode \
+  "$ANDROID_SDK_ROOT/platform-tools"
+do
+  if [[ -d "${path_candidate}" ]]; then
+    export PATH="${PATH}:${path_candidate}"
+  fi
+done
 
 csource "$CUSTOMS/.profile"

@@ -28,10 +28,10 @@ run pamac-tray
 
 #run blueman-tray
 #run blueman-applet
-#run nm-applet
+run nm-applet
 
 # Sound Tray Icons
-# restart start-pulseaudio-x11
+restart start-pulseaudio-x11
 run pasystray
 
 $SCRIPTS/picom-toggle-awesome.sh

@@ -23,10 +23,11 @@ alias l.="ls -A | egrep '^\.'"
 
 # Changing "ls" to "exa"
 if [ -x "$(command -v exa)" ]; then
-	alias ls='exa -alghHi --color=always --colour-scale --group-directories-first' # my preferred listing
-	alias la='exa -alghHi --color=always --colour-scale --group-directories-first' # all files and dirs
-	alias ll='exa -alghHi --color=always --colour-scale --group-directories-first' # long format
-	alias lt='exa -aT -L3 --color=always --colour-scale --group-directories-first' # tree listing
+	alias l='exa -al --icons --git --time-style=long-iso --group-directories-first --color-scale'
+	alias ls='exa -alghHi --icons --git --color=always --colour-scale --group-directories-first' # my preferred listing
+	alias la='exa -alghHi  --icons --git --time-style=long-iso --color=always --colour-scale --group-directories-first' # all files and dirs
+	alias ll='exa -alghHi  --icons --git --time-style=long-iso --color=always --colour-scale --group-directories-first' # long format
+	alias lt='exa -aT -L3  --icons --git --time-style=long-iso --color=always --colour-scale --group-directories-first' # tree listing
 fi
 
 # Changing "ls" to "lsd"
