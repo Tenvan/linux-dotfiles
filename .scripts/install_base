@@ -324,9 +324,19 @@ if [ $IS_ARCO = true ]; then
 fi
 install materia-gtk-theme
 install materia-theme
-install adapta-maia-theme 
-install maia-icon-theme 
-install arc-maia-icon-theme
+
+if [ $IS_MANJARO = true ]; then
+	install adwaita-maia 
+	install arc-themes-maia 
+	install arc-themes-solid-maia 
+	install gtk-theme-maia 
+	install maia-wallpaper 
+	install papirus-maia-icon-theme 
+	install xcursor-maia
+	install adapta-maia-theme 
+	install maia-icon-theme 
+	install arc-maia-icon-theme
+fi
 
 # icons
 install arc-icon-theme
