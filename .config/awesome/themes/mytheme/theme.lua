@@ -29,22 +29,22 @@ local function makeColorTransparent(colorkey, opacity)
     return transColor
 end
 
-local base00 = "#404552" -- ----
-local base01 = "#2f3b4c" -- ---
-local base02 = "#443e58" -- --
-local base03 = "#898f9a" -- -
-local base04 = "#545966" -- +
-local base05 = "#d3dae3" -- ++
-local base06 = "#a0a9c8" -- +++
-local base07 = "#afbabd" -- ++++
-local base08 = "#fa8a5c" -- red
-local base09 = "#bea919" -- orange
-local base0A = "#cca429" -- yellow
-local base0B = "#66bc56" -- green
-local base0C = "#39b8c5" -- aqua/cyan
-local base0D = "#90a5f7" -- blue
-local base0E = "#d88de6" -- purple
-local base0F = "#c88526" -- brown
+local base00 = "#232423" -- ----
+local base01 = "#BA2922" -- ---
+local base02 = "#7E807E" -- --
+local base03 = "#4C4F4D" -- -
+local base04 = "#16A085" -- +
+local base05 = "#43746A" -- ++
+local base06 = "#00CCCC" -- +++
+local base07 = "#E0E0E0" -- ++++
+local base08 = "#282928" -- red
+local base09 = "#CC372C" -- orange
+local base0A = "#8D8F8D" -- yellow
+local base0B = "#4E524F" -- green
+local base0C = "#13BF9D" -- aqua/cyan
+local base0D = "#487D72" -- blue
+local base0E = "#00D1D1" -- purple
+local base0F = "#E8E8E8" -- brown
 
 local theme = {}
 
@@ -585,7 +585,6 @@ function theme.at_screen_connect(s)
         width = 0.80,
         horiz = "center"
     }
-    -- s.quake = lain.util.quake()
 
     -- Create a taglist widget
     local taglist = awful.widget.taglist {
@@ -647,24 +646,3 @@ function theme.at_screen_connect(s)
 end
 
 return theme
-
--- awesome
--- awesome v4.3 (Too long)
--- • Compiled against Lua 5.3.6 (running with Lua 5.3)
--- • D-Bus support: ✔
--- • execinfo support: ✔
--- • xcb-randr version: 1.6
--- • LGI version: 0.9.2
---
-
--- awesome-git
--- awesome v4.3-1086-g13cd20780 (Too long)
--- • Compiled against Lua 5.3.6 (running with Lua 5.3)
--- • API level: 4
--- • D-Bus support: yes
--- • xcb-errors support: no
--- • execinfo support: yes
--- • xcb-randr version: 1.6
--- • LGI version: 0.9.2
--- • Transparency enabled: yes
--- • Custom search paths: no

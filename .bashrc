@@ -134,3 +134,5 @@ fi
 test -f "$(which neofetch)" && $(which neofetch)
 
 csource "$CUSTOMS/.bashrc"
+
+colorscript -e six

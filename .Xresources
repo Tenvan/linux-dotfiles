@@ -2,25 +2,23 @@
 ! Generic Theme Colors for using in Theme Engines (GTK Awesome etc.)
 ! ------------------------------------------------------------------------------
 
-! Base16 oomox-arc-dark
-! Scheme: oomox-arc-dark
-
-#define base00 #404552
-#define base01 #2f3b4c
-#define base02 #443e58
-#define base03 #898f9a
-#define base04 #545966
-#define base05 #d3dae3
-#define base06 #a0a9c8
-#define base07 #afbabd
-#define base08 #fa8a5c
-#define base09 #bea919
-#define base0A #cca429
-#define base0B #66bc56
-#define base0C #39b8c5
-#define base0D #90a5f7
-#define base0E #d88de6
-#define base0F #c88526
+#define base00 #232423
+#define base01 #BA2922
+#define base02 #7E807E
+#define base03 #4C4F4D
+#define base04 #16A085
+#define base05 #43746A
+#define base06 #00CCCC
+#define base07 #E0E0E0
+#define base08 #282928
+#define base09 #CC372C
+#define base0A #8D8F8D
+#define base0B #4E524F
+#define base0C #13BF9D
+#define base0D #487D72
+#define base0E #00D1D1
+#define base0F #E8E8E8
+#define background_opacity true
 
 *foreground:   base05
 #ifdef background_opacity
@@ -69,13 +67,13 @@
 
 Xcursor.theme: Bibata-Modern-Ice
 Xcursor.size:  24
-Xft.dpi:       96
 
+Xft.dpi:       96
 Xft.antialias: true
 Xft.hinting:   true
 Xft.rgba:      rgb
 Xft.autohint:  false
-Xft.hintstyle: hintslight
+Xft.hintstyle:  hintfull
 Xft.lcdfilter: lcddefault
 
 ! ------------------------------------------------------------------------------

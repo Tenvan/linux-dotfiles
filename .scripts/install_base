@@ -10,7 +10,6 @@ sound count-down
 ###########################
 
 # system packages
-install alacritty
 install alttab-git
 install arandr
 install arj
@@ -77,6 +76,7 @@ install watchexec
 install xautolock
 install xbindkeys
 install xclip
+install xdpi-git
 install xdotool
 install xorg-xbacklight
 install xorg-xfd
@@ -116,7 +116,7 @@ install gradle
 install jdk-openjdk
 install jdk8-openjdk
 install nodejs-emojione
-install nodejs-lts-gallium
+install nodejs
 install nvm
 install nuget
 install npm
@@ -322,6 +322,17 @@ install tar
 if [ $IS_ARCO = true ]; then
 	install arcolinux-arc-themes-git
 fi
+
+if [ $IS_MANJARO = true ]; then
+	install adwaita-maia 
+	install arc-themes-maia 
+	install arc-themes-solid-maia 
+	install gtk-theme-maia 
+	install kvantum-manjaro 
+	install maia-console 
+	install maia-wallpaper 
+fi
+
 install materia-gtk-theme
 install materia-theme
 
@@ -343,13 +354,17 @@ install arc-icon-theme
 install paper-icon-theme
 install papirus-icon-theme
 
-# cursor
-if [ $IS_ARCO = true ]; then
-	install bibata-cursor-theme
-else
-	install bibata-cursor-theme-bin
+if [ $IS_MANJARO = true ]; then
+	install breeze-maia-icon-themes 
+	install papirus-maia-icon-theme
 fi
+
+# cursor
+install bibata-cursor-theme
 install bibata-cursor-translucent
+if [ $IS_MANJARO = true ]; then
+	install maia-cursor-theme 
+fi
 
 # fonts
 install font-manager

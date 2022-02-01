@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
-export BW_SESSION=<token>
+
+# Scale Factor
+# export QT_SCALE_FACTOR=1.5
+# export QT_AUTO_SCREEN_SET_FACTOR=1.5
+# export QT_AUTO_SCREEN_SCALE_FACTOR=0
+# export GDK_SCALE=1.5
+# export GDK_DPI_SCALE=1.5
+
+# oder dpi setzen (nicht beides gleichzeitig)
+# export QT_FONT_DPI=144
 
 # Lineheight bei 144dpi
-#export LINEHEIGHT=40
+#export LINEHEIGHT=50
 
 # Lineheight bei 96dpi
 # export LINEHEIGHT=28
@@ -13,8 +22,8 @@ export BW_SESSION=<token>
 # WALLPAPER1=~/.local/share/wallpapers/shared/floating-world-in-space-3000x2357.jpg
 # WALLPAPER2=~/.local/share/wallpapers/shared/blue-earth-2880x1800.jpg
 
-export SHARED_WALLPAPERS="$HOME/.local/share/wallpapers/shared"
-export DUAL_MONITOR_WALLPAPERS="$SHARED_WALLPAPERS/wallpapers-multimonitor"
+# export SHARED_WALLPAPERS="$HOME/.local/share/wallpapers/shared"
+# export DUAL_MONITOR_WALLPAPERS="$SHARED_WALLPAPERS/wallpapers-multimonitor"
 
 #WALLPAPER_DUAL=dropletno7revisited.jpg
 #WALLPAPER_DUAL=mesh3isostudy.jpg
@@ -22,10 +31,10 @@ export DUAL_MONITOR_WALLPAPERS="$SHARED_WALLPAPERS/wallpapers-multimonitor"
 #WALLPAPER_DUAL=softshading.jpg
 #WALLPAPER_DUAL=verticaldesireblack.jpg
 #WALLPAPER_DUAL=honeycombs.jpg
-WALLPAPER_DUAL=elementalfists.jpg
+#WALLPAPER_DUAL=elementalfists.jpg
 #WALLPAPER_DUAL=0bonv.jpg
 #WALLPAPER_DUAL=large-dual-screen-wallpaper1.jpg
 #WALLPAPER_DUAL=0bonv_x_flip.jpg
 
-export WALLPAPER_FILE=$DUAL_MONITOR_WALLPAPERS/$WALLPAPER_DUAL
+#export WALLPAPER_FILE=$DUAL_MONITOR_WALLPAPERS/$WALLPAPER_DUAL
 ######################

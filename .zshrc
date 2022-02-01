@@ -231,3 +231,5 @@ esac
 
 csource "$HOME/.aliasrc"
 csource "$CUSTOMS/.zshrc"
+
+colorscript -e six
