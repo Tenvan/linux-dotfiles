@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-. $SCRIPTS/defs
+. ~/.scripts/defs
 
 SYSTEM_ACTIONS=(
     "📲 Abmelden" "sh $SCRIPTS/session_logout.sh"

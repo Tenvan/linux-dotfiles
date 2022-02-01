@@ -40,8 +40,8 @@ if [ $IS_MANJARO = true ]; then
 fi
 
 # graphics
-install imagemagick-full
-install libmagick-full
+#install imagemagick-full
+#install libmagick-full
 
 ###############################
 # uninstall unneeded packages #

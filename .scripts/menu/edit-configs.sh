@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-. $SCRIPTS/defs
+. ~/.scripts/defs
 
 # Function create a scale dialog
 filesEdit="code -a --file-uri"

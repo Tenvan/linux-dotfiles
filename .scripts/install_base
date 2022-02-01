@@ -324,6 +324,9 @@ if [ $IS_ARCO = true ]; then
 fi
 install materia-gtk-theme
 install materia-theme
+install adapta-maia-theme 
+install maia-icon-theme 
+install arc-maia-icon-theme
 
 # icons
 install arc-icon-theme

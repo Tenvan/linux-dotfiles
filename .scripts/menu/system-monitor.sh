@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-. $SCRIPTS/defs
+. ~/.scripts/defs
 
 shellCmd="$TERMINAL "
 
