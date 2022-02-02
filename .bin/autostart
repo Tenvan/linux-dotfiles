@@ -31,8 +31,9 @@ run pamac-tray
 run nm-applet
 
 # Sound Tray Icons
-restart start-pulseaudio-x11
-run pasystray
+# restart start-pulseaudio-x11
+restart pa-applet
+restart pasystray
 
 $SCRIPTS/picom-toggle-awesome.sh
 

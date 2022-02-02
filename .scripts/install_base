@@ -84,6 +84,12 @@ install xorg-xsetroot
 install xsel
 install yad
 
+# sound setup
+install pa-applet
+install pavucontrol 
+install pulseaudio-equalizer
+install pulseaudio-bluetooth
+
 # ArcoLinux Packages
 if [ $IS_ARCO = true ]; then
 	# Meta Packages
