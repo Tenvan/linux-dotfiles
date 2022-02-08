@@ -20,7 +20,10 @@ export SSH_AUTH_SOCK
 mkdir -p "$HOME"/.local/share/keyrings
 
 echo "do run autostarts"
-$HOME/.screenlayout/screenlayout.sh
-$HOME/.bin/autostart &
+
+if [[ "$DESKTOP_SESSION" == "awesome" ]]; then
+    "$HOME/.screenlayout/screenlayout.sh"
+    "$HOME/.bin/autostart" &    
+fi
 
 csource "$CUSTOMS/.xsession"

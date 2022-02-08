@@ -1564,6 +1564,19 @@ awful.rules.rules = {
     -- Special handled applications
 
     {
+        -- Fusion 360
+        rule = {
+            class = "fusion360.exe"
+        },
+        properties = {
+            border_width = 0,
+            titlebars_enabled = false,
+            screen = 1,
+            tag = awful.util.tagnames[7],
+            switchtotag = true
+        }
+    },
+    {
         -- JetBrains InteliJ Hauptfenster
         rule = {
             class = "jetbrains-.*",

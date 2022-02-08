@@ -61,7 +61,7 @@ alias update-fc='sudo fc-cache -fv'
 alias inst="yay -S --color always --needed"
 alias inst_over="yay -S --color always --needed --overwrite \*"
 alias uninst="yay -Rcn"
-alias upall="yay -Syyu --needed"
+alias upall="yay -Syyu --needed;flatpak update -v --noninteractive"
 alias search="yay -Ss --bottomup"
 alias upkeys="sudo pacman-key --refresh-keys"
 

@@ -4,8 +4,8 @@ export DOT_PROFILE="initialised"
 export SCRIPTS="$HOME/.scripts"
 
 # mods korrigieren
-chmod +x "$HOME/.bin/*"
-chmod +x "$SCRIPTS/*"
+chmod +x $HOME/.bin/*
+chmod +x $SCRIPTS/*
 
 . "$SCRIPTS/defs"
 
