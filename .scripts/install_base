@@ -35,7 +35,6 @@ install gnome-keyring
 install gparted
 install grc
 install gtop
-install hardinfo
 install hstr
 install htop
 install i3lock-fancy
@@ -83,6 +82,12 @@ install xorg-xfd
 install xorg-xsetroot
 install xsel
 install yad
+
+if [ $IS_MANJARO = true ]; then
+	install hardinfo-gtk3
+else
+	install hardinfo
+fi
 
 # sound setup
 install pa-applet
@@ -231,7 +236,6 @@ install sp
 install sound-theme-smooth
 install gst123
 install livecd-sounds
-install mint-sounds
 install tvolnoti
 install ponymix
 install pnmixer 
@@ -333,12 +337,13 @@ if [ $IS_MANJARO = true ]; then
 	install adwaita-maia 
 	install arc-themes-maia 
 	install arc-themes-solid-maia 
-	install gtk-theme-maia 
+	# install gtk-theme-maia 
 	install kvantum-manjaro 
 	install maia-console 
 	install maia-wallpaper 
 fi
 
+install gtk-theme-material-black
 install materia-gtk-theme
 install materia-theme
 
