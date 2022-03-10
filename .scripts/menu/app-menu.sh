@@ -3,7 +3,7 @@
 
 SYSTEM_ACTIONS=(
     "🇯 JetBrains Toolbox" "jetbrains-toolbox"
-    "🇹 Teams" "teams"
+    "🇹 Teams" "teams-for-linux"
     "🇫 Font Manager" "font-manager"
     "🇻 Virtio Manager" "virt-manager"
     "🇷 Remmina" "remmina"

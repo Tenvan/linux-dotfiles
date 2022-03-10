@@ -13,6 +13,8 @@ if [ $IS_MANJARO = true ]; then
 	install bootsplash-theme-manjaro
 fi
 
+install powerline-console-fonts-git
+
 ###############################
 # uninstall unneeded packages #
 ###############################
@@ -29,9 +31,9 @@ finish
 # refresh icons
 sudo gdk-pixbuf-query-loaders --update-cache
 
-layoutscript="$HOME/.screenlayout/screenlayout-system.sh"
+layoutscript="$HOME/.screenlayout/screenlayout.sh"
 if [ ! -f "$layoutscript" ]; then
-	print 'Fehler: keine .screenlayout-system.sh gefunden'
+	print 'Fehler: keine .screenlayout.sh gefunden'
 	exit -1
 fi
 
@@ -113,6 +115,7 @@ enable-hidpi=off
 cursor-theme-name=Bibata-Modern-Ice" | sudo tee /etc/lightdm/slick-greeter.conf
 errorCheck "lightdm greeter config"
 
+# aus Folder /usr/share/kbd/consolefonts/
 echo "KEYMAP=de
 FONT=ter-powerline-v12n
 FONT_MAP=" | sudo tee /etc/vconsole.conf

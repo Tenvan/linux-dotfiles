@@ -28,7 +28,6 @@ install dpkg
 install exa
 install flameshot
 install fzf
-install fzf
 install genius
 install glances
 install gnome-keyring
@@ -37,7 +36,6 @@ install grc
 install gtop
 install hstr
 install htop
-install i3lock-fancy
 install ibus-daemon
 install iftop
 install iotop
@@ -68,7 +66,6 @@ install spectacle
 install stow
 install time
 install timeshift
-install tldr++
 install unclutter
 install unrar
 install watchexec
@@ -80,6 +77,7 @@ install xdotool
 install xorg-xbacklight
 install xorg-xfd
 install xorg-xsetroot
+install xscreensaver
 install xsel
 install yad
 
@@ -112,9 +110,6 @@ fi
 
 # ssh 
 install openssh
-# TODO
-# install lxqt-openssh-askpass
-# install ssh-askpass-fullscreen
 
 # Base Development Tools
 install base-devel
@@ -136,23 +131,6 @@ install yarn
 install tk
 install nsis
 
-# awesome
-install awesome-git
-
-install xorg-server-xephyr
-install luacheck
-install awmtt
-
-install eminent-git
-install vicious
-install lain-git
-install shifty-git
-install obvious-git
-
-if [ $IS_ARCO = true ]; then
-	install arcolinux-config-awesome-git
-fi
-
 # DotNet/Mono Setup
 install dotnet-sdk
 install mono
@@ -172,13 +150,6 @@ install gnome-logs
 install gnome-calculator
 install network-manager-applet
 
-# polkits
-install polkit
-install polkit-qt5
-install polkit-gnome
-install xfce-polkit
-
-install xscreensaver
 
 install qt5ct
 install qt5-styleplugins
@@ -221,9 +192,6 @@ install rofimoji
 install rofi-emoji
 
 # File Indexing
-install cerebro-git
-install synapse
-install synapse-admin-git
 install fsearch
 install recoll
 
@@ -333,41 +301,25 @@ if [ $IS_ARCO = true ]; then
 	install arcolinux-arc-themes-git
 fi
 
+install pop-gtk-theme
+install qogir-gtk-theme
+install graphite-gtk-theme
+
 if [ $IS_MANJARO = true ]; then
-	install adwaita-maia 
-	install arc-themes-maia 
-	install arc-themes-solid-maia 
-	# install gtk-theme-maia 
 	install kvantum-manjaro 
 	install maia-console 
 	install maia-wallpaper 
-fi
-
-install gtk-theme-material-black
-install materia-gtk-theme
-install materia-theme
-
-if [ $IS_MANJARO = true ]; then
-	install adwaita-maia 
-	install arc-themes-maia 
-	install arc-themes-solid-maia 
-	install gtk-theme-maia 
-	install maia-wallpaper 
 	install papirus-maia-icon-theme 
 	install xcursor-maia
-	install adapta-maia-theme 
-	install maia-icon-theme 
-	install arc-maia-icon-theme
 fi
 
 # icons
-install arc-icon-theme
 install paper-icon-theme
 install papirus-icon-theme
 
 if [ $IS_MANJARO = true ]; then
-	install breeze-maia-icon-themes 
 	install papirus-maia-icon-theme
+	install maia-icon-theme 
 fi
 
 # cursor
@@ -406,11 +358,6 @@ install lightdm-settings
 install lightdm-gtk-greeter-settings
 install lightdm-gtk-greeter
 install lightdm-slick-greeter
-install lightdm-webkit2-greeter
-install lightdm-webkit2-theme-glorious
-install lightdm-webkit2-clean
-install lightdm-webkit2-theme-obsidian
-install lightdm-webkit-theme-aether
 
 if [ $IS_MANJARO = true ]; then
   install manjaro-slick-greeter-theme-light
@@ -454,8 +401,10 @@ install libmythes
 install languagetool
 
 # Browser
-install google-chrome
 install vivaldi
+install firefox-i18n-de
+install chromium
+install google-chrome
 install microsoft-edge-dev-bin
 
 # optional application packages

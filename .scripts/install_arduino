@@ -21,9 +21,14 @@ install platformio
 install esphome
 
 # cnc tools
-install freecad-weekly-appimage
+# install freecad-weekly-appimage
+install freecad-assembly3-git
 install inkscape
 install blender
+install appleseed-git
+install lux
+install luxcorerender-bin
+install povray
 
 # utils for editors
 install clang

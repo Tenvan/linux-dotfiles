@@ -297,3 +297,10 @@
 	helper = /usr/bin/git-credential-manager-core
 	credentialStore = secretservice
 
+[url "ssh://git@gitlab.management.ihr.infoniqa.local/"]
+	insteadOf = https://gitlab.ihr.infoniqa.local/
+	insteadOf = http://gitlab.ihr.infoniqa.local/
+
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+	insteadOf = http://github.com/

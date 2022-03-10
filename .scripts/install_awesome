@@ -1,0 +1,145 @@
+#!/usr/bin/env zsh
+. ~/.scripts/defs
+
+# Init Install
+initInstall "install_awesome"
+sound count-down
+
+###########################
+# collect needed packages #
+###########################
+
+# awesome
+install awesome
+install awmtt
+install eminent-git
+install vicious
+install lain-git
+install shifty-git
+install obvious-git
+
+if [ $IS_MANJARO = true ]; then
+	install manjaro-awesome-settings
+fi
+if [ $IS_ARCO = true ]; then
+	install arcolinux-config-awesome-git
+fi
+
+# system packages
+install alttab-git
+install copyq
+install exa
+install gnome-keyring
+install ibus-daemon
+install kitty
+install libgnome-keyring
+install libsecret 
+install luacheck
+install neofetch
+install networkmanager
+install networkmanager-openconnect
+install nitrogen
+install notify-send.sh
+install numlockx
+install picom-jonaburg-git
+install pm-utils
+install shell-color-scripts
+install time
+install timeshift
+install unclutter
+install xautolock
+install xbindkeys
+install xclip
+install xdpi-git
+install xdotool
+install xorg-server-xephyr
+install xorg-xfd
+install xorg-xsetroot
+install xsel
+install yad
+install ranger
+install micro
+
+# sound setup
+install pa-applet
+install pavucontrol 
+
+# ssh 
+install openssh
+
+# config tools
+install lxappearance
+
+# polkits
+install polkit-gnome
+# install polkit
+# install polkit-qt5
+# install xfce-polkit
+
+install qt5ct
+install qt5-styleplugins
+
+# file manager
+# install mc
+install ufraw-thumbnailer
+
+# Rofi Configs
+if [ $IS_ARCO = true ]; then
+	install arcolinux-rofi-git
+	install arcolinux-rofi-themes-git
+fi
+install rofi
+install rofimoji
+install rofi-emoji
+
+# sound setup
+install alsa-utils
+install alsa-oss
+install paprefs
+install pasystray
+install sound-theme-smooth
+install gst123
+install livecd-sounds
+install tvolnoti
+install ponymix
+install pnmixer 
+
+# Python libs
+install python
+install python-pip
+
+# cursor
+install bibata-cursor-theme
+install bibata-cursor-translucent
+
+# powerline in linux console
+install awesome-terminal-fonts
+install terminus-font
+install powerline-fonts
+
+# btrfs tools
+install grub-btrfs
+install snapper
+install snapper-rollback
+install snapper-gui
+install timeshift-autosnap
+
+###############################
+# uninstall unneeded packages #
+###############################
+fullUninstall
+
+#################################
+# install all (needed) packages #
+#################################
+fullInstall
+
+## FINISHING #
+finish
+
+# micro plugins
+micro -plugin install comment bounce editorconfig joinLines quoter filemanager bookmark \
+	jump detectindent go snippets crystal quickfix wc manipulator \
+	monokai-dark gotham-colors nordcolors 
+
+sound complete

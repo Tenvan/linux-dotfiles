@@ -4,14 +4,12 @@
 
 # Use powerline
 USE_POWERLINE="true"
+
 # Source manjaro-zsh-configuration
-if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
-  source /usr/share/zsh/manjaro-zsh-config
-fi
+csource /usr/share/zsh/manjaro-zsh-config
+
 # Use manjaro zsh prompt
-if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
-  source /usr/share/zsh/manjaro-zsh-prompt
-fi
+csource /usr/share/zsh/manjaro-zsh-prompt
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then

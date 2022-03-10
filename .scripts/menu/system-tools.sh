@@ -3,7 +3,6 @@
 
 shellCmd="$TERMINAL "
 timeCmd="$TIME "
-myTestLua=$(eval echo $HOME/.config/awesome/rc.test.lua)
 
 SYSTEM_ACTIONS=(
         "🪄 ReInstall All Packages" "$shellCmd --hold --title Sys:Upall pacman -Qqn | pacman -S -" \
