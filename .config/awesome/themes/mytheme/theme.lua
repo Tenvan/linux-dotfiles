@@ -29,14 +29,14 @@ local function makeColorTransparent(colorkey, opacity)
     return transColor
 end
 
-local base00 = "#232423" -- ----
-local base01 = "#BA2922" -- ---
-local base02 = "#7E807E" -- --
-local base03 = "#4C4F4D" -- -
-local base04 = "#16A085" -- +
-local base05 = "#43746A" -- ++
-local base06 = "#00CCCC" -- +++
-local base07 = "#E0E0E0" -- ++++
+local base00 = "#232423" -- ---- red
+local base01 = "#BA2922" -- ---  orange
+local base02 = "#7E807E" -- --   yellow
+local base03 = "#4C4F4D" -- -    green
+local base04 = "#16A085" -- +    aqua/cyan
+local base05 = "#43746A" -- ++   blue
+local base06 = "#00CCCC" -- +++  purple
+local base07 = "#E0E0E0" -- ++++ brown
 local base08 = "#282928" -- red
 local base09 = "#CC372C" -- orange
 local base0A = "#8D8F8D" -- yellow

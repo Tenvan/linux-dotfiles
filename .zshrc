@@ -25,6 +25,7 @@ zinit wait lucid for \
   atinit"zicompinit; zicdreplay" \
 	zdharma-continuum/fast-syntax-highlighting \
 	zdharma-continuum/history-search-multi-word \
+	memark/zsh-dotnet-completion \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
   blockf atpull'zinit creinstall -q .' \
