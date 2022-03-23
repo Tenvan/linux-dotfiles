@@ -23,11 +23,17 @@ IS_ENDEA=false
 SCRIPTS="$HOME/.scripts"
 
 DEBUG=false
-PACKER=yay
 
-if [ -x "$(command -v paru)" ]; then
-    PACKER=paru
+PACTOOL=$PACKER
+
+if [ -x "$(command -v yay)" ]; then
+  export PACTOOL=yay
 fi
+if [ -x "$(command -v paru)" ]; then
+  export PACTOOL=paru
+fi
+
+PACKER="$PACTOOL"
 
 #DEBUG=true
 ERROR_PAKAGE_UNINST=

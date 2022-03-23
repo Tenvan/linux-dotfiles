@@ -21,8 +21,8 @@ install platformio
 install esphome
 
 # cnc tools
-# install freecad-weekly-appimage
-install freecad-assembly3-git
+install freecad-weekly-appimage
+#install freecad-assembly3-git
 install inkscape
 install blender
 install appleseed-git

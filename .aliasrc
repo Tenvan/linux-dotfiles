@@ -58,11 +58,11 @@ alias pacman='sudo pacman --color auto'
 alias update-fc='sudo fc-cache -fv'
 
 #package manager
-alias inst="yay -S --color always --needed"
-alias inst_over="yay -S --color always --needed --overwrite \*"
-alias uninst="yay -Rcn"
-alias upall="yay -Syyu --needed;flatpak update -v --noninteractive"
-alias search="yay -Ss --bottomup"
+alias inst="$PACTOOL -S --color always --needed"
+alias inst_over="$PACTOOL -S --color always --needed --overwrite \*"
+alias uninst="$PACTOOL -Rcn"
+alias upall="$PACTOOL -Syyu --needed;flatpak update -v --noninteractive"
+alias search="$PACTOOL -Ss --bottomup"
 alias upkeys="sudo pacman-key --refresh-keys"
 
 #package cleanup (old and cache)

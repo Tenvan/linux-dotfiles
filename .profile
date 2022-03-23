@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
-export DOT_PROFILE="initialised"
-
 export SCRIPTS="$HOME/.scripts"
 
 # mods korrigieren
-chmod +x $HOME/.bin/*
-chmod +x $SCRIPTS/*
+if [ -r "$HOME/.bin" ]; then
+  chmod +x $HOME/.bin/*
+fi
+if [ -r "$SCRIPTS" ]; then
+  chmod +x $SCRIPTS/*
+fi
 
 . "$SCRIPTS/defs"
 

@@ -114,6 +114,6 @@ x-scheme-handler/https=vivaldi-stable.desktop
 x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
 x-scheme-handler/jetbrains-gateway=jetbrains-gateway.desktop
 x-scheme-handler/mailto=vivaldi-stable.desktop;
-x-scheme-handler/msteams=teams-for-linux.desktop
+x-scheme-handler/msteams=teams.desktop
 x-scheme-handler/tg=userapp-Telegram Desktop-X6OBC1.desktop
 x-scheme-handler/unknown=vivaldi-stable.desktop
