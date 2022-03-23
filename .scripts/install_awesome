@@ -12,11 +12,8 @@ sound count-down
 # awesome
 install awesome
 install awmtt
-install eminent-git
 install vicious
-install lain-git
-install shifty-git
-install obvious-git
+install lain
 
 if [ $IS_MANJARO = true ]; then
 	install manjaro-awesome-settings
