@@ -21,18 +21,23 @@ csource "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+
 zinit wait lucid for \
-  atinit"zicompinit; zicdreplay" \
+  atinit"zicompinit" \
 	zdharma-continuum/fast-syntax-highlighting \
 	zdharma-continuum/history-search-multi-word \
 	memark/zsh-dotnet-completion \
-  atload"_zsh_autosuggest_start" \
-      zsh-users/zsh-autosuggestions \
-  blockf atpull'zinit creinstall -q .' \
-      zsh-users/zsh-completions
+	OMZP::colored-man-pages
+  # atload"_zsh_autosuggest_start; zicdreplay" \
+      # zsh-users/zsh-autosuggestions \
+  # blockf atpull'zinit creinstall -q .' \  
+      # zsh-users/zsh-completions \
+	    # zsh-users/zsh-autosuggestions
+     
 
-zinit ice depth=1; zinit light romkatv/powerlevel10k
-           
+zinit ice depth=1; 
+zinit light romkatv/powerlevel10k
+
 ### End of Zinit's installer chunk
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.

@@ -1,6 +1,7 @@
 [ActivityManager]
 _k_friendly_name=Aktivitätenverwaltung
 switch-to-activity-040a23c0-7b2f-4a3c-802f-eb338c19ad61=none,none,Zu Aktivität „Standard“ wechseln
+switch-to-activity-53fadfe5-caa7-4fd3-86c9-89e0c93f5844=none,none,Zu Aktivität „Standard“ wechseln
 
 [KDE Keyboard Layout Switcher]
 Switch keyboard layout to Deutsch=none,none,Tastaturbelegung zu Deutsch umschalten
@@ -30,7 +31,7 @@ _k_friendly_name=Dienst für eigene Kurzbefehle
 {861b9a6d-4207-4295-9cf2-b69184c81f42}=Meta+E,none,Edit Menu
 {b0403d37-d2ad-49d0-ba17-1d22de5b73d8}=Meta+M,none,Monitore
 {c24d5101-10c1-4405-afc5-e104b6806c51}=Meta+Z,none,Rofi Menu
-{d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Suchen
+{d03619b6-9b3c-48cc-9d9c-a2aadb485550}=none,none,Suchen
 {f9001ed3-8a45-4849-aad2-9b8bfe9de83e}=Ctrl+Alt+T,none,Launch Konsole
 
 [kmix]
@@ -59,9 +60,9 @@ ExposeClass=Ctrl+F7,Ctrl+F7,Fenster zeigen umschalten (Fensterklasse)
 Increase Opacity=none,none,Die Deckkraft des aktiven Fensters um 5 % erhöhen
 Invert Screen Colors=none,none,Bildschirmfarben umkehren
 Kill Window=Ctrl+Alt+Esc,Ctrl+Alt+Esc,Fenster beseitigen
-Krohnkite: Cycle Layout=,none,
-Krohnkite: Decrease=,none,
-Krohnkite: Down/Next=,none,
+Krohnkite: Cycle Layout=none,none,
+Krohnkite: Decrease=none,none,
+Krohnkite: Down/Next=none,none,
 Krohnkite: Float=Meta+Alt+Space,none,
 Krohnkite: Float All=Meta+Shift+F,none,
 Krohnkite: Floating Layout=none,none,
@@ -69,22 +70,22 @@ Krohnkite: Grow Height=Meta+Ctrl+J,none,
 Krohnkite: Grow Width=Meta+Ctrl+L,none,
 Krohnkite: Increase=Meta+I,none,
 Krohnkite: Left=Meta+H,none,
-Krohnkite: Monocle Layout=,none,
-Krohnkite: Move Down/Next=,none,
-Krohnkite: Move Left=,none,
-Krohnkite: Move Right=,none,
-Krohnkite: Move Up/Prev=,none,
+Krohnkite: Monocle Layout=none,none,
+Krohnkite: Move Down/Next=none,none,
+Krohnkite: Move Left=none,none,
+Krohnkite: Move Right=none,none,
+Krohnkite: Move Up/Prev=none,none,
 Krohnkite: Next Layout=Meta+Ctrl+Space,none,
 Krohnkite: Previous Layout=Meta+|,none,
 Krohnkite: Quarter Layout=none,none,
-Krohnkite: Right=,none,
-Krohnkite: Set master=,none,
+Krohnkite: Right=none,none,
+Krohnkite: Set master=none,none,
 Krohnkite: Shrink Height=Meta+Ctrl+K,none,
 Krohnkite: Shrink Width=Meta+Ctrl+H,none,
 Krohnkite: Spread Layout=none,none,
 Krohnkite: Stair Layout=none,none,
 Krohnkite: Three Column Layout=none,none,
-Krohnkite: Tile Layout=,none,
+Krohnkite: Tile Layout=none,none,
 Krohnkite: Up/Prev=Meta+K,none,
 MoveMouseToCenter=Meta+F6,Meta+F6,Mauszeiger zentrieren
 MoveMouseToFocus=Meta+F5,Meta+F5,Mauszeiger in den Fokus verschieben
@@ -142,14 +143,14 @@ TILING: Move Window Down=Meta+Shift+J,none,Move Window Down
 TILING: Move Window Left=Meta+Shift+H,none,Move Window Left
 TILING: Move Window Right=Meta+Shift+L,none,Move Window Right
 TILING: Move Window Up=Meta+Shift+K,none,Move Window Up
-TILING: Next Tiling Layout=,none,Next Tiling Layout
-TILING: Previous Tiling Layout=,none,Previous Tiling Layout
+TILING: Next Tiling Layout=none,none,Next Tiling Layout
+TILING: Previous Tiling Layout=none,none,Previous Tiling Layout
 TILING: Resize Active Window To The Bottom=Meta+Alt+J,none,Resize Active Window To The Bottom
 TILING: Resize Active Window To The Left=Meta+Alt+H,none,Resize Active Window To The Left
 TILING: Resize Active Window To The Right=Meta+Alt+L,none,Resize Active Window To The Right
 TILING: Resize Active Window To The Top=Meta+Alt+K,none,Resize Active Window To The Top
 TILING: Swap Window With Master=Meta+Shift+M,none,Swap Window With Master
-TILING: Tile now=,none,Tile now
+TILING: Tile now=none,none,Tile now
 TILING: Toggle Border for all=Meta+Shift+U,none,Toggle Border for all
 TILING: Toggle Floating=Meta+F,none,Toggle Floating
 TILING: Toggle Tiling=Meta+Shift+F11,none,Toggle Tiling
@@ -236,13 +237,13 @@ Window to Screen 5=none,none,Fenster auf Bildschirm 5
 Window to Screen 6=none,none,Fenster auf Bildschirm 6
 Window to Screen 7=none,none,Fenster auf Bildschirm 7
 _k_friendly_name=KWin
-view_actual_size=,Meta+0,Originalgröße
+view_actual_size=none,Meta+0,Originalgröße
 view_zoom_in=Meta+=,Meta+=,Vergrößern
 view_zoom_out=Meta+-,Meta+-,Verkleinern
 
 [org.kde.dolphin.desktop]
 _k_friendly_name=Dolphin
-_launch=,Meta+E,Dolphin
+_launch=none,Meta+E,Dolphin
 
 [org.kde.krunner.desktop]
 RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Befehl mit dem Inhalt der Zwischenablage ausführen
@@ -255,9 +256,9 @@ _launch=Meta+.,Meta+.,Emoji-Auswahl
 
 [org.kde.spectacle.desktop]
 ActiveWindowScreenShot=Meta+Print,Meta+Print,Aktives Fenster aufnehmen
-CurrentMonitorScreenShot=,none,Aktuellen Bildschirm aufnehmen
+CurrentMonitorScreenShot=none,none,Aktuellen Bildschirm aufnehmen
 FullScreenScreenShot=Shift+Print,Shift+Print,Gesamte Arbeitsfläche aufnehmen
-OpenWithoutScreenshot=,none,Launch Spectacle without capturing
+OpenWithoutScreenshot=none,none,Launch Spectacle without capturing
 RectangularRegionScreenShot=Meta+Shift+Print,Meta+Shift+Print,Rechteckigen Bereich aufnehmen
 WindowUnderCursorScreenShot=Meta+Ctrl+Print,Meta+Ctrl+Print,Fenster unter dem Mauszeiger aufnehmen
 _k_friendly_name=Spectacle
@@ -309,11 +310,11 @@ toggle do not disturb=none,none,Nicht stören umschalten
 [systemsettings.desktop]
 _k_friendly_name=Systemeinstellungen
 _launch=Tools,Tools,Systemeinstellungen
-kcm-kscreen=,,Anzeige-Einrichtung
-kcm-lookandfeel=,,Globales Design
-kcm-users=,,Benutzer
-powerdevilprofilesconfig=,,Energiesparen
-screenlocker=,,Bildschirmsperre
+kcm-kscreen=none,none,Anzeige-Einrichtung
+kcm-lookandfeel=none,none,Globales Design
+kcm-users=none,none,Benutzer
+powerdevilprofilesconfig=none,none,Energiesparen
+screenlocker=none,none,Bildschirmsperre
 
 [yakuake]
 _k_friendly_name=Yakuake

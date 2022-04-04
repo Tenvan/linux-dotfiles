@@ -1,7 +1,7 @@
 {
-	"bookmarks" : "/home/ralf/.config/radiotray-ng/bookmarks.json",
-	"last-station" : "1Live",
-	"last-station-group" : "Germany",
+	"bookmarks" : "~/.config/radiotray-ng/bookmarks.json",
+	"last-station" : "Radio Hochstift",
+	"last-station-group" : "Meine Bookmarks",
 	"last-station-notifications" : true,
 	"notification-verbose" : true,
 	"notifications" : true,
