@@ -18,17 +18,14 @@ install arduino
 
 # Microcontroler Develop
 install platformio
-install esphome
+install esptool
 
 # cnc tools
 install freecad-weekly-appimage
-#install freecad-assembly3-git
 install inkscape
 install blender
-install appleseed-git
 install lux
 install luxcorerender-bin
-install povray
 
 # utils for editors
 install clang
@@ -41,13 +38,6 @@ install shellcheck
 install font-manager
 #install nerd-fonts-complete
 
-if [ $IS_MANJARO = true ]; then
-fi
-
-# graphics
-#install imagemagick-full
-#install libmagick-full
-
 ###############################
 # uninstall unneeded packages #
 ###############################
@@ -59,6 +49,11 @@ fullUninstall
 fullInstall
 
 yarn global add cncjs
+
+pip install wheel
+pip install esphome
+
+sudo usermod -a -G "$(stat -c "%G" /dev/ttyUSB0)" $USER
 
 ## FINISHING #
 finish
