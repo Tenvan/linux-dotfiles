@@ -22,7 +22,7 @@ run xfce4-power-manager
 # Desktop Tools
 #---------------
 $HOME/.bin/volume-osd &
-
+run flameshot
 run alttab -n 1
 run pamac-tray
 

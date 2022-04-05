@@ -130,6 +130,7 @@ install svn
 install yarn
 install tk
 install nsis
+install jq
 
 # DotNet/Mono Setup
 install dotnet-sdk
@@ -452,6 +453,10 @@ finish
 # Fix Teams Black Screen
 sudo ln -f -s /bin/true /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
 sudo ln -f -s /bin/true /usr/share/teams-insiders/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
+
+# flatpaks
+flatpak install shortwave
+flatpak install bottles
 
 # micro plugins
 micro -plugin install comment bounce editorconfig joinLines quoter filemanager bookmark \

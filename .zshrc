@@ -38,6 +38,9 @@ zinit wait lucid for \
 zinit ice depth=1; 
 zinit light romkatv/powerlevel10k
 
+zinit ice atload"zpcdreplay" atclone'./zplug.zsh'
+zinit light g-plane/zsh-yarn-autocompletions
+
 ### End of Zinit's installer chunk
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
