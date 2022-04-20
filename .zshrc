@@ -100,6 +100,12 @@ if [[ -d ~/.zsh-completions ]]; then
   done
 fi
 
+# tabtab source for packages
+# uninstall by removing these lines
+if [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]]; then
+   source ~/.config/tabtab/zsh/__tabtab.zsh
+fi
+
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
