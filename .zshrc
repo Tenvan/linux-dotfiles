@@ -247,3 +247,5 @@ csource "$CUSTOMS/.zshrc"
 
 colorscript -e six
 colorscript -e hex
+
+csource "$HOME/.scripts/ranger.zsh"

@@ -1,5 +1,5 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-settings 6.02 for ralf on Wed Dec 15 12:13:53 2021.
+# Written by xscreensaver-settings 6.03 for ralf on Tue Apr 26 08:21:56 2022.
 # https://www.jwz.org/xscreensaver/
 
 timeout:	1:00:00
@@ -19,11 +19,11 @@ unfade:		True
 fadeSeconds:	0:00:03
 ignoreUninstalledPrograms:False
 font:		*-medium-r-*-140-*-m-*
-dpmsEnabled:	True
-dpmsQuickOff:	False
-dpmsStandby:	1:00:00
-dpmsSuspend:	2:00:00
-dpmsOff:	4:00:00
+dpmsEnabled:	False
+dpmsQuickOff:	True
+dpmsStandby:	0:15:00
+dpmsSuspend:	0:30:00
+dpmsOff:	1:00:00
 grabDesktopImages:  False
 grabVideoFrames:    False
 chooseRandomImages: True
@@ -284,6 +284,8 @@ programs:								      \
 - GL: 				sphereeversion -root			    \n\
 -				binaryhorizon -root			    \n\
 -				marbling -root				    \n\
+- GL: 				mapscroller -root			    \n\
+  GL: 				squirtorus -root			    \n\
 
 
 pointerHysteresis:  10

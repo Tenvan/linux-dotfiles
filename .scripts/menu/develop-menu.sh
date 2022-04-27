@@ -17,7 +17,7 @@ select_application() {
     yad --center --on-top --sticky \
         --list \
         --no-headers \
-        --width=400 \
+        --width=600 \
         --height=$HEIGHT \
         --title="Edit Konfiguation" \
         --text="DEVELOP" \

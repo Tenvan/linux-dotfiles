@@ -1182,14 +1182,26 @@ awful.rules.rules = { -- All clients will match this rule.
         tag = awful.util.tagnames[1],
         switchtotag = true -- zur Nachricht springen
     }
-}, -- Develop Consolen auf Screen 2 tag 2 schieben
+}, -- Alle Develop Consolen auf Screen 2 tag 2 schieben
 {
     rule_any = {
-        name = {"OTC:*", "OMC:*"}
+        name = {"OT.:*"}
     },
     properties = {
         screen = 2,
         tag = awful.util.tagnames[2],
+        switchtotag = true,
+        maximized = false,
+        floating = false
+    }
+}, -- OTW Develop Consolen auf Screen 2 tag 3 schieben
+{
+    rule_any = {
+        name = {"OTW:*"}
+    },
+    properties = {
+        screen = 2,
+        tag = awful.util.tagnames[3],
         switchtotag = true,
         maximized = false,
         floating = false
@@ -1260,7 +1272,7 @@ awful.rules.rules = { -- All clients will match this rule.
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function(c)
     if is_initialized then
-        -- notify("Client", "'manage' event raised:" .. c.name)
+        notify("Client", "'manage' event raised:" .. c.name)
         -- sound("window-switch")
         -- Set the windows at the slave,
         -- i.e. put it at the end of others instead of setting it master.
@@ -1323,10 +1335,10 @@ end)
 client.connect_signal("request::titlebars", function(c)
     -- notify("Client", "'request::titlebars' event raised: " .. c.name)
     -- Custom
-    if beautiful.titlebar_fun then
-        beautiful.titlebar_fun(c)
-        return
-    end
+    -- if beautiful.titlebar_fun then
+    --     beautiful.titlebar_fun(c)
+    --     return
+    -- end
 
     -- Default
     -- buttons for the titlebar
@@ -1343,7 +1355,12 @@ client.connect_signal("request::titlebars", function(c)
     end))
 
     awful.titlebar(c, {
-        size = dpi(21)
+        size = dpi(21),
+        height = 20,
+        bg_normal = beautiful.bg_normal,
+        bg_focus = beautiful.bg_focus,
+        fg_normal = beautiful.fg_normal,
+        fg_focus = beautiful.fg_focus
     }):setup{
         {
             -- Left

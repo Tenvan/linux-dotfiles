@@ -48,22 +48,22 @@ local base0F = "#E8E8E8" -- brown
 
 local theme = {}
 
-theme.bg_normal = "#222D32"
-theme.bg_focus = "#2C3940"
-theme.bg_urgent = "#000000"
+theme.bg_normal = base00
+theme.bg_focus = base0B
+theme.bg_urgent = base08
 theme.bg_minimize = "#101010"
 theme.bg_systray = theme.bg_normal
 
-theme.fg_normal = "#ffffff"
-theme.fg_focus = "#ffffff"
+theme.fg_normal = base0B
+theme.fg_focus = base04
 theme.fg_urgent = "#ff0000"
 theme.fg_minimize = "#ffffff"
 
 theme.border_width = dpi(5)
 theme.margins_width = dpi(10)
 
-theme.border_normal = makeColorTransparent(base04, "50")
-theme.border_focus = makeColorTransparent(base0B, "80")
+theme.border_normal = makeColorTransparent(theme.fg_normal, "50")
+theme.border_focus = makeColorTransparent(theme.fg_focus, "80")
 theme.border_marked = base03
 
 -- Default settings

@@ -12,6 +12,7 @@ sound count-down
 # system packages
 install alttab-git
 install arandr
+install archivefs
 install arj
 install ark
 install bashtop
@@ -160,9 +161,12 @@ install xfce4-meta
 install xfce4-power-manager
 
 # file manager
-# install mc
+install mc
+install rnr-fm
 install ranger
+install ranger_devicons-git
 install ufraw-thumbnailer
+
 
 # Audio Radio
 install radiotray-ng
@@ -457,6 +461,10 @@ sudo ln -f -s /bin/true /usr/share/teams-insiders/resources/app.asar.unpacked/no
 # flatpaks
 flatpak install shortwave
 flatpak install bottles
+
+# ranger plugins
+mkdir "$HOME/.config/ranger/plugins"
+ln -sf /usr/share/ranger/plugins/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 
 # micro plugins
 micro -plugin install comment bounce editorconfig joinLines quoter filemanager bookmark \

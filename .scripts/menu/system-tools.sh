@@ -11,6 +11,7 @@ SYSTEM_ACTIONS=(
         "🕰 Timeshift create Snapshot" "$shellCmd --hold --title Sys:Install $timeCmd sudo timeshift --create" \
         "🗂 Belegung Verzeichnisse" "baobab" \
         "🖥 Monitor einrichten" "arandr" \
+        "🔌 Power Manager" "xfce4-power-manager -c" \
         "🎫 Erscheinungsbild (Lx)" "lxappearance" \
         "🎫 Erscheinungsbild (Xfce4)" "xfce4-appearance-settings" \
         "🎫 Erscheinungsbild (Qt5)" "qt5ct" \
