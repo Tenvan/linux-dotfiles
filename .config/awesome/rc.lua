@@ -1272,7 +1272,7 @@ awful.rules.rules = { -- All clients will match this rule.
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function(c)
     if is_initialized then
-        notify("Client", "'manage' event raised:" .. c.name)
+        -- notify("Client", "'manage' event raised:" .. c.name)
         -- sound("window-switch")
         -- Set the windows at the slave,
         -- i.e. put it at the end of others instead of setting it master.

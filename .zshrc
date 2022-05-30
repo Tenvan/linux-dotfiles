@@ -16,61 +16,50 @@ if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/z-shell/zinit/main/doc/install.sh)"
 fi
 
-csource "$HOME/.zinit/bin/zinit.zsh"
-
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-
-zinit wait lucid for \
-  atinit"zicompinit" \
-	zdharma-continuum/fast-syntax-highlighting \
-	zdharma-continuum/history-search-multi-word \
-	memark/zsh-dotnet-completion \
-	OMZP::colored-man-pages
-  # atload"_zsh_autosuggest_start; zicdreplay" \
-      # zsh-users/zsh-autosuggestions \
-  # blockf atpull'zinit creinstall -q .' \  
-      # zsh-users/zsh-completions \
-	    # zsh-users/zsh-autosuggestions
-     
-
-zinit ice depth=1; 
-zinit light romkatv/powerlevel10k
-
-zinit ice atload"zpcdreplay" atclone'./zplug.zsh'
-zinit light g-plane/zsh-yarn-autocompletions
-
-### End of Zinit's installer chunk
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 csource "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
+csource "$HOME/.zinit/bin/zinit.zsh"
+
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+zinit ice depth=1;
+
+zinit ice blockf atpull'zinit creinstall -q .'
+
+# automatically load bash completion functions
+autoload -U +X bashcompinit && bashcompinit
+# autoload -U +X compinit && compinit
+
+zinit ice for \
+  light-mode memark/zsh-dotnet-completion \
+  light-mode romkatv/powerlevel10k \
+  light-mode g-plane/zsh-yarn-autocompletions \
+  zdharma-continuum/fast-syntax-highlighting \
+  zdharma-continuum/history-search-multi-word \
+  zsh-users/zsh-autosuggestions \
+  urbainvaes/fzf-marks \
+  hlissner/zsh-autopair \
+  marzocchi/zsh-notify \
+  junegunn/fzf-bin \
+  zsh-users/zsh-completions
+
+zinit snippet OMZP::colored-man-pages
+zinit snippet OMZL::clipboard.zsh
+zinit snippet OMZL::termsupport.zsh
+
+
+zinit cdreplay -q # <- execute compdefs provided by rest of plugins
+zinit cdlist # look at gathered compdefs
+
+### End of Zinit's installer chunk
+
 if [ -f "$(which neofetch)" ]; then
 	$(which neofetch)
 fi
-
-## Options section
-setopt correct                                                  # Auto correct mistakes
-setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
-setopt nocaseglob                                               # Case insensitive globbing
-setopt rcexpandparam                                            # Array expension with parameters
-setopt nocheckjobs                                              # Don't warn about running processes when exiting
-setopt numericglobsort                                          # Sort filenames numerically when it makes sense
-setopt nobeep                                                   # No beep
-setopt appendhistory                                            # Immediately append history instead of overwriting
-setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
-setopt auto_pushd
-# Set some options about directories
-setopt pushd_ignore_dups
-setopt pushdminus
-
-setopt autocd                                                   # if only directory path is entered, cd there.
-setopt AUTO_CD  # If a command is issued that can’t be executed as a normal command,
-                # and the command is the name of a directory, perform the cd command
-                # to that directory.
 
 # Add some completions settings
 setopt ALWAYS_TO_END     # Move cursor to the end of a completed word.
@@ -80,13 +69,24 @@ setopt AUTO_PARAM_SLASH  # If completed parameter is a directory, add a trailing
 setopt COMPLETE_IN_WORD  # Complete from both ends of a word.
 unsetopt MENU_COMPLETE   # Do not autoselect the first completion entry.
 
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
-zstyle ':completion:*' rehash true                              # automatically find new executables in path 
-zstyle ':completion:*' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")'  # Colored completion (different colors for dirs/files/etc)
-zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' menu select=2
+# zstyle ':completion:*' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")'  # Colored completion (different colors for dirs/files/etc)
+# zstyle ':completion:*' rehash true                              # automatically find new executables in path 
+
+zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
 zstyle ':completion:*:descriptions' format '%U%F{cyan}%d%f%u'
+
+# configure zsh-notify
+zstyle ':notify:*' error-title "Command failed (in #{time_elapsed} seconds)"
+zstyle ':notify:*' error-sound "Glass"
+zstyle ':notify:*' success-title "Command finished (in #{time_elapsed} seconds)"
+zstyle ':notify:*' success-sound "default"
+zstyle ':notify:*' activate-terminal yes
+zstyle ':notify:*' command-complete-timeout 5
+zstyle ':notify:*' expire-time 2500
+zstyle ':notify:*' always-notify-on-failure yes
+zstyle ':notify:*' error-log /dev/null
 
 # Load any custom zsh completions we've installed
 if [[ -d ~/.zsh-completions ]]; then
@@ -106,17 +106,9 @@ if [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]]; then
    source ~/.config/tabtab/zsh/__tabtab.zsh
 fi
 
-# Speed up completions
-zstyle ':completion:*' accept-exact '*(N)'
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.cache/zcache
-
 # Miscellaneous settings
 setopt INTERACTIVE_COMMENTS  # Enable comments in interactive shell.
 setopt extended_glob # Enable more powerful glob features
-
-# automatically load bash completion functions
-autoload -U +X bashcompinit && bashcompinit
 
 # configure history
 setopt extended_history
@@ -132,10 +124,6 @@ unsetopt HIST_BEEP
 
 # Share your history across all your terminal windows
 setopt share_history
-
-HISTFILE=~/.zhistory
-HISTSIZE=100000
-SAVEHIST=100000
 
 export HISTIGNORE="ll:ls:cd:cd -:pwd:exit:date:* --help"
 
@@ -192,13 +180,15 @@ fi
 if (( $+commands[grc] )); then
   GRC_SETUP='/usr/local/etc/grc.bashrc'
 fi
-if (( $+commands[grc] )) && (( $+commands[brew] ))
-then
+
+if (( $+commands[grc] )) && (( $+commands[brew] ));then
   GRC_SETUP="$(brew --prefix)/etc/grc.bashrc"
 fi
+
 if [[ -r "$GRC_SETUP" ]]; then
   source "$GRC_SETUP"
 fi
+
 unset GRC_SETUP
 
 if (( $+commands[grc] ))
@@ -212,15 +202,6 @@ fi
 
 # These need to be done after $PATH is set up so we can find
 # grc and exa
-
-# Set up colorized ls when gls is present - it's installed by grc
-# shellcheck disable=SC2154
-if (( $+commands[gls] )); then
-  alias ls="gls -F --color"
-  alias l="gls -lAh --color"
-  alias ll="gls -l --color"
-  alias la='gls -A --color'
-fi
 
 # When present, use exa instead of ls
 if (( $+commands[exa] )); then
@@ -244,8 +225,7 @@ esac
 
 csource "$HOME/.aliasrc"
 csource "$CUSTOMS/.zshrc"
+csource "$HOME/.scripts/ranger.zsh"
 
 colorscript -e six
 colorscript -e hex
-
-csource "$HOME/.scripts/ranger.zsh"

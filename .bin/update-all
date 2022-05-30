@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+# System Update
+$PACTOOL -Syyu --needed
+
+# Flatpak Update
+flatpak update -v --noninteractive
+
+
+# Zinit Self update
+. "$HOME/.zinit/bin/zinit.zsh"
+zinit self-update
+
+# Zinit Plugin update
+zinit update --parallel

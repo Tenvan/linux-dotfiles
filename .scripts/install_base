@@ -46,6 +46,7 @@ install kteatime
 install lhasa
 install libgnome-keyring
 install libsecret 
+install lsd
 install multitail
 install neofetch
 install networkmanager
@@ -70,6 +71,7 @@ install timeshift
 install unclutter
 install unrar
 install watchexec
+install wmctrl
 install xautolock
 install xbindkeys
 install xclip
@@ -87,6 +89,9 @@ if [ $IS_MANJARO = true ]; then
 else
 	install hardinfo
 fi
+
+# zsh
+inst oh-my-zsh
 
 # sound setup
 install pa-applet
@@ -123,7 +128,7 @@ install gradle
 install jdk-openjdk
 install jdk8-openjdk
 install nodejs-emojione
-install nodejs
+install nodejs-lts-gallium
 install nvm
 install nuget
 install npm
@@ -153,7 +158,8 @@ install gnome-calculator
 install network-manager-applet
 
 
-install qt5ct
+install qt5
+install qt5ct-kde
 install qt5-styleplugins
 
 # xfce developer
@@ -307,8 +313,9 @@ if [ $IS_ARCO = true ]; then
 fi
 
 install pop-gtk-theme
-install qogir-gtk-theme
+install qogir-gtk-theme-git
 install graphite-gtk-theme
+install adwaita-qt5 
 
 if [ $IS_MANJARO = true ]; then
 	install kvantum-manjaro 
@@ -321,6 +328,7 @@ fi
 # icons
 install paper-icon-theme
 install papirus-icon-theme
+install qogir-icon-theme-git
 
 if [ $IS_MANJARO = true ]; then
 	install papirus-maia-icon-theme
@@ -414,7 +422,7 @@ install microsoft-edge-dev-bin
 
 # optional application packages
 install aspell
-install baobab
+install baobab-gtk3
 install gwenview
 install partitionmanager
 install playerctl
@@ -455,12 +463,15 @@ fullInstall
 finish
 
 # Fix Teams Black Screen
-sudo ln -f -s /bin/true /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
-sudo ln -f -s /bin/true /usr/share/teams-insiders/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
+# sudo ln -f -s /bin/true /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
+# sudo ln -f -s /bin/true /usr/share/teams-insiders/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
 
 # flatpaks
 flatpak install shortwave
 flatpak install bottles
+
+sudo flatpak override --env=GTK_THEME=Adwaita:dark
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
 # ranger plugins
 mkdir "$HOME/.config/ranger/plugins"
@@ -470,5 +481,8 @@ ln -sf /usr/share/ranger/plugins/ranger_devicons ~/.config/ranger/plugins/ranger
 micro -plugin install comment bounce editorconfig joinLines quoter filemanager bookmark \
 	jump detectindent go snippets crystal quickfix wc manipulator \
 	monokai-dark gotham-colors nordcolors 
+
+# rebuilds
+pamac build qt5-styleplugins
 
 sound complete

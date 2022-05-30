@@ -29,6 +29,12 @@ local function makeColorTransparent(colorkey, opacity)
     return transColor
 end
 
+local cobalt9_1 = "#072539";
+local cobalt9_2 = "#e1efff";
+local cobalt9_3 = "#19acc6";
+local cobalt9_4 = "#0050a4";
+
+-- local cobalt9_1 = "#232423" -- ---- red
 local base00 = "#232423" -- ---- red
 local base01 = "#BA2922" -- ---  orange
 local base02 = "#7E807E" -- --   yellow
@@ -48,14 +54,13 @@ local base0F = "#E8E8E8" -- brown
 
 local theme = {}
 
-theme.bg_normal = base00
-theme.bg_focus = base0B
-theme.bg_urgent = base08
+theme.bg_normal = cobalt9_1
+theme.bg_focus = cobalt9_2
 theme.bg_minimize = "#101010"
-theme.bg_systray = theme.bg_normal
+-- theme.bg_systray = cobalt9_3
 
-theme.fg_normal = base0B
-theme.fg_focus = base04
+theme.fg_normal = cobalt9_2
+theme.fg_focus = cobalt9_3
 theme.fg_urgent = "#ff0000"
 theme.fg_minimize = "#ffffff"
 
@@ -64,7 +69,7 @@ theme.margins_width = dpi(10)
 
 theme.border_normal = makeColorTransparent(theme.fg_normal, "50")
 theme.border_focus = makeColorTransparent(theme.fg_focus, "80")
-theme.border_marked = base03
+theme.border_marked = cobalt9_3
 
 -- Default settings
 theme.fg = theme.fg_normal
@@ -73,63 +78,63 @@ theme.bg = theme.bg_normal
 -- Genaral colours
 theme.success_fg = base0C
 theme.loaded_fg = base0D
-theme.error_fg = base00
+theme.error_fg = cobalt9_1
 theme.error_bg = base08
 
 -- Warning colours
-theme.warning_fg = base00
+theme.warning_fg = cobalt9_1
 theme.warning_bg = base0E
 
 -- Notification colours
-theme.notif_fg = base00
-theme.notif_bg = base05
+theme.notif_fg = cobalt9_1
+theme.notif_bg = cobalt9_2
 
 -- Menu colours
-theme.menu_fg = base05
-theme.menu_bg = base00
-theme.menu_selected_fg = base01
-theme.menu_selected_bg = base0A
+theme.menu_fg = cobalt9_2
+theme.menu_bg = cobalt9_1
+theme.menu_selected_fg = cobalt9_1
+theme.menu_selected_bg = cobalt9_4
 
-theme.menu_title_bg = base00
+theme.menu_title_bg = cobalt9_1
 theme.menu_primary_title_fg = base05
 theme.menu_secondary_title_fg = base04
 
-theme.menu_disabled_fg = base03
-theme.menu_disabled_bg = theme.menu_bg
+theme.menu_disabled_fg = base08
+theme.menu_disabled_bg = base00
 theme.menu_enabled_fg = theme.menu_fg
 theme.menu_enabled_bg = theme.menu_bg
-theme.menu_active_fg = base06
+theme.menu_active_fg = theme.menu_fg
 theme.menu_active_bg = theme.menu_bg
 
 -- Proxy manager
 theme.proxy_active_menu_fg = base05
-theme.proxy_active_menu_bg = base00
+theme.proxy_active_menu_bg = cobalt9_1
 theme.proxy_inactive_menu_fg = base03
-theme.proxy_inactive_menu_bg = base00
+theme.proxy_inactive_menu_bg = cobalt9_1
 
 -- Statusbar specific
-theme.sbar_fg = base05
-theme.sbar_bg = base00
+theme.sbar_fg = "red"
+theme.sbar_bg = cobalt9_1
 
 -- Downloadbar specific
-theme.dbar_fg = base00
+theme.dbar_fg = cobalt9_1
 theme.dbar_bg = base0D
 theme.dbar_error_fg = base08
 
 -- Input bar specific
 theme.ibar_fg = base05
-theme.ibar_bg = base00
+theme.ibar_bg = cobalt9_1
 
 -- Tab label
-theme.tab_fg = base05
-theme.tab_bg = base00
-theme.tab_hover_bg = base03
+theme.tab_fg = cobalt9_2
+theme.tab_bg = cobalt9_1
+theme.tab_hover_bg = cobalt9_3
 theme.tab_ntheme = base03
 theme.selected_fg = base05
 theme.selected_bg = base03
-theme.selected_ntheme = base00
+theme.selected_ntheme = cobalt9_1
 theme.loading_fg = base0D
-theme.loading_bg = base00
+theme.loading_bg = cobalt9_1
 
 theme.selected_private_tab_bg = base05
 theme.private_tab_bg = base03
@@ -139,8 +144,8 @@ theme.trust_fg = base0B
 theme.notrust_fg = base0D
 
 -- Follow mode hints
-theme.hint_fg = base00
-theme.hint_bg = base0A
+theme.hint_fg = cobalt9_1
+theme.hint_bg = "red"
 theme.hint_border = string.format("1px dashed %s", base0A)
 
 theme.hint_overlay_bg = string.format("rgba(%s, 0.3)", hex2rgb(base07))
@@ -152,15 +157,15 @@ theme.hint_overlay_selected_border = theme.hint_overlay_border
 -- General colour pairings
 theme.ok = {
     fg = base05,
-    bg = base00
+    bg = cobalt9_1
 }
 theme.warn = {
-    fg = base00,
+    fg = cobalt9_1,
     bg = base0E
 }
 theme.error = {
     fg = base08,
-    bg = base00
+    bg = cobalt9_1
 }
 
 -- Font
@@ -524,7 +529,6 @@ local screen2LeftWidges = {
     layout = wibox.layout.fixed.horizontal
 }
 
--- theme.bg_systray = xres.warning_bg_color
 theme.systray_icon_spacing = dpi(2)
 
 local systray = wibox.widget.systray()
