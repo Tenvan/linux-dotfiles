@@ -52,8 +52,6 @@ local function notify(titel, message, category, playSound)
     if playSound == true then
         if category == naughty.config.presets.critical then
             awful.spawn(sound_path .. " " .. "notify-error")
-        else
-            awful.spawn(sound_path .. " " .. "notify")
         end
     end
 end

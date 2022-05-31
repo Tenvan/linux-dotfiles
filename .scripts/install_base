@@ -150,13 +150,13 @@ install jetbrains-toolbox
 install lxappearance
 
 # utilities from gnome
+install gnome-meta
 install gnome-disk-utility
 install gnome-system-monitor
-install gnome-system-log
+install gnome-system-tools
 install gnome-logs
 install gnome-calculator
 install network-manager-applet
-
 
 install qt5
 install qt5ct-kde
