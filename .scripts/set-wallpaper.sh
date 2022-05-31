@@ -9,13 +9,13 @@ export SHARED_WALLPAPERS="$HOME/.local/share/wallpapers/shared"
 export DUAL_MONITOR_WALLPAPERS="$SHARED_WALLPAPERS/wallpapers-multimonitor"
 
 # WALLPAPER_DUAL=dropletno7revisited.jpg
-WALLPAPER_DUAL=mesh3isostudy.jpg
+# WALLPAPER_DUAL=mesh3isostudy.jpg
 # WALLPAPER_DUAL=extrudedsimplicesbstudy.jpg
 # WALLPAPER_DUAL=softshading.jpg
 # WALLPAPER_DUAL=verticaldesireblack.jpg
 # WALLPAPER_DUAL=elementalfists.jpg
 # WALLPAPER_DUAL=0bonv.jpg
-# WALLPAPER_DUAL=large-dual-screen-wallpaper1.jpg
+WALLPAPER_DUAL=large-dual-screen-wallpaper1.jpg
 # WALLPAPER_DUAL=0bonv_x_flip.jpg
 # WALLPAPER_DUAL=honeycombs.jpg
 

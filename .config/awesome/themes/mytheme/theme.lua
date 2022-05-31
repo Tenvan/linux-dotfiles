@@ -54,38 +54,40 @@ local base0F = "#E8E8E8" -- brown
 
 local theme = {}
 
+theme.fg_normal = cobalt9_2
 theme.bg_normal = cobalt9_1
-theme.bg_focus = cobalt9_2
+
+theme.fg_focus = cobalt9_2
+theme.bg_focus = cobalt9_4
+
 theme.bg_minimize = "#101010"
 -- theme.bg_systray = cobalt9_3
 
-theme.fg_normal = cobalt9_2
-theme.fg_focus = cobalt9_3
 theme.fg_urgent = "#ff0000"
 theme.fg_minimize = "#ffffff"
 
 theme.border_width = dpi(5)
 theme.margins_width = dpi(10)
 
-theme.border_normal = makeColorTransparent(theme.fg_normal, "50")
-theme.border_focus = makeColorTransparent(theme.fg_focus, "80")
+theme.border_normal = makeColorTransparent(theme.bg_normal, "80")
+theme.border_focus = makeColorTransparent(theme.bg_focus, "80")
 theme.border_marked = cobalt9_3
 
 -- Default settings
 theme.fg = theme.fg_normal
 theme.bg = theme.bg_normal
 
--- Genaral colours
+-- General colors
 theme.success_fg = base0C
 theme.loaded_fg = base0D
 theme.error_fg = cobalt9_1
 theme.error_bg = base08
 
--- Warning colours
+-- Warning colors
 theme.warning_fg = cobalt9_1
 theme.warning_bg = base0E
 
--- Notification colours
+-- Notification colors
 theme.notif_fg = cobalt9_1
 theme.notif_bg = cobalt9_2
 
@@ -117,55 +119,51 @@ theme.sbar_fg = "red"
 theme.sbar_bg = cobalt9_1
 
 -- Downloadbar specific
-theme.dbar_fg = cobalt9_1
+theme.dbar_fg = "green"
 theme.dbar_bg = base0D
 theme.dbar_error_fg = base08
 
 -- Input bar specific
-theme.ibar_fg = base05
+theme.ibar_fg = "blue"
 theme.ibar_bg = cobalt9_1
 
 -- Tab label
 theme.tab_fg = cobalt9_2
 theme.tab_bg = cobalt9_1
 theme.tab_hover_bg = cobalt9_3
-theme.tab_ntheme = base03
-theme.selected_fg = base05
-theme.selected_bg = base03
-theme.selected_ntheme = cobalt9_1
+theme.selected_fg = cobalt9_2
+theme.selected_bg = cobalt9_3
 theme.loading_fg = base0D
-theme.loading_bg = cobalt9_1
+theme.loading_bg = "green"
+theme.tab_ntheme = "blue"
+theme.selected_ntheme = "red"
 
-theme.selected_private_tab_bg = base05
-theme.private_tab_bg = base03
+theme.selected_private_tab_bg = "red"
+theme.private_tab_bg = "red"
 
 -- Trusted/untrusted ssl colours
 theme.trust_fg = base0B
 theme.notrust_fg = base0D
 
 -- Follow mode hints
-theme.hint_fg = cobalt9_1
-theme.hint_bg = "red"
-theme.hint_border = string.format("1px dashed %s", base0A)
+theme.hint_fg = cobalt9_2
+theme.hint_bg = cobalt9_1
 
-theme.hint_overlay_bg = string.format("rgba(%s, 0.3)", hex2rgb(base07))
-theme.hint_overlay_border = string.format("1px dotted %s", base07)
-
-theme.hint_overlay_selected_bg = string.format("rgba(%s, 0.3)", hex2rgb(base0B))
-theme.hint_overlay_selected_border = theme.hint_overlay_border
+-- theme.hint_border = string.format("1px dashed %s", base0A)
+theme.hint_border = 10
 
 -- General colour pairings
 theme.ok = {
-    fg = base05,
-    bg = cobalt9_1
+    fg = "white",
+    bg = "red"
 }
 theme.warn = {
-    fg = cobalt9_1,
-    bg = base0E
+    fg = "white",
+    bg = "green"
 }
 theme.error = {
-    fg = base08,
-    bg = cobalt9_1
+    fg = "white",
+    bg = "blue"
 }
 
 -- Font
@@ -185,25 +183,32 @@ theme.font_size = dpi(10)
 theme.font = theme.font_family .. " " .. theme.font_size
 
 theme.taglist_font = "Noto Sans Symbol Bold " .. (theme.font_size * 2)
-theme.taglist_bg_focus = theme.selected_bg
-theme.taglist_fg_focus = theme.selected_fg
 
-theme.tasklist_bg_focus = theme.menu_bg
-theme.tasklist_fg_focus = theme.menu_fg
+-- theme.taglist_fg_focus = theme.selected_fg
+-- theme.taglist_bg_focus = theme.selected_bg
 
-theme.titlebar_bg_focus = theme.menu_bg
-theme.titlebar_fg_focus = theme.menu_fg
-theme.titlebar_bg_normal = theme.menu_bg
-theme.titlebar_fg_normal = theme.menu_bg
+-- theme.tasklist_fg_normal = theme.menu_fg
+-- theme.tasklist_bg_normal = theme.menu_bg
+-- theme.tasklist_fg_focus = theme.selected_fg
+-- theme.tasklist_bg_focus = theme.selected_bg
+
+-- theme.titlebar_fg_normal = theme.menu_fg
+-- theme.titlebar_bg_normal = theme.menu_bg
+-- theme.titlebar_fg_focus = theme.selected_fg
+-- theme.titlebar_bg_focus = theme.selected_bg
 
 -- theme.menu_bar = dpi(theme.font_size + theme.margins_width)
 theme.menu_height = dpi(30)
 theme.menu_width = dpi(300)
 
 theme.notification_opacity = 1
-theme.notification_bg = makeColorTransparent(theme.hint_bg, "80")
+-- theme.notification_bg = makeColorTransparent(theme.hint_bg, "50")
+theme.notification_bg = theme.hint_bg
 theme.notification_fg = theme.hint_fg
-theme.notification_border_color = makeColorTransparent(theme.hint_bg, "B0")
+theme.notification_border_color = theme.border_normal
+theme.notification_spacing = dpi(32)
+theme.notification_opacity = 0.67
+theme.notification_margin = dpi(32)
 
 theme.tasklist_plain_task_name = false
 theme.tasklist_disable_icon = false
@@ -430,10 +435,7 @@ for i = 1, cpu_kernels - 1 do
             max_value = 100,
             value = 0,
             forced_height = 12,
-            -- border_width = 1,
-            -- border_color =  theme.border_normal,
             background_color = "alpha",
-            -- color = xres.warning_bg_color,
             widget = cpuKernelProgress[i]
         },
         direction = "east",
@@ -583,8 +585,8 @@ function theme.at_screen_connect(s)
         end,
         argname = "--name %s",
         followtag = true,
-        border = 5,
-        overlap = false,
+        border = theme.border_width,
+        overlap = true,
         height = 0.66,
         width = 0.80,
         horiz = "center"
@@ -603,11 +605,10 @@ function theme.at_screen_connect(s)
         filter = awful.widget.tasklist.filter.currenttags,
         buttons = awful.util.tasklist_buttons,
         style = {
-            shape_border_width = 2,
+            shape_border_width = dpi(3),
             shape_border_color = theme.tasklist_fg_focus,
             shape = gears.shape.rectangle
         }
-        -- widget_template = theme.tasklist_widget_template
     }
 
     -- Create the wibox

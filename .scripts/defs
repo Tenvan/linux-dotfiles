@@ -63,7 +63,7 @@ fi
 # echo "AUR Manager...: $PACKER"
 
 MAKEFLAGS="-j$(nproc)"
-PAKKER_ALL="--color always --needed --useask $@" 
+PAKKER_ALL="--color always --needed --useask --overwrite \* $@" 
 
 initInstall() {
 	INSTALL_SCRIPT=$1

@@ -9,6 +9,30 @@ sound count-down
 # collect needed packages #
 ###########################
 
+# Manjaro Packages
+if [ $IS_MANJARO = true ]; then
+	install manjaro-awesome-settings
+	install samba
+	install manjaro-settings-samba
+fi
+
+# ArcoLinux Packages
+if [ $IS_ARCO = true ]; then
+	install arcolinux-config-awesome-git
+	# Meta Packages
+	install arcolinux-meta-log
+	install arcolinux-meta-samba
+	install arcolinux-meta-utilities
+	# Interesting Packages
+	install arcolinux-candy-beauty-git	
+fi
+
+# awesome
+install awesome
+install awmtt
+install vicious
+install lain
+
 # system packages
 install alttab-git
 install arandr
@@ -35,6 +59,7 @@ install gnome-keyring
 install gparted
 install grc
 install gtop
+install hardinfo
 install hstr
 install htop
 install ibus-daemon
@@ -46,7 +71,10 @@ install kteatime
 install lhasa
 install libgnome-keyring
 install libsecret 
+install lscolors-git
 install lsd
+install luacheck
+install micro
 install multitail
 install neofetch
 install networkmanager
@@ -61,6 +89,7 @@ install picom-jonaburg-git
 install pm-utils
 install powershell-bin
 install qbittorrent
+install ranger
 install rsyslog
 install s-tui
 install shell-color-scripts
@@ -75,8 +104,9 @@ install wmctrl
 install xautolock
 install xbindkeys
 install xclip
-install xdpi-git
 install xdotool
+install xdpi-git
+install xorg-server-xephyr
 install xorg-xbacklight
 install xorg-xfd
 install xorg-xsetroot
@@ -84,11 +114,11 @@ install xscreensaver
 install xsel
 install yad
 
-if [ $IS_MANJARO = true ]; then
-	install hardinfo-gtk3
-else
-	install hardinfo
-fi
+# polkits
+install polkit-gnome
+# install polkit
+# install polkit-qt5
+# install xfce-polkit
 
 # zsh
 inst oh-my-zsh
@@ -98,21 +128,6 @@ install pa-applet
 install pavucontrol 
 install pulseaudio-equalizer
 install pulseaudio-bluetooth
-
-# ArcoLinux Packages
-if [ $IS_ARCO = true ]; then
-	# Meta Packages
-	install arcolinux-meta-log
-	install arcolinux-meta-samba
-	install arcolinux-meta-utilities
-	# Interesting Packages
-	install arcolinux-candy-beauty-git	
-fi
-
-if [ $IS_MANJARO = true ]; then
-	install samba
-	install manjaro-settings-samba
-fi
 
 # ssh 
 install openssh
@@ -173,7 +188,6 @@ install ranger
 install ranger_devicons-git
 install ufraw-thumbnailer
 
-
 # Audio Radio
 install radiotray-ng
 
@@ -207,17 +221,17 @@ install fsearch
 install recoll
 
 # sound setup
-install alsa-utils
 install alsa-oss
-install paprefs
-install pasystray
-install sp
-install sound-theme-smooth
+install alsa-utils
 install gst123
 install livecd-sounds
-install tvolnoti
-install ponymix
+install paprefs
+install pasystray
 install pnmixer 
+install ponymix
+install sound-theme-smooth
+install sp
+install tvolnoti
 
 # Python libs
 install python
@@ -244,7 +258,6 @@ elif [ $IS_ARCO = true ]; then
 	#install bluez-plugins
 	#install bluez-tools
 	#install bluez-utils
-
 fi
 
 # printer setup
@@ -311,12 +324,6 @@ install tar
 if [ $IS_ARCO = true ]; then
 	install arcolinux-arc-themes-git
 fi
-
-install pop-gtk-theme
-install qogir-gtk-theme-git
-install graphite-gtk-theme
-install adwaita-qt5 
-
 if [ $IS_MANJARO = true ]; then
 	install kvantum-manjaro 
 	install maia-console 
@@ -325,22 +332,24 @@ if [ $IS_MANJARO = true ]; then
 	install xcursor-maia
 fi
 
-# icons
-install paper-icon-theme
-install papirus-icon-theme
-install qogir-icon-theme-git
+install pop-gtk-theme
+install adwaita-qt5 
 
+
+# icons
 if [ $IS_MANJARO = true ]; then
 	install papirus-maia-icon-theme
 	install maia-icon-theme 
 fi
+install paper-icon-theme
+install papirus-icon-theme
 
 # cursor
-install bibata-cursor-theme
-install bibata-cursor-translucent
 if [ $IS_MANJARO = true ]; then
 	install maia-cursor-theme 
 fi
+install bibata-cursor-theme
+install bibata-cursor-translucent
 
 # fonts
 install font-manager
@@ -350,7 +359,7 @@ install awesome-terminal-fonts
 install terminus-font
 install powerline-fonts
 
-# install nerd-fonts-complete
+install nerd-fonts-complete
 # install nerd-fonts-fira-code
 # install nerd-fonts-noto
 # install noto-fonts-main
@@ -366,15 +375,14 @@ install ttf-twemoji-color
 install ttf-weather-icons
 
 # lightdm config
+if [ $IS_MANJARO = true ]; then
+  install manjaro-slick-greeter-theme-light
+fi
 install lightdm
 install lightdm-settings
 install lightdm-gtk-greeter-settings
 install lightdm-gtk-greeter
 install lightdm-slick-greeter
-
-if [ $IS_MANJARO = true ]; then
-  install manjaro-slick-greeter-theme-light
-fi
 
 # grub
 if [ $IS_MANJARO = false ]; then
@@ -388,9 +396,6 @@ fi
 
 # btrfs tools
 install grub-btrfs
-install snapper
-install snapper-rollback
-install snapper-gui
 install timeshift-autosnap
 
 #########################

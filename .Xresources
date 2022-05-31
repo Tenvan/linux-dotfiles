@@ -1,24 +1,31 @@
 ! ------------------------------------------------------------------------------
 ! Generic Theme Colors for using in Theme Engines (GTK Awesome etc.)
 ! ------------------------------------------------------------------------------
+#define cobalt9_1 #072539
+#define cobalt9_2 #e1efff
+#define cobalt9_3 #19acc6
+#define cobalt9_4 #0050a4
+#define cobalt9_5 #FFC600
 
-#define base00 #232423
-#define base01 #BA2922
-#define base02 #7E807E
-#define base03 #FFC80C
-#define base04 #16A085
-#define base05 #43746A
-#define base06 #00CCCC
-#define base07 #E0E0E0
-#define base08 #282928
-#define base09 #CC372C
-#define base0A #8D8F8D
-#define base0B #FFFE14
-#define base0C #13BF9D
-#define base0D #487D72
-#define base0E #00D1D1
-#define base0F #E8E8E8
-#define background_opacity true
+! Base16 oomox-cobalt2
+! Scheme: oomox-cobalt2
+
+#define base00 #193549
+#define base01 #000000
+#define base02 #0050a4
+#define base03 #8c9aa3
+#define base04 #2d495d
+#define base05 #ffffff
+#define base06 #ffffff
+#define base07 #193549
+#define base08 #FF628C
+#define base09 #FFC600
+#define base0A #FFC600
+#define base0B #3AD900
+#define base0C #80FCFF
+#define base0D #0088FF
+#define base0E #FB94FF
+#define base0F #eb8032
 
 *foreground:   base05
 #ifdef background_opacity
@@ -55,13 +62,13 @@
 *color20:      base04
 *color21:      base06
 
-! end of themix-base16
+! end of themix
 
-*border:                          #1a1a1a
+*border:                          cobalt9_3
 
 *fading:                          8
-*fadeColor:                       #000000
-*cursorColor:                     #1ABB9B
+*fadeColor:                       cobalt9_1
+*cursorColor:                     cobalt9_2
 *pointerColorBackground:          #2B2C2B
 *pointerColorForeground:          #16A085
 

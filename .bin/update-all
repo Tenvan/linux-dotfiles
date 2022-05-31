@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# Snapshot erstellen
+sudo timeshift --create
+
 # System Update
 $PACTOOL -Syyu --needed
 

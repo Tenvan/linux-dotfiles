@@ -11,6 +11,9 @@ csource /usr/share/zsh/manjaro-zsh-config
 # Use manjaro zsh prompt
 csource /usr/share/zsh/manjaro-zsh-prompt
 
+# LS_COLORS
+csource /usr/share/LS_COLORS/dircolors.sh
+
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/z-shell/zinit/main/doc/install.sh)"

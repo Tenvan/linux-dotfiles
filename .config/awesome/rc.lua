@@ -35,18 +35,29 @@ beautiful.init(theme_path)
 
 -- Notification library
 local naughty = require("naughty")
-naughty.config.defaults["icon_size"] = 100
-naughty.config.defaults["border_width"] = beautiful.border_width
 naughty.config.defaults["border_width"] = beautiful.border_width
 naughty.config.defaults["position"] = "bottom_right"
+naughty.config.defaults["margin"] = dpi(10)
+naughty.config.spacing = dpi(10)
+naughty.config.icon_dirs = {"/usr/share/icons/Adwaita/32x32/actions/", "/usr/share/icons/Adwaita/32x32/apps/",
+                            "/usr/share/icons/Adwaita/32x32/categories/", "/usr/share/icons/Adwaita/32x32/devices/",
+                            "/usr/share/icons/Adwaita/32x32/emblems/", "/usr/share/icons/Adwaita/32x32/emotes/",
+                            "/usr/share/icons/Adwaita/32x32/legacy/", "/usr/share/icons/Adwaita/32x32/mimetypes/",
+                            "/usr/share/icons/Adwaita/32x32/places/", "/usr/share/icons/Adwaita/32x32/status/",
+                            "/usr/share/icons/Adwaita/32x32/ui/"}
 
 local sound_path = string.format("%s/.scripts/play-sound.zsh", os.getenv("HOME"))
 
-local function notify(titel, message, category, playSound)
+local function notify(titel, message, presets, playSound, icon)
+    -- Icon Definitions: https://specifications.freedesktop.org/icon-naming-spec/latest/ar01s04.html
+
     naughty.notify({
-        presets = category,
+        timeout = 2,
+        icon_size = 32,
+        presets = presets,
         text = message,
-        title = titel
+        title = titel,
+        icon = icon
     })
 
     if playSound == true then
@@ -743,8 +754,12 @@ end, {
     description = "Nodejs killen",
     group = kgSystem
 }), awful.key({modkey, altkey}, "t", function()
+    notify("Test Nachricht 1",
+        "Dies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.",
+        "warning", nil, "/usr/share/icons/hicolor/scalable/status/tablet.svg")
     notify("Test Nachricht",
-        "Dies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.")
+        "Dies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.",
+        "critical", nil, "avatar-default")
 end, {
     description = "Test Benachrichtigung",
     group = kgSystem
