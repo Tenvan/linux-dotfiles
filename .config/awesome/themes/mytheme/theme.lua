@@ -64,8 +64,8 @@ theme.fg_minimize = "#ffffff"
 theme.border_width = dpi(5)
 theme.margins_width = dpi(10)
 
-theme.border_normal = makeColorTransparent(theme.bg_normal, "80")
-theme.border_focus = makeColorTransparent(theme.bg_focus, "80")
+theme.border_normal = makeColorTransparent(cobalt_accent_blue, "80")
+theme.border_focus = makeColorTransparent(cobalt_accent_yellow, "80")
 theme.border_marked = cobalt_highlight
 
 -- Default settings
