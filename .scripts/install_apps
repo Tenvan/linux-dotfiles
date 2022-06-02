@@ -1,0 +1,88 @@
+#!/usr/bin/env zsh
+. ~/.scripts/defs
+
+# Init Install
+initInstall "install_base"
+sound count-down
+
+#########################
+# collect optional apps #
+#########################
+
+# graphics
+# install imagemagick-full
+# install libmagick-full
+install inkscape
+install gimp
+install gimp-help-de
+install pinta
+install blender
+install krita
+# install digikam
+
+# optional application packages
+install aspell
+install baobab-gtk3
+# install gwenview
+install partitionmanager
+install playerctl
+install teams-for-linux
+
+# Browser
+install firefox-i18n-de
+install chromium
+install google-chrome
+install microsoft-edge-dev-bin
+
+# gimicks
+install cmatrix
+install hollywood
+
+# Office
+install libreoffice-fresh
+install libreoffice-fresh-de
+
+# remmina
+install remmina
+install remmina-plugin-open
+install remmina-plugin-rdesktop
+install remmina-plugin-url
+install remmina-plugin-folder
+install remmina-plugin-open
+install freerdp
+
+# scanner setup
+#install xsane
+#install simple-scan
+#install skanlite
+#install colord-sane
+#install sane
+
+# File Indexing
+install fsearch
+
+# Audio Radio
+install radiotray-ng
+
+# jetbrains apps
+install jetbrains-toolbox
+
+###############################
+# uninstall unneeded packages #
+###############################
+fullUninstall
+
+#################################
+# install all (needed) packages #
+#################################
+fullInstall
+
+## FINISHING #
+finish
+
+# flatpaks
+flatpak install shortwave
+flatpak install bottles
+
+sudo flatpak override --env=GTK_THEME=Adwaita:dark
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark

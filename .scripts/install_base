@@ -156,9 +156,6 @@ install dotnet-sdk
 install mono
 install mono-msbuild
 
-# jetbrains apps
-install jetbrains-toolbox
-
 # config tools
 install lxappearance
 
@@ -185,9 +182,6 @@ install ranger
 install ranger_devicons-git
 install ufraw-thumbnailer
 
-# Audio Radio
-install radiotray-ng
-
 # Nemo
 install cinnamon-translations
 install gtkhash-nemo
@@ -212,10 +206,6 @@ fi
 install rofi
 install rofimoji
 install rofi-emoji
-
-# File Indexing
-install fsearch
-install recoll
 
 # sound setup
 install alsa-oss
@@ -277,26 +267,6 @@ install foomatic-db-nonfree
 install foomatic-db-nonfree-ppds 
 install foomatic-db-gutenprint-ppds
 install gutenprint 
-
-# scanner setup
-#install xsane
-#install simple-scan
-#install skanlite
-#install colord-sane
-#install sane
-
-# Browser
-install firefox-i18n-de
-install chromium
-
-# remmina
-install remmina
-install remmina-plugin-open
-install remmina-plugin-rdesktop
-install remmina-plugin-url
-install remmina-plugin-folder
-install remmina-plugin-open
-install freerdp
 
 # installation of important editors
 install micro
@@ -401,14 +371,6 @@ install timeshift-autosnap
 #########################
 #install epdfview
 
-# gimicks
-install cmatrix
-install hollywood
-
-# Office
-install libreoffice-fresh
-install libreoffice-fresh-de
-
 # language files
 install man-pages-de
 install aspell-de
@@ -418,32 +380,6 @@ install languagetool
 
 # Browser
 install vivaldi
-install firefox-i18n-de
-install chromium
-install google-chrome
-install microsoft-edge-dev-bin
-
-# optional application packages
-install aspell
-install baobab-gtk3
-# install gwenview
-install partitionmanager
-install playerctl
-install teams
-
-# graphics
-# install imagemagick-full
-# install libmagick-full
-install inkscape
-install gimp
-install gimp-help-de
-install pinta
-install blender
-install krita
-# install digikam
-
-install glfw-x11
-install phonon-qt5-vlc
 
 # rust apps
 install bat
@@ -464,17 +400,6 @@ fullInstall
 
 ## FINISHING #
 finish
-
-# Fix Teams Black Screen
-# sudo ln -f -s /bin/true /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
-# sudo ln -f -s /bin/true /usr/share/teams-insiders/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
-
-# flatpaks
-flatpak install shortwave
-flatpak install bottles
-
-sudo flatpak override --env=GTK_THEME=Adwaita:dark
-gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
 # ranger plugins
 mkdir "$HOME/.config/ranger/plugins"
