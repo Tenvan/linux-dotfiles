@@ -32,7 +32,6 @@ if [ -f /etc/pamac.conf ]; then
 fi
 
 sudo pacman -S --needed git base-devel yay curl colorgcc go ruby rust 
-yay -Sy git-credential-manager-core-bin
 	
 errorCheck "installation base-devel"
 

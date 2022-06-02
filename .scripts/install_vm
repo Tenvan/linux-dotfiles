@@ -33,7 +33,7 @@ fi
 if [ $INSTALL_VIRTIO = true ]; then
 	install virt-manager
 	install virtio-win
-	install qemu
+	install qemu-desktop
 	install qemu-arch-extra
 	install libvirt
 	install iptables-nft

@@ -130,12 +130,14 @@ finish() {
 		echo 'No Errors on Uninstall'
 	else
 		echo "Error on Uninstall: ${ERROR_PAKAGE_UNINST}"
+		echo "Error on Uninstall: ${ERROR_PAKAGE_UNINST}" >> error_uninstall.txt
 	fi	
 
 	if [ "$ERROR_PAKAGE_INST" = "" ]; then
 		echo 'No Errors on Install'
 	else
 		echo "Error on Install: ${ERROR_PAKAGE_INST}"
+		echo "Error on Install: ${ERROR_PAKAGE_INST}" >> error_install.txt
 	fi	
 }
 

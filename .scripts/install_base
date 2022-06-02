@@ -105,7 +105,6 @@ install xautolock
 install xbindkeys
 install xclip
 install xdotool
-install xdpi-git
 install xorg-server-xephyr
 install xorg-xbacklight
 install xorg-xfd
@@ -138,7 +137,6 @@ install git
 install gitflow-avh
 install git-delta
 install pass
-install git-credential-manager-core-bin
 install gradle
 install jdk-openjdk
 install jdk8-openjdk
@@ -165,7 +163,6 @@ install jetbrains-toolbox
 install lxappearance
 
 # utilities from gnome
-install gnome-meta
 install gnome-disk-utility
 install gnome-system-monitor
 install gnome-system-tools
@@ -174,7 +171,7 @@ install gnome-calculator
 install network-manager-applet
 
 install qt5
-install qt5ct-kde
+install qt5ct
 install qt5-styleplugins
 
 # xfce developer
@@ -334,7 +331,8 @@ fi
 
 install pop-gtk-theme
 install adwaita-qt5 
-
+install themix-full-git
+install themix-plugin-base16-git    
 
 # icons
 if [ $IS_MANJARO = true ]; then
@@ -428,7 +426,7 @@ install microsoft-edge-dev-bin
 # optional application packages
 install aspell
 install baobab-gtk3
-install gwenview
+# install gwenview
 install partitionmanager
 install playerctl
 install teams
@@ -442,7 +440,7 @@ install gimp-help-de
 install pinta
 install blender
 install krita
-install digikam
+# install digikam
 
 install glfw-x11
 install phonon-qt5-vlc

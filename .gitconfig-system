@@ -303,6 +303,6 @@
 	insteadOf = https://gitlab.ihr.infoniqa.local/
 	insteadOf = http://gitlab.ihr.infoniqa.local/
 
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
-	insteadOf = http://github.com/
+# [url "ssh://git@github.com/"]
+	# insteadOf = https://github.com/
+	# insteadOf = http://github.com/

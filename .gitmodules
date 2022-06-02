@@ -4,6 +4,3 @@
 [submodule ".config/awesome/awesome-buttons"]
 	path = .config/awesome/awesome-buttons
 	url = https://github.com/streetturtle/awesome-buttons.git
-[submodule ".config/awesome/lain"]
-	path = .config/awesome/lain
-	url = https://github.com/lcpz/lain.git
