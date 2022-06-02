@@ -53,6 +53,25 @@
 *color14:      base0C
 *color15:      base07
 
+*background:  #122637
+*foreground:  #ffffff
+*color0:  #000000
+*color1:  #ff0000
+*color2:  #37dd21
+*color3:  #fee409
+*color4:  #1460d2
+*color5:  #ff005d
+*color6:  #00bbbb
+*color7:  #bbbbbb
+*color8:  #545454
+*color9:  #f40d17
+*color10:  #3bcf1d
+*color11:  #ecc809
+*color12:  #5555ff
+*color13:  #ff55ff
+*color14:  #6ae3f9
+*color15:  #ffffff
+
 ! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
 ! use 'shell' template to set these if necessary
 *color16:      base09

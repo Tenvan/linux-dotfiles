@@ -15,12 +15,6 @@ local vicious = require("vicious")
 local math, string, os = math, string, os
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 
-local function hex2rgb(hex)
-    local hex = hex:gsub("#", "")
-    return string.format("%s, %s, %s", tonumber("0x" .. hex:sub(1, 2)), tonumber("0x" .. hex:sub(3, 4)),
-        tonumber("0x" .. hex:sub(5, 6)))
-end
-
 local function makeColorTransparent(colorkey, opacity)
     -- gdebug.print_warning("ColorKey: " .. colorkey)
     local colorMain = string.sub(colorkey, 2, 7)
@@ -29,12 +23,13 @@ local function makeColorTransparent(colorkey, opacity)
     return transColor
 end
 
-local cobalt9_1 = "#072539";
-local cobalt9_2 = "#e1efff";
-local cobalt9_3 = "#19acc6";
-local cobalt9_4 = "#0050a4";
+local cobalt_bg = "#072539"; -- Background
+local cobalt_fg = "#e1efff"; -- Foreground
+local cobalt_highlight = "#19acc6"; -- Highlight
+local cobalt_accent_blue = "#0050a4"; -- Accent 1 (Blue)
+local cobalt_accent_yellow = "#FFC600"; -- Accent 2 (Yellow)
+local cobalt_window_bg = "#2e3a50"; -- Window Background
 
--- local cobalt9_1 = "#232423" -- ---- red
 local base00 = "#232423" -- ---- red
 local base01 = "#BA2922" -- ---  orange
 local base02 = "#7E807E" -- --   yellow
@@ -54,11 +49,11 @@ local base0F = "#E8E8E8" -- brown
 
 local theme = {}
 
-theme.fg_normal = cobalt9_2
-theme.bg_normal = cobalt9_1
+theme.fg_normal = cobalt_fg
+theme.bg_normal = cobalt_bg
 
-theme.fg_focus = cobalt9_2
-theme.bg_focus = cobalt9_4
+theme.fg_focus = cobalt_fg
+theme.bg_focus = cobalt_accent_blue
 
 theme.bg_minimize = "#101010"
 -- theme.bg_systray = cobalt9_3
@@ -71,7 +66,7 @@ theme.margins_width = dpi(10)
 
 theme.border_normal = makeColorTransparent(theme.bg_normal, "80")
 theme.border_focus = makeColorTransparent(theme.bg_focus, "80")
-theme.border_marked = cobalt9_3
+theme.border_marked = cobalt_highlight
 
 -- Default settings
 theme.fg = theme.fg_normal
@@ -80,24 +75,24 @@ theme.bg = theme.bg_normal
 -- General colors
 theme.success_fg = base0C
 theme.loaded_fg = base0D
-theme.error_fg = cobalt9_1
+theme.error_fg = cobalt_bg
 theme.error_bg = base08
 
 -- Warning colors
-theme.warning_fg = cobalt9_1
+theme.warning_fg = cobalt_bg
 theme.warning_bg = base0E
 
 -- Notification colors
-theme.notif_fg = cobalt9_1
-theme.notif_bg = cobalt9_2
+theme.notif_fg = cobalt_bg
+theme.notif_bg = cobalt_fg
 
 -- Menu colours
-theme.menu_fg = cobalt9_2
-theme.menu_bg = cobalt9_1
-theme.menu_selected_fg = cobalt9_1
-theme.menu_selected_bg = cobalt9_4
+theme.menu_fg = cobalt_fg
+theme.menu_bg = cobalt_bg
+theme.menu_selected_fg = cobalt_bg
+theme.menu_selected_bg = cobalt_accent_blue
 
-theme.menu_title_bg = cobalt9_1
+theme.menu_title_bg = cobalt_bg
 theme.menu_primary_title_fg = base05
 theme.menu_secondary_title_fg = base04
 
@@ -110,13 +105,13 @@ theme.menu_active_bg = theme.menu_bg
 
 -- Proxy manager
 theme.proxy_active_menu_fg = base05
-theme.proxy_active_menu_bg = cobalt9_1
+theme.proxy_active_menu_bg = cobalt_bg
 theme.proxy_inactive_menu_fg = base03
-theme.proxy_inactive_menu_bg = cobalt9_1
+theme.proxy_inactive_menu_bg = cobalt_bg
 
 -- Statusbar specific
 theme.sbar_fg = "red"
-theme.sbar_bg = cobalt9_1
+theme.sbar_bg = cobalt_bg
 
 -- Downloadbar specific
 theme.dbar_fg = "green"
@@ -125,14 +120,14 @@ theme.dbar_error_fg = base08
 
 -- Input bar specific
 theme.ibar_fg = "blue"
-theme.ibar_bg = cobalt9_1
+theme.ibar_bg = cobalt_bg
 
 -- Tab label
-theme.tab_fg = cobalt9_2
-theme.tab_bg = cobalt9_1
-theme.tab_hover_bg = cobalt9_3
-theme.selected_fg = cobalt9_2
-theme.selected_bg = cobalt9_3
+theme.tab_fg = cobalt_fg
+theme.tab_bg = cobalt_bg
+theme.tab_hover_bg = cobalt_highlight
+theme.selected_fg = cobalt_fg
+theme.selected_bg = cobalt_highlight
 theme.loading_fg = base0D
 theme.loading_bg = "green"
 theme.tab_ntheme = "blue"
@@ -146,8 +141,8 @@ theme.trust_fg = base0B
 theme.notrust_fg = base0D
 
 -- Follow mode hints
-theme.hint_fg = cobalt9_2
-theme.hint_bg = cobalt9_1
+theme.hint_fg = cobalt_fg
+theme.hint_bg = cobalt_bg
 
 -- theme.hint_border = string.format("1px dashed %s", base0A)
 theme.hint_border = 10
