@@ -1,5 +1,5 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-settings 6.03 for stira on Thu May 12 10:59:39 2022.
+# Written by xscreensaver-settings 6.03 for ralf on Fri Jun  3 08:15:24 2022.
 # https://www.jwz.org/xscreensaver/
 
 timeout:	1:00:00
@@ -14,8 +14,8 @@ splash:		False
 splashDuration:	0:00:05
 demoCommand:	xscreensaver-demo
 nice:		10
-fade:		True
-unfade:		True
+fade:		False
+unfade:		False
 fadeSeconds:	0:00:03
 ignoreUninstalledPrograms:False
 font:		*-medium-r-*-140-*-m-*
@@ -24,7 +24,7 @@ dpmsQuickOff:	False
 dpmsStandby:	0:15:00
 dpmsSuspend:	0:30:00
 dpmsOff:	1:00:00
-grabDesktopImages:  True
+grabDesktopImages:  False
 grabVideoFrames:    False
 chooseRandomImages: False
 imageDirectory:	/media/BIGDATA/Pictures

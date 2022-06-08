@@ -29,34 +29,19 @@ csource "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-zinit ice depth=1;
+zinit wait lucid for \
+	zdharma-continuum/fast-syntax-highlighting \
+	zdharma-continuum/history-search-multi-word \
+	memark/zsh-dotnet-completion \
+	OMZP::colored-man-pages
+  # atload"_zsh_autosuggest_start; zicdreplay" \
+      # zsh-users/zsh-autosuggestions \
+  # blockf atpull'zinit creinstall -q .' \  
+      # zsh-users/zsh-completions \
+	    # zsh-users/zsh-autosuggestions
 
-zinit ice blockf atpull'zinit creinstall -q .'
-
-# automatically load bash completion functions
-autoload -U +X bashcompinit && bashcompinit
-# autoload -U +X compinit && compinit
-
-zinit ice for \
-  light-mode memark/zsh-dotnet-completion \
-  light-mode romkatv/powerlevel10k \
-  light-mode g-plane/zsh-yarn-autocompletions \
-  zdharma-continuum/fast-syntax-highlighting \
-  zdharma-continuum/history-search-multi-word \
-  zsh-users/zsh-autosuggestions \
-  urbainvaes/fzf-marks \
-  hlissner/zsh-autopair \
-  marzocchi/zsh-notify \
-  junegunn/fzf-bin \
-  zsh-users/zsh-completions
-
-zinit snippet OMZP::colored-man-pages
-zinit snippet OMZL::clipboard.zsh
-zinit snippet OMZL::termsupport.zsh
-
-
-zinit cdreplay -q # <- execute compdefs provided by rest of plugins
-zinit cdlist # look at gathered compdefs
+zinit ice depth=1; 
+zinit light romkatv/powerlevel10k
 
 ### End of Zinit's installer chunk
 
@@ -73,8 +58,8 @@ setopt COMPLETE_IN_WORD  # Complete from both ends of a word.
 unsetopt MENU_COMPLETE   # Do not autoselect the first completion entry.
 
 zstyle ':completion:*' menu select=2
-# zstyle ':completion:*' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")'  # Colored completion (different colors for dirs/files/etc)
-# zstyle ':completion:*' rehash true                              # automatically find new executables in path 
+zstyle ':completion:*' rehash true                              # automatically find new executables in path 
+zstyle ':completion:*' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")'  # Colored completion (different colors for dirs/files/etc)
 
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
@@ -123,10 +108,19 @@ setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt hist_verify
 setopt INC_APPEND_HISTORY
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+
+export HISTTIMEFORMAT="[%F %T] "
+
 unsetopt HIST_BEEP
 
 # Share your history across all your terminal windows
 setopt share_history
+
+HISTFILE=~/.zhistory
+HISTSIZE=100000
+SAVEHIST=100000
 
 export HISTIGNORE="ll:ls:cd:cd -:pwd:exit:date:* --help"
 

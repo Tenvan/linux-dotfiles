@@ -15,7 +15,6 @@ run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-key
 
 run ibus-daemon -d -x
 run unclutter --root --timeout 3
-run xscreensaver
 run xfce4-power-manager
 
 #---------------
@@ -41,6 +40,8 @@ file=$HOME/.custom/autostart
 if [ -f "$file" ]; then
     . "$file"
 fi
+
+run xscreensaver
 
 #cursor active at boot
 run xsetroot -cursor_name left_ptr -bg "#2a2a2a" -fg "#d6d6d6"
