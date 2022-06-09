@@ -6,8 +6,8 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export GTK_THEME=oomox-cobalt
 
 # for qt5 apps
-# export XDG_CURRENT_DESKTOP=Unity
-export XDG_CURRENT_DESKTOP=KDE
+export XDG_CURRENT_DESKTOP=Unity
+# export XDG_CURRENT_DESKTOP=KDE
 
 # Scale Factor
 export QT_SCALE_FACTOR=1
