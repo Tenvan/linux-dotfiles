@@ -29,19 +29,25 @@ csource "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+zinit ice depth=1; 
+
 zinit wait lucid for \
+  memark/zsh-dotnet-completion \
+  romkatv/powerlevel10k \
+  g-plane/zsh-yarn-autocompletions \
 	zdharma-continuum/fast-syntax-highlighting \
 	zdharma-continuum/history-search-multi-word \
 	memark/zsh-dotnet-completion \
-	OMZP::colored-man-pages
-  # atload"_zsh_autosuggest_start; zicdreplay" \
-      # zsh-users/zsh-autosuggestions \
-  # blockf atpull'zinit creinstall -q .' \  
-      # zsh-users/zsh-completions \
-	    # zsh-users/zsh-autosuggestions
-
-zinit ice depth=1; 
-zinit light romkatv/powerlevel10k
+  urbainvaes/fzf-marks \
+  hlissner/zsh-autopair \
+  marzocchi/zsh-notify \
+  junegunn/fzf-bin \
+	OMZP::colored-man-pages \
+  OMZL::clipboard.zsh \
+  OMZL::termsupport.zsh \
+  atload"_zsh_autosuggest_start; zicdreplay" \
+    zsh-users/zsh-completions \
+    zsh-users/zsh-autosuggestions
 
 ### End of Zinit's installer chunk
 
