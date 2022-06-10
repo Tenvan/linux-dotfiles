@@ -10,19 +10,13 @@ ONETIMESERVER_SHELL="$TERMINAL --directory $WORK_ONETIMESERVER"
 
 export CUSTOM_TOP_ACTIONS=(
     "🏄 OTS: Start Server" "$ONETIMESERVER_SHELL --hold --title OTC:StartServer yarn start"
-    "🛫 OTC: Start Watch Pug" "$ONETIMECLIENT_SHELL --hold --title OTC:StartWatchPug yarn watch:pug"
-    "🛫 OTC: Start Watch NPM" "$ONETIMECLIENT_SHELL --hold --title OTC:StartWatchNpm yarn watch:npm"
-
-    "🛫 OTC: Start Compiler OneTimeClient" "$ONETIMECLIENT_SHELL --hold --title OTC:StartClient yarn start:client"
-    "🛫 OTC: Start Compiler AtomicTest" "$ONETIMECLIENT_SHELL --hold --title OTC:StartClient yarn start:test:atomic"
-    "🛫 OTC: Start Compiler WidgetsTest" "$ONETIMECLIENT_SHELL --hold --title OTC:StartClient yarn start:test:widgets"
-
-    "🛫 OTC: Start Compiler OtwCore" "$ONETIMECLIENT_SHELL --hold --title OTC:StartOtwCore yarn watch:npm:core"
-    "🛫 OTC: Start Compiler OtwWidgets" "$ONETIMECLIENT_SHELL --hold --title OTC:StartOtwWidgets yarn watch:npm:widgets"
-    "🛫 OTC: Start Compiler OtwBll" "$ONETIMECLIENT_SHELL --hold --title OTC:StartOtwBll yarn watch:npm:bll"
-    "🛫 OTC: Start Compiler OtwRestClient" "$ONETIMECLIENT_SHELL --hold --title OTC:StartOtwRestClient yarn watch:npm:rest"
-    "🛫 OTC: Start Compiler OtwAtomic" "$ONETIMECLIENT_SHELL --hold --title OTC:StartOtwAtomic yarn watch:npm:atomic"
-
+    "🛫 OTC: Start Pug Watcher" "$ONETIMECLIENT_SHELL --hold --title OTC:PugWatcher yarn run watch:pug"
+    "🛫 OTC: Start Npm Watcher" "$ONETIMECLIENT_SHELL --hold --title OTC:NpmWatcher yarn run watch:npm"
+    
+    "🛫 OTC: Start OneTimeClient" "$ONETIMECLIENT_SHELL --hold --title OTC:StartClient yarn run start:client"
+    "🛫 OTC: Start TestApp Atomic" "$ONETIMECLIENT_SHELL --hold --title OTC:AtomicTestApp yarn run start:test:atomic"
+    "🛫 OTC: Start TestApp Widgets" "$ONETIMECLIENT_SHELL --hold --title OTC:WidgetsTestApp yarn run start:test:widgets"
+    
     "💻 OTS: Shell Server" "$ONETIMESERVER_SHELL --hold --title OTS:Shell"
     "💻 OTC: Shell OneTimeClient" "$ONETIMECLIENT_SHELL --hold --title OTC:Shell"
 )
