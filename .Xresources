@@ -1,6 +1,15 @@
-! ------------------------------------------------------------------------------
-! Generic Theme Colors for using in Theme Engines (GTK Awesome etc.)
-! ------------------------------------------------------------------------------
+!  ██╗░░██╗██████╗░███████╗███████╗░██████╗░██╗░░░██╗██████╗░░██████╗███████╗███████╗
+!  ╚██╗██╔╝██╔══██╗██╔════╝██╔════╝██╔═══██╗██║░░░██║██╔══██╗██╔════╝██╔════╝██╔════╝
+!  ░╚███╔╝░██████╔╝█████╗░░███████╗██║░░░██║██║░░░██║██████╔╝██║░░░░░█████╗░░███████╗
+!  ░██╔██╗░██╔══██╗██╔══╝░░╚════██║██║░░░██║██║░░░██║██╔══██╗██║░░░░░██╔══╝░░╚════██║
+!  ██╔╝░██╗██║░░██║███████╗███████║╚██████╔╝╚██████╔╝██║░░██║╚██████╗███████╗███████║
+!  ╚═╝░░╚═╝╚═╝░░╚═╝╚══════╝╚══════╝░╚═════╝░░╚═════╝░╚═╝░░╚═╝░╚═════╝╚══════╝╚══════╝
+
+
+!  ░█▀▀░█▀█░█░░░█▀█░█▀▄░█▀▀
+!  ░█░░░█░█░█░░░█░█░█▀▄░▀▀█
+!  ░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀
+
 #define cobalt9_1 #072539
 #define cobalt9_2 #e1efff
 #define cobalt9_3 #19acc6
@@ -94,12 +103,17 @@
 Xcursor.theme: Bibata-Modern-Ice
 Xcursor.size:  24
 
+!  ░█▀▀░█▀█░█▀█░▀█▀░█▀▀
+!  ░█▀▀░█░█░█░█░░█░░▀▀█
+!  ░▀░░░▀▀▀░▀░▀░░▀░░▀▀▀
+
 Xft.dpi:       96
 Xft.antialias: true
 Xft.hinting:   true
 Xft.rgba:      rgb
-Xft.autohint:  false
-Xft.hintstyle:  hintfull
+Xft.rightScrollBar: rgb
+Xft.autohint:  true
+Xft.hintstyle:  full
 Xft.lcdfilter: lcddefault
 
 ! ------------------------------------------------------------------------------
@@ -139,158 +153,62 @@ xterm*color15:      base07
 
 xterm*boldMode: false
 
-! ------------------------------------------------------------------------------
-! URxvt standard arcolinux theme - Reload with xrdb -merge ~/.Xresources
-! ------------------------------------------------------------------------------
-
-! general settings
-URxvt*saveline:         15000
-URxvt*termName:         xterm-256color
-URxvt*urgentOnBell:     false
-URxvt*visualBell:       false
-URxvt*iso14755:         false
-URxvt*iso14755_52:      false
-URxvt*meta8:            false
-URxvt*metaSendsEscape:  true
-URxvt*iconFile:  		    ~/.config/awesome/awesome-buttons/icons/terminal.svg
-
-! appearance
-URxvt*depth:              32
-!URxvt*transparent:        true
-URxvt*shading:            30
-
-#ifdef background_opacity
-URxvt*background:         [background_opacity]base00
-#else
-URxvt*background:         base00
-#endif
-
-URxvt*foreground:         base05
-URxvt*underlineColor:     #4682B4
-URxvt*highlightColor:     #4682B4
-URxvt*throughColor:       Blue
-URxvt*cursorColor:        #c5c8c6
-URxvt*scrollBar:          false
-URxvt*scrollTtyOutput:    false
-URxvt*scrollWithBuffer:   true
-URxvt*scrollTtyKeypress:  true
-URxvt*internalBorder:     0
-URxvt*externalBorder:     0
-URxvt*colorIT:            #87af5f
-URxvt*colorBD:      	    #c5c8c6
-URxvt*colorUL:      	    #87afd7
-
-! colors
-URxvt*color0: base00
-URxvt*color1: base01
-URxvt*color2: base02
-URxvt*color3: base03
-URxvt*color4: base04
-URxvt*color5: base05
-URxvt*color6: base06
-URxvt*color7: base07
-URxvt*color8: base08
-URxvt*color9: base09
-URxvt*color10: base10
-URxvt*color11: base11
-URxvt*color12: base12
-URxvt*color13: base13
-URxvt*color14: base14
-URxvt*color15: base15
-
-! fonts
-URxvt*letterSpace: 	    		  -2
-!URxvt*font:                 	xft:monospace:regular:size=14
-!URxvt*imFont:               	xft:monospace:regular:size=14
-!URxvt*boldFont:             	xft:monospace:bold:size=14
-!URxvt*italicFont:           	xft:monospace:italic:size=14
-!URxvt*boldItalicFont:     		xft:monospace:regular:size=14
-
-URxvt*font:                 	xft:monospace:regular
-URxvt*imFont:               	xft:monospace:regular
-URxvt*boldFont:             	xft:monospace:bold
-URxvt*italicFont:           	xft:monospace:italic
-URxvt*boldItalicFont:     		xft:monospace:regular
-
-! run :.!fc-list | grep <font-name>
-
-! perl extensions
-URxvt*perl-ext-common:        defaultclipboardurl-selectkeyboard-selectresize-font
-!URxvt*perl-ext-common:       defaultclipboardurl-selectkeyboard-selecttabbed
-
-! macros for clipboard and selection
-URxvt*copyCommand:      xclip -i -selection clipboard
-URxvt*pasteCommand:     xclip -o -selection clipboard
-URxvt*keysym.M-c:       perl:clipboard:copy
-URxvt*keysym.m-v:       perl:clipboard:paste
-URxvt*keysym.M-C-v:     perl:clipboard:paste_escaped
-URxvt*keysym.M-Escape:  perl:keyboard-select:activate
-URxvt*keysym.M-s:       perl:keyboard-select:search
-URxvt*keysym.M-u:       perl:url-select:select_next
-URxvt*resize-font.smaller:	C-Down
-URxvt*resize-font.bigger:	C-Up
-URxvt*urlLauncher:      firefox
-URxvt*underlineURLs:    true
-URxvt*urlButton:        1
-URxvt*geometry: 		90x30
-
-! tabbed
-URxvt*tabbed.tabbar-fg: 4
-URxvt*tabbed.tabbar-bg: 16
-URxvt*tabbed.tab-fg:    15
-URxvt*tabbed.tab-bg:    4
-URxvt*buffered:         false
-URxvt*keysym.Control-Shift-C: perl:clipboard:copy
-URxvt*keysym.Control-Shift-V: perl:clipboard:paste
-
-! ------------------------------------------------------------------------------
-! UXTerm standard arcolinux theme
-! ------------------------------------------------------------------------------
-
-! termtype
-UXTerm*termName: xterm-256color
-
-UXTerm*cursorColor:        white
-UXTerm*VT100.geometry:     90x30
-UXTerm*font:               monospace
-UXTerm*faceSize:		   12
-UXTerm*dynamicColors:      true
-UXTerm*utf8:               2
-UXTerm*eightBitInput:      true
-UXTerm*saveLines:          10000
-UXTerm*scrollKey:          true
-UXTerm*scrollTtyOutput:    false
-UXTerm*scrollBar:          false
-UXTerm*rightScrollBar:     false
-UXTerm*jumpScroll:         true
-UXTerm*multiScroll:        true
-UXTerm*toolBar:            false
-
-! fix colors
-UXTerm*background: base00
-UXTerm*foreground: base05
-UXTerm*color0: rgb:00/00/00
-UXTerm*color1: rgb:a8/00/00
-UXTerm*color2: rgb:00/a8/00
-UXTerm*color3: rgb:a8/54/00
-UXTerm*color4: rgb:00/00/a8
-UXTerm*color5: rgb:a8/00/a8
-UXTerm*color6: rgb:00/a8/a8
-UXTerm*color7: rgb:a8/a8/a8
-UXTerm*color8: rgb:54/54/54
-UXTerm*color9: rgb:fc/54/54
-UXTerm*color10: rgb:54/fc/54
-UXTerm*color11: rgb:fc/fc/54
-UXTerm*color12: rgb:54/54/fc
-UXTerm*color13: rgb:fc/54/fc
-UXTerm*color14: rgb:54/fc/fc
-UXTerm*color15: rgb:fc/fc/fc
-UXTerm*boldMode: false
-UXTerm*colorBDMode: true
-UXTerm*colorBD: rgb:3f/3f/3f
-
+! ░█▀█░█░░░▀█▀░▀█▀░█▀█░█▀▄
+! ░█▀█░█░░░░█░░░█░░█▀█░█▀▄
+! ░▀░▀░▀▀▀░░▀░░░▀░░▀░▀░▀▀░
 alttab*background:       base00
 alttab*foreground:       base05
 alttab*windowmanager:    1
 alttab*desktops:         1
 alttab*screens:          0
+
+!  ░█░█░█▀▄░█░█░█░█░▀█▀
+!  ░█░█░█▀▄░▄▀▄░▀▄▀░░█░
+!  ░▀▀▀░▀░▀░▀░▀░░▀░░░▀░
+
+URxvt.cursorBlink: 1
+URxvt.font: xft:MesloLGS NF:pixelsize=13:antialias=true,xft:MesloLGS NF
+URxvt.boldFont: xft:MesloLGS NF:pixelsize=13:weight=bold:antialias=true,xft:MesloLGS NF
+URxvt.italicFont: xft:MesloLGS NF:pixelsize=13:weight=italic:antialias=true,xft:MesloLGS NF
+
+URxvt.lineSpace: 0
+URxvt.letterSpace: -1
+URxvt.scrollBar: false
+URxvt.internalBorder: 32
+URxvt.geometry: 70x13
+URxvt.thickness: 5
+URxvt.titleBar: true
+URxvt.intensityStyles: false
+URxvt.scrollTtyKeypress: true
+URxvt.scrollTtyOutput: true
+URxvt.cursorUnderline: true
+URxvt*allow_bold: true
+URxvt*iso14755: False
+
+URxvt.perl-ext-common: fullscreen,resize-font,matcher,clipboard
+URxvt.keysym.F11: perl:fullscreen:switch
+URxvt.keysym.C-Down: resize-font:smaller
+URxvt.keysym.C-Up: resize-font:bigger
+URxvt.url-launcher: firefox
+URxvt.matcher.button: 1
+
+!  ░█░█░▀█▀░█▀▀░█▀▄░█▄█
+!  ░▄▀▄░░█░░█▀▀░█▀▄░█░█
+!  ░▀░▀░░▀░░▀▀▀░▀░▀░▀░▀
+
+XTerm.termName: xterm-256color
+XTerm.vt100.locale: true
+XTerm.vt100.metaSendsEscape: true
+XTerm.vt100.backarrowKey: false
+XTerm.ttyModes: erase ^?
+XTerm.vt100.saveLines: 16384
+XTerm.vt100.faceName: xft:MesloLGS NF:size=10.5:antialias=true
+XTerm.vt100.bellIsUrgent: true
+XTerm.letterSpace: 0
+XTerm.scaleHeight: 1.01
+XTerm.faceSize: 10
+XTerm.internalBorder: 32
+XTerm.vt100*geometry: 70x13
+XTerm.loginShell: true
+XTerm.charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+XTerm.eightBitInput: false

@@ -152,6 +152,7 @@
 	#############
 	swm = switch master
 	swd = switch develop
+	swn = switch release/next
 	#############
 	o = checkout -v
 	om = checkout -v master

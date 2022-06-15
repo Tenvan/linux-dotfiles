@@ -24,6 +24,10 @@ export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
 export WORKSPACE=/media/WORKSPACE/$USER
 
+# pnpm
+export PNPM_HOME="/home/ralf/.local/share/pnpm"
+# pnpm end
+
 # Conditional PATH additions
 for path_candidate in /Applications/Xcode.app/Contents/Developer/usr/bin \
   /opt/local/bin \
@@ -36,6 +40,7 @@ for path_candidate in /Applications/Xcode.app/Contents/Developer/usr/bin \
   ~/.bin \
   ~/.scripts \
   ~/.local/bin \
+  ~/.local/share/pnpm \
   ~/.yarn/bin \
   ~/src/gocode/bin \
   ~/gocode \
