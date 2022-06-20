@@ -1,19 +1,49 @@
 #!/usr/bin/env bash
+myTestLua=$(eval echo $HOME/.config/awesome/rc.test.lua)
+myLua=$(eval echo $HOME/.config/awesome/rc.lua)
+
+CURRENT_AWESOME=$HOME/.config/awesome
+NEW_AWESOME=$HOME/.config/awesome.new
+OLD_AWESOME=$HOME/.config/awesome.old
+
+switch_to_new_awesome() {
+    if [ -d "$NEW_AWESOME" ]; then
+        notify-send.sh "Switch Awesome" "Nach 'NEUEM (new)'  Awesome umschalten..." -u normal
+        mv "$CURRENT_AWESOME" "$OLD_AWESOME"
+        mv "$NEW_AWESOME" "$CURRENT_AWESOME"
+        yes j | yay -Sy awesome-git
+        notify-send.sh "umschalten fertig." -u normal
+        sh "$SCRIPTS/session_logout.sh"
+    else
+        notify-send.sh "Switch Awesome" "Neues Awesome schon aktiv!..." -u critical
+    fi
+}
+
+switch_to_old_awesome() {
+    if [ -d "$OLD_AWESOME" ]; then
+        notify-send.sh "Switch Awesome" "Nach 'ALTEM (old)' Awesome umschalten..." -u normal
+        mv "$CURRENT_AWESOME" "$NEW_AWESOME"
+        mv "$OLD_AWESOME" "$CURRENT_AWESOME"
+        yes j | yay -Sy awesome
+        notify-send.sh "umschalten fertig." -u normal
+        sh "$SCRIPTS/session_logout.sh"
+    else
+        notify-send.sh "Switch Awesome" "Altes Awesome schon aktiv!..." -u critical
+    fi
+}
 
 CUSTOM_TOP_ACTIONS=(
-        "🔫 Snapper-Gui (BTRFS Snapshots)" "sudo snapper-gui" \
-        "🧩 Install Base Packages" "$shellCmd --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_base.zsh" \
-        "🧩 Install Virtual Engines" "$shellCmd --hold --title Sys:Install $timeCmd sh $SCRIPTS/install_vm.zsh" \
+    "🚧 Switch to New Awesome" "switch_to_new_awesome" \
+    "🚧 Switch to Old Awesome" "switch_to_old_awesome" \
+    "🖥 Monitor Standard" "sh $HOME/.screenlayout/screenlayout.sh" \
+    "🖥 Monitor FlameShot" "sh $HOME/.screenlayout/screenlayout-flameshot.sh"
 )
 
 CUSTOM_BOTTOM_ACTIONS=(
-        "🛻 SQL-Server Stop" "$shellCmd --hold --title OTC:SqlServer $timeCmd sudo systemctl stop mssql-server"
-        "🛻 SQL-Server Start" "$shellCmd --hold --title OTC:SqlServer $timeCmd sudo systemctl start mssql-server"
-        "🛻 SQL-Server Restart" "$shellCmd --hold --title OTC:SqlServer $timeCmd sudo systemctl restart mssql-server"
-        "🚧 Awmtt Default Start" "$shellCmd --hold --title AWMTT awmtt start -N --size 1920x1080" \
-        "🚧 Awmtt Default Restart" "$shellCmd --title AWMTT awmtt restart" \
-        "🚧 Awmtt Default Stop" "$shellCmd --title AWMTT awmtt stop" \
-        "🚧 Awmtt Test Start" "$shellCmd --hold --title AWMTT awmtt start -C $myTestLua -D 1 --size 1920x1080" \
-        "🚧 Awmtt Test Restart" "awmtt restart" \
-        "🚧 Awmtt Test Stop" "awmtt stop"
+    "🚧 Awmtt Default Start" "$shellCmd --hold --title AWMTT awmtt start -C $myLua --size 1920x1080" \
+    "🚧 Awmtt Default Restart" "$shellCmd --title AWMTT awmtt restart" \
+    "🚧 Awmtt Default Stop" "$shellCmd --title AWMTT awmtt stop" \
+    "🚧 Awmtt Test Start" "$shellCmd --hold --title AWMTT awmtt start -C $myTestLua -D 1 --size 1920x1080" \
+    "🚧 Awmtt Test Restart" "awmtt restart" \
+    "🚧 Awmtt Test Stop" "awmtt stop"
 )

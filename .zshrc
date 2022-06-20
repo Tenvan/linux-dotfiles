@@ -161,7 +161,9 @@ REPORTTIME=5				# Display usage statistics for commands running > 5 sec.
 # WORDCHARS="\"*?_-[]~&;!#$%^(){}<>\""
 WORDCHARS='`~!@#$%^&*()-_=+[{]}\|;:",<.>/?'"'"
 
-# History
+# ░█░█░▀█▀░█▀▀░▀█▀░█▀█░█▀▄░█░█
+# ░█▀█░░█░░▀▀█░░█░░█░█░█▀▄░░█░
+# ░▀░▀░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░▀░░▀░
 HISTFILE=~/.zhistory
 HISTSIZE=100000
 SAVEHIST=100000
@@ -252,27 +254,39 @@ fi
 
 csource "$HOME/.zinit/bin/zinit.zsh"
 
-# Check if zplug is installed
-[ ! -d ~/.zplug ] && git clone https://github.com/zplug/zplug ~/.zplug
-csource ~/.zplug/init.zsh
-
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-zinit ice depth=1; 
+zinit ice depth=1;
 
 zinit wait lucid for \
-  zsh-users/zsh-completions \
-  zsh-users/zsh-autosuggestions \
-  zsh-users/zsh-history-substring-search \
-  zsh-users/zsh-syntax-highlighting \
-  b4b4r07/enhancd \
-  hlissner/zsh-autopair \
-  memark/zsh-dotnet-completion \
-  g-plane/zsh-yarn-autocompletions \
-  atload"_zsh_autosuggest_start; zicdreplay" \
-    zsh-users/zsh-completions \
-    zsh-users/zsh-autosuggestions
+    memark/zsh-dotnet-completion \
+    romkatv/powerlevel10k \
+    g-plane/zsh-yarn-autocompletions \
+    zdharma-continuum/fast-syntax-highlighting \
+    zdharma-continuum/history-search-multi-word \
+    memark/zsh-dotnet-completion \
+    urbainvaes/fzf-marks \
+    hlissner/zsh-autopair \
+    marzocchi/zsh-notify \
+    junegunn/fzf-bin \
+    OMZP::colored-man-pages \
+    OMZL::clipboard.zsh \
+    OMZL::termsupport.zsh \
+    atload"_zsh_autosuggest_start; zicdreplay" \
+        zsh-users/zsh-completions \
+        zsh-users/zsh-autosuggestions
+
+# zinit wait lucid for \
+#         b4b4r07/enhancd \
+#     atinit"zicompinit; zicdreplay" \
+#         zsh-users/zsh-syntax-highlighting \
+#     atload"_zsh_autosuggest_start; zicdreplay" \
+#         zsh-users/zsh-autosuggestions \
+#         memark/zsh-dotnet-completion \
+#     blockf atpull'zinit creinstall -q .' \
+#         zsh-users/zsh-completions \
+#         g-plane/zsh-yarn-autocompletions
 
 ### End of Zinit's installer chunk
 
@@ -289,9 +303,9 @@ zstyle ':completion:*' rehash true
 
 # Case-insensitive (all), partial-word and then substring completion
 zstyle ":completion:*" matcher-list \
-  "m:{a-zA-Z}={A-Za-z}" \
-  "r:|[._-]=* r:|=*" \
-  "l:|=* r:|=*"
+"m:{a-zA-Z}={A-Za-z}" \
+"r:|[._-]=* r:|=*" \
+"l:|=* r:|=*"
 
 zstyle ":completion:*:default" list-colors ${(s.:.)LS_COLORS}
 
@@ -314,18 +328,18 @@ zstyle ':completion:*' menu select=2
 # Load SSH and GPG agents via keychain.
 
 setup_agents() {
-	[[ $UID -eq 0 ]] && return
-
-	if which keychain &> /dev/null; then
-		local -a ssh_keys gpg_keys
-		for i in ~/.ssh/**/*pub; do test -f "$i(.N:r)" && ssh_keys+=("$i(.N:r)"); done
-			gpg_keys=$(gpg -K --with-colons 2>/dev/null | awk -F : '$1 == "sec" { print $5 }')
-			if (( $#ssh_keys > 0 )) || (( $#gpg_keys > 0 )); then
-				alias run_agents='() { $(whence -p keychain) --quiet --eval --inherit any-once --agents ssh,gpg $ssh_keys ${(f)gpg_keys} }'
-				# [[ -t ${fd:-0} || -p /dev/stdin ]] && eval `run_agents`
-			unalias run_agents
-		fi
-	fi
+    [[ $UID -eq 0 ]] && return
+    
+    if which keychain &> /dev/null; then
+        local -a ssh_keys gpg_keys
+        for i in ~/.ssh/**/*pub; do test -f "$i(.N:r)" && ssh_keys+=("$i(.N:r)"); done
+        gpg_keys=$(gpg -K --with-colons 2>/dev/null | awk -F : '$1 == "sec" { print $5 }')
+        if (( $#ssh_keys > 0 )) || (( $#gpg_keys > 0 )); then
+            alias run_agents='() { $(whence -p keychain) --quiet --eval --inherit any-once --agents ssh,gpg $ssh_keys ${(f)gpg_keys} }'
+            # [[ -t ${fd:-0} || -p /dev/stdin ]] && eval `run_agents`
+            unalias run_agents
+        fi
+    fi
 }
 
 setup_agents
