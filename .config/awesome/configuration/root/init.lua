@@ -14,9 +14,6 @@ end),
       mymainmenu:toggle()
     end
   end),
-  awful.button({}, 2, function()
-    awful.util.spawn(apps.default.rofi_appmenu)
-  end),
   awful.button({ 'Control' }, 2, function()
     awesome.emit_signal('module::exit_screen:show')
   end),

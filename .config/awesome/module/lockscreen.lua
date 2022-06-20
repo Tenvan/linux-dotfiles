@@ -687,9 +687,6 @@ local locker = function(s)
 	end
 
 	local free_keygrab = function()
-		-- Kill rofi instance.
-		awful.spawn.with_shell('kill -9 $(pgrep rofi)')
-
 		-- Check if there's a keygrabbing instance.
 		-- If yes, stop it.
 		local keygrabbing_instance = awful.keygrabber.current_instance

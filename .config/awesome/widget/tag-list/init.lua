@@ -35,7 +35,7 @@ local function create_buttons(buttons, object)
 end
 
 local function list_update(w, buttons, label, data, objects)
-  gdebug.print_warning(gdebug.dump_return(objects, 'objects', 4))
+  -- gdebug.print_warning(gdebug.dump_return(objects, 'objects', 4))
   -- update the widgets, creating them if needed
   w:reset()
   for i, o in ipairs(objects) do
@@ -85,9 +85,6 @@ local function list_update(w, buttons, label, data, objects)
     end
 
     local text, bg, bg_image, icon, args = label(o, tb)
-
-    gdebug.print_warning('Text: ' .. text)
-    gdebug.print_warning(o.text)
 
     args = args or {}
 

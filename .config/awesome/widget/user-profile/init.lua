@@ -14,6 +14,7 @@ local clickable_container = require('widget.clickable-container')
 local config_dir = gears.filesystem.get_configuration_dir()
 local widget_icon_dir = config_dir .. 'configuration/user-profile/'
 local user_icon_dir = '/var/lib/AccountsService/icons/'
+local gdebug = require('gears.debug')
 
 title_table = {
 	'Hey, I have a message for you',
@@ -121,6 +122,7 @@ local uptime_time = wibox.widget {
 }
 
 local update_profile_image = function()
+  -- gdebug.print_warning('widget_icon_dir: ' .. widget_icon_dir .. 'default.svg')
 	awful.spawn.easy_async_with_shell(
 		apps.utils.update_profile,
 		function(stdout)

@@ -22,7 +22,7 @@ local left_panel = function(screen)
     shape = gears.shape.rectangle,
     x = screen.geometry.x,
     y = screen.geometry.y,
-    bg = "red", --beautiful.background,
+    bg = beautiful.background,
     fg = beautiful.fg_normal
   }
 
@@ -31,7 +31,7 @@ local left_panel = function(screen)
   screen.backdrop_ldb = wibox {
     ontop = true,
     screen = screen,
-    bg = 'green', -- beautiful.transparent,
+    bg = beautiful.transparent,
     type = 'utility',
     x = screen.geometry.x,
     y = screen.geometry.y,
@@ -42,15 +42,6 @@ local left_panel = function(screen)
   panel:struts {
     left = action_bar_width
   }
-
-  function panel:run_rofi()
-    awesome.spawn(apps.default.rofi_global, false, false, false, false, function()
-      panel:toggle()
-    end)
-
-    -- Hide panel content if rofi global search is opened
-    panel:get_children_by_id('panel_content')[1].visible = false
-  end
 
   -- "Punch a hole" on backdrop to show the left dashboard
   local update_backdrop = function(wibox_backdrop, wibox_panel)
@@ -83,7 +74,7 @@ local left_panel = function(screen)
     wibox_backdrop:draw()
   end
 
-  local open_panel = function(should_run_rofi)
+  local open_panel = function()
     panel.width = action_bar_width + panel_content_width
     screen.backdrop_ldb.visible = true
 
@@ -91,9 +82,6 @@ local left_panel = function(screen)
 
     panel:get_children_by_id('panel_content')[1].visible = true
 
-    if should_run_rofi then
-      panel:run_rofi()
-    end
     panel:emit_signal('opened')
   end
 
@@ -110,10 +98,10 @@ local left_panel = function(screen)
     close_panel()
   end
 
-  function panel:toggle(should_run_rofi)
+  function panel:toggle()
     self.opened = not self.opened
     if self.opened then
-      open_panel(should_run_rofi)
+      open_panel()
     else
       close_panel()
     end
@@ -128,7 +116,7 @@ local left_panel = function(screen)
     nil,
     {
       id = 'panel_content',
-      bg = 'blue', -- beautiful.transparent,
+      bg = beautiful.transparent,
       widget = wibox.container.background,
       visible = true,
       forced_width = panel_content_width,

@@ -41,7 +41,6 @@ local return_button = function()
 					if screen.primary.left_panel.opened then
 						screen.primary.left_panel:toggle()
 					end
-					awful.spawn(apps.default.rofi_appmenu, false)
 				end
 			)
 		)
