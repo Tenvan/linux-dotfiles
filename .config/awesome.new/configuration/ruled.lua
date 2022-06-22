@@ -15,11 +15,20 @@ ruled.client.connect_signal("request::rules", function()
 		rule = {},
 		properties = {
 			raise = true,
-			size_hints_honor = false,
+			floating = true,
+			maximized = false,
+			above = false,
+			below = false,
+			ontop = false,
+			sticky = false,
+			maximized_horizontal = false,
+			maximized_vertical = false,
+	  
 			honor_workarea = true,
 			honor_padding = true,
-			-- screen = awful.screen.preferred,
-			screen = awful.screen.focused,
+
+			screen = awful.screen.preferred,
+			-- screen = awful.screen.focused,
 			focus = awful.client.focus.filter,
 			titlebars_enabled = beautiful.titlebar_enabled,
 			placement = awful.placement.no_overlap + awful.placement.no_offscreen,
