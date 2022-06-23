@@ -32,8 +32,11 @@ install awesome
 install awmtt
 install vicious
 install lain
+install linux515-rt-acpi_call
 
 # system packages
+install acpi 
+install acpid 
 install alttab-git
 install arandr
 install archivefs
@@ -42,7 +45,9 @@ install ark
 install bashtop
 install bat
 install bitwarden
+install blueman 
 install bpytop
+install brightnessctl 
 install clamav
 install clamtk
 install copyq
@@ -51,12 +56,15 @@ install docker
 install docker-compose
 install dpkg
 install exa
+install feh 
+install ffmpeg 
 install flameshot
 install fzf
 install genius
 install glances
 install gnome-keyring
 install gparted
+install gpick 
 install grc
 install gtop
 install hardinfo
@@ -64,8 +72,10 @@ install hstr
 install htop
 install ibus-daemon
 install iftop
+install inotify-tools 
 install iotop
 install iptraf-ng
+install jq 
 install kitty
 install kteatime
 install lhasa
@@ -75,7 +85,12 @@ install lscolors-git
 install lsd
 install luacheck
 install micro
+install mpc 
+install mpd 
+install mpdris2 
+install mpv 
 install multitail
+install ncmpcpp 
 install neofetch
 install networkmanager
 install networkmanager-openconnect
@@ -86,12 +101,17 @@ install openconnect
 install p7zip
 install packagekit
 install picom-jonaburg-git
+install playerctl
 install pm-utils
+install polkit-gnome 
 install powershell-bin
+install python-mutagen 
 install qbittorrent
 install ranger
+install redshift 
 install rsyslog
 install s-tui
+install scrot 
 install shell-color-scripts
 install spectacle
 install stow
@@ -99,12 +119,16 @@ install time
 install timeshift
 install unclutter
 install unrar
+install upower 
 install watchexec
+install wezterm 
 install wmctrl
 install xautolock
 install xbindkeys
 install xclip
+install xclip 
 install xdotool
+install xdotool 
 install xorg-server-xephyr
 install xorg-xbacklight
 install xorg-xfd
@@ -112,6 +136,7 @@ install xorg-xsetroot
 install xscreensaver
 install xsel
 install yad
+
 
 # polkits
 install polkit-gnome
@@ -123,10 +148,24 @@ install polkit-gnome
 inst oh-my-zsh
 
 # sound setup
+install alsa-oss
+install alsa-utils
+install gst123
+install livecd-sounds
 install pa-applet
+install pamixer 
+install paprefs
+install pasystray
 install pavucontrol 
-install pulseaudio-equalizer
+install pipewire
+install pipewire-media-session
+install pnmixer 
+install ponymix
 install pulseaudio-bluetooth
+install pulseaudio-equalizer
+install sound-theme-smooth
+install sp
+install tvolnoti
 
 # ssh 
 install openssh
@@ -206,19 +245,6 @@ fi
 install rofi
 install rofimoji
 install rofi-emoji
-
-# sound setup
-install alsa-oss
-install alsa-utils
-install gst123
-install livecd-sounds
-install paprefs
-install pasystray
-install pnmixer 
-install ponymix
-install sound-theme-smooth
-install sp
-install tvolnoti
 
 # Python libs
 install python

@@ -1,80 +1,66 @@
--- ░█▀▀░█░░░█▀█░█▀█░█▀█░█░█
--- ░█▀▀░█░░░█░█░█▀▀░█▀▀░░█░
--- ░▀░░░▀▀▀░▀▀▀░▀░░░▀░░░░▀░
--- Banner generated using `toilet -f pagga AwesomeWM"
+-- ░█▀▄░█░█░█░█░█░█░█▀█░▀░█▀▀░░░█▀█░█░█░█▀▀░█▀▀░█▀█░█▄█░█▀▀
+-- ░█▀▄░▄▀▄░░█░░█▀█░█░█░░░▀▀█░░░█▀█░█▄█░█▀▀░▀▀█░█░█░█░█░█▀▀
+-- ░▀░▀░▀░▀░░▀░░▀░▀░▀░▀░░░▀▀▀░░░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀
+-- --------------------  @author rxyhn --------------------
+-- --------------- https://github.com/rxyhn ---------------
 
-local gears = require('gears')
-local beautiful = require('beautiful')
-local awful = require('awful')
--- require('awful.autofocus')
-
-local root, screen = root, screen
-
-
--- ░█▀▀░█░█░█▀▀░█░░░█░░
--- ░▀▀█░█▀█░█▀▀░█░░░█░░
--- ░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀
-
-awful.util.shell = 'sh'
+pcall(require, "luarocks.loader")
+local gears = require("gears")
+local beautiful = require("beautiful")
+local awful = require("awful")
+require("awful.autofocus")
 
 -- ░▀█▀░█░█░█▀▀░█▄█░█▀▀
 -- ░░█░░█▀█░█▀▀░█░█░█▀▀
 -- ░░▀░░▀░▀░▀▀▀░▀░▀░▀▀▀
-beautiful.init(require('theme'))
 
--- ░█░░░█▀█░█░█░█▀█░█░█░▀█▀
--- ░█░░░█▀█░░█░░█░█░█░█░░█░
--- ░▀▀▀░▀░▀░░▀░░▀▀▀░▀▀▀░░▀░
-
-require('layout')
+local theme_dir = gears.filesystem.get_configuration_dir() .. "theme/"
+beautiful.init(theme_dir .. "theme.lua")
 
 -- ░█▀▀░█▀█░█▀█░█▀▀░▀█▀░█▀▀░█░█░█▀▄░█▀█░▀█▀░▀█▀░█▀█░█▀█░█▀▀
 -- ░█░░░█░█░█░█░█▀▀░░█░░█░█░█░█░█▀▄░█▀█░░█░░░█░░█░█░█░█░▀▀█
 -- ░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀
 
-require('configuration.client')
-require('configuration.root')
-require('configuration.tags')
-root.keys(require('configuration.keys.global'))
+require("configuration")
 
 -- ░█▄█░█▀█░█▀▄░█░█░█░░░█▀▀░█▀▀
 -- ░█░█░█░█░█░█░█░█░█░░░█▀▀░▀▀█
 -- ░▀░▀░▀▀▀░▀▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
 
-require('module.notifications')
-require('module.auto-start')
--- require('module.exit-screen')
-require('module.quake-terminal')
-require('module.menu')
-require('module.titlebar')
-require('module.brightness-osd')
-require('module.volume-osd')
--- require('module.lockscreen')
-require('module.dynamic-wallpaper')
+require("module")
 
-require("module.bling")
-require("module.rubato")
-require("module.layout-machi")
+-- ░█▀▄░█▀█░█▀▀░█▄█░█▀█░█▀█░█▀▀
+-- ░█░█░█▀█░█▀▀░█░█░█░█░█░█░▀▀█
+-- ░▀▀░░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀
 
-screen.connect_signal(
-	'request::wallpaper',
-	function(s)
-		-- If wallpaper is a function, call it with the screen
-		if beautiful.wallpaper then
-			if type(beautiful.wallpaper) == 'string' then
+require("signal")
 
-				-- Check if beautiful.wallpaper is color/image
-				if beautiful.wallpaper:sub(1, #'#') == '#' then
-					-- If beautiful.wallpaper is color
-					gears.wallpaper.set(beautiful.wallpaper)
+-- ░█░█░▀█▀
+-- ░█░█░░█░
+-- ░▀▀▀░▀▀▀
 
-				elseif beautiful.wallpaper:sub(1, #'/') == '/' then
-					-- If beautiful.wallpaper is path/image
-					gears.wallpaper.maximized(beautiful.wallpaper, s)
-				end
-			else
-				beautiful.wallpaper(s)
-			end
+require("ui")
+
+-- ░█░█░█▀█░█░░░█░░░█▀█░█▀█░█▀█░█▀▀░█▀▄
+-- ░█▄█░█▀█░█░░░█░░░█▀▀░█▀█░█▀▀░█▀▀░█▀▄
+-- ░▀░▀░▀░▀░▀▀▀░▀▀▀░▀░░░▀░▀░▀░░░▀▀▀░▀░▀
+
+awful.screen.connect_for_each_screen(function(s)
+	if beautiful.wallpaper then
+		local wallpaper = beautiful.wallpaper
+
+		if type(wallpaper) == "function" then
+			wallpaper = wallpaper(s)
 		end
+
+		gears.wallpaper.maximized(gears.surface.load_uncached(wallpaper), s, false, nil)
 	end
-)
+end)
+
+-- ░█▀▀░█▀█░█▀▄░█▀▄░█▀█░█▀▀░█▀▀
+-- ░█░█░█▀█░█▀▄░█▀▄░█▀█░█░█░█▀▀
+-- ░▀▀▀░▀░▀░▀░▀░▀▀░░▀░▀░▀▀▀░▀▀▀
+
+-- Enable for lower memory consumption
+collectgarbage("setpause", 110)
+collectgarbage("setstepmul", 1000)
