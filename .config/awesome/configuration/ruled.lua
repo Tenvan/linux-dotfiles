@@ -23,7 +23,7 @@ ruled.client.connect_signal("request::rules", function()
 			sticky = false,
 			maximized_horizontal = false,
 			maximized_vertical = false,
-	  
+
 			honor_workarea = true,
 			honor_padding = true,
 
@@ -102,6 +102,22 @@ ruled.client.connect_signal("request::rules", function()
 		properties = { placement = helpers.centered_client_placement },
 	})
 
+	-- Terminal emulators
+	ruled.client.append_rule {
+		id = 'terminals',
+		rule_any = {
+			class = { 'kitty', 'alacritty', 'termite', 'URxvt', 'XTerm', 'UXTerm', 'K3rmit' }
+		},
+		properties = {
+			tag = '1',
+			floating = false,
+			maximized = false,
+			switch_to_tags = true,
+			size_hints_honor = false,
+			titlebars_enabled = true
+		}
+	}
+
 	-- Music clients (usually a terminal running ncmpcpp)
 	ruled.client.append_rule({
 		rule_any = {
@@ -120,12 +136,30 @@ ruled.client.connect_signal("request::rules", function()
 		},
 	})
 
+	-- Teams Hauptfenster
+	ruled.client.append_rule {
+		id = 'internet',
+		rule = {
+			class = 'teams-for-linux',
+			type = 'normal'
+		},
+		properties = {
+			maximized = false,
+			floating = false,
+			screen = 2,
+			tag = '4',
+			switch_to_tags = true
+		}
+	}
+
 	-- Image viewers
 	ruled.client.append_rule({
 		rule_any = {
 			class = {
 				"feh",
 				"imv",
+				'Pqiv',
+				'Sxiv'
 			},
 		},
 		properties = {
@@ -137,6 +171,121 @@ ruled.client.connect_signal("request::rules", function()
 			awful.placement.centered(c, { honor_padding = true, honor_workarea = true })
 		end,
 	})
+
+	-- Browsers and chats
+	ruled.client.append_rule {
+		rule_any = {
+			class = { 'firefox', 'Vivaldi*', 'Tor Browser', 'discord', 'Chromium', '*chrome*', 'TelegramDesktop' }
+		},
+		properties = {
+			tag = '2'
+		}
+	}
+
+	-- Text editors and word processing
+	ruled.client.append_rule {
+		rule_any = {
+			class = { 'Geany', 'Atom', 'Subl3', 'code-oss' },
+			name = { 'LibreOffice', 'libreoffice' }
+		},
+		properties = {
+			tag = '6'
+		}
+	}
+
+	-- File managers
+	ruled.client.append_rule {
+		rule_any = {
+			class = { 'dolphin', 'ark', 'Nemo', 'File-roller' }
+		},
+		properties = {
+			tag = '5',
+			switch_to_tags = true
+		}
+	}
+
+	-- Multimedia
+	ruled.client.append_rule {
+		rule_any = {
+			class = { 'vlc', 'Spotify', 'Shortwave' }
+		},
+		properties = {
+			tag = '5',
+			screen = 2,
+			switch_to_tags = true,
+			floating = false,
+			placement = awful.placement.centered
+		}
+	}
+	-- Multimedia Editing
+	ruled.client.append_rule {
+		rule_any = {
+			class = { 'Gimp-2.10', 'Inkscape', 'Flowblade' }
+		},
+		properties = {
+			tag = '4'
+		}
+	}
+
+	-- Sandboxes and VMs
+	ruled.client.append_rule {
+		rule_any = {
+			class = { 'Virt-manager', 'VirtualBox Manage', 'VirtualBox Machine', 'Gnome-boxes', 'Virt-manager' }
+		},
+		properties = {
+			tag = '5',
+			switch_to_tags = true
+		}
+	}
+
+	-- IDEs and Tools
+	ruled.client.append_rule {
+		rule_any = {
+			class = { 'jetbrains-.*', 'Code', 'Oomox', 'Unity', 'UnityHub', 'Ettercap', 'scrcpy' }
+		},
+		properties = {
+			tag = '1',
+			skip_decoration = true
+		}
+	}
+
+	-- Alle Develop Consolen auf Screen 2 tag 2 schieben
+	ruled.client.append_rule {
+		rule_any = {
+			name = { 'OT.:*' }
+		},
+		properties = {
+			screen = 2,
+			tag = '2',
+			switch_to_tags = true,
+			maximized = false,
+			floating = false
+		}
+	}
+	-- OTW Develop Consolen auf Screen 2 tag 3 schieben
+	ruled.client.append_rule {
+		rule_any = {
+			name = { 'OTW:*' }
+		},
+		properties = {
+			screen = 2,
+			tag = '3',
+		}
+	}
+
+	-- System Monitor Consolen auf Screen 2 tag 9 schieben
+	ruled.client.append_rule {
+		rule_any = {
+			name = { 'SysMon:*', 'Sys:*', 'CF:*' },
+			class = { 'Gnome-system-monitor' }
+		},
+		properties = {
+			tag = '9',
+			screen = 2,
+			floating = false,
+			switch_to_tags = true
+		}
+	}
 
 	-- Mpv
 	ruled.client.append_rule({

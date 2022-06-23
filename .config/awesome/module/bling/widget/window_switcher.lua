@@ -36,8 +36,7 @@ local window_switcher_hide = function(window_switcher_box)
         awful.client.focus.history.add(window_switcher_last_client)
         -- Raise client that was focused originally
         -- Then raise last focused client
-        if
-            window_switcher_first_client and window_switcher_first_client.valid
+        if window_switcher_first_client and window_switcher_first_client.valid
         then
             window_switcher_first_client:raise()
             window_switcher_last_client:raise()
@@ -89,84 +88,84 @@ local function draw_widget(
 )
     filterClients = filterClients or awful.widget.tasklist.filter.currenttags
     local tasklist_widget = type == "thumbnail"
-            and awful.widget.tasklist({
-                screen = awful.screen.focused(),
-                filter = filterClients,
-                buttons = mouse_keys,
-                style = {
-                    font = name_font,
-                    fg_normal = name_normal_color,
-                    fg_focus = name_focus_color,
-                },
-                layout = {
-                    layout = wibox.layout.flex.horizontal,
-                    spacing = clients_spacing,
-                },
-                widget_template = {
-                    widget = wibox.container.background,
-                    id = "bg_role",
-                    forced_width = client_width,
-                    forced_height = client_height,
-                    create_callback = function(self, c, _, __)
-                        local content = gears.surface(c.content)
-                        local cr = cairo.Context(content)
-                        local x, y, w, h = cr:clip_extents()
-                        local img = cairo.ImageSurface.create(
-                            cairo.Format.ARGB32,
-                            w - x,
-                            h - y
+        and awful.widget.tasklist({
+            screen = awful.screen.focused(),
+            filter = filterClients,
+            buttons = mouse_keys,
+            style = {
+                font = name_font,
+                fg_normal = name_normal_color,
+                fg_focus = name_focus_color,
+            },
+            layout = {
+                layout = wibox.layout.flex.horizontal,
+                spacing = clients_spacing,
+            },
+            widget_template = {
+                widget = wibox.container.background,
+                id = "bg_role",
+                forced_width = client_width,
+                forced_height = client_height,
+                create_callback = function(self, c, _, __)
+                    local content = gears.surface(c.content)
+                    local cr = cairo.Context(content)
+                    local x, y, w, h = cr:clip_extents()
+                    local img = cairo.ImageSurface.create(
+                        cairo.Format.ARGB32,
+                        w - x,
+                        h - y
+                    )
+                    cr = cairo.Context(img)
+                    cr:set_source_surface(content, 0, 0)
+                    cr.operator = cairo.Operator.SOURCE
+                    cr:paint()
+                    self:get_children_by_id("thumbnail")[1].image = gears.surface
+                        .load(
+                            img
                         )
-                        cr = cairo.Context(img)
-                        cr:set_source_surface(content, 0, 0)
-                        cr.operator = cairo.Operator.SOURCE
-                        cr:paint()
-                        self:get_children_by_id("thumbnail")[1].image =
-                            gears.surface.load(
-                                img
-                            )
-                    end,
+                end,
+                {
+                    {
+                        {
+                            horizontal_fit_policy = thumbnail_scale == true
+                                and "fit"
+                                or "auto",
+                            vertical_fit_policy = thumbnail_scale == true
+                                and "fit"
+                                or "auto",
+                            id = "thumbnail",
+                            widget = wibox.widget.imagebox,
+                        },
+                        margins = thumbnail_margins,
+                        widget = wibox.container.margin,
+                    },
                     {
                         {
                             {
-                                horizontal_fit_policy = thumbnail_scale == true
-                                        and "fit"
-                                    or "auto",
-                                vertical_fit_policy = thumbnail_scale == true
-                                        and "fit"
-                                    or "auto",
-                                id = "thumbnail",
+                                id = "icon_role",
                                 widget = wibox.widget.imagebox,
                             },
-                            margins = thumbnail_margins,
-                            widget = wibox.container.margin,
+                            forced_width = icon_width,
+                            valign = icon_valign,
+                            widget = wibox.container.place,
                         },
                         {
                             {
-                                {
-                                    id = "icon_role",
-                                    widget = wibox.widget.imagebox,
-                                },
-                                forced_width = icon_width,
-                                valign = icon_valign,
-                                widget = wibox.container.place,
+                                forced_width = name_forced_width,
+                                valign = name_valign,
+                                id = "text_role",
+                                widget = wibox.widget.textbox,
                             },
-                            {
-                                {
-                                    forced_width = name_forced_width,
-                                    valign = name_valign,
-                                    id = "text_role",
-                                    widget = wibox.widget.textbox,
-                                },
-                                margins = name_margins,
-                                widget = wibox.container.margin,
-                            },
-                            spacing = client_icon_horizontal_spacing,
-                            layout = wibox.layout.fixed.horizontal,
+                            margins = name_margins,
+                            widget = wibox.container.margin,
                         },
-                        layout = wibox.layout.flex.vertical,
+                        spacing = client_icon_horizontal_spacing,
+                        layout = wibox.layout.fixed.horizontal,
                     },
+                    layout = wibox.layout.flex.vertical,
                 },
-            })
+            },
+        })
         or awful.widget.tasklist({
             screen = awful.screen.focused(),
             filter = filterClients,
@@ -277,7 +276,8 @@ local enable = function(opts)
     local scroll_next_key = opts.scroll_next_key or 5
 
     local cycleClientsByIdx = opts.cycleClientsByIdx or awful.client.focus.byidx
-    local filterClients = opts.filterClients or awful.widget.tasklist.filter.currenttags
+    local filterClients = opts.filterClients or
+        awful.widget.tasklist.filter.currenttags
 
     local window_switcher_box = awful.popup({
         bg = "#00000000",
@@ -412,8 +412,7 @@ local enable = function(opts)
                 -- Hide if the modifier was released
                 -- We try to match Super or Alt or Control since we do not know which keybind is
                 -- used to activate the window switcher (the keybind is set by the user in keys.lua)
-                if
-                    key:match("Super")
+                if key:match("Super")
                     or key:match("Alt")
                     or key:match("Control")
                 then

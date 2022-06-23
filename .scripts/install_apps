@@ -19,6 +19,8 @@ install pinta
 install blender
 install krita
 # install digikam
+install feh
+install imv
 
 # optional application packages
 install aspell

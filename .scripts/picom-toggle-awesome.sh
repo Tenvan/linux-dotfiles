@@ -4,14 +4,18 @@ if pgrep -x "picom" >/dev/null; then
     killall -q picom
     while pgrep -u $UID -x "picom" >/dev/null; do sleep 1; done
 else
-    if [ -f "$HOME/.config/picom/picom-awesome-private.conf" ]; then
-        notify-send "Picom loaded:<br>$HOME/.config/picom/picom-awesome-private.conf"
-        picom --config "$HOME/.config/picom/picom-awesome-private.conf" &
-    elif [ -f "$HOME/.config/picom/picom-awesome-custom.conf" ]; then
-        notify-send "Picom loaded:<br>$HOME/.config/picom/picom-awesome-custom.conf"
-        picom --config "$HOME/.config/picom/picom-awesome-custom.conf" &
-    else
-        notify-send "Picom loaded:<br>$HOME/.config/picom/picom-awesome.conf"
-        picom --config "$HOME/.config/picom/picom-awesome.conf" &
-    fi
+    for path_candidate in \
+    "$HOME/.config/picom/picom-awesome-private.conf" \
+    "$HOME/.config/picom/picom-awesome-custom.conf" \
+    "$HOME/.config/picom/picom-awesome.conf" \
+    "$HOME/.config/awesome/configuration/picom.conf"
+    do
+        if [[ -f "${path_candidate}" ]]; then
+            export PICOM_CONF="${path_candidate}"
+        fi
+    done
+    
+    notify-send.sh "Picom loaded" "$PICOM_CONF"
+    picom -b --experimental-backends --config "$PICOM_CONF" &
+    # picom --config "$PICOM_CONF" &
 fi

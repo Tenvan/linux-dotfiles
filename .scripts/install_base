@@ -100,7 +100,7 @@ install numlockx
 install openconnect
 install p7zip
 install packagekit
-install picom-jonaburg-git
+install picom-git
 install playerctl
 install pm-utils
 install polkit-gnome 

@@ -12,7 +12,7 @@ local machi = require("module.layout-machi")
 local helpers = require("helpers")
 local apps = require("configuration.apps")
 local notify = require("utilities.notify")
-
+local QuakeTerminal = require("module.scratchpad").quake
 -- Make key easier to call
 ----------------------------
 
@@ -191,6 +191,13 @@ awful.keyboard.append_global_keybindings({
 		description = 'Picom Toggle',
 		group = kgSystem
 	}),
+	awful.key({ mod, ctrl }, 's', function()
+		notify("Swallowing Toggle")
+		bling.module.window_swallowing.toggle()
+	end, {
+		description = 'Windows Swallowing Toggle',
+		group = kgSystem
+	}),
 	awful.key({ mod, shift }, 'Escape', function()
 		awful.spawn('xkill')
 	end, {
@@ -222,6 +229,16 @@ awful.keyboard.append_global_keybindings({
 		awful.spawn.single_instance('arandr', false)
 	end, {
 		description = 'arandr',
+		group = kgHotkeys
+	}),
+
+	awful.key({ mod, ctrl }, returnkey, function()
+		if QuakeTerminal then
+			notify("QuakeTerminal", "Toggle")
+			QuakeTerminal:toggle()
+		end
+	end, {
+		description = 'Scratchpad',
 		group = kgHotkeys
 	}),
 
@@ -564,7 +581,7 @@ client.connect_signal("request::default_keybindings", function()
 		end),
 
 		-- Window switcher
-		awful.key({ alt }, "Tab", function()
+		awful.key({ mod }, "Tab", function()
 			awesome.emit_signal("bling::window_switcher::turn_on")
 		end),
 	})

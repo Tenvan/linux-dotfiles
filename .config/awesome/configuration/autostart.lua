@@ -30,11 +30,11 @@ end
 -- List of apps to start once on start-up
 local autostart_app = {
 	-- Compositor
-	"picom -b --experimental-backends --config " .. config_dir .. "/configuration/picom.conf",
+	-- "picom -b --experimental-backends --config " .. config_dir .. "/configuration/picom.conf",
 	-- Music server
-	"mpd",
+	-- "mpd",
 	-- Playertctl support for mpd
-	"mpDris2",
+	-- "mpDris2",
 }
 
 for _, app in ipairs(autostart_app) do
@@ -47,5 +47,14 @@ run_once_ps("polkit-gnome-authentication-agent-1", "/usr/lib/polkit-gnome/polkit
 -- Bluetooth
 run_once_grep("blueman-applet")
 
+-- Flameshot
+run_once_grep("flameshot")
+
+-- Screensaver
+run_once_grep("xscreensaver")
+
 -- Network Manager
 run_once_grep("nm-applet")
+
+-- Alt Tab
+run_once_pgrep("alttab -n 1")

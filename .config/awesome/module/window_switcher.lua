@@ -59,31 +59,33 @@ local window_switcher_hide = function(window_switcher_box)
 end
 
 local function draw_widget(
-	type,
-	background,
-	border_width,
-	border_radius,
-	border_color,
-	clients_spacing,
-	client_icon_horizontal_spacing,
-	client_width,
-	client_height,
-	client_margins,
-	thumbnail_margins,
-	thumbnail_scale,
-	name_margins,
-	name_valign,
-	name_forced_width,
-	name_font,
-	name_normal_color,
-	name_focus_color,
-	icon_valign,
-	icon_width,
-	mouse_keys
+    type,
+    background,
+    border_width,
+    border_radius,
+    border_color,
+    clients_spacing,
+    client_icon_horizontal_spacing,
+    client_width,
+    client_height,
+    client_margins,
+    thumbnail_margins,
+    thumbnail_scale,
+    name_margins,
+    name_valign,
+    name_forced_width,
+    name_font,
+    name_normal_color,
+    name_focus_color,
+    icon_valign,
+    icon_width,
+    mouse_keys,
+    filterClients
 )
+	filterClients = filterClients or awful.widget.tasklist.filter.currenttags
 	local tasklist_widget = awful.widget.tasklist({
 		screen = awful.screen.focused(),
-		filter = awful.widget.tasklist.filter.currenttags,
+		filter = filterClients,
 		buttons = mouse_keys,
 		style = {
 			font = beautiful.font,
@@ -181,6 +183,7 @@ end
 local enable = function(opts)
 	local opts = opts or {}
 
+	local filterClients = opts.filterClients or awful.widget.tasklist.filter.alltags
 	local type = opts.type or "thumbnail"
 	local background = beautiful.window_switcher_widget_bg or "#000000"
 	local border_width = beautiful.window_switcher_widget_border_width or dpi(3)
@@ -389,7 +392,8 @@ local enable = function(opts)
 			name_focus_color,
 			icon_valign,
 			icon_width,
-			mouse_keys
+			mouse_keys,
+			filterClients
 		)
 		window_switcher_box.visible = true
 	end)
