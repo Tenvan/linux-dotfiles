@@ -13,6 +13,7 @@ local wibox = require("wibox")
 local watch = require("awful.widget.watch")
 local spawn = require("awful.spawn")
 local naughty = require("naughty")
+local beautiful = require("beautiful")
 
 local ICON_DIR = os.getenv("HOME") .. '/.config/awesome/awesome-wm-widgets/brightness-widget/'
 local get_brightness_cmd
@@ -35,7 +36,7 @@ local function worker(user_args)
 
     local type = args.type or 'arc' -- arc or icon_and_text
     local path_to_icon = args.path_to_icon or ICON_DIR .. 'brightness.svg'
-    local font = args.font or 'Play 9'
+    local font = args.font or beautiful.font
     local timeout = args.timeout or 100
 
     local program = args.program or 'light'
@@ -43,6 +44,7 @@ local function worker(user_args)
     local base = args.base or 20
     local current_level = 0 -- current brightness value
     local tooltip = args.tooltip or false
+    local percentage = args.percentage or false
     if program == 'light' then
         get_brightness_cmd = 'light -G'
         set_brightness_cmd = 'light -S %d' -- <level>
@@ -71,7 +73,7 @@ local function worker(user_args)
                     resize = false,
                     widget = wibox.widget.imagebox,
                 },
-                valigh = 'center',
+                valign = 'center',
                 layout = wibox.container.place
             },
             {
@@ -82,7 +84,11 @@ local function worker(user_args)
             spacing = 4,
             layout = wibox.layout.fixed.horizontal,
             set_value = function(self, level)
-                self:get_children_by_id('txt')[1]:set_text(level .. '%')
+                local display_level = level
+                if percentage then
+                    display_level = display_level .. '%'
+                end
+                self:get_children_by_id('txt')[1]:set_text(display_level)
             end
         }
     elseif type == 'arc' then
@@ -93,7 +99,7 @@ local function worker(user_args)
                     resize = true,
                     widget = wibox.widget.imagebox,
                 },
-                valigh = 'center',
+                valign = 'center',
                 layout = wibox.container.place
             },
             max_value = 100,

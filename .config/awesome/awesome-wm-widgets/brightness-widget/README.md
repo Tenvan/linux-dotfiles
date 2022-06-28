@@ -13,9 +13,10 @@ It is possible to customize widget by providing a table with all or some of the 
 | `step` | 5 | Step |
 | `base` | 20 | Base level to set brightness to on left click. |
 | `path_to_icon` | `/usr/share/icons/Arc/status/symbolic/display-brightness-symbolic.svg` | Path to the icon |
-| `font` | `Play 9` | Font |
+| `font` | `beautiful.font` | Font name and size, like `Play 12` |
 | `timeout` | 1 | How often in seconds the widget refreshes. Check the note below |
 | `tooltip` | false | Display brightness level in a tooltip when the mouse cursor hovers the widget |
+| `percentage` | false | Display a '%' character after the brightness level |
 
 _Note:_ If brightness is controlled only by the widget (either by a mouse, or by a shortcut, then the `timeout` could be quite big, as there is no reason to synchronize the brightness level).
 
@@ -33,7 +34,7 @@ To choose the right `program` argument, first you need to check which of them wo
 
     If there is no output it means that it doesn't work, you can either try to fix it, or try to use `light`.
 
- - using `light` command
+ - using `light` command:
  
     Install (on Ubuntu it's available in the apt repository) from the repo: [github.com/haikarainen/light](https://github.com/haikarainen/light) and check if it works by running
 
