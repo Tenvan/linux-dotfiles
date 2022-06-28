@@ -257,12 +257,14 @@ csource "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+zinit ice atload"zpcdreplay" atclone'./zplug.zsh'
+zinit light g-plane/zsh-yarn-autocompletions
+
 zinit ice depth=1;
 
 zinit wait lucid for \
     memark/zsh-dotnet-completion \
     romkatv/powerlevel10k \
-    g-plane/zsh-yarn-autocompletions \
     zdharma-continuum/fast-syntax-highlighting \
     zdharma-continuum/history-search-multi-word \
     memark/zsh-dotnet-completion \
@@ -276,6 +278,7 @@ zinit wait lucid for \
     atload"_zsh_autosuggest_start; zicdreplay" \
         zsh-users/zsh-completions \
         zsh-users/zsh-autosuggestions
+
 
 # zinit wait lucid for \
 #         b4b4r07/enhancd \
