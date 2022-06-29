@@ -4,30 +4,28 @@
 ░░▀░░▀▀▀░▀░▀░░▀░░▀░▀░▀░▀░▀▀▀░░░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀
 --]]
 
+local log = require('utilities.debug').log
+local dump = require('utilities.debug').dump
+log("Enter Module => rc.test.lua" )
+
 local awesome, client, screen = awesome, client, screen
-local ipairs, string, os, tostring = ipairs, string, os, tostring
+local string, os, tostring = string, os, tostring
 
 local is_initialized = false
 
 pcall(require, "luarocks.loader")
-local gears = require('gears') -- Utilities such as color parsing and objects
 local awful = require('awful') -- Everything related to window managment
 local wibox = require('wibox')
 local beautiful = require('beautiful')
 local naughty = require('naughty')
-local lain = require('lain')
 require('awful.autofocus')
 
 local dpi = require('beautiful.xresources').apply_dpi
 
-local gdebug = require('gears.debug')
-
-
 -- ░▀█▀░█░█░█▀▀░█▄█░█▀▀
 -- ░░█░░█▀█░█▀▀░█░█░█▀▀
 -- ░░▀░░▀░▀░▀▀▀░▀░▀░▀▀▀
-local theme_dir = gears.filesystem.get_configuration_dir() .. "theme/theme.lua"
-beautiful.init(theme_dir)
+beautiful.init(require('theme'))
 
 -- ░█▀▀░█▀█░█▀█░█▀▀░▀█▀░█▀▀░█░█░█▀▄░█▀█░▀█▀░▀█▀░█▀█░█▀█░█▀▀
 -- ░█░░░█░█░█░█░█▀▀░░█░░█░█░█░█░█▀▄░█▀█░░█░░░█░░█░█░█░█░▀▀█
@@ -271,22 +269,22 @@ end)
 
 awesome.connect_signal('spawn::initiated', function(arg)
     -- notify("Awesome", "'spawn::initiated' event raised: ".. arg.id, naughty.config.presets.info)
-    -- gdebug.dump(arg, "spawn::initiated".. arg.id, 2)
+    -- dump(arg, "spawn::initiated".. arg.id)
 end)
 
 awesome.connect_signal('spawn::changed', function(arg)
     -- notify("Awesome", "'spawn::changed' event raised: ".. arg.id, naughty.config.presets.info)
-    -- gdebug.dump(arg, "spawn::changed" .. arg.id, 2)
+    -- dump(arg, "spawn::changed" .. arg.id)
 end)
 
 awesome.connect_signal('spawn::timeout', function(arg)
     -- notify("Awesome", "'spawn::timeout' event raised: ".. arg.id, naughty.config.presets.info)
-    -- gdebug.dump(arg, "spawn::timeout".. arg.id, 2)
+    -- dump(arg, "spawn::timeout".. arg.id)
 end)
 
 awesome.connect_signal('spawn::completed', function(arg)
     -- notify("Awesome", "'spawn::completed' event raised: ".. arg.id, naughty.config.presets.info)
-    -- gdebug.dump(arg, "spawn::completed".. arg.id, 2)
+    -- dump(arg, "spawn::completed".. arg.id)
 end)
 
 awesome.connect_signal('startup', function(hint, see, args)

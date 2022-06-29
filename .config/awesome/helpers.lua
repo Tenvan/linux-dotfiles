@@ -1,6 +1,10 @@
 -- helpers.lua
 -- Functions that you use more than once and in different files would
 -- be nice to define here.
+
+local log = require('utilities.debug').log
+log("Enter Module => helpers.lua" )
+
 local awful = require("awful")
 local gears = require("gears")
 local beautiful = require("beautiful")

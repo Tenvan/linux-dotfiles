@@ -1,3 +1,6 @@
+local log = require('utilities.debug').log
+log("Enter Module => module/rubato/init.lua" )
+
 RUBATO_DEF_RATE = 30
 RUBATO_OVERRIDE_DT = true
 RUBATO_DIR = (...):match("(.-)[^%.]+$").."rubato."

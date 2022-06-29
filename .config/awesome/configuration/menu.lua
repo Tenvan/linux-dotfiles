@@ -1,3 +1,6 @@
+local log = require('utilities.debug').log
+log("Enter Module => configuration/menu.lua" )
+
 local awesome, client, screen = awesome, client, screen
 
 local awful = require("awful")

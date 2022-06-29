@@ -1,3 +1,6 @@
+local log = require('utilities.debug').log
+log("Enter Module => module/better-resize.lua" )
+
 local capi = {
 	client = client,
 	mouse = mouse,

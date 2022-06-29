@@ -1,7 +1,9 @@
 local awesome, client= awesome, client
 
+local log = require('utilities.debug').log
+log("Enter Module => configuration/client/signals.lua" )
+
 local awful = require('awful')
-local gears = require('gears')
 local beautiful = require('beautiful')
 
 local update_client = function(c)

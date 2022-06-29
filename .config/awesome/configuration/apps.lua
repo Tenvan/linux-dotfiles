@@ -1,3 +1,6 @@
+local log = require('utilities.debug').log
+log("Enter Module => configuration/apps.lua" )
+
 local filesystem = require("gears.filesystem")
 local config_dir = filesystem.get_configuration_dir()
 local utils_dir = config_dir .. "utilities/"

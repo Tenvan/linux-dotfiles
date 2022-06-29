@@ -1,3 +1,6 @@
+local log = require('utilities.debug').log
+log("Enter Module => utilities/notify.lua" )
+
 local beautiful = require("beautiful")
 local dpi = require('beautiful.xresources').apply_dpi
 

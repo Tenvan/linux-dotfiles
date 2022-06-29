@@ -1,5 +1,7 @@
+local log = require('utilities.debug').log
+log("Enter Module => configuration/client/keys.lua" )
+
 local awful = require('awful')
-local gears = require('gears')
 local dpi = require('beautiful').xresources.apply_dpi
 
 require('awful.autofocus')

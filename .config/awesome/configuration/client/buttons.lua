@@ -1,3 +1,6 @@
+local log = require('utilities.debug').log
+log("Enter Module => configuration/client/buttons.lua")
+
 local awful = require('awful')
 local modkey = require('configuration.keys.mod').mod_key
 
@@ -11,24 +14,24 @@ return awful.util.table.join(
 		end
 	),
 	awful.button(
-		{modkey},
+		{ modkey },
 		1,
 		awful.mouse.client.move
 	),
 	awful.button(
-		{modkey},
+		{ modkey },
 		3,
 		awful.mouse.client.resize
 	),
 	awful.button(
-		{modkey},
+		{ modkey },
 		4,
 		function()
 			awful.layout.inc(1)
 		end
 	),
 	awful.button(
-		{modkey},
+		{ modkey },
 		5,
 		function()
 			awful.layout.inc(-1)

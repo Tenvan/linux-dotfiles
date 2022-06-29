@@ -1,3 +1,6 @@
+local log = require('utilities.debug').log
+log("Enter Module => module/scratchpad.lua" )
+
 local bling = require("module.bling")
 local rubato = require("module.rubato") -- Totally optional, only required if you are using animations.
 

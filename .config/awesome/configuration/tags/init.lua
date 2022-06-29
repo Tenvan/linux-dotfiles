@@ -1,3 +1,6 @@
+local log = require('utilities.debug').log
+log("Enter Module => configuration/tags/init.lua" )
+
 local screen, tag, client = screen, tag, client
 
 local awful = require('awful')
@@ -6,8 +9,8 @@ local dpi = require('beautiful.xresources').apply_dpi
 
 local beautiful = require('beautiful')
 local apps = require('configuration.apps')
-local gdebug = require('gears.debug')
 
+local mod_key = require("configuration.keys.mod").mod_key
 
 local my_table = awful.util.table or gears.table
 
@@ -114,17 +117,15 @@ awful.layout.suit.tile.left.mirror = true
 awful.layout.append_default_layouts = defaultLayouts
 awful.layout.layouts = defaultLayouts
 
-local modkey = "Mod4"
-
 awful.util.taglist_buttons = my_table.join(awful.button({}, 1, function(t)
   t:view_only()
 end),
-  awful.button({ modkey }, 1, function(t)
+  awful.button({ mod_key }, 1, function(t)
     if client.focus then
       client.focus:move_to_tag(t)
     end
   end),
-  awful.button({}, 3, awful.tag.viewtoggle), awful.button({ modkey }, 3, function(t)
+  awful.button({}, 3, awful.tag.viewtoggle), awful.button({ mod_key }, 3, function(t)
     if client.focus then
       client.focus:toggle_tag(t)
     end

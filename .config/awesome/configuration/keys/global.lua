@@ -1,7 +1,9 @@
+local log = require('utilities.debug').log
+log("Enter Module => configuration/keys/global.lua" )
+
 local awesome, client, screen = awesome, client, screen
 
 local awful = require('awful')
-local beautiful = require('beautiful')
 
 require('awful.autofocus')
 

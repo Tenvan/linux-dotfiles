@@ -3,32 +3,26 @@
      Powerarrow Awesome WM theme
      github.com/lcpz
 
---]] local gears = require("gears")
-local gdebug = require("gears.debug")
+--]]
 
-local lain = require("lain")
+local log = require('utilities.debug').log
+log("Enter Module => theme/theme.lua")
+
+local gears = require("gears")
+
 local awful = require("awful")
 local wibox = require("wibox")
 local dpi = require("beautiful.xresources").apply_dpi
-local vicious = require("module.vicious")
 
-local math, string, os = math, string, os
-local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+local makeColorTransparent = require("utilities.utils").makeColorTransparent
+local theme_dir = require("theme.default-theme").theme_dir
 
-local function makeColorTransparent(colorkey, opacity)
-    -- gdebug.print_warning("ColorKey: " .. colorkey)
-    local colorMain = string.sub(colorkey, 2, 7)
-    local transColor = "#" .. colorMain .. opacity
-    -- gdebug.print_warning("Color: " .. transColor)
-    return transColor
-end
-
-local cobalt_bg = "#072539"; -- Background
-local cobalt_fg = "#e1efff"; -- Foreground
-local cobalt_highlight = "#19acc6"; -- Highlight
-local cobalt_accent_blue = "#0050a4"; -- Accent 1 (Blue)
-local cobalt_accent_yellow = "#FFC600"; -- Accent 2 (Yellow)
-local cobalt_window_bg = "#2e3a50"; -- Window Background
+local cobalt_bg = "#072539";  -- Background
+local cobalt_fg = "#e1efff";  -- Foreground
+local cobalt_highlight = "#19acc6";  -- Highlight
+local cobalt_accent_blue = "#0050a4";  -- Accent 1 (Blue)
+local cobalt_accent_yellow = "#FFC600";  -- Accent 2 (Yellow)
+local cobalt_window_bg = "#2e3a50";  -- Window Background
 
 local base00 = "#232423" -- ---- red
 local base01 = "#BA2922" -- ---  orange
@@ -167,8 +161,7 @@ theme.hint_font = theme.font_base
 
 -- End of oomox
 
-theme.dir = os.getenv("HOME") .. "/.config/awesome/themes/mytheme"
-theme.wallpaper = theme.dir .. "/wallpaper.jpg"
+theme.wallpaper = theme_dir .. "/wallpaper.jpg"
 
 theme.bg_urgent = makeColorTransparent(theme.warning_bg, "80")
 theme.fg_urgent = theme.warning_fg
@@ -209,92 +202,72 @@ theme.tasklist_plain_task_name = false
 theme.tasklist_disable_icon = false
 theme.useless_gap = dpi(2)
 
-theme.menu_submenu_icon = theme.dir .. "/icons/submenu.png"
-theme.awesome_icon = theme.dir .. "/icons/awesome.png"
-theme.taglist_squares_sel = theme.dir .. "/icons/square_sel.png"
-theme.taglist_squares_unsel = theme.dir .. "/icons/square_unsel.png"
-theme.layout_tile = theme.dir .. "/icons/tile.png"
-theme.layout_tileleft = theme.dir .. "/icons/tileleft.png"
-theme.layout_tilebottom = theme.dir .. "/icons/tilebottom.png"
-theme.layout_tiletop = theme.dir .. "/icons/tiletop.png"
-theme.layout_fairv = theme.dir .. "/icons/fairv.png"
-theme.layout_fairh = theme.dir .. "/icons/fairh.png"
-theme.layout_spiral = theme.dir .. "/icons/spiral.png"
-theme.layout_dwindle = theme.dir .. "/icons/dwindle.png"
-theme.layout_max = theme.dir .. "/icons/max.png"
-theme.layout_fullscreen = theme.dir .. "/icons/fullscreen.png"
-theme.layout_magnifier = theme.dir .. "/icons/magnifier.png"
-theme.layout_floating = theme.dir .. "/icons/floating.png"
-theme.widget_ac = theme.dir .. "/icons/ac.png"
-theme.widget_battery = theme.dir .. "/icons/battery.png"
-theme.widget_battery_low = theme.dir .. "/icons/battery_low.png"
-theme.widget_battery_empty = theme.dir .. "/icons/battery_empty.png"
-theme.widget_mem = theme.dir .. "/icons/mem.png"
-theme.widget_cpu = theme.dir .. "/icons/cpu.png"
-theme.widget_temp = theme.dir .. "/icons/temp.png"
-theme.widget_net = theme.dir .. "/icons/net.png"
-theme.widget_hdd = theme.dir .. "/icons/hdd.png"
-theme.widget_music = theme.dir .. "/icons/note.png"
-theme.widget_music_on = theme.dir .. "/icons/note.png"
-theme.widget_music_pause = theme.dir .. "/icons/pause.png"
-theme.widget_music_stop = theme.dir .. "/icons/stop.png"
-theme.widget_vol = theme.dir .. "/icons/vol.png"
-theme.widget_vol_low = theme.dir .. "/icons/vol_low.png"
-theme.widget_vol_no = theme.dir .. "/icons/vol_no.png"
-theme.widget_vol_mute = theme.dir .. "/icons/vol_mute.png"
-theme.widget_mail = theme.dir .. "/icons/mail.png"
-theme.widget_mail_on = theme.dir .. "/icons/mail_on.png"
-theme.widget_task = theme.dir .. "/icons/task.png"
-theme.widget_scissors = theme.dir .. "/icons/scissors.png"
-theme.widget_weather = theme.dir .. "/icons/dish.png"
+theme.menu_submenu_icon = theme_dir .. "/icons/submenu.png"
+theme.awesome_icon = theme_dir .. "/icons/awesome.png"
+theme.taglist_squares_sel = theme_dir .. "/icons/square_sel.png"
+theme.taglist_squares_unsel = theme_dir .. "/icons/square_unsel.png"
+theme.widget_ac = theme_dir .. "/icons/ac.png"
+theme.widget_battery = theme_dir .. "/icons/battery.png"
+theme.widget_battery_low = theme_dir .. "/icons/battery_low.png"
+theme.widget_battery_empty = theme_dir .. "/icons/battery_empty.png"
+theme.widget_mem = theme_dir .. "/icons/mem.png"
+theme.widget_cpu = theme_dir .. "/icons/cpu.png"
+theme.widget_temp = theme_dir .. "/icons/temp.png"
+theme.widget_net = theme_dir .. "/icons/net.png"
+theme.widget_hdd = theme_dir .. "/icons/hdd.png"
+theme.widget_music = theme_dir .. "/icons/note.png"
+theme.widget_music_on = theme_dir .. "/icons/note.png"
+theme.widget_music_pause = theme_dir .. "/icons/pause.png"
+theme.widget_music_stop = theme_dir .. "/icons/stop.png"
+theme.widget_vol = theme_dir .. "/icons/vol.png"
+theme.widget_vol_low = theme_dir .. "/icons/vol_low.png"
+theme.widget_vol_no = theme_dir .. "/icons/vol_no.png"
+theme.widget_vol_mute = theme_dir .. "/icons/vol_mute.png"
+theme.widget_mail = theme_dir .. "/icons/mail.png"
+theme.widget_mail_on = theme_dir .. "/icons/mail_on.png"
+theme.widget_task = theme_dir .. "/icons/task.png"
+theme.widget_scissors = theme_dir .. "/icons/scissors.png"
+theme.widget_weather = theme_dir .. "/icons/dish.png"
+
+theme.system_black_dark = base00
+theme.system_black_light = base08
+
+theme.system_red_dark = base01
+theme.system_red_light = base09
+
+theme.system_green_dark = base02
+theme.system_green_light = base0A
+
+theme.system_yellow_dark = base03
+theme.system_yellow_light = base0B
+
+theme.system_blue_dark = base04
+theme.system_blue_light = base0C
+
+theme.system_magenta_dark = base05
+theme.system_magenta_light = base0D
+
+theme.system_cyan_dark = base06
+theme.system_cyan_light = base0E
+
+theme.system_white_dark = base07
+theme.system_white_light = base0F
+
+-- Accent color
+theme.accent = theme.system_blue_dark
+
+-- Background color
+theme.background = makeColorTransparent(cobalt_window_bg, "80")
+
+-- Transparent
+theme.transparent = makeColorTransparent(cobalt_window_bg, "20")
+
+-- Awesome icon
+theme.awesome_icon = theme_dir .. "/icons/awesome.png"
 
 -- Separators
 -- local widget_seperator = wibox.container.margin(nil, theme.margins_width, theme.margins_width) -- wibox.container.textbox()
 local widget_seperator = wibox.container.background(wibox.container.margin(nil, dpi(1)), theme.border_normal)
-
-local widget_bg_color = theme.warning_bg_color
-
-theme.titlebar_close_button_focus = theme.dir .. "/icons/titlebar/close_focus.png"
-theme.titlebar_close_button_normal = theme.dir .. "/icons/titlebar/close_normal.png"
-theme.titlebar_ontop_button_focus_active = theme.dir .. "/icons/titlebar/ontop_focus_active.png"
-theme.titlebar_ontop_button_normal_active = theme.dir .. "/icons/titlebar/ontop_normal_active.png"
-theme.titlebar_ontop_button_focus_inactive = theme.dir .. "/icons/titlebar/ontop_focus_inactive.png"
-theme.titlebar_ontop_button_normal_inactive = theme.dir .. "/icons/titlebar/ontop_normal_inactive.png"
-theme.titlebar_sticky_button_focus_active = theme.dir .. "/icons/titlebar/sticky_focus_active.png"
-theme.titlebar_sticky_button_normal_active = theme.dir .. "/icons/titlebar/sticky_normal_active.png"
-theme.titlebar_sticky_button_focus_inactive = theme.dir .. "/icons/titlebar/sticky_focus_inactive.png"
-theme.titlebar_sticky_button_normal_inactive = theme.dir .. "/icons/titlebar/sticky_normal_inactive.png"
-theme.titlebar_floating_button_focus_active = theme.dir .. "/icons/titlebar/floating_focus_active.png"
-theme.titlebar_floating_button_normal_active = theme.dir .. "/icons/titlebar/floating_normal_active.png"
-theme.titlebar_floating_button_focus_inactive = theme.dir .. "/icons/titlebar/floating_focus_inactive.png"
-theme.titlebar_floating_button_normal_inactive = theme.dir .. "/icons/titlebar/floating_normal_inactive.png"
-theme.titlebar_maximized_button_focus_active = theme.dir .. "/icons/titlebar/maximized_focus_active.png"
-theme.titlebar_maximized_button_normal_active = theme.dir .. "/icons/titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_inactive = theme.dir .. "/icons/titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
-theme.titlebar_minimize_button_normal = theme.dir .. "/icons/titlebar/minimize_normal.png"
-theme.titlebar_minimize_button_focus = theme.dir .. "/icons/titlebar/minimize_focus.png"
-
-local markup = lain.util.markup
-
--- Textclock
-local clockicon = wibox.widget.imagebox(theme.widget_clock)
-local clock = awful.widget.watch("date +'%a %d %b %R'", 60, function(widget, stdout)
-    widget:set_markup(" " .. markup.font(theme.font, stdout))
-end)
-
-local datewidget = wibox.widget.textbox()
-vicious.register(datewidget, vicious.widgets.date, "%b %d, %R")
-
--- Calendar
-theme.cal = lain.widget.cal({
-    attach_to = {clock},
-    notification_preset = {
-        font = theme.font,
-        fg = theme.fg_normal,
-        bg = theme.bg_normal
-    }
-})
 
 theme.tasklist_widget_template = {
     {
@@ -339,15 +312,15 @@ theme.tasklist_widget_template = {
 -- vicious.register(cpuHistogrammWidget, vicious.widgets.cpu, "$1", 1)
 
 -- Get CPU stats
-local f = io.open("/proc/stat")
-local cpu_kernels = 0
-for line in f:lines() do
-    if string.sub(line, 1, 3) ~= "cpu" then
-        break
-    end
-    cpu_kernels = cpu_kernels + 1
-end
-f:close()
+-- local f = io.open("/proc/stat")
+-- local cpu_kernels = 0
+-- for line in f:lines() do
+--     if string.sub(line, 1, 3) ~= "cpu" then
+--         break
+--     end
+--     cpu_kernels = cpu_kernels + 1
+-- end
+-- f:close()
 
 -- CPU Kernels Bar
 -- local cpuKernelProgress = {}
@@ -405,7 +378,9 @@ local systrayWidget = wibox.container.margin(systray, dpi(5), dpi(5), dpi(8), dp
 local screen2RightWidgets = {
     -- Right widgets
     layout = wibox.layout.fixed.horizontal,
-    widget_seperator,
+    systrayWidget,
+    widget_seperator
+
 }
 
 local screen1RightWidgets = {
@@ -416,24 +391,6 @@ local screen1RightWidgets = {
 }
 
 function theme.at_screen_connect(s)
-    -- Quake application
-    s.quake = lain.util.quake {
-        app = "kitty",
-        name = "QuakeDD",
-        settings = function(c)
-            c.sticky = true
-            c.opacity = 0.8
-            c.ontop = true
-        end,
-        argname = "--name %s",
-        followtag = true,
-        border = theme.border_width,
-        overlap = true,
-        height = 0.66,
-        width = 0.80,
-        horiz = "center"
-    }
-
     -- Create a taglist widget
     local taglist = awful.widget.taglist {
         screen = s,
@@ -474,7 +431,7 @@ function theme.at_screen_connect(s)
         leftWidgets = screen2LeftWidges
     end
 
-    mywibox:setup{
+    mywibox:setup {
         layout = wibox.layout.align.horizontal,
         {
             -- Left widgets
@@ -492,4 +449,10 @@ function theme.at_screen_connect(s)
     s.mywibox = mywibox
 end
 
-return theme
+local awesome_overrides = function(theme)
+end
+
+return {
+    theme = theme,
+    awesome_overrides = awesome_overrides
+}

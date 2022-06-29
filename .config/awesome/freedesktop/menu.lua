@@ -11,6 +11,9 @@
 
 --]]
 
+local log = require('utilities.debug').log
+log("Enter Module => freedesktop/menu.lua" )
+
 local awful_menu = require("awful.menu")
 local menu_gen   = require("menubar.menu_gen")
 local menu_utils = require("menubar.utils")

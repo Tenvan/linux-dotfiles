@@ -1,3 +1,6 @@
+local log = require('utilities.debug').log
+log("Enter Module => module/layout-machi.lua" )
+
 local engine = require(... .. ".engine")
 local layout = require(... .. ".layout")
 local editor = require(... .. ".editor")

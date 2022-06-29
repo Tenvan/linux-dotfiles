@@ -1,6 +1,8 @@
+local log = require('utilities.debug').log
+log("Enter Module => configuration/keys.lua" )
+
 local awesome, client, screen = awesome, client, screen
 
-local gears = require("gears")
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local beautiful = require("beautiful")
@@ -11,8 +13,10 @@ local playerctl = bling.signal.playerctl.lib()
 local machi = require("module.layout-machi")
 local helpers = require("helpers")
 local apps = require("configuration.apps")
-local notify = require("utilities.notify")
 local QuakeTerminal = require("module.scratchpad").quake
+
+local notify = require("utilities.notify")
+
 -- Make key easier to call
 ----------------------------
 

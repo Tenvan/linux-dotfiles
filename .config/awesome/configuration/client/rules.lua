@@ -1,12 +1,13 @@
 local client = client
 
+local log = require('utilities.debug').log
+log("Enter Module => configuration/client/rules.lua" )
+
 local awful = require('awful')
-local gears = require('gears')
 local ruled = require('ruled')
 local beautiful = require('beautiful')
 local client_keys = require('configuration.client.keys')
 local client_buttons = require('configuration.client.buttons')
-local tagnames = require('configuration.tags').tagnames
 
 ruled.client.connect_signal('request::rules', function()
   -- All clients will match this rule.

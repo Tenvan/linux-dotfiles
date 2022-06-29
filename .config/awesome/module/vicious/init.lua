@@ -29,6 +29,9 @@
 -- along with Vicious.  If not, see <https://www.gnu.org/licenses/>.
 
 -- {{{ Setup environment
+local log = require('utilities.debug').log
+log("Enter Module => module/vicious/init.lua" )
+
 local type  = type
 local pairs = pairs
 local tonumber = tonumber

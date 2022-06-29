@@ -1,3 +1,6 @@
+local log = require('utilities.debug').log
+log("Enter Module => configuration/autostart.lua" )
+
 local awful = require("awful")
 local filesystem = require("gears.filesystem")
 local config_dir = filesystem.get_configuration_dir()

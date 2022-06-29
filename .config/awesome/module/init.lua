@@ -1,3 +1,6 @@
+local log = require('utilities.debug').log
+log("Enter Module => module/init.lua" )
+
 local awful = require("awful")
 
 require("module.vicious")
