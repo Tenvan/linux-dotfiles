@@ -45,16 +45,22 @@ end
 run_once_ps("polkit-gnome-authentication-agent-1", "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
 
 -- Bluetooth
-run_once_grep("blueman-applet")
+-- run_once_grep("blueman-applet")
 
 -- Flameshot
-run_once_grep("flameshot")
+-- run_once_grep("flameshot")
 
 -- Screensaver
-run_once_grep("xscreensaver")
+-- run_once_grep("xscreensaver")
 
 -- Network Manager
-run_once_grep("nm-applet")
+-- run_once_grep("nm-applet")
 
 -- Alt Tab
 run_once_pgrep("alttab -n 1")
+
+-- This function implements the XDG autostart specification
+-- awful.spawn.with_shell('if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;' ..
+--     'xrdb -merge <<< "awesome.started:true";' ..
+--     'dex --autostart --search-paths "$HOME/.config/autostart";')
+-- }}}

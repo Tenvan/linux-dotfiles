@@ -19,6 +19,7 @@ local machi = require("module.layout-machi")
 beautiful.layout_machi = machi.get_icon()
 
 -- Import configuration stuff
+require("configuration.client")
+require("configuration.menu")
 require("configuration.autostart")
 require("configuration.keys")
--- require("configuration.ruled")

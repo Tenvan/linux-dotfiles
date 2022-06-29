@@ -1,5 +1,6 @@
 local awful = require("awful")
 
+require("module.vicious")
 require("module.bling")
 require("module.rubato")
 require("module.layout-machi")

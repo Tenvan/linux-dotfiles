@@ -10,7 +10,7 @@ local lain = require("lain")
 local awful = require("awful")
 local wibox = require("wibox")
 local dpi = require("beautiful.xresources").apply_dpi
-local vicious = require("vicious")
+local vicious = require("module.vicious")
 
 local math, string, os = math, string, os
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")

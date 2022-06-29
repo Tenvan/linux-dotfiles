@@ -699,19 +699,21 @@ awful.keyboard.append_global_keybindings({
 
 -- Mouse bindings on desktop
 ------------------------------
+local mainmenu = require("configuration.menu").mainmenu
+
 awful.mouse.append_global_mousebindings({
 
 	-- Left click
 	awful.button({}, 1, function()
 		naughty.destroy_all_notifications()
-		if mymainmenu then
-			mymainmenu:hide()
+		if mainmenu then
+			mainmenu:hide()
 		end
 	end),
 
 	-- Right click
 	awful.button({}, 3, function()
-		mymainmenu:toggle()
+		mainmenu:toggle()
 	end),
 
 	-- Side key

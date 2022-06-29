@@ -10,7 +10,7 @@ local lain = require("lain")
 local awful = require("awful")
 local wibox = require("wibox")
 local dpi = require("beautiful.xresources").apply_dpi
-local vicious = require("vicious")
+local vicious = require("module.vicious")
 
 local math, string, os = math, string, os
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
@@ -324,81 +324,19 @@ theme.tasklist_widget_template = {
     end
 }
 
--- Battery
-local baticon = wibox.widget.imagebox(theme.widget_battery)
-local bat = lain.widget.bat({
-    settings = function()
-        if bat_now.status and bat_now.status ~= "N/A" then
-            if bat_now.ac_status == 1 then
-                widget:set_markup(markup.font(theme.font, " AC "))
-                baticon:set_image(theme.widget_ac)
-                return
-            elseif not bat_now.perc and tonumber(bat_now.perc) <= 5 then
-                baticon:set_image(theme.widget_battery_empty)
-            elseif not bat_now.perc and tonumber(bat_now.perc) <= 15 then
-                baticon:set_image(theme.widget_battery_low)
-            else
-                baticon:set_image(theme.widget_battery)
-            end
-            widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
-        else
-            widget:set_markup()
-            baticon:set_image(theme.widget_ac)
-        end
-    end
-})
-
--- ALSA volume
-local volicon = wibox.widget.imagebox(theme.widget_vol)
-theme.volume = lain.widget.alsa({
-    settings = function()
-        if volume_now.status == "off" then
-            volicon:set_image(theme.widget_vol_mute)
-        elseif tonumber(volume_now.level) == 0 then
-            volicon:set_image(theme.widget_vol_no)
-        elseif tonumber(volume_now.level) <= 50 then
-            volicon:set_image(theme.widget_vol_low)
-        else
-            volicon:set_image(theme.widget_vol)
-        end
-
-        widget:set_markup(markup.font(theme.font, " " .. volume_now.level .. "% "))
-    end
-})
-
--- MEM
-local memwidget = wibox.widget.textbox()
-vicious.cache(vicious.widgets.mem)
-vicious.register(memwidget, vicious.widgets.mem, "$1% ($2MiB/$3MiB)", 7)
-
--- Graph
-local graph_mem = wibox.widget.graph()
-graph_mem:set_width(100)
-graph_mem:set_background_color(widget_bg_color)
-graph_mem:set_color({
-    type = "linear",
-    from = {0, 0},
-    to = {50, 0},
-    stops = {{0, "#FF5656"}, {0.5, "#88A175"}, {1, "#AECF96"}}
-})
-
--- Register widget
-vicious.cache(vicious.widgets.mem)
-vicious.register(graph_mem, vicious.widgets.mem, "$1", 7)
-
 -- CPU Histogramm
-vicious.cache(vicious.widgets.cpu)
+-- vicious.cache(vicious.widgets.cpu)
 
-local cpuHistogrammWidget = wibox.widget.graph()
-cpuHistogrammWidget:set_width(100)
-cpuHistogrammWidget:set_background_color(widget_bg_color)
-cpuHistogrammWidget:set_color{
-    type = "linear",
-    from = {0, 0},
-    to = {50, 0},
-    stops = {{0, "#FF5656"}, {0.5, "#88A175"}, {1, "#AECF96"}}
-}
-vicious.register(cpuHistogrammWidget, vicious.widgets.cpu, "$1", 1)
+-- local cpuHistogrammWidget = wibox.widget.graph()
+-- cpuHistogrammWidget:set_width(100)
+-- cpuHistogrammWidget:set_background_color(widget_bg_color)
+-- cpuHistogrammWidget:set_color{
+--     type = "linear",
+--     from = {0, 0},
+--     to = {50, 0},
+--     stops = {{0, "#FF5656"}, {0.5, "#88A175"}, {1, "#AECF96"}}
+-- }
+-- vicious.register(cpuHistogrammWidget, vicious.widgets.cpu, "$1", 1)
 
 -- Get CPU stats
 local f = io.open("/proc/stat")
@@ -412,114 +350,45 @@ end
 f:close()
 
 -- CPU Kernels Bar
-local cpuKernelProgress = {}
+-- local cpuKernelProgress = {}
 
-local cpuKernelGridWidget = wibox.widget {
-    forced_num_cols = cpu_kernels - 1,
-    forced_num_rows = 1,
-    homogeneous = true,
-    expand = true,
-    layout = wibox.layout.grid
-}
+-- local cpuKernelGridWidget = wibox.widget {
+--     forced_num_cols = cpu_kernels - 1,
+--     forced_num_rows = 1,
+--     homogeneous = true,
+--     expand = true,
+--     layout = wibox.layout.grid
+-- }
 
-for i = 1, cpu_kernels - 1 do
-    cpuKernelProgress[i] = wibox.widget.progressbar()
+-- for i = 1, cpu_kernels - 1 do
+--     cpuKernelProgress[i] = wibox.widget.progressbar()
 
-    local newKernelProgress = wibox.container.margin(wibox.widget {
-        {
-            max_value = 100,
-            value = 0,
-            forced_height = 12,
-            background_color = "alpha",
-            widget = cpuKernelProgress[i]
-        },
-        direction = "east",
-        layout = wibox.container.rotate
-    }, dpi(1))
+--     local newKernelProgress = wibox.container.margin(wibox.widget {
+--         {
+--             max_value = 100,
+--             value = 0,
+--             forced_height = 12,
+--             background_color = "alpha",
+--             widget = cpuKernelProgress[i]
+--         },
+--         direction = "east",
+--         layout = wibox.container.rotate
+--     }, dpi(1))
 
-    cpuKernelGridWidget:add(newKernelProgress)
-end
+--     cpuKernelGridWidget:add(newKernelProgress)
+-- end
 
-vicious.register(cpuKernelGridWidget, vicious.widgets.cpu, function(widget, args)
-    for i = 2, cpu_kernels do
-        cpuKernelProgress[i - 1]:set_value(args[i])
-    end
-end, 3)
-
--- Coretemp (lain, average)
-local temp = lain.widget.temp({
-    settings = function()
-        widget:set_markup(markup.font(theme.font, " " .. coretemp_now .. "°C "))
-    end
-})
--- ]]
-local tempicon = wibox.widget.imagebox(theme.widget_temp)
-
--- Net
-local neticon = wibox.widget.imagebox(theme.widget_net)
-local net = lain.widget.net({
-    settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#FEFEFE",
-            " " .. net_now.received .. " ↓↑ " .. net_now.sent .. " "))
-    end
-})
-local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
+-- vicious.register(cpuKernelGridWidget, vicious.widgets.cpu, function(widget, args)
+--     for i = 2, cpu_kernels do
+--         cpuKernelProgress[i - 1]:set_value(args[i])
+--     end
+-- end, 3)
 
 -- ...
--- Create a textclock widget
-local mytextclock = wibox.widget.textclock()
-
-local cw = calendar_widget({
-    theme = "outrun",
-    placement = "bottom_right",
-    radius = 8
-})
-
-mytextclock:connect_signal("button::press", function(_, _, _, button)
-    if button == 1 then
-        cw.toggle()
-    end
-end)
-
--- Storage
-vicious.cache(vicious.widgets.fs)
-
-local fsRootWidget = wibox.widget.textbox()
-local fsWorkspaceWidget = wibox.widget.textbox()
-local fsVmWidget = wibox.widget.textbox()
-local fsBidataWidget = wibox.widget.textbox()
-vicious.register(fsRootWidget, vicious.widgets.fs, "/:${/ avail_gb}GB", 61)
-vicious.register(fsWorkspaceWidget, vicious.widgets.fs, "WS:${/media/WORKSPACE avail_gb}GB", 61)
-vicious.register(fsVmWidget, vicious.widgets.fs, "VM:${/media/VM avail_gb}GB", 67)
-vicious.register(fsBidataWidget, vicious.widgets.fs, "BD:${/media/BIGDATA avail_gb}GB", 63)
-
--- System Os
-vicious.cache(vicious.widgets.os)
-
-local sysOs = wibox.widget.textbox()
-vicious.register(sysOs, vicious.widgets.os, "$1 $2", 86400)
-
--- System Host
-local sysHost = wibox.widget.textbox()
-vicious.register(sysHost, vicious.widgets.os, "$3@$4", 86400)
-
--- Packages
-vicious.cache(vicious.widgets.pkg)
-
--- Up Time
-vicious.cache(vicious.widgets.uptime)
-
-local upTime = wibox.widget.textbox()
-vicious.register(upTime, vicious.widgets.uptime, "Up: $1d $2h $3m", 60)
 
 local screen1LeftWidges = {
     layout = wibox.layout.fixed.horizontal,
-    wibox.container.background(wibox.container.margin(upTime, theme.margins_width, theme.margins_width)),
     widget_seperator,
-    wibox.container.background(wibox.container.margin(sysOs, theme.margins_width, theme.margins_width)),
-    widget_seperator,
-    wibox.container.background(wibox.container.margin(sysHost, theme.margins_width, theme.margins_width)),
-    widget_seperator
 }
 
 local screen2LeftWidges = {
@@ -537,33 +406,11 @@ local screen2RightWidgets = {
     -- Right widgets
     layout = wibox.layout.fixed.horizontal,
     widget_seperator,
-    wibox.container.background(wibox.container.margin(memwidget, theme.margins_width, theme.margins_width)),
-    widget_seperator,
-    wibox.container.background(wibox.container.margin(wibox.widget {
-        tempicon,
-        temp.widget,
-        layout = wibox.layout.align.horizontal
-    }, theme.margins_width, theme.margins_width)),
-    widget_seperator,
-    wibox.container.background(wibox.container.margin(datewidget, theme.margins_width, theme.margins_width * 2))
 }
 
 local screen1RightWidgets = {
     -- Right widgets
     layout = wibox.layout.fixed.horizontal,
-    widget_seperator,
-    wibox.container.background(wibox.container.margin(wibox.widget {
-        nil,
-        neticon,
-        net.widget,
-        layout = wibox.layout.align.horizontal
-    }, theme.margins_width, theme.margins_width)),
-    widget_seperator,
-    wibox.container.background(wibox.container.margin(cpuKernelGridWidget, theme.margins_width, theme.margins_width)),
-    widget_seperator,
-    ram_widget(),
-    widget_seperator,
-    wibox.container.background(wibox.container.margin(datewidget, theme.margins_width, theme.margins_width)),
     widget_seperator,
     systrayWidget
 }
