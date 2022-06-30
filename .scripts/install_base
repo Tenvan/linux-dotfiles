@@ -118,6 +118,8 @@ install spectacle
 install stow
 install time
 install timeshift
+install toilet 
+install toilet-fonts 
 install unclutter
 install unrar
 install upower 
