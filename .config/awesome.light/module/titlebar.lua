@@ -7,6 +7,8 @@ awful.titlebar.enable_tooltip = true
 awful.titlebar.fallback_name = 'Client'
 
 local double_click_event_handler = function(double_click_event)
+    local double_click_timer
+    
     if double_click_timer then
         double_click_timer:stop()
         double_click_timer = nil

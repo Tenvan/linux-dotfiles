@@ -122,6 +122,7 @@ awful.layout.suit.tile.mouse_resize_handler = function(c)
 		return x
 	end, c)
 end
+
 awful.layout.suit.tile.bottom.mouse_resize_handler = function(c)
 	return mouse_resize_handler(function(q)
 		return { x = q.y, y = q.x, width = q.height, height = q.width }

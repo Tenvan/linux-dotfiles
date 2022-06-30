@@ -1,11 +1,12 @@
 local log = require('utilities.debug').log
+local dump = require('utilities.debug').dump
 log("Enter Module => configuration/apps.lua" )
 
 local filesystem = require("gears.filesystem")
 local config_dir = filesystem.get_configuration_dir()
 local utils_dir = config_dir .. "utilities/"
 
-return {
+local apps = {
 	-- Default Applications
 	default = {
 		-- Default terminal emulator
@@ -27,7 +28,7 @@ return {
 		-- Default power manager
 		power_manager = "xfce4-power-manager",
 		-- Default rofi global menu
-		app_launcher = "rofi -no-lazy-grab -show drun -modi drun -theme " .. config_dir .. "configuration/rofi.rasi",
+		app_launcher = "xfce4-appfinder",
 	},
 
 	-- List of binaries/shell scripts that will execute for a certain task
@@ -40,3 +41,7 @@ return {
 		color_picker = utils_dir .. "xcolor-pick",
 	},
 }
+
+-- dump(apps, "configuration.apps")
+
+return apps

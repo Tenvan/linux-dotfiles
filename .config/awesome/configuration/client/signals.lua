@@ -1,10 +1,13 @@
-local awesome, client= awesome, client
-
 local log = require('utilities.debug').log
-log("Enter Module => configuration/client/signals.lua" )
+log("Enter Module => configuration/client/signals.lua")
+
+local awesome, client = awesome, client
 
 local awful = require('awful')
 local beautiful = require('beautiful')
+
+local notify = require("utilities.notify")
+local sound = require("utilities.sound")
 
 local update_client = function(c)
 	-- Set client's shape based on its tag's layout and status (floating, maximized, etc.)
@@ -115,5 +118,102 @@ client.connect_signal(
 				c.shape = beautiful.client_shape_rectangle
 			end
 		end
+	end
+)
+
+client.connect_signal('swapped', function(c, source, is_source)
+	-- sound('window-switch')
+end)
+
+client.connect_signal('raised', function(c)
+	-- sound("window-attention-active")
+end)
+
+client.connect_signal('lowered', function(c)
+	-- sound("window-attention-inactive")
+end)
+
+client.connect_signal('request::activate', function(c)
+	-- notify("Client", "'request::activate' event raised: " .. c.name)
+end)
+
+client.connect_signal('request::geometry', function(c, context, Additional)
+	-- if context == 'maximized' then
+	-- 	notify('Client', 'Maximized: ' .. c.name)
+	-- else
+	-- 	notify("Client", "'request::geometry' event raised: " .. c.name .. " Context: " .. context)
+	-- end
+end)
+
+client.connect_signal('property::window', function(c)
+	-- notify("Client", "'property::window' event raised: " .. c.name)
+end)
+
+client.connect_signal('property::size', function(c)
+	-- notify("Client", "'property::size' event raised: " .. c.name)
+end)
+
+-- Add a titlebar if titlebars_enabled is set to true in the rules.
+client.connect_signal('request::titlebars',
+	function(c)
+		-- notify("Client", "'request::titlebars' event raised: " .. c.name)
+		-- -- Custom
+		-- -- if beautiful.titlebar_fun then
+		-- --     beautiful.titlebar_fun(c)
+		-- --     return
+		-- -- end
+
+		-- -- Default
+		-- -- buttons for the titlebar
+		-- local buttons = my_table.join(
+		-- 	awful.button({}, 1, function()
+		-- 		c:emit_signal('request::activate', 'titlebar', {
+		-- 			raise = true
+		-- 		})
+		-- 		awful.mouse.client.move(c)
+		-- 	end),
+		-- 	awful.button({}, 3, function()
+		-- 		c:emit_signal('request::activate', 'titlebar', {
+		-- 			raise = true
+		-- 		})
+		-- 		awful.mouse.client.resize(c)
+		-- 	end))
+
+		-- awful.titlebar(c, {
+		-- 	size = dpi(21),
+		-- 	height = 20,
+		-- 	bg_normal = beautiful.bg_normal,
+		-- 	bg_focus = beautiful.bg_focus,
+		-- 	fg_normal = beautiful.fg_normal,
+		-- 	fg_focus = beautiful.fg_focus
+		-- }):setup {
+		-- 	{
+		-- 		-- Left
+		-- 		awful.titlebar.widget.iconwidget(c),
+		-- 		buttons = buttons,
+		-- 		layout = wibox.layout.fixed.horizontal
+		-- 	},
+		-- 	{
+		-- 		-- Middle
+		-- 		{
+		-- 			-- Title
+		-- 			align = 'center',
+		-- 			widget = awful.titlebar.widget.titlewidget(c)
+		-- 		},
+		-- 		buttons = buttons,
+		-- 		layout = wibox.layout.flex.horizontal
+		-- 	},
+		-- 	{
+		-- 		-- Right
+		-- 		awful.titlebar.widget.floatingbutton(c),
+		-- 		awful.titlebar.widget.minimizebutton(c),
+		-- 		awful.titlebar.widget.maximizedbutton(c),
+		-- 		awful.titlebar.widget.stickybutton(c),
+		-- 		awful.titlebar.widget.ontopbutton(c),
+		-- 		awful.titlebar.widget.closebutton(c),
+		-- 		layout = wibox.layout.fixed.horizontal()
+		-- 	},
+		-- 	layout = wibox.layout.align.horizontal
+		-- }
 	end
 )

@@ -9,8 +9,7 @@ local dpi = beautiful.xresources.apply_dpi
 local gtk_variable = beautiful.gtk.get_theme_variables
 
 local theme_dir = filesystem.get_configuration_dir() .. 'theme'
-local titlebar_theme = 'colorful'
-local titlebar_icon_path = theme_dir .. '/icons/titlebar/' .. titlebar_theme .. '/'
+local titlebar_icon_path = theme_dir .. '/icons/titlebar/'
 local tip = titlebar_icon_path
 local tie = 'png'
 

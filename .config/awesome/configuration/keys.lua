@@ -1,5 +1,5 @@
 local log = require('utilities.debug').log
-log("Enter Module => configuration/keys.lua" )
+log("Enter Module => configuration/keys.lua")
 
 local awesome, client, screen = awesome, client, screen
 
@@ -62,15 +62,18 @@ awful.keyboard.append_global_keybindings({
 	end, { description = "open terminal", group = kgApps }),
 
 	-- App launcher
-	awful.key({ mod }, "z", function()
-		awful.spawn.with_shell(apps.default.app_launcher)
-	end, { description = "open app launcher", group = kgApps }),
-
-	awful.key({ mod, shift }, 'z', function()
+	awful.key({ mod }, 'z', function()
 		awful.spawn.with_shell('sh ~/.scripts/menu/rofi.sh -show combi')
 	end, {
 		description = 'Rofi Menü',
 		group = kgMenus
+	}),
+
+	awful.key({ mod, shift }, "z", function()
+		awful.spawn.with_shell(apps.default.app_launcher)
+	end, {
+		description = "open app launcher",
+		group = kgApps
 	}),
 
 	-- Code editor
