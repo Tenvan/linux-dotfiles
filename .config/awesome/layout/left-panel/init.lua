@@ -1,48 +1,46 @@
 local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
-log("Enter Module => layout/left-panel/init.lua" )
+log('Enter Module => layout/left-panel/init.lua')
 
-local awesome = awesome
-
-local wibox = require('wibox')
 local awful = require('awful')
-local gears = require('gears')
+local wibox = require('wibox')
 local beautiful = require('beautiful')
+local gears = require('gears')
 local dpi = beautiful.xresources.apply_dpi
-local apps = require('configuration.apps')
 
-local panel_visible = false
-
-local left_panel = function(screen)
-  local action_bar_width = dpi(45)
+local left_panel = function(s)
+  -- Set left panel geometry
   local panel_content_width = dpi(350)
+  local action_bar_width = dpi(45)
+  local offsety = dpi(28)
 
   local panel = wibox {
-    ontop = true,
-    screen = screen,
-    width = action_bar_width,
     type = 'dock',
-    height = screen.geometry.height,
-    shape = gears.shape.rectangle,
-    x = screen.geometry.x,
-    y = screen.geometry.y,
+    ontop = true,
+    screen = s,
+    visible = false,
+    width = action_bar_width,
+    height = s.geometry.height - offsety,
+    x = s.geometry.x,
+    y = s.geometry.y + offsety,
     bg = beautiful.background,
-    fg = beautiful.fg_normal
+    fg = beautiful.fg_normal,
+    shape = gears.shape.rectangle,
   }
 
   panel.opened = false
 
-  screen.backdrop_ldb = wibox {
+  s.backdrop_ldb = wibox {
     ontop = true,
-    screen = screen,
+    screen = s,
     bg = beautiful.transparent,
     type = 'utility',
-    x = screen.geometry.x,
-    y = screen.geometry.y,
-    width = screen.geometry.width,
-    height = screen.geometry.height
+    x = s.geometry.x,
+    y = s.geometry.y,
+    width = s.geometry.width,
+    height = s.geometry.height
   }
-  
+
   panel:struts {
     left = action_bar_width
   }
@@ -80,9 +78,12 @@ local left_panel = function(screen)
 
   local open_panel = function()
     panel.width = action_bar_width + panel_content_width
-    screen.backdrop_ldb.visible = true
+    s.backdrop_ldb.visible = true
 
-    update_backdrop(screen.backdrop_ldb, panel)
+    local focused = awful.screen.focused()
+    focused.backdrop_ldb.visible = true
+
+    -- update_backdrop(screen.backdrop_ldb, panel)
 
     panel:get_children_by_id('panel_content')[1].visible = true
 
@@ -92,8 +93,12 @@ local left_panel = function(screen)
   local close_panel = function()
     panel.width = action_bar_width
     panel:get_children_by_id('panel_content')[1].visible = false
-    screen.backdrop_ldb.visible = false
-    update_backdrop(screen.backdrop_ldb, panel)
+
+    local focused = awful.screen.focused()
+    focused.backdrop_ldb.visible = false
+
+    -- update_backdrop(screen.backdrop_ldb, panel)
+
     panel:emit_signal('closed')
   end
 
@@ -111,7 +116,7 @@ local left_panel = function(screen)
     end
   end
 
-  screen.backdrop_ldb:buttons(awful.util.table.join(awful.button({}, 1, function()
+  s.backdrop_ldb:buttons(awful.util.table.join(awful.button({}, 1, function()
     panel:toggle()
   end)))
 
@@ -125,11 +130,11 @@ local left_panel = function(screen)
       visible = true,
       forced_width = panel_content_width,
       {
-        require('layout.left-panel.dashboard')(screen, panel),
+        require('layout.left-panel.dashboard')(s, panel),
         layout = wibox.layout.stack
       }
     },
-    require('layout.left-panel.action-bar')(screen, panel, action_bar_width)
+    require('layout.left-panel.action-bar')(s, panel, action_bar_width)
   }
   return panel
 end

@@ -5,9 +5,7 @@ if pgrep -x "picom" >/dev/null; then
     while pgrep -u $UID -x "picom" >/dev/null; do sleep 1; done
 else
     for path_candidate in \
-    "$HOME/.config/picom/picom-awesome-private.conf" \
-    "$HOME/.config/picom/picom-awesome-custom.conf" \
-    "$HOME/.config/picom/picom-awesome.conf" \
+    "$HOME/.config/picom/picom.conf" \
     "$HOME/.config/awesome/configuration/picom.conf"
     do
         if [[ -f "${path_candidate}" ]]; then
@@ -16,6 +14,5 @@ else
     done
     
     notify-send.sh "Picom loaded" "$PICOM_CONF"
-    picom -b --experimental-backends --config "$PICOM_CONF" &
-    # picom --config "$PICOM_CONF" &
+    picom -b --experimental-backends --dbus --config "$PICOM_CONF" &
 fi

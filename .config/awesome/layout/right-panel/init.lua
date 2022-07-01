@@ -1,3 +1,7 @@
+local log = require('utilities.debug').log
+local dump = require('utilities.debug').dump
+log('Enter Module => layout/right-panel/init.lua')
+
 local awful = require('awful')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
@@ -5,35 +9,35 @@ local dpi = beautiful.xresources.apply_dpi
 
 local panel_visible = false
 
-local right_panel = function(screen)
+local right_panel = function(s)
   -- Set right panel geometry
   local panel_width = dpi(350)
-  local panel_x = screen.geometry.x + screen.geometry.width - panel_width
+  local panel_x = s.geometry.x + s.geometry.width - panel_width
 
   local panel = wibox {
-    ontop = true,
-    screen = screen,
-    visible = false,
     type = 'dock',
+    ontop = true,
+    screen = s,
+    visible = false,
     width = panel_width,
-    height = screen.geometry.height,
+    height = s.geometry.height,
     x = panel_x,
-    y = screen.geometry.y,
+    y = s.geometry.y,
     bg = beautiful.background,
     fg = beautiful.fg_normal
   }
 
   panel.opened = false
 
-  screen.backdrop_rdb = wibox {
+  s.backdrop_rdb = wibox {
     ontop = true,
-    screen = screen,
+    screen = s,
     bg = beautiful.transparent,
     type = 'utility',
-    x = screen.geometry.x,
-    y = screen.geometry.y,
-    width = screen.geometry.width,
-    height = screen.geometry.height
+    x = s.geometry.x,
+    y = s.geometry.y,
+    width = s.geometry.width,
+    height = s.geometry.height
   }
 
   panel:struts {
@@ -86,7 +90,7 @@ local right_panel = function(screen)
     end
   end
 
-  screen.backdrop_rdb:buttons(awful.util.table.join(awful.button({}, 1, function()
+  s.backdrop_rdb:buttons(awful.util.table.join(awful.button({}, 1, function()
     panel:toggle()
   end)))
 
@@ -127,13 +131,13 @@ local right_panel = function(screen)
           visible = true,
           layout = wibox.layout.fixed.vertical,
           {
-            layout = wibox.layout.fixed.vertical,
+            require('widget.user-profile'),
+            require('widget.weather'),
+            require('widget.email'),
+            require('widget.social-media'),
+            require('widget.calculator'),
             spacing = dpi(7),
-            -- require('widget.user-profile'),
-            -- require('widget.weather'),
-            -- require('widget.email'),
-            -- require('widget.social-media'),
-            -- require('widget.calculator')
+            layout = wibox.layout.fixed.vertical,
           }
 
         },
@@ -141,7 +145,7 @@ local right_panel = function(screen)
         {
           id = 'notif_id',
           visible = false,
-          require('widget.notif-center')(screen),
+          require('widget.notif-center')(s),
           layout = wibox.layout.fixed.vertical
         }
       }

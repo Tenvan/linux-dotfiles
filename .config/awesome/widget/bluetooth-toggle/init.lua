@@ -1,10 +1,14 @@
+local log = require('utilities.debug').log
+local dump = require('utilities.debug').dump
+log('Enter Module => widget/bluetooth-toggle/init.lua')
+
 local awful = require('awful')
 local wibox = require('wibox')
 local gears = require('gears')
 local naughty = require('naughty')
 local watch = awful.widget.watch
 local dpi = require('beautiful').xresources.apply_dpi
-local clickable_container = require('widget.bluetooth-toggle.clickable-container')
+local clickable_container = require('widget.clickable-container')
 local config_dir = gears.filesystem.get_configuration_dir()
 local widget_icon_dir = config_dir .. 'widget/bluetooth-toggle/icons/'
 local icons = require('theme.icons')

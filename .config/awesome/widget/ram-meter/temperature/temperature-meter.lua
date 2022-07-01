@@ -1,3 +1,7 @@
+local log = require('utilities.debug').log
+local dump = require('utilities.debug').dump
+log('Enter Module => widget/ram-meter/temperature-meterlua')
+
 local wibox = require('wibox')
 local gears = require('gears')
 local beautiful = require('beautiful')

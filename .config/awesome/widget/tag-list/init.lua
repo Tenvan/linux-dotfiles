@@ -1,10 +1,19 @@
+local log = require('utilities.debug').log
+local dump = require('utilities.debug').dump
+log('Enter Module => widget/tag-list/init.lua')
+
+local client = client
+
 local awful = require('awful')
 local wibox = require('wibox')
 local dpi = require('beautiful').xresources.apply_dpi
 local clickable_container = require('widget.clickable-container')
 local icons = require('theme.icons')
 
-local gdebug = require('gears.debug')
+local keys = require('configuration.keys.mod')
+local modkey = keys.mod_key
+local altkey = keys.alt_key
+
 
 --- Common method to create buttons.
 -- @tab buttons
@@ -35,11 +44,10 @@ local function create_buttons(buttons, object)
 end
 
 local function list_update(w, buttons, label, data, objects)
-  -- gdebug.print_warning(gdebug.dump_return(objects, 'objects', 4))
   -- update the widgets, creating them if needed
   w:reset()
   for i, o in ipairs(objects) do
-    -- gdebug.print_warning(gdebug.dump_return(o, 'object', 4))
+
     local cache = data[o]
     local ib, tb, bgb, tbm, ibm, l, bg_clickable
     if cache then
@@ -119,7 +127,8 @@ local function list_update(w, buttons, label, data, objects)
 end
 
 local tag_list = function(args)
-  -- gdebug.print_warning(gdebug.dump_return(args, 'args', 3))
+  dump(args, 'args', 3)
+
   return awful.widget.taglist(
     args,
     awful.widget.taglist.filter.all,
@@ -131,6 +140,9 @@ local tag_list = function(args)
       awful.button(
         { modkey }, 1,
         function(t)
+          dump(_G.client, '_G.client', 2)
+          dump(client, 'client', 2)
+
           if _G.client.focus then
             _G.client.focus:move_to_tag(t)
             t:view_only()
@@ -161,4 +173,5 @@ local tag_list = function(args)
     wibox.layout.fixed.vertical()
   )
 end
+
 return tag_list

@@ -81,6 +81,7 @@ install kteatime
 install lhasa
 install libgnome-keyring
 install libsecret 
+install light
 install lscolors-git
 install lsd
 install luacheck

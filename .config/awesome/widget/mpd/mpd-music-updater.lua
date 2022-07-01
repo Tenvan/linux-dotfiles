@@ -1,3 +1,7 @@
+local log = require('utilities.debug').log
+local dump = require('utilities.debug').dump
+log('Enter Module => widget/mpd/mpd-music-updater.lua')
+
 local gears = require('gears')
 local awful = require('awful')
 local config_dir = gears.filesystem.get_configuration_dir()

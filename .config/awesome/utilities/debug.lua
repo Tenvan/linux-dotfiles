@@ -1,7 +1,7 @@
 local gdebug = require('gears.debug')
 
 local function log(message)
-    gdebug.print_warning(message)
+    gdebug.print_warning("[DEBUG]: " .. message)
 end
 
 local function dump(object, tag, depth)

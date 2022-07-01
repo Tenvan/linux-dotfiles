@@ -1,19 +1,15 @@
 local log = require('utilities.debug').log
-log("Enter Module => configuration/keys/global.lua" )
+log('Enter Module => configuration/keys/global.lua')
 
 local awesome, client, screen = awesome, client, screen
 
 local awful = require('awful')
-
-require('awful.autofocus')
-
 local hotkeys_popup = require('awful.hotkeys_popup').widget
 
 local apps = require('configuration.apps')
 local keys = require('configuration.keys.mod')
 
-local utils = require('module.utils')
-local notify = utils.notify
+local notify = require('utilities.notify')
 
 local modkey = keys.mod_key
 local altkey = keys.alt_key
@@ -22,6 +18,7 @@ local altkey = keys.alt_key
 local controlkey = keys.control_key
 local shiftkey = keys.shift_key
 local returnkey = keys.return_key
+local spacekey = keys.space_key
 local escapekey = keys.escape_key
 local tabkey = keys.tab_key
 local downkey = keys.down_key
@@ -51,11 +48,11 @@ local global_keys = awful.util.table.join(-- Hotkeys
     description = 'show help',
     group = 'awesome'
   }),
-  awful.key({ modkey, controlkey }, 'r', awesome.restart, {
+  awful.key({ modkey, shiftkey }, 'r', awesome.restart, {
     description = 'reload awesome',
     group = kgAwesome
   }),
-  awful.key({ modkey, controlkey }, 'q', awesome.quit, {
+  awful.key({ modkey, shiftkey }, 'q', awesome.quit, {
     description = 'quit awesome',
     group = kgAwesome
   }),
@@ -95,13 +92,13 @@ local global_keys = awful.util.table.join(-- Hotkeys
     description = 'decrease the number of columns',
     group = kgLayout
   }),
-  awful.key({ modkey, shiftkey }, 'space', function()
+  awful.key({ modkey, controlkey }, spacekey, function()
     awful.layout.inc(1)
   end, {
     description = 'select next layout',
     group = kgLayout
   }),
-  awful.key({ modkey, controlkey }, 'space', function()
+  awful.key({ modkey, shiftkey }, spacekey, function()
     awful.layout.inc(-1)
   end, {
     description = 'select previous layout',
@@ -518,37 +515,13 @@ local global_keys = awful.util.table.join(-- Hotkeys
     description = 'lock the screen',
     group = kgUtils
   }),
-  awful.key({ modkey }, returnkey, function()
-    awful.spawn(apps.default.terminal)
-  end, {
-    description = 'open default terminal',
-    group = kgLauncher
-  }),
-  awful.key({ modkey, shiftkey }, 'e', function()
-    awful.spawn(apps.default.file_manager)
-  end, {
-    description = 'open default file manager',
-    group = kgLauncher
-  }),
-  awful.key({ modkey, shiftkey }, 'f', function()
-    awful.spawn(apps.default.web_browser)
-  end, {
-    description = 'open default web browser',
-    group = kgLauncher
-  }),
   awful.key({ controlkey, shiftkey }, 'Escape', function()
     awful.spawn(apps.default.terminal .. ' ' .. 'htop')
   end, {
     description = 'open system monitor',
     group = kgLauncher
   }),
-  awful.key({ modkey }, 'z', function()
-    awful.spawn.with_shell('sh ~/.scripts/menu/rofi.sh -show combi')
-  end, {
-    description = 'Rofi Menü',
-    group = kgMenus
-  }),
-  awful.key({ modkey }, 'r', function()
+  awful.key({ modkey }, 'l', function()
     local focused = awful.screen.focused()
 
     if focused.right_panel and focused.right_panel.visible then
@@ -559,7 +532,7 @@ local global_keys = awful.util.table.join(-- Hotkeys
     description = 'open sidebar',
     group = kgLauncher
   }),
-  awful.key({ modkey, shiftkey }, 'r', function()
+  awful.key({ modkey }, 'r', function()
     local focused = awful.screen.focused()
 
     if focused.right_panel and focused.right_panel.visible then
@@ -570,7 +543,7 @@ local global_keys = awful.util.table.join(-- Hotkeys
     description = 'open sidebar and global search',
     group = kgLauncher
   }),
-
+  
   -- ░█▀▀░█░█░█▀▀░▀█▀░█▀▀░█▄█░░░█▄█░█▀▀░█▀█░█░█░█▀▀
   -- ░▀▀█░░█░░▀▀█░░█░░█▀▀░█░█░░░█░█░█▀▀░█░█░█░█░▀▀█
   -- ░▀▀▀░░▀░░▀▀▀░░▀░░▀▀▀░▀░▀░░░▀░▀░▀▀▀░▀░▀░▀▀▀░▀▀▀
@@ -580,7 +553,7 @@ local global_keys = awful.util.table.join(-- Hotkeys
   end, {
     description = 'Applikations Menü',
     group = kgMenus
-  }),
+  }),  
   awful.key({ modkey }, 'd', function()
     awful.spawn.with_shell('sh ~/.scripts/menu/develop-menu.sh')
   end, {
@@ -615,16 +588,40 @@ local global_keys = awful.util.table.join(-- Hotkeys
   -- ░█▀█░█▀█░█▀█░█░░░▀█▀░█▀▀░█▀█░▀█▀░▀█▀░█▀█░█▀█░█▀▀
   -- ░█▀█░█▀▀░█▀▀░█░░░░█░░█░░░█▀█░░█░░░█░░█░█░█░█░▀▀█
   -- ░▀░▀░▀░░░▀░░░▀▀▀░▀▀▀░▀▀▀░▀░▀░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀
-  awful.key({ modkey }, 'F2', function()
+  awful.key({ modkey }, returnkey, function()
+    awful.spawn(apps.default.terminal)
+  end, {
+    description = 'open default terminal',
+    group = kgLauncher
+  }),
+  awful.key({ modkey }, 'z', function()
+    awful.spawn.with_shell('sh ~/.scripts/menu/rofi.sh -show combi')
+  end, {
+    description = 'Rofi Menü',
+    group = kgMenus
+  }),
+	awful.key({ modkey, shiftkey }, "z", function()
+		awful.spawn.with_shell(apps.default.app_launcher)
+	end, {
+		description = "open app launcher",
+		group = kgApps
+	}),
+  awful.key({ modkey, shiftkey }, 'e', function()
+    awful.spawn(apps.default.file_manager)
+  end, {
+    description = 'open default file manager',
+    group = kgLauncher
+  }),
+  awful.key({ modkey, shiftkey }, 'f', function()
+    awful.spawn(apps.default.web_browser)
+  end, {
+    description = 'open default web browser',
+    group = kgLauncher
+  }),
+  awful.key({ modkey, shiftkey }, 'w', function()
     awful.spawn.with_shell("$(xdg-settings get default-web-browser | cut -f1 -d '.')")
   end, {
     description = 'Standard Browser',
-    group = kgApps
-  }),
-  awful.key({ modkey }, 'F8', function()
-    awful.spawn('nemo')
-  end, {
-    description = 'Dateimanager',
     group = kgApps
   }),
 
@@ -686,6 +683,7 @@ local global_keys = awful.util.table.join(-- Hotkeys
     description = 'XKill',
     group = kgSystem
   }),
+
   awful.key({ modkey }, 'F3', function()
     local focused = awful.screen.focused()
 
@@ -707,6 +705,7 @@ local global_keys = awful.util.table.join(-- Hotkeys
     description = 'open today pane',
     group = kgLauncher
   }),
+
   awful.key({ modkey }, 'F4', function()
     local focused = awful.screen.focused()
 

@@ -5,6 +5,7 @@ return {
     control_key = "Control",
     shift_key = "Shift",
     return_key = "Return",
+    space_key = "space",
     escape_key = "Escape",
     tab_key = "Tab",
     down_key = 'Down',

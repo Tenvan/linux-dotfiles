@@ -1,3 +1,7 @@
+local log = require('utilities.debug').log
+local dump = require('utilities.debug').dump
+log("Enter Module => layout/right-panel/panel-mode-switcher.lua")
+
 local awful = require('awful')
 local wibox = require('wibox')
 local gears = require('gears')
