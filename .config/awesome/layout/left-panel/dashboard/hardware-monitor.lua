@@ -37,7 +37,7 @@ return wibox.widget {
       require('widget.cpu-meter'),
       require('widget.ram-meter'),
       require('widget.temperature-meter'),
-      require('widget.harddrive-meter'),
+      require('widget.harddrive-meter').meter,
       layout = wibox.layout.fixed.vertical,
     },
     bg = beautiful.groups_bg,

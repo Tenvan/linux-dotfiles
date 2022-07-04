@@ -1,5 +1,3 @@
-local log = require('utilities.debug').log
-local dump = require('utilities.debug').dump
 log('Enter Module => configuration/signals.lua')
 
 local awesome, client, screen = awesome, client, screen
@@ -18,7 +16,7 @@ end)
 
 -- No borders when rearranging only 1 non-floating or maximized client
 screen.connect_signal('arrange', function(s)
-  notify('Window', "'arange' event raised")
+  log("'screen:arange' event raised")
   local only_one = #s.tiled_clients == 1
   for _, c in pairs(s.clients) do
     if (c.class == 'firefox') or (c.class == 'firefoxdeveloperedition') or (c.class == 'Chromium') or
@@ -37,25 +35,25 @@ end)
 
 awesome.connect_signal('spawn::initiated', function(arg)
   -- notify("Awesome", "'spawn::initiated' event raised: ".. arg.id, 'info')
-  log("'spawn::initiated' event raised: " .. arg.id)
+  log("'awesome:spawn::initiated' event raised: " .. arg.id)
 end)
 
 awesome.connect_signal('spawn::changed', function(arg)
   -- notify("Awesome", "'spawn::changed' event raised: ".. arg.id, 'info')
-  log("'spawn::changed' event raised: " .. arg.id)
+  log("'awesome:spawn::changed' event raised: " .. arg.id)
 end)
 
 awesome.connect_signal('spawn::timeout', function(arg)
   -- notify("Awesome", "'spawn::timeout' event raised: ".. arg.id, 'info')
-  log("'spawn::timeout' event raised: " .. arg.id)
+  log("'awesome:spawn::timeout' event raised: " .. arg.id)
 end)
 
 awesome.connect_signal('spawn::completed', function(arg)
   -- notify("Awesome", "'spawn::completed' event raised: ".. arg.id, 'info')
-  log("'spawn::completed' event raised: " .. arg.id)
+  log("'awesome:spawn::completed' event raised: " .. arg.id)
 end)
 
 awesome.connect_signal('startup', function()
-  log("'startup' event raised: ")
-  sound('desktop-login')
+  log("'awesome:startup' event raised: ")
+  -- sound('desktop-login')
 end)

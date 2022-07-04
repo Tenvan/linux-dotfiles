@@ -5,6 +5,9 @@
         "awesome",
         "client",
         "screen",
-        "root"
+        "root",
+        "notify",
+        "dump",
+        "log"
     ]
 }

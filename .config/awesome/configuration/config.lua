@@ -17,9 +17,11 @@ local config = {
 
     weather = {
       -- API Key
-      key = '',
+      key = 'cf806d5e1d1e72f3819d52e0e0441aac',
       -- City ID
       city_id = '',
+      -- City ID
+      city_coords = { 51.77501, 9.38155 },
       -- Units
       units = 'metric',
       -- Update in N seconds

@@ -20,7 +20,7 @@ local apps = {
     -- Default web browser
     web_browser = 'vivaldi-stable',
     -- Default file manager
-    file_manager = 'nautilus',
+    file_manager = 'nemo',
     -- Default bluetooth manager
     bluetooth_manager = 'blueman-manager',
     -- Default power manager

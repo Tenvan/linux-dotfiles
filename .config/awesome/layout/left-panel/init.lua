@@ -7,30 +7,37 @@ local wibox = require('wibox')
 local beautiful = require('beautiful')
 local gears = require('gears')
 local dpi = beautiful.xresources.apply_dpi
+local specs = require('layout.specs')
 
 local left_panel = function(s)
   -- Set left panel geometry
-  local panel_content_width = dpi(350)
-  local action_bar_width = dpi(45)
-  local offsety = dpi(28)
+  local panel_content_width = specs.leftPanel.contentWidth
+  local action_bar_width = specs.leftPanel.actionBarWidth
+  local offsety = specs.topPanel.height
+  
+  -- local offset_backdrop = panel_content_width + action_bar_width
+  local offset_backdrop = 0
 
   local panel = wibox {
-    type = 'dock',
-    ontop = true,
     screen = s,
-    visible = false,
     width = action_bar_width,
-    height = s.geometry.height - offsety,
+    type = 'dock',
+    height = s.geometry.height,
     x = s.geometry.x,
-    y = s.geometry.y + offsety,
+    y = s.geometry.y,
+    ontop = true,
+    shape = gears.shape.rectangle,
     bg = beautiful.background,
     fg = beautiful.fg_normal,
-    shape = gears.shape.rectangle,
   }
 
   panel.opened = false
 
-  s.backdrop_ldb = wibox {
+  panel:struts {
+    left = action_bar_width
+  }
+
+  local backdrop = wibox {
     ontop = true,
     screen = s,
     bg = beautiful.transparent,
@@ -39,10 +46,6 @@ local left_panel = function(s)
     y = s.geometry.y,
     width = s.geometry.width,
     height = s.geometry.height
-  }
-
-  panel:struts {
-    left = action_bar_width
   }
 
   -- "Punch a hole" on backdrop to show the left dashboard
@@ -76,31 +79,21 @@ local left_panel = function(s)
     wibox_backdrop:draw()
   end
 
-  local open_panel = function()
-    panel.width = action_bar_width + panel_content_width
-    s.backdrop_ldb.visible = true
+	local open_panel = function()
+		panel.width = action_bar_width + panel_content_width
+		backdrop.visible = true
+		panel:get_children_by_id('panel_content')[1].visible = true
+		update_backdrop(backdrop, panel)
+		panel:emit_signal('opened')
+	end
 
-    local focused = awful.screen.focused()
-    focused.backdrop_ldb.visible = true
-
-    -- update_backdrop(screen.backdrop_ldb, panel)
-
-    panel:get_children_by_id('panel_content')[1].visible = true
-
-    panel:emit_signal('opened')
-  end
-
-  local close_panel = function()
-    panel.width = action_bar_width
-    panel:get_children_by_id('panel_content')[1].visible = false
-
-    local focused = awful.screen.focused()
-    focused.backdrop_ldb.visible = false
-
-    -- update_backdrop(screen.backdrop_ldb, panel)
-
-    panel:emit_signal('closed')
-  end
+	local close_panel = function()
+		panel.width = action_bar_width
+		panel:get_children_by_id('panel_content')[1].visible = false
+		backdrop.visible = false
+		update_backdrop(backdrop, panel)
+		panel:emit_signal('closed')
+	end
 
   -- Hide this panel when app dashboard is called.
   function panel:hide_dashboard()
@@ -116,7 +109,7 @@ local left_panel = function(s)
     end
   end
 
-  s.backdrop_ldb:buttons(awful.util.table.join(awful.button({}, 1, function()
+  backdrop:buttons(awful.util.table.join(awful.button({}, 1, function()
     panel:toggle()
   end)))
 
@@ -127,7 +120,7 @@ local left_panel = function(s)
       id = 'panel_content',
       bg = beautiful.transparent,
       widget = wibox.container.background,
-      visible = true,
+      visible = false,
       forced_width = panel_content_width,
       {
         require('layout.left-panel.dashboard')(s, panel),

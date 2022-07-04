@@ -134,7 +134,7 @@ local right_panel = function(s)
             require('widget.user-profile'),
             require('widget.weather'),
             require('widget.email'),
-            require('widget.social-media'),
+            -- require('widget.social-media'),
             require('widget.calculator'),
             spacing = dpi(7),
             layout = wibox.layout.fixed.vertical,

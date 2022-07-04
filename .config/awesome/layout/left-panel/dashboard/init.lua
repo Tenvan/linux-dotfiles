@@ -2,12 +2,8 @@ local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
 log('Enter Module => layout/left-panel/dashboard/init.lua')
 
-local awful = require('awful')
 local wibox = require('wibox')
-local gears = require('gears')
 local beautiful = require('beautiful')
-local icons = require('theme.icons')
-local clickable_container = require('widget.clickable-container')
 
 local dpi = beautiful.xresources.apply_dpi
 

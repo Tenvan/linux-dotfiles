@@ -1,24 +1,22 @@
-local log = require('utilities.debug').log
-local dump = require('utilities.debug').dump
 log('Enter Module => layout/top-panel.lua')
 
-local awful = require('awful')
 local beautiful = require('beautiful')
-local wibox = require('wibox')
-local gears = require('gears')
-local icons = require('theme.icons')
 local dpi = beautiful.xresources.apply_dpi
+local wibox = require('wibox')
 local clickable_container = require('widget.clickable-container')
 local task_list = require('widget.task-list')
+local specs = require('layout.specs')
+
+local offsetx = specs.leftPanel.actionBarWidth
 
 local top_panel = function(s, offset)
   local panel = wibox {
     ontop = true,
     screen = s,
     type = 'dock',
-    height = dpi(28),
-    width = s.geometry.width,
-    x = s.geometry.x,
+    height = specs.topPanel.height,
+    width = s.geometry.width - offsetx,
+    x = s.geometry.x + offsetx,
     y = s.geometry.y,
     stretch = false,
     bg = beautiful.background,
@@ -26,7 +24,7 @@ local top_panel = function(s, offset)
   }
 
   panel:struts {
-    top = dpi(28)
+    top = specs.topPanel.height
   }
 
   panel:connect_signal('mouse::enter', function()
@@ -36,52 +34,52 @@ local top_panel = function(s, offset)
     end
   end)
 
-  s.systray = wibox.widget {
-    visible = false,
-    base_size = dpi(20),
-    horizontal = true,
-    screen = 'primary',
-    widget = wibox.widget.systray
-  }
 
-  local clock          = require('widget.clock')(s)
-  local layout_box     = require('widget.layoutbox')(s)
-  local add_button     = require('widget.open-default-app')(s)
-  s.tray_toggler       = require('widget.tray-toggle')
-  s.updater            = require('widget.package-updater')()
-  s.screen_rec         = require('widget.screen-recorder')()
-  s.mpd                = require('widget.mpd')()
-  s.bluetooth          = require('widget.bluetooth')()
-  s.battery            = require('widget.battery')()
-  s.network            = require('widget.network')()
-  s.info_center_toggle = require('widget.info-center-toggle')()
+  local clock              = require('widget.clock')(s)
+  local layout_box         = require('widget.layoutbox')(s)
+  local cpu_meter          = require('widget.cpu-meter-top-panel').widget
+  local hard_drives        = require('widget.harddrive-meter').widget
+  local weather            = require('widget.weather.weather-aw').widget
+  local systray            = require('widget.systray').widget
+  local net_speed_widget   = require('awesome-wm-widgets.net-speed-widget.net-speed')
+  local ram_widget         = require('awesome-wm-widgets.ram-widget.ram-widget')
+  local volume_widget      = require('awesome-wm-widgets.volume-widget.volume')
+  local updater            = require('widget.package-updater')()
+  local screen_rec         = require('widget.screen-recorder')()
+  local info_center_toggle = require('widget.info-center-toggle')()
 
   panel:setup {
     layout = wibox.layout.align.horizontal,
     expand = 'none',
     {
       layout = wibox.layout.fixed.horizontal,
+      cpu_meter,
       task_list(s),
-      add_button
     },
     clock,
     {
       layout = wibox.layout.fixed.horizontal,
       spacing = dpi(5),
-      {
-        s.systray,
-        margins = dpi(5),
-        widget = wibox.container.margin
-      },
-      s.tray_toggler,
-      s.updater,
-      s.screen_rec,
-      s.mpd,
-      s.network,
-      s.bluetooth,
-      s.battery,
+      net_speed_widget({
+        width = 75
+      }),
+      weather,
+      updater,
+      screen_rec,
+      hard_drives,
+      ram_widget({
+        widget_height = specs.topPanel.height,
+        widget_width = specs.topPanel.height
+      }),
+      volume_widget({
+        widget_type = 'arc',
+        size = 32
+      }),
+      -- s.bluetooth,
+      -- s.battery,
+      systray,
       layout_box,
-      s.info_center_toggle
+      info_center_toggle
     }
   }
 

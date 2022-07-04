@@ -1,4 +1,3 @@
-local log = require('utilities.debug').log
 log('Enter Module => configuration/keys/global.lua')
 
 local awesome, client, screen = awesome, client, screen
@@ -8,8 +7,6 @@ local hotkeys_popup = require('awful.hotkeys_popup').widget
 
 local apps = require('configuration.apps')
 local keys = require('configuration.keys.mod')
-
-local notify = require('utilities.notify')
 
 local modkey = keys.mod_key
 local altkey = keys.alt_key
@@ -490,7 +487,7 @@ local global_keys = awful.util.table.join(-- Hotkeys
     description = 'decrease blur effect by 10%',
     group = kgUtils
   }),
-  awful.key({ modkey }, 't', function()
+  awful.key({ modkey }, 'b', function()
     awesome.emit_signal('widget::blue_light:toggle')
   end, {
     description = 'toggle redshift filter',

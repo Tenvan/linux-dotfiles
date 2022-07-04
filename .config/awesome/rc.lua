@@ -3,21 +3,22 @@
 -- ░░▀░░▀▀▀░▀░▀░░▀░░▀░▀░▀░▀░▀▀▀░░░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀
 -- Banner generated using `toilet -f pagga AwesomeWM"
 
-local log = require('utilities.debug').log
-local dump = require('utilities.debug').dump
+log = require('utilities.debug').log
+dump = require('utilities.debug').dump
+notify = require('utilities.notify')
+
 log("Enter Module => rc.test.lua" )
 
 pcall(require, "luarocks.loader")
 local gears = require('gears')
 local beautiful = require('beautiful')
-local awful = require('awful') -- Everything related to window managment
+local awful = require('awful')
+-- Everything related to window managment
 -- require('awful.autofocus')
-
 
 -- ░█▀▀░█░█░█▀▀░█░░░█░░
 -- ░▀▀█░█▀█░█▀▀░█░░░█░░
 -- ░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀
-
 awful.util.shell = 'zsh'
 
 -- ░▀█▀░█░█░█▀▀░█▄█░█▀▀
@@ -41,7 +42,6 @@ root.keys(require('configuration.keys.global'))
 -- ░█▄█░█▀█░█▀▄░█░█░█░░░█▀▀░█▀▀
 -- ░█░█░█░█░█░█░█░█░█░░░█▀▀░▀▀█
 -- ░▀░▀░▀▀▀░▀▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
-
 require("module")
 
 -- ░█▀▀░█░░░█▀█░█▀▄░█▀█░█░░░░░█▀▀░▀█▀░█▀▀░█▀█░█▀█░█░░░█▀▀

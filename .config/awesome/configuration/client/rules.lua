@@ -1,13 +1,13 @@
-local client = client
+log('Enter Module => configuration/client/rules.lua')
 
-local log = require('utilities.debug').log
-log("Enter Module => configuration/client/rules.lua" )
+local client = client
 
 local awful = require('awful')
 local ruled = require('ruled')
 local beautiful = require('beautiful')
 local client_keys = require('configuration.client.keys')
 local client_buttons = require('configuration.client.buttons')
+local apps = require('configuration.apps')
 
 ruled.client.connect_signal('request::rules', function()
   -- All clients will match this rule.
@@ -128,59 +128,83 @@ ruled.client.connect_signal('request::rules', function()
       type = 'normal'
     },
     properties = {
+      screen = 2,
+      tag = screen[2].tags[4],
+      switch_to_tags = true,
       maximized = false,
       floating = false,
-      screen = 2,
-      tag = '4',
-      switch_to_tags = true
     }
   }
 
   -- Terminal emulators
   ruled.client.append_rule {
-    id = 'terminals',
     rule_any = {
-      class = { 'URxvt', 'XTerm', 'UXTerm', 'kitty', 'K3rmit' }
+      class = { apps.default.terminal, 'URxvt', 'XTerm', 'UXTerm', 'kitty', 'K3rmit' }
     },
     properties = {
-      tag = '1',
-      switch_to_tags = true,
       size_hints_honor = false,
-      titlebars_enabled = true
+      titlebars_enabled = true,
+      maximized = false,
+      floating = false,
     }
   }
 
   -- Browsers and chats
   ruled.client.append_rule {
-    id = 'internet',
     rule_any = {
-      class = { 'firefox', 'Tor Browser', 'discord', 'Chromium', 'Google-chrome', 'TelegramDesktop', 'Vivaldi*' }
+      class = { 'firefox', 'Tor Browser', 'discord', 'Chromium', 'Google-chrome', 'TelegramDesktop' }
     },
     properties = {
-      tag = '2'
+      screen = 2,
+      tag = screen[2].tags[1],
+      maximized = false,
+      floating = false
+    }
+  }
+
+  -- Main Browser
+  ruled.client.append_rule {
+    rule = {
+      instance = apps.default.web_browser
+    },
+    properties = {
+      screen = screen.primary,
+      tag = screen[screen.primary].tags[2],
+      maximized = false,
+      floating = false
+    }
+  }
+  ruled.client.append_rule {
+    rule = {
+      instance = apps.default.web_browser .. ' .*'
+    },
+    properties = {
+      screen = 2,
     }
   }
 
   -- Text editors and word processing
   ruled.client.append_rule {
-    id = 'text',
     rule_any = {
-      class = { 'Geany', 'Atom', 'Subl3', 'code-oss' },
+      class = { 'Code', 'Geany', 'Atom', 'Subl3', 'code-oss' },
       name = { 'LibreOffice', 'libreoffice' }
     },
     properties = {
-      tag = '9'
+      screen = screen[1],
+      tag = screen[1].tags[9],
+      maximized = false,
+      floating = false
     }
   }
 
   -- File managers
   ruled.client.append_rule {
-    id = 'files',
     rule_any = {
       class = { 'dolphin', 'ark', 'Nemo', 'File-roller' }
     },
     properties = {
-      tag = '8',
+      screen = screen.primary,
+      tag = screen[screen.primary].tags[8],
       switch_to_tags = true
     }
   }
@@ -192,8 +216,8 @@ ruled.client.connect_signal('request::rules', function()
       class = { 'vlc', 'Spotify', 'Shortwave' }
     },
     properties = {
-      tag = '5',
       screen = 2,
+      tag = screen[2].tags[5],
       switch_to_tags = true,
       floating = false,
       placement = awful.placement.centered
@@ -208,9 +232,10 @@ ruled.client.connect_signal('request::rules', function()
       name = { 'Steam' }
     },
     properties = {
-      tag = '7',
-      skip_decoration = true,
+      screen = screen.primary,
+      tag = screen[screen.primary].tags[7],
       switch_to_tags = true,
+      skip_decoration = true,
       placement = awful.placement.centered
     }
   }
@@ -222,43 +247,69 @@ ruled.client.connect_signal('request::rules', function()
       class = { 'Gimp-2.10', 'Inkscape', 'Flowblade' }
     },
     properties = {
-      tag = '4'
+      screen = screen.primary,
+      tag = screen[screen.primary].tags[4],
     }
   }
 
   -- Sandboxes and VMs
   ruled.client.append_rule {
-    id = 'sandbox',
     rule_any = {
       class = { 'Virt-manager', 'VirtualBox Manage', 'VirtualBox Machine', 'Gnome-boxes', 'Virt-manager' }
     },
     properties = {
-      tag = '5',
+      screen = screen.primary,
+      tag = screen[screen.primary].tags[5],
       switch_to_tags = true
     }
   }
 
-  -- IDEs and Tools
+  -- IDEs
   ruled.client.append_rule {
-    id = 'development',
-    rule_any = {
-      class = { 'jetbrains-.*', 'Code','Oomox', 'Unity', 'UnityHub', 'Ettercap', 'scrcpy' }
+    rule = {
+      class = 'jetbrains-.*'
     },
     properties = {
-      tag = '1',
+      screen = screen.primary,
+      tag = screen[screen.primary].tags[1],
+      skip_decoration = true,
+      maximized = false,
+      floating = false
+    }
+  }
+
+  ruled.client.append_rule {
+    rule = {
+      class = 'jetbrains-.*',
+      type  = 'dialog',
+    },
+    properties = {
+      skip_decoration = false,
+      focus = true,
+      floating = true
+    }
+  }
+
+  -- System Tools
+  ruled.client.append_rule {
+    rule_any = {
+      class = { 'Oomox', 'Unity', 'UnityHub', 'Ettercap', 'scrcpy' }
+    },
+    properties = {
+      screen = screen.primary,
+      tag = screen[screen.primary].tags[8],
       skip_decoration = true
     }
   }
 
-  -- Alle Develop Consolen auf Screen 2 tag 2 schieben
+  -- Alle Develop Apps auf Screen 2 tag 2 schieben
   ruled.client.append_rule {
-    id = 'development',
     rule_any = {
-      name = { 'OT.:*' }
+      name = { 'OT.:*' },
     },
     properties = {
       screen = 2,
-      tag = '2',
+      tag = screen[2].tags[2],
       switch_to_tags = true,
       maximized = false,
       floating = false
@@ -273,7 +324,7 @@ ruled.client.connect_signal('request::rules', function()
     },
     properties = {
       screen = 2,
-      tag = '3',
+      tag = screen[2].tags[3],
     }
   }
 
@@ -284,10 +335,11 @@ ruled.client.connect_signal('request::rules', function()
       class = { 'Gnome-system-monitor' }
     },
     properties = {
-      tag = '9',
       screen = 2,
-      floating = false,
-      switch_to_tags = true
+      tag = screen[2].tags[9],
+      switch_to_tags = true,
+      maximized = false,
+      floating = false
     }
   }
 
