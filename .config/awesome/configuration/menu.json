@@ -1,0 +1,230 @@
+{
+    "APP_MENU": [
+        [
+            "🇯 JetBrains Toolbox",
+            "jetbrains-toolbox"
+        ],
+        [
+            "🇹 Teams",
+            "teams-for-linux"
+        ],
+        [
+            "🇫 Font Manager",
+            "font-manager"
+        ],
+        [
+            "🇻 Virtio Manager",
+            "virt-manager"
+        ],
+        [
+            "🇷 Remmina",
+            "remmina"
+        ],
+        [
+            "🗂 Dateimanager",
+            "$FILEMANAGER"
+        ],
+        [
+            "😃 Emoji Test",
+            "$TERMINAL --hold curl https://unicode.org/Public/emoji/5.0/emoji-test.txt"
+        ],
+        [
+            "☦ UTF8 Test",
+            "$TERMINAL --hold curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html"
+        ],
+        [
+            "🌤 Wetter Brakel",
+            "$TERMINAL --hold --title Wetter:Brakel curl wttr.in/33034?lang=de"
+        ],
+        [
+            "🌤 Wetter Höxter",
+            "$TERMINAL --hold --title Wetter:Höxter curl wttr.in/37671?lang=de"
+        ]
+    ],
+    "DEVELOP_MENU": [
+        [
+            "🗂 Dateien WORKSPACE",
+            "$FILEMANAGER $WORKSPACE"
+        ]
+    ],
+    "SYSTEM_TOOLS_MENU": [
+        [
+            "🪄 ReInstall All Packages",
+            "$shellCmd --hold --title Sys:Upall pacman -Qqn | pacman -S -"
+        ],
+        [
+            "🪄 Grub Update (BTRFS Snapshots)",
+            "$shellCmd --hold --title Sys:Grubup $timeCmd sudo update-grub"
+        ],
+        [
+            "🕰 Timeshift",
+            "timeshift-launcher"
+        ],
+        [
+            "🕰 Timeshift create Snapshot",
+            "$shellCmd --hold --title Sys:Install $timeCmd sudo timeshift --create"
+        ],
+        [
+            "🗂 Belegung Verzeichnisse",
+            "baobab"
+        ],
+        [
+            "🖥 Monitor einrichten",
+            "arandr"
+        ],
+        [
+            "🔌 Power Manager",
+            "xfce4-power-manager -c"
+        ],
+        [
+            "🎫 Erscheinungsbild (Lx)",
+            "lxappearance"
+        ],
+        [
+            "🎫 Erscheinungsbild (Xfce4)",
+            "xfce4-appearance-settings"
+        ],
+        [
+            "🎫 Erscheinungsbild (Qt5)",
+            "qt5ct"
+        ],
+        [
+            "📛 Boot Logs",
+            "qjournalctl"
+        ],
+        [
+            "📛 Log Viewer (Gui)",
+            "glogg"
+        ],
+        [
+            "📛 System Logs (Gui)",
+            "sudo ksystemlog"
+        ],
+        [
+            "📛 System Logs (Console)",
+            "$shellCmd --hold --title Sys:Install $timeCmd journalctl -f"
+        ],
+        [
+            "📛 xsession Errors",
+            "$shellCmd --title AWMTT multitail -cs -i $HOME/.xsession-errors"
+        ]
+    ],
+    "EDIT_CONFIG": [
+        [
+            "🇬 Editor",
+            "code"
+        ],
+        [
+            "📑 shell configs",
+            "$filesEdit $HOME/.alias* $HOME/.profile* $HOME/.xprofile* $HOME/.xsession* $HOME/.Xresources* $HOME/.zshrc* $HOME/.alias* $HOME/.bashrc* $HOME/.xinit*  "
+        ],
+        [
+            "📁 custom dir",
+            "$folderEdit $HOME/.custom"
+        ],
+        [
+            "📁 config dir",
+            "$folderEdit $HOME/.config"
+        ],
+        [
+            "📁 awesome dir",
+            "$folderEdit $HOME/.config/awesome"
+        ],
+        [
+            "📁 bin dir",
+            "$folderEdit $HOME/.bin"
+        ],
+        [
+            "📁 scripts dir",
+            "$folderEdit $SCRIPTS"
+        ],
+        [
+            "📁 menu dir",
+            "$folderEdit $SCRIPTS/menu"
+        ],
+        [
+            "📑 scripts install",
+            "$filesEdit $SCRIPTS/install*"
+        ],
+        [
+            "📑 themes Files",
+            "$filesEdit $HOME/.Xresources* $HOME/.gtkrc-*"
+        ],
+        [
+            "📁 themes Folder",
+            "$folderEdit  $HOME/.config/gtk-3.0 $HOME/.config/gtk-4.0 $HOME/.config/qt5ct $HOME/.config/fontconfig"
+        ],
+        [
+            "📑 screenlayout",
+            "$filesEdit $HOME/.screenlayout/*"
+        ]
+    ],
+    "SYSTEM_MENU": [
+        [
+            "📲 Abmelden",
+            "sh $SCRIPTS/session_logout.sh"
+        ],
+        [
+            "📵 Sperren",
+            "sh $SCRIPTS/session_lock.sh"
+        ],
+        [
+            "📵 Bildschirm sperren",
+            "sh $SCRIPTS/session_lock_screen.sh"
+        ],
+        [
+            "🙅 Benutzerwechsel",
+            "sh $SCRIPTS/session_switch_user.sh"
+        ],
+        [
+            "🙋 Bereitschaft",
+            "sh $SCRIPTS/session_suspend.sh"
+        ],
+        [
+            "🙆 Hibernate",
+            "sh $SCRIPTS/session_hibernate.sh"
+        ],
+        [
+            "🪃 Neustart",
+            "sh $SCRIPTS/session_reboot.sh"
+        ],
+        [
+            "📴 Runterfahren",
+            "sh $SCRIPTS/session_shutdown.sh"
+        ]
+    ],
+    "SYSTEM_MONITOR": [
+        [
+            "💿 System Resourcen",
+            "gnome-system-monitor -r"
+        ],
+        [
+            "💿 bpytop",
+            "$shellCmd --title SysMon:bashtop bpytop"
+        ],
+        [
+            "💿 glances",
+            "$shellCmd --title SysMon:glances glances"
+        ],
+        [
+            "💿 gtop",
+            "$shellCmd --title SysMon:gtop gtop"
+        ],
+        [
+            "💿 htop",
+            "$shellCmd --title SysMon:htop htop"
+        ],
+        [
+            "💽 iftop (sudo)",
+            "$shellCmd --title SysMon:iftop sudo iftop"
+        ],
+        [
+            "💽 iotop (sudo)",
+            "$shellCmd --title SysMon:iotop sudo iotop -Pao"
+        ],
+        [
+            "💽 iptraf-ng (sudo)",
+            "$shellCmd --title SysMon:iptraf-ng sudo iptraf-ng"
+        ]
+    ]
+}

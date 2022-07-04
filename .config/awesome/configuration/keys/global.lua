@@ -7,6 +7,7 @@ local hotkeys_popup = require('awful.hotkeys_popup').widget
 
 local apps = require('configuration.apps')
 local keys = require('configuration.keys.mod')
+local specs = require('layout.specs')
 
 local modkey = keys.mod_key
 local altkey = keys.alt_key
@@ -23,7 +24,9 @@ local upkey = keys.up_key
 local leftkey = keys.left_key
 local rightkey = keys.right_key
 
--- key groups
+-- ░█░█░█▀▀░█░█░░░█▀▀░█▀▄░█▀█░█░█░█▀█░█▀▀
+-- ░█▀▄░█▀▀░░█░░░░█░█░█▀▄░█░█░█░█░█▀▀░▀▀█
+-- ░▀░▀░▀▀▀░░▀░░░░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀░░░▀▀▀
 local kgAwesome = 'AwesomeWM'
 local kgApps = 'Anwendungen'
 local kgUtils = 'Tools'
@@ -39,8 +42,16 @@ local kgTag = 'Tags'
 local kgHotkeys = 'Hotkeys'
 local kgLauncher = 'Starter'
 
--- Key bindings
-local global_keys = awful.util.table.join(-- Hotkeys
+local menuCoords = { coords = { x = specs.leftPanel.actionBarWidth, y = specs.topPanel.height } }
+
+-- ░█░█░█▀▀░█░█░░░█▀▄░▀█▀░█▀█░█▀▄░▀█▀░█▀█░█▀▀░█▀▀
+-- ░█▀▄░█▀▀░░█░░░░█▀▄░░█░░█░█░█░█░░█░░█░█░█░█░▀▀█
+-- ░▀░▀░▀▀▀░░▀░░░░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀
+local global_keys = awful.util.table.join(
+
+-- ░█▀█░█░█░█▀▀░█▀▀░█▀█░█▄█░█▀▀
+-- ░█▀█░█▄█░█▀▀░▀▀█░█░█░█░█░█▀▀
+-- ░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀
   awful.key({ modkey }, 'F1', hotkeys_popup.show_help, {
     description = 'show help',
     group = 'awesome'
@@ -53,6 +64,10 @@ local global_keys = awful.util.table.join(-- Hotkeys
     description = 'quit awesome',
     group = kgAwesome
   }),
+
+  -- ░█▄█░█▀█░█▀▀░▀█▀░█▀▀░█▀▄
+  -- ░█░█░█▀█░▀▀█░░█░░█▀▀░█▀▄
+  -- ░▀░▀░▀░▀░▀▀▀░░▀░░▀▀▀░▀░▀
   awful.key({ altkey, shiftkey }, 'l', function()
     awful.tag.incmwfact(0.05)
   end, {
@@ -89,6 +104,22 @@ local global_keys = awful.util.table.join(-- Hotkeys
     description = 'decrease the number of columns',
     group = kgLayout
   }),
+  awful.key({ modkey, shiftkey }, 'Left', function()
+    awful.tag.incmwfact(-0.05)
+  end, {
+    description = 'increase master size',
+    group = kgClient
+  }),
+  awful.key({ modkey, shiftkey }, 'Right', function()
+    awful.tag.incmwfact(0.05)
+  end, {
+    description = 'decrease master size',
+    group = kgClient
+  }),
+
+  -- ░█░░░█▀█░█░█░█▀█░█░█░▀█▀
+  -- ░█░░░█▀█░░█░░█░█░█░█░░█░
+  -- ░▀▀▀░▀░▀░░▀░░▀▀▀░▀▀▀░░▀░
   awful.key({ modkey, controlkey }, spacekey, function()
     awful.layout.inc(1)
   end, {
@@ -125,6 +156,10 @@ local global_keys = awful.util.table.join(-- Hotkeys
     description = 'alternate between current and previous tag',
     group = kgTag
   }),
+
+  -- ░█░█░▀█▀░█▀█░█▀▄░█▀█░█░█░█▀▀
+  -- ░█▄█░░█░░█░█░█░█░█░█░█▄█░▀▀█
+  -- ░▀░▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀▀
   awful.key({ modkey, shiftkey }, 'Next', function()
     awful.client.moveresize(20, 20, -40, -40)
   end, {
@@ -147,18 +182,6 @@ local global_keys = awful.util.table.join(-- Hotkeys
     awful.client.incwfact(-0.05)
   end, {
     description = 'decrease window size',
-    group = kgClient
-  }),
-  awful.key({ modkey, shiftkey }, 'Left', function()
-    awful.tag.incmwfact(-0.05)
-  end, {
-    description = 'increase master size',
-    group = kgClient
-  }),
-  awful.key({ modkey, shiftkey }, 'Right', function()
-    awful.tag.incmwfact(0.05)
-  end, {
-    description = 'decrease master size',
     group = kgClient
   }),
   awful.key({ modkey }, 'Right', function()
@@ -286,6 +309,10 @@ local global_keys = awful.util.table.join(-- Hotkeys
     description = 'restore minimized',
     group = kgScreen
   }),
+
+  -- ░█▀▄░█▀▄░▀█▀░█▀▀░█░█░▀█▀░█▀█░█▀▀░█▀▀░█▀▀
+  -- ░█▀▄░█▀▄░░█░░█░█░█▀█░░█░░█░█░█▀▀░▀▀█░▀▀█
+  -- ░▀▀░░▀░▀░▀▀▀░▀▀▀░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀░▀▀▀
   awful.key({}, 'XF86MonBrightnessUp', function()
     awful.spawn('light -A 10', false)
     awesome.emit_signal('widget::brightness')
@@ -409,8 +436,6 @@ local global_keys = awful.util.table.join(-- Hotkeys
     group = kgHotkeys
   }),
 
-  -- other media keys
-  --
   -- ░█▄█░█▀▀░█▀▄░▀█▀░█▀█░░░▀█▀░█▀█░█▀▀░▀█▀░█▀▀░█▀█
   -- ░█░█░█▀▀░█░█░░█░░█▀█░░░░█░░█▀█░▀▀█░░█░░█▀▀░█░█
   -- ░▀░▀░▀▀▀░▀▀░░▀▀▀░▀░▀░░░░▀░░▀░▀░▀▀▀░░▀░░▀▀▀░▀░▀
@@ -540,43 +565,55 @@ local global_keys = awful.util.table.join(-- Hotkeys
     description = 'open sidebar and global search',
     group = kgLauncher
   }),
-  
+
   -- ░█▀▀░█░█░█▀▀░▀█▀░█▀▀░█▄█░░░█▄█░█▀▀░█▀█░█░█░█▀▀
   -- ░▀▀█░░█░░▀▀█░░█░░█▀▀░█░█░░░█░█░█▀▀░█░█░█░█░▀▀█
   -- ░▀▀▀░░▀░░▀▀▀░░▀░░▀▀▀░▀░▀░░░▀░▀░▀▀▀░▀░▀░▀▀▀░▀▀▀
 
   awful.key({ modkey }, 'a', function()
-    awful.spawn.with_shell('sh ~/.scripts/menu/app-menu.sh')
+    local menu = require('configuration.menu').APP_MENU()
+    dump(menu, 'Open Menu')
+    awful.menu(menu):show(menuCoords)
   end, {
     description = 'Applikations Menü',
     group = kgMenus
-  }),  
+  }),
   awful.key({ modkey }, 'd', function()
-    awful.spawn.with_shell('sh ~/.scripts/menu/develop-menu.sh')
+    local menu = require('configuration.menu').DEVELOP_MENU()
+    dump(menu, 'Open Menu')
+    awful.menu(menu):show(menuCoords)
   end, {
     description = 'Developer Menü',
     group = kgMenus
   }),
   awful.key({ modkey }, 'e', function()
-    awful.spawn.with_shell('sh ~/.scripts/menu/edit-configs.sh')
+    local menu = require('configuration.menu').EDIT_CONFIG()
+    dump(menu, 'Open Menu')
+    awful.menu(menu):show(menuCoords)
   end, {
     description = 'System Edit Menü',
     group = kgMenus
   }),
   awful.key({ modkey }, 't', function()
-    awful.spawn.with_shell('sh ~/.scripts/menu/system-tools.sh')
+    local menu = require('configuration.menu').SYSTEM_TOOLS_MENU()
+    dump(menu, 'Open Menu')
+    awful.menu(menu):show(menuCoords)
   end, {
     description = 'System Tools Menü',
     group = kgMenus
   }),
   awful.key({ modkey }, 'm', function()
-    awful.spawn.with_shell('sh ~/.scripts/menu/system-monitor.sh')
+    local menu = require('configuration.menu').SYSTEM_MONITOR()
+    dump(menu, 'Open Menu')
+    awful.menu(menu):show(menuCoords)
   end, {
     description = 'System Monitors Menü',
     group = kgMenus
   }),
   awful.key({ modkey }, 'x', function()
-    awful.spawn.with_shell('sh ~/.scripts/menu/system-menu.sh')
+    local menu = require('configuration.menu').SYSTEM_MENU()
+    dump(menu, 'Open Menu')
+    awful.menu(menu):show(menuCoords)
   end, {
     description = 'System Power Menü',
     group = kgMenus
@@ -597,12 +634,12 @@ local global_keys = awful.util.table.join(-- Hotkeys
     description = 'Rofi Menü',
     group = kgMenus
   }),
-	awful.key({ modkey, shiftkey }, "z", function()
-		awful.spawn.with_shell(apps.default.app_launcher)
-	end, {
-		description = "open app launcher",
-		group = kgApps
-	}),
+  awful.key({ modkey, shiftkey }, 'z', function()
+    awful.spawn.with_shell(apps.default.app_launcher)
+  end, {
+    description = 'open app launcher',
+    group = kgApps
+  }),
   awful.key({ modkey, shiftkey }, 'e', function()
     awful.spawn(apps.default.file_manager)
   end, {

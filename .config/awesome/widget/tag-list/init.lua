@@ -9,6 +9,7 @@ local wibox = require('wibox')
 local dpi = require('beautiful').xresources.apply_dpi
 local clickable_container = require('widget.clickable-container')
 local icons = require('theme.icons')
+local beautiful = require('beautiful')
 
 local keys = require('configuration.keys.mod')
 local modkey = keys.mod_key
@@ -100,7 +101,7 @@ local function list_update(w, buttons, label, data, objects)
     if text == nil or text == '' then
       tbm:set_margins(0)
     else
-      if not tb:set_markup_silently("<span font_desc='Noto Sans Symbol Bold 24'>" .. o.text .. '</span>') then
+      if not tb:set_markup_silently("<span font_desc='".. beautiful.symbol_font .. "'>" .. o.text .. '</span>') then
         tb:set_markup('<i>&lt;Invalid text&gt;</i>')
       end
     end

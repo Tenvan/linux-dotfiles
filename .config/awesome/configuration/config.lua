@@ -106,38 +106,6 @@ local config = {
       tmp_wall_dir = '/tmp/awesomewm/' .. os.getenv('USER') .. '/'
     }
   },
-
-  menus = {
-    APP_MENU = {
-      { '🇯 JetBrains Toolbox', 'jetbrains-toolbox' },
-      { '🇹 Teams', 'teams-for-linux' },
-      { '🇫 Font Manager', 'font-manager' },
-      { '🇻 Virtio Manager', 'virt-manager' },
-      { '🇷 Remmina', 'remmina' },
-      { '🗂 Dateimanager', '$FILEMANAGER' },
-      { '😃 Emoji Test', '$TERMINAL --hold curl https://unicode.org/Public/emoji/5.0/emoji-test.txt' },
-      { '☦ UTF8 Test', '$TERMINAL --hold curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html' },
-      { '🌤 Wetter Brakel', '$TERMINAL --hold --title Wetter:Brakel curl wttr.in/33034?lang=de' },
-      { '🌤 Wetter Höxter', '$TERMINAL --hold --title Wetter:Höxter curl wttr.in/37671?lang=de' }
-    },
-    SYSTEM_TOOLS_MENU = {
-      { '🪄 ReInstall All Packages', '$shellCmd --hold --title Sys:Upall pacman -Qqn | pacman -S -' },
-      { '🪄 Grub Update (BTRFS Snapshots)', '$shellCmd --hold --title Sys:Grubup $timeCmd sudo update-grub' },
-      { '🕰 Timeshift', 'timeshift-launcher' },
-      { '🕰 Timeshift create Snapshot', '$shellCmd --hold --title Sys:Install $timeCmd sudo timeshift --create' },
-      { '🗂 Belegung Verzeichnisse', 'baobab' },
-      { '🖥 Monitor einrichten', 'arandr' },
-      { '🔌 Power Manager', 'xfce4-power-manager -c' },
-      { '🎫 Erscheinungsbild (Lx)', 'lxappearance' },
-      { '🎫 Erscheinungsbild (Xfce4)', 'xfce4-appearance-settings' },
-      { '🎫 Erscheinungsbild (Qt5)', 'qt5ct' },
-      { '📛 Boot Logs', 'qjournalctl' },
-      { '📛 Log Viewer (Gui)', 'glogg' },
-      { '📛 System Logs (Gui)', 'sudo ksystemlog' },
-      { '📛 System Logs (Console)', '$shellCmd --hold --title Sys:Install $timeCmd journalctl -f' },
-      { '📛 xsession Errors', '$shellCmd --title AWMTT multitail -cs -i $HOME/.xsession-errors' },
-    },
-  },
 }
 
 return config

@@ -53,6 +53,7 @@ local top_panel = function(s, offset)
     expand = 'none',
     {
       layout = wibox.layout.fixed.horizontal,
+      layout_box,
       cpu_meter,
       task_list(s),
     },
@@ -65,7 +66,6 @@ local top_panel = function(s, offset)
       }),
       weather,
       updater,
-      screen_rec,
       hard_drives,
       ram_widget({
         widget_height = specs.topPanel.height,
@@ -77,8 +77,8 @@ local top_panel = function(s, offset)
       }),
       -- s.bluetooth,
       -- s.battery,
+      screen_rec,
       systray,
-      layout_box,
       info_center_toggle
     }
   }

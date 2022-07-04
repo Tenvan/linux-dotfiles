@@ -1,0 +1,126 @@
+{
+    "DEVELOP_MENU": {
+        "BEFORE_MENU": [
+            [
+                "🏄 OTS: Start Server",
+                "$ONETIMESERVER_SHELL --hold --title OTC:StartServer yarn start"
+            ],
+            [
+                "🛫 OTC: Start Pug Watcher",
+                "$ONETIMECLIENT_SHELL --hold --title OTC:PugWatcher yarn run watch:pug"
+            ],
+            [
+                "🛫 OTC: Start Npm Watcher",
+                "$ONETIMECLIENT_SHELL --hold --title OTC:NpmWatcher yarn run watch:npm"
+            ],
+            [
+                "🛫 OTC: Start OneTimeClient",
+                "$ONETIMECLIENT_SHELL --hold --title OTC:StartClient yarn run start:client"
+            ],
+            [
+                "🛫 OTC: Start TestApp Atomic",
+                "$ONETIMECLIENT_SHELL --hold --title OTC:AtomicTestApp yarn run start:test:atomic"
+            ],
+            [
+                "🛫 OTC: Start TestApp Widgets",
+                "$ONETIMECLIENT_SHELL --hold --title OTC:WidgetsTestApp yarn run start:test:widgets"
+            ],
+            [
+                "💻 OTS: Shell Server",
+                "$ONETIMESERVER_SHELL --hold --title OTS:Shell"
+            ],
+            [
+                "💻 OTC: Shell OneTimeClient",
+                "$ONETIMECLIENT_SHELL --hold --title OTC:Shell"
+            ]
+        ],
+        "AFTER_MENU": [
+            [
+                "🗂 OTC: Dateien",
+                "$FILEMANAGER $WORK_ONETIMECLIENT"
+            ],
+            [
+                "🇬 OTC: Git",
+                "code $WORK_ONETIMECLIENT"
+            ],
+            [
+                "🗂 OTS: Dateien",
+                "$FILEMANAGER $WORK_ONETIMESERVER"
+            ],
+            [
+                "🇬 OTS: Git",
+                "code $ONETIMESERVER_SHELL"
+            ],
+            [
+                "🛫 OM: Start Compiler",
+                "$ONEMOBILE_SHELL --hold --title OMC:StartDefault yarn start"
+            ],
+            [
+                "🗂 OM: Dateien",
+                "$FILEMANAGER $WORK_ONEMOBILE"
+            ],
+            [
+                "💻 OM: Shell",
+                "$ONEMOBILE_SHELL --hold --title OTC:Shell"
+            ],
+            [
+                "🇬 OM: Git",
+                "code $ONEMOBILE_SHELL"
+            ],
+            [
+                "🛫 OM: Build Android",
+                "$ONEMOBILE_SHELL --hold --title OMC:BuildAndroid $TIME yarn android:build"
+            ],
+            [
+                "🇺 OM: Check Updates",
+                "$ONEMOBILE_SHELL --hold --title OMC:CheckUpdates $TIME yarn outdated"
+            ]
+        ]
+    },
+    "SYSTEM_TOOLS_MENU": {
+        "BEFORE_MENU": [
+            [
+                "🚧 Switch to New Awesome",
+                "switch_to_new_awesome"
+            ],
+            [
+                "🚧 Switch to Old Awesome",
+                "switch_to_old_awesome"
+            ],
+            [
+                "🖥 Monitor Standard",
+                "sh $HOME/.screenlayout/screenlayout.sh"
+            ],
+            [
+                "🖥 Monitor FlameShot",
+                "sh $HOME/.screenlayout/screenlayout-flameshot.sh"
+            ]
+        ],
+        "AFTER_MENU": [
+            [
+                "🚧 Awmtt Default Start",
+                "$shellCmd --hold --title AWMTT awmtt start -C $myLua --size 1920x1080"
+            ],
+            [
+                "🚧 Awmtt Default Restart",
+                "$shellCmd --title AWMTT awmtt restart"
+            ],
+            [
+                "🚧 Awmtt Default Stop",
+                "$shellCmd --title AWMTT awmtt stop"
+            ],
+            [
+                "🚧 Awmtt Test Start",
+                "$shellCmd --hold --title AWMTT awmtt start -C $myTestLua -D 1 --size 1920x1080"
+            ],
+            [
+                "🚧 Awmtt Test Restart",
+                "awmtt restart"
+            ],
+            [
+                "🚧 Awmtt Test Stop",
+                "awmtt stop"
+            ]
+        ]
+    }
+}
