@@ -13,7 +13,7 @@ local clickable_container = require('widget.clickable-container')
 
 local action_name = wibox.widget {
   text = 'Blur Strength',
-  font = 'Inter Bold 10',
+  font = beautiful.font,
   align = 'left',
   widget = wibox.widget.textbox
 }

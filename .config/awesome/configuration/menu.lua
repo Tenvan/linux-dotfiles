@@ -52,26 +52,7 @@ local mainmenu = freedesktop.menu.build({
   }
 })
 
-local function arrayToMenu(array)
-  -- dump(array, 'Menu array', 3)
-  local menu = {}
-
-  for i, c in pairs(array) do
-    menu[i] = { c[1],
-      function()
-        -- local command = c[2].string.gsub("$44,000.00", "%$", "what")
-        local command = c[2]
-        log('Execute: ' .. command)
-        awful.spawn(command)
-      end
-    }
-  end
-
-  -- dump(menu, 'New Menu', 3)
-  return menu
-end
-
-local function getMenu(name)
+local function getMenuData(name)
   local menuJson = config_dir .. 'configuration/menu.json'
   local menus = readJson(menuJson)
   local customMenuJson = os.getenv('CUSTOMS') .. '/menu.json'
@@ -79,30 +60,68 @@ local function getMenu(name)
 
   local beforeMenu = (customMenus[name] or {}).BEFORE_MENU or {}
   local afterMenu = (customMenus[name] or {}).AFTER_MENU or {}
-  
+
   local menuPart = gtable.join(beforeMenu, menus[name], afterMenu)
 
-  return arrayToMenu(menuPart)
+  return menuPart
+end
+
+--- action parsen, variablen durch platzhalter ersetzen und dann ausführen
+---@param action string
+local function menuAction(action)
+  local variables = getMenuData('VARIABLES')
+
+  log('Action: ' .. action)
+  dump(variables, 'VARIABLES')
+
+  local command = action
+
+  for i, c in pairs(variables) do
+    dump(c)
+    if c[2] == '' then
+      local ENV = os.getenv(c[1]) or c[2]
+      log("[E] replace '$" .. c[1] .. "' with '" .. ENV .. "'")
+      command = string.gsub(command, "$" .. c[1], ENV)
+    else
+      log("[S] replace '" .. c[1] .. "' with '" .. c[2] .. "'")
+      command = string.gsub(command, c[1], c[2])
+    end
+  end
+
+  log('Execute: ' .. command)
+  awful.spawn(command)
+end
+
+local function arrayToMenu(array)
+  local menu = {}
+
+  for i, c in pairs(array) do
+    menu[i] = { c[1],
+      function()
+        menuAction(c[2])
+      end }
+  end
+  return menu
 end
 
 return {
   mainmenu          = mainmenu,
   APP_MENU          = function()
-    return getMenu('APP_MENU')
+    return arrayToMenu(getMenuData('APP_MENU'))
   end,
   DEVELOP_MENU      = function()
-    return getMenu('DEVELOP_MENU')
+    return arrayToMenu(getMenuData('DEVELOP_MENU'))
   end,
   EDIT_CONFIG       = function()
-    return getMenu('EDIT_CONFIG')
+    return arrayToMenu(getMenuData('EDIT_CONFIG'))
   end,
   SYSTEM_TOOLS_MENU = function()
-    return getMenu('SYSTEM_TOOLS_MENU')
+    return arrayToMenu(getMenuData('SYSTEM_TOOLS_MENU'))
   end,
   SYSTEM_MENU       = function()
-    return getMenu('SYSTEM_MENU')
+    return arrayToMenu(getMenuData('SYSTEM_MENU'))
   end,
   SYSTEM_MONITOR    = function()
-    return getMenu('SYSTEM_MONITOR')
+    return arrayToMenu(getMenuData('SYSTEM_MONITOR'))
   end,
 }

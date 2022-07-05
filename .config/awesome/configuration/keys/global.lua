@@ -575,7 +575,6 @@ local global_keys = awful.util.table.join(
 
   awful.key({ modkey }, 'a', function()
     local menu = require('configuration.menu').APP_MENU()
-    dump(menu, 'Open Menu')
     awful.menu(menu):show(menuCoords)
   end, {
     description = 'Applikations Menü',
@@ -583,7 +582,6 @@ local global_keys = awful.util.table.join(
   }),
   awful.key({ modkey }, 'd', function()
     local menu = require('configuration.menu').DEVELOP_MENU()
-    dump(menu, 'Open Menu')
     awful.menu(menu):show(menuCoords)
   end, {
     description = 'Developer Menü',
@@ -591,7 +589,6 @@ local global_keys = awful.util.table.join(
   }),
   awful.key({ modkey }, 'e', function()
     local menu = require('configuration.menu').EDIT_CONFIG()
-    dump(menu, 'Open Menu')
     awful.menu(menu):show(menuCoords)
   end, {
     description = 'System Edit Menü',
@@ -599,7 +596,6 @@ local global_keys = awful.util.table.join(
   }),
   awful.key({ modkey }, 't', function()
     local menu = require('configuration.menu').SYSTEM_TOOLS_MENU()
-    dump(menu, 'Open Menu')
     awful.menu(menu):show(menuCoords)
   end, {
     description = 'System Tools Menü',
@@ -607,7 +603,6 @@ local global_keys = awful.util.table.join(
   }),
   awful.key({ modkey }, 'm', function()
     local menu = require('configuration.menu').SYSTEM_MONITOR()
-    dump(menu, 'Open Menu')
     awful.menu(menu):show(menuCoords)
   end, {
     description = 'System Monitors Menü',
@@ -615,7 +610,6 @@ local global_keys = awful.util.table.join(
   }),
   awful.key({ modkey }, 'x', function()
     local menu = require('configuration.menu').SYSTEM_MENU()
-    dump(menu, 'Open Menu')
     awful.menu(menu):show(menuCoords)
   end, {
     description = 'System Power Menü',

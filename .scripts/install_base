@@ -62,6 +62,7 @@ install flameshot
 install fzf
 install genius
 install glances
+install glogg
 install gnome-keyring
 install gparted
 install gpick 
@@ -107,6 +108,7 @@ install pm-utils
 install polkit-gnome 
 install powershell-bin
 install python-mutagen 
+install qjournalctl
 install qbittorrent
 install ranger
 install redshift 

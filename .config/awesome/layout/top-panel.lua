@@ -57,7 +57,7 @@ local top_panel = function(s, offset)
       cpu_meter,
       task_list(s),
     },
-    clock,
+    nil,
     {
       layout = wibox.layout.fixed.horizontal,
       spacing = dpi(5),
@@ -79,6 +79,7 @@ local top_panel = function(s, offset)
       -- s.battery,
       screen_rec,
       systray,
+      clock,
       info_center_toggle
     }
   }

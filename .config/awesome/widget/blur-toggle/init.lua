@@ -2,22 +2,25 @@ local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
 log('Enter Module => widget/blue-toggle/init.lua')
 
-local awful = require('awful')
-local wibox = require('wibox')
-local gears = require('gears')
-local clickable_container = require('widget.clickable-container')
-local dpi = require('beautiful').xresources.apply_dpi
+local awful      = require('awful')
+local wibox      = require('wibox')
+local gears      = require('gears')
+local beautiful  = require('beautiful')
 local filesystem = gears.filesystem
 local config_dir = filesystem.get_configuration_dir()
-local icons = require('theme.icons')
-local apps = require('configuration.apps')
+local icons      = require('theme.icons')
+
+local clickable_container = require('widget.clickable-container')
+local dpi                 = require('beautiful').xresources.apply_dpi
+local apps                = require('configuration.apps')
+
 local frame_status = nil
 
 local action_status
 
 local action_name = wibox.widget {
   text = 'Blur Effects',
-  font = 'Inter Regular 11',
+  font = beautiful.font_large,
   align = 'left',
   widget = wibox.widget.textbox
 }

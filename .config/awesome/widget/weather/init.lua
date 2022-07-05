@@ -91,7 +91,7 @@ local weather_desc_temp = wibox.widget {
 	{
 		id 	   = 'description',
 		markup = 'Dust and clouds, -1000°C',
-		font   = 'Inter Regular 10',
+		font   = beautiful.font_small,
 		align  = 'left',
 		valign = 'center',
 		widget = wibox.widget.textbox
@@ -111,7 +111,7 @@ local weather_location = wibox.widget {
 	{
 		id 	   = 'location',
 		markup = 'Earth, Milky Way',
-		font   = 'Inter Regular 10',
+		font   = beautiful.font_small,
 		align  = 'left',
 		valign = 'center',
 		widget = wibox.widget.textbox
@@ -129,7 +129,7 @@ local weather_location = wibox.widget {
 
 local weather_sunrise = wibox.widget {
 	markup = '00:00',
-	font   = 'Inter Regular 10',
+	font   = beautiful.font_small,
 	align  = 'center',
 	valign = 'center',
 	widget = wibox.widget.textbox
@@ -137,7 +137,7 @@ local weather_sunrise = wibox.widget {
 
 local weather_sunset = wibox.widget {
 	markup = '00:00',
-	font   = 'Inter Regular 10',
+	font   = beautiful.font_small,
 	align  = 'center',
 	valign = 'center',
 	widget = wibox.widget.textbox
@@ -145,7 +145,7 @@ local weather_sunset = wibox.widget {
 
 local weather_data_time = wibox.widget {
 	markup = '00:00',
-	font   = 'Inter Regular 10',
+	font   = beautiful.font_small,
 	align  = 'center',
 	valign = 'center',
 	widget = wibox.widget.textbox

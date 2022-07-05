@@ -37,14 +37,28 @@ local base0F = '#E8E8E8' -- brown
 local theme = {}
 
 -- Font
-theme.font_family = 'Noto Sans '
-theme.font_size = dpi(10)
-theme.font_hint_size = dpi(5)
+theme.font_small_size = dpi(6)
+theme.font_size       = dpi(8)
+theme.font_large_size = dpi(10)
 
-theme.font = theme.font_family .. ' Regular ' .. theme.font_size
-theme.font_bold = theme.font_family .. ' Bold ' .. theme.font_size
-theme.hint_font = theme.font_family .. ' ' .. theme.font_hint_size
-theme.symbol_font = 'Noto Sans Symbol Bold ' .. dpi(15)
+theme.font_family = 'Inter '
+
+theme.font_small = theme.font_family .. ' Regular ' .. theme.font_small_size
+theme.font       = theme.font_family .. ' Regular ' .. theme.font_size
+theme.font_large = theme.font_family .. ' Regular ' .. theme.font_large_size
+
+theme.font_bold_small = theme.font_family .. ' Bold ' .. theme.font_small_size
+theme.font_bold       = theme.font_family .. ' Bold ' .. theme.font_size
+theme.font_bold_large = theme.font_family .. ' Bold ' .. theme.font_large_size
+
+theme.font_light_small = theme.font_family .. ' Light ' .. theme.font_small_size
+theme.font_light       = theme.font_family .. ' Light ' .. theme.font_size
+theme.font_light_large = theme.font_family .. ' Light ' .. theme.font_large_size
+
+theme.hint_font = theme.font_light_small
+theme.widgets_font = theme.font_light_small
+
+theme.symbol_font = 'Noto Sans Symbol Bold ' .. dpi(16)
 
 theme.icon_theme = 'oomox-cobalt'
 
@@ -146,19 +160,19 @@ local awesome_overrides = function(theme)
   theme.notification_position = 'bottom_right'
 
   -- Hotkey popup
-  
+
   --- Hotkeys widget background color.
-  theme.hotkeys_bg = theme.cobalt_bg
+  theme.hotkeys_bg               = theme.cobalt_bg
   --- Hotkeys widget foreground color.
-  theme.hotkeys_fg = cobalt_accent_yellow
+  theme.hotkeys_fg               = cobalt_accent_yellow
   --- Hotkeys widget border width.
   -- theme.hotkeys_border_width
   --- Hotkeys widget border color.
-  theme.hotkeys_border_color = theme.accent
+  theme.hotkeys_border_color     = theme.accent
   --- Hotkeys widget shape.
   -- theme.hotkeys_shape
   --- Foreground color used for hotkey modifiers (Ctrl, Alt, Super, etc).
-  theme.hotkeys_modifiers_fg = cobalt_highlight
+  theme.hotkeys_modifiers_fg     = cobalt_highlight
   --- Background color used for miscellaneous labels of hotkeys widget.
   -- theme.hotkeys_label_bg
   --- Foreground color used for hotkey groups and other labels.

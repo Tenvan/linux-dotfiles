@@ -1,5 +1,3 @@
-local log = require('utilities.debug').log
-local dump = require('utilities.debug').dump
 log('Enter Module => layout/left-panel/dashboard/quick-settings.lua')
 
 local wibox = require('wibox')
@@ -10,7 +8,7 @@ local dpi = beautiful.xresources.apply_dpi
 
 local quick_header = wibox.widget {
   text = 'Quick Settings',
-  font = 'Inter Regular 12',
+  font = beautiful.font,
   align = 'left',
   valign = 'center',
   widget = wibox.widget.textbox

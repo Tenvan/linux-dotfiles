@@ -59,9 +59,9 @@ local function list_update(w, buttons, label, data, objects)
       bgb = wibox.container.background()
       tbm = wibox.widget {
         tb,
-        -- margins = dpi(1),
-        left = dpi(5),
-        right = dpi(5),
+        margins = dpi(1),
+        -- left = dpi(5),
+        -- right = dpi(5),
         -- top = dpi(12),
         -- bottom = dpi(12),
         widget = wibox.container.margin,

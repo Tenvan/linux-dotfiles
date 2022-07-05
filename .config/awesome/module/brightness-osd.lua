@@ -12,7 +12,7 @@ local icons = require('theme.icons')
 
 local osd_header = wibox.widget {
 	text = 'Brightness',
-	font = 'Inter Bold 12',
+	font = beautiful.widgets_font,
 	align = 'left',
 	valign = 'center',
 	widget = wibox.widget.textbox
@@ -20,7 +20,7 @@ local osd_header = wibox.widget {
 
 local osd_value = wibox.widget {
 	text = '0%',
-	font = 'Inter Bold 12',
+	font = beautiful.widgets_font,
 	align = 'center',
 	valign = 'center',
 	widget = wibox.widget.textbox

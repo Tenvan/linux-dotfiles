@@ -13,11 +13,11 @@ local function read_file(path)
 end
 
 local function readJsonFile(path)
-  log("Read Json: " .. path)
+  -- log("Read Json: " .. path)
   local content = read_file(path)
-  dump(content)
+  -- dump(content)
   local jsonContent = json.parse(content)
-  dump(jsonContent)
+  -- dump(jsonContent)
   return jsonContent
 end
 

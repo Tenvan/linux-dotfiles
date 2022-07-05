@@ -1,4 +1,38 @@
 {
+    "VARIABLES": [
+        [
+            "HOME",
+            ""
+        ],
+        [
+            "TERMINAL",
+            ""
+        ],
+        [
+            "TIME",
+            ""
+        ],
+        [
+            "CUSTOMS",
+            ""
+        ],
+        [
+            "SCRIPTS",
+            ""
+        ],
+        [
+            "FILEMANAGER",
+            ""
+        ],
+        [
+            "@@FILES_EDIT",
+            "code -a --file-uri"
+        ],
+        [
+            "@@FOLDER_EDIT",
+            "code -a --folder-uri"
+        ]
+    ],
     "APP_MENU": [
         [
             "🇯 JetBrains Toolbox",
@@ -50,11 +84,11 @@
     "SYSTEM_TOOLS_MENU": [
         [
             "🪄 ReInstall All Packages",
-            "$shellCmd --hold --title Sys:Upall pacman -Qqn | pacman -S -"
+            "$TERMINAL --hold --title Sys:Upall pacman -Qqn | pacman -S -"
         ],
         [
             "🪄 Grub Update (BTRFS Snapshots)",
-            "$shellCmd --hold --title Sys:Grubup $timeCmd sudo update-grub"
+            "$TERMINAL --hold --title Sys:Grubup $TIME sudo update-grub"
         ],
         [
             "🕰 Timeshift",
@@ -62,7 +96,7 @@
         ],
         [
             "🕰 Timeshift create Snapshot",
-            "$shellCmd --hold --title Sys:Install $timeCmd sudo timeshift --create"
+            "$TERMINAL --hold --title Sys:Install $TIME sudo timeshift --create"
         ],
         [
             "🗂 Belegung Verzeichnisse",
@@ -102,11 +136,11 @@
         ],
         [
             "📛 System Logs (Console)",
-            "$shellCmd --hold --title Sys:Install $timeCmd journalctl -f"
+            "$TERMINAL --hold --title Sys:Install $TIME journalctl -f"
         ],
         [
             "📛 xsession Errors",
-            "$shellCmd --title AWMTT multitail -cs -i $HOME/.xsession-errors"
+            "$TERMINAL --hold --title Sys:XSessionError multitail -cs -i $HOME/.xsession-errors"
         ]
     ],
     "EDIT_CONFIG": [
@@ -116,47 +150,47 @@
         ],
         [
             "📑 shell configs",
-            "$filesEdit $HOME/.alias* $HOME/.profile* $HOME/.xprofile* $HOME/.xsession* $HOME/.Xresources* $HOME/.zshrc* $HOME/.alias* $HOME/.bashrc* $HOME/.xinit*  "
+            "@@FILES_EDIT $HOME/.alias* $HOME/.profile* $HOME/.xprofile* $HOME/.xsession* $HOME/.Xresources* $HOME/.zshrc* $HOME/.alias* $HOME/.bashrc* $HOME/.xinit*  "
         ],
         [
             "📁 custom dir",
-            "$folderEdit $HOME/.custom"
+            "@@FOLDER_EDIT $HOME/.custom"
         ],
         [
             "📁 config dir",
-            "$folderEdit $HOME/.config"
+            "@@FOLDER_EDIT $HOME/.config"
         ],
         [
             "📁 awesome dir",
-            "$folderEdit $HOME/.config/awesome"
+            "@@FOLDER_EDIT $HOME/.config/awesome"
         ],
         [
             "📁 bin dir",
-            "$folderEdit $HOME/.bin"
+            "@@FOLDER_EDIT $HOME/.bin"
         ],
         [
             "📁 scripts dir",
-            "$folderEdit $SCRIPTS"
+            "@@FOLDER_EDIT $SCRIPTS"
         ],
         [
             "📁 menu dir",
-            "$folderEdit $SCRIPTS/menu"
+            "@@FOLDER_EDIT $SCRIPTS/menu"
         ],
         [
             "📑 scripts install",
-            "$filesEdit $SCRIPTS/install*"
+            "@@FILES_EDIT $SCRIPTS/install*"
         ],
         [
             "📑 themes Files",
-            "$filesEdit $HOME/.Xresources* $HOME/.gtkrc-*"
+            "@@FILES_EDIT $HOME/.Xresources* $HOME/.gtkrc-*"
         ],
         [
             "📁 themes Folder",
-            "$folderEdit  $HOME/.config/gtk-3.0 $HOME/.config/gtk-4.0 $HOME/.config/qt5ct $HOME/.config/fontconfig"
+            "@@FOLDER_EDIT  $HOME/.config/gtk-3.0 $HOME/.config/gtk-4.0 $HOME/.config/qt5ct $HOME/.config/fontconfig"
         ],
         [
             "📑 screenlayout",
-            "$filesEdit $HOME/.screenlayout/*"
+            "@@FILES_EDIT $HOME/.screenlayout/*"
         ]
     ],
     "SYSTEM_MENU": [
@@ -200,31 +234,31 @@
         ],
         [
             "💿 bpytop",
-            "$shellCmd --title SysMon:bashtop bpytop"
+            "$TERMINAL --title SysMon:bashtop bpytop"
         ],
         [
             "💿 glances",
-            "$shellCmd --title SysMon:glances glances"
+            "$TERMINAL --title SysMon:glances glances"
         ],
         [
             "💿 gtop",
-            "$shellCmd --title SysMon:gtop gtop"
+            "$TERMINAL --title SysMon:gtop gtop"
         ],
         [
             "💿 htop",
-            "$shellCmd --title SysMon:htop htop"
+            "$TERMINAL --title SysMon:htop htop"
         ],
         [
             "💽 iftop (sudo)",
-            "$shellCmd --title SysMon:iftop sudo iftop"
+            "$TERMINAL --title SysMon:iftop sudo iftop"
         ],
         [
             "💽 iotop (sudo)",
-            "$shellCmd --title SysMon:iotop sudo iotop -Pao"
+            "$TERMINAL --title SysMon:iotop sudo iotop -Pao"
         ],
         [
             "💽 iptraf-ng (sudo)",
-            "$shellCmd --title SysMon:iptraf-ng sudo iptraf-ng"
+            "$TERMINAL --title SysMon:iptraf-ng sudo iptraf-ng"
         ]
     ]
 }

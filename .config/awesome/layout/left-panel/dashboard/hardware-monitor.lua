@@ -1,5 +1,3 @@
-local log = require('utilities.debug').log
-local dump = require('utilities.debug').dump
 log('Enter Module => layout/left-panel/dashboard/hardware-monitor.lua')
 
 local wibox = require('wibox')
@@ -9,7 +7,7 @@ local dpi = beautiful.xresources.apply_dpi
 
 local hardware_header = wibox.widget {
   text = 'Hardware Monitor',
-  font = 'Inter Regular 12',
+  font = beautiful.font,
   align = 'left',
   valign = 'center',
   widget = wibox.widget.textbox

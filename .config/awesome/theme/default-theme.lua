@@ -1,5 +1,5 @@
 local log = require('utilities.debug').log
-log("Enter Module => theme/default-theme.lua" )
+log('Enter Module => theme/default-theme.lua')
 
 local gears = require('gears')
 local beautiful = require('beautiful')
@@ -29,9 +29,6 @@ local awesome_overrides = function(theme)
 
   -- Default wallpaper path
   theme.wallpaper = theme.dir .. '/wallpapers/morning-wallpaper.jpg'
-
-  -- Default font
-  theme.font = 'Inter Regular 10'
 
   -- Foreground
   theme.fg_normal = '#ffffffde'
@@ -145,7 +142,7 @@ local awesome_overrides = function(theme)
   end
 
   -- Menu
-  theme.menu_font = 'Inter Regular 11'
+  theme.menu_font = beautiful.font_large
   theme.menu_submenu = '' -- ➤
 
   theme.menu_height = dpi(34)
@@ -193,7 +190,7 @@ local awesome_overrides = function(theme)
   theme.taglist_spacing = dpi(0)
 
   -- Tasklist
-  theme.tasklist_font = 'Inter Regular 10'
+  theme.tasklist_font = theme.font_small
   theme.tasklist_bg_normal = theme.background .. '99'
   theme.tasklist_bg_focus = theme.background
   theme.tasklist_bg_urgent = '#E91E63' .. '99'
@@ -217,8 +214,8 @@ local awesome_overrides = function(theme)
   theme.snap_border_width = dpi(15)
 
   -- Hotkey popup
-  theme.hotkeys_font             = 'Inter Bold'
-  theme.hotkeys_description_font = 'Inter Regular Regular'
+  theme.hotkeys_font             = theme.font_bold
+  theme.hotkeys_description_font = theme.font
   theme.hotkeys_bg               = theme.background
   theme.hotkeys_group_margin     = dpi(20)
 end

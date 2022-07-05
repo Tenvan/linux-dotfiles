@@ -23,7 +23,7 @@ local create_widget = function()
 			},
 			{
 				text = 'End work session',
-				font = 'Inter Regular 12',
+				font = beautiful.font,
 				align = 'left',
 				valign = 'center',
 				widget = wibox.widget.textbox
