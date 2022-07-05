@@ -1,5 +1,3 @@
-local log = require('utilities.debug').log
-local dump = require('utilities.debug').dump
 log('Enter Module => fs-widget.lua')
 
 local awful = require('awful')
@@ -7,6 +5,8 @@ local watch = require('awful.widget.watch')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
 local gears = require('gears')
+
+local dpi = require('beautiful.xresources').apply_dpi
 
 local storage_bar_widget = {}
 
@@ -21,19 +21,19 @@ config.mounts = { '/' }
 config.refresh_rate = 60
 
 -- wibar widget
-config.widget_width = 40
+config.widget_width = dpi(40)
 config.widget_bar_color = '#aaaaaa'
 config.widget_onclick_bg = '#ff0000'
 config.widget_border_color = '#535d6c66'
 config.widget_background_color = '#22222233'
 
 -- popup
-config.popup_bg = '#22222233'
-config.popup_border_width = 1
-config.popup_border_color = '#535d6c66'
-config.popup_bar_color = '#aaaaaa'
-config.popup_bar_background_color = '#22222233'
-config.popup_bar_border_color = '#535d6c66'
+config.popup_bg = beautiful.bg_popup
+config.popup_border_width = dpi(1)
+config.popup_border_color = beautiful.border_popup
+config.popup_bar_color = beautiful.accent
+config.popup_bar_background_color = beautiful.border_marked
+config.popup_bar_border_color = beautiful.border_popup
 
 local function worker(user_args)
   local args = user_args or {}
@@ -51,18 +51,18 @@ local function worker(user_args)
       id = 'progressbar',
       color = _config.widget_bar_color,
       max_value = 100,
-      forced_height = 20,
+      forced_height = dpi(20),
       forced_width = _config.widget_width,
-      paddings = 2,
-      margins = 4,
-      border_width = 1,
-      border_radius = 2,
+      paddings = dpi(2),
+      margins = dpi(4),
+      border_width = dpi(1),
+      border_radius = dpi(2),
       border_color = _config.widget_border_color,
       background_color = _config.widget_background_color,
       widget = wibox.widget.progressbar
     },
     shape = function(cr, width, height)
-      gears.shape.rounded_rect(cr, width, height, 4)
+      gears.shape.rounded_rect(cr, width, height, dpi(4))
     end,
     widget = wibox.container.background,
     set_value = function(self, new_value)
@@ -72,14 +72,14 @@ local function worker(user_args)
 
   local disk_rows = {
     { widget = wibox.widget.textbox },
-    spacing = 4,
+    spacing = dpi(4),
     layout = wibox.layout.fixed.vertical,
   }
 
   local disk_header = wibox.widget {
     {
       markup = '<b>Mount</b>',
-      forced_width = 150,
+      forced_width = dpi(150),
       align = 'left',
       widget = wibox.widget.textbox,
     },
@@ -97,10 +97,10 @@ local function worker(user_args)
     ontop = true,
     visible = false,
     shape = gears.shape.rounded_rect,
-    border_width = _config.popup_border_width,
-    border_color = _config.popup_border_color,
-    maximum_width = 400,
-    offset = { y = 5 },
+    border_width = _config.popup_border_width or beautiful.popup_border_width,
+    border_color = _config.popup_border_color or beautiful.popup_border,
+    maximum_width = dpi(800),
+    offset = { y = dpi(5) },
     widget = {}
   }
 
@@ -145,17 +145,18 @@ local function worker(user_args)
           local row = wibox.widget {
             {
               text = disks[v].mount,
-              forced_width = 150,
+              forced_width = dpi(150),
+              forced_height = dpi(20),
               widget = wibox.widget.textbox
             },
             {
               color = _config.popup_bar_color,
               max_value = 100,
               value = tonumber(disks[v].perc),
-              forced_height = 20,
-              paddings = 1,
-              margins = 4,
-              border_width = 1,
+              forced_height = dpi(20),
+              paddings = dpi(1),
+              margins = dpi(4),
+              border_width = dpi(1),
               border_color = _config.popup_bar_border_color,
               background_color = _config.popup_bar_background_color,
               bar_border_width = 1,
@@ -182,7 +183,7 @@ local function worker(user_args)
           disk_rows,
           layout = wibox.layout.fixed.vertical,
         },
-        margins = 8,
+        margins = dpi(8),
         widget = wibox.container.margin
       }
     end,

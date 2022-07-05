@@ -6,7 +6,7 @@ local config = {
   widget = {
     email = {
       -- Email address
-      address = '',
+      address = 'ralf.stich@gmail.com',
       -- App password
       app_password = '',
       -- Imap server
@@ -37,7 +37,7 @@ local config = {
 
     clock = {
       -- Clock widget format
-      military_mode = false
+      military_mode = true
     },
 
     screen_recorder = {

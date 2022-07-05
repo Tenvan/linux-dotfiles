@@ -1,5 +1,3 @@
-local log = require('utilities.debug').log
-local dump = require('utilities.debug').dump
 log('Enter Module => widget/harddrive-meter/init.lua')
 
 local wibox = require('wibox')
@@ -64,6 +62,7 @@ local harddrive_meter = wibox.widget {
 }
 
 local harddrive_widget = fs_widget({
+  widget_width = dpi(100),
   mounts = {
     '/',
     '/home',

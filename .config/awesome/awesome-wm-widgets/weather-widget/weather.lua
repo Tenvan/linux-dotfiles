@@ -7,12 +7,12 @@
 -------------------------------------------------
 log('Enter Module => awesome-wm-widgets.weather-widget.weather.lua')
 
-local awful = require('awful')
-local watch = require('awful.widget.watch')
-local json = require('library.json')
-local naughty = require('naughty')
-local wibox = require('wibox')
-local gears = require('gears')
+local awful     = require('awful')
+local watch     = require('awful.widget.watch')
+local json      = require('library.json')
+local naughty   = require('naughty')
+local wibox     = require('wibox')
+local gears     = require('gears')
 local beautiful = require('beautiful')
 
 local HOME_DIR = os.getenv('HOME')
@@ -20,7 +20,10 @@ local WIDGET_DIR = HOME_DIR .. '/.config/awesome/awesome-wm-widgets/weather-widg
 local GET_FORECAST_CMD = [[bash -c "curl -s --show-error -X GET '%s'"]]
 
 local SYS_LANG = os.getenv('LANG'):sub(1, 2)
--- default language is ENglish
+
+local dpi = require('beautiful.xresources').apply_dpi
+
+-- default language is German
 local LANG = gears.filesystem.file_readable(WIDGET_DIR .. '/' .. 'locale/' ..
   SYS_LANG .. '.lua') and SYS_LANG or 'de'
 local LCLE = require('awesome-wm-widgets.weather-widget.locale.' .. LANG)
@@ -47,13 +50,13 @@ local tooltip = awful.tooltip {
 local weather_popup = awful.popup {
   ontop = true,
   visible = false,
-  bg = beautiful.background,
+  bg = beautiful.popup_bg,
   shape = gears.shape.rounded_rect,
-  border_width = 3,
-  border_color = beautiful.bg_focus,
-  width = 600,
-  height = 800,
-  offset = { y = 5 },
+  border_width = beautiful.popup_border_width,
+  border_color = beautiful.popup_border,
+  width = dpi(600),
+  height = dpi(800),
+  offset = { y = dpi(5) },
   hide_on_right_click = true,
   widget = {}
 }
@@ -127,7 +130,6 @@ local function uvi_index_color(uvi)
 end
 
 local function worker(user_args)
-
   local args = user_args or {}
 
   --- Validate required parameters
@@ -178,8 +180,8 @@ local function worker(user_args)
         },
         layout = wibox.layout.fixed.horizontal,
       },
-      left = 4,
-      right = 4,
+      left = dpi(4),
+      right = dpi(4),
       layout = wibox.container.margin
     },
     shape = function(cr, width, height)
@@ -209,8 +211,8 @@ local function worker(user_args)
         {
           id = 'icon',
           resize = true,
-          forced_width = 128,
-          forced_height = 128,
+          forced_width = dpi(128),
+          forced_height = dpi(128),
           widget = wibox.widget.imagebox
         },
         align = 'center',
@@ -218,24 +220,24 @@ local function worker(user_args)
       },
       {
         id = 'description',
-        font = font_name .. ' 10',
+        font = font_name .. dpi( 10),
         align = 'center',
         widget = wibox.widget.textbox
       },
-      forced_width = 128,
+      forced_width = dpi(128),
       layout = wibox.layout.align.vertical
     },
     {
       {
         {
           id = 'temp',
-          font = font_name .. ' 36',
+          font = font_name .. dpi(36),
           widget = wibox.widget.textbox
         },
         {
           id = 'feels_like_temp',
           align = 'center',
-          font = font_name .. ' 9',
+          font = font_name .. dpi(9),
           widget = wibox.widget.textbox
         },
         layout = wibox.layout.fixed.vertical
@@ -243,27 +245,27 @@ local function worker(user_args)
       {
         {
           id = 'wind',
-          font = font_name .. ' 9',
+          font = font_name .. dpi(9),
           widget = wibox.widget.textbox
         },
         {
           id = 'humidity',
-          font = font_name .. ' 9',
+          font = font_name .. dpi(9),
           widget = wibox.widget.textbox
         },
         {
           id = 'uv',
-          font = font_name .. ' 9',
+          font = font_name .. dpi(9),
           widget = wibox.widget.textbox
         },
         expand = 'inside',
         layout = wibox.layout.align.vertical
       },
-      spacing = 16,
-      forced_width = 150,
+      spacing = dpi(16),
+      forced_width = dpi(150),
       layout = wibox.layout.fixed.vertical
     },
-    forced_width = 300,
+    forced_width = dpi(300),
     layout = wibox.layout.flex.horizontal,
     update = function(self, weather)
       self:get_children_by_id('icon')[1]:set_image(
@@ -281,7 +283,7 @@ local function worker(user_args)
 
 
   local daily_forecast_widget = {
-    forced_width = 300,
+    forced_width = dpi(300),
     layout = wibox.layout.flex.horizontal,
     update = function(self, forecast, timezone_offset)
       local count = #self
@@ -292,7 +294,7 @@ local function worker(user_args)
           {
             text = os.date('%a', tonumber(day.dt) + tonumber(timezone_offset)),
             align = 'center',
-            font = font_name .. ' 9',
+            font = font_name .. dpi(9),
             widget = wibox.widget.textbox
           },
           {
@@ -300,8 +302,8 @@ local function worker(user_args)
               {
                 image = ICONS_DIR .. icon_map[day.weather[1].icon] .. icons_extension,
                 resize = true,
-                forced_width = 48,
-                forced_height = 48,
+                forced_width = dpi(48),
+                forced_height = dpi(48),
                 widget = wibox.widget.imagebox
               },
               align = 'center',
@@ -309,9 +311,9 @@ local function worker(user_args)
             },
             {
               text = day.weather[1].description,
-              font = font_name .. ' 8',
+              font = font_name .. dpi(8),
               align = 'center',
-              forced_height = 50,
+              forced_height = dpi(50),
               widget = wibox.widget.textbox
             },
             layout = wibox.layout.fixed.vertical
@@ -320,18 +322,18 @@ local function worker(user_args)
             {
               text = gen_temperature_str(day.temp.day, '%.0f', false, units),
               align = 'center',
-              font = font_name .. ' 9',
+              font = font_name .. dpi(9),
               widget = wibox.widget.textbox
             },
             {
               text = gen_temperature_str(day.temp.night, '%.0f', false, units),
               align = 'center',
-              font = font_name .. ' 9',
+              font = font_name .. dpi(9),
               widget = wibox.widget.textbox
             },
             layout = wibox.layout.fixed.vertical
           },
-          spacing = 8,
+          spacing = dpi(8),
           layout = wibox.layout.fixed.vertical
         }
         table.insert(self, day_forecast)
@@ -340,11 +342,11 @@ local function worker(user_args)
   }
 
   local hourly_forecast_graph = wibox.widget {
-    step_width = 12,
+    step_width = dpi(12),
     color = '#EBCB8B',
     background_color = beautiful.bg_normal,
-    forced_height = 100,
-    forced_width = 300,
+    forced_height = dpi(100),
+    forced_width = dpi(300),
     widget = wibox.widget.graph,
     set_max_value = function(self, new_max_value)
       self.max_value = new_max_value
@@ -354,11 +356,11 @@ local function worker(user_args)
     end
   }
   local hourly_forecast_negative_graph = wibox.widget {
-    step_width = 12,
+    step_width = dpi(12),
     color = '#5E81AC',
     background_color = beautiful.bg_normal,
-    forced_height = 100,
-    forced_width = 300,
+    forced_height = dpi(100),
+    forced_width = dpi(300),
     widget = wibox.widget.graph,
     set_max_value = function(self, new_max_value)
       self.max_value = new_max_value
@@ -373,12 +375,12 @@ local function worker(user_args)
     update = function(self, hourly)
       local hours_below = {
         id = 'hours',
-        forced_width = 300,
+        forced_width = dpi(300),
         layout = wibox.layout.flex.horizontal
       }
       local temp_below = {
         id = 'temp',
-        forced_width = 300,
+        forced_width = dpi(300),
         layout = wibox.layout.flex.horizontal
       }
 
@@ -394,7 +396,7 @@ local function worker(user_args)
           table.insert(hours_below, wibox.widget {
             text = os.date(time_format_12h and '%I%p' or '%H:00', tonumber(hour.dt)),
             align = 'center',
-            font = font_name .. ' 9',
+            font = font_name .. dpi(9),
             widget = wibox.widget.textbox
           })
           table.insert(temp_below, wibox.widget {
@@ -402,7 +404,7 @@ local function worker(user_args)
               .. (tonumber(hour.temp) > 0 and '#2E3440' or '#ECEFF4') .. '">'
               .. string.format('%.0f', hour.temp) .. '°' .. '</span>',
             align = 'center',
-            font = font_name .. ' 9',
+            font = font_name .. dpi(9),
             widget = wibox.widget.textbox
           })
         end
@@ -528,7 +530,7 @@ local function worker(user_args)
 
     local final_widget = {
       current_weather_widget,
-      spacing = 16,
+      spacing = dpi(16),
       layout = wibox.layout.fixed.vertical
     }
 

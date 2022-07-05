@@ -62,7 +62,7 @@ local top_panel = function(s, offset)
       layout = wibox.layout.fixed.horizontal,
       spacing = dpi(5),
       net_speed_widget({
-        width = 75
+        width = dpi(66)
       }),
       weather,
       updater,
@@ -73,7 +73,7 @@ local top_panel = function(s, offset)
       }),
       volume_widget({
         widget_type = 'arc',
-        size = 32
+        size = dpi(32)
       }),
       -- s.bluetooth,
       -- s.battery,

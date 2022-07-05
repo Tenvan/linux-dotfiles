@@ -41,6 +41,10 @@ theme.font_small_size = dpi(6)
 theme.font_size       = dpi(8)
 theme.font_large_size = dpi(10)
 
+log('Font Small Size  (6): ' .. theme.font_small_size)
+log('Font Normal Size (8)' .. theme.font_size)
+log('Font Large Size  (10)' .. theme.font_large_size)
+
 theme.font_family = 'Inter '
 
 theme.font_small = theme.font_family .. ' Regular ' .. theme.font_small_size
@@ -56,7 +60,8 @@ theme.font_light       = theme.font_family .. ' Light ' .. theme.font_size
 theme.font_light_large = theme.font_family .. ' Light ' .. theme.font_large_size
 
 theme.hint_font = theme.font_light_small
-theme.widgets_font = theme.font_light_small
+
+theme.widgets_font = theme.font_light
 
 theme.symbol_font = 'Noto Sans Symbol Bold ' .. dpi(16)
 
@@ -78,8 +83,8 @@ theme.warning_fg = cobalt_bg
 theme.warning_bg = base0E
 
 -- Notification colors
-theme.notif_fg = cobalt_bg
-theme.notif_bg = cobalt_fg
+theme.notif_fg = cobalt_fg
+theme.notif_bg = cobalt_bg
 
 -- Background color
 theme.background = makeColorTransparent(gtk_variable().bg_color, '80')
@@ -107,6 +112,11 @@ local awesome_overrides = function(theme)
   -- System tray
   theme.bg_systray = theme.bg_normal
   theme.systray_icon_spacing = dpi(16)
+
+  -- popups
+  theme.popup_bg           = beautiful.background
+  theme.popup_border       = theme.bg_focus
+  theme.popup_border_width = dpi(3)
 
   -- Client Decorations
   -- Borders
