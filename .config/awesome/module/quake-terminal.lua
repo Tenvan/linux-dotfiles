@@ -19,7 +19,7 @@ local quake_properties = function()
     skip_decoration = false,
     titlebars_enabled = true,
     switch_to_tags = false,
-    opacity = 0.95,
+    opacity = 0.67,
     floating = true,
     skip_taskbar = true,
     ontop = true,
@@ -27,7 +27,7 @@ local quake_properties = function()
     sticky = true,
     hidden = not quake_opened,
     maximized_horizontal = true,
-    skip_center = true,
+    skip_center = false,
     round_corners = false,
     keys = client_keys,
     buttons = client_buttons,
@@ -106,11 +106,7 @@ awesome.connect_signal(
 client.connect_signal(
   'manage',
   function(c)
-    -- log('quake_terminal::manage')
-    -- dump(c, 'quake_terminal::manage::c', 2)
     if c.pid == quake_id then
-      -- log('quake_terminal::manage::quake')
-      -- dump(c, 'quake_terminal::manage::quake', 2)
       quake_client = c
     end
   end
@@ -119,10 +115,7 @@ client.connect_signal(
 client.connect_signal(
   'unmanage',
   function(c)
-    -- log('quake_terminal::unmanage')
-    -- dump(c, 'quake_terminal::unmanage::c', 2)
     if c.pid == quake_id then
-      -- log('quake_terminal::unmanage::quake')
       quake_opened = false
       quake_client = nil
     end

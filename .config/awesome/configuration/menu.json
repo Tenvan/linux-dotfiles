@@ -34,7 +34,7 @@
         ],
         [
             "🌤 Wetter Brakel",
-            "$TERMINAL --hold --title Wetter:Brakel curl wttr.in/33034?lang=de"
+            "kitty --hold --title Wetter:Brakel curl wttr.in/33034?lang=de"
         ],
         [
             "🌤 Wetter Höxter",

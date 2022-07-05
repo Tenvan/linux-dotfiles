@@ -112,7 +112,7 @@ ruled.client.connect_signal('request::rules', function()
     },
     properties = {
       titlebars_enabled = false,
-      round_corners = false,
+      round_corners = true,
       floating = true,
       above = true,
       skip_decoration = true,

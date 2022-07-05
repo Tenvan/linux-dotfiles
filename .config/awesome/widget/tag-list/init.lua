@@ -1,5 +1,3 @@
-local log = require('utilities.debug').log
-local dump = require('utilities.debug').dump
 log('Enter Module => widget/tag-list/init.lua')
 
 local client = client
@@ -14,7 +12,6 @@ local beautiful = require('beautiful')
 local keys = require('configuration.keys.mod')
 local modkey = keys.mod_key
 local altkey = keys.alt_key
-
 
 --- Common method to create buttons.
 -- @tab buttons
@@ -50,13 +47,12 @@ local function list_update(w, buttons, label, data, objects)
   for i, o in ipairs(objects) do
 
     local cache = data[o]
-    local ib, tb, bgb, tbm, ibm, l, bg_clickable
+    local ib, tb, bgb, tbm, l, bg_clickable
     if cache then
       ib = cache.ib
       tb = cache.tb
       bgb = cache.bgb
       tbm = cache.tbm
-      ibm = cache.ibm
     else
       ib = wibox.widget.imagebox()
       tb = wibox.widget.textbox()
@@ -65,14 +61,9 @@ local function list_update(w, buttons, label, data, objects)
         tb,
         -- margins = dpi(1),
         left = dpi(5),
-        -- right = dpi(16),
+        right = dpi(5),
         -- top = dpi(12),
         -- bottom = dpi(12),
-        widget = wibox.container.margin,
-      }
-      ibm = wibox.widget {
-        ib,
-        margins = dpi(10),
         widget = wibox.container.margin,
       }
       l = wibox.layout.fixed.horizontal()
@@ -81,7 +72,6 @@ local function list_update(w, buttons, label, data, objects)
       -- All of this is added in a fixed widget
       l:fill_space(true)
 
-      -- l:add(ibm)
       l:add(tbm)
       bg_clickable:set_widget(l)
 
@@ -90,7 +80,7 @@ local function list_update(w, buttons, label, data, objects)
 
       bgb:buttons(create_buttons(buttons, o))
 
-      data[o] = { ib = ib, tb = tb, bgb = bgb, tbm = tbm, ibm = ibm }
+      data[o] = { ib = ib, tb = tb, bgb = bgb, tbm = tbm }
     end
 
     local text, bg, bg_image, icon, args = label(o, tb)
@@ -115,8 +105,6 @@ local function list_update(w, buttons, label, data, objects)
     bgb:set_bgimage(bg_image)
     if icon then
       ib.image = icon
-    else
-      ibm:set_margins(0)
     end
 
     bgb.shape = args.shape
@@ -141,9 +129,6 @@ local tag_list = function(args)
       awful.button(
         { modkey }, 1,
         function(t)
-          dump(_G.client, '_G.client', 2)
-          dump(client, 'client', 2)
-
           if _G.client.focus then
             _G.client.focus:move_to_tag(t)
             t:view_only()

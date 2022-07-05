@@ -1,5 +1,3 @@
-local log = require('utilities.debug').log
-local dump = require('utilities.debug').dump
 log('Enter Module => layout/left-panel/action-bar.lua')
 
 local awful = require('awful')

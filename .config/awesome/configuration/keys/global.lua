@@ -2,11 +2,11 @@ log('Enter Module => configuration/keys/global.lua')
 
 local awesome, client, screen = awesome, client, screen
 
-local awful = require('awful')
+local awful         = require('awful')
 local hotkeys_popup = require('awful.hotkeys_popup').widget
 
-local apps = require('configuration.apps')
-local keys = require('configuration.keys.mod')
+local apps  = require('configuration.apps')
+local keys  = require('configuration.keys.mod')
 local specs = require('layout.specs')
 
 local modkey = keys.mod_key
@@ -14,35 +14,38 @@ local altkey = keys.alt_key
 
 -- modkey or mod4 = super key
 local controlkey = keys.control_key
-local shiftkey = keys.shift_key
-local returnkey = keys.return_key
-local spacekey = keys.space_key
-local escapekey = keys.escape_key
-local tabkey = keys.tab_key
-local downkey = keys.down_key
-local upkey = keys.up_key
-local leftkey = keys.left_key
-local rightkey = keys.right_key
+local shiftkey   = keys.shift_key
+local returnkey  = keys.return_key
+local spacekey   = keys.space_key
+local escapekey  = keys.escape_key
+local tabkey     = keys.tab_key
+local downkey    = keys.down_key
+local upkey      = keys.up_key
+local leftkey    = keys.left_key
+local rightkey   = keys.right_key
 
 -- ░█░█░█▀▀░█░█░░░█▀▀░█▀▄░█▀█░█░█░█▀█░█▀▀
 -- ░█▀▄░█▀▀░░█░░░░█░█░█▀▄░█░█░█░█░█▀▀░▀▀█
 -- ░▀░▀░▀▀▀░░▀░░░░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀░░░▀▀▀
-local kgAwesome = 'AwesomeWM'
-local kgApps = 'Anwendungen'
-local kgUtils = 'Tools'
-local kgMenus = 'Menüs'
-local kgClient = 'Client Aktionen'
-local kgLayout = 'Layout Aktionen'
-local kgMaster = 'Master Aktionen'
-local kgScreen = 'Screen Aktionen'
+local kgAwesome    = 'AwesomeWM'
+local kgApps       = 'Anwendungen'
+local kgUtils      = 'Tools'
+local kgMenus      = 'Menüs'
+local kgClient     = 'Client Aktionen'
+local kgLayout     = 'Layout Aktionen'
+local kgMaster     = 'Master Aktionen'
+local kgScreen     = 'Screen Aktionen'
 local kgScreenshot = 'Screenshot'
-local kgSound = 'Audio'
-local kgSystem = 'System'
-local kgTag = 'Tags'
-local kgHotkeys = 'Hotkeys'
-local kgLauncher = 'Starter'
+local kgSound      = 'Audio'
+local kgSystem     = 'System'
+local kgTag        = 'Tags'
+local kgHotkeys    = 'Hotkeys'
+local kgLauncher   = 'Starter'
 
-local menuCoords = { coords = { x = specs.leftPanel.actionBarWidth, y = specs.topPanel.height } }
+local menuCoords = {
+  coords = { x = specs.leftPanel.actionBarWidth * 2, y = specs.topPanel.height * 2 },
+  -- placement = awful.placement.bottom_right
+  }
 
 -- ░█░█░█▀▀░█░█░░░█▀▄░▀█▀░█▀█░█▀▄░▀█▀░█▀█░█▀▀░█▀▀
 -- ░█▀▄░█▀▀░░█░░░░█▀▄░░█░░█░█░█░█░░█░░█░█░█░█░▀▀█
@@ -56,11 +59,11 @@ local global_keys = awful.util.table.join(
     description = 'show help',
     group = 'awesome'
   }),
-  awful.key({ modkey, shiftkey }, 'r', awesome.restart, {
+  awful.key({ modkey, controlkey }, 'r', awesome.restart, {
     description = 'reload awesome',
     group = kgAwesome
   }),
-  awful.key({ modkey, shiftkey }, 'q', awesome.quit, {
+  awful.key({ modkey, controlkey }, 'q', awesome.quit, {
     description = 'quit awesome',
     group = kgAwesome
   }),

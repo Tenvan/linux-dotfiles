@@ -1,4 +1,3 @@
-local log = require('utilities.debug').log
 log("Enter Module => configuration/client/signals.lua")
 
 local awesome, client = awesome, client

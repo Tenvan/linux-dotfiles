@@ -1,16 +1,11 @@
-local log = require('utilities.debug').log
 log('Enter Module => configuration/tags/init.lua')
-
-local screen, tag, client = screen, tag, client
 
 local screen, tag = screen, tag
 
 local awful = require('awful')
-local gears = require('gears')
 local beautiful = require('beautiful')
 local icons = require('theme.icons')
 local apps = require('configuration.apps')
-local gdebug = require('gears.debug')
 local lain = require('lain')
 
 -- local tagnames = {"󾠮", "󾠯", "󾠰", "󾠱", "󾠲", "󾠳", "󾠴", "󾠵", "󾠶"}
@@ -108,7 +103,7 @@ screen.connect_signal('request::desktop_decoration', function(s)
       text = tagnames[i],
       icon = tag.icon,
       icon_only = false,
-      layout = tag.layout or awful.layout.suit.spiral.dwindle,
+      layout = tag.layout or awful.layout.suit.tile,
       layouts = tag.layouts or defaultLayouts,
       gap_single_client = true,
       gap = tag.gap or beautiful.useless_gap,

@@ -59,8 +59,10 @@ local function arrayToMenu(array)
   for i, c in pairs(array) do
     menu[i] = { c[1],
       function()
-        log('Execute: ' .. c[2])
-        awful.spawn.with_shell(c[2])
+        -- local command = c[2].string.gsub("$44,000.00", "%$", "what")
+        local command = c[2]
+        log('Execute: ' .. command)
+        awful.spawn(command)
       end
     }
   end
@@ -75,8 +77,8 @@ local function getMenu(name)
   local customMenuJson = os.getenv('CUSTOMS') .. '/menu.json'
   local customMenus = readJson(customMenuJson)
 
-  local beforeMenu = (customMenus[name] or {}).BEFORE_MENU
-  local afterMenu = (customMenus[name] or {}).AFTER_MENU
+  local beforeMenu = (customMenus[name] or {}).BEFORE_MENU or {}
+  local afterMenu = (customMenus[name] or {}).AFTER_MENU or {}
   
   local menuPart = gtable.join(beforeMenu, menus[name], afterMenu)
 
