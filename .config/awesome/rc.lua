@@ -7,7 +7,7 @@ log = require('utilities.debug').log
 dump = require('utilities.debug').dump
 notify = require('utilities.notify')
 
-log("Enter Module => rc.test.lua" )
+log("Enter Module => rc.lua" )
 
 pcall(require, "luarocks.loader")
 local gears = require('gears')

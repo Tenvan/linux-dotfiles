@@ -1,4 +1,4 @@
-log('Enter Module => configuration/client/signals.lua')
+log("Enter Module => " .. ... )
 
 local awesome, client = awesome, client
 

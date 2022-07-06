@@ -1,4 +1,4 @@
-log('Enter Module => configuration/tags/init.lua')
+log("Enter Module => " .. ... )
 
 local screen, tag = screen, tag
 

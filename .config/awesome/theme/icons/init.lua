@@ -1,6 +1,6 @@
 local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
-log("Enter Module => theme/icons/init.lua" )
+log("Enter Module => " .. ... )
 
 -- Icons directory
 local dir = os.getenv('HOME') .. '/.config/awesome/theme/icons/'

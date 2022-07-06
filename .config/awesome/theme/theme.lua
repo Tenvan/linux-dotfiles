@@ -1,4 +1,4 @@
-log('Enter Module => theme/theme.lua')
+log("Enter Module => " .. ... )
 
 local beautiful = require('beautiful')
 local gears = require('gears')

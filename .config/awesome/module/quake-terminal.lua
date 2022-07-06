@@ -1,6 +1,6 @@
 local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
-log("Enter Module => module/quake-terminal.lua" )
+log("Enter Module => " .. ... )
 
 local awesome, client, screen = awesome, client, screen
 

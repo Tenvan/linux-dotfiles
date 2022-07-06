@@ -1,4 +1,4 @@
-log('Enter Module => layout/left-panel/action-bar.lua')
+log("Enter Module => " .. ... )
 
 local awful = require('awful')
 local beautiful = require('beautiful')

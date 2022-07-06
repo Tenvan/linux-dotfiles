@@ -1,6 +1,6 @@
 local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
-log('Enter Module => widget/temperature-meter/init.lua')
+log("Enter Module => " .. ... )
 
 local wibox = require('wibox')
 local awful = require('awful')

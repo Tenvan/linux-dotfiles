@@ -5,7 +5,7 @@
 -- @author Pavel Makhov
 -- @copyright 2020 Pavel Makhov
 -------------------------------------------------
-log('Enter Module => awesome-wm-widgets.weather-widget.weather.lua')
+log("Enter Module => " .. ... )
 
 local awful     = require('awful')
 local watch     = require('awful.widget.watch')

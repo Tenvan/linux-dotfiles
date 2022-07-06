@@ -3,7 +3,7 @@
 --    mugshot (use to update profile picture and information)
 local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
-log('Enter Module => widget/user-profile/init.lua')
+log("Enter Module => " .. ... )
 
 local awful = require('awful')
 local wibox = require('wibox')

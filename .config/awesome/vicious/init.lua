@@ -30,7 +30,7 @@
 
 -- {{{ Setup environment
 local log = require('utilities.debug').log
-log("Enter Module => module/vicious/init.lua" )
+log("Enter Module => " .. ... )
 
 local type  = type
 local pairs = pairs

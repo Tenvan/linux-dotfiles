@@ -1,4 +1,4 @@
-log('Enter Module => widget/harddrive-meter/init.lua')
+log("Enter Module => " .. ... )
 
 local wibox = require('wibox')
 local gears = require('gears')

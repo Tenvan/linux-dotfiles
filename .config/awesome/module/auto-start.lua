@@ -2,7 +2,7 @@
 -- Run all the apps listed in configuration/apps.lua as run_on_start_up only once when awesome start
 local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
-log('Enter Module => module/auto-start.lua')
+log("Enter Module => " .. ... )
 
 
 local awful = require('awful')

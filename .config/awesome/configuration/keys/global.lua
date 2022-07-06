@@ -1,4 +1,4 @@
-log('Enter Module => configuration/keys/global.lua')
+log("Enter Module => " .. ... )
 
 local awesome, client, screen = awesome, client, screen
 

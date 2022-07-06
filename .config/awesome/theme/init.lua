@@ -1,5 +1,5 @@
 local log = require('utilities.debug').log
-log("Enter Module => theme/init.lua" )
+log("Enter Module => " .. ... )
 
 local gtable = require('gears.table')
 local default_theme = require('theme.default-theme')

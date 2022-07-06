@@ -1,6 +1,6 @@
 local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
-log('Enter Module => layout/init.lua')
+log("Enter Module => " .. ... )
 
 local client, screen, tag = client, screen, tag
 

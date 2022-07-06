@@ -1,4 +1,4 @@
-log('Enter Module => utilities/json.lua')
+log("Enter Module => " .. ... )
 
 local open = io.open
 

@@ -7,7 +7,7 @@
 -- @author Pavel Makhov
 -- @copyright 2020 Pavel Makhov
 -------------------------------------------------
-log('Enter Module => awesome-wm-widgets/net-speed')
+log("Enter Module => " .. ... )
 
 local watch = require("awful.widget.watch")
 local wibox = require("wibox")

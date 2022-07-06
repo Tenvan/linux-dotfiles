@@ -3,7 +3,7 @@
 -- be nice to define here.
 
 local log = require('utilities.debug').log
-log("Enter Module => helpers.lua" )
+log("Enter Module => " .. ... )
 
 local awful = require("awful")
 local gears = require("gears")

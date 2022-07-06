@@ -1,6 +1,6 @@
 local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
-log('Enter Module => configuration/config.lua')
+log("Enter Module => " .. ... )
 
 local config = {
   debug_mode = false,

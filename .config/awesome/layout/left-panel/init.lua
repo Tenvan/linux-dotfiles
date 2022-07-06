@@ -1,4 +1,4 @@
-log('Enter Module => layout/left-panel/init.lua')
+log("Enter Module => " .. ... )
 
 local awful = require('awful')
 local wibox = require('wibox')

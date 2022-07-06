@@ -1,4 +1,4 @@
-log('Enter Module => module/notifications.lua')
+log("Enter Module => " .. ... )
 
 local gears = require('gears')
 local wibox = require('wibox')

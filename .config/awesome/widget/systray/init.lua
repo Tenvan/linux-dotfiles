@@ -1,4 +1,4 @@
-log('Enter Module => widget/systray/init.lua')
+log("Enter Module => " .. ... )
 
 local wibox = require("wibox")
 local specs = require('layout.specs')

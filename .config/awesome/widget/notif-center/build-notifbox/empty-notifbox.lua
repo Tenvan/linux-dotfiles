@@ -1,4 +1,4 @@
-log('Enter Module => widget/notification-center/build-notifbox/empty-notifbox.lua')
+log("Enter Module => " .. ... )
 
 local wibox     = require('wibox')
 local beautiful = require('beautiful')

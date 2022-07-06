@@ -1,5 +1,5 @@
 local log = require('utilities.debug').log
-log('Enter Module => theme/default-theme.lua')
+log("Enter Module => " .. ... )
 
 local gears = require('gears')
 local beautiful = require('beautiful')

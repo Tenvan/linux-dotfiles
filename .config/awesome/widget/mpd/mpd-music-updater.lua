@@ -1,6 +1,6 @@
 local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
-log('Enter Module => widget/mpd/mpd-music-updater.lua')
+log("Enter Module => " .. ... )
 
 local gears = require('gears')
 local awful = require('awful')

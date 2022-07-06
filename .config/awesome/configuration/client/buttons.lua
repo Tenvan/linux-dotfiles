@@ -1,5 +1,5 @@
 local log = require('utilities.debug').log
-log("Enter Module => configuration/client/buttons.lua")
+log("Enter Module => " .. ... )
 
 local awful = require('awful')
 local modkey = require('configuration.keys.mod').mod_key

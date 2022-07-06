@@ -1,4 +1,4 @@
-log('Enter Module => layout/top-panel.lua')
+log("Enter Module => " .. ... )
 
 local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi

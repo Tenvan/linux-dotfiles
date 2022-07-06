@@ -1,5 +1,5 @@
 local log = require('utilities.debug').log
-log("Enter Module => configuration/client/keys.lua" )
+log("Enter Module => " .. ... )
 
 local awful = require('awful')
 local dpi = require('beautiful').xresources.apply_dpi

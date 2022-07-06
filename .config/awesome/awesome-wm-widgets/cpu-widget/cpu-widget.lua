@@ -7,7 +7,7 @@
 -- @author Pavel Makhov
 -- @copyright 2020 Pavel Makhov
 -------------------------------------------------
-log('Enter Module => awesome-wm-widgets/cpu-widget/cpu-widget.lua')
+log("Enter Module => " .. ... )
 
 local awful = require("awful")
 local watch = require("awful.widget.watch")

@@ -1,4 +1,4 @@
-log('Enter Module => widget/weather/weather-aw.lua')
+log("Enter Module => " .. ... )
 
 local beautiful = require('beautiful')
 

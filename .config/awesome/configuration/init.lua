@@ -1,5 +1,5 @@
 local log = require('utilities.debug').log
-log("Enter Module => configuration/init.lua" )
+log("Enter Module => " .. ... )
 
 return {
 	keys = require('configuration.keys'),

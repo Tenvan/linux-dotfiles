@@ -1,6 +1,6 @@
 local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
-log('Enter Module => widget/blue-toggle/init.lua')
+log("Enter Module => " .. ... )
 
 local awful      = require('awful')
 local wibox      = require('wibox')

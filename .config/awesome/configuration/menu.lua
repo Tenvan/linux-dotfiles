@@ -1,4 +1,4 @@
-log('Enter Module => configuration/menu.lua')
+log("Enter Module => " .. ... )
 
 local awesome, client, screen = awesome, client, screen
 

@@ -1,4 +1,4 @@
-log('Enter Module => widget/screen-recorder/screen-recorder-ui.lua')
+log("Enter Module => " .. ... )
 
 local screen = screen
 

@@ -1,4 +1,4 @@
-log('Enter Module => layout/left-panel/dashboard/quick-settings.lua')
+log("Enter Module => " .. ... )
 
 local wibox = require('wibox')
 local gears = require('gears')

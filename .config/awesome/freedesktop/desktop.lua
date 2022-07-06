@@ -12,7 +12,7 @@
 --]]
 
 local log = require('utilities.debug').log
-log("Enter Module => freedesktop/desktop.lua" )
+log("Enter Module => " .. ... )
 
 local awful  = require("awful")
 local theme  = require("beautiful")

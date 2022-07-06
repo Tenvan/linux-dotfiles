@@ -1,4 +1,4 @@
-log('Enter Module => module/exit-screen.lua')
+log("Enter Module => " .. ... )
 
 local awful = require('awful')
 local gears = require('gears')

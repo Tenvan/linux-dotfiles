@@ -1,6 +1,6 @@
 local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
-log('Enter Module => layout/specs.lua')
+log("Enter Module => " .. ... )
 
 local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi

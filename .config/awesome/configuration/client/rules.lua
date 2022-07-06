@@ -1,4 +1,4 @@
-log('Enter Module => configuration/client/rules.lua')
+log("Enter Module => " .. ... )
 
 local client = client
 

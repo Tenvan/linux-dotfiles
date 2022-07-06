@@ -1,5 +1,5 @@
 local log = require('utilities.debug').log
-log("Enter Module => configuration/autostart.lua" )
+log("Enter Module => " .. ... )
 
 local awful = require("awful")
 local filesystem = require("gears.filesystem")

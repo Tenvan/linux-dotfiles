@@ -1,4 +1,4 @@
-log('Enter Module => widget/tag-list/init.lua')
+log("Enter Module => " .. ... )
 
 local client = client
 

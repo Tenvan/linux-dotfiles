@@ -1,4 +1,4 @@
-log('Enter Module => awesome-wm-widgets/fs-widget/fs-widget.lua')
+log("Enter Module => " .. ... )
 
 local awful = require('awful')
 local watch = require('awful.widget.watch')

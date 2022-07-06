@@ -1,5 +1,5 @@
 local log = require('utilities.debug').log
-log("Enter Module => configuration/keys.lua")
+log("Enter Module => " .. ... )
 
 local awesome, client, screen = awesome, client, screen
 

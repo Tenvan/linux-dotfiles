@@ -6,7 +6,7 @@
 -- @author Pavel Makhov
 -- @copyright 2020 Pavel Makhov
 -------------------------------------------------
-log('Enter Module => awesome-wm-widgets/volume-widget/volume.lua')
+log("Enter Module => " .. ... )
 
 local awful     = require('awful')
 local wibox     = require('wibox')

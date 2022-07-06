@@ -1,5 +1,5 @@
 local log = require('utilities.debug').log
-log("Enter Module => utilities/utils.lua" )
+log("Enter Module => " .. ... )
 
 local function makeColorTransparent(colorkey, opacity)
     local colorMain = string.sub(colorkey, 2, 7)
