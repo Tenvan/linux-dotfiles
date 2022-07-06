@@ -8,6 +8,7 @@ local dpi = require('beautiful.xresources').apply_dpi
 local makeColorTransparent = require('utilities.utils').makeColorTransparent
 
 local theme_dir = require('theme.default-theme').theme_dir
+local specs = require('layout.specs')
 
 local cobalt_bg = '#072539';  -- Background
 local cobalt_fg = '#e1efff';  -- Foreground
@@ -41,6 +42,8 @@ theme.font_small_size = dpi(6)
 theme.font_size       = dpi(8)
 theme.font_large_size = dpi(10)
 
+theme.element_size = specs.elementSize
+
 log('Font Small Size  (6): ' .. theme.font_small_size)
 log('Font Normal Size (8)' .. theme.font_size)
 log('Font Large Size  (10)' .. theme.font_large_size)
@@ -59,11 +62,9 @@ theme.font_light_small = theme.font_family .. ' Light ' .. theme.font_small_size
 theme.font_light       = theme.font_family .. ' Light ' .. theme.font_size
 theme.font_light_large = theme.font_family .. ' Light ' .. theme.font_large_size
 
-theme.hint_font = theme.font_light_small
-
+theme.hint_font    = theme.font_light_small
+theme.symbol_font  = theme.font_family .. ' Bold ' .. dpi(12)
 theme.widgets_font = theme.font_light
-
-theme.symbol_font = 'Noto Sans Symbol Bold ' .. dpi(16)
 
 theme.icon_theme = 'oomox-cobalt'
 
@@ -73,24 +74,26 @@ theme.icon_theme = 'oomox-cobalt'
 theme.accent = cobalt_accent_yellow
 
 -- General colors
-theme.success_fg = base0C
-theme.loaded_fg  = base0D
-theme.error_fg   = cobalt_bg
-theme.error_bg   = base08
+theme.success_fg = gtk_variable().success_fg_color
+theme.success_bg = gtk_variable().success_bg_color
+theme.error_fg   = gtk_variable().error_fg_color
+theme.error_bg   = gtk_variable().error_bg_color
+
+theme.loaded_fg = gtk_variable().selected_bg_color
 
 -- Warning colors
-theme.warning_fg = cobalt_bg
-theme.warning_bg = base0E
+theme.warning_fg = gtk_variable().warning_fg_color
+theme.warning_bg = gtk_variable().warning_bg_color
 
 -- Notification colors
-theme.notif_fg = cobalt_fg
-theme.notif_bg = cobalt_bg
+theme.notif_fg = gtk_variable().osd_fg_color
+theme.notif_bg = gtk_variable().osd_bg_color
 
 -- Background color
-theme.background = makeColorTransparent(gtk_variable().bg_color, '80')
+theme.background = makeColorTransparent(gtk_variable().bg_color, '60')
 
 -- Transparent
-theme.transparent = makeColorTransparent(gtk_variable().bg_color, '10')
+theme.transparent = makeColorTransparent(gtk_variable().bg_color, '20')
 
 -- Awesome icon
 theme.awesome_icon = theme_dir .. '/icons/awesome.png'
@@ -107,6 +110,8 @@ local awesome_overrides = function(theme)
 
   theme.bg_normal = cobalt_bg
   theme.bg_focus  = cobalt_accent_blue
+
+  theme.fg_urgent = makeColorTransparent(theme.warning_fg, '80')
   theme.bg_urgent = makeColorTransparent(theme.warning_bg, '80')
 
   -- System tray
@@ -158,8 +163,189 @@ local awesome_overrides = function(theme)
   theme.separator_color = theme.accent
 
   -- Taglist
+  --- The tag list main foreground (text) color.
+  -- @beautiful beautiful.taglist_fg_focus
+  -- @param[opt=fg_focus] color
+  -- @see gears.color
+  theme.taglist_fg_focus = theme.theme_selected_fg_color
+
+  --- The tag list main background color.
+  -- @beautiful beautiful.taglist_bg_focus
+  -- @param[opt=bg_focus] color
+  -- @see gears.color
+  theme.taglist_bg_focus = theme.theme_selected_bg_color
+
+  --- The tag list urgent elements foreground (text) color.
+  -- @beautiful beautiful.taglist_fg_urgent
+  -- @param[opt=fg_urgent] color
+  -- @see gears.color
+  theme.taglist_fg_urgent = makeColorTransparent(theme.bg_urgent, '99')
+
+  --- The tag list urgent elements background color.
+  -- @beautiful beautiful.taglist_bg_urgent
+  -- @param[opt=bg_urgent] color
+  -- @see gears.color
   theme.taglist_bg_urgent = makeColorTransparent(theme.bg_urgent, '99')
+
+  --- The tag list occupied elements background color.
+  -- @beautiful beautiful.taglist_bg_occupied
+  -- @param color
+  -- @see gears.color
+  theme.taglist_bg_occupied = makeColorTransparent(cobalt_window_bg, '80')
+
+  --- The tag list occupied elements foreground (text) color.
+  -- @beautiful beautiful.taglist_fg_occupied
+  -- @param color
+  -- @see gears.color
+  theme.taglist_fg_occupied = cobalt_highlight
+
+  --- The tag list empty elements background color.
+  -- @beautiful beautiful.taglist_bg_empty
+  -- @param color
+  -- @see gears.color
+  theme.taglist_bg_empty = makeColorTransparent(theme.bg_normal, '80')
+  theme.taglist_bg_empty = theme.transparent
+
+  --- The tag list empty elements foreground (text) color.
+  -- @beautiful beautiful.taglist_fg_empty
+  -- @param color
+  -- @see gears.color
+  theme.taglist_fg_empty = theme.fg_normal
+
+  --- The tag list volatile elements background color.
+  -- @beautiful beautiful.taglist_bg_volatile
+  -- @param color
+  -- @see gears.color
+  theme.taglist_bg_volatile = '#0f0'
+
+  --- The tag list volatile elements foreground (text) color.
+  -- @beautiful beautiful.taglist_fg_volatile
+  -- @param color
+  -- @see gears.color
+  theme.taglist_fg_volatile = '#fff'
+
+  --- The selected elements background image.
+  -- @beautiful beautiful.taglist_squares_sel
+  -- @param surface
+  -- @see gears.surface
+
+  --- The unselected elements background image.
+  -- @beautiful beautiful.taglist_squares_unsel
+  -- @param surface
+  -- @see gears.surface
+
+  --- The selected empty elements background image.
+  -- @beautiful beautiful.taglist_squares_sel_empty
+  -- @param surface
+  -- @see gears.surface
+
+  --- The unselected empty elements background image.
+  -- @beautiful beautiful.taglist_squares_unsel_empty
+  -- @param surface
+  -- @see gears.surface
+
+  --- If the background images can be resized.
+  -- @beautiful beautiful.taglist_squares_resize
+  -- @param boolean
+
+  --- Do not display the tag icons, even if they are set.
+  -- @beautiful beautiful.taglist_disable_icon
+  -- @param boolean
+  theme.taglist_disable_icon = true
+
+  --- The taglist font.
+  -- @beautiful beautiful.taglist_font
+  -- @param string
+  theme.taglist_font = theme.symbol_font
+
+  --- The space between the taglist elements.
+  -- @beautiful beautiful.taglist_spacing
+  -- @tparam[opt=0] number spacing The spacing between tags.
   theme.taglist_spacing = dpi(2)
+
+  --- The main shape used for the elements.
+  -- This will be the fallback for state specific shapes.
+  -- To get a shape for the whole taglist, use `wibox.container.background`.
+  -- @beautiful beautiful.taglist_shape
+  -- @tparam[opt=gears.shape.rectangle] gears.shape shape
+  -- @see gears.shape
+  -- @see beautiful.taglist_shape_empty
+  -- @see beautiful.taglist_shape_focus
+  -- @see beautiful.taglist_shape_urgent
+  -- @see beautiful.taglist_shape_volatile
+  theme.taglist_shape = gears.shape.rounded_rect
+
+  --- The shape elements border width.
+  -- @beautiful beautiful.taglist_shape_border_width
+  -- @param[opt=0] number
+  -- @see wibox.container.background
+  theme.taglist_shape_border_width = 1
+
+  --- The elements shape border color.
+  -- @beautiful beautiful.taglist_shape_border_color
+  -- @param color
+  -- @see gears.color
+  theme.taglist_shape_border_color = theme.accent
+
+  --- The shape used for the empty elements.
+  -- @beautiful beautiful.taglist_shape_empty
+  -- @tparam[opt=gears.shape.rectangle] gears.shape shape
+  -- @see gears.shape
+
+  --- The shape used for the empty elements border width.
+  -- @beautiful beautiful.taglist_shape_border_width_empty
+  -- @param[opt=0] number
+  -- @see wibox.container.background
+
+  --- The empty elements shape border color.
+  -- @beautiful beautiful.taglist_shape_border_color_empty
+  -- @param color
+  -- @see gears.color
+
+  --- The shape used for the selected elements.
+  -- @beautiful beautiful.taglist_shape_focus
+  -- @tparam[opt=gears.shape.rectangle] gears.shape shape
+  -- @see gears.shape
+
+  --- The shape used for the selected elements border width.
+  -- @beautiful beautiful.taglist_shape_border_width_focus
+  -- @param[opt=0] number
+  -- @see wibox.container.background
+
+  --- The selected elements shape border color.
+  -- @beautiful beautiful.taglist_shape_border_color_focus
+  -- @param color
+  -- @see gears.color
+
+  --- The shape used for the urgent elements.
+  -- @beautiful beautiful.taglist_shape_urgent
+  -- @tparam[opt=gears.shape.rectangle] gears.shape shape
+  -- @see gears.shape
+
+  --- The shape used for the urgent elements border width.
+  -- @beautiful beautiful.taglist_shape_border_width_urgent
+  -- @param[opt=0] number
+  -- @see wibox.container.background
+
+  --- The urgents elements shape border color.
+  -- @beautiful beautiful.taglist_shape_border_color_urgent
+  -- @param color
+  -- @see gears.color
+
+  --- The shape used for the volatile elements.
+  -- @beautiful beautiful.taglist_shape_volatile
+  -- @tparam[opt=gears.shape.rectangle] gears.shape shape
+  -- @see gears.shape
+
+  --- The shape used for the volatile elements border width.
+  -- @beautiful beautiful.taglist_shape_border_width_volatile
+  -- @param[opt=0] number
+  -- @see wibox.container.background
+
+  --- The volatile elements shape border color.
+  -- @beautiful beautiful.taglist_shape_border_color_volatile
+  -- @param color
+  -- @see gears.color
 
   -- Tasklist
   theme.tasklist_font = theme.font

@@ -7,12 +7,15 @@
 -- @author Pavel Makhov
 -- @copyright 2020 Pavel Makhov
 -------------------------------------------------
+log('Enter Module => awesome-wm-widgets/cpu-widget/cpu-widget.lua')
 
 local awful = require("awful")
 local watch = require("awful.widget.watch")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local gears = require("gears")
+
+local dpi = require('beautiful.xresources').apply_dpi
 
 local CMD = [[sh -c "grep '^cpu.' /proc/stat; ps -eo '%p|%c|%C|' -o "%mem" -o '|%a' --sort=-%cpu ]]
     .. [[| head -11 | tail -n +2"]]
@@ -25,7 +28,7 @@ local WIDGET_DIR = HOME_DIR .. '/.config/awesome/awesome-wm-widgets/cpu-widget'
 
 local cpu_widget = {}
 local cpu_rows = {
-    spacing = 4,
+    spacing = dpi(4),
     layout = wibox.layout.fixed.vertical,
 }
 local is_update = true
@@ -55,9 +58,10 @@ end
 local function create_textbox(args)
     return wibox.widget{
         text = args.text,
+        font = beautiful.font_small,
         align = args.align or 'left',
         markup = args.markup,
-        forced_width = args.forced_width or 40,
+        forced_width = args.forced_width or dpi(40),
         widget = wibox.widget.textbox
     }
 end
@@ -69,7 +73,7 @@ local function create_process_header(params)
         {
             create_textbox{markup = '<b>%CPU</b>'},
             create_textbox{markup = '<b>%MEM</b>'},
-            params.with_action_column and create_textbox{forced_width = 20} or nil,
+            params.with_action_column and create_textbox{forced_width = dpi(8)} or nil,
             layout = wibox.layout.align.horizontal
         },
         layout  = wibox.layout.ratio.horizontal
@@ -84,8 +88,9 @@ local function create_kill_process_button()
         {
             id = "icon",
             image = WIDGET_DIR .. '/window-close-symbolic.svg',
-            resize = false,
-            opacity = 0.1,
+            resize = true,
+            opacity = 0.5,
+            forced_height = dpi(10),
             widget = wibox.widget.imagebox
         },
         widget = wibox.container.background
@@ -96,9 +101,9 @@ local function worker(user_args)
 
     local args = user_args or {}
 
-    local width = args.width or 50
-    local step_width = args.step_width or 2
-    local step_spacing = args.step_spacing or 1
+    local width = args.width or dpi(50)
+    local step_width = args.step_width or dpi(2)
+    local step_spacing = args.step_spacing or dpi(1)
     local color = args.color or beautiful.fg_normal
     local background_color = args.background_color or "#00000000"
     local enable_kill_button = args.enable_kill_button or false
@@ -127,10 +132,11 @@ local function worker(user_args)
         ontop = true,
         visible = false,
         shape = gears.shape.rounded_rect,
-        border_width = 1,
-        border_color = beautiful.bg_normal,
-        maximum_width = 600,
-        offset = { y = 5 },
+        border_width = beautiful.popup_border_width,
+        border_color = beautiful.popup_border,
+        bg = beautiful.popup_bg,
+        maximum_width = dpi(600),
+        offset = { y = dpi(5) },
         widget = {}
     }
 
@@ -163,7 +169,7 @@ local function worker(user_args)
             reflection = {horizontal = true},
             layout = wibox.container.mirror
         },
-        bottom = 2,
+        bottom = dpi(2),
         color = background_color,
         widget = wibox.container.margin
     }
@@ -221,14 +227,14 @@ local function worker(user_args)
                         {
                             max_value = 100,
                             value = diff_usage,
-                            forced_height = 20,
-                            forced_width = 150,
-                            paddings = 1,
-                            margins = 4,
-                            border_width = 1,
+                            forced_height = dpi(20),
+                            forced_width = dpi(150),
+                            paddings = dpi(1),
+                            margins = dpi(1),
+                            border_width = dpi(1),
                             border_color = beautiful.bg_focus,
                             background_color = beautiful.bg_normal,
-                            bar_border_width = 1,
+                            bar_border_width = dpi(1),
                             bar_border_color = beautiful.bg_focus,
                             color = "linear:150,0:0,0:0,#D08770:0.3,#BF616A:0.6," .. beautiful.fg_normal,
                             widget = wibox.widget.progressbar,
@@ -268,8 +274,8 @@ local function worker(user_args)
                         local row = wibox.widget {
                             {
                                 pid_name_rest,
-                                top = 4,
-                                bottom = 4,
+                                top = dpi(4),
+                                bottom = dpi(4),
                                 widget = wibox.container.margin
                             },
                             widget = wibox.container.background
@@ -317,7 +323,7 @@ local function worker(user_args)
                     cpu_rows,
                     {
                         orientation = 'horizontal',
-                        forced_height = 15,
+                        forced_height = dpi(15),
                         color = beautiful.bg_focus,
                         widget = wibox.widget.separator
                     },
@@ -325,7 +331,7 @@ local function worker(user_args)
                     process_rows,
                     layout = wibox.layout.fixed.vertical,
                 },
-                margins = 8,
+                margins = dpi(8),
                 widget = wibox.container.margin
             }
         end)

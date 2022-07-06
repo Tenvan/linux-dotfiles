@@ -38,8 +38,8 @@ local function worker(user_args)
     visible = false,
     widget = {
       widget = wibox.widget.piechart,
-      forced_height = dpi(200),
-      forced_width = dpi(400),
+      forced_height = dpi(400),
+      forced_width = dpi(600),
       colors = {
         color_used,
         color_free,

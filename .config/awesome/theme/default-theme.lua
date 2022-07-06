@@ -13,6 +13,48 @@ local titlebar_icon_path = theme_dir .. '/icons/titlebar/'
 local tip = titlebar_icon_path
 local tie = 'png'
 
+-- GTK Variablen
+-- {"bg_color", "theme_bg_color"},
+-- {"fg_color", "theme_fg_color"},
+-- {"base_color", "theme_base_color"},
+-- {"text_color", "theme_text_color"},
+-- {"selected_bg_color", "theme_selected_bg_color"},
+-- {"selected_fg_color", "theme_selected_fg_color"},
+-- --
+-- {"tooltip_bg_color", "theme_tooltip_bg_color", "bg_color"},
+-- {"tooltip_fg_color", "theme_tooltip_fg_color", "fg_color"},
+-- {"osd_bg_color", "osd_bg", "tooltip_bg_color"},
+-- {"osd_fg_color", "osd_fg", "tooltip_fg_color"},
+-- {"osd_border_color", "osd_borders_color", "osd_fg_color"},
+-- {"menubar_bg_color", "menubar_bg_color", "bg_color"},
+-- {"menubar_fg_color", "menubar_fg_color", "fg_color"},
+-- --
+-- {"button_bg_color", "button_bg_color", "bg_color"},
+-- {"button_fg_color", "button_fg_color", "fg_color"},
+-- {"header_button_bg_color", "header_button_bg_color", "menubar_bg_color"},
+-- {"header_button_fg_color", "header_button_fg_color", "menubar_fg_color"},
+-- --
+-- {"wm_bg_color", "wm_bg", "menubar_bg_color"},
+-- {"wm_border_focused_color", "wm_border_focused", "selected_bg_color"},
+-- {"wm_border_unfocused_color", "wm_border_unfocused", "wm_border", "menubar_bg_color"},
+-- {"wm_title_focused_color", "wm_title_focused", "wm_title", "selected_fg_color"},
+-- {"wm_title_unfocused_color", "wm_title_unfocused", "wm_unfocused_title", "menubar_fg_color"},
+-- {"wm_icons_focused_color", "wm_icons_focused", "wm_title_focused_color", "selected_fg_color"},
+-- {"wm_icons_unfocused_color", "wm_icons_unfocused", "wm_title_unfocused_color", "menubar_fg_color"},
+-- --
+-- {"error_color", "error_color"},
+-- {"error_bg_color", "error_bg_color", "error_color"},
+-- {"error_fg_color", "error_fg_color", "selected_fg_color"},
+-- {"error_color", "error_color", "error_bg_color"},
+-- {"warning_color", "warning_color"},
+-- {"warning_bg_color", "warning_bg_color", "warning_color"},
+-- {"warning_fg_color", "warning_fg_color", "selected_fg_color"},
+-- {"warning_color", "warning_color", "warning_bg_color"},
+-- {"success_color", "success_color"},
+-- {"success_bg_color", "success_bg_color", "success_color"},
+-- {"success_fg_color", "success_fg_color", "selected_fg_color"},
+-- {"success_color", "success_color", "success_bg_color"},
+
 -- Create theme table
 local theme = {}
 

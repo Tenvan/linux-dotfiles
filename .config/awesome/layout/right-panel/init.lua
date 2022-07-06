@@ -7,37 +7,39 @@ local wibox = require('wibox')
 local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
 
-local panel_visible = false
-
-local right_panel = function(s)
+--Erstellt Right Panel
+---@param pScreen screen
+---@return dock
+local right_panel = function(pScreen)
   -- Set right panel geometry
   local panel_width = dpi(350)
-  local panel_x = s.geometry.x + s.geometry.width - panel_width
+  local panel_x = pScreen.geometry.x + pScreen.geometry.width - panel_width
 
   local panel = wibox {
     type = 'dock',
     ontop = true,
-    screen = s,
-    visible = false,
+    screen = pScreen,
     width = panel_width,
-    height = s.geometry.height,
+    height = pScreen.geometry.height,
     x = panel_x,
-    y = s.geometry.y,
+    y = pScreen.geometry.y,
     bg = beautiful.background,
-    fg = beautiful.fg_normal
+    fg = beautiful.fg_normal,
+    visible = false,
   }
 
   panel.opened = false
 
-  s.backdrop_rdb = wibox {
+  pScreen.backdrop_rdb = wibox {
     ontop = true,
-    screen = s,
+    screen = pScreen,
     bg = beautiful.transparent,
-    type = 'utility',
-    x = s.geometry.x,
-    y = s.geometry.y,
-    width = s.geometry.width,
-    height = s.geometry.height
+    fg = beautiful.fg_normal,
+    type = 'splash',
+    x = pScreen.geometry.x,
+    y = pScreen.geometry.y,
+    width = pScreen.geometry.width,
+    height = pScreen.geometry.height
   }
 
   panel:struts {
@@ -46,7 +48,6 @@ local right_panel = function(s)
 
   local open_panel = function()
     local focused = awful.screen.focused()
-    panel_visible = true
 
     focused.backdrop_rdb.visible = true
     focused.right_panel.visible = true
@@ -56,7 +57,6 @@ local right_panel = function(s)
 
   local close_panel = function()
     local focused = awful.screen.focused()
-    panel_visible = false
 
     focused.right_panel.visible = false
     focused.backdrop_rdb.visible = false
@@ -90,7 +90,7 @@ local right_panel = function(s)
     end
   end
 
-  s.backdrop_rdb:buttons(awful.util.table.join(awful.button({}, 1, function()
+  pScreen.backdrop_rdb:buttons(awful.util.table.join(awful.button({}, 1, function()
     panel:toggle()
   end)))
 
@@ -145,7 +145,7 @@ local right_panel = function(s)
         {
           id = 'notif_id',
           visible = false,
-          require('widget.notif-center')(s),
+          require('widget.notif-center')(pScreen),
           layout = wibox.layout.fixed.vertical
         }
       }

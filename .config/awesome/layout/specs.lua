@@ -5,16 +5,18 @@ log('Enter Module => layout/specs.lua')
 local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
 
+local elementSize = dpi(40)
 
 return {
+  elementSize = elementSize,
   topPanel = {
-    height = dpi(40),
+    height = elementSize,
   },
   leftPanel = {
-    actionBarWidth = dpi(40),
+    actionBarWidth = elementSize,
     contentWidth = dpi(350)
   },
   bottomPanel = {
-    height = dpi(32),
+    height = elementSize,
   },
 }

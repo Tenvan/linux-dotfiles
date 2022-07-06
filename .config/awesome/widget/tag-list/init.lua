@@ -4,10 +4,12 @@ local client = client
 
 local awful = require('awful')
 local wibox = require('wibox')
+local beautiful = require('beautiful')
+local gears = require('gears')
+local helpers = require('helpers')
+
 local dpi = require('beautiful').xresources.apply_dpi
 local clickable_container = require('widget.clickable-container')
-local icons = require('theme.icons')
-local beautiful = require('beautiful')
 
 local keys = require('configuration.keys.mod')
 local modkey = keys.mod_key
@@ -41,13 +43,24 @@ local function create_buttons(buttons, object)
   end
 end
 
+---@param w any The widget.
+---@param buttons table
+---@param label func Function to generate label parameters from an object. The function gets passed an object from objects, and has to return text, bg, bg_image, icon.
+---@param data table Current data/cache, indexed by objects.
+---@param objects table Objects to be displayed / updated.
 local function list_update(w, buttons, label, data, objects)
   -- update the widgets, creating them if needed
+  dump(buttons, 'tag_list.buttons(data)', 1)
+  dump(data, 'tag_list.list_update(data)', 1)
+  dump(objects, 'tag_list.list_update(objects)', 1)
+
   w:reset()
+
   for i, o in ipairs(objects) do
 
     local cache = data[o]
     local ib, tb, bgb, tbm, l, bg_clickable
+
     if cache then
       ib = cache.ib
       tb = cache.tb
@@ -60,10 +73,6 @@ local function list_update(w, buttons, label, data, objects)
       tbm = wibox.widget {
         tb,
         margins = dpi(1),
-        -- left = dpi(5),
-        -- right = dpi(5),
-        -- top = dpi(12),
-        -- bottom = dpi(12),
         widget = wibox.container.margin,
       }
       l = wibox.layout.fixed.horizontal()
@@ -91,7 +100,7 @@ local function list_update(w, buttons, label, data, objects)
     if text == nil or text == '' then
       tbm:set_margins(0)
     else
-      if not tb:set_markup_silently("<span font_desc='".. beautiful.symbol_font .. "'>" .. o.text .. '</span>') then
+      if not tb:set_markup_silently("<span font_desc='" .. beautiful.taglist_font .. "'>" .. o.text .. '</span>') then
         tb:set_markup('<i>&lt;Invalid text&gt;</i>')
       end
     end
@@ -115,26 +124,17 @@ local function list_update(w, buttons, label, data, objects)
   end
 end
 
-local tag_list = function(args)
-  dump(args, 'args', 3)
+local tag_box = helpers.vertical_pad(dpi(40))
 
-  return awful.widget.taglist(
-    args,
-    awful.widget.taglist.filter.all,
-    awful.util.table.join(
+local tag_list = function(args)
+  return awful.widget.taglist {
+    screen = args,
+    filter = awful.widget.taglist.filter.all,
+    buttons = awful.util.table.join(
       awful.button({}, 1,
         function(t)
           t:view_only()
         end),
-      awful.button(
-        { modkey }, 1,
-        function(t)
-          if _G.client.focus then
-            _G.client.focus:move_to_tag(t)
-            t:view_only()
-          end
-        end
-      ),
       awful.button({}, 3, awful.tag.viewtoggle),
       awful.button(
         { modkey }, 3, function(t)
@@ -154,10 +154,68 @@ local tag_list = function(args)
       end
       )
     ),
-    {},
-    list_update,
-    wibox.layout.fixed.vertical()
-  )
+
+    update_function_old = list_update,
+
+    widget_template = {
+      {
+        {
+          {
+            {
+              {
+                id     = 'index_role',
+                widget = wibox.widget.textbox,
+              },
+              halign = 'center',
+              valign = 'center',
+              layout = wibox.container.place,
+            },
+            forced_height = beautiful.element_size,
+            forced_width = beautiful.element_size,
+            widget = wibox.container.background,
+          },
+          {
+            id     = 'icon_role',
+            -- margins = dpi(2),
+            widget = wibox.container.margin,
+          },
+          layout = wibox.layout.fixed.horizontal,
+        },
+        widget = wibox.container.margin
+      },
+      id = 'background_role',
+      widget = wibox.container.background,
+
+      -- Add support for hover colors and an index label
+      create_callback = function(self, c3, index, objects) --luacheck: no unused args
+        self:get_children_by_id('index_role')[1].markup = "<span font_desc='" ..
+          beautiful.taglist_font .. "'>" .. index .. '</span>'
+
+        self:connect_signal('mouse::enter', function()
+          if self.bg ~= beautiful.accent then
+            self.backup_bg  = self.bg
+            self.backup_fg  = self.fg
+            self.has_backup = true
+          end
+          self.bg = beautiful.accent .. '99'
+          self.fg = beautiful.bg_normal
+        end)
+
+        self:connect_signal('mouse::leave', function()
+          if self.has_backup then
+            self.bg = self.backup_bg
+            self.fg = self.backup_fg
+          end
+        end)
+      end,
+
+      update_callback = function(self, c3, index, objects) --luacheck: no unused args
+        self:get_children_by_id('index_role')[1].markup = "<span font_desc='" ..
+          beautiful.taglist_font .. "'>" .. index .. '</span>'
+      end,
+    },
+    layout = wibox.layout.fixed.vertical()
+  }
 end
 
 return tag_list
