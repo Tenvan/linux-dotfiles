@@ -269,6 +269,9 @@ ruled.client.connect_signal('request::rules', function()
     rule = {
       class = 'jetbrains-.*'
     },
+    except = {
+      name = 'splash'
+    },
     properties = {
       screen = screen.primary,
       tag = screen[screen.primary].tags[1],
@@ -382,8 +385,21 @@ end)
 
 -- Normally we'd do this with a rule, but some program like spotify doesn't set its class or name
 -- until after it starts up, so we need to catch that signal.
+---comment
+---@param c any
 client.connect_signal('property::class', function(c)
+  log('spawn::property::class')
+  dump({
+    name = c.name,
+    class = c.class,
+    instance = c.instance,
+    type = c.type,
+    role = c.role,
+  }, 'client:properties')
+
   if c.class == 'Spotify' then
+    log('Spotify detected')
+
     local window_mode = false
 
     -- Check if fullscreen or window mode
@@ -417,13 +433,15 @@ client.connect_signal('property::class', function(c)
       -- Move the instance to specified tag on this screen
       local t = awful.tag.find_by_name(awful.screen.focused(), '5')
       c:move_to_tag(t)
+      c:move_to_screen(2)
+
       t:view_only()
 
       -- Fullscreen mode if not window mode
       if not window_mode then
         c.fullscreen = true
       else
-        c.floating = true
+        c.floating = false
         awful.placement.centered(c, {
           honor_workarea = true
         })

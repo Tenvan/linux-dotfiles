@@ -41,12 +41,15 @@ local theme = {}
 theme.font_small_size = dpi(6)
 theme.font_size       = dpi(8)
 theme.font_large_size = dpi(10)
+theme.font_big_size = dpi(14)
 
 theme.element_size = specs.elementSize
 
 log('Font Small Size  (6): ' .. theme.font_small_size)
 log('Font Normal Size (8)' .. theme.font_size)
 log('Font Large Size  (10)' .. theme.font_large_size)
+log('Font Big Size  (10)' .. theme.font_big_size)
+
 
 theme.font_family = 'Inter '
 
@@ -84,10 +87,6 @@ theme.loaded_fg = gtk_variable().selected_bg_color
 -- Warning colors
 theme.warning_fg = gtk_variable().warning_fg_color
 theme.warning_bg = gtk_variable().warning_bg_color
-
--- Notification colors
-theme.notif_fg = gtk_variable().osd_fg_color
-theme.notif_bg = gtk_variable().osd_bg_color
 
 -- Background color
 theme.background = makeColorTransparent(gtk_variable().bg_color, '60')
@@ -354,6 +353,11 @@ local awesome_overrides = function(theme)
 
   -- Notification
   theme.notification_position = 'bottom_right'
+  theme.notification_icon_size = dpi(256)
+  
+  -- Notification colors
+  theme.notif_fg = gtk_variable().osd_fg_color
+  theme.notif_bg = gtk_variable().osd_bg_color
 
   -- Hotkey popup
 

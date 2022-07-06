@@ -3,6 +3,8 @@ local dump = require('utilities.debug').dump
 log('Enter Module => configuration/config.lua')
 
 local config = {
+  debug_mode = false,
+  sounds = false,
   widget = {
     email = {
       -- Email address

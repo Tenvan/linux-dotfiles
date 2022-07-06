@@ -685,13 +685,17 @@ local global_keys = awful.util.table.join(
   -- ░▀▀▀░░▀░░▀▀▀░░▀░░▀▀▀░▀░▀░░░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
   awful.key({ modkey, altkey }, 't', function()
     notify('Test Nachricht 1',
-      'Dies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.'
+      '<b>LOW</b>\nDies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.'
       ,
-      'warning', true, '/usr/share/icons/hicolor/scalable/status/tablet.svg')
-    notify('Test Nachricht',
-      'Dies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.'
+      'low', true, '/usr/share/icons/hicolor/scalable/status/tablet.svg')
+    notify('Test Nachricht 2',
+      '<b>NORMAL</b>\nDies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.'
       ,
-      'critical', true, 'avatar-default')
+      'normal', true, '/usr/share/icons/hicolor/scalable/status/tablet.svg')
+    notify('Test Nachricht 3',
+      '<b>CRITICAL</b>\nDies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.'
+      ,
+      'critical', true, '/usr/share/icons/hicolor/scalable/status/tablet.svg')
   end, {
     description = 'Test Benachrichtigung',
     group = kgSystem

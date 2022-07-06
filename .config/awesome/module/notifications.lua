@@ -7,18 +7,21 @@ local ruled = require('ruled')
 local naughty = require('naughty')
 local menubar = require('menubar')
 local beautiful = require('beautiful')
+
 local dpi = beautiful.xresources.apply_dpi
+local makeColorTransparent = require('utilities.utils').makeColorTransparent
 
 local clickable_container = require('widget.clickable-container')
 
 -- Defaults
 naughty.config.defaults.ontop = true
-naughty.config.defaults.icon_size = dpi(32)
+naughty.config.defaults.icon_size = beautiful.notification_icon_size
 naughty.config.defaults.timeout = 5
+naughty.config.defaults.implicit_timeout = 5
 naughty.config.defaults.title = 'System Notification'
 naughty.config.defaults.margin = dpi(16)
-naughty.config.defaults.border_width = 0
-naughty.config.defaults.position = 'top_right'
+naughty.config.defaults.border_width = beautiful.tooltip_border_width
+naughty.config.defaults.position = beautiful.notification_position
 naughty.config.defaults.shape = function(cr, w, h)
   gears.shape.rounded_rect(cr, w, h, dpi(6))
 end
@@ -54,16 +57,17 @@ naughty.config.icon_formats = { 'svg', 'png', 'jpg', 'gif' }
 ruled.notification.connect_signal(
   'request::rules',
   function()
+    log('spawn::request::rules -> module/notifications.lua')
     -- Critical notifs
     ruled.notification.append_rule {
       rule       = { urgency = 'critical' },
       properties = {
-        font             = beautiful.font,
-        bg               = '#ff0000',
-        fg               = '#ffffff',
+        font             = beautiful.font_bold,
+        bg               = beautiful.error_bg,
+        fg               = beautiful.error_fg,
         margin           = dpi(16),
         position         = 'top_right',
-        implicit_timeout = 0
+        implicit_timeout = 15
       }
     }
 
@@ -75,8 +79,7 @@ ruled.notification.connect_signal(
         bg               = beautiful.transparent,
         fg               = beautiful.fg_normal,
         margin           = dpi(16),
-        position         = 'top_right',
-        implicit_timeout = 5
+        implicit_timeout = 10
       }
     }
 
@@ -88,8 +91,21 @@ ruled.notification.connect_signal(
         bg               = beautiful.transparent,
         fg               = beautiful.fg_normal,
         margin           = dpi(16),
-        position         = 'top_right',
-        implicit_timeout = 5
+        implicit_timeout = 5,
+        icon_size        = 200
+      }
+    }
+
+    -- Spotify notifs
+    ruled.notification.append_rule {
+      rule       = { app_name = 'Spotify' },
+      properties = {
+        font             = beautiful.font,
+        bg               = makeColorTransparent(beautiful.success_bg, '80'),
+        fg               = beautiful.success_fg,
+        implicit_timeout = 20,
+        margin           = dpi(16),
+        icon_size        = dpi(200)
       }
     }
   end
@@ -99,6 +115,7 @@ ruled.notification.connect_signal(
 naughty.connect_signal(
   'request::display_error',
   function(message, startup)
+    log('spawn::request::display_error -> module/notifications.lua')
     naughty.notification {
       urgency  = 'critical',
       title    = 'Oops, an error happened' .. (startup and ' during startup!' or '!'),
@@ -113,6 +130,8 @@ naughty.connect_signal(
 naughty.connect_signal(
   'request::icon',
   function(n, context, hints)
+    log('spawn::request::icon -> module/notifications.lua')
+
     if context ~= 'app_icon' then return end
 
     local path = menubar.utils.lookup_icon(hints.app_icon) or
@@ -128,6 +147,17 @@ naughty.connect_signal(
 naughty.connect_signal(
   'request::display',
   function(n)
+    log('spawn::request::display -> module/notifications.lua')
+    dump({
+      text = n.text,
+      icon = n.icon,
+      timeout = n.timeout,
+      title = n.title,
+      app_name = n.app_name,
+      urgency = n.urgency,
+      icon_size = n.icon_size,
+    }, 'notification', 1)
+
     -- Actions Blueprint
     local actions_template = wibox.widget {
       notification = n,
@@ -193,7 +223,7 @@ naughty.connect_signal(
                       {
                         {
                           {
-                            resize_strategy = 'center',
+                            -- resize_strategy = 'scale',
                             widget = naughty.widget.icon,
                           },
                           margins = beautiful.notification_margin,

@@ -3,6 +3,7 @@ log('Enter Module => configuration/signals.lua')
 local awesome, client, screen = awesome, client, screen
 
 local beautiful = require('beautiful')
+local config = require('configuration.config')
 
 local notify = require('utilities.notify')
 local sound = require('utilities.sound')
@@ -34,26 +35,34 @@ awesome.connect_signal('debug::deprecation', function(hint, see, args)
 end)
 
 awesome.connect_signal('spawn::initiated', function(arg)
-  -- notify("Awesome", "'spawn::initiated' event raised: ".. arg.id, 'info')
-  log("'awesome:spawn::initiated' event raised: " .. arg.id)
+  if config.debug_mode then
+    notify('Awesome', "'spawn::initiated' event raised: " .. arg.id, 'info')
+    log("'awesome:spawn::initiated' event raised: " .. arg.id)
+  end
 end)
 
 awesome.connect_signal('spawn::changed', function(arg)
-  -- notify("Awesome", "'spawn::changed' event raised: ".. arg.id, 'info')
-  log("'awesome:spawn::changed' event raised: " .. arg.id)
+  if config.debug_mode then
+    notify('Awesome', "'spawn::changed' event raised: " .. arg.id, 'info')
+    log("'awesome:spawn::changed' event raised: " .. arg.id)
+  end
 end)
 
 awesome.connect_signal('spawn::timeout', function(arg)
-  -- notify("Awesome", "'spawn::timeout' event raised: ".. arg.id, 'info')
-  log("'awesome:spawn::timeout' event raised: " .. arg.id)
+  if config.debug_mode then
+    notify('Awesome', "'spawn::timeout' event raised: " .. arg.id, 'info')
+    log("'awesome:spawn::timeout' event raised: " .. arg.id)
+  end
 end)
 
 awesome.connect_signal('spawn::completed', function(arg)
-  -- notify("Awesome", "'spawn::completed' event raised: ".. arg.id, 'info')
-  log("'awesome:spawn::completed' event raised: " .. arg.id)
+  if config.debug_mode then
+    notify('Awesome', "'spawn::completed' event raised: " .. arg.id, 'info')
+    log("'awesome:spawn::completed' event raised: " .. arg.id)
+  end
 end)
 
 awesome.connect_signal('startup', function()
   log("'awesome:startup' event raised: ")
-  -- sound('desktop-login')
+  sound('desktop-login')
 end)
