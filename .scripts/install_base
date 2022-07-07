@@ -333,7 +333,8 @@ fi
 install pop-gtk-theme
 install adwaita-qt5 
 install themix-full-git
-install themix-plugin-base16-git    
+install themix-plugin-base16-git
+install tela-icon-theme
 
 # icons
 if [ $IS_MANJARO = true ]; then

@@ -1,4 +1,4 @@
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local gears = require('gears')
 local wibox = require('wibox')
@@ -30,24 +30,22 @@ end
 naughty.config.padding = dpi(8)
 naughty.config.spacing = dpi(8)
 naughty.config.icon_dirs = {
-  '/usr/share/icons/Tela',
-  '/usr/share/icons/Tela-blue-dark',
-  '/usr/share/icons/Papirus/',
-  '/usr/share/icons/la-capitaine-icon-theme/',
-  '/usr/share/icons/gnome/',
-  '/usr/share/icons/hicolor/',
   '/usr/share/pixmaps/',
-  '/usr/share/icons/Adwaita/32x32/actions/',
-  '/usr/share/icons/Adwaita/32x32/apps/',
-  '/usr/share/icons/Adwaita/32x32/categories/',
-  '/usr/share/icons/Adwaita/32x32/devices/',
-  '/usr/share/icons/Adwaita/32x32/emblems/',
-  '/usr/share/icons/Adwaita/32x32/emotes/',
-  '/usr/share/icons/Adwaita/32x32/legacy/',
-  '/usr/share/icons/Adwaita/32x32/mimetypes/',
-  '/usr/share/icons/Adwaita/32x32/places/',
-  '/usr/share/icons/Adwaita/32x32/status/',
-  '/usr/share/icons/Adwaita/32x32/ui/'
+  '/usr/share/icons/Tela-blue-dark',
+  '/usr/share/icons/Tela',
+  '/usr/share/icons/Papirus-Dark/',
+  '/usr/share/icons/Papirus/',
+  '/usr/share/icons/Papirus-Dark/32x32/actions/',
+  '/usr/share/icons/Papirus-Dark/32x32/apps/',
+  '/usr/share/icons/Papirus-Dark/32x32/categories/',
+  '/usr/share/icons/Papirus-Dark/32x32/devices/',
+  '/usr/share/icons/Papirus-Dark/32x32/emblems/',
+  '/usr/share/icons/Papirus-Dark/32x32/emotes/',
+  '/usr/share/icons/Papirus-Dark/32x32/legacy/',
+  '/usr/share/icons/Papirus-Dark/32x32/mimetypes/',
+  '/usr/share/icons/Papirus-Dark/32x32/places/',
+  '/usr/share/icons/Papirus-Dark/32x32/status/',
+  '/usr/share/icons/Papirus-Dark/32x32/ui/'
 }
 naughty.config.icon_formats = { 'svg', 'png', 'jpg', 'gif' }
 
@@ -143,7 +141,9 @@ naughty.connect_signal(
 naughty.connect_signal(
   'request::icon',
   function(n, context, hints)
-    log('spawn::request::icon -> module/notifications.lua')
+    log('spawn::request::icon> module/notifications.lua')
+    log('context: ' .. context)
+    log('icon: ' .. (hints.app_icon or '(kein Icon)'))
 
     if context ~= 'app_icon' then return end
 
@@ -153,6 +153,8 @@ naughty.connect_signal(
     if path then
       n.icon = path
     end
+
+    log('result icon: ' .. n.icon)
   end
 )
 
@@ -170,6 +172,9 @@ naughty.connect_signal(
       urgency = n.urgency,
       icon_size = n.icon_size,
     }, 'notification', 1)
+
+    local path = menubar.utils.lookup_icon(n.icon)
+    dump(path, 'lookup icon', 3)
 
     -- Actions Blueprint
     local actions_template = wibox.widget {

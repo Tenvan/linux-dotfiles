@@ -69,7 +69,7 @@ theme.hint_font    = theme.font_light_small
 theme.symbol_font  = theme.font_family .. ' Bold ' .. dpi(12)
 theme.widgets_font = theme.font_light
 
-theme.icon_theme = 'oomox-cobalt'
+theme.icon_theme = 'Papirus-Dark'
 
 ---- Color Definitions
 

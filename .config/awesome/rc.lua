@@ -74,3 +74,5 @@ screen.connect_signal(
 		end
 	end
 )
+
+require("utilities.icon-utils")

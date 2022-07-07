@@ -691,7 +691,7 @@ local global_keys = awful.util.table.join(
     notify('Test Nachricht 2',
       '<b>NORMAL</b>\nDies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.'
       ,
-      'normal', true, '/usr/share/icons/hicolor/scalable/status/tablet.svg')
+      'normal', true, 'audio-card')
     notify('Test Nachricht 3',
       '<b>CRITICAL</b>\nDies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.'
       ,
