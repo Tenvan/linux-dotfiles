@@ -38,10 +38,10 @@ local base0F = '#E8E8E8' -- brown
 local theme = {}
 
 -- Font
-theme.font_small_size = dpi(6)
-theme.font_size       = dpi(8)
-theme.font_large_size = dpi(10)
-theme.font_big_size = dpi(14)
+theme.font_small_size = dpi(8)
+theme.font_size       = dpi(10)
+theme.font_large_size = dpi(12)
+theme.font_big_size = dpi(16)
 
 theme.element_size = specs.elementSize
 
@@ -79,7 +79,7 @@ theme.accent = cobalt_accent_yellow
 -- General colors
 theme.success_fg = gtk_variable().success_fg_color
 theme.success_bg = gtk_variable().success_bg_color
-theme.error_fg   = gtk_variable().error_fg_color
+theme.error_fg   = theme.fg -- gtk_variable().error_fg_color
 theme.error_bg   = gtk_variable().error_bg_color
 
 theme.loaded_fg = gtk_variable().selected_bg_color
@@ -435,6 +435,11 @@ local awesome_overrides = function(theme)
 
   theme.system_white_dark = base07
   theme.system_white_light = base0F
+
+  -- Application colors
+  theme.teams_bg = "#444791"
+  theme.spotify_bg = theme.success_bg
+
 end
 
 awesome_overrides(theme)

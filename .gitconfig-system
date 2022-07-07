@@ -300,13 +300,18 @@
 	helper = /usr/bin/git-credential-manager-core
 	credentialStore = secretservice
 
+# Zugang mit SSH (nicht gleichzeitig mit HTTPS verwenden !)
 [url "ssh://git@gitlab.management.ihr.infoniqa.local/"]
-	insteadOf = https://gitlab.ihr.infoniqa.local/
-	insteadOf = http://gitlab.ihr.infoniqa.local/
-
-[url "ssh://git@gitlab.management.ihr.infoniqa.com/"]
-	insteadOf = https://gitlab.ihr.infoniqa.com/
 	insteadOf = http://gitlab.ihr.infoniqa.com/
+	insteadOf = https://gitlab.ihr.infoniqa.com/
+    insteadOf = http://gitlab.ihr.infoniqa.local/
+    insteadOf = https://gitlab.ihr.infoniqa.local/
+    insteadOf = ssh://git@gitlab.management.ihr.infoniqa.com/      
+
+# Zugang mit HTTPS (nicht gleichzeitig mit SSH verwenden !)
+# [url "https://gitlab.ihr.infoniqa.com/"]
+    # insteadOf = http://gitlab.ihr.infoniqa.local/
+    # insteadOf = https://gitlab.ihr.infoniqa.local/
 
 # [url "ssh://git@github.com/"]
 	# insteadOf = https://github.com/

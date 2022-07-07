@@ -101,8 +101,21 @@ ruled.notification.connect_signal(
       rule       = { app_name = 'Spotify' },
       properties = {
         font             = beautiful.font,
-        bg               = makeColorTransparent(beautiful.success_bg, '80'),
-        fg               = beautiful.success_fg,
+        bg               = makeColorTransparent(beautiful.spotify_bg, '80'),
+        fg               = beautiful.fg,
+        implicit_timeout = 20,
+        margin           = dpi(16),
+        icon_size        = dpi(200)
+      }
+    }
+
+    -- Teams notifs
+    ruled.notification.append_rule {
+      rule       = { app_name = 'teams-for-linux' },
+      properties = {
+        font             = beautiful.font,
+        bg               = makeColorTransparent(beautiful.teams_bg, '80'),
+        fg               = beautiful.fg,
         implicit_timeout = 20,
         margin           = dpi(16),
         icon_size        = dpi(200)

@@ -255,7 +255,19 @@ ruled.client.connect_signal('request::rules', function()
   -- Sandboxes and VMs
   ruled.client.append_rule {
     rule_any = {
-      class = { 'Virt-manager', 'VirtualBox Manage', 'VirtualBox Machine', 'Gnome-boxes', 'Virt-manager' }
+      class = { 'Virt-manager', 'VirtualBox Manage', 'VirtualBox Machine', 'Gnome-boxes' }
+    },
+    properties = {
+      screen = screen.primary,
+      tag = screen[screen.primary].tags[5],
+      switch_to_tags = true
+    }
+  }
+
+  -- Remmina and other Remotes
+  ruled.client.append_rule {
+    rule_any = {
+      class = { 'org.remmina.Remmina' }
     },
     properties = {
       screen = screen.primary,
