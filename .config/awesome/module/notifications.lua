@@ -12,6 +12,7 @@ local dpi = beautiful.xresources.apply_dpi
 local makeColorTransparent = require('utilities.utils').makeColorTransparent
 
 local clickable_container = require('widget.clickable-container')
+local iconUtils = require('utilities.icon-utils')
 
 -- Defaults
 naughty.config.defaults.ontop = true
@@ -29,24 +30,7 @@ end
 -- Apply theme variables
 naughty.config.padding = dpi(8)
 naughty.config.spacing = dpi(8)
-naughty.config.icon_dirs = {
-  '/usr/share/pixmaps/',
-  '/usr/share/icons/Tela-blue-dark',
-  '/usr/share/icons/Tela',
-  '/usr/share/icons/Papirus-Dark/',
-  '/usr/share/icons/Papirus/',
-  '/usr/share/icons/Papirus-Dark/32x32/actions/',
-  '/usr/share/icons/Papirus-Dark/32x32/apps/',
-  '/usr/share/icons/Papirus-Dark/32x32/categories/',
-  '/usr/share/icons/Papirus-Dark/32x32/devices/',
-  '/usr/share/icons/Papirus-Dark/32x32/emblems/',
-  '/usr/share/icons/Papirus-Dark/32x32/emotes/',
-  '/usr/share/icons/Papirus-Dark/32x32/legacy/',
-  '/usr/share/icons/Papirus-Dark/32x32/mimetypes/',
-  '/usr/share/icons/Papirus-Dark/32x32/places/',
-  '/usr/share/icons/Papirus-Dark/32x32/status/',
-  '/usr/share/icons/Papirus-Dark/32x32/ui/'
-}
+naughty.config.icon_dirs = {}
 naughty.config.icon_formats = { 'svg', 'png', 'jpg', 'gif' }
 
 
@@ -132,7 +116,7 @@ naughty.connect_signal(
       title    = 'Oops, an error happened' .. (startup and ' during startup!' or '!'),
       message  = message,
       app_name = 'System Notification',
-      icon     = beautiful.awesome_icon
+      icon     = 'face-worried'
     }
   end
 )
@@ -142,9 +126,6 @@ naughty.connect_signal(
   'request::icon',
   function(n, context, hints)
     log('spawn::request::icon> module/notifications.lua')
-    log('context: ' .. context)
-    log('icon: ' .. (hints.app_icon or '(kein Icon)'))
-
     if context ~= 'app_icon' then return end
 
     local path = menubar.utils.lookup_icon(hints.app_icon) or
@@ -153,8 +134,6 @@ naughty.connect_signal(
     if path then
       n.icon = path
     end
-
-    log('result icon: ' .. n.icon)
   end
 )
 
@@ -163,6 +142,10 @@ naughty.connect_signal(
   'request::display',
   function(n)
     log('spawn::request::display -> module/notifications.lua')
+
+    local path = iconUtils.lookup_icon(n.icon)
+    n.icon = path
+
     dump({
       text = n.text,
       icon = n.icon,
@@ -172,9 +155,6 @@ naughty.connect_signal(
       urgency = n.urgency,
       icon_size = n.icon_size,
     }, 'notification', 1)
-
-    local path = menubar.utils.lookup_icon(n.icon)
-    dump(path, 'lookup icon', 3)
 
     -- Actions Blueprint
     local actions_template = wibox.widget {
@@ -212,7 +192,7 @@ naughty.connect_signal(
     naughty.layout.box {
       notification = n,
       type = 'notification',
-      screen = awful.screen.preferred(),
+      screen = 1, --awful.screen.preferred(),
       shape = gears.shape.rectangle,
       widget_template = {
         {

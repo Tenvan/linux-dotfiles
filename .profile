@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+export DOT="$DOT;.profile"
+
 export SCRIPTS="$HOME/.scripts"
 
 # mods korrigieren
@@ -18,15 +20,12 @@ export VISUAL="$EDITOR"
 export FILEMANAGER="nemo"
 export TERMINAL="kitty"
 export TIME="/usr/bin/time -v "
+export DISPLAYMANAGER=sddm
 
 # Development profile
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
 export WORKSPACE=/media/WORKSPACE/$USER
-
-# pnpm
-export PNPM_HOME="/home/ralf/.local/share/pnpm"
-# pnpm end
 
 # Conditional PATH additions
 for path_candidate in /Applications/Xcode.app/Contents/Developer/usr/bin \

@@ -123,9 +123,9 @@ ruled.client.connect_signal('request::rules', function()
   -- Teams Hauptfenster
   ruled.client.append_rule {
     id = 'internet',
-    rule = {
-      class = 'teams-for-linux',
-      type = 'normal'
+    rule_any = {
+      class = {'teams-for-linux', 'Microsoft Teams*'},
+      type = {'normal'}
     },
     properties = {
       screen = 2,
@@ -139,7 +139,7 @@ ruled.client.connect_signal('request::rules', function()
   -- Terminal emulators
   ruled.client.append_rule {
     rule_any = {
-      class = { apps.default.terminal, 'URxvt', 'XTerm', 'UXTerm', 'kitty', 'K3rmit' }
+      class = { apps.default.terminal, 'URxvt', 'XTerm', 'UXTerm', 'kitty', 'K3rmit', 'termite' }
     },
     properties = {
       size_hints_honor = false,
@@ -378,7 +378,7 @@ ruled.client.connect_signal('request::rules', function()
     id = 'floating',
     rule_any = {
       instance = { 'file_progress', 'Popup', 'nm-connection-editor' },
-      class = { 'scrcpy', 'Mugshot', 'Pulseeffects' },
+      class = { 'scrcpy', 'Mugshot', 'Pulseeffects', 'Xfce4-appearance-settings' },
       role = { 'AlarmWindow', 'ConfigManager', 'pop-up' }
     },
     properties = {

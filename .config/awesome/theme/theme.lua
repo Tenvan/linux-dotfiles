@@ -1,4 +1,4 @@
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local beautiful = require('beautiful')
 local gears = require('gears')
@@ -9,6 +9,8 @@ local makeColorTransparent = require('utilities.utils').makeColorTransparent
 
 local theme_dir = require('theme.default-theme').theme_dir
 local specs = require('layout.specs')
+
+local config = require('configuration.json') or {}
 
 local cobalt_bg = '#072539';  -- Background
 local cobalt_fg = '#e1efff';  -- Foreground
@@ -38,18 +40,17 @@ local base0F = '#E8E8E8' -- brown
 local theme = {}
 
 -- Font
-theme.font_small_size = dpi(8)
-theme.font_size       = dpi(10)
-theme.font_large_size = dpi(12)
-theme.font_big_size = dpi(16)
+theme.font_small_size = dpi(config.font_size_small or 8)
+theme.font_size       = dpi(config.font_size_normal or 10)
+theme.font_large_size = dpi(config.font_size_large or 14)
+theme.font_big_size   = dpi(config.font_size_big or 20)
 
 theme.element_size = specs.elementSize
 
-log('Font Small Size  (6): ' .. theme.font_small_size)
-log('Font Normal Size (8)' .. theme.font_size)
-log('Font Large Size  (10)' .. theme.font_large_size)
-log('Font Big Size  (10)' .. theme.font_big_size)
-
+log('Font Small Size: ' .. theme.font_small_size)
+log('Font Normal Size: ' .. theme.font_size)
+log('Font Large Size: ' .. theme.font_large_size)
+log('Font Big Size: ' .. theme.font_big_size)
 
 theme.font_family = 'Inter '
 
@@ -70,6 +71,7 @@ theme.symbol_font  = theme.font_family .. ' Bold ' .. dpi(12)
 theme.widgets_font = theme.font_light
 
 theme.icon_theme = 'Papirus-Dark'
+theme.icon_theme_ext = { 'Papirus', 'ePapirus-Dark', 'ePapirus', 'Paper', 'hicolor' }
 
 ---- Color Definitions
 
@@ -79,7 +81,8 @@ theme.accent = cobalt_accent_yellow
 -- General colors
 theme.success_fg = gtk_variable().success_fg_color
 theme.success_bg = gtk_variable().success_bg_color
-theme.error_fg   = theme.fg -- gtk_variable().error_fg_color
+theme.error_fg   = theme.fg
+-- gtk_variable().error_fg_color
 theme.error_bg   = gtk_variable().error_bg_color
 
 theme.loaded_fg = gtk_variable().selected_bg_color
@@ -354,7 +357,7 @@ local awesome_overrides = function(theme)
   -- Notification
   theme.notification_position = 'bottom_right'
   theme.notification_icon_size = dpi(256)
-  
+
   -- Notification colors
   theme.notif_fg = gtk_variable().osd_fg_color
   theme.notif_bg = gtk_variable().osd_bg_color
@@ -437,9 +440,8 @@ local awesome_overrides = function(theme)
   theme.system_white_light = base0F
 
   -- Application colors
-  theme.teams_bg = "#444791"
+  theme.teams_bg = '#444791'
   theme.spotify_bg = theme.success_bg
-
 end
 
 awesome_overrides(theme)

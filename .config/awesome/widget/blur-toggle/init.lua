@@ -20,7 +20,7 @@ local action_status
 
 local action_name = wibox.widget {
   text = 'Blur Effects',
-  font = beautiful.font_large,
+  font = beautiful.font,
   align = 'left',
   widget = wibox.widget.textbox
 }

@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+export DOT="$DOT;.bashrc"
+
 [[ $- != *i* ]] && return
 
 . ~/.scripts/defs

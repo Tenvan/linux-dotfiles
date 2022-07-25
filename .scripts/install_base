@@ -11,32 +11,29 @@ sound count-down
 
 # Manjaro Packages
 if [ $IS_MANJARO = true ]; then
-	install manjaro-awesome-settings
-	install samba
-	install manjaro-settings-samba
+    install manjaro-awesome-settings
+    install samba
+    install manjaro-settings-samba
 fi
 
 # ArcoLinux Packages
 if [ $IS_ARCO = true ]; then
-	install arcolinux-config-awesome-git
-	# Meta Packages
-	install arcolinux-meta-log
-	install arcolinux-meta-samba
-	install arcolinux-meta-utilities
-	# Interesting Packages
-	install arcolinux-candy-beauty-git	
+    install arcolinux-config-awesome-git
+    # Meta Packages
+    install arcolinux-meta-log
+    install arcolinux-meta-samba
+    install arcolinux-meta-utilities
+    # Interesting Packages
+    install arcolinux-candy-beauty-git
 fi
 
 # awesome
-install awesome
+install awesome-git
 install awmtt
-install vicious
-install lain
-install linux515-rt-acpi_call
 
 # system packages
-install acpi 
-install acpid 
+install acpi
+install acpid
 install alttab-git
 install arandr
 install archivefs
@@ -45,19 +42,20 @@ install ark
 install bashtop
 install bat
 install bitwarden
-install blueman 
+install blueman
 install bpytop
-install brightnessctl 
+install brightnessctl
 install clamav
 install clamtk
 install copyq
 install dex
+install dnsutils
 install docker
 install docker-compose
 install dpkg
 install exa
-install feh 
-install ffmpeg 
+install feh
+install ffmpeg
 install flameshot
 install fzf
 install genius
@@ -65,7 +63,7 @@ install glances
 install glogg
 install gnome-keyring
 install gparted
-install gpick 
+install gpick
 install grc
 install gtop
 install hardinfo
@@ -73,26 +71,26 @@ install hstr
 install htop
 install ibus-daemon
 install iftop
-install inotify-tools 
+install inotify-tools
 install iotop
 install iptraf-ng
-install jq 
+install jq
 install kitty
 install kteatime
 install lhasa
 install libgnome-keyring
-install libsecret 
+install libsecret
 install light
 install lscolors-git
 install lsd
 install luacheck
 install micro
-install mpc 
-install mpd 
-install mpdris2 
-install mpv 
+install mpc
+install mpd
+install mpdris2
+install mpv
 install multitail
-install ncmpcpp 
+install ncmpcpp
 install neofetch
 install networkmanager
 install networkmanager-openconnect
@@ -102,38 +100,38 @@ install numlockx
 install openconnect
 install p7zip
 install packagekit
-install picom-git
+install picom
 install playerctl
 install pm-utils
-install polkit-gnome 
+install polkit-gnome
 install powershell-bin
-install python-mutagen 
+install python-mutagen
 install qjournalctl
 install qbittorrent
 install ranger
-install redshift 
+install redshift
 install rsyslog
 install s-tui
-install scrot 
+install scrot
 install shell-color-scripts
 install spectacle
 install stow
 install time
 install timeshift
-install toilet 
-install toilet-fonts 
+install toilet
+install toilet-fonts
 install unclutter
 install unrar
-install upower 
+install upower
 install watchexec
-install wezterm 
+install wezterm
 install wmctrl
 install xautolock
 install xbindkeys
 install xclip
-install xclip 
+install xclip
 install xdotool
-install xdotool 
+install xdotool
 install xorg-server-xephyr
 install xorg-xbacklight
 install xorg-xfd
@@ -158,21 +156,25 @@ install alsa-utils
 install gst123
 install livecd-sounds
 install pa-applet
-install pamixer 
+install pamixer
 install paprefs
 install pasystray
-install pavucontrol 
-install pipewire
-install pipewire-media-session
-install pnmixer 
+install pavucontrol
+install pnmixer
 install ponymix
-install pulseaudio-bluetooth
-install pulseaudio-equalizer
 install sound-theme-smooth
 install sp
 install tvolnoti
+install pulseeffects-legacy
 
-# ssh 
+if [ $IS_MANJARO = true ]; then
+    install manjaro-
+else
+    install pulseaudio-bluetooth
+    install pulseaudio-equalizer
+fi
+
+# ssh
 install openssh
 
 # Base Development Tools
@@ -211,7 +213,8 @@ install gnome-logs
 install gnome-calculator
 install network-manager-applet
 
-install qt5
+# @deprecated
+# install qt5
 install qt5ct
 install qt5-styleplugins
 
@@ -244,8 +247,8 @@ install nemo-share
 
 # Rofi Configs
 if [ $IS_ARCO = true ]; then
-	install arcolinux-rofi-git
-	install arcolinux-rofi-themes-git
+    install arcolinux-rofi-git
+    install arcolinux-rofi-themes-git
 fi
 install rofi
 install rofimoji
@@ -260,27 +263,25 @@ install bleachbit
 
 # bluetooth setup
 if [ $IS_MANJARO = true ]; then
-	install manjaro-bluetooth
-elif [ $IS_ENDEA = true ]; then
-	install bluez 
-	install bluez-utils 
-	install pulseaudio-bluetooth
-	install blueman
-elif [ $IS_ARCO = true ]; then
-	#install bluetooth-autoconnect
-	install pulseaudio-bluetooth
-	install blueman
-	#install bluez
-	#install bluez-hid2hci
-	#install bluez-libs
-	#install bluez-plugins
-	#install bluez-tools
-	#install bluez-utils
+    install manjaro-bluetooth
+    elif [ $IS_ENDEA = true ]; then
+    install bluez
+    install bluez-utils
+    install blueman
+    elif [ $IS_ARCO = true ]; then
+    #install bluetooth-autoconnect
+    install blueman
+    #install bluez
+    #install bluez-hid2hci
+    #install bluez-libs
+    #install bluez-plugins
+    #install bluez-tools
+    #install bluez-utils
 fi
 
 # printer setup
 if [ $IS_MANJARO = true ]; then
-	install manjaro-printer
+    install manjaro-printer
 fi
 install brother-mfc-j4420dw
 install canon-cque
@@ -289,15 +290,15 @@ install hplip
 install system-config-printer
 install print-manager
 
-install ghostscript 
-install gsfonts 
-install foomatic-db-engine 
-install foomatic-db 
-install foomatic-db-ppds 
-install foomatic-db-nonfree 
-install foomatic-db-nonfree-ppds 
+install ghostscript
+install gsfonts
+install foomatic-db-engine
+install foomatic-db
+install foomatic-db-ppds
+install foomatic-db-nonfree
+install foomatic-db-nonfree-ppds
 install foomatic-db-gutenprint-ppds
-install gutenprint 
+install gutenprint
 
 # installation of important editors
 install micro
@@ -320,33 +321,36 @@ install tar
 
 # themes
 if [ $IS_ARCO = true ]; then
-	install arcolinux-arc-themes-git
-fi
-if [ $IS_MANJARO = true ]; then
-	install kvantum-manjaro 
-	install maia-console 
-	install maia-wallpaper 
-	install papirus-maia-icon-theme 
-	install xcursor-maia
+    install arcolinux-arc-themes-git
+    elif [ $IS_MANJARO = true ]; then
+    install kvantum-manjaro
+    install maia-console
+    install maia-wallpaper
+    install papirus-maia-icon-theme
+    install xcursor-maia
+    
+    install manjaro-artwork
+    install manjaro-artwork-extra
 fi
 
 install pop-gtk-theme
-install adwaita-qt5 
+install adwaita-qt5
 install themix-full-git
 install themix-plugin-base16-git
 install tela-icon-theme
 
 # icons
 if [ $IS_MANJARO = true ]; then
-	install papirus-maia-icon-theme
-	install maia-icon-theme 
+    install manjaro-artwork-icons
+    install papirus-maia-icon-theme
+    install maia-icon-theme
 fi
 install paper-icon-theme
 install papirus-icon-theme
 
 # cursor
 if [ $IS_MANJARO = true ]; then
-	install maia-cursor-theme 
+    install maia-cursor-theme
 fi
 install bibata-cursor-theme
 install bibata-cursor-translucent
@@ -359,24 +363,23 @@ install awesome-terminal-fonts
 install terminus-font
 install powerline-fonts
 
-install nerd-fonts-complete
-# install nerd-fonts-fira-code
-# install nerd-fonts-noto
+# install nerd-fonts-complete
+install nerd-fonts-fira-code
+install nerd-fonts-noto
 # install noto-fonts-main
 # install noto-fonts-emoji
 # install nerd-fonts-roboto-mono
-# install nerd-fonts-terminus
+install nerd-fonts-terminus
 install ttf-meslo-nerd-font-powerlevel10k
 install ttf-devicons
 install ttf-jetbrains-mono
-install ttf-proggy-clean
 install ttf-twemoji
-install ttf-twemoji-color
 install ttf-weather-icons
+install ttf-iosevka
 
 # lightdm config
 if [ $IS_MANJARO = true ]; then
-  install manjaro-slick-greeter-theme-light
+    install manjaro-slick-greeter-theme-light
 fi
 install lightdm
 install lightdm-settings
@@ -386,17 +389,16 @@ install lightdm-slick-greeter
 
 # grub
 if [ $IS_MANJARO = false ]; then
-	install grub-customizer
-	install update-grub
+    install grub-customizer
+    install update-grub
 fi
 
 if [ $IS_MANJARO != true -a $IS_ARCO != true ]; then
-	install grub2-theme-archlinux
+    install grub2-theme-archlinux
 fi
 
 # btrfs tools
 install grub-btrfs
-install timeshift-autosnap
 
 #########################
 # collect optional apps #
@@ -437,10 +439,13 @@ finish
 mkdir "$HOME/.config/ranger/plugins"
 ln -sf /usr/share/ranger/plugins/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 
+# twitter emoji font
+sudo ln -sf /usr/share/fontconfig/conf.avail/75-twemoji.conf /etc/fonts/conf.d/75-twemoji.conf
+
 # micro plugins
 micro -plugin install comment bounce editorconfig joinLines quoter filemanager bookmark \
-	jump detectindent go snippets crystal quickfix wc manipulator \
-	monokai-dark gotham-colors nordcolors 
+jump detectindent go snippets crystal quickfix wc manipulator \
+monokai-dark gotham-colors nordcolors
 
 # rebuilds
 pamac build qt5-styleplugins

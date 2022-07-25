@@ -14,7 +14,7 @@ local ap_state = false
 
 local action_name = wibox.widget {
   text = 'Airplane Mode',
-  font = beautiful.font_large,
+  font = beautiful.font,
   align = 'left',
   widget = wibox.widget.textbox
 }

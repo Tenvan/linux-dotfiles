@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-export DOT_XSESSION="initialised"
+export DOT="$DOT;.xsession"
 
 . ~/.scripts/defs
 

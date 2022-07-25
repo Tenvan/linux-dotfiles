@@ -1,6 +1,6 @@
 local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local filesystem = require('gears.filesystem')
 local config_dir = filesystem.get_configuration_dir()
@@ -49,25 +49,34 @@ local apps = {
   },
 
   -- List of apps to start once on start-up
-	run_on_start_up = {
-		-- Compositor
-		'picom -b --experimental-backends --dbus --config ' ..	config_dir .. '/configuration/picom.conf',
-		-- Blueman applet
-		'blueman-applet',
-		-- Music server
-		'mpd',
-		-- Polkit and keyring
-		'/usr/bin/lxqt-policykit-agent &' ..	' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
-		-- Audio equalizer
-		'pulseeffects --gapplication-service',
-		-- Lockscreen timer
-		-- [[
-		-- xidlehook --not-when-fullscreen --not-when-audio --timer 600 \
-		-- "awesome-client 'awesome.emit_signal(\"module::lockscreen_show\")'" ""
-		-- ]]
+  run_on_start_up = {
+    -- Compositor
+    -- 'picom -b --experimental-backends --dbus --config ' .. config_dir .. '/configuration/picom.conf',
+    -- '$SCRIPTS/picom-toggle-awesome.sh',
+    -- Blueman applet
+    'blueman-applet',
+    -- Polkit and keyring
+    -- '/usr/bin/lxqt-policykit-agent &' ..	' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
+    -- '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &' .. ' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
+    -- Audio equalizer
+    'pulseeffects --gapplication-service',
+    -- Lockscreen timer
+    -- [[
+    -- xidlehook --not-when-fullscreen --not-when-audio --timer 600 \
+    -- "awesome-client 'awesome.emit_signal(\"module::lockscreen_show\")'" ""
+    -- ]],
 
-		-- You can add more start-up applications here
-	},
+    -- You can add more start-up applications here
+    'xfce4-power-manager',
+    '$HOME/.bin/volume-osd',
+    'pamac-tray',
+    'nm-applet',
+    'pa-applet',
+    'pasystray',
+    'xscreensaver',
+    'alttab -n 1',
+    'test-app'
+  },
 
   -- List of binaries/shell scripts that will execute for a certain task
   utils = {

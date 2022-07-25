@@ -1,11 +1,12 @@
 #!/usr/bin/env zsh
+export DOT="$DOT;.zshrc"
 
 . ~/.scripts/defs
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -49,10 +50,10 @@ COMPLETION_WAITING_DOTS="true"
 USE_POWERLINE="true"
 
 # Source manjaro-zsh-configuration
-csource /usr/share/zsh/manjaro-zsh-config
+# csource /usr/share/zsh/manjaro-zsh-config
 
 # Use manjaro zsh prompt
-csource /usr/share/zsh/manjaro-zsh-prompt
+# csource /usr/share/zsh/manjaro-zsh-prompt
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -61,11 +62,6 @@ csource "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 # LS_COLORS
 csource /usr/share/LS_COLORS/dircolors.sh
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-csource "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 # User configuration
 
@@ -241,19 +237,20 @@ zinit light g-plane/zsh-yarn-autocompletions
 
 zinit ice depth=1;
 
+zinit light romkatv/powerlevel10k
+
 zinit wait lucid for \
     memark/zsh-dotnet-completion \
+    atinit"zicompinit; zicdreplay" \
     zdharma-continuum/fast-syntax-highlighting \
     zdharma-continuum/history-search-multi-word \
     memark/zsh-dotnet-completion \
     urbainvaes/fzf-marks \
     hlissner/zsh-autopair \
-    marzocchi/zsh-notify \
     junegunn/fzf-bin \
-    atload"_zsh_autosuggest_start; zicdreplay" \
+    atload"zicdreplay" \
         zsh-users/zsh-completions \
         zsh-users/zsh-autosuggestions
-
 
 # zinit wait lucid for \
 #         b4b4r07/enhancd \
@@ -337,7 +334,7 @@ fi
 
 # Source local zsh customizations.
 csource ~/.zsh_rclocal
-# csource "$CUSTOMS/.zshrc"
+csource ~/.custom/.zshrc
 
 # Source functions and aliases.
 csource ~/.zsh_functions

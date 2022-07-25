@@ -184,7 +184,7 @@ local awesome_overrides = function(theme)
   end
 
   -- Menu
-  theme.menu_font = beautiful.font_large
+  theme.menu_font = beautiful.font
   theme.menu_submenu = '' -- ➤
 
   theme.menu_height = dpi(34)

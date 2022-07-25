@@ -4,7 +4,7 @@ export SCRIPTS="$HOME/.scripts"
 
 . $SCRIPTS/defs
 
-$SCRIPTS/set-wallpaper.sh
+$SCRIPTS/picom-toggle-awesome.sh
 
 #==============
 # System tools
@@ -15,33 +15,32 @@ run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-key
 
 # run ibus-daemon -d -x
 # run unclutter --root --timeout 3
-run xfce4-power-manager
+# run xfce4-power-manager
 
 #---------------
 # Desktop Tools
 #---------------
-$HOME/.bin/volume-osd &
+# $HOME/.bin/volume-osd &
 # run flameshot
 # run alttab -n 1
-run pamac-tray
+# run pamac-tray
 
 #run blueman-tray
 #run blueman-applet
-run nm-applet
+# run nm-applet
 
 # Sound Tray Icons
 # restart start-pulseaudio-x11
-run pa-applet
-run pasystray
+# run pa-applet
+# run pasystray
 
-$SCRIPTS/picom-toggle-awesome.sh
 
 file=$HOME/.custom/autostart
 if [ -f "$file" ]; then
     . "$file"
 fi
 
-run xscreensaver
+# run xscreensaver
 
 #cursor active at boot
-run xsetroot -cursor_name left_ptr -bg "#2a2a2a" -fg "#d6d6d6"
+# run xsetroot -cursor_name left_ptr -bg "#2a2a2a" -fg "#d6d6d6"

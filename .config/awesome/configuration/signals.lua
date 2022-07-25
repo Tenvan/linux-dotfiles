@@ -31,7 +31,7 @@ screen.connect_signal('arrange', function(s)
 end)
 
 awesome.connect_signal('debug::deprecation', function(hint, see, args)
-  notify('Deprecated Function called!', tostring(hint), 'critical', true)
+  notify('Deprecated Function called!', tostring(hint), 'critical')
 end)
 
 awesome.connect_signal('spawn::initiated', function(arg)

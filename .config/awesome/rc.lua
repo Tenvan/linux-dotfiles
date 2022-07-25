@@ -13,6 +13,11 @@ pcall(require, "luarocks.loader")
 local gears = require('gears')
 local beautiful = require('beautiful')
 local awful = require('awful')
+
+-- Zwölf Boxkämpfer  ==>
+
+local test = (1 == 2)
+
 -- Everything related to window managment
 
 -- ░█▀▀░█░█░█▀▀░█░░░█░░
@@ -48,6 +53,11 @@ require("module")
 -- ░▀▀▀░▀▀▀░▀▀▀░▀▀░░▀░▀░▀▀▀░░░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░▀▀▀░▀▀▀
 require("configuration.signals")
 
+-- ░█▀█░█░█░▀█▀░█▀█░█▀▀░▀█▀░█▀█░█▀▄░▀█▀
+-- ░█▀█░█░█░░█░░█░█░▀▀█░░█░░█▀█░█▀▄░░█░
+-- ░▀░▀░▀▀▀░░▀░░▀▀▀░▀▀▀░░▀░░▀░▀░▀░▀░░▀░
+require('module.auto-start')
+
 -- ░█░█░█▀█░█░░░█░░░█▀█░█▀█░█▀█░█▀▀░█▀▄
 -- ░█▄█░█▀█░█░░░█░░░█▀▀░█▀█░█▀▀░█▀▀░█▀▄
 -- ░▀░▀░▀░▀░▀▀▀░▀▀▀░▀░░░▀░▀░▀░░░▀▀▀░▀░▀
@@ -74,5 +84,3 @@ screen.connect_signal(
 		end
 	end
 )
-
-require("utilities.icon-utils")

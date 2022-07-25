@@ -1,3 +1,5 @@
+log('Enter Module => ' .. ...)
+
 local wibox = require('wibox')
 local beautiful = require('beautiful')
 local naughty = require('naughty')
@@ -7,6 +9,7 @@ local dpi = beautiful.xresources.apply_dpi
 
 local config_dir = gears.filesystem.get_configuration_dir()
 local widget_icon_dir = config_dir .. 'widget/notif-center/icons/'
+local iconUtils = require('utilities.icon-utils')
 
 local clickable_container = require('widget.clickable-container')
 
@@ -24,7 +27,8 @@ ui_noti_builder.notifbox_icon = function(ico_image)
     },
     layout = wibox.layout.fixed.horizontal
   }
-  noti_icon.icon:set_image(ico_image)
+  local icon = iconUtils.lookup_icon(ico_image)
+  noti_icon.icon:set_image(icon)
   return noti_icon
 end
 
@@ -43,7 +47,7 @@ end
 ui_noti_builder.notifbox_message = function(msg)
   return wibox.widget {
     markup = msg,
-    font   = beautiful.font_large,
+    font   = beautiful.font,
     align  = 'left',
     valign = 'center',
     widget = wibox.widget.textbox
