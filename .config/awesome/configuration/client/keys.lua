@@ -32,10 +32,10 @@ local kgClient = keys.kgClient
 
 local client_keys = awful.util.table.join(
 
-  -- ░█▄█░█▀█░█░█░█▀▀░░░█▀▀░█░░░▀█▀░█▀▀░█▀█░▀█▀
-  -- ░█░█░█░█░▀▄▀░█▀▀░░░█░░░█░░░░█░░█▀▀░█░█░░█░
-  -- ░▀░▀░▀▀▀░░▀░░▀▀▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░░▀░
-  -- Move client by direction
+-- ░█▄█░█▀█░█░█░█▀▀░░░█▀▀░█░░░▀█▀░█▀▀░█▀█░▀█▀
+-- ░█░█░█░█░▀▄▀░█▀▀░░░█░░░█░░░░█░░█▀▀░█░█░░█░
+-- ░▀░▀░▀▀▀░░▀░░▀▀▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░░▀░
+-- Move client by direction
   awful.key({ shiftkey, modkey }, leftkey, function(c)
     move_client(c, 'left')
   end, {
@@ -61,11 +61,23 @@ local client_keys = awful.util.table.join(
     description = 'move client down',
     group = keys.kgClient
   }),
+  awful.key({ shiftkey, modkey }, returnkey, function(c)
+    local si = c.screen.index
+    local sin = 1 + (2 - si)
+    log('client from '.. tostring(si) .. ' to next screen ' .. tostring(sin))
 
--- ░█▄█░█▀█░█░█░█▀▀░░░█▀▀░█▀█░█▀▀░█░█░█▀▀
--- ░█░█░█░█░▀▄▀░█▀▀░░░█▀▀░█░█░█░░░█░█░▀▀█
--- ░▀░▀░▀▀▀░░▀░░▀▀▀░░░▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
--- Focus client by direction
+    c.screen = sin
+    c:emit_signal('request::activate')
+    c:raise()
+  end, {
+    description = 'move client to next screen',
+    group = keys.kgClient
+  }),
+
+  -- ░█▄█░█▀█░█░█░█▀▀░░░█▀▀░█▀█░█▀▀░█░█░█▀▀
+  -- ░█░█░█░█░▀▄▀░█▀▀░░░█▀▀░█░█░█░░░█░█░▀▀█
+  -- ░▀░▀░▀▀▀░░▀░░▀▀▀░░░▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
+  -- Focus client by direction
 
   awful.key({ modkey }, 'f', function(c)
     c.fullscreen = not c.fullscreen

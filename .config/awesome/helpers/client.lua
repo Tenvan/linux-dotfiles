@@ -2,6 +2,8 @@ log('Enter Module => ' .. ...)
 
 local awful = require('awful')
 local xresources = require('beautiful.xresources')
+local gears = require('gears')
+
 local dpi = xresources.apply_dpi
 
 -- Resize DWIM (Do What I Mean)
@@ -11,8 +13,9 @@ local floating_resize_amount = dpi(20)
 local tiling_resize_factor = 0.05
 
 ---------------
+local client_helpers = {}
 
-function resize_client(c, direction)
+function client_helpers.resize_client(c, direction)
   if c and c.floating or awful.layout.get(mouse.screen) == awful.layout.suit.floating then
     if direction == 'up' then
       c:relative_move(0, 0, 0, -floating_resize_amount)
@@ -36,7 +39,7 @@ function resize_client(c, direction)
   end
 end
 
-function move_to_edge(c, direction)
+function client_helpers.move_to_edge(c, direction)
   -- local workarea = awful.screen.focused().workarea
   -- local client_geometry = c:geometry()
   if direction == 'up' then
@@ -82,21 +85,14 @@ end
 -- Move to edge if the client / layout is floating
 -- Swap by index if maximized
 -- Else swap client by direction
-function move_client(c, direction)
-  dump(c, "Client", 3)
-  log('Client Class: ' .. c.class)
-  log('Client Instance: ' .. c.instance)
-  log('Client Name: ' .. c.name)
-
+function client_helpers.move_client(c, direction)
   if (c.instance == 'QuakeTerminal') then
-    log("ignore QuakeTerminal")
+    log('ignore QuakeTerminal')
     return
   end
-  
-  log('Move Client: ' .. c.name .. ' (' .. direction .. ')')
 
   if c.floating or (awful.layout.get(mouse.screen) == awful.layout.suit.floating) then
-    move_to_edge(c, direction)
+    client_helpers.move_to_edge(c, direction)
   elseif awful.layout.get(mouse.screen) == awful.layout.suit.max then
     if direction == 'up' or direction == 'left' then
       awful.client.swap.byidx(-1, c)
@@ -108,8 +104,10 @@ function move_client(c, direction)
   end
 end
 
-return {
-  resize_client = resize_client,
-  move_client = move_client,
-  move_to_edge = move_to_edge
-}
+function client_helpers.centered_client_placement(c)
+  return gears.timer.delayed_call(function()
+    awful.placement.centered(c, { honor_padding = true, honor_workarea = true })
+  end)
+end
+
+return client_helpers
