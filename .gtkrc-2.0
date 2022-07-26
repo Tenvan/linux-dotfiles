@@ -1,10 +1,10 @@
 # DO NOT EDIT! This file will be overwritten by LXAppearance.
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
-include "/home/stira/.gtkrc-2.0.mine"
 gtk-theme-name="oomox-cobalt"
 gtk-icon-theme-name="oomox-cobalt"
-gtk-font-name="Noto Sans, Medium 12"
+gtk-font-name="Sans, Medium 14"
+gtk-cursor-theme-name="Bibata-Original-Ice"
 gtk-cursor-theme-size=32
 gtk-toolbar-style=GTK_TOOLBAR_ICONS
 gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR

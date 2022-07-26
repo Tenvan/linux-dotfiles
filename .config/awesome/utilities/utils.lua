@@ -1,4 +1,3 @@
-local log = require('utilities.debug').log
 log("Enter Module => " .. ... )
 
 local function makeColorTransparent(colorkey, opacity)

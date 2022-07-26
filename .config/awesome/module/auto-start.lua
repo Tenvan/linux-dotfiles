@@ -1,15 +1,12 @@
-local urgent = require "awful.client.urgent"
 -- MODULE AUTO-START
 -- Run all the apps listed in configuration/apps.lua as run_on_start_up only once when awesome start
 log('Enter Module => ' .. ...)
 
 local awful = require('awful')
-local naughty = require('naughty')
 local apps = require('configuration.apps')
-local config = require('configuration.config')
 
 local run_once = function(cmd)
-  log('==> auto start:q ' .. cmd)
+  -- log('==> auto start:q ' .. cmd)
 
   local findme = cmd
   local firstspace = cmd:find(' ')
@@ -21,13 +18,13 @@ local run_once = function(cmd)
     function(stdout, stderr)
       -- Debugger
       if not stderr or stderr == '' then
-        log('  ->  auto started: ' .. cmd)
+        -- log('  ->  auto started: ' .. cmd)
         notify('Auto Start', cmd)
         return
       end
 
-      log('  ->  error on start: ' .. cmd)
-      log('  ERROR: ' .. stderr:gsub('%\n', ''))
+      -- log('  ->  error on start: ' .. cmd)
+      -- log('  ERROR: ' .. stderr:gsub('%\n', ''))
 
       notify('<b>Oof! Error detected when starting an application!</b>',
         stderr:gsub('%\n', ''),

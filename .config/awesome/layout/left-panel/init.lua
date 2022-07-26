@@ -8,8 +8,6 @@ local dpi = beautiful.xresources.apply_dpi
 local specs = require('layout.specs')
 
 ---Erstellt Left Panel
----@param pScreen screen
----@return dock
 local left_panel = function(pScreen)
   -- Set left panel geometry
   local panel_content_width = specs.leftPanel.contentWidth

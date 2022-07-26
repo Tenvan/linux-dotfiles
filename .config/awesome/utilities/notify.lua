@@ -21,8 +21,6 @@ local function notify(titel, message, urgency, icon, app_name)
       icon     = icon or nil
     }
 
-    dump(notification, 'note', 2)
-
     naughty.notification(notification)
   end
 end

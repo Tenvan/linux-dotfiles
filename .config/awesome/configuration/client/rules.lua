@@ -1,4 +1,4 @@
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local client = client
 
@@ -12,7 +12,6 @@ local apps = require('configuration.apps')
 ruled.client.connect_signal('request::rules', function()
   -- All clients will match this rule.
   ruled.client.append_rule {
-    id = 'global',
     rule = {},
     properties = {
       focus = awful.client.focus.filter,
@@ -33,7 +32,6 @@ ruled.client.connect_signal('request::rules', function()
   }
 
   ruled.client.append_rule {
-    id = 'round_clients',
     rule_any = {
       type = { 'normal', 'dialog' }
     },
@@ -48,7 +46,6 @@ ruled.client.connect_signal('request::rules', function()
 
   -- Titlebar rules
   ruled.client.append_rule {
-    id = 'titlebars',
     rule_any = {
       type = { 'normal', 'dialog', 'modal', 'utility' }
     },
@@ -59,10 +56,9 @@ ruled.client.connect_signal('request::rules', function()
 
   -- Dialogs
   ruled.client.append_rule {
-    id = 'dialog',
     rule_any = {
       type = { 'dialog' },
-      class = { 'Wicd-client.py', 'calendar.google.com' }
+      class = { 'Wicd-client.py' }
     },
     properties = {
       titlebars_enabled = true,
@@ -75,7 +71,6 @@ ruled.client.connect_signal('request::rules', function()
 
   -- Modals
   ruled.client.append_rule {
-    id = 'modal',
     rule_any = {
       type = { 'modal' }
     },
@@ -90,7 +85,6 @@ ruled.client.connect_signal('request::rules', function()
 
   -- Utilities
   ruled.client.append_rule {
-    id = 'utility',
     rule_any = {
       type = { 'utility' },
       class = { '.*gnome-authentication-agent.*', 'Gcr-prompter' }
@@ -105,7 +99,6 @@ ruled.client.connect_signal('request::rules', function()
 
   -- Splash
   ruled.client.append_rule {
-    id = 'splash',
     rule_any = {
       type = { 'splash' },
       name = { 'Discord Updater' }
@@ -120,23 +113,7 @@ ruled.client.connect_signal('request::rules', function()
     }
   }
 
-  -- Teams Hauptfenster
-  ruled.client.append_rule {
-    id = 'internet',
-    rule_any = {
-      class = {'teams-for-linux', 'Microsoft Teams*'},
-      type = {'normal'}
-    },
-    properties = {
-      screen = 2,
-      tag = screen[2].tags[4],
-      switch_to_tags = true,
-      maximized = false,
-      floating = false,
-    }
-  }
-
-  -- Terminal emulators
+  --   -- Terminal emulators
   ruled.client.append_rule {
     rule_any = {
       class = { apps.default.terminal, 'URxvt', 'XTerm', 'UXTerm', 'kitty', 'K3rmit', 'termite' }
@@ -169,11 +146,12 @@ ruled.client.connect_signal('request::rules', function()
     },
     properties = {
       screen = screen.primary,
-      tag = screen[screen.primary].tags[2],
+      tag = screen[screen.primary].tags[8],
       maximized = false,
       floating = false
     }
   }
+
   ruled.client.append_rule {
     rule = {
       instance = apps.default.web_browser .. ' .*'
@@ -204,14 +182,13 @@ ruled.client.connect_signal('request::rules', function()
     },
     properties = {
       screen = screen.primary,
-      tag = screen[screen.primary].tags[8],
+      tag = screen[screen.primary].tags[7],
       switch_to_tags = true
     }
   }
 
   -- Multimedia
   ruled.client.append_rule {
-    id = 'multimedia',
     rule_any = {
       class = { 'vlc', 'Spotify', 'Shortwave' }
     },
@@ -226,7 +203,6 @@ ruled.client.connect_signal('request::rules', function()
 
   -- Gaming
   ruled.client.append_rule {
-    id = 'gaming',
     rule_any = {
       class = { 'Wine', 'dolphin-emu', 'Steam', 'Citra', 'supertuxkart' },
       name = { 'Steam' }
@@ -242,7 +218,6 @@ ruled.client.connect_signal('request::rules', function()
 
   -- Multimedia Editing
   ruled.client.append_rule {
-    id = 'graphics',
     rule_any = {
       class = { 'Gimp-2.10', 'Inkscape', 'Flowblade' }
     },
@@ -312,7 +287,7 @@ ruled.client.connect_signal('request::rules', function()
     },
     properties = {
       screen = screen.primary,
-      tag = screen[screen.primary].tags[8],
+      tag = screen[screen.primary].tags[9],
       skip_decoration = true
     }
   }
@@ -333,7 +308,6 @@ ruled.client.connect_signal('request::rules', function()
 
   -- OTW Develop Consolen auf Screen 2 tag 3 schieben
   ruled.client.append_rule {
-    id = 'development',
     rule_any = {
       name = { 'OTW:*' }
     },
@@ -360,7 +334,6 @@ ruled.client.connect_signal('request::rules', function()
 
   -- Image viewers
   ruled.client.append_rule {
-    id = 'image_viewers',
     rule_any = {
       class = { 'feh', 'Pqiv', 'Sxiv' }
     },
@@ -373,26 +346,40 @@ ruled.client.connect_signal('request::rules', function()
     }
   }
 
-  -- Floating
+  -- Teams Hauptfenster
   ruled.client.append_rule {
-    id = 'floating',
     rule_any = {
-      instance = { 'file_progress', 'Popup', 'nm-connection-editor' },
-      class = { 'scrcpy', 'Mugshot', 'Pulseeffects', 'Xfce4-appearance-settings' },
-      role = { 'AlarmWindow', 'ConfigManager', 'pop-up' }
+      class = { 'teams-for-linux', 'Microsoft Teams*' },
     },
     properties = {
-      titlebars_enabled = true,
-      skip_decoration = true,
-      ontop = true,
-      floating = true,
-      focus = awful.client.focus.filter,
-      raise = true,
-      keys = client_keys,
-      buttons = client_buttons,
-      placement = awful.placement.centered
+      screen = 2,
+      tag = screen[2].tags[4],
+      switch_to_tags = true,
+      maximized = false,
+      floating = false,
     }
   }
+
+
+    -- Floating
+    ruled.client.append_rule {
+      rule_any = {
+        instance = { 'file_progress', 'Popup', 'nm-connection-editor' },
+        class = { 'scrcpy', 'Mugshot', 'Pulseeffects', 'Xfce4-appearance-settings' },
+        role = { 'AlarmWindow', 'ConfigManager', 'pop-up' }
+      },
+      properties = {
+        titlebars_enabled = true,
+        skip_decoration = true,
+        ontop = true,
+        floating = true,
+        focus = awful.client.focus.filter,
+        raise = true,
+        keys = client_keys,
+        buttons = client_buttons,
+        placement = awful.placement.centered
+      }
+    }
 end)
 
 -- Normally we'd do this with a rule, but some program like spotify doesn't set its class or name

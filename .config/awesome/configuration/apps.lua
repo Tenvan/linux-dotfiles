@@ -1,5 +1,3 @@
-local log = require('utilities.debug').log
-local dump = require('utilities.debug').dump
 log('Enter Module => ' .. ...)
 
 local filesystem = require('gears.filesystem')
@@ -44,7 +42,7 @@ local apps = {
     -- Default locker
     lock = 'awesome-client "awesome.emit_signal(\'module::lockscreen_show\')"',
     -- Default quake terminal
-    quake = 'kitty --name QuakeTerminal',
+    quake = 'kitty --name QuakeTerminal --class QuakeTerminal',
 
   },
 
@@ -68,22 +66,23 @@ local apps = {
 
     -- You can add more start-up applications here
     'xfce4-power-manager',
-    '$HOME/.bin/volume-osd',
+    -- '$HOME/.bin/volume-osd',
     'pamac-tray',
     'nm-applet',
     'pa-applet',
     'pasystray',
     'xscreensaver',
     'alttab -n 1',
-    'test-app'
+    'flameshot',
+    'copyq'
   },
 
   -- List of binaries/shell scripts that will execute for a certain task
   utils = {
     -- Fullscreen screenshot
-    full_screenshot = utils_dir .. 'screensht full',
+    full_screenshot = 'flameshot full -c',
     -- Area screenshot
-    area_screenshot = utils_dir .. 'screensht area',
+    area_screenshot = 'flameshot gui -c',
     -- Color Picker
     color_picker    = utils_dir .. 'xcolor-pick',
     -- Update profile picture

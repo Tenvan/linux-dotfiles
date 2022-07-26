@@ -139,7 +139,6 @@ sudo usermod -aG docker $USER
 # enable services
 
 # display manager
-sudo systemctl disable sddm.service
 sudo systemctl enable lightdm.service
 errorCheck "lightdm service"
 

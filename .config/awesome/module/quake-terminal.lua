@@ -1,6 +1,4 @@
-local log = require('utilities.debug').log
-local dump = require('utilities.debug').dump
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local awesome, client, screen = awesome, client, screen
 
@@ -14,22 +12,24 @@ local quake_id = nil
 local quake_client = nil
 local quake_opened = false
 
+local move_to_edge = require("helpers.client").move_to_edge
+
 local quake_properties = function()
   return {
-    skip_decoration = false,
-    titlebars_enabled = true,
+    skip_decoration = true,
+    titlebars_enabled = false,
     switch_to_tags = false,
-    opacity = 0.67,
+    opacity = 0.2,
     floating = true,
     skip_taskbar = true,
     ontop = true,
     above = true,
     sticky = true,
     hidden = not quake_opened,
-    maximized_horizontal = true,
+    maximized_horizontal = false,
     skip_center = false,
     round_corners = false,
-    keys = client_keys,
+    -- keys = client_keys,
     buttons = client_buttons,
     placement = awful.placement.top,
     shape = beautiful.client_shape_rectangle
@@ -52,8 +52,6 @@ ruled.client.connect_signal(
 )
 
 local create_quake = function()
-  log('quake_terminal::create_quake')
-
   -- Check if there's already an instance of 'QuakeTerminal'.
   -- If yes, recover it - use it again.
   local quake_term = function(c)
@@ -61,7 +59,6 @@ local create_quake = function()
   end
 
   for c in awful.client.iterate(quake_term) do
-    log('quake_terminal::detected')
     -- 'QuakeTerminal' instance detected
     -- Re-apply its properties
     ruled.client.execute(c, quake_properties())
@@ -74,6 +71,8 @@ local create_quake = function()
 end
 
 local quake_open = function()
+  local fs = awful.screen.focused()
+  quake_client.screen = fs
   quake_client.hidden = false
   quake_client:emit_signal('request::activate')
 end
@@ -98,7 +97,6 @@ end
 awesome.connect_signal(
   'module::quake_terminal:toggle',
   function()
-    log('module::quake_terminal:toggle')
     quake_toggle();
   end
 )
@@ -118,6 +116,17 @@ client.connect_signal(
     if c.pid == quake_id then
       quake_opened = false
       quake_client = nil
+    end
+  end
+)
+
+client.connect_signal(
+  'request::activate',
+  function(c)
+    if c.pid == quake_id then
+      log("QuakeTerminal request::activate")
+      awful.placement.centered(c, { honor_workarea = true, honor_padding = true })
+      move_to_edge(c, "up")
     end
   end
 )

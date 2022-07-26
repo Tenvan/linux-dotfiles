@@ -1,4 +1,4 @@
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local screen, tag = screen, tag
 
@@ -25,68 +25,53 @@ local defaultLayouts = {
   awful.layout.suit.tile.top,
   awful.layout.suit.fair,
   awful.layout.suit.fair.horizontal,
-  awful.layout.suit.spiral,
-  awful.layout.suit.spiral.dwindle,
+  -- awful.layout.suit.spiral,
+  -- awful.layout.suit.spiral.dwindle,
   awful.layout.suit.max,
   awful.layout.suit.max.fullscreen,
   awful.layout.suit.magnifier,
-  awful.layout.suit.corner.nw,
-  awful.layout.suit.corner.ne,
-  awful.layout.suit.corner.sw,
-  awful.layout.suit.corner.se,
-  lain.layout.cascade,
-  lain.layout.cascade.tile,
+  -- awful.layout.suit.corner.nw,
+  -- awful.layout.suit.corner.ne,
+  -- awful.layout.suit.corner.sw,
+  -- awful.layout.suit.corner.se,
+  -- lain.layout.cascade,
+  -- lain.layout.cascade.tile,
   lain.layout.centerwork,
   lain.layout.centerwork.horizontal,
-  lain.layout.termfair,
-  lain.layout.termfair.center,
+  -- lain.layout.termfair,
+  -- lain.layout.termfair.center,
 }
 
 local tags = {
   {
-    default_app = apps.default.code_editor,
     gap = beautiful.useless_gap,
-    layout = awful.layout.suit.max,
     layouts = {
       awful.layout.suit.tile,
       awful.layout.suit.max,
       awful.layout.suit.max.fullscreen,
       awful.layout.suit.magnifier,
-      lain.layout.cascade,
-      lain.layout.cascade.tile,
       lain.layout.centerwork,
       lain.layout.centerwork.horizontal,
-      lain.layout.termfair,
-      lain.layout.termfair.center,    
     },
   },
   {
-    default_app = apps.default.web_browser,
-    layout = awful.layout.suit.tile
-  },
-  {
-    default_app = apps.default.text_editor,
+    layout = lain.layout.centerwork,
   },
   {
   },
   {
+    layout = lain.layout.centerwork,
   },
   {
   },
   {
   },
   {
-    default_app = apps.default.file_manager,
   },
   {
-    layout = awful.layout.suit.max,
   },
-  -- {
-  --   type = 'social',
-  --   icon = icons.social,
-  --   default_app = 'discord',
-  --   gap = beautiful.useless_gap
-  -- }
+  {
+  },
 }
 
 -- Set tags layout
@@ -108,7 +93,6 @@ screen.connect_signal('request::desktop_decoration', function(s)
       gap_single_client = true,
       gap = tag.gap or beautiful.useless_gap,
       screen = s,
-      default_app = tag.default_app,
       selected = i == 1
     })
   end

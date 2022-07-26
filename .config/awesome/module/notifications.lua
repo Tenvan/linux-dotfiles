@@ -39,7 +39,7 @@ naughty.config.icon_formats = { 'svg', 'png', 'jpg', 'gif' }
 ruled.notification.connect_signal(
   'request::rules',
   function()
-    log('spawn::request::rules -> module/notifications.lua')
+    -- log('spawn::request::rules -> module/notifications.lua')
     -- Critical notifs
     ruled.notification.append_rule {
       rule       = { urgency = 'critical' },
@@ -110,7 +110,7 @@ ruled.notification.connect_signal(
 naughty.connect_signal(
   'request::display_error',
   function(message, startup)
-    log('spawn::request::display_error -> module/notifications.lua')
+    -- log('spawn::request::display_error -> module/notifications.lua')
     naughty.notification {
       urgency  = 'critical',
       title    = 'Oops, an error happened' .. (startup and ' during startup!' or '!'),
@@ -125,7 +125,7 @@ naughty.connect_signal(
 naughty.connect_signal(
   'request::icon',
   function(n, context, hints)
-    log('spawn::request::icon> module/notifications.lua')
+    -- log('spawn::request::icon> module/notifications.lua')
     if context ~= 'app_icon' then return end
 
     local path = menubar.utils.lookup_icon(hints.app_icon) or
@@ -141,20 +141,20 @@ naughty.connect_signal(
 naughty.connect_signal(
   'request::display',
   function(n)
-    log('spawn::request::display -> module/notifications.lua')
+    -- log('spawn::request::display -> module/notifications.lua')
 
     local path = iconUtils.lookup_icon(n.icon)
     n.icon = path
 
-    dump({
-      text = n.text,
-      icon = n.icon,
-      timeout = n.timeout,
-      title = n.title,
-      app_name = n.app_name,
-      urgency = n.urgency,
-      icon_size = n.icon_size,
-    }, 'notification', 1)
+    -- dump({
+    --   text = n.text,
+    --   icon = n.icon,
+    --   timeout = n.timeout,
+    --   title = n.title,
+    --   app_name = n.app_name,
+    --   urgency = n.urgency,
+    --   icon_size = n.icon_size,
+    -- }, 'notification', 1)
 
     -- Actions Blueprint
     local actions_template = wibox.widget {

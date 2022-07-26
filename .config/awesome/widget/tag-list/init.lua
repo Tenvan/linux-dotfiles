@@ -50,9 +50,6 @@ end
 ---@param objects table Objects to be displayed / updated.
 local function list_update(w, buttons, label, data, objects)
   -- update the widgets, creating them if needed
-  dump(buttons, 'tag_list.buttons(data)', 1)
-  dump(data, 'tag_list.list_update(data)', 1)
-  dump(objects, 'tag_list.list_update(objects)', 1)
 
   w:reset()
 

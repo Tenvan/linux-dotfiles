@@ -3,11 +3,13 @@ log('Enter Module => ' .. ...)
 local awesome, client, screen = awesome, client, screen
 
 local awful         = require('awful')
+local bling         = require('module.bling')
 local hotkeys_popup = require('awful.hotkeys_popup').widget
 
-local apps  = require('configuration.apps')
-local keys  = require('configuration.keys.mod')
-local specs = require('layout.specs')
+local apps    = require('configuration.apps')
+local keys    = require('configuration.keys.mod')
+local specs   = require('layout.specs')
+local helpers = require('helpers')
 
 local modkey = keys.mod_key
 local altkey = keys.alt_key
@@ -20,6 +22,7 @@ local shiftkey   = keys.shift_key
 local returnkey  = keys.return_key
 local spacekey   = keys.space_key
 local escapekey  = keys.escape_key
+local printkey   = keys.print_key
 local tabkey     = keys.tab_key
 local downkey    = keys.down_key
 local upkey      = keys.up_key
@@ -90,18 +93,19 @@ local global_keys = awful.util.table.join(
     description = 'decrease the number of columns',
     group = keys.kgLayout
   }),
-  awful.key({ modkey, shiftkey }, 'Left', function()
-    awful.tag.incmwfact(-0.05)
-  end, {
-    description = 'increase master size',
-    group = keys.kgClient
-  }),
-  awful.key({ modkey, shiftkey }, 'Right', function()
-    awful.tag.incmwfact(0.05)
-  end, {
-    description = 'decrease master size',
-    group = keys.kgClient
-  }),
+
+  -- awful.key({ modkey, shiftkey }, leftkey, function()
+  --   awful.tag.incmwfact(-0.05)
+  -- end, {
+  --   description = 'increase master size',
+  --   group = keys.kgClient
+  -- }),
+  -- awful.key({ modkey, shiftkey }, rightkey, function()
+  --   awful.tag.incmwfact(0.05)
+  -- end, {
+  --   description = 'decrease master size',
+  --   group = keys.kgClient
+  -- }),
 
   -- ░█░░░█▀█░█░█░█▀█░█░█░▀█▀
   -- ░█░░░█▀█░░█░░█░█░█░█░░█░
@@ -143,9 +147,9 @@ local global_keys = awful.util.table.join(
     group = keys.kgTag
   }),
 
-  -- ░█░█░▀█▀░█▀█░█▀▄░█▀█░█░█░█▀▀
-  -- ░█▄█░░█░░█░█░█░█░█░█░█▄█░▀▀█
-  -- ░▀░▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀▀
+  -- ░█▀▄░█▀▀░█▀▀░▀█▀░▀▀█░█▀▀░░░█░█░▀█▀░█▀█░█▀▄░█▀█░█░█
+  -- ░█▀▄░█▀▀░▀▀█░░█░░▄▀░░█▀▀░░░█▄█░░█░░█░█░█░█░█░█░█▄█
+  -- ░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░░░▀░▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀
   awful.key({ modkey, shiftkey }, 'Next', function()
     awful.client.moveresize(20, 20, -40, -40)
   end, {
@@ -158,78 +162,75 @@ local global_keys = awful.util.table.join(
     description = 'decrease window size',
     group = keys.kgClient
   }),
-  awful.key({ modkey, shiftkey }, 'Down', function()
-    awful.client.incwfact(0.05)
-  end, {
-    description = 'increase window size',
-    group = keys.kgClient
-  }),
-  awful.key({ modkey, shiftkey }, 'Up', function()
-    awful.client.incwfact(-0.05)
-  end, {
-    description = 'decrease window size',
-    group = keys.kgClient
-  }),
-  awful.key({ modkey }, 'Right', function()
+  -- awful.key({ modkey, shiftkey }, downkey, function()
+  --   awful.client.incwfact(0.05)
+  -- end, {
+  --   description = 'increase window size',
+  --   group = keys.kgClient
+  -- }),
+  -- awful.key({ modkey, shiftkey }, upkey, function()
+  --   awful.client.incwfact(-0.05)
+  -- end, {
+  --   description = 'decrease window size',
+  --   group = keys.kgClient
+  -- }),
+
+  -- ░█▄█░█▀█░█░█░█▀▀░░░█▀▀░█▀█░█▀▀░█░█░█▀▀
+  -- ░█░█░█░█░▀▄▀░█▀▀░░░█▀▀░█░█░█░░░█░█░▀▀█
+  -- ░▀░▀░▀▀▀░░▀░░▀▀▀░░░▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
+  -- local clients (on current screen)
+  awful.key({ modkey, altkey }, rightkey, function()
     awful.client.focus.byidx(1)
   end, {
     description = 'focus next by index',
     group = keys.kgClient
   }),
-  awful.key({ modkey }, 'Left', function()
+  awful.key({ modkey, altkey }, leftkey, function()
     awful.client.focus.byidx(-1)
   end, {
     description = 'focus previous by index',
     group = keys.kgClient
   }),
-  awful.key({ controlkey, modkey }, downkey, function()
+
+  -- global (over screens)
+  awful.key({ modkey }, downkey, function()
     awful.client.focus.global_bydirection('down')
-    if awful.client.focus then
-      awful.client.focus:raise()
-    end
+    -- if awful.client.focus then
+    --   awful.client.focus:raise()
+    -- end
   end, {
     description = 'focus down',
     group = keys.kgClient
   }),
-  awful.key({ controlkey, modkey }, upkey, function()
+  awful.key({ modkey }, upkey, function()
     awful.client.focus.global_bydirection('up')
-    if awful.client.focus then
-      awful.client.focus:raise()
-    end
+    -- if awful.client.focus then
+    --   awful.client.focus:raise()
+    -- end
   end, {
     description = 'focus up',
     group = keys.kgClient
   }),
-  awful.key({ controlkey, modkey }, leftkey, function()
+  awful.key({ modkey }, leftkey, function()
     awful.client.focus.global_bydirection('left')
-    if awful.client.focus then
-      awful.client.focus:raise()
-    end
+    -- if awful.client.focus then
+    --   awful.client.focus:raise()
+    -- end
   end, {
     description = 'focus left',
     group = keys.kgClient
   }),
-  awful.key({ controlkey, modkey }, rightkey, function()
+  awful.key({ modkey }, rightkey, function()
     awful.client.focus.global_bydirection('right')
-    if awful.client.focus then
-      awful.client.focus:raise()
-    end
+    -- if awful.client.focus then
+    --   awful.client.focus:raise()
+    -- end
   end, {
     description = 'focus right',
     group = keys.kgClient
   }),
-  awful.key({ modkey }, downkey, function()
-    awful.client.swap.byidx(1)
-  end, {
-    description = 'swap with next client by index',
-    group = keys.kgClient
-  }),
-  awful.key({ modkey }, upkey, function()
-    awful.client.swap.byidx(-1)
-  end, {
-    description = 'swap with previous client by index',
-    group = keys.kgClient
-  }),
+
+  -- screens
   awful.key({ modkey }, '.', function()
     awful.screen.focus_relative(1)
   end, {
@@ -242,10 +243,54 @@ local global_keys = awful.util.table.join(
     description = 'focus the previous screen',
     group = keys.kgScreen
   }),
+
+  awful.key({ modkey, shiftkey }, 'F1', function()
+    awful.screen.focus_relative(-1)
+  end, {
+    description = 'focus the previous screen',
+    group = keys.kgScreen
+  }),
+  awful.key({ modkey, shiftkey }, 'F2', function()
+    awful.screen.focus_relative(1)
+  end, {
+    description = 'focus the next screen',
+    group = keys.kgScreen
+  }),
+
+  -- ░█▀▄░█▀▀░█▀▀░▀█▀░▀▀█░█▀▀
+  -- ░█▀▄░█▀▀░▀▀█░░█░░▄▀░░█▀▀
+  -- ░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀
+  -- -- Resize focused client
+  awful.key({ modkey, controlkey }, upkey, function(c)
+    resize_client(awful.client.focus, 'up')
+  end,
+    { description = 'resize to the up',
+      group = keys.kgClient }),
+  awful.key({ modkey, controlkey }, downkey, function(c)
+    resize_client(awful.client.focus, 'down')
+  end,
+    { description = 'resize to the down',
+      group = keys.kgClient }),
+  awful.key({ modkey, controlkey }, leftkey, function(c)
+    resize_client(awful.client.focus, 'left')
+  end,
+    { description = 'resize to the left',
+      group = keys.kgClient }),
+  awful.key({ modkey, controlkey }, rightkey, function(c)
+    resize_client(awful.client.focus, 'right')
+  end,
+    { description = 'resize to the right',
+      group = keys.kgClient }),
+
+
+  -- ░█▀█░█▀█░█░█░▀█▀░█▀▀░█▀█░▀█▀░▀█▀░█▀█░█▀█
+  -- ░█░█░█▀█░▀▄▀░░█░░█░█░█▀█░░█░░░█░░█░█░█░█
+  -- ░▀░▀░▀░▀░░▀░░▀▀▀░▀▀▀░▀░▀░░▀░░▀▀▀░▀▀▀░▀░▀
   awful.key({ modkey }, 'u', awful.client.urgent.jumpto, {
     description = 'jump to urgent client',
-    group = keys.kgClient
+    group = keys.kgNavigation
   }),
+
   awful.key({ modkey, controlkey }, 'w', function()
     -- tag_view_nonempty(-1)
     local focused = awful.screen.focused()
@@ -259,6 +304,7 @@ local global_keys = awful.util.table.join(
     description = 'view previous non-empty tag',
     group = keys.kgTag
   }),
+
   awful.key({ modkey, controlkey }, 's', function()
     -- tag_view_nonempty(1)
     local focused = awful.screen.focused()
@@ -272,18 +318,7 @@ local global_keys = awful.util.table.join(
     description = 'view next non-empty tag',
     group = keys.kgTag
   }),
-  awful.key({ modkey, shiftkey }, 'F1', function()
-    awful.screen.focus_relative(-1)
-  end, {
-    description = 'focus the previous screen',
-    group = keys.kgScreen
-  }),
-  awful.key({ modkey, shiftkey }, 'F2', function()
-    awful.screen.focus_relative(1)
-  end, {
-    description = 'focus the next screen',
-    group = keys.kgScreen
-  }),
+
   awful.key({ modkey, controlkey }, 'n', function()
     local c = awful.client.restore()
     -- Focus restored client
@@ -452,12 +487,14 @@ local global_keys = awful.util.table.join(
     description = 'toggle exit screen',
     group = keys.kgHotkeys
   }),
+
   awful.key({ modkey, controlkey }, returnkey, function()
     awesome.emit_signal('module::quake_terminal:toggle')
   end, {
-    description = 'dropdown application',
+    description = 'dropdown terminal',
     group = keys.kgLauncher
   }),
+
   awful.key({ modkey, shiftkey }, 'm', function()
     if awful.screen.focused().musicpop then
       awesome.emit_signal('widget::music', 'keyboard')
@@ -497,47 +534,6 @@ local global_keys = awful.util.table.join(
   end, {
     description = 'toggle redshift filter',
     group = keys.kgUtils
-  }),
-  awful.key({ controlkey }, 'Escape', function()
-    if screen.primary.systray then
-      if not screen.primary.tray_toggler then
-        local systray = screen.primary.systray
-        systray.visible = not systray.visible
-      else
-        awesome.emit_signal('widget::systray:toggle')
-      end
-    end
-  end, {
-    description = 'toggle systray visibility',
-    group = keys.kgUtils
-  }),
-  awful.key({ modkey }, 'l', function()
-    awful.spawn(apps.default.lock, false)
-  end, {
-    description = 'lock the screen',
-    group = keys.kgUtils
-  }),
-  awful.key({ modkey }, 'l', function()
-    local focused = awful.screen.focused()
-
-    if focused.right_panel and focused.right_panel.visible then
-      focused.right_panel.visible = false
-    end
-    screen.primary.left_panel:toggle()
-  end, {
-    description = 'open sidebar',
-    group = keys.kgLauncher
-  }),
-  awful.key({ modkey }, 'r', function()
-    local focused = awful.screen.focused()
-
-    if focused.right_panel and focused.right_panel.visible then
-      focused.right_panel.visible = false
-    end
-    screen.primary.left_panel:toggle(true)
-  end, {
-    description = 'open sidebar and global search',
-    group = keys.kgLauncher
   }),
 
   -- ░█▀▀░█░█░█▀▀░▀█▀░█▀▀░█▄█░░░█▄█░█▀▀░█▀█░█░█░█▀▀
@@ -685,7 +681,7 @@ local global_keys = awful.util.table.join(
     description = 'Picom Toggle',
     group = keys.kgSystem
   }),
-  awful.key({ modkey, shiftkey }, 'Escape', function()
+  awful.key({ modkey }, 'Escape', function()
     awful.spawn('xkill')
   end, {
     description = 'XKill',

@@ -123,53 +123,12 @@ client.connect_signal(
 
 client.connect_signal('swapped', function(c, source, is_source)
   sound('window-switch')
-  if config.debug_mode then
-    log("'client:swapped' event raised: " .. c.name)
-  end
 end)
 
 client.connect_signal('raised', function(c)
   sound("window-attention-active")
-  if config.debug_mode then
-    log("'client:raised' event raised: " .. c.name)
-  end
 end)
 
 client.connect_signal('lowered', function(c)
   sound("window-attention-inactive")
-  if config.debug_mode then
-    log("'client:lowered' event raised: " .. c.name)
-  end
-end)
-
-client.connect_signal('request::activate', function(c)
-  if config.debug_mode then
-    notify('Client', "'request::activate' event raised: " .. c.name)
-    log("'client:request::activate' event raised: " .. c.name)
-  end
-end)
-
-client.connect_signal('request::geometry', function(c, context, Additional)
-  if config.debug_mode then
-    log("'client:request::geometry' event raised: " .. c.name .. ' Context: ' .. context)
-    if context == 'maximized' then
-      notify('Client', 'Maximized: ' .. c.name)
-    else
-      notify('Client', "'request::geometry' event raised: " .. c.name .. ' Context: ' .. context)
-    end
-  end
-end)
-
-client.connect_signal('property::window', function(c)
-  if config.debug_mode then
-    notify('Client', "'property::window' event raised: " .. c.name)
-    log("'client:property::window' event raised: " .. c.name)
-  end
-end)
-
-client.connect_signal('property::size', function(c)
-  if config.debug_mode then
-    notify('Client', "'property::size' event raised: " .. c.name)
-    log("'client:property::size' event raised: " .. c.name)
-  end
 end)

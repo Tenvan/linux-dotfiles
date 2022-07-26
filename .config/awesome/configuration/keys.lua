@@ -1,4 +1,3 @@
-local log = require('utilities.debug').log
 log("Enter Module => " .. ... )
 
 local awesome, client, screen = awesome, client, screen
@@ -6,7 +5,6 @@ local awesome, client, screen = awesome, client, screen
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local beautiful = require("beautiful")
-local dpi = beautiful.xresources.apply_dpi
 local naughty = require("naughty")
 local bling = require("module.bling")
 local playerctl = bling.signal.playerctl.lib()
@@ -15,23 +13,38 @@ local helpers = require("helpers")
 local apps = require("configuration.apps")
 local QuakeTerminal = require("module.scratchpad").quake
 
-local notify = require("utilities.notify")
+local dpi = beautiful.xresources.apply_dpi
+
+local move_client = require('helpers.client').move_client
+
+local keys  = require('configuration.keys.mod')
+
+local modkey = keys.mod_key
+local altkey = keys.alt_key
+
+-- ░█░█░█▀▀░█░█░░░█▄█░█▀█░█▀▄░▀█▀░█▀▀░▀█▀░█▀▀░█▀▄░█▀▀░█▀▀
+-- ░█▀▄░█▀▀░░█░░░░█░█░█░█░█░█░░█░░█▀▀░░█░░█▀▀░█▀▄░█▀▀░▀▀█
+-- ░▀░▀░▀▀▀░░▀░░░░▀░▀░▀▀▀░▀▀░░▀▀▀░▀░░░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀
+local controlkey = keys.control_key
+local shiftkey   = keys.shift_key
+local returnkey  = keys.return_key
+local spacekey   = keys.space_key
+local escapekey  = keys.escape_key
+local printkey   = keys.print_key
+local tabkey     = keys.tab_key
+local downkey    = keys.down_key
+local upkey      = keys.up_key
+local leftkey    = keys.left_key
+local rightkey   = keys.right_key
 
 -- Make key easier to call
 ----------------------------
+local keys  = require('configuration.keys.mod')
 
-local mod = "Mod4"
-local alt = "Mod1"
-local ctrl = "Control"
-local shift = "Shift"
-local spacekey = "space"
-local returnkey = 'Return'
-local escapekey = 'Escape'
-local tabkey = 'Tab'
-local downkey = 'Down'
-local upkey = 'Up'
-local leftkey = 'Left'
-local rightkey = 'Right'
+local mod = modkey
+local alt = altkey
+local ctrl = controlkey
+local shift = shiftkey
 
 -- key groups
 local kgAwesome = 'AwesomeWM'
@@ -57,149 +70,8 @@ awful.keyboard.append_global_keybindings({
 	---- App
 	----------
 
-	--
-	-- ░█▀▀░█░█░█▀▀░▀█▀░█▀▀░█▄█░░░▀█▀░█▀█░█▀█░█░░░█▀▀
-	-- ░▀▀█░░█░░▀▀█░░█░░█▀▀░█░█░░░░█░░█░█░█░█░█░░░▀▀█
-	-- ░▀▀▀░░▀░░▀▀▀░░▀░░▀▀▀░▀░▀░░░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
-	awful.key({ mod, alt }, 't', function()
-		notify('Test Nachricht 1',
-			'Dies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.'
-			,
-			'warning', true, '/usr/share/icons/hicolor/scalable/status/tablet.svg')
-		notify('Test Nachricht',
-			'Dies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.'
-			,
-			'critical', true, 'avatar-default')
-	end, {
-		description = 'Test Benachrichtigung',
-		group = kgSystem
-	}),
-	awful.key({ mod, ctrl }, 'x', function()
-		awful.spawn.with_shell('kitty --hold --title CF:XProp --name CF:XProp xprop')
-	end, {
-		description = 'Xprop',
-		group = kgSystem
-	}),
-	awful.key({ mod, ctrl }, 't', function()
-		awful.spawn.with_shell('sh ~/.scripts/picom-toggle-awesome.sh')
-	end, {
-		description = 'Picom Toggle',
-		group = kgSystem
-	}),
-	awful.key({ mod, ctrl }, 's', function()
-		notify("Swallowing Toggle")
-		bling.module.window_swallowing.toggle()
-	end, {
-		description = 'Windows Swallowing Toggle',
-		group = kgSystem
-	}),
-	awful.key({ mod, shift }, 'Escape', function()
-		awful.spawn('xkill')
-	end, {
-		description = 'XKill',
-		group = kgSystem
-	}),
-
-	-- other media keys
-	--
-	-- ░█▄█░█▀▀░█▀▄░▀█▀░█▀█░░░▀█▀░█▀█░█▀▀░▀█▀░█▀▀░█▀█
-	-- ░█░█░█▀▀░█░█░░█░░█▀█░░░░█░░█▀█░▀▀█░░█░░█▀▀░█░█
-	-- ░▀░▀░▀▀▀░▀▀░░▀▀▀░▀░▀░░░░▀░░▀░▀░▀▀▀░░▀░░▀▀▀░▀░▀
-	awful.key({}, 'XF86Calculator', function()
-		awful.spawn('gnome-calculator')
-	end), -- Menu Shortcuts
-	awful.key({}, 'XF86PowerDown', function()
-		--
-	end, {
-		description = 'shutdown skynet',
-		group = kgHotkeys
-	}),
-	awful.key({}, 'XF86PowerOff', function()
-		awesome.emit_signal('module::exit_screen:show')
-	end, {
-		description = 'toggle exit screen',
-		group = kgHotkeys
-	}),
-	awful.key({}, 'XF86Display', function()
-		awful.spawn.single_instance('arandr', false)
-	end, {
-		description = 'arandr',
-		group = kgHotkeys
-	}),
-
-	awful.key({ mod, ctrl }, returnkey, function()
-		if QuakeTerminal then
-			notify("QuakeTerminal", "Toggle")
-			QuakeTerminal:toggle()
-		end
-	end, {
-		description = 'Scratchpad',
-		group = kgHotkeys
-	}),
-
   ---- Client
 	---------------
-	-- Focus client by direction
-	awful.key({ mod }, "k", function()
-		awful.client.focus.bydirection("up")
-		bling.module.flash_focus.flashfocus(client.focus)
-	end, { description = "focus up", group = kgClient }),
-	awful.key({ mod }, "j", function()
-		awful.client.focus.bydirection("down")
-		bling.module.flash_focus.flashfocus(client.focus)
-	end, { description = "focus down", group = kgClient }),
-	awful.key({ mod }, "h", function()
-		awful.client.focus.bydirection("left")
-		bling.module.flash_focus.flashfocus(client.focus)
-	end, { description = "focus left", group = kgClient }),
-	awful.key({ mod }, "l", function()
-		awful.client.focus.bydirection("right")
-		bling.module.flash_focus.flashfocus(client.focus)
-	end, { description = "focus right", group = kgClient }),
-
-	awful.key({ mod }, "Up", function()
-		awful.client.focus.bydirection("up")
-		bling.module.flash_focus.flashfocus(client.focus)
-	end, { description = "focus up", group = kgClient }),
-	awful.key({ mod }, "Down", function()
-		awful.client.focus.bydirection("down")
-		bling.module.flash_focus.flashfocus(client.focus)
-	end, { description = "focus down", group = kgClient }),
-	awful.key({ mod }, "Left", function()
-		awful.client.focus.bydirection("left")
-		bling.module.flash_focus.flashfocus(client.focus)
-	end, { description = "focus left", group = kgClient }),
-	awful.key({ mod }, "Right", function()
-		awful.client.focus.bydirection("right")
-		bling.module.flash_focus.flashfocus(client.focus)
-	end, { description = "focus right", group = kgClient }),
-
-	-- Resize focused client
-	awful.key({ mod, ctrl }, "k", function(c)
-		helpers.resize_client(client.focus, "up")
-	end, { description = "resize to the up", group = kgClient }),
-	awful.key({ mod, ctrl }, "j", function(c)
-		helpers.resize_client(client.focus, "down")
-	end, { description = "resize to the down", group = kgClient }),
-	awful.key({ mod, ctrl }, "h", function(c)
-		helpers.resize_client(client.focus, "left")
-	end, { description = "resize to the left", group = kgClient }),
-	awful.key({ mod, ctrl }, "l", function(c)
-		helpers.resize_client(client.focus, "right")
-	end, { description = "resize to the right", group = kgClient }),
-
-	awful.key({ mod, ctrl }, "Up", function(c)
-		helpers.resize_client(client.focus, "up")
-	end, { description = "resize to the up", group = kgClient }),
-	awful.key({ mod, ctrl }, "Down", function(c)
-		helpers.resize_client(client.focus, "down")
-	end, { description = "resize to the down", group = kgClient }),
-	awful.key({ mod, ctrl }, "Left", function(c)
-		helpers.resize_client(client.focus, "left")
-	end, { description = "resize to the left", group = kgClient }),
-	awful.key({ mod, ctrl }, "Right", function(c)
-		helpers.resize_client(client.focus, "right")
-	end, { description = "resize to the right", group = kgClient }),
 
 	---- Bling
 	-------------
@@ -356,29 +228,29 @@ client.connect_signal("request::default_keybindings", function()
 	awful.keyboard.append_client_keybindings({
 		-- Move or swap by direction
 		awful.key({ mod, shift }, "k", function(c)
-			helpers.move_client(c, "up")
+			move_client(c, "up")
 		end),
 		awful.key({ mod, shift }, "j", function(c)
-			helpers.move_client(c, "down")
+			move_client(c, "down")
 		end),
 		awful.key({ mod, shift }, "h", function(c)
-			helpers.move_client(c, "left")
+			move_client(c, "left")
 		end),
 		awful.key({ mod, shift }, "l", function(c)
-			helpers.move_client(c, "right")
+			move_client(c, "right")
 		end),
 
 		awful.key({ mod, shift }, "Up", function(c)
-			helpers.move_client(c, "up")
+			move_client(c, "up")
 		end),
 		awful.key({ mod, shift }, "Down", function(c)
-			helpers.move_client(c, "down")
+			move_client(c, "down")
 		end),
 		awful.key({ mod, shift }, "Left", function(c)
-			helpers.move_client(c, "left")
+			move_client(c, "left")
 		end),
 		awful.key({ mod, shift }, "Right", function(c)
-			helpers.move_client(c, "right")
+			move_client(c, "right")
 		end),
 
 		-- Relative move client

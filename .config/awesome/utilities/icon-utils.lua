@@ -1,7 +1,6 @@
 log('Enter Module => ' .. ...)
 
 local gfs = require('gears.filesystem')
-local naughty = require('naughty')
 
 local lgi = require('lgi')
 local glib = lgi.GLib
@@ -83,12 +82,12 @@ local function get_icon_lookup_path()
       add_with_dir({}, paths, theme_dir))
   end
 
-  dump(icon_theme_paths, 'theme paths')
+  -- dump(icon_theme_paths, 'theme paths')
 
   local app_in_theme_paths = {}
   local blocks = { 'actions', 'apps', 'categories', 'devices',
     'emblems', 'emotes', 'mimetypes', 'places', 'status', 'web' }
-  dump(blocks)
+  -- dump(blocks)
   for _, icon_theme_directory in ipairs(icon_theme_paths) do
     for _, size in ipairs(all_icon_sizes) do
       for i = 1, #blocks, 1 do
@@ -101,7 +100,7 @@ local function get_icon_lookup_path()
   add_if_readable(icon_lookup_path, app_in_theme_paths)
   local result = add_if_readable(icon_lookup_path, paths)
 
-  dump(result, 'icon lookup path')
+  -- dump(result, 'icon lookup path')
 
   return result
 end
@@ -148,13 +147,13 @@ local lookup_icon_cache = {}
 -- @return full name of the icon.
 -- @staticfct menubar.utils.lookup_icon
 function utils.lookup_icon(icon)
-  log('lookup icon: ' .. (icon or '(nil)' ))
+  -- log('lookup icon: ' .. (icon or '(nil)' ))
   if icon == nil then return icon end
   if not lookup_icon_cache[icon] and lookup_icon_cache[icon] ~= false then
     lookup_icon_cache[icon] = utils.lookup_icon_uncached(icon)
   end
   local result = lookup_icon_cache[icon] or default_icon
-  log('Result: ' .. result)
+  -- log('Result: ' .. result)
   return result
 end
 

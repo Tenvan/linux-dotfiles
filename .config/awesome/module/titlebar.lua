@@ -1,5 +1,3 @@
-local log = require('utilities.debug').log
-local dump = require('utilities.debug').dump
 log("Enter Module => " .. ... )
 
 local awesome, client = awesome, client
@@ -9,9 +7,7 @@ local gears = require('gears')
 local beautiful = require('beautiful')
 local wibox = require('wibox')
 local dpi = beautiful.xresources.apply_dpi
-
-local notify = require("utilities.notify")
-local sound = require("utilities.sound")
+local apps = require("configuration.apps")
 
 awful.titlebar.enable_tooltip = true
 awful.titlebar.fallback_name = 'Client'
@@ -211,10 +207,10 @@ client.connect_signal('request::titlebars', function(c)
     -- Customize here
     if c.type == 'normal' then
 
-        if c.class == 'kitty' then
+        if c.class == apps.default.terminal then
             create_vertical_bar(c, 'left', '#00000099', beautiful.titlebar_size)
 
-        elseif c.class == 'firefox' then
+          elseif c.class == 'firefox' then
             create_vertical_bar(c, 'left', beautiful.background, beautiful.titlebar_size)
 
         elseif c.class == 'XTerm' or c.class == 'UXTerm' then
@@ -238,21 +234,14 @@ client.connect_signal('request::titlebars', function(c)
         elseif c.class == 'Ettercap' then
             create_vertical_bar(c, 'left', beautiful.gtk.get_theme_variables().base_color, beautiful.titlebar_size)
 
-        elseif c.class == 'Google-chrome' or c.class == 'Chromium' then
+        elseif c.class == 'vivaldi-stable' or c.class == 'Google-chrome' or c.class == 'Chromium' then
             create_vertical_bar(c, 'left', beautiful.gtk.get_theme_variables().base_color, beautiful.titlebar_size)
-
-        elseif c.class == 'TelegramDesktop' then
-            create_vertical_bar(c, 'left', '#17212b', beautiful.titlebar_size)
-
-        elseif c.class == 'Kvantum Manager' then
-            create_vertical_bar(c, 'left', '#00000099', beautiful.titlebar_size)
 
         elseif c.class == 'qt5ct' then
             create_vertical_bar(c, 'left', '#00000099', beautiful.titlebar_size)
 
         elseif c.class == 'Nemo' then
             create_horizontal_bar(c, 'top', beautiful.gtk.get_theme_variables().base_color, beautiful.titlebar_size)
-
         else
             create_vertical_bar(c, 'left', beautiful.background, beautiful.titlebar_size)
         end

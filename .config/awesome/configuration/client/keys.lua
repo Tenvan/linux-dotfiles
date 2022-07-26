@@ -1,12 +1,18 @@
-local log = require('utilities.debug').log
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local awful = require('awful')
+local bling = require('module.bling')
+
 local dpi = require('beautiful').xresources.apply_dpi
 
 require('awful.autofocus')
 
+local helpers = require('helpers')
 local keys = require('configuration.keys.mod')
+
+local resize_client = require('helpers.client').resize_client
+local move_client = require('helpers.client').move_client
+
 local modkey = keys.mod_key
 local altkey = keys.alt_key
 
@@ -22,22 +28,45 @@ local leftkey = keys.left_key
 local rightkey = keys.right_key
 
 -- key groups
-local kgAwesome = 'AwesomeWM'
-local kgApps = 'Anwendungen'
-local kgUtils = 'Tools'
-local kgMenus = 'Menüs'
-local kgClient = 'Client Aktionen'
-local kgLayout = 'Layout Aktionen'
-local kgMaster = 'Master Aktionen'
-local kgScreen = 'Screen Aktionen'
-local kgScreenshot = 'Screenshot'
-local kgSound = 'Audio'
-local kgSystem = 'System'
-local kgTag = 'Tags'
-local kgHotkeys = 'Hotkeys'
-local kgLauncher = 'Starter'
+local kgClient = keys.kgClient
 
 local client_keys = awful.util.table.join(
+
+  -- ░█▄█░█▀█░█░█░█▀▀░░░█▀▀░█░░░▀█▀░█▀▀░█▀█░▀█▀
+  -- ░█░█░█░█░▀▄▀░█▀▀░░░█░░░█░░░░█░░█▀▀░█░█░░█░
+  -- ░▀░▀░▀▀▀░░▀░░▀▀▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░░▀░
+  -- Move client by direction
+  awful.key({ shiftkey, modkey }, leftkey, function(c)
+    move_client(c, 'left')
+  end, {
+    description = 'move client left',
+    group = keys.kgClient
+  }),
+  awful.key({ shiftkey, modkey }, rightkey, function(c)
+    move_client(c, 'right')
+  end, {
+    description = 'move client right',
+    group = keys.kgClient
+  }),
+
+  awful.key({ shiftkey, modkey }, upkey, function(c)
+    move_client(c, 'up')
+  end, {
+    description = 'move client up',
+    group = keys.kgClient
+  }),
+  awful.key({ shiftkey, modkey }, downkey, function(c)
+    move_client(c, 'down')
+  end, {
+    description = 'move client down',
+    group = keys.kgClient
+  }),
+
+-- ░█▄█░█▀█░█░█░█▀▀░░░█▀▀░█▀█░█▀▀░█░█░█▀▀
+-- ░█░█░█░█░▀▄▀░█▀▀░░░█▀▀░█░█░█░░░█░█░▀▀█
+-- ░▀░▀░▀▀▀░░▀░░▀▀▀░░░▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
+-- Focus client by direction
+
   awful.key({ modkey }, 'f', function(c)
     c.fullscreen = not c.fullscreen
     c:raise()
@@ -45,20 +74,22 @@ local client_keys = awful.util.table.join(
     description = 'toggle fullscreen',
     group = kgClient
   }),
+
   awful.key({ modkey }, 'q', function(c)
     c:kill()
   end, {
     description = 'close',
     group = kgClient
   }),
-  awful.key({ modkey }, 'd', function()
-    awful.client.focus.byidx(1)
+
+  awful.key({ modkey }, 'd', function(c)
+    c.byidx(1)
   end, {
     description = 'focus next by index',
     group = kgClient
   }),
-  awful.key({ modkey }, 'a', function()
-    awful.client.focus.byidx(-1)
+  awful.key({ modkey }, 'a', function(c)
+    c.byidx(-1)
   end, {
     description = 'focus previous by index',
     group = kgClient
@@ -79,8 +110,8 @@ local client_keys = awful.util.table.join(
     description = 'jump to urgent client',
     group = kgClient
   }),
-  awful.key({ modkey }, tabkey, function()
-    awful.client.focus.history.previous()
+  awful.key({ modkey }, tabkey, function(c)
+    c.history.previous()
     if client.focus then
       client.focus:raise()
     end
@@ -117,27 +148,6 @@ local client_keys = awful.util.table.join(
     c:relative_move(0, dpi(-10), 0, 0)
   end, {
     description = 'move floating client up by 10 px',
-    group = kgClient
-  }),
-  awful.key({ modkey }, downkey, function(c)
-    c:relative_move(0, dpi(10), 0, 0)
-  end, {
-    description = 'move floating client down by 10 px',
-    group = kgClient
-  }), awful.key({ modkey }, leftkey, function(c)
-    c:relative_move(dpi(-10), 0, 0, 0)
-  end, {
-    description = 'move floating client to the left by 10 px',
-    group = kgClient
-  }), awful.key({ modkey }, rightkey, function(c)
-    c:relative_move(dpi(10), 0, 0, 0)
-  end, {
-    description = 'move floating client to the right by 10 px',
-    group = kgClient
-  }), awful.key({ modkey, shiftkey }, upkey, function(c)
-    c:relative_move(0, dpi(-10), 0, dpi(10))
-  end, {
-    description = 'increase floating client size vertically by 10 px up',
     group = kgClient
   }),
 

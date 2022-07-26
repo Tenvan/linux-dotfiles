@@ -71,25 +71,18 @@ end
 local function menuAction(action)
   local variables = getMenuData('VARIABLES')
 
-  log('Action: ' .. action)
-  dump(variables, 'VARIABLES')
-
   local command = action
 
   for i, c in pairs(variables) do
-    dump(c)
     if c[2] == '' then
       local ENV = os.getenv(c[1]) or c[2]
-      log("[E] replace '$" .. c[1] .. "' with '" .. ENV .. "'")
       command = string.gsub(command, "$" .. c[1], ENV)
     else
-      log("[S] replace '" .. c[1] .. "' with '" .. c[2] .. "'")
       command = string.gsub(command, c[1], c[2])
     end
   end
 
-  log('Execute: ' .. command)
-  awful.spawn(command)
+  awful.spawn.with_shell(command)
 end
 
 local function arrayToMenu(array)
