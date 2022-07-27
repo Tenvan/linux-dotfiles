@@ -14,8 +14,6 @@
 
 -- Limitations: 
 -- Timeout paused when laptop/pc is suspended or in sleep mode, and there's probably some bugs too so whatever
-local log = require('utilities.debug').log
-local dump = require('utilities.debug').dump
 log("Enter Module => " .. ... )
 
 local awful = require('awful')

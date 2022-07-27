@@ -168,7 +168,7 @@ local enable = function(opts)
         }
     end)
 
-    awesome.connect_signal("bling::task_preview::visibility", function(s, v, c)
+    awesome.connect_signal("bling::task_preview::visibility", function(s, v, c, t)
         if v then
             -- Update task preview contents
             task_preview_box.widget = draw_widget(
@@ -193,6 +193,8 @@ local enable = function(opts)
         end
 
         task_preview_box.visible = v
+        task_preview_box.screen = s
+        task_preview_box.tag = t
     end)
 end
 

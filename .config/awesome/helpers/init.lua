@@ -355,12 +355,6 @@ function helpers.float_and_resize(c, width, height)
 	c:raise()
 end
 
-function helpers.centered_client_placement(c)
-	return gears.timer.delayed_call(function()
-		awful.placement.centered(c, { honor_padding = true, honor_workarea = true })
-	end)
-end
-
 -- Useful for periodically checking the output of a command that
 -- requires internet access.
 -- Ensures that `command` will be run EXACTLY once during the desired

@@ -2,8 +2,6 @@
      Bling
      Layouts, widgets and utilities for Awesome WM
 --]]
-log("Enter Module => " .. ... )
-
 return {
     layout = require(... .. ".layout"),
     module = require(... .. ".module"),

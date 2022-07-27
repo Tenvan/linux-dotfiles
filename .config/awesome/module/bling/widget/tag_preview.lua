@@ -228,7 +228,7 @@ local enable = function(opts)
         )
     end)
 
-    awesome.connect_signal("bling::tag_preview::visibility", function(s, v)
+    awesome.connect_signal("bling::tag_preview::visibility", function(s, v, t)
         if not placement_fn then
             tag_preview_box.x = s.geometry.x + widget_x
             tag_preview_box.y = s.geometry.y + widget_y
@@ -239,7 +239,9 @@ local enable = function(opts)
             collectgarbage("collect")
         end
 
+        tag_preview_box.screen = s
         tag_preview_box.visible = v
+        tag_preview_box.tag = t
     end)
 end
 

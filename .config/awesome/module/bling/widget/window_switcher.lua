@@ -29,6 +29,25 @@ local get_num_clients = function()
     return minimized_clients_in_tag + #awful.screen.focused().clients
 end
 
+local get_clients = function()
+    local minimized_clients_in_tag = 0
+    local matcher = function(c)
+        return awful.rules.match(
+            c,
+            {
+                minimized = true,
+                skip_taskbar = false,
+                hidden = false,
+                first_tag = awful.screen.focused().selected_tag,
+            }
+        )
+    end
+    for c in awful.client.iterate(matcher) do
+        minimized_clients_in_tag = minimized_clients_in_tag + 1
+    end
+    return awful.screen.focused().clients
+end
+
 local window_switcher_hide = function(window_switcher_box)
     -- Add currently focused client to history
     if client.focus then
@@ -62,6 +81,8 @@ local window_switcher_hide = function(window_switcher_box)
     collectgarbage("collect")
 end
 
+local tasklist_widget
+
 local function draw_widget(
     type,
     background,
@@ -87,7 +108,7 @@ local function draw_widget(
     filterClients
 )
     filterClients = filterClients or awful.widget.tasklist.filter.currenttags
-    local tasklist_widget = type == "thumbnail"
+    tasklist_widget = type == "thumbnail"
         and awful.widget.tasklist({
             screen = awful.screen.focused(),
             filter = filterClients,
@@ -119,11 +140,35 @@ local function draw_widget(
                     cr:set_source_surface(content, 0, 0)
                     cr.operator = cairo.Operator.SOURCE
                     cr:paint()
-                    self:get_children_by_id("thumbnail")[1].image = gears.surface
-                        .load(
-                            img
-                        )
+                    self:get_children_by_id("thumbnail")[1].image =
+                    gears.surface.load(
+                        img
+                    )
                 end,
+
+                update_callback = function(self, c, index, objects)
+                    local content = gears.surface(c.content)
+                    dump(content, "Content")
+                    local cr = cairo.Context(content)
+                    local x, y, w, h = cr:clip_extents()
+                    local img = cairo.ImageSurface.create(
+                        cairo.Format.ARGB32,
+                        w - x,
+                        h - y
+                    )
+                    cr = cairo.Context(img)
+                    cr:set_source_surface(content, 0, 0)
+                    cr.operator = cairo.Operator.SOURCE
+                    cr:paint()
+
+                    self:get_children_by_id("thumbnail")[1].image =
+                    gears.surface.load(
+                        img
+                    )
+
+                    self:get_children_by_id('bg_role')[1].bg = "#FF0000"
+                end,
+
                 {
                     {
                         {
@@ -227,6 +272,8 @@ end
 local enable = function(opts)
     local opts = opts or {}
 
+    local resetIndex = opts.resetIndex or function() end
+
     local type = opts.type or "thumbnail"
     local background = beautiful.window_switcher_widget_bg or "#000000"
     local border_width = beautiful.window_switcher_widget_border_width or dpi(3)
@@ -278,6 +325,8 @@ local enable = function(opts)
     local cycleClientsByIdx = opts.cycleClientsByIdx or awful.client.focus.byidx
     local filterClients = opts.filterClients or
         awful.widget.tasklist.filter.currenttags
+    local getNumClients = opts.getNumClients or get_num_clients
+    local getClients = opts.getClients or get_clients()
 
     local window_switcher_box = awful.popup({
         bg = "#00000000",
@@ -341,6 +390,7 @@ local enable = function(opts)
                 client.focus = awful.client.restore()
             end
         end,
+
         [kill_client_key] = function()
             if client.focus then
                 client.focus:kill()
@@ -348,38 +398,49 @@ local enable = function(opts)
         end,
 
         [cycle_key] = function()
+            log("Cycle Clients")
             cycleClientsByIdx(1)
+            tasklist_widget:emit_signal("widget::redraw_needed")
+            tasklist_widget:emit_signal("widget::layout_changed")
+            window_switcher_box:emit_signal("widget::redraw_needed")
+            window_switcher_box:emit_signal("widget::layout_changed")
         end,
 
         [previous_key] = function()
+            log("Previous Clients")
             cycleClientsByIdx(1)
         end,
+
         [next_key] = function()
+            log("Next Clients")
             cycleClientsByIdx(-1)
         end,
 
         [vim_previous_key] = function()
             cycleClientsByIdx(1)
         end,
+
         [vim_next_key] = function()
             cycleClientsByIdx(-1)
         end,
     }
 
     window_switcher_box:connect_signal("property::width", function()
-        if window_switcher_box.visible and get_num_clients() == 0 then
+        if window_switcher_box.visible and getNumClients() == 0 then
             window_switcher_hide(window_switcher_box)
         end
     end)
 
     window_switcher_box:connect_signal("property::height", function()
-        if window_switcher_box.visible and get_num_clients() == 0 then
+        if window_switcher_box.visible and getNumClients() == 0 then
             window_switcher_hide(window_switcher_box)
         end
     end)
 
     awesome.connect_signal("bling::window_switcher::turn_on", function()
-        local number_of_clients = get_num_clients()
+        resetIndex()
+
+        local number_of_clients = getNumClients()
         if number_of_clients == 0 then
             return
         end
@@ -397,7 +458,7 @@ local enable = function(opts)
         -- Unminimize them
         -- Lower them so that they are always below other
         -- originally unminimized windows
-        local clients = awful.screen.focused().selected_tag:clients()
+        local clients = getClients()
         for _, c in pairs(clients) do
             if c.minimized then
                 table.insert(window_switcher_minimized_clients, c)

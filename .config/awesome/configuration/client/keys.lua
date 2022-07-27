@@ -1,16 +1,13 @@
 log('Enter Module => ' .. ...)
 
 local awful = require('awful')
-local bling = require('module.bling')
 
-local dpi = require('beautiful').xresources.apply_dpi
 
 require('awful.autofocus')
 
-local helpers = require('helpers')
 local keys = require('configuration.keys.mod')
 
-local resize_client = require('helpers.client').resize_client
+local dpi = require('beautiful').xresources.apply_dpi
 local move_client = require('helpers.client').move_client
 
 local modkey = keys.mod_key
@@ -64,7 +61,7 @@ local client_keys = awful.util.table.join(
   awful.key({ shiftkey, modkey }, returnkey, function(c)
     local si = c.screen.index
     local sin = 1 + (2 - si)
-    log('client from '.. tostring(si) .. ' to next screen ' .. tostring(sin))
+    log('client from ' .. tostring(si) .. ' to next screen ' .. tostring(sin))
 
     c.screen = sin
     c:emit_signal('request::activate')
@@ -120,15 +117,6 @@ local client_keys = awful.util.table.join(
   }),
   awful.key({ modkey }, 'u', awful.client.urgent.jumpto, {
     description = 'jump to urgent client',
-    group = kgClient
-  }),
-  awful.key({ modkey }, tabkey, function(c)
-    c.history.previous()
-    if client.focus then
-      client.focus:raise()
-    end
-  end, {
-    description = 'go back',
     group = kgClient
   }),
   awful.key({ modkey }, 'n', function(c)

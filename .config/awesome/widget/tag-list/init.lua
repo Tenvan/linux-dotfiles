@@ -1,132 +1,24 @@
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local client = client
 
 local awful = require('awful')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
-local gears = require('gears')
 local helpers = require('helpers')
 
 local dpi = require('beautiful').xresources.apply_dpi
-local clickable_container = require('widget.clickable-container')
 
 local keys = require('configuration.keys.mod')
 local modkey = keys.mod_key
-local altkey = keys.alt_key
 
---- Common method to create buttons.
--- @tab buttons
--- @param object
--- @return table
-local function create_buttons(buttons, object)
-  if buttons then
-    local btns = {}
-    for _, b in ipairs(buttons) do
-      -- Create a proxy button object: it will receive the real
-      -- press and release events, and will propagate them to the
-      -- button object the user provided, but with the object as
-      -- argument.
-      local btn = awful.button {
-        modifiers = b.modifiers,
-        button = b.button,
-        on_press = function()
-          b:emit_signal('press', object)
-        end,
-        on_release = function()
-          b:emit_signal('release', object)
-        end,
-      }
-      btns[#btns + 1] = btn
-    end
-    return btns
-  end
-end
+local tag_list = function(pScreen)
+  dump(pScreen.index, 'tag list screen index')
 
----@param w any The widget.
----@param buttons table
----@param label func Function to generate label parameters from an object. The function gets passed an object from objects, and has to return text, bg, bg_image, icon.
----@param data table Current data/cache, indexed by objects.
----@param objects table Objects to be displayed / updated.
-local function list_update(w, buttons, label, data, objects)
-  -- update the widgets, creating them if needed
-
-  w:reset()
-
-  for i, o in ipairs(objects) do
-
-    local cache = data[o]
-    local ib, tb, bgb, tbm, l, bg_clickable
-
-    if cache then
-      ib = cache.ib
-      tb = cache.tb
-      bgb = cache.bgb
-      tbm = cache.tbm
-    else
-      ib = wibox.widget.imagebox()
-      tb = wibox.widget.textbox()
-      bgb = wibox.container.background()
-      tbm = wibox.widget {
-        tb,
-        margins = dpi(1),
-        widget = wibox.container.margin,
-      }
-      l = wibox.layout.fixed.horizontal()
-      bg_clickable = clickable_container()
-
-      -- All of this is added in a fixed widget
-      l:fill_space(true)
-
-      l:add(tbm)
-      bg_clickable:set_widget(l)
-
-      -- And all of this gets a background
-      bgb:set_widget(bg_clickable)
-
-      bgb:buttons(create_buttons(buttons, o))
-
-      data[o] = { ib = ib, tb = tb, bgb = bgb, tbm = tbm }
-    end
-
-    local text, bg, bg_image, icon, args = label(o, tb)
-
-    args = args or {}
-
-    -- The text might be invalid, so use pcall.
-    if text == nil or text == '' then
-      tbm:set_margins(0)
-    else
-      if not tb:set_markup_silently("<span font_desc='" .. beautiful.taglist_font .. "'>" .. o.text .. '</span>') then
-        tb:set_markup('<i>&lt;Invalid text&gt;</i>')
-      end
-    end
-
-    bgb:set_bg(bg)
-    if type(bg_image) == 'function' then
-      -- TODO: Why does this pass nil as an argument?
-      bg_image = bg_image(tb, o, nil, objects, i)
-    end
-
-    bgb:set_bgimage(bg_image)
-    if icon then
-      ib.image = icon
-    end
-
-    bgb.shape = args.shape
-    bgb.shape_border_width = args.shape_border_width
-    bgb.shape_border_color = args.shape_border_color
-
-    w:add(bgb)
-  end
-end
-
-local tag_box = helpers.vertical_pad(dpi(40))
-
-local tag_list = function(args)
   return awful.widget.taglist {
-    screen = args,
+    screen = pScreen,
     filter = awful.widget.taglist.filter.all,
+
     buttons = awful.util.table.join(
       awful.button({}, 1,
         function(t)
@@ -151,8 +43,6 @@ local tag_list = function(args)
       end
       )
     ),
-
-    update_function_old = list_update,
 
     widget_template = {
       {
@@ -184,11 +74,19 @@ local tag_list = function(args)
       widget = wibox.container.background,
 
       -- Add support for hover colors and an index label
-      create_callback = function(self, c3, index, objects) --luacheck: no unused args
+      create_callback = function(self, c3, index, objects)
         self:get_children_by_id('index_role')[1].markup = "<span font_desc='" ..
           beautiful.taglist_font .. "'>" .. index .. '</span>'
 
         self:connect_signal('mouse::enter', function()
+          -- BLING: Only show widget when there are clients in the tag
+          if #c3:clients() > 0 then
+            -- BLING: Update the widget with the new tag
+            awesome.emit_signal('bling::tag_preview::update', c3)
+            -- BLING: Show the widget
+            awesome.emit_signal('bling::tag_preview::visibility', pScreen, true, self)
+          end
+
           if self.bg ~= beautiful.accent then
             self.backup_bg  = self.bg
             self.backup_fg  = self.fg
@@ -199,16 +97,14 @@ local tag_list = function(args)
         end)
 
         self:connect_signal('mouse::leave', function()
+          -- BLING: Turn the widget off
+          awesome.emit_signal('bling::tag_preview::visibility', pScreen, false, self)
+
           if self.has_backup then
             self.bg = self.backup_bg
             self.fg = self.backup_fg
           end
         end)
-      end,
-
-      update_callback = function(self, c3, index, objects) --luacheck: no unused args
-        self:get_children_by_id('index_role')[1].markup = "<span font_desc='" ..
-          beautiful.taglist_font .. "'>" .. index .. '</span>'
       end,
     },
     layout = wibox.layout.fixed.vertical()

@@ -1,5 +1,5 @@
 local log = require('utilities.debug').log
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local gears = require('gears')
 local beautiful = require('beautiful')
@@ -77,7 +77,7 @@ local awesome_overrides = function(theme)
   theme.fg_focus = '#e4e4e4'
   theme.fg_urgent = '#CC9393'
 
-  theme.bg_normal = theme.background
+  theme.bg_normal = '#10101080'
   theme.bg_focus = '#5a5a5a'
   theme.bg_urgent = '#3F3F3F'
 

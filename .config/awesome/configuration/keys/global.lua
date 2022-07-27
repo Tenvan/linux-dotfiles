@@ -3,13 +3,15 @@ log('Enter Module => ' .. ...)
 local awesome, client, screen = awesome, client, screen
 
 local awful         = require('awful')
-local bling         = require('module.bling')
 local hotkeys_popup = require('awful.hotkeys_popup').widget
 
 local apps    = require('configuration.apps')
 local keys    = require('configuration.keys.mod')
 local specs   = require('layout.specs')
 local helpers = require('helpers')
+
+local switcher = require('module.window-switcher')
+local resize_client = require('helpers.client').resize_client
 
 local modkey = keys.mod_key
 local altkey = keys.alt_key
@@ -134,18 +136,6 @@ local global_keys = awful.util.table.join(
     description = 'decrease gap',
     group = keys.kgLayout
   }),
-  awful.key({ modkey, shiftkey }, tabkey, awful.tag.viewprev, {
-    description = 'view previous tag',
-    group = keys.kgTag
-  }),
-  awful.key({ modkey }, tabkey, awful.tag.viewnext, {
-    description = 'view next tag',
-    group = keys.kgTag
-  }),
-  awful.key({ modkey }, escapekey, awful.tag.history.restore, {
-    description = 'alternate between current and previous tag',
-    group = keys.kgTag
-  }),
 
   -- ░█▀▄░█▀▀░█▀▀░▀█▀░▀▀█░█▀▀░░░█░█░▀█▀░█▀█░█▀▄░█▀█░█░█
   -- ░█▀▄░█▀▀░▀▀█░░█░░▄▀░░█▀▀░░░█▄█░░█░░█░█░█░█░█░█░█▄█
@@ -174,6 +164,19 @@ local global_keys = awful.util.table.join(
   --   description = 'decrease window size',
   --   group = keys.kgClient
   -- }),
+
+  awful.key({ modkey, controlkey }, 'n', function()
+    local c = awful.client.restore()
+    -- Focus restored client
+    if c then
+      c:emit_signal('request::activate')
+      c:raise()
+    end
+  end, {
+    description = 'restore minimized',
+    group = keys.kgClient
+  }),
+
 
   -- ░█▄█░█▀█░█░█░█▀▀░░░█▀▀░█▀█░█▀▀░█░█░█▀▀
   -- ░█░█░█░█░▀▄▀░█▀▀░░░█▀▀░█░█░█░░░█░█░▀▀█
@@ -319,16 +322,24 @@ local global_keys = awful.util.table.join(
     group = keys.kgTag
   }),
 
-  awful.key({ modkey, controlkey }, 'n', function()
-    local c = awful.client.restore()
-    -- Focus restored client
-    if c then
-      c:emit_signal('request::activate')
-      c:raise()
-    end
+  awful.key({ modkey }, tabkey, function()
+    switcher(1, altkey, rightkey, leftkey)
   end, {
-    description = 'restore minimized',
-    group = keys.kgScreen
+    description = 'view next task',
+    group = keys.kgClient
+  }),
+
+  awful.key({ shiftkey, modkey }, tabkey, function()
+    switcher(-1, altkey, rightkey, leftkey)
+  end, {
+    description = 'view previous task',
+    group = keys.kgClient
+  }),
+
+
+  awful.key({ modkey }, escapekey, awful.tag.history.restore, {
+    description = 'alternate between current and previous tag',
+    group = keys.kgTag
   }),
 
   -- ░█▀▄░█▀▄░▀█▀░█▀▀░█░█░▀█▀░█▀█░█▀▀░█▀▀░█▀▀
@@ -481,17 +492,25 @@ local global_keys = awful.util.table.join(
     description = 'arandr',
     group = keys.kgHotkeys
   }),
-  awful.key({ modkey, shiftkey }, 'q', function()
+  awful.key({ shiftkey, modkey }, 'q', function()
     awesome.emit_signal('module::exit_screen:show')
   end, {
     description = 'toggle exit screen',
     group = keys.kgHotkeys
   }),
 
-  awful.key({ modkey, controlkey }, returnkey, function()
+  awful.key({ altkey, modkey }, returnkey, function()
     awesome.emit_signal('module::quake_terminal:toggle')
   end, {
-    description = 'dropdown terminal',
+    description = 'dropdown terminal (all screens)',
+    group = keys.kgLauncher
+  }),
+
+  awful.key({ controlkey, modkey }, returnkey, function()
+    local QuakeTerminal = require('module.scratchpad').quake
+    QuakeTerminal:toggle()
+  end, {
+    description = 'dropdown terminal (primary)',
     group = keys.kgLauncher
   }),
 
