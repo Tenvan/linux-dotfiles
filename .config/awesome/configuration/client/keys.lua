@@ -8,21 +8,24 @@ require('awful.autofocus')
 local keys = require('configuration.keys.mod')
 
 local dpi = require('beautiful').xresources.apply_dpi
+
 local move_client = require('helpers.client').move_client
+local move_focus = require('helpers.client').move_focus
 
 local modkey = keys.mod_key
 local altkey = keys.alt_key
 
 -- modkey or mod4 = super key
 local controlkey = keys.control_key
-local shiftkey = keys.shift_key
-local returnkey = keys.return_key
-local escapekey = keys.escape_key
-local tabkey = keys.tab_key
 local downkey = keys.down_key
-local upkey = keys.up_key
+local escapekey = keys.escape_key
 local leftkey = keys.left_key
+local returnkey = keys.return_key
 local rightkey = keys.right_key
+local shiftkey = keys.shift_key
+local spacekey = keys.space_key
+local tabkey = keys.tab_key
+local upkey = keys.up_key
 
 -- key groups
 local kgClient = keys.kgClient
@@ -75,6 +78,32 @@ local client_keys = awful.util.table.join(
   -- ░█░█░█░█░▀▄▀░█▀▀░░░█▀▀░█░█░█░░░█░█░▀▀█
   -- ░▀░▀░▀▀▀░░▀░░▀▀▀░░░▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
   -- Focus client by direction
+  -- global (over screens)
+
+  awful.key({ modkey }, downkey, function(c)
+    move_focus(c, 'down')
+  end, {
+    description = 'focus down',
+    group = keys.kgClient
+  }),
+  awful.key({ modkey }, upkey, function(c)
+    move_focus(c, 'up')
+  end, {
+    description = 'focus up',
+    group = keys.kgClient
+  }),
+  awful.key({ modkey }, leftkey, function(c)
+    move_focus(c, 'left')
+  end, {
+    description = 'focus left',
+    group = keys.kgClient
+  }),
+  awful.key({ modkey }, rightkey, function(c)
+    move_focus(c, 'right')
+  end, {
+    description = 'focus right',
+    group = keys.kgClient
+  }),
 
   awful.key({ modkey }, 'f', function(c)
     c.fullscreen = not c.fullscreen
@@ -91,40 +120,13 @@ local client_keys = awful.util.table.join(
     group = kgClient
   }),
 
-  awful.key({ modkey }, 'd', function(c)
-    c.byidx(1)
-  end, {
-    description = 'focus next by index',
-    group = kgClient
-  }),
-  awful.key({ modkey }, 'a', function(c)
-    c.byidx(-1)
-  end, {
-    description = 'focus previous by index',
-    group = kgClient
-  }),
-  awful.key({ modkey, shiftkey }, 'd', function()
-    awful.client.swap.byidx(1)
-  end, {
-    description = 'swap with next client by index',
-    group = kgClient
-  }),
-  awful.key({ modkey, shiftkey }, 'a', function()
-    awful.client.swap.byidx(-1)
-  end, {
-    description = 'swap with next client by index',
-    group = kgClient
-  }),
-  awful.key({ modkey }, 'u', awful.client.urgent.jumpto, {
-    description = 'jump to urgent client',
-    group = kgClient
-  }),
   awful.key({ modkey }, 'n', function(c)
     c.minimized = true
   end, {
     description = 'minimize client',
     group = kgClient
   }),
+
   awful.key({ modkey, shiftkey }, 'c', function(c)
     local focused = awful.screen.focused()
 
@@ -135,7 +137,8 @@ local client_keys = awful.util.table.join(
     description = 'align a client to the center of the focused screen',
     group = kgClient
   }),
-  awful.key({ modkey, altkey }, 'space', function(c)
+
+  awful.key({ modkey, altkey }, spacekey, function(c)
     c.fullscreen = false
     c.maximized = false
     c.floating = not c.floating

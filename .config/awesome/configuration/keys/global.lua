@@ -12,6 +12,8 @@ local helpers = require('helpers')
 
 local switcher = require('module.window-switcher')
 local resize_client = require('helpers.client').resize_client
+local move_client = require('helpers.client').move_client
+local move_focus = require('helpers.client').move_focus
 
 local modkey = keys.mod_key
 local altkey = keys.alt_key
@@ -114,12 +116,14 @@ local global_keys = awful.util.table.join(
   -- ░▀▀▀░▀░▀░░▀░░▀▀▀░▀▀▀░░▀░
   awful.key({ modkey, controlkey }, spacekey, function()
     awful.layout.inc(1)
+    log('=> Layout: [' .. awful.layout.get(awful.screen.focused()).name .. ']')
   end, {
     description = 'select next layout',
     group = keys.kgLayout
   }),
   awful.key({ modkey, shiftkey }, spacekey, function()
     awful.layout.inc(-1)
+    log('=> Layout: [' .. awful.layout.get(awful.screen.focused()).name .. ']')
   end, {
     description = 'select previous layout',
     group = keys.kgLayout
@@ -192,44 +196,6 @@ local global_keys = awful.util.table.join(
     awful.client.focus.byidx(-1)
   end, {
     description = 'focus previous by index',
-    group = keys.kgClient
-  }),
-
-  -- global (over screens)
-  awful.key({ modkey }, downkey, function()
-    awful.client.focus.global_bydirection('down')
-    -- if awful.client.focus then
-    --   awful.client.focus:raise()
-    -- end
-  end, {
-    description = 'focus down',
-    group = keys.kgClient
-  }),
-  awful.key({ modkey }, upkey, function()
-    awful.client.focus.global_bydirection('up')
-    -- if awful.client.focus then
-    --   awful.client.focus:raise()
-    -- end
-  end, {
-    description = 'focus up',
-    group = keys.kgClient
-  }),
-  awful.key({ modkey }, leftkey, function()
-    awful.client.focus.global_bydirection('left')
-    -- if awful.client.focus then
-    --   awful.client.focus:raise()
-    -- end
-  end, {
-    description = 'focus left',
-    group = keys.kgClient
-  }),
-  awful.key({ modkey }, rightkey, function()
-    awful.client.focus.global_bydirection('right')
-    -- if awful.client.focus then
-    --   awful.client.focus:raise()
-    -- end
-  end, {
-    description = 'focus right',
     group = keys.kgClient
   }),
 
@@ -323,21 +289,34 @@ local global_keys = awful.util.table.join(
   }),
 
   awful.key({ modkey }, tabkey, function()
-    switcher(1, altkey, rightkey, leftkey)
+    switcher(0, 'Super_L', tabkey, tabkey)
   end, {
-    description = 'view next task',
+    description = 'view window switcher',
     group = keys.kgClient
   }),
 
-  awful.key({ shiftkey, modkey }, tabkey, function()
-    switcher(-1, altkey, rightkey, leftkey)
+  awful.key({ controlkey, modkey }, tabkey, function()
+    switcher(1, 'Super_L', tabkey, tabkey)
   end, {
-    description = 'view previous task',
+    description = 'switch next task and view window switcher',
     group = keys.kgClient
   }),
 
+  awful.key({ controlkey, shiftkey, modkey }, tabkey, function()
+    switcher(1, 'Super_L', tabkey, tabkey)
+  end, {
+    description = 'switch previous task and view window switcher',
+    group = keys.kgClient
+  }),
 
-  awful.key({ modkey }, escapekey, awful.tag.history.restore, {
+  awful.key({ modkey }, 'u',
+    awful.client.urgent.jumpto, {
+    description = 'jump to urgent client',
+    group = keys.kgClient
+  }),
+
+  awful.key({ modkey }, escapekey,
+    awful.tag.history.restore, {
     description = 'alternate between current and previous tag',
     group = keys.kgTag
   }),

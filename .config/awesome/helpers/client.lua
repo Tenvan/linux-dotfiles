@@ -86,6 +86,7 @@ end
 -- Swap by index if maximized
 -- Else swap client by direction
 function client_helpers.move_client(c, direction)
+  log('==> move client: ' .. direction)
   if (c.instance == 'QuakeTerminal') then
     log('ignore QuakeTerminal')
     return
@@ -101,6 +102,31 @@ function client_helpers.move_client(c, direction)
     end
   else
     awful.client.swap.bydirection(direction, c, nil)
+  end
+end
+
+function client_helpers.move_focus(c, direction)
+  log('==> move focus: ' .. direction)
+  local currentLayout = awful.layout.get(awful.screen.focused()).name
+  if currentLayout == 'max' or currentLayout == 'fullscreen' then
+    if direction == 'up' or direction == 'left' then
+      local next = awful.client.next(-1)
+      if not next.hidden then
+        next:raise()
+        next:jump_to()
+      end
+    else
+      local next = awful.client.next(1)
+      if not next.hidden then
+        next:raise()
+        next:jump_to()
+      end
+    end
+  else
+    awful.client.focus.bydirection(direction)
+  end
+  if client.focus then
+    client.focus:raise()
   end
 end
 

@@ -24,6 +24,7 @@ local pairs = pairs
 local unpack = unpack or table.unpack
 
 local find_clients = require('helpers').find_clients
+local contains = require('helpers').contains
 
 local function get_clients()
   local clients = find_clients({
@@ -125,10 +126,10 @@ local function clientsHaveChanged()
 end
 
 local function createPreviewText(client)
-  if client.class then
-    return ' - ' .. client.class
-  else
+  if client.name then
     return ' - ' .. client.name
+  else
+    return ' - ' .. client.class
   end
 end
 
@@ -149,6 +150,7 @@ local function preview()
 
   local x = screen[mouse.screen].geometry.x - preview_wbox.border_width
   local y = screen[mouse.screen].geometry.y + (screen[mouse.screen].geometry.height - h - textboxHeight) / 2
+  
   preview_wbox:geometry({ x = x, y = y, width = W, height = h + textboxHeight })
 
   -- create a list that holds the clients to preview, from left to right
@@ -246,6 +248,20 @@ local function preview()
 
         local titleboxWidth = textWidth + iconboxWidth
         local titleboxHeight = textboxHeight
+
+        -- Draw Border
+        tx = 0
+        ty = 0
+        cr:move_to(tx, ty)
+        cr:stroke()
+        cr:move_to(width, ty)
+        cr:stroke()
+        cr:move_to(width, height)
+        cr:stroke()
+        cr:move_to(tx, height)
+        cr:stroke()
+        cr:move_to(tx, ty)
+        cr:stroke()
 
         -- Draw icons
         tx = (w - titleboxWidth) / 2
@@ -428,8 +444,21 @@ local function switch(dir, alt, tab, shift_tab)
   -- as long as the user is alt-tabbing:
   keygrabber.run(
     function(mod, key, event)
+      local shiftStatus = contains(mod, 'Shift')
+      -- log('==> Switcher KeyGrabber')
+      -- log('  --> alt......: ' .. tostring(alt))
+      -- log('  --> tab......: ' .. tostring(tab))
+      -- log('  --> shift_tab: ' .. tostring(shift_tab))
+      -- log('  --> mod......: ' .. tostring(mod))
+      -- log('  --> key......: ' .. tostring(key))
+      -- log('  --> event....: ' .. tostring(event))
+      -- log('  --> shift....: ' .. tostring(shiftStatus))
+      
+      -- dump(mod, 'Mod')
+      
       -- Stop alt-tabbing when the alt-key is released
-      if key == alt or key == 'Escape' and event == 'release' then
+      if key == 'Escape' or (key == alt and event == 'release') then
+        log('==> Stop KeyGrabber')
         if preview_wbox.visible == true then
           preview_wbox.visible = false
           preview_live_timer:stop()
@@ -471,11 +500,13 @@ local function switch(dir, alt, tab, shift_tab)
         return
 
         -- Move to next client on each Tab-press
-      elseif (key == tab or key == 'Right') and event == 'press' then
+      elseif ((key == tab and not shiftStatus) or key == 'Right') and event == 'press' then
+        log('  --> Cycle next')
         cycle(1)
-
+        
         -- Move to previous client on Shift-Tab
-      elseif (key == shift_tab or key == 'Left') and event == 'press' then
+      elseif ((key == shift_tab and shiftStatus) or key == 'Left') and event == 'press' then
+        log('  --> Cycle previous')
         cycle(-1)
       end
     end

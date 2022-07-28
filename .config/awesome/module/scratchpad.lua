@@ -5,8 +5,6 @@ local specs = require('layout.specs')
 local bling = require('module.bling')
 local rubato = require('module.rubato') -- Totally optional, only required if you are using animations.
 
-bling.module.window_swallowing.start()
-
 local screenWidth = screen.primary.geometry.width
 local screenHeight = screen.primary.geometry.height
 

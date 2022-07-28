@@ -256,8 +256,8 @@ ruled.client.connect_signal('request::rules', function()
     rule = {
       class = 'jetbrains-.*'
     },
-    except = {
-      name = 'splash'
+    except_any = {
+      name = {'splash', 'Welcome *'}
     },
     properties = {
       screen = screen.primary,
