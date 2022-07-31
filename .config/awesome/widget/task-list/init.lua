@@ -73,24 +73,31 @@ local task_list = function(pScreen)
     -- not a widget instance.
     widget_template = {
       {
-        wibox.widget.base.make_widget(),
-        forced_height = dpi(5),
-        id            = 'background_role',
-        widget        = wibox.container.background,
-      },
-      {
         {
-          id     = 'clienticon',
-          widget = awful.widget.clienticon,
+          {
+            {
+              id     = 'icon_role',
+              widget = awful.widget.clienticon,
+            },
+            margins = 2,
+            widget  = wibox.container.margin,
+          },
+          {
+            id     = 'text_role',
+            widget = wibox.widget.textbox,
+          },
+          layout = wibox.layout.fixed.horizontal,
         },
-        margins = 5,
-        widget  = wibox.container.margin
+        left   = 10,
+        right  = 10,
+        widget = wibox.container.margin
       },
 
-      nil,
+      id = 'background_role',
+      widget = wibox.container.background,
 
       create_callback = function(self, c, index, objects)
-        self:get_children_by_id('clienticon')[1].client = c
+        self:get_children_by_id('icon_role')[1].client = c
 
         -- BLING: Toggle the popup on hover and disable it off hover
         self:connect_signal('mouse::enter', function()
@@ -101,7 +108,7 @@ local task_list = function(pScreen)
           awesome.emit_signal('bling::task_preview::visibility', pScreen, false, c, self)
         end)
       end,
-      layout = wibox.layout.align.vertical,
+      -- layout = wibox.layout.align.vertical,
     },
   }
 end

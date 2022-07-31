@@ -14,7 +14,7 @@ function build(widget)
 			local w = mouse.current_wibox
 			if w then
 				old_cursor, old_wibox = w.cursor, w
-				w.cursor = 'hand1'
+				w.cursor = 'hand2'
 			end
 		end
 	)

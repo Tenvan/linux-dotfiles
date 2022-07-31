@@ -9,7 +9,7 @@ return {
     step_width = dpi(5),
     step_spacing = dpi(1),
     color = beautiful.accent,
-    background_color = beautiful.popup_bg,
+    background_color = beautiful.background,
     enable_kill_button = true
   })
 }

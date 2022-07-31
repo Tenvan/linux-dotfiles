@@ -94,7 +94,7 @@ local function worker(user_args)
 
     local theme = args.theme or 'naughty'
     local placement = args.placement or 'top'
-    local radius = args.radius or 8
+    local radius = args.radius or beautiful.radius
     local next_month_button = args.next_month_button or 4
     local previous_month_button = args.previous_month_button or 5
     local start_sunday = args.start_sunday or false

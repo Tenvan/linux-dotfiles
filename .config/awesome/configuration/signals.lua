@@ -20,31 +20,31 @@ local ChromiumMatch = {
 -- No borders when rearranging only 1 non-floating or maximized client
 screen.connect_signal('arrange', function(s)
   local only_one = #s.tiled_clients == 1
-  log('spawned::arrange')
-  log(' --> only_one: ' .. tostring(only_one))
+  -- log('spawned::arrange')
+  -- log(' --> only_one: ' .. tostring(only_one))
 
   for _, c in pairs(s.clients) do
     local match = awful.rules.match_any(c, ChromiumMatch)
-    log(' --> client.class     : ' .. tostring(c.class))
-    log(' --> client.instance  : ' .. tostring(c.instance))
-    log(' --> client.maximized : ' .. tostring(c.maximized))
-    log(' --> client.floating  : ' .. tostring(c.floating))
-    log(' --> client.fullscreen: ' .. tostring(c.fullscreen))
-    log(' --> rule match       : ' .. tostring(match))
+    -- log(' --> client.class     : ' .. tostring(c.class))
+    -- log(' --> client.instance  : ' .. tostring(c.instance))
+    -- log(' --> client.maximized : ' .. tostring(c.maximized))
+    -- log(' --> client.floating  : ' .. tostring(c.floating))
+    -- log(' --> client.fullscreen: ' .. tostring(c.fullscreen))
+    -- log(' --> rule match       : ' .. tostring(match))
 
-    if match then
-      log('Chromium/Electron detected (suppess arrange)')
+    -- if match then
+    --   log('Chromium/Electron detected (suppess arrange)')
+    -- else
+    log('no Chromium/Electron')
+    if only_one and not c.floating or c.maximized or c.fullscreen then
+      log('set border: 0')
+      c.border_width = 0
     else
-      log('no Chromium/Electron')
-      if only_one and not c.floating or c.maximized or c.fullscreen then
-        log('set border: 0')
-        c.border_width = 0
-      else
-        log('set theme border: ' .. tostring(beautiful.border_width))
-        c.border_width = beautiful.border_width
-      end
+      log('set theme border: ' .. tostring(beautiful.border_width))
+      c.border_width = beautiful.border_width
     end
   end
+  -- end
 end)
 
 awesome.connect_signal('debug::deprecation', function(hint, see, args)

@@ -349,7 +349,7 @@ local function worker(user_args)
             row:get_children_by_id('title')[1]:connect_signal("mouse::enter", function()
                 local wb = mouse.current_wibox
                 old_cursor, old_wibox = wb.cursor, wb
-                wb.cursor = "hand1"
+                wb.cursor = "hand2"
             end)
             row:get_children_by_id('title')[1]:connect_signal("mouse::leave", function()
                 if old_wibox then
@@ -361,7 +361,7 @@ local function worker(user_args)
             row:get_children_by_id('avatar')[1]:connect_signal("mouse::enter", function()
                 local wb = mouse.current_wibox
                 old_cursor, old_wibox = wb.cursor, wb
-                wb.cursor = "hand1"
+                wb.cursor = "hand2"
             end)
             row:get_children_by_id('avatar')[1]:connect_signal("mouse::leave", function()
                 if old_wibox then

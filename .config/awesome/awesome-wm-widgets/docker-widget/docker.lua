@@ -146,7 +146,7 @@ local function worker(user_args)
 
                     local wb = mouse.current_wibox
                     old_cursor, old_wibox = wb.cursor, wb
-                    wb.cursor = "hand1"
+                    wb.cursor = "hand2"
                     c:get_children_by_id("icon")[1]:set_opacity(1)
                     c:get_children_by_id("icon")[1]:emit_signal('widget::redraw_needed')  end)
                 start_stop_button:connect_signal("mouse::leave", function(c)
@@ -204,7 +204,7 @@ local function worker(user_args)
                     c:set_bg('#3B4252')
                     local wb = mouse.current_wibox
                     old_cursor, old_wibox = wb.cursor, wb
-                    wb.cursor = "hand1"
+                    wb.cursor = "hand2"
                     c:get_children_by_id("icon")[1]:set_opacity(1)
                     c:get_children_by_id("icon")[1]:emit_signal('widget::redraw_needed')
                 end)
@@ -271,7 +271,7 @@ local function worker(user_args)
                     c:set_bg('#3B4252')
                     local wb = mouse.current_wibox
                     old_cursor, old_wibox = wb.cursor, wb
-                    wb.cursor = "hand1"
+                    wb.cursor = "hand2"
                     c:get_children_by_id("icon")[1]:set_opacity(1)
                     c:get_children_by_id("icon")[1]:emit_signal('widget::redraw_needed')
                 end)

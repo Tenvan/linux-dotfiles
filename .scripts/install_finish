@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-echo "# --> ${(%):-%N}"
 
 . ~/.scripts/defs
 

@@ -11,7 +11,6 @@ local offsetx = specs.leftPanel.actionBarWidth
 local systray = {
   wibox.widget {
     visible = true,
-    -- base_size = dpi(offsetx - 4),
     horizontal = true,
     screen = 'primary',
     widget = wibox.widget.systray

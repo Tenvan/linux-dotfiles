@@ -231,7 +231,7 @@ end
 -- mouse::enter and mouse::leave
 -- You can find the names of the available cursors by opening any
 -- cursor theme and looking in the "cursors folder"
--- For example: "hand1" is the cursor that appears when hovering over
+-- For example: "hand2" is the cursor that appears when hovering over
 -- links
 function helpers.add_hover_cursor(w, hover_cursor)
 	local original_cursor = "left_ptr"

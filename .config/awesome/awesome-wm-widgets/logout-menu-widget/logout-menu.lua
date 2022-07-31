@@ -97,7 +97,7 @@ local function worker(user_args)
         row:connect_signal("mouse::enter", function()
             local wb = mouse.current_wibox
             old_cursor, old_wibox = wb.cursor, wb
-            wb.cursor = "hand1"
+            wb.cursor = "hand2"
         end)
         row:connect_signal("mouse::leave", function()
             if old_wibox then

@@ -54,7 +54,7 @@ buttons.with_icon = function(args)
         end
         local wb = mouse.current_wibox
         old_cursor, old_wibox = wb.cursor, wb
-        wb.cursor = "hand1"
+        wb.cursor = "hand2"
     end)
     result:connect_signal("mouse::leave", function(c)
         if type ~= 'flat' then
@@ -108,7 +108,7 @@ buttons.with_text = function(args)
         end
         local wb = mouse.current_wibox
         old_cursor, old_wibox = wb.cursor, wb
-        wb.cursor = "hand1"
+        wb.cursor = "hand2"
     end)
     result:connect_signal("mouse::leave", function(c)
         if type ~= 'flat' then
@@ -184,7 +184,7 @@ buttons.with_icon_and_text = function(args)
             end
             local wb = mouse.current_wibox
             old_cursor, old_wibox = wb.cursor, wb
-            wb.cursor = "hand1"
+            wb.cursor = "hand2"
         end)
         result:connect_signal("mouse::leave", function(c)
             if type ~= 'flat' then

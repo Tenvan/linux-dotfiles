@@ -258,7 +258,7 @@ local function worker(user_args)
                 end)
                 local wb = mouse.current_wibox
                 old_cursor, old_wibox = wb.cursor, wb
-                wb.cursor = "hand1"
+                wb.cursor = "hand2"
             end)
             row:connect_signal("mouse::leave", function(c)
                 c:set_bg(beautiful.bg_normal)

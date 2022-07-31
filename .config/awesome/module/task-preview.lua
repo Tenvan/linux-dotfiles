@@ -26,7 +26,8 @@ bling.widget.task_preview.enable {
 
   placement_fn = function(c) -- Place the widget using awful.placement (this overrides x & y)
     if c and c.tag then
-      awful.placement.next_to(
+      log('==> placement task preview')
+      return awful.placement.next_to(
         c,
         {
           preferred_positions = 'right',

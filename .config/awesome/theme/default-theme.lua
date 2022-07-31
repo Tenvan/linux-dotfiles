@@ -4,56 +4,15 @@ log('Enter Module => ' .. ...)
 local gears = require('gears')
 local beautiful = require('beautiful')
 
-local filesystem = gears.filesystem
-local dpi = beautiful.xresources.apply_dpi
-local gtk_variable = beautiful.gtk.get_theme_variables
+local filesystem          = gears.filesystem
+local dpi                 = beautiful.xresources.apply_dpi
+local config              = require('configuration.json') or {}
+local specs               = require('layout.specs')
 
 local theme_dir = filesystem.get_configuration_dir() .. 'theme'
 local titlebar_icon_path = theme_dir .. '/icons/titlebar/'
 local tip = titlebar_icon_path
 local tie = 'png'
-
--- GTK Variablen
--- {"bg_color", "theme_bg_color"},
--- {"fg_color", "theme_fg_color"},
--- {"base_color", "theme_base_color"},
--- {"text_color", "theme_text_color"},
--- {"selected_bg_color", "theme_selected_bg_color"},
--- {"selected_fg_color", "theme_selected_fg_color"},
--- --
--- {"tooltip_bg_color", "theme_tooltip_bg_color", "bg_color"},
--- {"tooltip_fg_color", "theme_tooltip_fg_color", "fg_color"},
--- {"osd_bg_color", "osd_bg", "tooltip_bg_color"},
--- {"osd_fg_color", "osd_fg", "tooltip_fg_color"},
--- {"osd_border_color", "osd_borders_color", "osd_fg_color"},
--- {"menubar_bg_color", "menubar_bg_color", "bg_color"},
--- {"menubar_fg_color", "menubar_fg_color", "fg_color"},
--- --
--- {"button_bg_color", "button_bg_color", "bg_color"},
--- {"button_fg_color", "button_fg_color", "fg_color"},
--- {"header_button_bg_color", "header_button_bg_color", "menubar_bg_color"},
--- {"header_button_fg_color", "header_button_fg_color", "menubar_fg_color"},
--- --
--- {"wm_bg_color", "wm_bg", "menubar_bg_color"},
--- {"wm_border_focused_color", "wm_border_focused", "selected_bg_color"},
--- {"wm_border_unfocused_color", "wm_border_unfocused", "wm_border", "menubar_bg_color"},
--- {"wm_title_focused_color", "wm_title_focused", "wm_title", "selected_fg_color"},
--- {"wm_title_unfocused_color", "wm_title_unfocused", "wm_unfocused_title", "menubar_fg_color"},
--- {"wm_icons_focused_color", "wm_icons_focused", "wm_title_focused_color", "selected_fg_color"},
--- {"wm_icons_unfocused_color", "wm_icons_unfocused", "wm_title_unfocused_color", "menubar_fg_color"},
--- --
--- {"error_color", "error_color"},
--- {"error_bg_color", "error_bg_color", "error_color"},
--- {"error_fg_color", "error_fg_color", "selected_fg_color"},
--- {"error_color", "error_color", "error_bg_color"},
--- {"warning_color", "warning_color"},
--- {"warning_bg_color", "warning_bg_color", "warning_color"},
--- {"warning_fg_color", "warning_fg_color", "selected_fg_color"},
--- {"warning_color", "warning_color", "warning_bg_color"},
--- {"success_color", "success_color"},
--- {"success_bg_color", "success_bg_color", "success_color"},
--- {"success_fg_color", "success_fg_color", "selected_fg_color"},
--- {"success_color", "success_color", "success_bg_color"},
 
 -- Create theme table
 local theme = {}
@@ -62,10 +21,69 @@ local theme = {}
 theme.font = 'Inter Regular 10'
 theme.font_bold = 'Inter Bold 10'
 
+-- Font
+theme.font_small_size = dpi(config.font_size_small or 8)
+theme.font_size       = dpi(config.font_size_normal or 10)
+theme.font_large_size = dpi(config.font_size_large or 14)
+theme.font_big_size   = dpi(config.font_size_big or 20)
+
+theme.element_size = specs.elementSize
+
+log('Font Small Size: ' .. theme.font_small_size)
+log('Font Normal Size: ' .. theme.font_size)
+log('Font Large Size: ' .. theme.font_large_size)
+log('Font Big Size: ' .. theme.font_big_size)
+
+theme.font_family = 'Inter '
+
+theme.font_small = theme.font_family .. ' Regular ' .. theme.font_small_size
+theme.font       = theme.font_family .. ' Regular ' .. theme.font_size
+theme.font_large = theme.font_family .. ' Regular ' .. theme.font_large_size
+
+theme.font_bold_small = theme.font_family .. ' Bold ' .. theme.font_small_size
+theme.font_bold       = theme.font_family .. ' Bold ' .. theme.font_size
+theme.font_bold_large = theme.font_family .. ' Bold ' .. theme.font_large_size
+
+theme.font_light_small = theme.font_family .. ' Light ' .. theme.font_small_size
+theme.font_light       = theme.font_family .. ' Light ' .. theme.font_size
+theme.font_light_large = theme.font_family .. ' Light ' .. theme.font_large_size
+
+theme.hint_font    = theme.font_light_small
+theme.symbol_font  = theme.font_family .. ' Bold ' .. dpi(12)
+theme.widgets_font = theme.font_light
+
 -- Menu icon theme
 theme.icon_theme = 'Tela-blue-dark'
 
+-- general Radius
+theme.radius = dpi(15)
+
+
+
 local awesome_overrides = function(theme)
+
+  -- General colors
+  theme.success_fg = theme.gtk_vars.success_fg_color
+  theme.success_bg = theme.gtk_vars.success_bg_color
+  theme.error_fg   = theme.fg
+  -- theme.gtk_vars.error_fg_color
+  theme.error_bg   = theme.gtk_vars.error_bg_color
+
+  theme.loaded_fg = theme.gtk_vars.selected_bg_color
+
+  -- Warning colors
+  theme.warning_fg = theme.gtk_vars.warning_fg_color
+  theme.warning_bg = theme.gtk_vars.warning_bg_color
+
+  -- Background color
+  theme.background = theme.gtk_vars.bg_color:sub(1, 7) .. '60'
+
+  -- Transparent
+  theme.transparent = theme.gtk_vars.bg_color:sub(1, 7) .. '20'
+
+  -- Accent color
+  theme.accent = theme.gtk_vars.wm_border_focused_color
+
   theme.dir = theme_dir
   theme.icons = theme_dir .. '/icons/'
 
@@ -73,24 +91,24 @@ local awesome_overrides = function(theme)
   theme.wallpaper = theme.dir .. '/wallpapers/morning-wallpaper.jpg'
 
   -- Foreground
-  theme.fg_normal = '#ffffffde'
-  theme.fg_focus = '#e4e4e4'
-  theme.fg_urgent = '#CC9393'
+  theme.fg_normal = theme.gtk_vars.fg_color:sub(1, 7)
+  theme.fg_focus = theme.gtk_vars.selected_fg_color:sub(1, 7)
+  theme.fg_urgent = theme.gtk_vars.warning_fg_color:sub(1, 7)
 
-  theme.bg_normal = '#10101080'
-  theme.bg_focus = '#5a5a5a'
-  theme.bg_urgent = '#3F3F3F'
+  theme.bg_normal = theme.gtk_vars.bg_color:sub(1, 7)
+  theme.bg_focus = theme.gtk_vars.selected_bg_color:sub(1, 7)
+  theme.bg_urgent = theme.gtk_vars.warning_bg_color:sub(1, 7)
 
   -- System tray
-  theme.bg_systray = theme.background
+  -- theme.bg_systray = theme.background
   theme.systray_icon_spacing = dpi(16)
 
   -- Titlebar
   theme.titlebar_size = dpi(34)
-  theme.titlebar_bg_focus = gtk_variable().bg_color:sub(1, 7) .. '66'
-  theme.titlebar_bg_normal = gtk_variable().base_color:sub(1, 7) .. '66'
-  theme.titlebar_fg_focus = gtk_variable().fg_color
-  theme.titlebar_fg_normal = gtk_variable().fg_color
+  theme.titlebar_bg_focus = theme.gtk_vars.bg_color:sub(1, 7)
+  theme.titlebar_bg_normal = theme.gtk_vars.base_color:sub(1, 7)
+  theme.titlebar_fg_focus = theme.gtk_vars.fg_color
+  theme.titlebar_fg_normal = theme.gtk_vars.fg_color
 
   -- Close Button
   theme.titlebar_close_button_normal = tip .. 'close_normal.' .. tie
@@ -157,24 +175,18 @@ local awesome_overrides = function(theme)
   theme.titlebar_maximized_button_focus_active_hover    = tip .. 'maximized_focus_active_hover.svg'
 
   -- UI Groups
-  theme.groups_title_bg = '#ffffff' .. '15'
-  theme.groups_bg = '#ffffff' .. '10'
-  theme.groups_radius = dpi(9)
-
-  -- UI events
-  theme.leave_event = theme.transparent
-  theme.enter_event = '#ffffff' .. '10'
-  theme.press_event = '#ffffff' .. '15'
-  theme.release_event = '#ffffff' .. '10'
+  theme.groups_title_bg = theme.gtk_vars.osd_bg_color
+  theme.groups_bg = theme.background
+  theme.groups_radius = theme.radius
 
   -- Client Decorations
 
   -- Borders
-  theme.border_focus = gtk_variable().bg_color
-  theme.border_normal = gtk_variable().base_color
-  theme.border_marked = '#CC9393'
+  theme.border_normal = theme.gtk_vars.wm_border_unfocused_color
+  theme.border_focus = theme.gtk_vars.wm_border_focused_color
+  theme.border_marked = theme.gtk_vars.wm_border_focused_color
   theme.border_width = dpi(0)
-  theme.border_radius = dpi(9)
+  theme.border_radius = theme.radius
 
   -- Decorations
   theme.useless_gap = dpi(4)
@@ -190,12 +202,15 @@ local awesome_overrides = function(theme)
   theme.menu_height = dpi(34)
   theme.menu_width = dpi(200)
   theme.menu_border_width = dpi(20)
+  theme.menu_title_bg = theme.bg_urgent
+
+  theme.menu_fg_normal = theme.gtk_vars.menubar_fg_color:sub(1, 7)
+  theme.menu_fg_focus = theme.fg_focus
+
+  theme.menu_bg_normal = theme.gtk_vars.menubar_bg_color:sub(1, 7)
   theme.menu_bg_focus = theme.accent .. 'CC'
 
-  theme.menu_bg_normal = theme.background:sub(1, 7) .. '33'
-  theme.menu_fg_normal = '#ffffff'
-  theme.menu_fg_focus = '#ffffff'
-  theme.menu_border_color = theme.background:sub(1, 7) .. '5C'
+  theme.menu_border_color = theme.border_normal:sub(1, 7)
 
   -- Tooltips
 

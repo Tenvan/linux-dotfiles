@@ -8,6 +8,7 @@ local beautiful = require('beautiful')
 local helpers = require('helpers')
 
 local dpi = require('beautiful').xresources.apply_dpi
+local clickable_container = require('widget.clickable-container')
 
 local keys = require('configuration.keys.mod')
 local modkey = keys.mod_key
@@ -23,25 +24,12 @@ local tag_list = function(pScreen)
       awful.button({}, 1,
         function(t)
           t:view_only()
-        end),
-      awful.button({}, 3, awful.tag.viewtoggle),
-      awful.button(
-        { modkey }, 3, function(t)
-        if _G.client.focus then
-          _G.client.focus:toggle_tag(t)
-        end
-      end
-      ),
-      awful.button(
-        {}, 4, function(t)
-        awful.tag.viewprev(t.screen)
-      end
-      ),
-      awful.button(
-        {}, 5, function(t)
-        awful.tag.viewnext(t.screen)
-      end
-      )
+          dump(t, 't', 1)
+          -- local background_role = t:get_children_by_id('background_role')[1]
+          -- if background_role then
+          --   background_role.backup_bg = beautiful.xres_vars.color1
+          -- end
+        end)
     ),
 
     widget_template = {
@@ -71,12 +59,17 @@ local tag_list = function(pScreen)
         widget = wibox.container.margin
       },
       id = 'background_role',
-      widget = wibox.container.background,
+      -- widget = clickable_container, -- wibox.container.background,
+      widget = wibox.container.background, -- wibox.container.background,
 
       -- Add support for hover colors and an index label
       create_callback = function(self, c3, index, objects)
-        self:get_children_by_id('index_role')[1].markup = "<span font_desc='" ..
+        local index_role = self:get_children_by_id('index_role')[1]
+        index_role.markup = "<span font_desc='" ..
           beautiful.taglist_font .. "'>" .. index .. '</span>'
+
+        local tag = objects[index]
+        local current_tag = tag.screen.selected_tag
 
         self:connect_signal('mouse::enter', function()
           -- BLING: Only show widget when there are clients in the tag
@@ -92,7 +85,7 @@ local tag_list = function(pScreen)
             self.backup_fg  = self.fg
             self.has_backup = true
           end
-          self.bg = beautiful.accent .. '99'
+          self.bg = beautiful.accent:sub(1, 7) .. '80'
           self.fg = beautiful.bg_normal
         end)
 
@@ -100,9 +93,16 @@ local tag_list = function(pScreen)
           -- BLING: Turn the widget off
           awesome.emit_signal('bling::tag_preview::visibility', pScreen, false, self)
 
+          local t = awful.screen.focused().selected_tag
+          local ct = objects[index]
+
           if self.has_backup then
             self.bg = self.backup_bg
             self.fg = self.backup_fg
+          end
+
+          if t == ct then
+            self.bg = beautiful.taglist_bg_focus
           end
         end)
       end,

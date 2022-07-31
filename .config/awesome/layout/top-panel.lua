@@ -1,4 +1,4 @@
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
@@ -47,6 +47,7 @@ local top_panel = function(s, offset)
   local updater            = require('widget.package-updater')()
   local screen_rec         = require('widget.screen-recorder')()
   local info_center_toggle = require('widget.info-center-toggle')()
+  local color_palette      = require('widget.color-palette.popup')
 
   panel:setup {
     layout = wibox.layout.align.horizontal,
@@ -55,6 +56,7 @@ local top_panel = function(s, offset)
       layout = wibox.layout.fixed.horizontal,
       layout_box,
       cpu_meter,
+      color_palette,
       task_list(s),
     },
     nil,

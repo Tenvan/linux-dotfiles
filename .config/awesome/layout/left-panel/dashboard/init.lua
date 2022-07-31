@@ -13,7 +13,7 @@ return function(_, panel)
       {
         require('layout.left-panel.dashboard.hardware-monitor'),
         require('layout.left-panel.dashboard.quick-settings'),
-        spacing = dpi(7),
+        spacing = dpi(10),
         layout = wibox.layout.fixed.vertical,
       },
       nil,

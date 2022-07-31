@@ -1,13 +1,12 @@
 #!/usr/bin/env zsh
+
+sudo pacman -Syy lsb-release
+
 . ~/.scripts/defs
 
 # Init Install
 initInstall "install_init"
 sound count-down &
-
-#####################
-# init distro check #
-#####################
 
 # Config pacman
 if [ -f /etc/pacman.conf ]; then
@@ -31,13 +30,13 @@ if [ -f /etc/pamac.conf ]; then
 	errorCheck "pamac config"
 fi
 
-sudo pacman -S --needed git base-devel yay curl colorgcc go ruby rust 
-	
+eval "$PACKER -S $PACKER_ALL git base-devel curl colorgcc go ruby rust"
 errorCheck "installation base-devel"
 
 # Prompt installieren
 install ttf-meslo-nerd-font-powerlevel10k
 install zsh-theme-powerlevel10k
+errorCheck "installation prompt"
 
 # disable sudo password
 echo "Cmnd_Alias INSTALL = /usr/bin/pacman, /usr/share/pacman

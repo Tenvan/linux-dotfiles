@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+
 . ~/.scripts/defs
 
 # Init Install
@@ -168,7 +169,7 @@ install tvolnoti
 install pulseeffects-legacy
 
 if [ $IS_MANJARO = true ]; then
-    install manjaro-
+    # install manjaro-
 else
     install pulseaudio-bluetooth
     install pulseaudio-equalizer
