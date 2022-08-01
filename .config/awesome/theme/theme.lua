@@ -56,23 +56,6 @@ local awesome_overrides = function(theme)
   -- Decorations
   theme.useless_gap = dpi(3)
 
-  -- Menu
-  theme.menu_font = theme.font
-
-  theme.menu_height = dpi(30)
-  theme.menu_width = dpi(300)
-  theme.menu_border_width = dpi(5)
-  theme.menu_bg_focus = theme.accent .. 'CC'
-
-  -- theme.menu_bg_normal = theme.menubar_bg_color
-  -- theme.menu_fg_normal = theme.menubar_fg_color
-  -- theme.menu_fg_focus = theme.fg_focus
-  -- theme.menu_border_color = theme.menubar_fg_color
-
-  -- theme.menu_title_bg = theme.menubar_bg_color
-  -- theme.menu_primary_title_fg = base05
-  -- theme.menu_secondary_title_fg = base04
-
   -- Tooltips
   theme.tooltip_border_width = dpi(2)
   theme.tooltip_gaps = dpi(5)
@@ -445,6 +428,10 @@ local awesome_overrides = function(theme)
   theme.tag_preview_widget_border_color  = theme.popup_border -- The border color of the widget
   theme.tag_preview_widget_border_width  = theme.popup_border_width -- The border width of the widget
   theme.tag_preview_widget_margin        = dpi(5) -- The margin of the widget
+
+  theme.graph_bg = theme.transparent -- The graph background color.
+  theme.graph_fg = theme.fg_normal -- The graph foreground color.
+  theme.graph_border_color = theme.border_normal -- The graph border color.
 end
 
 return {

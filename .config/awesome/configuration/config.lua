@@ -1,5 +1,3 @@
-log("Enter Module => " .. ... )
-
 local config = {
   debug_mode = false,
   sounds = false,

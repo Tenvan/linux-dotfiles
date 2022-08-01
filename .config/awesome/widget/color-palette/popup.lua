@@ -41,7 +41,7 @@ widget.widget_palette_popup = awful.popup {
   shape = gears.shape.rounded_rect,
 
   placement = function(c)
-    local p = awful.placement.bottom_right(c, { parent = widget })
+    local p = awful.placement.bottom_right(c)
     dump(p, 'placement color popup')
   end,
 }

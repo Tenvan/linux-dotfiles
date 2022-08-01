@@ -4,10 +4,10 @@ log('Enter Module => ' .. ...)
 local gears = require('gears')
 local beautiful = require('beautiful')
 
-local filesystem          = gears.filesystem
-local dpi                 = beautiful.xresources.apply_dpi
-local config              = require('configuration.json') or {}
-local specs               = require('layout.specs')
+local filesystem = gears.filesystem
+local dpi        = beautiful.xresources.apply_dpi
+local config     = require('configuration.json') or {}
+local specs      = require('layout.specs')
 
 local theme_dir = filesystem.get_configuration_dir() .. 'theme'
 local titlebar_icon_path = theme_dir .. '/icons/titlebar/'
@@ -61,7 +61,6 @@ theme.radius = dpi(15)
 
 
 local awesome_overrides = function(theme)
-
   -- General colors
   theme.success_fg = theme.gtk_vars.success_fg_color
   theme.success_bg = theme.gtk_vars.success_bg_color
@@ -196,20 +195,17 @@ local awesome_overrides = function(theme)
   end
 
   -- Menu
-  theme.menu_font = beautiful.font
+  theme.menu_font = theme.font
   theme.menu_submenu = '' -- ➤
 
-  theme.menu_height = dpi(34)
-  theme.menu_width = dpi(200)
-  theme.menu_border_width = dpi(20)
-  theme.menu_title_bg = theme.bg_urgent
-
-  theme.menu_fg_normal = theme.gtk_vars.menubar_fg_color:sub(1, 7)
-  theme.menu_fg_focus = theme.fg_focus
-
-  theme.menu_bg_normal = theme.gtk_vars.menubar_bg_color:sub(1, 7)
-  theme.menu_bg_focus = theme.accent .. 'CC'
-
+  theme.menu_height       = dpi(34)
+  theme.menu_width        = dpi(300)
+  theme.menu_border_width = dpi(2)
+  theme.menu_title_bg     = theme.bg_urgent
+  theme.menu_fg_normal    = theme.gtk_vars.menubar_fg_color:sub(1, 7)
+  theme.menu_fg_focus     = theme.fg_focus
+  theme.menu_bg_normal    = theme.gtk_vars.menubar_bg_color:sub(1, 7)
+  theme.menu_bg_focus     = theme.accent:sub(1, 7) .. 'CC'
   theme.menu_border_color = theme.border_normal:sub(1, 7)
 
   -- Tooltips

@@ -3,6 +3,11 @@
 -- ░░▀░░▀▀▀░▀░▀░░▀░░▀░▀░▀░▀░▀▀▀░░░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀
 -- Banner generated using `toilet -f pagga AwesomeWM"
 
+local gdebug = require('gears.debug')
+gdebug.print_warning('[STARTUP]: ==============================')
+gdebug.print_warning('[STARTUP]: ==> start of loading rc.lua ==')
+gdebug.print_warning('[STARTUP]: ==============================')
+
 log = require('utilities.debug').log
 dump = require('utilities.debug').dump
 notify = require('utilities.notify')
@@ -98,3 +103,7 @@ screen.connect_signal(
     end
   end
 )
+
+gdebug.print_warning('[STARTUP]: ==============================')
+gdebug.print_warning('[STARTUP]: == finish of loading rc.lua ==')
+gdebug.print_warning('[STARTUP]: ==============================')

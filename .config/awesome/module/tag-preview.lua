@@ -31,14 +31,7 @@ bling.widget.tag_preview.enable {
   placement_fn = function(c) -- Place the widget using awful.placement (this overrides x & y)
     if c and c.tag then
       log('==> placement tag preview')
-      return awful.placement.next_to(
-        c,
-        {
-          preferred_positions = 'right',
-          preferred_anchors   = 'front',
-          geometry            = c.tag.geometry,
-        }
-      )
+      return awful.placement.next_to(c)
     end
   end,
 
