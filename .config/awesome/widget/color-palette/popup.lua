@@ -7,9 +7,6 @@ local gears = require('gears')
 
 local dpi = beautiful.xresources.apply_dpi
 
-local weather_curl_widget = require('awesome-wm-widgets.weather-widget.weather')
-local config = require('configuration.config').widget
-
 local clickable_container = require('widget.clickable-container')
 
 local widget = wibox.widget {
@@ -27,7 +24,7 @@ local widget = wibox.widget {
   widget = wibox.container.background
 }
 
-widget.widget_palette_popup = awful.popup {
+local popup = awful.popup {
   type              = 'dropdown_menu',
   visible           = false,
   ontop             = true,
@@ -39,25 +36,32 @@ widget.widget_palette_popup = awful.popup {
   border_width = 5,
 
   shape = gears.shape.rounded_rect,
-
-  placement = function(c)
-    local p = awful.placement.bottom_right(c)
-    dump(p, 'placement color popup')
-  end,
 }
+
+widget:buttons(
+  awful.util.table.join(
+    awful.button({}, 1, function()
+      popup.visible = not popup.visible
+      if popup.visible then
+        popup:move_next_to(mouse.current_widget_geometry)
+      end
+    end)
+  )
+)
 
 widget:connect_signal(
   'mouse::enter',
   function(w)
-    awful.placement.next_to(w.widget_palette_popup)
-    w.widget_palette_popup.visible = true
+    -- awful.placement.next_to(w.widget_palette_popup)
+    popup:move_next_to(mouse.current_widget_geometry)
+    popup.visible = true
   end
 )
 
 widget:connect_signal(
   'mouse::leave',
   function(w)
-    w.widget_palette_popup.visible = false
+    popup.visible = false
   end
 )
 

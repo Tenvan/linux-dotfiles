@@ -187,6 +187,15 @@ local awesome_overrides = function(theme)
   theme.border_width = dpi(0)
   theme.border_radius = theme.radius
 
+  theme.border_color_marked = theme.titlebar_bg_normal
+  theme.border_color_active = theme.titlebar_bg_normal
+  theme.border_color_normal = theme.titlebar_bg_normal
+  theme.border_color_new = theme.titlebar_bg_normal
+  theme.border_color_urgent = theme.titlebar_bg_normal
+  theme.border_color_floating = theme.titlebar_bg_normal
+  theme.border_color_maximized = theme.titlebar_bg_normal
+  theme.border_color_fullscreen = theme.titlebar_bg_normal
+  
   -- Decorations
   theme.useless_gap = dpi(4)
   theme.client_shape_rectangle = gears.shape.rectangle

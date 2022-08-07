@@ -24,13 +24,6 @@ bling.widget.task_preview.enable {
   honor_padding = true, -- Honor padding when creating widget size
   honor_workarea = true, -- Honor work area when creating widget size
 
-  placement_fn = function(c) -- Place the widget using awful.placement (this overrides x & y)
-    if c and c.tag then
-      log('==> placement task preview')
-      return awful.placement.next_to(c)
-    end
-  end,
-
   -- Your widget will automatically conform to the given size due to a constraint container.
   widget_structure = {
     {

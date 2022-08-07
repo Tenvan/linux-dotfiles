@@ -154,11 +154,11 @@ local enable = function(opts)
         -- which can cause the c.content to not show the correct image
         gears.timer
         {
-            timeout = 0.1,
-            call_now  = false,
-            autostart = true,
+            timeout     = 0.1,
+            call_now    = false,
+            autostart   = true,
             single_shot = true,
-            callback = function()
+            callback    = function()
                 if t.selected == true then
                     for _, c in ipairs(t:clients()) do
                         c.prev_content = gears.surface.duplicate_surface(c.content)
@@ -168,34 +168,36 @@ local enable = function(opts)
         }
     end)
 
-    awesome.connect_signal("bling::task_preview::visibility", function(s, v, c, t)
-        if v then
-            -- Update task preview contents
-            task_preview_box.widget = draw_widget(
-                c,
-                opts.structure,
-                screen_radius,
-                widget_bg,
-                widget_border_color,
-                widget_border_width,
-                margin,
-                widget_width,
-                widget_height
-            )
-        else
-            task_preview_box.widget = nil
-            collectgarbage("collect")
-        end
+    awesome.connect_signal("bling::task_preview::visibility",
+        function(s, v, c, t)
+            if v then
+                -- Update task preview contents
+                task_preview_box.widget = draw_widget(
+                    c,
+                    opts.structure,
+                    screen_radius,
+                    widget_bg,
+                    widget_border_color,
+                    widget_border_width,
+                    margin,
+                    widget_width,
+                    widget_height
+                )
+            else
+                task_preview_box.widget = nil
+                collectgarbage("collect")
+            end
 
-        if not placement_fn then
-            task_preview_box.x = s.geometry.x + widget_x
-            task_preview_box.y = s.geometry.y + widget_y
-        end
+            if not placement_fn then
+                -- task_preview_box.x = s.geometry.x + widget_x
+                -- task_preview_box.y = s.geometry.y + widget_y
+                task_preview_box:move_next_to(mouse.current_widget_geometry)
+            end
 
-        task_preview_box.visible = v
-        task_preview_box.screen = s
-        task_preview_box.tag = t
-    end)
+            task_preview_box.visible = v
+            task_preview_box.screen = s
+            task_preview_box.tag = t
+        end)
 end
 
 return { enable = enable, draw_widget = draw_widget }

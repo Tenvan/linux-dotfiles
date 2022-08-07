@@ -37,7 +37,6 @@ local top_panel = function(s, offset)
 
   local clock              = require('widget.clock')(s)
   local layout_box         = require('widget.layoutbox')(s)
-  local cpu_meter          = require('widget.cpu-meter-top-panel').widget
   local hard_drives        = require('widget.harddrive-meter').widget
   local weather            = require('widget.weather.weather-aw').widget
   local systray            = require('widget.systray').widget
@@ -47,10 +46,41 @@ local top_panel = function(s, offset)
   local screen_rec         = require('widget.screen-recorder')()
   local info_center_toggle = require('widget.info-center-toggle')()
 
-  local ram_widget = nil
-  local ram_widget = require('widget.ram-widget.ram-widget')({
-    -- width = dpi(200)
-  })
+  local ram_widget = {
+    {
+      {
+        text   = '',
+        align  = 'center',
+        valign = 'center',
+        font   = beautiful.font_large,
+        widget = wibox.widget.textbox
+      },
+      margins  = dpi(2),
+      widget = wibox.container.margin
+    },
+    nil,
+    require('widget.ram-widget.ram-widget')({
+      -- width = dpi(200)
+    }),
+    layout = wibox.layout.align.horizontal
+  }
+  
+  local cpu_meter = {
+    {
+      {
+        text   = 'ﴟ',
+        align  = 'center',
+        valign = 'center',
+        font   = beautiful.font_large,
+        widget = wibox.widget.textbox
+      },
+      margins  = dpi(2),
+      widget = wibox.container.margin
+    },
+    nil,
+    require('widget.cpu-meter-top-panel').widget,
+    layout = wibox.layout.align.horizontal
+  }
 
   local color_palette = nil
   if config.debug_mode then
@@ -75,7 +105,8 @@ local top_panel = function(s, offset)
       layout = wibox.layout.fixed.horizontal,
       spacing = dpi(5),
       net_speed_widget({
-        widget_width = dpi(66)
+        widget_width = dpi(66),
+        width = dpi(100)
       }),
       weather,
       updater,
