@@ -58,6 +58,9 @@
 [mergetool "code"]
 	cmd = /usr/bin/code --wait \"$MERGED\"
 
+[mergetool "code"]
+	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+
 [mergetool]
 	prompt = false
 
