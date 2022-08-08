@@ -1,4 +1,4 @@
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local wibox = require('wibox')
 local gears = require('gears')
@@ -7,6 +7,8 @@ local beautiful = require('beautiful')
 local watch = require('awful.widget.watch')
 local icons = require('theme.icons')
 local fs_widget = require('awesome-wm-widgets.fs-widget.fs-widget')
+
+local config = require('configuration.json') or {}
 
 local dpi = beautiful.xresources.apply_dpi
 
@@ -63,15 +65,8 @@ local harddrive_meter = wibox.widget {
 
 local harddrive_widget = fs_widget({
   widget_width = dpi(100),
-  mounts = {
-    '/',
-    '/home',
-    '/srv',
-    '/media/BACKUP',
-    '/media/BIGDATA',
-    '/media/VM',
-    '/media/WORKSPACE'
-  } })
+  mounts = config.widget.harddrives.mounts
+})
 
 return {
   meter = harddrive_meter,

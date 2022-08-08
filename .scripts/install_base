@@ -377,6 +377,7 @@ install ttf-jetbrains-mono
 install ttf-twemoji
 install ttf-weather-icons
 install ttf-iosevka
+install ttf-nerd-fonts-symbols
 
 # lightdm config
 if [ $IS_MANJARO = true ]; then
@@ -449,6 +450,6 @@ jump detectindent go snippets crystal quickfix wc manipulator \
 monokai-dark gotham-colors nordcolors
 
 # rebuilds
-pamac build qt5-styleplugins
+sudo pamac build --no-confirm qt5-styleplugins
 
 sound complete

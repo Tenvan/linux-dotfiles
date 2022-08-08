@@ -1,5 +1,5 @@
 local config = {
-  debug_mode = false,
+  debug_mode = true,
   sounds = false,
   widget = {
     email = {

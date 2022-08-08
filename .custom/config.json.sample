@@ -7,7 +7,10 @@
         "harddrives": {
             "mounts": [
                 "/",
-                "/home"
+                "/home",
+                "/srv",
+                "/var",
+                "/media/WORKSPACE"
             ]
         }
     }
