@@ -37,8 +37,12 @@ install google-chrome
 install microsoft-edge-dev-bin
 
 # gimicks
-install cmatrix
-install hollywood
+if [ $IS_ARCO = true ]; then
+	install cmatrix-git
+else
+	install cmatrix
+	install hollywood
+fi
 
 # Office
 install libreoffice-fresh

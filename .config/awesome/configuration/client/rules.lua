@@ -190,14 +190,13 @@ ruled.client.connect_signal('request::rules', function()
   -- Multimedia
   ruled.client.append_rule {
     rule_any = {
-      class = { 'vlc', 'Spotify', 'Shortwave' }
+      class = { 'vlc', 'Spotify', 'shortwave' }
     },
     properties = {
       screen = 2,
       tag = screen[2].tags[5],
       switch_to_tags = true,
-      floating = false,
-      placement = awful.placement.centered
+      floating = false
     }
   }
 
@@ -257,7 +256,7 @@ ruled.client.connect_signal('request::rules', function()
       class = 'jetbrains-.*'
     },
     except_any = {
-      name = {'splash', 'Welcome *'}
+      name = { 'splash', 'Welcome *' }
     },
     properties = {
       screen = screen.primary,
@@ -361,25 +360,25 @@ ruled.client.connect_signal('request::rules', function()
   }
 
 
-    -- Floating
-    ruled.client.append_rule {
-      rule_any = {
-        instance = { 'file_progress', 'Popup', 'nm-connection-editor' },
-        class = { 'scrcpy', 'Mugshot', 'Pulseeffects', 'Xfce4-appearance-settings' },
-        role = { 'AlarmWindow', 'ConfigManager', 'pop-up' }
-      },
-      properties = {
-        titlebars_enabled = true,
-        skip_decoration = true,
-        ontop = true,
-        floating = true,
-        focus = awful.client.focus.filter,
-        raise = true,
-        keys = client_keys,
-        buttons = client_buttons,
-        placement = awful.placement.centered
-      }
+  -- Floating
+  ruled.client.append_rule {
+    rule_any = {
+      instance = { 'file_progress', 'Popup', 'nm-connection-editor' },
+      class = { 'scrcpy', 'Mugshot', 'Pulseeffects', 'Xfce4-appearance-settings' },
+      role = { 'AlarmWindow', 'ConfigManager', 'pop-up' }
+    },
+    properties = {
+      titlebars_enabled = true,
+      skip_decoration = true,
+      ontop = true,
+      floating = true,
+      focus = awful.client.focus.filter,
+      raise = true,
+      keys = client_keys,
+      buttons = client_buttons,
+      placement = awful.placement.centered
     }
+  }
 end)
 
 -- Normally we'd do this with a rule, but some program like spotify doesn't set its class or name
@@ -430,7 +429,7 @@ client.connect_signal('property::class', function(c)
       end
     else
       -- Move the instance to specified tag on this screen
-      local t = awful.tag.find_by_name(awful.screen.focused(), '5')
+      local t = awful.tag.find_by_name(screen[2], '5')
       c:move_to_tag(t)
       c:move_to_screen(2)
 

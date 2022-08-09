@@ -6,7 +6,7 @@ export DOT="$DOT;.xprofile"
 
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 # export GTK_THEME=Adwaita:dark
-export GTK_THEME=oomox-cobalt
+# export GTK_THEME=oomox-cobalt
 
 # for qt5 apps
 export XDG_CURRENT_DESKTOP=Unity
@@ -21,8 +21,9 @@ export GDK_DPI_SCALE=1
 # oder dpi setzen (nicht beides gleichzeitig)
 export QT_FONT_DPI=96
 
-# export QT_QPA_PLATFORM_THEME=gtk2
-export QT_QPA_PLATFORMTHEME="qt5ct"
+unset QT_STYLE_OVERRIDE
+export QT_QPA_PLATFORM_THEME="gtk2"
+# export QT_QPA_PLATFORMTHEME="qt5ct"
 
 export MAIL=$(which thunderbird)
 export SSH_ASKPASS=$(which lxqt-openssh-askpass)

@@ -53,15 +53,10 @@ COMPLETION_WAITING_DOTS="true"
 # Use powerline
 USE_POWERLINE="true"
 
-# Source manjaro-zsh-configuration
-# csource /usr/share/zsh/manjaro-zsh-config
-
-# Use manjaro zsh prompt
-# csource /usr/share/zsh/manjaro-zsh-prompt
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 csource "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 # LS_COLORS
@@ -96,25 +91,6 @@ csource /usr/share/LS_COLORS/dircolors.sh
 
 # Get Terminal Emulator
 TERM_EMULATOR=$(ps -h -o comm -p $PPID)
-
-# ░█▀█░█▀▀░█▀█░█▀▀░█▀▀░▀█▀░█▀▀░█░█
-# ░█░█░█▀▀░█░█░█▀▀░█▀▀░░█░░█░░░█▀█
-# ░▀░▀░▀▀▀░▀▀▀░▀░░░▀▀▀░░▀░░▀▀▀░▀░▀
-
-if [ -f "$(which neofetch)" ]; then
-    if [[ "$TERM_EMULATOR" == *"kitty"* ]];
-    then
-        # kitty
-        neofetch --backend 'kitty'
-    elif [[  "$TERM_EMULATOR" == *"tmux"*  ]] || [[ "$TERM_EMULATOR" == "login" ]];
-    then
-        # tmux
-        neofetch --backend 'w3m' --ascii_distro 'arch_small'
-    else
-        # xterm and rxvt
-        neofetch --backend 'w3m' --xoffset 40 --yoffset 40 --gap 0
-    fi
-fi
 
 # ░█░░░█▀█░█▀▀░█▀█░█░░░█▀▀
 # ░█░░░█░█░█░░░█▀█░█░░░█▀▀
@@ -236,49 +212,40 @@ csource "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-zinit ice atload"zpcdreplay" atclone'./zplug.zsh'
-zinit light g-plane/zsh-yarn-autocompletions
 
 zinit ice depth=1;
 
-zinit light romkatv/powerlevel10k
+zinit load romkatv/powerlevel10k
 
 zinit wait lucid for \
-    memark/zsh-dotnet-completion \
+        b4b4r07/enhancd \
+        junegunn/fzf-bin \
     atinit"zicompinit; zicdreplay" \
-    zdharma-continuum/fast-syntax-highlighting \
-    zdharma-continuum/history-search-multi-word \
-    memark/zsh-dotnet-completion \
-    urbainvaes/fzf-marks \
-    hlissner/zsh-autopair \
-    junegunn/fzf-bin \
-    atload"zicdreplay" \
+        zdharma-continuum/fast-syntax-highlighting \
+        zdharma-continuum/history-search-multi-word \
+    atload"_zsh_autosuggest_start; zicdreplay" \
+        zsh-users/zsh-autosuggestions \
+        memark/zsh-dotnet-completion \
+    blockf atpull'zinit creinstall -q .' \
         zsh-users/zsh-completions \
-        zsh-users/zsh-autosuggestions
-
-# zinit wait lucid for \
-#         b4b4r07/enhancd \
-#     atinit"zicompinit; zicdreplay" \
-#         zsh-users/zsh-syntax-highlighting \
-#     atload"_zsh_autosuggest_start; zicdreplay" \
-#         zsh-users/zsh-autosuggestions \
-#         memark/zsh-dotnet-completion \
-#     blockf atpull'zinit creinstall -q .' \
-#         zsh-users/zsh-completions \
-#         g-plane/zsh-yarn-autocompletions
-
+        g-plane/zsh-yarn-autocompletions
+        
 ### End of Zinit's installer chunk
 
 # ░█▀▀░█▀█░█▄█░█▀█░█░░░█▀▀░▀█▀░▀█▀░█▀█░█▀█░█▀▀
 # ░█░░░█░█░█░█░█▀▀░█░░░█▀▀░░█░░░█░░█░█░█░█░▀▀█
 # ░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀
 
+zstyle ':completion:*:descriptions' format '%U%F{cyan}%d%f%u'
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*' completer _expand _complete _ignored _approximate
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")'  # Colored completion (different colors for dirs/files/etc)
+zstyle ':completion:*' menu select=2
 zstyle ':completion:*' rehash true
-# zstyle ':completion:*' verbose yes
-# zstyle ':completion:*:descriptions' format '%B%d%b'
-# zstyle ':completion:*:messages' format '%d'
-# zstyle ':completion:*:warnings' format 'No matches for: %d'
-# zstyle ':completion:*' group-name ''
+zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
+zstyle ':completion:*' verbose yes
 
 # Case-insensitive (all), partial-word and then substring completion
 zstyle ":completion:*" matcher-list \
@@ -295,14 +262,6 @@ setopt AUTO_MENU         # Show completion menu on a successive tab press.
 setopt AUTO_PARAM_SLASH  # If completed parameter is a directory, add a trailing slash.
 setopt COMPLETE_IN_WORD  # Complete from both ends of a word.
 unsetopt MENU_COMPLETE   # Do not autoselect the first completion entry.
-
-zstyle ':completion:*' menu select=2
-# zstyle ':completion:*' rehash true                              # automatically find new executables in path
-# zstyle ':completion:*' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")'  # Colored completion (different colors for dirs/files/etc)
-
-# zstyle ':completion:*' completer _expand _complete _ignored _approximate
-# zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
-# zstyle ':completion:*:descriptions' format '%U%F{cyan}%d%f%u'
 
 # Load SSH and GPG agents via keychain.
 
@@ -337,11 +296,7 @@ if [[ -d ~/.zsh-completions ]]; then
 fi
 
 # Source local zsh customizations.
-csource ~/.zsh_rclocal
 csource ~/.custom/.zshrc
-
-# Source functions and aliases.
-csource ~/.zsh_functions
 
 # ░█▀▀░█▀█░█░░░█▀█░█▀▄░▀█▀░▀▀█░█▀▀
 # ░█░░░█░█░█░░░█░█░█▀▄░░█░░▄▀░░█▀▀
@@ -375,13 +330,6 @@ fi
 # These need to be done after $PATH is set up so we can find
 # grc and exa
 
-# When present, use exa instead of ls
-if (( $+commands[exa] )); then
-    if [[ -z "$EXA_TREE_IGNORE" ]]; then
-        EXA_TREE_IGNORE=".cache|cache|node_modules|vendor|.git"
-    fi
-fi
-
 # ░█▀█░█▀█░█░█░█▀▀░█▀▄░█░░░█▀▀░█░█░█▀▀░█░░░▀█░░▄▀▄░█░█
 # ░█▀▀░█░█░█▄█░█▀▀░█▀▄░█░░░█▀▀░▀▄▀░█▀▀░█░░░░█░░█//█░█▀▄
 # ░▀░░░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░░▀░░▀▀▀░▀▀▀░▀▀▀░░▀░░▀░▀
@@ -400,6 +348,17 @@ case ${TERM} in
 esac
 
 csource "$HOME/.scripts/ranger.zsh"
-
-colorscript -e six
-colorscript -e hex
+#neofetch
+#screenfetch
+#alsi
+#paleofetch
+#fetch
+#hfetch
+#sfetch
+#ufetch
+#ufetch-arco
+#pfetch
+sysinfo | lolcat
+#sysinfo-retro
+cpufetch | lolcat
+colorscript random

@@ -7,12 +7,10 @@ initInstall "install_finish"
 sound count-down
 
 if [ $IS_MANJARO = true ]; then
-	install manjaro-wallpapers-18.0
-	install bootsplash-systemd
-	install bootsplash-theme-manjaro
+    install manjaro-wallpapers-18.0
+    install bootsplash-systemd
+    install bootsplash-theme-manjaro
 fi
-
-install powerline-console-fonts-git
 
 ###############################
 # uninstall unneeded packages #
@@ -32,8 +30,8 @@ sudo gdk-pixbuf-query-loaders --update-cache
 
 layoutscript="$HOME/.screenlayout/screenlayout.sh"
 if [ ! -f "$layoutscript" ]; then
-	print 'Fehler: keine .screenlayout.sh gefunden'
-	exit -1
+    print 'Fehler: keine .screenlayout.sh gefunden'
+    exit -1
 fi
 
 sudo cp "$layoutscript" /opt/screenlayout.sh
@@ -54,12 +52,12 @@ errorCheck "lightdm config"
 # config slick-greeter
 GREETER_THEME="Adwaita-dark"
 if [ $IS_MANJARO = true ]; then
-	GREETER_BACKGROUND="/usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg"
-elif [ $IS_ARCO = true ]; then
-	GREETER_BACKGROUND="/usr/share/backgrounds/arcolinux/arco-wallpaper.jpg"
-	GREETER_THEME="Arc-Paper-dark"
+    GREETER_BACKGROUND="/usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg"
+    elif [ $IS_ARCO = true ]; then
+    GREETER_BACKGROUND="/usr/share/backgrounds/arcolinux/arco-wallpaper.jpg"
+    GREETER_THEME="Arc-Paper-dark"
 else
-	GREETER_BACKGROUND="/usr/share/backgrounds/desert.png"
+    GREETER_BACKGROUND="/usr/share/backgrounds/desert.png"
 fi
 
 echo "# LightDM GTK+ Configuration
@@ -114,6 +112,10 @@ enable-hidpi=off
 cursor-theme-name=Bibata-Modern-Ice" | sudo tee /etc/lightdm/slick-greeter.conf
 errorCheck "lightdm greeter config"
 
+# enable display manager
+sudo systemctl enable lightdm.service
+errorCheck "lightdm service"
+
 # aus Folder /usr/share/kbd/consolefonts/
 echo "KEYMAP=de
 FONT=ter-powerline-v12n
@@ -136,10 +138,6 @@ sudo usermod -aG docker $USER
 
 ###########################
 # enable services
-
-# display manager
-sudo systemctl enable lightdm.service
-errorCheck "lightdm service"
 
 # printer Service
 sudo systemctl enable cups.socket
@@ -166,36 +164,30 @@ sed 's/.*GRUB_GFXMODE=.*$/GRUB_GFXMODE="3840x2160,2560x1080,1920x1080,auto"/g' <
 sudo mv -f grub /etc/default
 
 if [ $IS_MANJARO = true ]; then
-	sudo convert /usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg /usr/share/grub/themes/manjaro/background.png
-	errorCheck "convert manjaro grub image"
-	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/manjaro\/theme.txt"/g' </etc/default/grub >grub
-	sudo mv -f grub /etc/default
-	errorCheck "move manjaro grub file"
-	sudo cp $SCRIPTS/setup/manjaro-cat.png /usr/share/grub/themes/manjaro/background.png
-	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/manjaro\/theme.txt"/g' </etc/default/grub >grub
-	sudo mv -f grub /etc/default
-	echo '#
+    sudo convert /usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg /usr/share/grub/themes/manjaro/background.png
+    errorCheck "convert manjaro grub image"
+    sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/manjaro\/theme.txt"/g' </etc/default/grub >grub
+    sudo mv -f grub /etc/default
+    errorCheck "move manjaro grub file"
+    sudo cp $SCRIPTS/setup/manjaro-cat.png /usr/share/grub/themes/manjaro/background.png
+    sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/manjaro\/theme.txt"/g' </etc/default/grub >grub
+    sudo mv -f grub /etc/default
+    echo '#
 #
 # ==> ADD "bootsplash.bootfile=bootsplash-themes/manjaro/bootsplash" to GRUB_CMDLINE_LINUX_DEFAULT
 #' | sudo tee -a /etc/default/grub
 
-	echo '#
-#
-# ==> ADD "bootsplash-manjaro" to HOOKS
-#' | sudo tee -a /etc/mkinitcpio.conf
-elif [ $IS_ARCO = true ]; then
-	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/Vimix\/theme.txt"/g' </etc/default/grub >grub
-	sudo mv -f grub /etc/default
-	errorCheck "move arco grub file"
-elif [ $IS_ARCO != true ]; then
-	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/Stylish\/theme.txt"/g' </etc/default/grub >grub
-	sudo mv -f grub /etc/default
-elif [ $IS_ENDEA = false ]; then
-	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/EndeavourOS\/theme.txt"/g' </etc/default/grub >grub
-	sudo mv -f grub /etc/default
+    echo '#
+    #
+    # ==> ADD "bootsplash-manjaro" to HOOKS
+    #' | sudo tee -a /etc/mkinitcpio.conf
+    elif [ $IS_ARCO = true ]; then
+    sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/Vimix\/theme.txt"/g' </etc/default/grub >grub
+    sudo mv -f grub /etc/default
+    errorCheck "move arco grub file"
 else
-	sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/Archlinux\/theme.txt"/g' </etc/default/grub >grub
-	sudo mv -f grub /etc/default
+    sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/Archlinux\/theme.txt"/g' </etc/default/grub >grub
+    sudo mv -f grub /etc/default
 fi
 errorCheck "grub config"
 

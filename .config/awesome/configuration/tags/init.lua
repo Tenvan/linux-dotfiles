@@ -6,7 +6,6 @@ local awful = require('awful')
 local beautiful = require('beautiful')
 local icons = require('theme.icons')
 local apps = require('configuration.apps')
-local lain = require('lain')
 
 -- local tagnames = {"󾠮", "󾠯", "󾠰", "󾠱", "󾠲", "󾠳", "󾠴", "󾠵", "󾠶"}
 -- local tagnames = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
@@ -34,12 +33,6 @@ local defaultLayouts = {
   -- awful.layout.suit.corner.ne,
   -- awful.layout.suit.corner.sw,
   -- awful.layout.suit.corner.se,
-  -- lain.layout.cascade,
-  -- lain.layout.cascade.tile,
-  lain.layout.centerwork,
-  lain.layout.centerwork.horizontal,
-  -- lain.layout.termfair,
-  -- lain.layout.termfair.center,
 }
 
 local tags = {
@@ -49,18 +42,14 @@ local tags = {
       awful.layout.suit.tile,
       awful.layout.suit.max,
       awful.layout.suit.max.fullscreen,
-      awful.layout.suit.magnifier,
-      lain.layout.centerwork,
-      lain.layout.centerwork.horizontal,
+      awful.layout.suit.magnifier
     },
   },
   {
-    layout = lain.layout.centerwork,
   },
   {
   },
   {
-    layout = lain.layout.centerwork,
   },
   {
   },

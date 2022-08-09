@@ -12,7 +12,7 @@ sound count-down &
 if [ -f /etc/pacman.conf ]; then
 	sed 's/^#Color$/Color/g' </etc/pacman.conf >pacman.conf
 	sudo mv pacman.conf /etc/
-	sed 's/^.*ParallelDownloads.*$/ParallelDownloads = 5/g' </etc/pacman.conf >pacman.conf
+	sed 's/^.*ParallelDownloads.*$/ParallelDownloads = 10/g' </etc/pacman.conf >pacman.conf
 	sudo mv pacman.conf /etc/
 	sed 's/^.*VerbosePkgLists.*$/VerbosePkgLists/g' </etc/pacman.conf >pacman.conf
 	sudo mv pacman.conf /etc/
@@ -32,11 +32,6 @@ fi
 
 eval "$PACKER -S $PACKER_ALL git base-devel curl colorgcc go ruby rust"
 errorCheck "installation base-devel"
-
-# Prompt installieren
-install ttf-meslo-nerd-font-powerlevel10k
-install zsh-theme-powerlevel10k
-errorCheck "installation prompt"
 
 # disable sudo password
 echo "Cmnd_Alias INSTALL = /usr/bin/pacman, /usr/share/pacman
@@ -61,8 +56,5 @@ fullInstall
 
 ## FINISHING #
 finish
-
-git submodule update --init --recursive
-errorCheck "gib submodule init"
 
 sound complete

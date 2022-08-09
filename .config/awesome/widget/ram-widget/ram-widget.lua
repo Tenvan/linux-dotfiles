@@ -64,7 +64,7 @@ local function worker(user_args)
       widget:add_value(p_used, 2)
       widget:add_value(p_free, 3)
 
-      log('Memory Watcher => Used: ' .. p_used .. ' Free: ' .. p_free .. ' Cache: ' .. p_buff_cache)
+      -- log('Memory Watcher => Used: ' .. p_used .. ' Free: ' .. p_free .. ' Cache: ' .. p_buff_cache)
     end,
     widget:get_children_by_id('graph_role')[1]
   )
