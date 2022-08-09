@@ -348,9 +348,11 @@ case ${TERM} in
 esac
 
 csource "$HOME/.scripts/ranger.zsh"
+
+archey4
 #neofetch
 #screenfetch
-#alsi
+#alsi --archey --usage-bcolors | lolcat
 #paleofetch
 #fetch
 #hfetch
@@ -358,7 +360,8 @@ csource "$HOME/.scripts/ranger.zsh"
 #ufetch
 #ufetch-arco
 #pfetch
-sysinfo | lolcat
+#sysinfo
 #sysinfo-retro
-cpufetch | lolcat
-colorscript random
+#cpufetch
+
+# colorscript random

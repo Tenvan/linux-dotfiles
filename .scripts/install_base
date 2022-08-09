@@ -40,6 +40,7 @@ install acpi
 install acpid
 install alttab-git
 install arandr
+install archey4
 install archivefs
 install arj
 install ark
@@ -95,7 +96,6 @@ install mpdris2
 install mpv
 install multitail
 install ncmpcpp
-install neofetch
 install networkmanager
 install networkmanager-openconnect
 install nitrogen

@@ -57,7 +57,7 @@ ruled.notification.connect_signal(
     ruled.notification.append_rule {
       rule       = { urgency = 'normal' },
       properties = {
-        font             = beautiful.font_small,
+        font             = beautiful.font,
         bg               = beautiful.transparent,
         fg               = beautiful.fg_normal,
         margin           = dpi(16),
@@ -69,7 +69,7 @@ ruled.notification.connect_signal(
     ruled.notification.append_rule {
       rule       = { urgency = 'low' },
       properties = {
-        font             = beautiful.font_small,
+        font             = beautiful.font,
         bg               = beautiful.transparent,
         fg               = beautiful.fg_normal,
         margin           = dpi(16),
@@ -143,9 +143,6 @@ naughty.connect_signal(
   function(n)
     -- log('spawn::request::display -> module/notifications.lua')
 
-    local path = iconUtils.lookup_icon(n.icon)
-    n.icon = path
-
     -- dump({
     --   text = n.text,
     --   icon = n.icon,
@@ -155,6 +152,10 @@ naughty.connect_signal(
     --   urgency = n.urgency,
     --   icon_size = n.icon_size,
     -- }, 'notification', 1)
+
+    local path = iconUtils.lookup_icon(n.icon)
+    n.icon = path
+
 
     -- Actions Blueprint
     local actions_template = wibox.widget {

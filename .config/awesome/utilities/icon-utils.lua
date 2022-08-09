@@ -110,11 +110,23 @@ end
 -- @treturn string|boolean Full name of the icon, or false on failure.
 -- @staticfct menubar.utils.lookup_icon_uncached
 function utils.lookup_icon_uncached(icon_file)
+  log('==> lookup icon: ' .. tostring(icon_file))
+  dump(icon_file)
+
+  log('--> lookup icon')
+  local has_space = tostring(icon_file):match('%s')
+  log('--> space: ' .. tostring(has_space))
+
   if not icon_file or icon_file == '' then
     return false
   end
 
-  local icon_file_ext = icon_file:match('.+%.(.*)$')
+  if has_space then
+    return false
+  end
+  local icon_file_ext = tostring(icon_file):match('.+%.(.*)$')
+  log('--> match: ' .. tostring(icon_file_ext))
+
   if icon_file:sub(1, 1) == '/' and supported_icon_file_exts[icon_file_ext] then
     -- If the path to the icon is absolute do not perform a lookup [nil if unsupported ext or missing]
     return gfs.file_readable(icon_file) and icon_file or nil

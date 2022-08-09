@@ -198,6 +198,8 @@ sudo mkinitcpio -P
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 errorCheck "grub mkconfig"
 
+echo "check_mail:0" | sudo tee -a /usr/local/etc/multitail.conf
+
 # login screen console
 sudo cp $SCRIPTS/issue /etc
 
