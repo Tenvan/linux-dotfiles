@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+source="/media/BACKUP/home"
+target="$HOME"
+ 
+print "Restore Home Folder"
+print "backup  ==> '$source' -> '$target1"
+sudo rsync -rlpth --delete --verbose --progress $source $target

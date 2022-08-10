@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# Konfiguration SQL Server
+export container_name=LocalSqlServer
+export data_dir=/srv/mssql
+export sa_password=Infoniqa2022!

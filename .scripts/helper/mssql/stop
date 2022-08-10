@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+source ./config
+
+echo "Aktuell installierte Container:"
+docker container ls
+
+echo "Stoppe: $container_name"
+docker container stop $container_name
+
+ 

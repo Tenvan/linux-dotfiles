@@ -11,7 +11,7 @@
 # .zshrc/.bashrc/etc or source this file from your shell configuration.
 # To undo the effect of this function, you can type "cd -" to return to the
 # original directory.
-ranger() {
+rr() {
 	local temp_file=$(mktemp -t ranger_cd.XXX)
 
 	command ranger --choosedir="$temp_file" -- "${@:-$PWD}"

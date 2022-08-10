@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+
+sudo mkdir /media
+sudo mkdir /media/WORKSPACE
+sudo mkdir /media/BIGDATA
+sudo mkdir /media/VM
+sudo mkdir /media/BACKUP
+
+echo "
+/dev/disk/by-partlabel/BACKUP /media/BACKUP ext4 defaults 0 0
+/dev/disk/by-partlabel/BIGDATA /media/BIGDATA ext4 defaults 0 0
+/dev/disk/by-partlabel/WORKSPACE /media/WORKSPACE ext4 defaults 0 0
+/dev/disk/by-partlabel/VM /media/VM ext4 defaults 0 0
+" | sudo tee -a /etc/fstab
+
+sudo systemctl daemon-reload
+sudo mount --all

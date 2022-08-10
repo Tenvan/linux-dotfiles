@@ -112,10 +112,6 @@ enable-hidpi=off
 cursor-theme-name=Bibata-Modern-Ice" | sudo tee /etc/lightdm/slick-greeter.conf
 errorCheck "lightdm greeter config"
 
-# enable display manager
-sudo systemctl enable lightdm.service
-errorCheck "lightdm service"
-
 # aus Folder /usr/share/kbd/consolefonts/
 echo "KEYMAP=de
 FONT=ter-powerline-v12n

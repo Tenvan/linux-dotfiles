@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+
+source ./config
+
+# Ziel Ordner für volume vorbereiten
+if [ -d "$data_dir" ]; then
+    echo "mssql datadir '$data_dir' exists, reuse it."
+else    
+    echo "mssql datadir '$data_dir' does not exists, create it!"
+    sudo mkdir -p $data_dir
+    sudo chmod 777 $data_dir
+fi
+
+docker pull mcr.microsoft.com/mssql/server:2022-latest
+
+docker run -dit --restart unless-stopped \
+   --name $container_name \
+   -e "ACCEPT_EULA=Y" \
+   -e "MSSQL_SA_PASSWORD=$sa_password" \
+   -p 1433:1433 \
+   -v $data_dir:/var/opt/mssql \
+   -d mcr.microsoft.com/mssql/server:2022-latest
+
+# Docker Prozesse prüfen
+docker ps -a

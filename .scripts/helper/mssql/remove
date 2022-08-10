@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+source ./config
+
+echo "Aktuell installierte Container:"
+docker container ls
+
+echo "Stoppe: $container_name"
+docker container stop $container_name
+
+echo "Entferne: $container_name"
+docker container prune --force
+
+echo "Aktuell installierte Container:"
+docker container ls
