@@ -59,8 +59,16 @@
     ],
     "SYSTEM_TOOLS_MENU": [
         [
-            "🪄 ReInstall All Packages",
-            "$TERMINAL --hold --title Sys:Upall pacman -Qqn | pacman -S -"
+            "🔌 PowerManager ...",
+            "xfce4-power-manager-settings"
+        ],
+        [
+            "🖥 Bildschirmschoner ...",
+            "xfce4-screensaver-preferences"
+        ],
+        [
+            "🖥 Monitor einrichten",
+            "arandr"
         ],
         [
             "🪄 Grub Update (BTRFS Snapshots)",
@@ -77,14 +85,6 @@
         [
             "🗂 Belegung Verzeichnisse",
             "baobab"
-        ],
-        [
-            "🖥 Monitor einrichten",
-            "arandr"
-        ],
-        [
-            "🔌 Power Manager",
-            "xfce4-power-manager -c"
         ],
         [
             "🎫 Erscheinungsbild (Lx)",

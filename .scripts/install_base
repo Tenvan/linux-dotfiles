@@ -189,7 +189,8 @@ install gradle
 install jdk-openjdk
 install jdk8-openjdk
 install nodejs-emojione
-install nodejs-lts-gallium
+uninstall nodejs-lts-gallium
+install nodejs
 install nvm
 install nuget
 install npm

@@ -18,8 +18,8 @@ local run_once = function(cmd)
     function(stdout, stderr)
       -- Debugger
       if not stderr or stderr == '' then
-        -- log('  ->  auto started: ' .. cmd)
-        notify('Auto Start', cmd)
+        log('  ->  auto started: ' .. cmd)
+        -- notify('Auto Start', cmd)
         return
       end
 

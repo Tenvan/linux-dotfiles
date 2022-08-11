@@ -1,9 +1,9 @@
 # DO NOT EDIT! This file will be overwritten by LXAppearance.
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
-include "/home/ralf/.gtkrc-2.0.mine"
+include "/home/stira/.gtkrc-2.0.mine"
 gtk-theme-name="Arc-Arcolinux-blue-Dark"
-gtk-icon-theme-name="Paper"
+gtk-icon-theme-name="Edu-Papirus-Dark-Tela"
 gtk-font-name="Sans, Medium 14"
 gtk-cursor-theme-name="Bibata-Modern-Ice"
 gtk-cursor-theme-size=32

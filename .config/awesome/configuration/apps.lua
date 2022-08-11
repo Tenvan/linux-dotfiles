@@ -66,7 +66,7 @@ local apps = {
 
     -- You can add more start-up applications here
     'xfce4-power-manager',
-    -- '$HOME/.bin/volume-osd',
+    '$HOME/.bin/volume-osd',
     'pamac-tray',
     'nm-applet',
     'pa-applet',
@@ -74,7 +74,9 @@ local apps = {
     'xscreensaver',
     'alttab -n 1',
     'flameshot',
-    'copyq'
+    'copyq',
+    'teams-for-linux ',
+    'xfce4-notes'
   },
 
   -- List of binaries/shell scripts that will execute for a certain task
