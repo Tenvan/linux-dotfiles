@@ -103,6 +103,19 @@ ruled.notification.connect_signal(
         icon_size        = dpi(200)
       }
     }
+
+    -- Vivaldi notifs
+    ruled.notification.append_rule {
+      rule       = { app_name = 'vivaldi-stable' },
+      properties = {
+        font             = beautiful.font,
+        bg               = makeColorTransparent(beautiful.error_bg, '70'),
+        fg               = beautiful.fg,
+        implicit_timeout = 20,
+        margin           = dpi(16),
+        icon_size        = dpi(64)
+      }
+    }
   end
 )
 

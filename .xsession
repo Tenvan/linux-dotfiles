@@ -10,7 +10,7 @@ if [ -f $file ]; then
 fi
 
 # see https://unix.stackexchange.com/a/295652/332452
-source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
+csource /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
 
 # see https://wiki.archlinux.org/title/GNOME/Keyring#xinitrc
 eval $(/usr/bin/gnome-keyring-daemon --start)
@@ -22,7 +22,7 @@ mkdir -p "$HOME"/.local/share/keyrings
 echo "do run autostarts"
 
 if [[ "$DESKTOP_SESSION" == "awesome" ]]; then
-    "$HOME/.screenlayout/screenlayout.sh"
+    "$HOME/.screenlayout/screenlayout.sh" &
     "$HOME/.bin/autostart" &    
 fi
 

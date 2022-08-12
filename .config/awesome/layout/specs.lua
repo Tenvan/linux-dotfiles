@@ -5,7 +5,7 @@ log("Enter Module => " .. ... )
 local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
 
-local elementSize = dpi(40)
+local elementSize = dpi(32)
 
 return {
   elementSize = elementSize,

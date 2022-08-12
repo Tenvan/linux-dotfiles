@@ -246,6 +246,7 @@ ruled.client.connect_signal('request::rules', function()
     properties = {
       screen = screen.primary,
       tag = screen[screen.primary].tags[5],
+      floating = false,
       switch_to_tags = true
     }
   }

@@ -115,8 +115,12 @@
             "$TERMINAL --hold --title Sys:Install $TIME journalctl -f"
         ],
         [
-            "📛 xsession Errors",
+            "📛 xsession Errors (lightdm)",
             "$TERMINAL --hold --title Sys:XSessionError multitail -cs -i $HOME/.xsession-errors"
+        ],
+        [
+            "📛 xsession Errors (sddm)",
+            "$TERMINAL --hold --title Sys:XSessionError multitail -cs -i $HOME/.local/share/sddm/xorg-session.log"
         ]
     ],
     "EDIT_CONFIG": [
