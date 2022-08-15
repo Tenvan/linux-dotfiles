@@ -3,7 +3,7 @@ configuration {
 	combi-modi: "window,windowcd,drun,calc";
 	show-icons: true;
 	columns: 2;
-	dpi: 200;
+	dpi: 96;
 /*	bw: 1;*/
 	padding: 15;
 /*	yoffset: 0;*/
