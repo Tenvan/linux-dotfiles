@@ -129,10 +129,6 @@
             "code"
         ],
         [
-            "📑 shell configs",
-            "@@FILES_EDIT $HOME/.alias* $HOME/.profile* $HOME/.xprofile* $HOME/.xsession* $HOME/.Xresources* $HOME/.zshrc* $HOME/.alias* $HOME/.bashrc* $HOME/.xinit*  "
-        ],
-        [
             "📁 custom dir",
             "@@FOLDER_EDIT $HOME/.custom"
         ],
@@ -159,6 +155,10 @@
         [
             "📑 scripts install",
             "@@FILES_EDIT $SCRIPTS/install*"
+        ],
+        [
+            "📑 shell configs",
+            "@@FILES_EDIT $HOME/.alias* $HOME/.profile* $HOME/.xprofile* $HOME/.xsession* $HOME/.Xresources* $HOME/.zshrc* $HOME/.alias* $HOME/.bashrc* $HOME/.xsetting* "
         ],
         [
             "📑 themes Files",

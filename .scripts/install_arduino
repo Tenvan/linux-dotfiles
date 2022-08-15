@@ -12,8 +12,6 @@ sound count-down
 # arduino and other microcontroler development
 
 # IDEs
-install jetbrains-toolbox
-install visual-studio-code-bin
 install arduino
 
 # Microcontroler Develop
@@ -21,11 +19,10 @@ install platformio
 install esptool
 
 # cnc tools
-install freecad-weekly-appimage
 install inkscape
 install blender
-install lux
-install luxcorerender-bin
+# install lux
+# install luxcorerender-bin
 
 # utils for editors
 install clang
@@ -33,10 +30,6 @@ install gdb
 install graphviz
 install prettier
 install shellcheck
-
-# other utils
-install font-manager
-#install nerd-fonts-complete
 
 ###############################
 # uninstall unneeded packages #

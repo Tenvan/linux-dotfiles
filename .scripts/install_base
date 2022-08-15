@@ -101,6 +101,7 @@ install networkmanager-openconnect
 install nitrogen
 install notify-send.sh
 install numlockx
+install oh-my-posh-bin    
 install openconnect
 install p7zip
 install packagekit
@@ -110,8 +111,8 @@ install pm-utils
 install polkit-gnome
 install powershell-bin
 install python-mutagen
-install qjournalctl
 install qbittorrent
+install qjournalctl
 install ranger
 install redshift
 install ripgrep

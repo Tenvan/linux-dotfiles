@@ -76,7 +76,8 @@ local apps = {
     'flameshot',
     'copyq',
     'teams-for-linux ',
-    'xfce4-notes'
+    'xfce4-notes',
+    -- 'xsettingsd'
   },
 
   -- List of binaries/shell scripts that will execute for a certain task
