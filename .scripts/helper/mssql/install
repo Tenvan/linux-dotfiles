@@ -14,6 +14,7 @@ fi
 docker pull mcr.microsoft.com/mssql/server:2022-latest
 
 docker run -dit --restart unless-stopped \
+   --net=bridge \
    --name $container_name \
    -e "ACCEPT_EULA=Y" \
    -e "MSSQL_SA_PASSWORD=$sa_password" \

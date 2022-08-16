@@ -1,0 +1,57 @@
+#!/usr/bin/env zsh
+. $SCRIPTS/defs
+
+CUSTOM_FOLDER="$HOME/.custom"
+
+# MAIN_THEME=Arc-Arcolinux-blue-Dark
+# ICON_THEME=Papirus-Dark
+# CURSOR_THEME=Bibata-Modern-Ice
+# CURSOR_SIZE=32
+# THEME_FONT=Sans, Medium 14
+# SOUND_THEME=Smooth
+
+echo "[Settings]
+gtk-application-prefer-dark-theme=true
+gtk-button-images=1
+gtk-cursor-theme-name=$CURSOR_THEME
+gtk-cursor-theme-size=$CURSOR_SIZE
+gtk-decoration-layout=icon:minimize,maximize,close
+gtk-enable-animations=true
+gtk-enable-event-sounds=1
+gtk-enable-input-feedback-sounds=1
+gtk-font-name=$THEME_FONT
+gtk-icon-theme-name=$ICON_THEME
+gtk-menu-images=0
+gtk-modules=canberra-gtk-module
+gtk-primary-button-warps-slider=false
+gtk-sound-theme-name=$SOUND_THEME
+gtk-theme-name=$MAIN_THEME
+gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
+gtk-toolbar-style=GTK_TOOLBAR_ICONS
+gtk-xft-antialias=1
+gtk-xft-hinting=1
+gtk-xft-hintstyle=hintfull
+gtk-xft-rgba=rgb" > ~/.config/gtk-3.0/settings.ini
+
+echo "[Settings]
+gtk-application-prefer-dark-theme=true
+gtk-button-images=1
+gtk-cursor-theme-name=$CURSOR_THEME
+gtk-cursor-theme-size=$CURSOR_SIZE
+gtk-decoration-layout=icon:minimize,maximize,close
+gtk-enable-animations=true
+gtk-enable-event-sounds=1
+gtk-enable-input-feedback-sounds=1
+gtk-font-name=$THEME_FONT
+gtk-icon-theme-name=$ICON_THEME
+gtk-menu-images=0
+gtk-modules=canberra-gtk-module
+gtk-primary-button-warps-slider=false
+gtk-sound-theme-name=$SOUND_THEME
+gtk-theme-name=$THEME
+gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
+gtk-toolbar-style=GTK_TOOLBAR_ICONS
+gtk-xft-antialias=1
+gtk-xft-hinting=1
+gtk-xft-hintstyle=hintfull
+gtk-xft-rgba=rgb" > ~/.config/gtk-4.0/settings.ini

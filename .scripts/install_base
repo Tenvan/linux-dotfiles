@@ -101,7 +101,7 @@ install networkmanager-openconnect
 install nitrogen
 install notify-send.sh
 install numlockx
-install oh-my-posh-bin    
+install oh-my-posh-bin
 install openconnect
 install p7zip
 install packagekit
@@ -190,8 +190,8 @@ install gradle
 install jdk-openjdk
 install jdk8-openjdk
 install nodejs-emojione
-uninstall nodejs-lts-gallium
-install nodejs
+install nodejs-lts-gallium
+uninstall nodejs
 install nvm
 install nuget
 install npm
@@ -300,7 +300,7 @@ install gutenprint
 # installation of important editors
 install micro
 install neovim
-install visual-studio-code-bin
+install aur/visual-studio-code-bin
 
 # utils for editors
 install bash-completion
@@ -376,7 +376,7 @@ if [ $IS_MANJARO = true ]; then
     install maia-console
     install maia-wallpaper
     install papirus-maia-icon-theme
-    install xcursor-maia    
+    install xcursor-maia
     install manjaro-artwork
     install manjaro-artwork-extra
 fi
@@ -433,6 +433,22 @@ if [ $IS_ARCO = true ]; then
     # install edu-vimix-dark-tela-git
     install edu-system-git
     install edu-skel-git
+    install arcolinux-meta-sddm-themes
+    install sddm-config-editor-git
+    install archlinux-login-backgrounds-git
+    
+    install arcolinux_repo_3party/grub-theme-whitesur-whitesur-4k-git
+    install arcolinux_repo_3party/grub-theme-whitesur-white-4k-git
+    install arcolinux_repo_3party/grub-theme-whitesur-color-4k-git
+    install arcolinux_repo_3party/grub-theme-vimix-whitesur-4k-git
+    install arcolinux_repo_3party/grub-theme-vimix-white-4k-git
+    install arcolinux_repo_3party/grub-theme-vimix-color-4k-git
+    install arcolinux_repo_3party/grub-theme-tela-whitesur-4k-git
+    install arcolinux_repo_3party/grub-theme-tela-white-4k-git
+    install arcolinux_repo_3party/grub-theme-tela-color-4k-git
+    install arcolinux_repo_3party/grub-theme-stylish-whitesur-4k-git
+    install arcolinux_repo_3party/grub-theme-stylish-white-4k-git
+    install arcolinux_repo_3party/grub-theme-stylish-color-4k-git
 fi
 
 # cursor

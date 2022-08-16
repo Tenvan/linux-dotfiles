@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+# Theme Definitionen
+# export MAIN_THEME=Arc-Arcolinux-blue-Dark
+# export ICON_THEME=Papirus-Dark
+# export CURSOR_THEME=Bibata-Modern-Ice
+# export CURSOR_SIZE=32
+# export THEME_FONT=Sans, Medium 14
+# export SOUND_THEME=Smooth
+
 # Scale Factor
 # export QT_SCALE_FACTOR=1.5
 # export QT_AUTO_SCREEN_SET_FACTOR=1.5
