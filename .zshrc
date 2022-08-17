@@ -220,6 +220,7 @@ zinit load romkatv/powerlevel10k
 zinit wait lucid for \
         b4b4r07/enhancd \
         junegunn/fzf-bin \
+        g-plane/icd \
     atinit"zicompinit; zicdreplay" \
         zdharma-continuum/fast-syntax-highlighting \
         zdharma-continuum/history-search-multi-word \
@@ -227,9 +228,13 @@ zinit wait lucid for \
         zsh-users/zsh-autosuggestions \
         memark/zsh-dotnet-completion \
     blockf atpull'zinit creinstall -q .' \
-        zsh-users/zsh-completions \
-        g-plane/zsh-yarn-autocompletions
-        
+        zsh-users/zsh-completions
+
+zinit ice atload"zpcdreplay" atclone'./zplug.zsh'
+zinit light g-plane/zsh-yarn-autocompletions
+
+# zinit light g-plane/icd
+
 ### End of Zinit's installer chunk
 
 # ░█▀▀░█▀█░█▄█░█▀█░█░░░█▀▀░▀█▀░▀█▀░█▀█░█▀█░█▀▀

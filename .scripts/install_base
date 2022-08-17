@@ -248,10 +248,10 @@ install nemo-share
 if [ $IS_ARCO = true ]; then
     install arcolinux-rofi-git
     install arcolinux-rofi-themes-git
+    install rofi-themes
 fi
 install rofi
 install rofimoji
-install rofi-emoji
 
 # Python libs
 install python

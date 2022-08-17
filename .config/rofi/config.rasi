@@ -1,140 +1,183 @@
+/*****----- Global Properties -----*****/
+* {
+    cobalt9-1: #072539;
+    cobalt9-2: #e1efff;
+    cobalt9-3: #19acc6;
+    cobalt9-4: #0050a4;
+    cobalt9-5: #FFC600;
+
+    background:#12263720;
+    background-alt:#12263760;
+
+    foreground:#ffffff;
+
+    color0:   #000000;
+    color1:   #ff0000;
+    color2:   #37dd21;
+    color3:   #fee409;
+    color4:   #1460d2;
+    color5:   #ff005d;
+    color6:   #00bbbb;
+    color7:   #bbbbbb;
+    color8:   #545454;
+    color9:   #f40d17;
+    color10:  #3bcf1d;
+    color11:  #ecc809;
+    color12:  #5555ff;
+    color13:  #ff55ff;
+    color14:  #6ae3f9;
+    color15:  #ffffff;
+    
+    foreground:         #FFFFFF;
+    // foreground:  		#ff202050;
+    selected:           #DF5296;
+    active:             #6E77FF;
+    urgent:             #8E3596;
+    
+	dark: 				#121e25;
+
+    black:       		@color0;
+    lightblack:  		@color8;
+    
+    red:         		@color1;
+    lightred:    		@color9;
+    
+    green:       		@color2;
+    lightgreen:  		@color10;
+    
+    yellow:      		@color3;
+    lightyellow: 		@color11;
+    
+    blue:        		@color4;
+    lightblue:   		@color12;
+    
+    magenta:     		@color5;
+    lightmagenta:		@color13;
+    
+	cyan:      			@color6;
+    lightcyan:     		@color14;
+    
+    white:      		@color7;
+	lightwhite:     	@color15;
+    
+    /* Bold, Italic, Underline */
+    highlight:   bold #ffffff;
+
+    lightfg:            rgba( 160, 169, 200, 100% );
+    lightbg:            rgba( 47, 59, 76, 100%);
+    
+	separatorcolor:     @foreground;
+	bordercolor:        #FFC60050;
+
+    font:                        "JetBrains Mono Nerd Font 10";
+}
+
+/*****----- Configuration -----*****/
 configuration {
-  	modi: "window,windowcd,drun,filebrowser,ssh,emoji";
-	combi-modi: "window,windowcd,drun,calc";
-	show-icons: true;
-	columns: 2;
-	dpi: 96;
-/*	bw: 1;*/
-	padding: 15;
-/*	yoffset: 0;*/
-/*	xoffset: 0;*/
-/*	fixed-num-lines: true;*/
-/*	terminal: "rofi-sensible-terminal";*/
-/*	ssh-client: "ssh";*/
-/*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
-/*	run-command: "{cmd}";*/
-/*	run-list-command: "";*/
-/*	run-shell-command: "{terminal} -e {cmd}";*/
-/*	window-command: "wmctrl -i -R {window}";*/
-/*	window-match-fields: "all";*/
-/*	icon-theme: ;*/
-/*	drun-match-fields: "name,generic,exec,categories";*/
-/*	drun-show-actions: false;*/
-/*	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/
-/*	disable-history: false;*/
-/*	ignored-prefixes: "";*/
-/*	sort: false;*/
-/*	sorting-method: ;*/
-/*	case-sensitive: false;*/
-/*	cycle: true;*/
-/*	sidebar-mode: false;*/
-/*	eh: 1;*/
-/*	auto-select: false;*/
-/*	parse-hosts: false;*/
-/*	parse-known-hosts: true;*/
-/*	matching: "normal";*/
-/*	tokenize: true;*/
-/*	m: "-5";*/
+    combi-hide-mode-prefix: 	false;
+
+    combi-modi:                 "window,drun,calc";
+    modi:                      "window,drun,filebrowser,ssh,emoji:rofimoji";
+	
+    dpi: 96;
+	
+    drun-display-format:        ": {name}";
 	line-margin: 4;
 	line-padding: 5;
-/*	filter: ;*/
-//	separator-style: "dash";
-/*	hide-scrollbar: false;*/
-/*	threads: 0;*/
-/*	scrollbar-width: 8;*/
-/*	scroll-method: 0;*/
-/*	fake-background: "screenshot";*/
-/*	window-format: "{w}    {c}   {t}";*/
-/*	click-to-exit: true;*/
-/*	show-match: true;*/
-//	color-normal: "#1d1e26, #b0b287, #1d1e26, #b0b287";
-//	color-normal: "#FF0000, #00FF00, #0000FF, #FF00FF, #FFFF00";
-//	color-urgent: "#00FF00, #b0b287, #8c9440, #b0b287, #78824B";
-//	color-active: "#0000FF, #b0b287, #8c9440, #b0b287, #78824B";
-//	color-window: "#1d1e26, #b0b287, #b5bd68";
-/*	max-history-size: 25;*/
-	combi-hide-mode-prefix: true;
-/*	matching-negate-char: '-' /* unsupported */;*/
-/*	cache-dir: ;*/
-/*	pid: "/run/user/1000/rofi.pid";*/
-/*	display-window: ;*/
-/*	display-windowcd: ;*/
-/*	display-run: ;*/
-/*	display-ssh: ;*/
-/*	display-drun: ;*/
-/*	display-combi: ;*/
-/*	display-keys: ;*/
-/*	kb-primary-paste: "Control+V,Shift+Insert";*/
-/*	kb-secondary-paste: "Control+v,Insert";*/
-/*	kb-clear-line: "Control+w";*/
-/*	kb-move-front: "Control+a";*/
-/*	kb-move-end: "Control+e";*/
-/*	kb-move-word-back: "Alt+b,Control+Left";*/
-/*	kb-move-word-forward: "Alt+f,Control+Right";*/
-/*	kb-move-char-back: "Left,Control+b";*/
-/*	kb-move-char-forward: "Right,Control+f";*/
-/*	kb-remove-word-back: "Control+Alt+h,Control+BackSpace";*/
-/*	kb-remove-word-forward: "Control+Alt+d";*/
-/*	kb-remove-char-forward: "Delete,Control+d";*/
-/*	kb-remove-char-back: "BackSpace,Shift+BackSpace,Control+h";*/
-/*	kb-remove-to-eol: "Control+k";*/
-/*	kb-remove-to-sol: "Control+u";*/
-/*	kb-accept-entry: "Control+j,Control+m,Return,KP_Enter";*/
-/*	kb-accept-custom: "Control+Return";*/
-/*	kb-accept-alt: "Shift+Return";*/
-/*	kb-delete-entry: "Shift+Delete";*/
-/*	kb-mode-next: "Shift+Right,Control+Tab";*/
-/*	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";*/
-/*	kb-row-left: "Control+Page_Up";*/
-/*	kb-row-right: "Control+Page_Down";*/
-/*	kb-row-up: "Up,Control+p,ISO_Left_Tab";*/
-/*	kb-row-down: "Down,Control+n";*/
-/*	kb-row-tab: "Tab";*/
-/*	kb-page-prev: "Page_Up";*/
-/*	kb-page-next: "Page_Down";*/
-/*	kb-row-first: "Home,KP_Home";*/
-/*	kb-row-last: "End,KP_End";*/
-/*	kb-row-select: "Control+space";*/
-/*	kb-screenshot: "Alt+S";*/
-/*	kb-ellipsize: "Alt+period";*/
-/*	kb-toggle-case-sensitivity: "grave,dead_grave";*/
-/*	kb-toggle-sort: "Alt+grave";*/
-/*	kb-cancel: "Escape,Control+g,Control+bracketleft";*/
-/*	kb-custom-1: "Alt+1";*/
-/*	kb-custom-2: "Alt+2";*/
-/*	kb-custom-3: "Alt+3";*/
-/*	kb-custom-4: "Alt+4";*/
-/*	kb-custom-5: "Alt+5";*/
-/*	kb-custom-6: "Alt+6";*/
-/*	kb-custom-7: "Alt+7";*/
-/*	kb-custom-8: "Alt+8";*/
-/*	kb-custom-9: "Alt+9";*/
-/*	kb-custom-10: "Alt+0";*/
-/*	kb-custom-11: "Alt+exclam";*/
-/*	kb-custom-12: "Alt+at";*/
-/*	kb-custom-13: "Alt+numbersign";*/
-/*	kb-custom-14: "Alt+dollar";*/
-/*	kb-custom-15: "Alt+percent";*/
-/*	kb-custom-16: "Alt+dead_circumflex";*/
-/*	kb-custom-17: "Alt+ampersand";*/
-/*	kb-custom-18: "Alt+asterisk";*/
-/*	kb-custom-19: "Alt+parenleft";*/
-/*	kb-select-1: "Super+1";*/
-/*	kb-select-2: "Super+2";*/
-/*	kb-select-3: "Super+3";*/
-/*	kb-select-4: "Super+4";*/
-/*	kb-select-5: "Super+5";*/
-/*	kb-select-6: "Super+6";*/
-/*	kb-select-7: "Super+7";*/
-/*	kb-select-8: "Super+8";*/
-/*	kb-select-9: "Super+9";*/
-/*	kb-select-10: "Super+0";*/
-/*	ml-row-left: "ScrollLeft";*/
-/*	ml-row-right: "ScrollRight";*/
-/*	ml-row-up: "ScrollUp";*/
-/*	ml-row-down: "ScrollDown";*/
-/*	me-select-entry: "MousePrimary";*/
-/*	me-accept-entry: "MouseDPrimary";*/
-/*	me-accept-custom: "Control+MouseDPrimary";*/
+	padding: 15;
+	window-format:              "{w} : {c} => {t}";
+ 	show-icons: true;
+    display-combi:              "COMBI ";
+    display-drun:               "APPS ";
+    display-filebrowser:        "FILES ";
+    display-run:                "RUN ";
+    display-window:             "WINDOW ";
+    show-icons:                 true;
 }
-@theme "~/.config/rofi/sidebar.rasi"
+
+window {
+    transparency:               "real";
+    background:                 @background;
+    height:                     100%;
+    width:                      30em;
+    location:                   west;
+    anchor:                     west;
+    border:                     0px 5px 0px 0px;
+    border-color:               @bordercolor;
+}
+
+mainbox {
+    expand: true;
+    background-color: @background;
+    spacing: 1em;
+}
+
+mode-switcher {
+    border: 2px 0px 0px 0px;
+    background-color: @lightwhite;
+    padding: 4px;
+    border-color: @bordercolor;
+}
+
+button selected {
+    border-color: @lightgreen;
+    text-color: @lightgreen;
+}
+
+inputbar {
+    // background-color:           @blue;
+    // text-color:                 @lightgreen;
+    padding:                    4px;
+    border:                     0px 0px 4px 0px;
+    border-color: @bordercolor;
+}
+
+listview {
+    padding: 0em 0.4em 4em 1em;
+    dynamic: false;
+    lines: 0;
+}
+
+element selected normal {
+    // background-color: @lightblue;
+    background-color: @green;
+}
+
+element normal active {
+	background-color: @background;
+    text-color: @lightwhite;
+}
+
+element normal urgent {
+    text-color: @red;
+}
+
+element alternate normal {
+    background-color: @background-alt;
+}
+
+element alternate active {
+    text-color: @lightwhite;
+}
+
+element alternate urgent {
+    text-color: @lightred;
+}
+
+element selected active {
+    background-color: @lightblue;
+    text-color: @white;
+}
+
+element selected urgent {
+    background-color: @lightred;
+    text-color: @white;
+}
+
+error-message {
+    expand: true;
+    background-color: red;
+    border-color: darkred;
+    border: 2px;
+    padding: 1em;
+}

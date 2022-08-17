@@ -8,7 +8,7 @@ export DOT="$DOT;.xprofile"
 export MAIN_THEME="Arc-Arcolinux-blue-Dark"
 export ICON_THEME="Papirus-Dark"
 export CURSOR_THEME="Bibata-Modern-Ice"
-export CURSOR_SIZE=64
+export CURSOR_SIZE=32
 export THEME_FONT="Sans, Medium 14"
 export SOUND_THEME="Smooth"
 
