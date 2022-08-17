@@ -72,7 +72,7 @@
         ],
         [
             "🪄 Grub Update (BTRFS Snapshots)",
-            "$TERMINAL --hold --title Sys:Grubup $TIME sudo update-grub"
+            "$TERMINAL --hold --title Sys:Grubup sudo update-grub"
         ],
         [
             "🕰 Timeshift",
@@ -80,7 +80,7 @@
         ],
         [
             "🕰 Timeshift create Snapshot",
-            "$TERMINAL --hold --title Sys:Install $TIME sudo timeshift --create"
+            "$TERMINAL --hold --title Sys:Install sudo timeshift --create"
         ],
         [
             "🗂 Belegung Verzeichnisse",
@@ -112,7 +112,7 @@
         ],
         [
             "📛 System Logs (Console)",
-            "$TERMINAL --hold --title Sys:Install $TIME journalctl -f"
+            "$TERMINAL --hold --title Sys:Install journalctl -f"
         ],
         [
             "📛 xsession Errors (lightdm)",

@@ -558,4 +558,8 @@ micro -plugin update
 # rebuilds
 sudo pamac build --no-confirm qt5-styleplugins
 
+yarn global add eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
+yarn global upgrade
+errorCheck "install global yarn"
+
 sound complete

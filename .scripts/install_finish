@@ -150,13 +150,11 @@ errorCheck "docker service"
 sudo systemctl enable fstrim.timer
 errorCheck "fstrim service"
 
-mkdir -p ~/.config/systemd/user/
-sudo cp /usr/lib/systemd/user/pulseaudio-bluetooth-autoconnect.service /etc/systemd/user
-systemctl enable pulseaudio-bluetooth-autoconnect --user
-#errorCheck "pulseaudio-bluetooth-autoconnect service"
-
 # grub config
 sed 's/.*GRUB_GFXMODE=.*$/GRUB_GFXMODE="3840x2160,2560x1080,1920x1080,auto"/g' </etc/default/grub >grub
+sudo mv -f grub /etc/default
+
+sed 's/.*GRUB_TERMINAL_OUTPUT=.*$/GRUB_TERMINAL_OUTPUT=console/g' </etc/default/grub >grub
 sudo mv -f grub /etc/default
 
 if [ $IS_MANJARO = true ]; then
@@ -177,14 +175,8 @@ if [ $IS_MANJARO = true ]; then
     #
     # ==> ADD "bootsplash-manjaro" to HOOKS
     #' | sudo tee -a /etc/mkinitcpio.conf
-    elif [ $IS_ARCO = true ]; then
-    sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/Vimix\/theme.txt"/g' </etc/default/grub >grub
-    sudo mv -f grub /etc/default
-    errorCheck "move arco grub file"
-else
-    sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/boot\/grub\/themes\/Archlinux\/theme.txt"/g' </etc/default/grub >grub
-    sudo mv -f grub /etc/default
 fi
+
 errorCheck "grub config"
 
 sudo micro /etc/mkinitcpio.conf
@@ -198,13 +190,5 @@ echo "check_mail:0" | sudo tee -a /usr/local/etc/multitail.conf
 
 # login screen console
 sudo cp $SCRIPTS/issue /etc
-
-# nodejs tools for editors
-sudo npm uninstall -g eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
-errorCheck "uninstall global npm"
-
-yarn global upgrade
-yarn global add eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
-errorCheck "install global yarn"
 
 sound complete
