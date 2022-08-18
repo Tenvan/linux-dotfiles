@@ -1,19 +1,19 @@
-# DO NOT EDIT! This file will be overwritten by LXAppearance.
-# Any customization should be done in ~/.gtkrc-2.0.mine instead.
+# DO NOT EDIT! This file will be overwritten by ~/.bin/merge-themes script.
 
-gtk-theme-name="Arc-Arcolinux-blue-Dark"
-gtk-icon-theme-name="Papirus-Dark"
-gtk-font-name="Sans, Medium 12"
-gtk-cursor-theme-name="Bibata-Modern-Ice"
-gtk-cursor-theme-size=32
-gtk-toolbar-style=GTK_TOOLBAR_ICONS
-gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
 gtk-button-images=1
-gtk-menu-images=0
+gtk-cursor-theme-name="Bibata-Modern-Ice"
+gtk-cursor-theme-size="32"
 gtk-enable-event-sounds=1
 gtk-enable-input-feedback-sounds=1
+gtk-font-name="Sans, Medium 14"
+gtk-icon-theme-name="Papirus-Dark"
+gtk-menu-images=0
+gtk-modules=canberra-gtk-module
+gtk-sound-theme-name="Smooth"
+gtk-theme-name="Arc-Arcolinux-blue-Dark"
+gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
+gtk-toolbar-style=GTK_TOOLBAR_ICONS
 gtk-xft-antialias=1
 gtk-xft-hinting=1
-gtk-xft-hintstyle="hintfull"
-gtk-xft-rgba="rgb"
-gtk-modules="canberra-gtk-module"
+gtk-xft-hintstyle=hintfull
+gtk-xft-rgba=rgb

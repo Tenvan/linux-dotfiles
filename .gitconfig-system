@@ -67,7 +67,8 @@
 [push]
 	default = simple
 	verbose = true
-	
+	autoSetupRemote = true
+
 [commit]
 	verbose = true
 

@@ -149,7 +149,6 @@ install xsel
 # polkits
 install polkit-gnome
 install polkit
-install polkit-qt5
 
 # sound setup
 install alsa-oss
@@ -218,8 +217,10 @@ install gnome-calculator
 install network-manager-applet
 
 install qt5ct
+install qt6ct
+install qt6gtk2
 install qt5-styleplugins
-
+install gtk-theme-switch2
 
 # file manager
 install mc
