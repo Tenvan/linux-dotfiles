@@ -75,7 +75,7 @@ local awesome_overrides = function(theme)
   theme.warning_bg = theme.gtk_vars.warning_bg_color
 
   -- Background color
-  theme.background = theme.gtk_vars.bg_color:sub(1, 7) .. '60'
+  theme.background = theme.gtk_vars.bg_color:sub(1, 7) .. '80'
 
   -- Transparent
   theme.transparent = theme.gtk_vars.bg_color:sub(1, 7) .. '20'

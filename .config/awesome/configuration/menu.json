@@ -158,7 +158,7 @@
         ],
         [
             "📑 shell configs",
-            "@@FILES_EDIT $HOME/.alias* $HOME/.profile* $HOME/.xprofile* $HOME/.xsession* $HOME/.Xresources* $HOME/.zshrc* $HOME/.alias* $HOME/.bashrc* $HOME/.xsetting* "
+            "@@FILES_EDIT $HOME/.alias* $HOME/.profile* $HOME/.xprofile* $HOME/.xsession* $HOME/.Xresources* $HOME/.zshrc* $HOME/.alias* $HOME/.bashrc* "
         ],
         [
             "📑 themes Files",

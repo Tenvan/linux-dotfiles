@@ -8,70 +8,68 @@ echo "# DO NOT EDIT! This file will be overwritten by ~/.bin/merge-themes script
 [Settings]
 gtk-application-prefer-dark-theme=true
 gtk-button-images=1
-gtk-cursor-theme-name=\"$CURSOR_THEME\"
-gtk-cursor-theme-size=\"$CURSOR_SIZE\"
+gtk-cursor-theme-name=$CURSOR_THEME
+gtk-cursor-theme-size=$CURSOR_SIZE
 gtk-decoration-layout=icon:minimize,maximize,close
 gtk-enable-animations=true
 gtk-enable-event-sounds=1
 gtk-enable-input-feedback-sounds=1
-gtk-font-name=\"$THEME_FONT\"
-gtk-icon-theme-name=\"$ICON_THEME\"
-gtk-menu-images=0
-gtk-modules=canberra-gtk-module
+gtk-font-name=$THEME_FONT
+gtk-icon-theme-name=$ICON_THEME
+gtk-menu-images=1
 gtk-primary-button-warps-slider=false
-gtk-sound-theme-name=\"$SOUND_THEME\"
-gtk-theme-name=\"$MAIN_THEME\"
-gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
-gtk-toolbar-style=GTK_TOOLBAR_ICONS
+gtk-sound-theme-name=$SOUND_THEME
+gtk-theme-name=$MAIN_THEME
+gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
+gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ
 gtk-xft-antialias=1
 gtk-xft-hinting=1
 gtk-xft-hintstyle=hintfull
 gtk-xft-rgba=rgb" > ~/.config/gtk-3.0/settings.ini
-cp ~/.config/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings.ini.bak
+cp ~/.config/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings-bak.ini
 
 echo "# DO NOT EDIT! This file will be overwritten by ~/.bin/merge-themes script.
 
 [Settings]
 gtk-application-prefer-dark-theme=true
 gtk-button-images=1
-gtk-cursor-theme-name=\"$CURSOR_THEME\"
-gtk-cursor-theme-size=\"$CURSOR_SIZE\"
+gtk-cursor-theme-name=$CURSOR_THEME
+gtk-cursor-theme-size=$CURSOR_SIZE
 gtk-decoration-layout=icon:minimize,maximize,close
 gtk-enable-animations=true
 gtk-enable-event-sounds=1
 gtk-enable-input-feedback-sounds=1
-gtk-font-name=\"$THEME_FONT\"
-gtk-icon-theme-name=\"$ICON_THEME\"
-gtk-menu-images=0
-gtk-modules=canberra-gtk-module
+gtk-font-name=$THEME_FONT
+gtk-icon-theme-name=$ICON_THEME
+gtk-menu-images=1
+gtk-modules=\scanberra-gtk-module\s
 gtk-primary-button-warps-slider=false
-gtk-sound-theme-name=\"$SOUND_THEME\"
-gtk-theme-name=\"$MAIN_THEME\"
-gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
-gtk-toolbar-style=GTK_TOOLBAR_ICONS
+gtk-sound-theme-name=$SOUND_THEME
+gtk-theme-name=$MAIN_THEME
+gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
+gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ
 gtk-xft-antialias=1
 gtk-xft-hinting=1
 gtk-xft-hintstyle=hintfull
 gtk-xft-rgba=rgb" > ~/.config/gtk-4.0/settings.ini
-cp ~/.config/gtk-4.0/settings.ini ~/.config/gtk-4.0/settings.ini.bak
+cp ~/.config/gtk-4.0/settings.ini ~/.config/gtk-4.0/settings-bak.ini
 
 echo "# DO NOT EDIT! This file will be overwritten by ~/.bin/merge-themes script.
 
 gtk-button-images=1
 gtk-cursor-theme-name=\"$CURSOR_THEME\"
-gtk-cursor-theme-size=\"$CURSOR_SIZE\"
+gtk-cursor-theme-size=$CURSOR_SIZE
 gtk-enable-event-sounds=1
 gtk-enable-input-feedback-sounds=1
 gtk-font-name=\"$THEME_FONT\"
 gtk-icon-theme-name=\"$ICON_THEME\"
-gtk-menu-images=0
-gtk-modules=canberra-gtk-module
+gtk-menu-images=1
 gtk-sound-theme-name=\"$SOUND_THEME\"
 gtk-theme-name=\"$MAIN_THEME\"
-gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
-gtk-toolbar-style=GTK_TOOLBAR_ICONS
+gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
+gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ
 gtk-xft-antialias=1
 gtk-xft-hinting=1
-gtk-xft-hintstyle=hintfull
-gtk-xft-rgba=rgb" > ~/.gtkrc-2.0
-cp ~/.gtkrc-2.0 ~/.gtkrc-2.0.bak
+gtk-xft-hintstyle=\"hintfull\"
+gtk-xft-rgba=\"rgb\"" > ~/.gtkrc-2.0
+cp ~/.gtkrc-2.0 ~/.gtkrc-2.0-bak
