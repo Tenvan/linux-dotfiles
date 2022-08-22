@@ -311,24 +311,3 @@
     insteadOf = http://gitlab.ihr.infoniqa.local/
     insteadOf = https://gitlab.ihr.infoniqa.local/
     insteadOf = ssh://git@gitlab.management.ihr.infoniqa.com/      
-
-# Zugang mit HTTPS (nicht gleichzeitig mit SSH verwenden !)
-# [url "https://gitlab.ihr.infoniqa.com/"]
-    # insteadOf = http://gitlab.ihr.infoniqa.local/
-    # insteadOf = https://gitlab.ihr.infoniqa.local/
-
-# [url "ssh://git@github.com/"]
-	# insteadOf = https://github.com/
-	# insteadOf = http://github.com/
-
-[credential "https://gitlab.ihr.infoniqa.local"]
-	provider = generic
-
-[credential "http://gitlab.ihr.infoniqa.local"]
-	provider = generic
-
-[credential "https://gitlab.ihr.infoniqa.com"]
-	provider = generic
-
-[credential "http://gitlab.ihr.infoniqa.com"]
-	provider = generic

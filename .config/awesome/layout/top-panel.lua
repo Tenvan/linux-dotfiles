@@ -3,12 +3,8 @@ log('Enter Module => ' .. ...)
 local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
 local wibox = require('wibox')
-local clickable_container = require('widget.clickable-container')
-local task_list = require('widget.task-list')
 local specs = require('layout.specs')
 local config = require('configuration.config')
-
-local offsetx = specs.leftPanel.actionBarWidth
 
 local top_panel = function(s, offset)
   local panel = wibox {
@@ -16,8 +12,8 @@ local top_panel = function(s, offset)
     screen = s,
     type = 'dock',
     height = specs.topPanel.height,
-    width = s.geometry.width - offsetx,
-    x = s.geometry.x + offsetx,
+    width = s.geometry.width,
+    x = s.geometry.x,
     y = s.geometry.y,
     stretch = false,
     bg = beautiful.background,
@@ -94,7 +90,6 @@ local top_panel = function(s, offset)
       color_palette,
       cpu_meter,
       ram_widget,
-      task_list(s),
       spacing = dpi(2),
       layout = wibox.layout.fixed.horizontal,
     },

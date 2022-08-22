@@ -2,7 +2,7 @@
 . ~/.scripts/defs
 
 # Init Install
-initInstall "install_base"
+initInstall "install_apps"
 sound count-down
 
 #########################

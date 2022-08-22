@@ -78,31 +78,31 @@ require('module.auto-start')
 -- ░▀░▀░▀░▀░▀▀▀░▀▀▀░▀░░░▀░▀░▀░░░▀▀▀░▀░▀
 require('module.wallpaper')
 
-screen.connect_signal(
-  'request::wallpaper',
-  function(s)
-    log('spawn::request::wallpaper')
-    -- If wallpaper is a function, call it with the screen
-    if beautiful.wallpaper then
-      if type(beautiful.wallpaper) == 'string' then
-        log('(s) wallpaper ==> ' ..  beautiful.wallpaper)
+-- screen.connect_signal(
+--   'request::wallpaper',
+--   function(s)
+--     log('spawn::request::wallpaper')
+--     -- If wallpaper is a function, call it with the screen
+--     if beautiful.wallpaper then
+--       if type(beautiful.wallpaper) == 'string' then
+--         log('(s) wallpaper ==> ' ..  beautiful.wallpaper)
         
-        -- Check if beautiful.wallpaper is color/image
-        if beautiful.wallpaper:sub(1, #'#') == '#' then
-          -- If beautiful.wallpaper is color
-          gears.wallpaper.set(beautiful.wallpaper)
+--         -- Check if beautiful.wallpaper is color/image
+--         if beautiful.wallpaper:sub(1, #'#') == '#' then
+--           -- If beautiful.wallpaper is color
+--           gears.wallpaper.set(beautiful.wallpaper)
           
-        elseif beautiful.wallpaper:sub(1, #'/') == '/' then
-          -- If beautiful.wallpaper is path/image
-          gears.wallpaper.maximized(beautiful.wallpaper, s)
-        end
-      else
-        beautiful.wallpaper(s)
-        dump('(o) wallpaper ==> ' .. tostring(s))
-      end
-    end
-  end
-)
+--         elseif beautiful.wallpaper:sub(1, #'/') == '/' then
+--           -- If beautiful.wallpaper is path/image
+--           gears.wallpaper.maximized(beautiful.wallpaper, s)
+--         end
+--       else
+--         beautiful.wallpaper(s)
+--         dump('(o) wallpaper ==> ' .. tostring(s))
+--       end
+--     end
+--   end
+-- )
 
 gdebug.print_warning('[STARTUP]: ==============================')
 gdebug.print_warning('[STARTUP]: == finish of loading rc.lua ==')

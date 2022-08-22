@@ -211,6 +211,8 @@ ruled.client.connect_signal('request::rules', function()
       tag = screen[screen.primary].tags[7],
       switch_to_tags = true,
       skip_decoration = true,
+      floating = true,
+      maximized = false,
       placement = awful.placement.centered
     }
   }
@@ -257,7 +259,8 @@ ruled.client.connect_signal('request::rules', function()
       class = 'jetbrains-.*'
     },
     except_any = {
-      name = { 'splash', 'Welcome *' }
+      name = { 'splash', 'Welcome *' },
+      class = { 'jetbrains-toolbox' }
     },
     properties = {
       screen = screen.primary,

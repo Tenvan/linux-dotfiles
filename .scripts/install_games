@@ -1,0 +1,35 @@
+#!/usr/bin/env zsh
+. ~/.scripts/defs
+
+# Init Install
+initInstall "install_games"
+sound count-down
+
+##########################
+# collect optional games #
+##########################
+
+# graphics
+# install imagemagick-full
+# install libmagick-full
+install wesnoth
+install 0ad
+install widelands
+
+# gimicks
+if [ $IS_ARCO = true ]; then
+else
+fi
+
+###############################
+# uninstall unneeded packages #
+###############################
+fullUninstall
+
+#################################
+# install all (needed) packages #
+#################################
+fullInstall
+
+## FINISHING #
+finish

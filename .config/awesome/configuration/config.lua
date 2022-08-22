@@ -70,19 +70,8 @@ local config = {
         ['00:00:00'] = 'midnight-wallpaper.jpg',
         ['06:22:00'] = 'morning-wallpaper.jpg',
         ['12:00:00'] = 'noon-wallpaper.jpg',
-        ['17:58:00'] = 'night-wallpaper.jpg'
-        -- Example of just using auto-scheduling with keywords
-        --[[
-					'midnight',
-					'morning',
-					'noon',
-					'afternoon',
-					'evening',
-					'night'
-				--]]
-      },
-      -- Stretch background image across all screens(monitor)
-      stretch = false
+        ['17:58:00'] = 'night-wallpaper.jpg',
+      }
     },
 
     lockscreen = {

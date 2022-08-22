@@ -1,4 +1,4 @@
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local awesome, client = awesome, client
 
@@ -29,7 +29,7 @@ client.connect_signal(
   function(c)
     -- Focus, raise and activate
     c:emit_signal(
-      -- 'request::activate',
+    -- 'request::activate',
       'mouse_enter',
       {
         raise = true
@@ -58,7 +58,7 @@ client.connect_signal(
   'mouse::enter',
   function(c)
     c:emit_signal(
-      -- 'request::activate',
+    -- 'request::activate',
       'mouse_enter',
       {
         raise = true
@@ -122,13 +122,16 @@ client.connect_signal(
 )
 
 client.connect_signal('swapped', function(c, source, is_source)
+  log('window-switch')
   sound('window-switch')
 end)
 
 client.connect_signal('raised', function(c)
-  sound("window-attention-active")
+  log('window-attention-active')
+  sound('window-attention-active')
 end)
 
 client.connect_signal('lowered', function(c)
-  sound("window-attention-inactive")
+  log('window-attention-inactive')
+  sound('window-attention-inactive')
 end)

@@ -315,12 +315,6 @@ local global_keys = awful.util.table.join(
     group = keys.kgClient
   }),
 
-  awful.key({ modkey }, escapekey,
-    awful.tag.history.restore, {
-    description = 'alternate between current and previous tag',
-    group = keys.kgTag
-  }),
-
   -- ░█▀▄░█▀▄░▀█▀░█▀▀░█░█░▀█▀░█▀█░█▀▀░█▀▀░█▀▀
   -- ░█▀▄░█▀▄░░█░░█░█░█▀█░░█░░█░█░█▀▀░▀▀█░▀▀█
   -- ░▀▀░░▀░▀░▀▀▀░▀▀▀░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀░▀▀▀
@@ -679,7 +673,7 @@ local global_keys = awful.util.table.join(
     description = 'Picom Toggle',
     group = keys.kgSystem
   }),
-  awful.key({ modkey }, 'Escape', function()
+  awful.key({ modkey }, escapekey, function()
     awful.spawn('xkill')
   end, {
     description = 'XKill',

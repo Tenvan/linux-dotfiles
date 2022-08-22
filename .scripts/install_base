@@ -39,6 +39,7 @@ install awmtt
 install acpi
 install acpid
 install alttab-git
+install at
 install arandr
 install archey4
 install archivefs

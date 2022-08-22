@@ -139,8 +139,6 @@ local function worker(user_args)
       end
 
       for k, v in ipairs(_config.mounts) do
-        log('Disk' .. v)
-
         if (disks[v] ~= nil) then          
           local row = wibox.widget {
             {

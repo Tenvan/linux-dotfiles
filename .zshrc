@@ -230,9 +230,6 @@ zinit wait lucid for \
     blockf atpull'zinit creinstall -q .' \
         zsh-users/zsh-completions
 
-zinit ice atload"zpcdreplay" atclone'./zplug.zsh'
-zinit light g-plane/zsh-yarn-autocompletions
-
 # zinit light g-plane/icd
 
 ### End of Zinit's installer chunk
@@ -355,18 +352,3 @@ esac
 csource "$HOME/.scripts/ranger.zsh"
 
 archey4
-#neofetch
-#screenfetch
-#alsi --archey --usage-bcolors | lolcat
-#paleofetch
-#fetch
-#hfetch
-#sfetch
-#ufetch
-#ufetch-arco
-#pfetch
-#sysinfo
-#sysinfo-retro
-#cpufetch
-
-# colorscript random

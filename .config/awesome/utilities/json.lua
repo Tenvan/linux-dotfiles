@@ -1,4 +1,4 @@
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local open = io.open
 
@@ -12,6 +12,15 @@ local function read_file(path)
   return content
 end
 
+local function write_file(path, content)
+  local file = open(path, 'wb') -- r read mode and b binary mode
+  if not file then return nil end
+  local io = file:write(content)
+  dump(io)
+  file:close()
+  return io
+end
+
 local function readJsonFile(path)
   -- log("Read Json: " .. path)
   local content = read_file(path)
@@ -21,7 +30,22 @@ local function readJsonFile(path)
   return jsonContent
 end
 
+local function writeJsonFile(path, jsonContent)
+  log('Write Json: ' .. path)
+  dump(json, 'json', 3)
+
+  local content = json.stringify(jsonContent)
+  dump(content, 'content', 3)
+
+  local io = write_file(path, content)
+  dump(jsonContent)
+
+  return io
+end
+
 return {
   read_file = read_file,
-  readJsonFile = readJsonFile
+  write_file = write_file,
+  readJsonFile = readJsonFile,
+  writeJsonFile = writeJsonFile
 }

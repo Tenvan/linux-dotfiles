@@ -1,11 +1,11 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-settings 6.04 for stira on Fri Aug 12 09:26:30 2022.
+# Written by xscreensaver-settings 6.04 for ralf on Sat Aug 20 18:45:12 2022.
 # https://www.jwz.org/xscreensaver/
 
-timeout:	1:00:00
+timeout:	0:30:00
 cycle:		0:05:00
-lock:		False
-lockTimeout:	0:10:00
+lock:		True
+lockTimeout:	0:30:00
 passwdTimeout:	0:00:30
 visualID:	default
 installColormap:    True
@@ -14,8 +14,8 @@ splash:		False
 splashDuration:	0:00:05
 demoCommand:	xscreensaver-demo
 nice:		10
-fade:		False
-unfade:		False
+fade:		True
+unfade:		True
 fadeSeconds:	0:00:03
 ignoreUninstalledPrograms:False
 font:		*-medium-r-*-140-*-m-*
@@ -79,7 +79,8 @@ programs:								      \
 -				penrose -root				    \n\
 - GL: 				pipes -root				    \n\
 -				rd-bomb -root				    \n\
-- GL: 				rubik -root				    \n\
+  GL: 				rubik -root -delay 0 -count 100 -cycles	      \
+				  32 -size 15				    \n\
 -				sierpinski -root			    \n\
 -				slip -root				    \n\
 - GL: 				sproingies -root			    \n\
@@ -104,7 +105,7 @@ programs:								      \
 -				kumppa -root				    \n\
 - GL: 				lament -root				    \n\
 -				moire2 -root				    \n\
-- GL: 				sonar -root				    \n\
+- GL: 				sonar -root -font-size 0		    \n\
 - GL: 				stairs -root				    \n\
 -				truchet -root				    \n\
 -				vidwhacker -root			    \n\
@@ -126,7 +127,7 @@ programs:								      \
 -				spotlight -root				    \n\
 -				squiral -root				    \n\
 -				wander -root				    \n\
--				webcollage -root			    \n\
+  Best: 			webcollage -root			    \n\
 -				xflame -root				    \n\
 				xmatrix -root				    \n\
 - GL: 				gflux -root				    \n\
@@ -208,7 +209,8 @@ programs:								      \
 - GL: 				pinion -root				    \n\
 - GL: 				polyhedra -root				    \n\
 - GL: 				providence -root			    \n\
--				substrate -root				    \n\
+				substrate -root -sand-grains 83		      \
+				  -initial-cracks 5			    \n\
 -				wormhole -root				    \n\
   GL: 				antmaze -root				    \n\
 - GL: 				boing -root				    \n\
@@ -223,14 +225,15 @@ programs:								      \
 - GL: 				tangram -root				    \n\
 - GL: 				timetunnel -root			    \n\
 - GL: 				glschool -root				    \n\
-- GL: 				topblock -root				    \n\
+  GL: 				topblock -root -size 5 -resolution 11	      \
+				  -maxColors 10 -rotateSpeed 1		    \n\
   GL: 				cubicgrid -root				    \n\
 -				cwaves -root				    \n\
 - GL: 				gears -root				    \n\
 - GL: 				glcells -root				    \n\
 - GL: 				lockward -root				    \n\
 -				m6502 -root				    \n\
-- GL: 				moebiusgears -root			    \n\
+  GL: 				moebiusgears -root			    \n\
 - GL: 				voronoi -root				    \n\
 - GL: 				hypnowheel -root			    \n\
 - GL: 				klein -root				    \n\
@@ -240,7 +243,7 @@ programs:								      \
 - GL: 				rubikblocks -root			    \n\
   GL: 				companioncube -root			    \n\
 - GL: 				hilbert -root				    \n\
-- GL: 				tronbit -root				    \n\
+  GL: 				tronbit -root				    \n\
 - GL: 				geodesic -root				    \n\
 -				hexadrop -root				    \n\
 - GL: 				kaleidocycle -root			    \n\
@@ -270,7 +273,7 @@ programs:								      \
 -				filmleader -root			    \n\
 -				glitchpeg -root				    \n\
 - GL: 				handsy -root				    \n\
-- GL: 				maze3d -root				    \n\
+  GL: 				maze3d -root				    \n\
 - GL: 				peepers -root				    \n\
 - GL: 				razzledazzle -root			    \n\
 -				vfeedback -root				    \n\
@@ -285,7 +288,7 @@ programs:								      \
 				binaryhorizon -root			    \n\
 -				marbling -root				    \n\
 - GL: 				mapscroller -root			    \n\
-  GL: 				squirtorus -root -fps			    \n\
+- GL: 				squirtorus -root			    \n\
   GL: 				chompytower -root			    \n\
   GL: 				nakagin -root				    \n\
 

@@ -1,17 +1,8 @@
 log('Enter Module => ' .. ...)
 
-local client = client
-
 local awful = require('awful')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
-local helpers = require('helpers')
-
-local dpi = require('beautiful').xresources.apply_dpi
-local clickable_container = require('widget.clickable-container')
-
-local keys = require('configuration.keys.mod')
-local modkey = keys.mod_key
 
 local tag_list = function(pScreen)
   dump(pScreen.index, 'tag list screen index')

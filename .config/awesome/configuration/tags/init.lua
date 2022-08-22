@@ -115,6 +115,7 @@ end
 
 -- Change tag's client's shape and gap on change
 tag.connect_signal('property::layout', function(t)
+  log('==> Layout changed: tag:' .. t.name .. ' layout: ' .. tostring(t.layout.name) .. ' screen:' .. tostring(t.screen))
   update_gap_and_shape(t)
 end)
 
