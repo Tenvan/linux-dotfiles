@@ -250,9 +250,14 @@ local set_wallpaper = function(path)
   log('--> set_wallpaper: ' .. path)
   for s in screen do
     -- Update wallpaper based on the data in the array
-    local cmd = 'nitrogen --head=' .. (s.index - 1) .. ' --set-zoom-fill ' .. path
+    -- local cmd = 'nitrogen --head=' .. (s.index - 1) .. ' --set-zoom-fill ' .. path
+    local cmd = 'xwallpaper --screen ' .. (s.index - 1) .. ' --debug --zoom ' .. path
     log('WallPaper Command peer Screen: ' .. cmd)
-    awful.spawn.easy_async(cmd)
+    awful.spawn.easy_async_with_shell(cmd, function(e)
+      log('==> set_wallpaper callback')
+      log(' -> cmd: ' .. cmd)
+      log(' -> args: ' .. tostring(e))
+    end)
   end
 end
 

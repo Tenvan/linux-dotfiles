@@ -7,5 +7,5 @@ target2="/media/BIGDATA/backups/home"
 print "Backup Home Folder"
 print "backup 1 ==> '$source' -> '$target1"
 print "backup 2 ==> '$source' -> '$target2"
-sudo rsync -rlpth --mkpath --chown=$USER:$USER --delete --verbose --progress --exclude={'.cache','.npm','.yarn'} $source $target1
-sudo rsync -rlpth --mkpath --chown=$USER:$USER --delete --verbose --progress --exclude={'.cache','.npm','.yarn'} $source $target2
+sudo rsync -rlpth --mkpath --chown=$USER:$USER --delete --verbose --progress --exclude={'.android','.cargo','.cache','.npm','.yarn'} $source $target1
+sudo rsync -rlpth --mkpath --chown=$USER:$USER --delete --verbose --progress --exclude={'.android','.cargo','.cache','.npm','.yarn'} $source $target2

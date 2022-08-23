@@ -5,7 +5,6 @@
 !.bumblebee-status.conf
 !.dir_colors
 !.gvimrc
-!.gtkrc-2.0.*
 !.Xresources
 !.xbindkeysrc
 !README.MD
@@ -37,7 +36,6 @@
 
 # Ausnahmen im .config folder
 !.config
-!.config/compton*.conf
 !.config/alacritty
 !.config/alacritty/*
 !.config/awesome
@@ -47,20 +45,14 @@
 !.config/copyq/themes
 !.config/copyq/themes/**
 !.config/copyq/themes/**/*
-!.config/dunst
-!.config/dunst/*
 !.config/fontconfig
 !.config/fontconfig/**
 !.config/fontconfig/**/*
-!.config/fish
-!.config/fish/*
 
 !.config/kitty
 !.config/kitty/**/*
 !.config/nitrogen
 !.config/nitrogen/**/*
-!.config/oomox
-!.config/oomox/*
 !.config/picom
 !.config/picom/**/*
 !.config/radiotray-ng
@@ -68,13 +60,6 @@
 !.config/ranger
 !.config/ranger/*.conf
 !.config/ranger/*.sh
-!.config/ulauncher
-!.config/ulauncher/*
-!.config/ulauncher/user-themes
-!.config/ulauncher/user-themes/**/*
-.config/ulauncher/user-themes/**/generated.css
-!.config/xsettingsd
-!.config/xsettingsd/*
 
 **/*-private.*
 .vscode/argv.json

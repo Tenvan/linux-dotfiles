@@ -146,6 +146,7 @@ install xorg-xfd
 install xorg-xsetroot
 install xscreensaver
 install xsel
+install xwallpaper
 
 # polkits
 install polkit-gnome
