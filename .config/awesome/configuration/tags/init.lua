@@ -6,6 +6,9 @@ local awful = require('awful')
 local beautiful = require('beautiful')
 local icons = require('theme.icons')
 local apps = require('configuration.apps')
+local json = require('library.json')
+
+local stateModul = require('module.state')
 
 -- local tagnames = {"󾠮", "󾠯", "󾠰", "󾠱", "󾠲", "󾠳", "󾠴", "󾠵", "󾠶"}
 -- local tagnames = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
@@ -117,6 +120,55 @@ end
 tag.connect_signal('property::layout', function(t)
   log('==> Layout changed: tag:' .. t.name .. ' layout: ' .. tostring(t.layout.name) .. ' screen:' .. tostring(t.screen))
   update_gap_and_shape(t)
+  local state = stateModul.getState()
+
+  state = {}
+
+  local screens = state[screen]
+  if screens == nil then screens = {} end
+  screens[1] = {
+    tags = {}
+  }
+  screens[2] = {
+    tags = {}
+  }
+
+  screens[1].tags[1] = {
+    layout = t.layout.name
+  }
+
+  screens[1].tags[2] = {
+    layout = 'tile'
+  }
+
+  screens[1].tags[9] = {
+    layout = 'minimal'
+  }
+
+  screens[2].tags[1] = {
+    layout = t.layout.name
+  }
+
+  screens[2].tags[2] = {
+    layout = 'tile'
+  }
+
+  screens[2].tags[5] = {
+    layout = 'maximal'
+  }
+
+  local test = json.stringify(screens);
+
+  log('screen: ' .. test)
+
+  -- local lastTag = screens[t.name]
+  -- if lastTag == nil then lastTag = {} end
+  -- lastTag.layout = t.layout.name
+  -- screens[t.name] = lastTag
+
+  state.screens = screens
+
+  stateModul.setState(state)
 end)
 
 -- Change tag's client's shape and gap on move to tag

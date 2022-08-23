@@ -34,7 +34,7 @@ local function writeJsonFile(path, jsonContent)
   log('Write Json: ' .. path)
   dump(json, 'json', 3)
 
-  local content = json.stringify(jsonContent)
+  local content = json.stringify(jsonContent, false)
   dump(content, 'content', 3)
 
   local io = write_file(path, content)
