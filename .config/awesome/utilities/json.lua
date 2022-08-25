@@ -1,23 +1,36 @@
 log('Enter Module => ' .. ...)
 
+
 local open = io.open
 
 local json = require('library.json')
 
 local function read_file(path)
-  local file = open(path, 'rb') -- r read mode and b binary mode
-  if not file then return nil end
-  local content = file:read '*a' -- *a or *all reads the whole file
+  log("==> read_file: " .. path)
+  local file = open(path, 'r') -- r read mode
+  if not file then
+    log(' --> Failed to open file ' .. path)
+    return nil
+  end
+  io.input(file)
+  local content = file:read('*a') -- *a or *all reads the whole file
   file:close()
+  log(" -> file closed")
   return content
 end
 
 local function write_file(path, content)
-  local file = open(path, 'wb') -- r read mode and b binary mode
-  if not file then return nil end
+  log("==> write_file: " .. path)
+  local file = open(path, 'w+') -- w+ clear and write mode
+  if not file then
+    log(' --> Failed to write file ' .. path)
+    return nil
+  end
+
+  io.output(file)
   local io = file:write(content)
-  dump(io)
   file:close()
+  log(" -> file closed")
   return io
 end
 
@@ -31,15 +44,10 @@ local function readJsonFile(path)
 end
 
 local function writeJsonFile(path, jsonContent)
-  log('Write Json: ' .. path)
-  dump(json, 'json', 3)
-
+  log('==> Write Json: ' .. path)
   local content = json.stringify(jsonContent, false)
-  dump(content, 'content', 3)
-
+  log(' -> content' .. tostring(content))
   local io = write_file(path, content)
-  dump(jsonContent)
-
   return io
 end
 

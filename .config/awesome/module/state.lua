@@ -3,13 +3,13 @@ log('Enter Module => ' .. ...)
 local readJson = require('utilities.json').readJsonFile
 local writeJson = require('utilities.json').writeJsonFile
 
-local json = require('library.json')
 
-local stateData = {
-  version = 1
-}
+local statePath = os.getenv('HOME') .. '/.local/state/awesome/'
+local stateFile = statePath .. 'awesome-state.json'
 
-local stateFile = os.getenv('HOME') .. '/.local/state/awesome/awesome-state.json'
+os.execute('mkdir -p ' .. statePath)
+
+local stateData = readJson(stateFile) or {}
 
 local state = {
   getState = function()
@@ -20,5 +20,8 @@ local state = {
     stateData = state
     writeJson(stateFile, stateData)
   end,
+
+  setStateValue = function(path, value)
+  end
 }
 return state

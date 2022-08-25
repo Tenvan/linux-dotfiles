@@ -16,10 +16,6 @@ local tag_list = function(pScreen)
         function(t)
           t:view_only()
           dump(t, 't', 1)
-          -- local background_role = t:get_children_by_id('background_role')[1]
-          -- if background_role then
-          --   background_role.backup_bg = beautiful.xres_vars.color1
-          -- end
         end)
     ),
 

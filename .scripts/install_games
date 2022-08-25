@@ -15,7 +15,7 @@ sound count-down
 install wesnoth
 install 0ad
 install widelands
-install runescape
+# install runescape
 
 # gimicks
 if [ $IS_ARCO = true ]; then

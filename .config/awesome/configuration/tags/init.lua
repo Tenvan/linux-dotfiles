@@ -27,15 +27,9 @@ local defaultLayouts = {
   awful.layout.suit.tile.top,
   awful.layout.suit.fair,
   awful.layout.suit.fair.horizontal,
-  -- awful.layout.suit.spiral,
-  -- awful.layout.suit.spiral.dwindle,
   awful.layout.suit.max,
   awful.layout.suit.max.fullscreen,
   awful.layout.suit.magnifier,
-  -- awful.layout.suit.corner.nw,
-  -- awful.layout.suit.corner.ne,
-  -- awful.layout.suit.corner.sw,
-  -- awful.layout.suit.corner.se,
 }
 
 local tags = {
@@ -75,12 +69,57 @@ end)
 
 -- Create tags for each screen
 screen.connect_signal('request::desktop_decoration', function(s)
+  log('==> Layout restore tags')
+  local state = stateModul.getState()
+  dump(state, ' -> current state')
+
   for i, tag in pairs(tags) do
+
+    local stateScreen = tostring(s.index)
+    local stateTag = tostring(i)
+    local stateLayout = 'tile'
+    local tagStartLayout = awful.layout.suit.tile
+
+    local screens = state.screens
+    if screens ~= nil then
+      local tags = screens[stateScreen].tags
+      if tags ~= nil then
+        local tag = tags[stateTag]
+        if tag ~= nil then
+          stateLayout = tag.layout
+          if stateLayout == 'tile' then
+            tagStartLayout = awful.layout.suit.tile
+          elseif stateLayout == 'floating' then
+            tagStartLayout = awful.layout.suit.floating
+          elseif stateLayout == 'tileleft' then
+            tagStartLayout = awful.layout.suit.tile.left
+          elseif stateLayout == 'tilebottom' then
+            tagStartLayout = awful.layout.suit.tile.bottom
+          elseif stateLayout == 'tiletop' then
+            tagStartLayout = awful.layout.suit.tile.top
+          elseif stateLayout == 'fairv' then
+            tagStartLayout = awful.layout.suit.fair
+          elseif stateLayout == 'fairh' then
+            tagStartLayout = awful.layout.suit.fair.horizontal
+          elseif stateLayout == 'max' then
+            tagStartLayout = awful.layout.suit.max
+          elseif stateLayout == 'fullscreen' then
+            tagStartLayout = awful.layout.suit.max.fullscreen
+          elseif stateLayout == 'magnifier' then
+            tagStartLayout = awful.layout.suit.magnifier
+          end
+        end
+      end
+    end
+
+    log(' --> tag:' .. stateTag .. ' layout: ' .. stateLayout .. ' screen:' .. stateScreen)
+    log('resolved layout: ' .. tostring(tagStartLayout))
+
     awful.tag.add(i, {
       text = tagnames[i],
       icon = tag.icon,
       icon_only = false,
-      layout = tag.layout or awful.layout.suit.tile,
+      layout = tagStartLayout,
       layouts = tag.layouts or defaultLayouts,
       gap_single_client = true,
       gap = tag.gap or beautiful.useless_gap,
@@ -118,48 +157,27 @@ end
 
 -- Change tag's client's shape and gap on change
 tag.connect_signal('property::layout', function(t)
-  log('==> Layout changed: tag:' .. t.name .. ' layout: ' .. tostring(t.layout.name) .. ' screen:' .. tostring(t.screen))
   update_gap_and_shape(t)
+
+  local stateScreen = tostring(t.screen.index)
+  local stateTag = tostring(t.name)
+  local stateLayout = tostring(t.layout.name)
+  log('==> Layout changed: tag:' .. stateTag .. ' layout: ' .. stateLayout .. ' screen:' .. stateScreen)
   local state = stateModul.getState()
+  dump(state, ' -> old state')
 
-  state = {}
+  if state == nil then
+    state = {}
+  end
 
-  local screens = state[screen]
-  if screens == nil then screens = {} end
-  screens[1] = {
-    tags = {}
-  }
-  screens[2] = {
-    tags = {}
-  }
+  local screens = state.screens or {}
 
-  screens[1].tags[1] = {
+  if screens[stateScreen] == nil then screens[stateScreen] = {} end
+  if screens[stateScreen].tags == nil then screens[stateScreen].tags = {} end
+
+  screens[stateScreen].tags[stateTag] = {
     layout = t.layout.name
   }
-
-  screens[1].tags[2] = {
-    layout = 'tile'
-  }
-
-  screens[1].tags[9] = {
-    layout = 'minimal'
-  }
-
-  screens[2].tags[1] = {
-    layout = t.layout.name
-  }
-
-  screens[2].tags[2] = {
-    layout = 'tile'
-  }
-
-  screens[2].tags[5] = {
-    layout = 'maximal'
-  }
-
-  local test = json.stringify(screens);
-
-  log('screen: ' .. test)
 
   -- local lastTag = screens[t.name]
   -- if lastTag == nil then lastTag = {} end
@@ -168,6 +186,7 @@ tag.connect_signal('property::layout', function(t)
 
   state.screens = screens
 
+  dump(state, ' -> new state')
   stateModul.setState(state)
 end)
 

@@ -52,12 +52,12 @@ local apps = {
     -- 'picom -b --experimental-backends --dbus --config ' .. config_dir .. '/configuration/picom.conf',
     -- '$SCRIPTS/picom-toggle-awesome.sh',
     -- Blueman applet
-    'blueman-applet',
+    -- 'blueman-applet',
     -- Polkit and keyring
     -- '/usr/bin/lxqt-policykit-agent &' ..	' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
     -- '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &' .. ' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
     -- Audio equalizer
-    'pulseeffects --gapplication-service',
+    -- 'pulseeffects --gapplication-service',
     -- Lockscreen timer
     -- [[
     -- xidlehook --not-when-fullscreen --not-when-audio --timer 600 \
@@ -69,13 +69,14 @@ local apps = {
     'xfce4-notes',
     'pamac-tray',
     'nm-applet',
+    '$HOME/.bin/volume-osd',
     'pa-applet',
     'pasystray',
     'alttab -n 1',
     'flameshot',
     'copyq',
     'teams-for-linux ',
-    'xscreensaver'
+    -- 'xscreensaver'
     -- 'xsettingsd'
   },
 

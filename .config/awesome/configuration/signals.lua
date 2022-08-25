@@ -35,6 +35,10 @@ screen.connect_signal('arrange', function(s)
   -- end
 end)
 
+client.connect_signal('property::border_width', function(c)
+  log(string.format('property::border_width for %s with width=%d', tostring(c), c.border_width))
+end)
+
 awesome.connect_signal('debug::deprecation', function(hint, see, args)
   notify('Deprecated Function called!', tostring(hint), 'critical')
 end)
@@ -44,6 +48,18 @@ awesome.connect_signal('startup', function()
   sound('desktop-login')
 end)
 
-client.connect_signal('property::border_width', function(c)
-  print(debug.traceback(string.format('property::border_width for %s with width=%d', tostring(c), c.border_width)))
-end)
+-- Handle runtime errors after startup
+do
+  local in_error = false
+  awesome.connect_signal('debug::error', function(err)
+    -- Make sure we don't go into an endless error loop
+    if in_error then return end
+    in_error = true
+
+    notify('Oops, an error happened!', err, 'critical')
+    log('Errors ' .. err)
+
+    in_error = false
+  end)
+end
+-- }}}
