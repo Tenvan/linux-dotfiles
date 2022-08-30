@@ -345,10 +345,11 @@ case ${TERM} in
     *)
         print "Init Powershell10k for vconsole"
         csource ~/.bin/.p10k-v.zsh
-        csource "$HOME/.profile"
     ;;
 esac
 
 csource "$HOME/.scripts/ranger.zsh"
 
-archey4
+# archey4
+neofetch
+

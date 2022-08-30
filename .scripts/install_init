@@ -1,8 +1,12 @@
 #!/usr/bin/env zsh
 
-sudo pacman -Syy lsb-release
+sudo pacman -Syy --needed lsb-release
 
 . ~/.scripts/defs
+
+if [ $IS_MANJARO = true ]; then
+	sudo pacman -S --needed yay
+fi
 
 # Init Install
 initInstall "install_init"
@@ -30,7 +34,7 @@ if [ -f /etc/pamac.conf ]; then
 	errorCheck "pamac config"
 fi
 
-eval "$PACKER -S $PACKER_ALL git base-devel curl colorgcc go ruby rust"
+eval "sudo pacman -S --needed $PACKER_ALL git base-devel curl colorgcc go ruby rust"
 errorCheck "installation base-devel"
 
 # disable sudo password
@@ -40,8 +44,8 @@ Defaults timestamp_timeout=300
 $USER ALL=(ALL) NOPASSWD:INSTALL,POWER
 $USER ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/100-myrules
 
-chmod -R -v +x ~/.scripts
-chmod -R -v +x ~/.bin
+sudo chmod -R -v +x ~/.scripts
+sudo chmod -R -v +x ~/.bin
 errorCheck "set script flags"
 
 ###############################

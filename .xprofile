@@ -1,16 +1,28 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
+
 . ~/.scripts/defs
-csource ~/.profile
 
 export DOT="$DOT;.xprofile"
 
 # Theme Definitionen
-export MAIN_THEME="Arc-Arcolinux-blue-Dark"
-export ICON_THEME="Papirus-Dark"
+export MAIN_THEME="Adwaita-dark"
+export ICON_THEME="Adwaita"
 export CURSOR_THEME="Bibata-Modern-Ice"
 export CURSOR_SIZE=32
 export THEME_FONT="Noto Sans Medium 14"
 export SOUND_THEME="Smooth"
+export KVANTUM_THEME="kvantum"
+
+if [ $IS_MANJARO = true ]; then
+    export MAIN_THEME="Adapta-Nokto-Maia"
+    export ICON_THEME="Papirus-Adapta-Nokto-Maia"
+    export KVANTUM_THEME="kvantum-dark"
+fi
+
+if [ $IS_ARCO = true ]; then
+    export MAIN_THEME="Arc-Arcolinux-blue-Dark"
+    export ICON_THEME="Papirus-Dark-Nokto-Maia"
+fi
 
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 # export GTK_THEME=Adwaita:dark
@@ -31,7 +43,7 @@ export QT_FONT_DPI=96
 
 unset QT_STYLE_OVERRIDE
 # export QT_QPA_PLATFORM_THEME="gtk2"
-# export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_QPA_PLATFORMTHEME="qt5ct"
 
 export MAIL=$(which thunderbird)
 export SSH_ASKPASS=$(which lxqt-openssh-askpass)

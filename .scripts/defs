@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 csource() {
-  if [ -r "$@" ]; then
-    . "$@"
-  fi
+    if [ -r "$@" ]; then
+        . "$@"
+    fi
 }
 
 csource ~/.scripts/sounds
@@ -23,10 +23,10 @@ DEBUG=false
 PACTOOL=pacman
 
 if [ -x "$(command -v yay)" ]; then
-  export PACTOOL=yay
+    export PACTOOL=yay
 fi
 if [ -x "$(command -v paru)" ]; then
-  export PACTOOL=paru
+    export PACTOOL=paru
 fi
 
 PACKER="$PACTOOL"
@@ -36,15 +36,15 @@ ERROR_PAKAGE_UNINST=
 ERROR_PAKAGE_INST=
 
 if [ $LINUX_VERSION_NAME = "Arch" ]; then
-	IS_ARCH=true
+    IS_ARCH=true
 fi
 
 if [ $LINUX_VERSION_NAME = "ArcoLinux" ]; then
-	IS_ARCO=true
+    IS_ARCO=true
 fi
 
 if [ $LINUX_VERSION_NAME = "ManjaroLinux" ]; then
-	IS_MANJARO=true
+    IS_MANJARO=true
 fi
 
 # echo "Linux Version.: $LINUX_VERSION_NAME"
@@ -54,82 +54,82 @@ fi
 # echo "AUR Manager...: $PACKER"
 
 MAKEFLAGS="-j$(nproc)"
-PAKKER_ALL="--color always --needed --useask --overwrite \* $@" 
+PAKKER_ALL="--color always --needed --useask --overwrite \* $@"
 
 initInstall() {
-	INSTALL_SCRIPT=$1
-	echo "Step: init Install '$INSTALL_SCRIPT'"
-	sudo rm /var/lib/pacman/db.lck 2&> /dev/null	
+    INSTALL_SCRIPT=$1
+    echo "Step: init Install '$INSTALL_SCRIPT'"
+    sudo rm /var/lib/pacman/db.lck 2&> /dev/null
 }
 
 install() {
     PAKAGE_INST="${PAKAGE_INST} $1"
     
     if [ $DEBUG = true ]; then
-		eval "$PACKER -S $PAKKER_ALL $1"
-		
-	    retVal=$?
-	    if [ $retVal -ne 0 ]; then
-	        echo "error on install: $1"
-			sound error
-			ERROR_PAKAGE_INST="${ERROR_PAKAGE_INST} $1"        
-	    fi
+        eval "$PACKER -S $PAKKER_ALL $1"
+        
+        retVal=$?
+        if [ $retVal -ne 0 ]; then
+            echo "error on install: $1"
+            sound error
+            ERROR_PAKAGE_INST="${ERROR_PAKAGE_INST} $1"
+        fi
     fi
 }
 
 fullInstall() {
-	echo "Step: full Install"
-	if [ $DEBUG != true -a "$PAKAGE_INST" != "" ]; then
-		eval "$PACKER -S $PAKKER_ALL $PAKAGE_INST"
-		errorCheck "install packages"
-	fi
+    echo "Step: full Install"
+    if [ $DEBUG != true -a "$PAKAGE_INST" != "" ]; then
+        eval "$PACKER -S $PAKKER_ALL $PAKAGE_INST"
+        errorCheck "install packages"
+    fi
 }
 
 uninstall() {
     PAKAGE_UNINST="${PAKAGE_UNINST} $1"
-
+    
     eval "$PACKER -R $1"
     
     retVal=$?
     if [ $retVal -ne 0 ]; then
-		sound error &
+        sound error &
         echo "error on uninstall: $1"
-		ERROR_PAKAGE_UNINST="${ERROR_PAKAGE_UNINST} $1"        
+        ERROR_PAKAGE_UNINST="${ERROR_PAKAGE_UNINST} $1"
     fi
 }
 
 fullUninstall() {
-	echo "Step: full Uninstall"
-	if [ $DEBUG != true -a "$PAKAGE_UNINST" != "" ]; then
-		eval "$PACKER -R --noconfirm $PAKAGE_UNINST"
-	fi
+    echo "Step: full Uninstall"
+    if [ $DEBUG != true -a "$PAKAGE_UNINST" != "" ]; then
+        eval "$PACKER -R --noconfirm $PAKAGE_UNINST"
+    fi
 }
 
 errorCheck() {
     retVal=$?
     if [ $retVal -ne 0 ]; then
-		sound error &
+        sound error &
         echo "abort installation script '$INSTALL_SCRIPT': $1 ($retVal)"
         exit $retVal
     fi
 }
 
 finish() {
-	echo "Step: finish Install"
-
-	if [ "$ERROR_PAKAGE_UNINST" = "" ]; then
-		echo 'No Errors on Uninstall'
-	else
-		echo "Error on Uninstall: ${ERROR_PAKAGE_UNINST}"
-		echo "Error on Uninstall: ${ERROR_PAKAGE_UNINST}" >> error_uninstall.txt
-	fi	
-
-	if [ "$ERROR_PAKAGE_INST" = "" ]; then
-		echo 'No Errors on Install'
-	else
-		echo "Error on Install: ${ERROR_PAKAGE_INST}"
-		echo "Error on Install: ${ERROR_PAKAGE_INST}" >> error_install.txt
-	fi	
+    echo "Step: finish Install"
+    
+    if [ "$ERROR_PAKAGE_UNINST" = "" ]; then
+        echo 'No Errors on Uninstall'
+    else
+        echo "Error on Uninstall: ${ERROR_PAKAGE_UNINST}"
+        echo "Error on Uninstall: ${ERROR_PAKAGE_UNINST}" >> error_uninstall.txt
+    fi
+    
+    if [ "$ERROR_PAKAGE_INST" = "" ]; then
+        echo 'No Errors on Install'
+    else
+        echo "Error on Install: ${ERROR_PAKAGE_INST}"
+        echo "Error on Install: ${ERROR_PAKAGE_INST}" >> error_install.txt
+    fi
 }
 
 run() {
@@ -153,25 +153,36 @@ restart() {
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
 expand() {
-  if [ -f $1 ]; then
-    case $1 in
-    *.tar.bz2) tar xjf $1 ;;
-    *.tar.gz) tar xzf $1 ;;
-    *.bz2) bunzip2 $1 ;;
-    *.rar) unrar x $1 ;;
-    *.gz) gunzip $1 ;;
-    *.tar) tar xf $1 ;;
-    *.tbz2) tar xjf $1 ;;
-    *.tgz) tar xzf $1 ;;
-    *.zip) unzip $1 ;;
-    *.Z) uncompress $1 ;;
-    *.7z) 7z x $1 ;;
-    *.deb) ar x $1 ;;
-    *.tar.xz) tar xf $1 ;;
-    *.tar.zst) unzstd $1 ;;
-    *) echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
+    if [ -f $1 ]; then
+        case $1 in
+            *.tar.bz2) tar xjf $1 ;;
+            *.tar.gz) tar xzf $1 ;;
+            *.bz2) bunzip2 $1 ;;
+            *.rar) unrar x $1 ;;
+            *.gz) gunzip $1 ;;
+            *.tar) tar xf $1 ;;
+            *.tbz2) tar xjf $1 ;;
+            *.tgz) tar xzf $1 ;;
+            *.zip) unzip $1 ;;
+            *.Z) uncompress $1 ;;
+            *.7z) 7z x $1 ;;
+            *.deb) ar x $1 ;;
+            *.tar.xz) tar xf $1 ;;
+            *.tar.zst) unzstd $1 ;;
+            *) echo "'$1' cannot be extracted via ex()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+prepare_sessiondown() {
+    # Custom Script ausführen
+    sessiondownscript="$CUSTOMS/sessiondown"
+    if [ ! -f "$sessiondownscript" ]; then
+        $sessiondownscript
+    fi
+
+    # Alle Docker beenden
+    docker kill $(docker ps -q)
 }

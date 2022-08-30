@@ -33,6 +33,9 @@ local apps = {
     graphics = 'gimp-2.10',
     -- Default sandbox
     sandbox = 'virtualbox',
+    -- Default Teams
+    teams = 'teams',
+    -- teams = 'teams-for-linux',
     -- Default IDE
     development = '',
     -- Default network manager
@@ -65,17 +68,16 @@ local apps = {
     -- ]],
 
     -- You can add more start-up applications here
-    'xfce4-power-manager',
-    'xfce4-notes',
+    -- 'xfce4-power-manager',
     'pamac-tray',
     'nm-applet',
     '$HOME/.bin/volume-osd',
-    'pa-applet',
     'pasystray',
     'alttab -n 1',
     'flameshot',
     'copyq',
-    'teams-for-linux ',
+    'teams',
+    'kdeconnect-indicator'
     -- 'xscreensaver'
     -- 'xsettingsd'
   },

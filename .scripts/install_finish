@@ -37,30 +37,37 @@ fi
 sudo cp "$layoutscript" /opt/screenlayout.sh
 errorCheck "copy screenlayout"
 
-#GREETER="lightdm-gtk-greeter"
-GREETER="lightdm-slick-greeter"
-
-sudo sed -i "s/^greeter-session.*=.*$/greeter-session=$GREETER/g" /etc/lightdm/lightdm.conf
-sudo sed -i "s/^display-setup-script.*=.*$/display-setup-script=\/opt\/screenlayout.sh/g" /etc/lightdm/lightdm.conf
-
-sudo cp $oxygen/system-ready.oga /opt/system-ready.oga
-echo "paplay /opt/system-ready.oga" | sudo tee /opt/system-ready.sh
-sudo chmod +x /opt/system-ready.sh
-
-errorCheck "lightdm config"
-
-# config slick-greeter
-GREETER_THEME="Adwaita-dark"
-if [ $IS_MANJARO = true ]; then
-    GREETER_BACKGROUND="/usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg"
-    elif [ $IS_ARCO = true ]; then
-    GREETER_BACKGROUND="/usr/share/backgrounds/arcolinux/arco-wallpaper.jpg"
-    GREETER_THEME="Arc-Paper-dark"
+###############################
+# ==> Settings Display Mnager #
+###############################
+if [ $IS_ARCO = true]; then
+    sudo systemctl disable lightdm.service
+    sudo systemctl enable sddm.service
 else
-    GREETER_BACKGROUND="/usr/share/backgrounds/desert.png"
-fi
-
-echo "# LightDM GTK+ Configuration
+    #GREETER="lightdm-gtk-greeter"
+    GREETER="lightdm-slick-greeter"
+    
+    sudo sed -i "s/^greeter-session.*=.*$/greeter-session=$GREETER/g" /etc/lightdm/lightdm.conf
+    sudo sed -i "s/^display-setup-script.*=.*$/display-setup-script=\/opt\/screenlayout.sh/g" /etc/lightdm/lightdm.conf
+    
+    sudo cp $oxygen/system-ready.oga /opt/system-ready.oga
+    echo "paplay /opt/system-ready.oga" | sudo tee /opt/system-ready.sh
+    sudo chmod +x /opt/system-ready.sh
+    
+    errorCheck "lightdm config"
+    
+    # config slick-greeter
+    GREETER_THEME="$MAIN_THEME"
+    if [ $IS_MANJARO = true ]; then
+        GREETER_BACKGROUND="/usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg"
+        elif [ $IS_ARCO = true ]; then
+        GREETER_BACKGROUND="/usr/share/backgrounds/arcolinux/arco-wallpaper.jpg"
+        GREETER_THEME="Arc-Paper-dark"
+    else
+        GREETER_BACKGROUND="/usr/share/backgrounds/desert.png"
+    fi
+    
+    echo "# LightDM GTK+ Configuration
 # Available configuration options listed below.
 #
 # activate-numlock=Whether to activate numlock. This features requires the installation of numlockx. (true or false)
@@ -109,8 +116,16 @@ xft-antialias=true
 xft-dpi=144
 xft-hintstyle=hintfull
 enable-hidpi=off
-cursor-theme-name=Bibata-Modern-Ice" | sudo tee /etc/lightdm/slick-greeter.conf
-errorCheck "lightdm greeter config"
+cursor-theme-name=Bibata-Modern-Ice
+    " | sudo tee /etc/lightdm/slick-greeter.conf
+
+    sudo systemctl enable lightdm.service
+    sudo systemctl disable sddm.service
+fi
+errorCheck "display manager config"
+###############################
+# <== Settings Display Mnager #
+###############################
 
 # aus Folder /usr/share/kbd/consolefonts/
 echo "KEYMAP=de

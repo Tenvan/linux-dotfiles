@@ -28,6 +28,7 @@ install baobab-gtk3
 # install gwenview
 install partitionmanager
 install playerctl
+install teams
 install teams-for-linux
 
 # Browser
@@ -85,6 +86,10 @@ fullInstall
 
 ## FINISHING #
 finish
+
+# Fix Teams Black Screen
+sudo ln -f -s /bin/true /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
+sudo ln -f -s /bin/true /usr/share/teams-insiders/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
 
 # flatpaks
 flatpak install shortwave

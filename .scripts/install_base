@@ -219,8 +219,7 @@ install gnome-calculator
 install network-manager-applet
 
 install qt5ct
-install qt6ct
-install qt6gtk2
+install qt5gtk2
 install qt5-styleplugins
 install gtk-theme-switch2
 
@@ -455,7 +454,7 @@ if [ $IS_ARCO = true ]; then
 fi
 
 # cursor
-if [ $IS_MANJARO = true ]; then
+if [ $IS_MANJARO = true]; then
     install maia-cursor-theme
 fi
 if [ $IS_ARCO = true ]; then
@@ -476,7 +475,11 @@ install zsh-theme-powerlevel10k
 
 # install nerd-fonts-complete
 install nerd-fonts-fira-code
-install nerd-fonts-noto
+if [ $IS_MANJARO = true ]; then
+    install nerd-fonts-noto-sans-mono
+else
+    install nerd-fonts-noto
+fi
 install nerd-fonts-source-code-pro
 install nerd-fonts-terminus
 install ttf-cascadia-code

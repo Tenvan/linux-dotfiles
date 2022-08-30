@@ -1,2 +1,5 @@
+[General]
+theme=KvAdaptaMaiaDark
+
 [Applications]
-KvGnomeDark=virtualbox
+KvAdaptaBreath=calamares, Calamares
