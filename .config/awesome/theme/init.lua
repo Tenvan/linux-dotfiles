@@ -22,7 +22,7 @@ gtable.crush(final_theme, theme.theme)
 default_theme.awesome_overrides(final_theme)
 theme.awesome_overrides(final_theme)
 
-dump(final_theme.gtk_vars, 'gtk variables')
-dump(final_theme.xres_vars, 'xres variables')
+-- dump(final_theme.gtk_vars, 'gtk variables')
+-- dump(final_theme.xres_vars, 'xres variables')
 
 return final_theme

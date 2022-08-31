@@ -1,7 +1,5 @@
 log('Enter Module => ' .. ...)
 
-local screen, tag = screen, tag
-
 local awful = require('awful')
 local beautiful = require('beautiful')
 local icons = require('theme.icons')
@@ -71,7 +69,7 @@ end)
 screen.connect_signal('request::desktop_decoration', function(s)
   log('==> Layout restore tags')
   local state = stateModul.getState()
-  dump(state, ' -> current state')
+  -- dump(state, ' -> current state')
 
   for i, tag in pairs(tags) do
 
@@ -164,7 +162,7 @@ tag.connect_signal('property::layout', function(t)
   local stateLayout = tostring(t.layout.name)
   log('==> Layout changed: tag:' .. stateTag .. ' layout: ' .. stateLayout .. ' screen:' .. stateScreen)
   local state = stateModul.getState()
-  dump(state, ' -> old state')
+  -- dump(state, ' -> old state')
 
   if state == nil then
     state = {}
@@ -186,7 +184,7 @@ tag.connect_signal('property::layout', function(t)
 
   state.screens = screens
 
-  dump(state, ' -> new state')
+  -- dump(state, ' -> new state')
   stateModul.setState(state)
 end)
 

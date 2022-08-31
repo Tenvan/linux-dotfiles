@@ -111,7 +111,7 @@ end
 -- @staticfct menubar.utils.lookup_icon_uncached
 function utils.lookup_icon_uncached(icon_file)
   log('==> lookup icon: ' .. tostring(icon_file))
-  dump(icon_file)
+  -- dump(icon_file)
 
   log('--> lookup icon')
   local has_space = tostring(icon_file):match('%s')

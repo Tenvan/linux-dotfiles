@@ -6,6 +6,7 @@ sudo pacman -Syy --needed lsb-release
 
 if [ $IS_MANJARO = true ]; then
 	sudo pacman -S --needed yay
+	yay -S --needed paru-bin
 fi
 
 # Init Install
@@ -47,6 +48,30 @@ $USER ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/100-myrules
 sudo chmod -R -v +x ~/.scripts
 sudo chmod -R -v +x ~/.bin
 errorCheck "set script flags"
+
+# base install tools
+install archey4
+install exa
+install kitty
+install lsd
+install micro
+install polkit
+install ranger
+
+# base install awesome 
+if [ $IS_MANJARO = true ]; then
+    install manjaro-awesome-settings
+fi
+if [ $IS_ARCO = true ]; then
+    install arcolinux-config-awesome-git
+fi
+
+# awesome
+install awesome-git
+install awmtt
+install picom
+install lain-git
+install rofi
 
 ###############################
 # uninstall unneeded packages #

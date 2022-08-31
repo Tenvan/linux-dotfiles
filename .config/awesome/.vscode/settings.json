@@ -8,6 +8,7 @@
         "root",
         "notify",
         "dump",
-        "log"
+        "log",
+        "tag"
     ]
 }

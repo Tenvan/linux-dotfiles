@@ -118,11 +118,11 @@ xft-hintstyle=hintfull
 enable-hidpi=off
 cursor-theme-name=Bibata-Modern-Ice
     " | sudo tee /etc/lightdm/slick-greeter.conf
+    errorCheck "display manager config"
 
     sudo systemctl enable lightdm.service
     sudo systemctl disable sddm.service
 fi
-errorCheck "display manager config"
 ###############################
 # <== Settings Display Mnager #
 ###############################

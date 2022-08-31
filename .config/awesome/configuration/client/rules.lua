@@ -133,7 +133,7 @@ ruled.client.connect_signal('request::rules', function()
     },
     properties = {
       screen = 2,
-      tag = screen[2].tags[1],
+      tag = (screen[2] or screen[1]).tags[1],
       maximized = false,
       floating = false
     }
@@ -194,7 +194,7 @@ ruled.client.connect_signal('request::rules', function()
     },
     properties = {
       screen = 2,
-      tag = screen[2].tags[5],
+      tag = (screen[2] or screen[1]).tags[5],
       switch_to_tags = true,
       floating = false
     }
@@ -302,7 +302,7 @@ ruled.client.connect_signal('request::rules', function()
     },
     properties = {
       screen = 2,
-      tag = screen[2].tags[2],
+      tag = (screen[2] or screen[1]).tags[2],
       switch_to_tags = true,
       maximized = false,
       floating = false
@@ -316,7 +316,7 @@ ruled.client.connect_signal('request::rules', function()
     },
     properties = {
       screen = 2,
-      tag = screen[2].tags[3],
+      tag = (screen[2] or screen[1]).tags[3],
     }
   }
 
@@ -328,7 +328,7 @@ ruled.client.connect_signal('request::rules', function()
     },
     properties = {
       screen = 2,
-      tag = screen[2].tags[9],
+      tag = (screen[2] or screen[1]).tags[9],
       switch_to_tags = true,
       maximized = false,
       floating = false
@@ -356,7 +356,7 @@ ruled.client.connect_signal('request::rules', function()
     },
     properties = {
       screen = 2,
-      tag = screen[2].tags[4],
+      tag = (screen[2] or screen[1]).tags[4],
       switch_to_tags = true,
       maximized = false,
       floating = false,
@@ -391,14 +391,6 @@ end)
 ---@param c any
 client.connect_signal('property::class', function(c)
   log('spawn::property::class')
-  dump({
-    name = c.name,
-    class = c.class,
-    instance = c.instance,
-    type = c.type,
-    role = c.role,
-  }, 'client:properties')
-
   if c.class == 'Spotify' then
     log('Spotify detected')
 
@@ -433,7 +425,7 @@ client.connect_signal('property::class', function(c)
       end
     else
       -- Move the instance to specified tag on this screen
-      local t = awful.tag.find_by_name(screen[2], '5')
+      local t = awful.tag.find_by_name((screen[2] or screen[1]), '5')
       c:move_to_tag(t)
       c:move_to_screen(2)
 

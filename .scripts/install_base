@@ -12,7 +12,6 @@ sound count-down
 
 # Manjaro Packages
 if [ $IS_MANJARO = true ]; then
-    install manjaro-awesome-settings
     install samba
     install manjaro-settings-samba
 fi
@@ -30,18 +29,12 @@ if [ $IS_ARCO = true ]; then
     install arcolinux-candy-beauty-git
 fi
 
-# awesome
-install awesome-git
-install lain-git
-install awmtt
-
 # system packages
 install acpi
 install acpid
 install alttab-git
 install at
 install arandr
-install archey4
 install archivefs
 install arj
 install ark
@@ -90,13 +83,13 @@ install light
 install lscolors-git
 install lsd
 install luacheck
-install micro
 install mpc
 install mpd
 install mpdris2
 install mpv
 install multitail
 install ncmpcpp
+install neofetch
 install networkmanager
 install networkmanager-openconnect
 install nitrogen
@@ -192,7 +185,6 @@ install jdk-openjdk
 install jdk8-openjdk
 install nodejs-emojione
 install nodejs-lts-gallium
-uninstall nodejs
 install nvm
 install nuget
 install npm
@@ -322,55 +314,10 @@ install tar
 # install themix-plugin-base16-git
 
 if [ $IS_ARCO = true ]; then
-    # install arcolinux-arc-aqua-git
     install arcolinux-arc-archlinux-blue-git
     install arcolinux-arc-arcolinux-blue-git
-    # install arcolinux-arc-azul-git
-    # install arcolinux-arc-azure-dodger-blue-git
-    # install arcolinux-arc-blood-git
-    # install arcolinux-arc-blue-sky-git
-    # install arcolinux-arc-botticelli-git
-    # install arcolinux-arc-bright-lilac-git
-    # install arcolinux-arc-bright-lime-green-git
-    # install arcolinux-arc-carnation-git
-    # install arcolinux-arc-carolina-blue-git
-    # install arcolinux-arc-casablanca-git
-    # install arcolinux-arc-crimson-git
-    # install arcolinux-arc-dawn-git
-    # install arcolinux-arc-dracul-git
-    # install arcolinux-arc-emerald-git
-    # install arcolinux-arc-evopop-git
-    # install arcolinux-arc-fern-git
-    # install arcolinux-arc-fire-git
-    # install arcolinux-arc-froly-git
-    # install arcolinux-arc-havelock-git
-    # install arcolinux-arc-hibiscus-git
-    # install arcolinux-arc-light-blue-grey-git
-    # install arcolinux-arc-light-blue-surfn-git
-    # install arcolinux-arc-light-salmon-git
-    # install arcolinux-arc-mandy-git
-    # install arcolinux-arc-mantis-git
-    # install arcolinux-arc-medium-blue-git
-    # install arcolinux-arc-niagara-git
-    # install arcolinux-arc-nice-blue-git
-    # install arcolinux-arc-numix-git
-    # install arcolinux-arc-orchid-git
-    # install arcolinux-arc-pale-grey-git
-    # install arcolinux-arc-paper-git
-    # install arcolinux-arc-pink-git
-    # install arcolinux-arc-polo-git
-    # install arcolinux-arc-punch-git
-    # install arcolinux-arc-red-orange-git
-    # install arcolinux-arc-rusty-orange-git
-    # install arcolinux-arc-sky-blue-git
-    # install arcolinux-arc-slate-grey-git
     install arcolinux-arc-smoke-git
     install arcolinux-arc-soft-blue-git
-    # install arcolinux-arc-tacao-git
-    # install arcolinux-arc-tangerine-git
-    # install arcolinux-arc-tory-git
-    # install arcolinux-arc-vampire-git
-    # install arcolinux-arc-warm-pink-git
 fi
 
 if [ $IS_MANJARO = true ]; then
@@ -406,33 +353,10 @@ if [ $IS_ARCO = true ]; then
     install sardi-flexible-mint-y-icons-git
     install sardi-flexible-mixing-icons-git
     install sardi-flexible-variations-icons-git
-    # install sardi-ghost-flexible-colora-variations-icons-git
-    # install sardi-ghost-flexible-mint-y-icons-git
-    # install sardi-ghost-flexible-mixing-icons-git
-    # install sardi-ghost-flexible-variations-icons-git
-    # install sardi-icons
-    # install sardi-mint-y-icons-git
-    # install sardi-mixing-icons-git
-    # install sardi-mono-colora-variations-icons-git
-    # install sardi-mono-mint-y-icons-git
-    # install sardi-mono-mixing-icons-git
-    # install sardi-mono-numix-colora-variations-icons-git
-    # install sardi-mono-papirus-colora-variations-icons-git
-    # install sardi-orb-colora-mint-y-icons-git
-    # install sardi-orb-colora-mixing-icons-git
-    # install sardi-orb-colora-variations-icons-git
 fi
 
 # Extra
 if [ $IS_ARCO = true ]; then
-    # install arcolinux-candy-beauty-git
-    # install edu-candy-beauty-tela-git
-    # install edu-candy-beauty-arc-git
-    # install edu-papirus-dark-tela-git
-    # install edu-candy-beauty-arc-mint-red-git
-    # install edu-papirus-dark-tela-grey-git
-    # install edu-candy-beauty-arc-mint-grey-git
-    # install edu-vimix-dark-tela-git
     install edu-system-git
     install edu-skel-git
     install arcolinux-meta-sddm-themes

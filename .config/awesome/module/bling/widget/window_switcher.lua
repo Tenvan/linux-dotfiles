@@ -148,7 +148,6 @@ local function draw_widget(
 
                 update_callback = function(self, c, index, objects)
                     local content = gears.surface(c.content)
-                    dump(content, "Content")
                     local cr = cairo.Context(content)
                     local x, y, w, h = cr:clip_extents()
                     local img = cairo.ImageSurface.create(
@@ -334,7 +333,7 @@ local enable = function(opts)
         ontop = true,
         placement = awful.placement.centered,
         screen = awful.screen.focused(),
-        widget = wibox.container.background, -- A dummy widget to make awful.popup not scream
+        -- widget = wibox.container.background, -- A dummy widget to make awful.popup not scream
         widget = {
             {
                 draw_widget(),

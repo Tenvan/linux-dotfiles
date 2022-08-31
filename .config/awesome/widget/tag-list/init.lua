@@ -5,8 +5,6 @@ local wibox = require('wibox')
 local beautiful = require('beautiful')
 
 local tag_list = function(pScreen)
-  dump(pScreen.index, 'tag list screen index')
-
   return awful.widget.taglist {
     screen = pScreen,
     filter = awful.widget.taglist.filter.all,
@@ -15,7 +13,6 @@ local tag_list = function(pScreen)
       awful.button({}, 1,
         function(t)
           t:view_only()
-          dump(t, 't', 1)
         end)
     ),
 
