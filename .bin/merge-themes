@@ -75,3 +75,11 @@ gtk-xft-hinting=1
 gtk-xft-hintstyle=hintfull
 gtk-xft-rgba=rgb" > ~/.gtkrc-2.0
 cp ~/.gtkrc-2.0 ~/.gtkrc-2.0-bak
+
+QT5CONFIG=~/.config/qt5ct/qt5ct.conf
+sed "s/^icon_theme=.*$/icon_theme=$ICON_THEME/g" < $QT5CONFIG > $QT5CONFIG.TMP
+mv -f $QT5CONFIG.TMP $QT5CONFIG
+sed "s/^standard_dialogs=.*$/standard_dialogs=gtk2/g" < $QT5CONFIG > $QT5CONFIG.TMP
+mv -f $QT5CONFIG.TMP $QT5CONFIG
+sed "s/^style=.*$/style=gtk2/g" < $QT5CONFIG > $QT5CONFIG.TMP
+mv -f $QT5CONFIG.TMP $QT5CONFIG
