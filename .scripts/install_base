@@ -74,6 +74,7 @@ install inotify-tools
 install iotop
 install iptraf-ng
 install jq
+install kdeconnect
 install kitty
 install kteatime
 install lhasa
@@ -214,6 +215,7 @@ install qt5ct
 install qt5gtk2
 install qt5-styleplugins
 install gtk-theme-switch2
+install gtk-engine-murrine
 
 # file manager
 install mc
