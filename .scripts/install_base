@@ -74,7 +74,6 @@ install inotify-tools
 install iotop
 install iptraf-ng
 install jq
-install kdeconnect
 install kitty
 install kteatime
 install lhasa
@@ -84,6 +83,7 @@ install light
 install lscolors-git
 install lsd
 install luacheck
+install lxsession
 install mpc
 install mpd
 install mpdris2

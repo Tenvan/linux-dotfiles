@@ -11,7 +11,8 @@ $SCRIPTS/picom-toggle-awesome.sh
 #==============
 # run /usr/lib/xfce-polkit/xfce-polkit
 # run lxqt-policykit-agent
-run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
+# run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
+run lxsession
 
 # run ibus-daemon -d -x
 # run unclutter --root --timeout 3

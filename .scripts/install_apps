@@ -25,6 +25,8 @@ install imv
 # optional application packages
 install aspell
 install baobab-gtk3
+install kdeconnect
+
 # install gwenview
 install partitionmanager
 install playerctl

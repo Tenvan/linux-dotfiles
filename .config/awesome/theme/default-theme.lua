@@ -100,7 +100,7 @@ local awesome_overrides = function(theme)
 
   -- System tray
   -- theme.bg_systray = theme.background
-  theme.systray_icon_spacing = dpi(16)
+  theme.systray_icon_spacing = dpi(8)
 
   -- Titlebar
   theme.titlebar_size = dpi(34)

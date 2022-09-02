@@ -72,6 +72,7 @@ install awmtt
 install picom
 install lain-git
 install rofi
+install xfce4-meta
 
 ###############################
 # uninstall unneeded packages #

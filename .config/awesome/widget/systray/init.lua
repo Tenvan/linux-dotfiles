@@ -15,7 +15,7 @@ local systray = {
     screen = 'primary',
     widget = wibox.widget.systray
   },
-  margins = dpi(5),
+  margins = dpi(2),
   widget = wibox.container.margin
 }
 
