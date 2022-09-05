@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 export DOT="$DOT;.profile"
 
-export SCRIPTS="$HOME/.scripts"
+. ~/.scripts/defs
 
 # mods korrigieren
 if [ -r "$HOME/.bin" ]; then
@@ -11,8 +11,7 @@ if [ -r "$SCRIPTS" ]; then
   chmod +x $SCRIPTS/*
 fi
 
-. "$SCRIPTS/defs"
-
+export SCRIPTS="$HOME/.scripts"
 export CUSTOMS="$HOME/.custom"
 export EDITOR=micro
 # export PAGER=mypager
@@ -28,7 +27,7 @@ export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
 export WORKSPACE=/media/WORKSPACE/$USER
 
 # Conditional PATH additions
-for path_candidate in /Applications/Xcode.app/Contents/Developer/usr/bin \
+for path_candidate in \
   /opt/local/bin \
   /opt/local/sbin \
   /usr/local/bin \
@@ -39,7 +38,6 @@ for path_candidate in /Applications/Xcode.app/Contents/Developer/usr/bin \
   ~/.bin \
   ~/.scripts \
   ~/.local/bin \
-  ~/.local/share/pnpm \
   ~/.yarn/bin \
   ~/src/gocode/bin \
   ~/gocode \

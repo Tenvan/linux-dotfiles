@@ -2,6 +2,10 @@
 
 . ~/.scripts/defs
 
+if [ "$SCRIPTS" != "" ]; then
+    csource ~/.profile
+fi
+
 export DOT="$DOT;.xprofile"
 
 # Theme Definitionen

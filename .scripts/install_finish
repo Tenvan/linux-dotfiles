@@ -12,6 +12,10 @@ if [ $IS_MANJARO = true ]; then
     install bootsplash-theme-manjaro
 fi
 
+install docker
+install lightdm
+install powerline-console-fonts-git
+
 ###############################
 # uninstall unneeded packages #
 ###############################

@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-source ./config
+source "${0:a:h}/config"
 
 # Ziel Ordner für volume vorbereiten
 if [ -d "$data_dir" ]; then

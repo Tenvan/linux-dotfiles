@@ -1,0 +1,29 @@
+#!/usr/bin/env zsh
+
+sudo mkdir /media
+sudo mkdir /media/WORKSPACE
+sudo mkdir /media/BIGDATA
+sudo mkdir /media/VM
+sudo mkdir /media/BACKUP
+
+sudo cryptsetup luksAddKey /dev/disk/by-partlabel/WORKSPACE /crypto_keyfile.bin
+sudo cryptsetup luksAddKey /dev/disk/by-partlabel/BACKUP /crypto_keyfile.bin
+sudo cryptsetup luksAddKey /dev/disk/by-partlabel/BIGDATA /crypto_keyfile.bin
+
+echo "# Custom LUKS
+# Custom LUKS
+WORKSPACE   /dev/disk/by-partlabel/WORKSPACE    /crypto_keyfile.bin luks
+BACKUP      /dev/disk/by-partlabel/BACKUP       /crypto_keyfile.bin luks
+BIGDATA     /dev/disk/by-partlabel/BIGDATA      /crypto_keyfile.bin luks
+VM          /dev/disk/by-partlabel/VM           /crypto_keyfile.bin luks
+" | sudo tee -a /etc/crypttab
+
+echo "# Custom Mounts
+/dev/mapper/WORKSPACE	/media/WORKSPACE	ext4    defaults,noatime 0 2
+/dev/mapper/BACKUP		/media/BACKUP		ext4    defaults,noatime 0 2
+/dev/mapper/BIGDATA		/media/BIGDATA		ext4    defaults,noatime 0 2
+/dev/mapper/VM          /media/VM           ext4    defaults,noatime 0 2
+" | sudo tee -a /etc/fstab
+
+sudo systemctl daemon-reload
+sudo mount --all

@@ -95,7 +95,7 @@ sudo ln -f -s /bin/true /usr/share/teams-insiders/resources/app.asar.unpacked/no
 
 # flatpaks
 flatpak install shortwave
-flatpak install bottles
+# flatpak install bottles
 
 sudo flatpak override --env=GTK_THEME=Adwaita:dark
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark

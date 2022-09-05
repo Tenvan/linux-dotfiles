@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ./config
+source "${0:a:h}/config"
 
 echo "Aktuell installierte Container:"
 docker container ls

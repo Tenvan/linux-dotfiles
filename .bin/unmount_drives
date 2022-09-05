@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+sudo umount /media/WORKSPACE
+sudo umount /media/BACKUP
+sudo umount /media/BIGDATA
+
+sudo cryptsetup close WORKSPACE
+sudo cryptsetup close BACKUP
+sudo cryptsetup close BIGDATA
