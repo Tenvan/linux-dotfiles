@@ -69,7 +69,6 @@ end)
 screen.connect_signal('request::desktop_decoration', function(s)
   log('==> Layout restore tags')
   local state = stateModul.getState()
-  -- dump(state, ' -> current state')
 
   for i, tag in pairs(tags) do
 
@@ -162,7 +161,6 @@ tag.connect_signal('property::layout', function(t)
   local stateLayout = tostring(t.layout.name)
   log('==> Layout changed: tag:' .. stateTag .. ' layout: ' .. stateLayout .. ' screen:' .. stateScreen)
   local state = stateModul.getState()
-  -- dump(state, ' -> old state')
 
   if state == nil then
     state = {}
@@ -177,14 +175,7 @@ tag.connect_signal('property::layout', function(t)
     layout = t.layout.name
   }
 
-  -- local lastTag = screens[t.name]
-  -- if lastTag == nil then lastTag = {} end
-  -- lastTag.layout = t.layout.name
-  -- screens[t.name] = lastTag
-
   state.screens = screens
-
-  -- dump(state, ' -> new state')
   stateModul.setState(state)
 end)
 

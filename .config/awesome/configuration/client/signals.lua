@@ -27,6 +27,7 @@ end
 client.connect_signal(
   'manage',
   function(c)
+    log('spawn::manage')
     -- Focus, raise and activate
     c:emit_signal(
     -- 'request::activate',
@@ -57,8 +58,8 @@ client.connect_signal(
 client.connect_signal(
   'mouse::enter',
   function(c)
+    -- log('spawn::mouse::enter')
     c:emit_signal(
-    -- 'request::activate',
       'mouse_enter',
       {
         raise = true
@@ -70,6 +71,7 @@ client.connect_signal(
 client.connect_signal(
   'focus',
   function(c)
+    log('spawn::focus')
     c.border_color = beautiful.border_focus
   end
 )
@@ -77,6 +79,7 @@ client.connect_signal(
 client.connect_signal(
   'unfocus',
   function(c)
+    log('spawn::unfocus')
     c.border_color = beautiful.border_normal
   end
 )
@@ -85,6 +88,7 @@ client.connect_signal(
 client.connect_signal(
   'property::fullscreen',
   function(c)
+    log('spawn::property::fullscreen')
     if c.fullscreen then
       c.shape = beautiful.client_shape_rectangle
     else
@@ -97,6 +101,7 @@ client.connect_signal(
 client.connect_signal(
   'property::maximized',
   function(c)
+    log('spawn::property::maximized')
     local current_layout = awful.tag.getproperty(c.first_tag, 'layout')
     if c.maximized then
       c.shape = beautiful.client_shape_rectangle
@@ -110,6 +115,7 @@ client.connect_signal(
 client.connect_signal(
   'property::floating',
   function(c)
+    log('spawn::property::floating')
     local current_layout = awful.tag.getproperty(c.first_tag, 'layout')
     if c.floating and not c.maximized then
       c.shape = beautiful.client_shape_rounded
@@ -122,16 +128,23 @@ client.connect_signal(
 )
 
 client.connect_signal('swapped', function(c, source, is_source)
-  log('window-switch')
+  log('spawn::window-switch')
   sound('window-switch')
 end)
 
 client.connect_signal('raised', function(c)
-  log('window-attention-active')
+  log('spawn::window-attention-active')
+
+  dump(c, ' => client', 2)
+  log(' -> client class ' .. tostring(c.class))
+  log(' -> client instance ' .. tostring(c.instance))
+  log(' -> client name ' .. tostring(c.name))
+  log(' -> client type ' .. tostring(c.type))
+
   sound('window-attention-active')
 end)
 
 client.connect_signal('lowered', function(c)
-  log('window-attention-inactive')
+  log('spawn::window-attention-inactive')
   sound('window-attention-inactive')
 end)

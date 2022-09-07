@@ -34,8 +34,8 @@ local apps = {
     -- Default sandbox
     sandbox = 'virtualbox',
     -- Default Teams
-    teams = 'teams',
-    -- teams = 'teams-for-linux',
+    -- teams = 'teams',
+    teams = 'teams-for-linux',
     -- Default IDE
     development = '',
     -- Default network manager
@@ -76,7 +76,7 @@ local apps = {
     'alttab -n 1',
     'flameshot',
     'copyq',
-    'teams',
+    'teams-for-linux',
     'kdeconnect-indicator'
     -- 'xscreensaver'
     -- 'xsettingsd'

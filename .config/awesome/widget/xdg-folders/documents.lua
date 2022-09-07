@@ -22,7 +22,7 @@ local create_widget = function()
 	local docu_button = wibox.widget {
 		{
 			docu_widget,
-			margins = dpi(10),
+			margins = dpi(2),
 			widget = wibox.container.margin
 		},
 		widget = clickable_container

@@ -9,14 +9,14 @@ end
 
 local function dump(object, tag, depth)
   if config.debug_mode then
-    -- log("==> Dump Tracback\n" .. debug.traceback())
-    local traceback = debug.traceback()
-    local level = 'DUMP'
-    log('==> Dump', level)
-    log(gdebug.dump_return(object, tag, depth), level)
-    log(traceback, level)
-    log('<== Dump', level)
+    log('==> Dump Tracback\n' .. debug.traceback())
   end
+  local traceback = debug.traceback()
+  local level = 'DUMP'
+  log('==> Dump', level)
+  log(gdebug.dump_return(object, tag, depth), level)
+  log(traceback, level)
+  log('<== Dump', level)
 end
 
 return {

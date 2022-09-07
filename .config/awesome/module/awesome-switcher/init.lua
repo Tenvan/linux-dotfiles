@@ -445,17 +445,7 @@ local function switch(dir, alt, tab, shift_tab)
   keygrabber.run(
     function(mod, key, event)
       local shiftStatus = contains(mod, 'Shift')
-      -- log('==> Switcher KeyGrabber')
-      -- log('  --> alt......: ' .. tostring(alt))
-      -- log('  --> tab......: ' .. tostring(tab))
-      -- log('  --> shift_tab: ' .. tostring(shift_tab))
-      -- log('  --> mod......: ' .. tostring(mod))
-      -- log('  --> key......: ' .. tostring(key))
-      -- log('  --> event....: ' .. tostring(event))
-      -- log('  --> shift....: ' .. tostring(shiftStatus))
-      
-      -- dump(mod, 'Mod')
-      
+
       -- Stop alt-tabbing when the alt-key is released
       if key == 'Escape' or (key == alt and event == 'release') then
         log('==> Stop KeyGrabber')

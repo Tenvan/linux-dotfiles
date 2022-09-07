@@ -82,12 +82,9 @@ local function get_icon_lookup_path()
       add_with_dir({}, paths, theme_dir))
   end
 
-  -- dump(icon_theme_paths, 'theme paths')
-
   local app_in_theme_paths = {}
   local blocks = { 'actions', 'apps', 'categories', 'devices',
     'emblems', 'emotes', 'mimetypes', 'places', 'status', 'web' }
-  -- dump(blocks)
   for _, icon_theme_directory in ipairs(icon_theme_paths) do
     for _, size in ipairs(all_icon_sizes) do
       for i = 1, #blocks, 1 do
@@ -99,8 +96,6 @@ local function get_icon_lookup_path()
   end
   add_if_readable(icon_lookup_path, app_in_theme_paths)
   local result = add_if_readable(icon_lookup_path, paths)
-
-  -- dump(result, 'icon lookup path')
 
   return result
 end

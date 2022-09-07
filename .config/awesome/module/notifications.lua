@@ -154,17 +154,17 @@ naughty.connect_signal(
 naughty.connect_signal(
   'request::display',
   function(n)
-    -- log('spawn::request::display -> module/notifications.lua')
+    log('spawn::request::display')
 
-    -- dump({
-    --   text = n.text,
-    --   icon = n.icon,
-    --   timeout = n.timeout,
-    --   title = n.title,
-    --   app_name = n.app_name,
-    --   urgency = n.urgency,
-    --   icon_size = n.icon_size,
-    -- }, 'notification', 1)
+    dump({
+      text = n.text,
+      icon = n.icon,
+      timeout = n.timeout,
+      title = n.title,
+      app_name = n.app_name,
+      urgency = n.urgency,
+      icon_size = n.icon_size,
+    }, 'notification', 1)
 
     local path = iconUtils.lookup_icon(n.icon)
     n.icon = path

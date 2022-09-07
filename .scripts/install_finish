@@ -53,6 +53,16 @@ else
     
     sudo sed -i "s/^greeter-session.*=.*$/greeter-session=$GREETER/g" /etc/lightdm/lightdm.conf
     sudo sed -i "s/^display-setup-script.*=.*$/display-setup-script=\/opt\/screenlayout.sh/g" /etc/lightdm/lightdm.conf
+
+        echo "[SeatDefaults]
+#
+# ==> Uncomment Block for autologin
+#
+#autologin-user=$USER
+#autologin-user-timeout=0
+#user-session=awesome
+" | sudo tee -a /etc/lightdm/lightdm.conf
+    sudo micro /etc/lightdm/lightdm.conf
     
     sudo cp $oxygen/system-ready.oga /opt/system-ready.oga
     echo "paplay /opt/system-ready.oga" | sudo tee /opt/system-ready.sh
@@ -120,8 +130,10 @@ xft-antialias=true
 xft-dpi=144
 xft-hintstyle=hintfull
 enable-hidpi=off
+#enable-hidpi=on
 cursor-theme-name=Bibata-Modern-Ice
     " | sudo tee /etc/lightdm/slick-greeter.conf
+    sudo micro /etc/lightdm/slick-greeter.conf
     errorCheck "display manager config"
 
     sudo systemctl enable lightdm.service
@@ -172,8 +184,9 @@ errorCheck "fstrim service"
 # grub config
 sed 's/.*GRUB_GFXMODE=.*$/GRUB_GFXMODE="3840x2160,2560x1080,1920x1080,auto"/g' </etc/default/grub >grub
 sudo mv -f grub /etc/default
-
-sed 's/.*GRUB_TERMINAL_OUTPUT=.*$/GRUB_TERMINAL_OUTPUT=console/g' </etc/default/grub >grub
+sed 's/.*GRUB_TERMINAL_OUTPUT=.*$/#GRUB_TERMINAL_OUTPUT=console/g' </etc/default/grub >grub
+sudo mv -f grub /etc/default
+sed 's/.*GRUB_TERMINAL_OUTPUT=.*$/#GRUB_TERMINAL_INPUT=console/g' </etc/default/grub >grub
 sudo mv -f grub /etc/default
 
 if [ $IS_MANJARO = true ]; then

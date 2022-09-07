@@ -161,15 +161,29 @@ ruled.client.connect_signal('request::rules', function()
     }
   }
 
-  -- Text editors and word processing
+  -- Word processing
   ruled.client.append_rule {
     rule_any = {
-      class = { 'Code', 'Geany', 'Atom', 'Subl3', 'code-oss' },
       name = { 'LibreOffice', 'libreoffice' }
     },
     properties = {
       screen = screen[1],
-      tag = screen[1].tags[9],
+      tag = screen[1].tags[3],
+      maximized = false,
+      floating = false
+    }
+  }
+
+  -- Text editors
+  ruled.client.append_rule {
+    rule_any = {
+      class = { 'Code', 'Geany', 'Atom', 'Subl3', 'code-oss' },
+      except_any = {
+        name = { 'splash', 'Welcome *' },
+        type = { 'dialog' }
+      },
+    },
+    properties = {
       maximized = false,
       floating = false
     }
@@ -247,7 +261,7 @@ ruled.client.connect_signal('request::rules', function()
     },
     properties = {
       screen = screen.primary,
-      tag = screen[screen.primary].tags[5],
+      tag = screen[screen.primary].tags[6],
       floating = false,
       switch_to_tags = true
     }
@@ -260,7 +274,8 @@ ruled.client.connect_signal('request::rules', function()
     },
     except_any = {
       name = { 'splash', 'Welcome *' },
-      class = { 'jetbrains-toolbox' }
+      class = { 'jetbrains-toolbox' },
+      type = { 'dialog' }
     },
     properties = {
       screen = screen.primary,
@@ -383,7 +398,20 @@ ruled.client.connect_signal('request::rules', function()
       placement = awful.placement.centered
     }
   }
+
+  -- Dialogs everytime floating
+  ruled.client.append_rule {
+    rule_any = {
+      type = { 'dialog' }
+    },
+    properties = {
+      floating = true,
+      maximized = false,
+      fullscreen = false
+    }
+  }
 end)
+
 
 -- Normally we'd do this with a rule, but some program like spotify doesn't set its class or name
 -- until after it starts up, so we need to catch that signal.
@@ -391,6 +419,7 @@ end)
 ---@param c any
 client.connect_signal('property::class', function(c)
   log('spawn::property::class')
+
   if c.class == 'Spotify' then
     log('Spotify detected')
 
