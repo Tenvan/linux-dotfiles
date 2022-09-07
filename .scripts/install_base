@@ -332,7 +332,6 @@ if [ $IS_MANJARO = true ]; then
     install manjaro-artwork-extra
 fi
 
-
 # icons
 if [ $IS_MANJARO = true ]; then
     install manjaro-artwork-icons
@@ -380,12 +379,11 @@ if [ $IS_ARCO = true ]; then
 fi
 
 # cursor
+install bibata-cursor-theme
+install bibata-cursor-translucent
+
 if [ $IS_MANJARO = true]; then
     install maia-cursor-theme
-fi
-if [ $IS_ARCO = true ]; then
-    install bibata-cursor-theme
-    install bibata-cursor-translucent
 fi
 
 # fonts
@@ -452,6 +450,7 @@ install languagetool
 
 # Browser
 install vivaldi
+install vivaldi-ffmpeg-codecs
 
 # rust apps
 install bat
@@ -459,6 +458,12 @@ install fd
 install ripgrep
 install tokei
 install procs
+
+# other Metas
+if [ $IS_MANJARO = true ]; then
+    install plasma-meta
+    install xfce4-meta
+fi
 
 ###############################
 # uninstall unneeded packages #

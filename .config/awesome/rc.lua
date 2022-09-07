@@ -9,6 +9,7 @@ gdebug.print_warning('[STARTUP]: ==> start of loading rc.lua ==')
 gdebug.print_warning('[STARTUP]: ==============================')
 
 log = require('utilities.debug').log
+trace = require('utilities.debug').trace
 dump = require('utilities.debug').dump
 notify = require('utilities.notify')
 

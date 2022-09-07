@@ -2,8 +2,12 @@ local gdebug = require('gears.debug')
 local config = require('configuration.config')
 
 local function log(message, level)
+  gdebug.print_warning('[' .. (level or 'DEBUG') .. ']: ' .. message)
+end
+
+local function trace(message, level)
   if config.debug_mode then
-    gdebug.print_warning('[' .. (level or 'DEBUG') .. ']: ' .. message)
+    gdebug.print_warning('[' .. (level or 'TRACE') .. ']: ' .. message)
   end
 end
 
@@ -21,5 +25,6 @@ end
 
 return {
   log = log,
-  dump = dump
+  dump = dump,
+  trace = trace
 }

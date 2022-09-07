@@ -18,12 +18,12 @@ local run_once = function(cmd)
     function(stdout, stderr)
       -- Debugger
       if not stderr or stderr == '' then
-        log('  ->  auto started: ' .. cmd)
+        trace('  ->  auto started: ' .. cmd)
         -- notify('Auto Start', cmd)
         return
       end
 
-      -- log('  ->  error on start: ' .. cmd)
+      log('  ->  error on start: ' .. cmd)
       -- log('  ERROR: ' .. stderr:gsub('%\n', ''))
 
       notify('<b>Oof! Error detected when starting an application!</b>',
