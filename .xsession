@@ -22,7 +22,7 @@ mkdir -p "$HOME"/.local/share/keyrings
 echo "do run autostarts"
 
 if [[ "$DESKTOP_SESSION" == "awesome" ]]; then
-    "$HOME/.screenlayout/screenlayout.sh" &
+    "$HOME/.screenlayout/screenlayout-awesome.sh" &
     "$HOME/.bin/autostart" &    
 fi
 

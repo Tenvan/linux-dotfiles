@@ -65,6 +65,7 @@ install gparted
 install gpick
 install grc
 install gtop
+install gvfs-smb
 install hardinfo
 install hstr
 install htop
@@ -412,7 +413,7 @@ install ttf-fira-code
 install ttf-iosevka
 install ttf-jetbrains-mono
 install ttf-meslo-nerd-font-powerlevel10k
-install ttf-nerd-fonts-symbols
+install ttf-nerd-fonts-symbols-2048-em
 install ttf-twemoji
 install ttf-weather-icons
 

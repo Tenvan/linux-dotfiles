@@ -32,9 +32,9 @@ finish
 # refresh icons
 sudo gdk-pixbuf-query-loaders --update-cache
 
-layoutscript="$HOME/.screenlayout/screenlayout.sh"
+layoutscript="$HOME/.screenlayout/screenlayout-system.sh"
 if [ ! -f "$layoutscript" ]; then
-    print 'Fehler: keine .screenlayout.sh gefunden'
+    print 'Fehler: keine .screenlayout-system.sh gefunden'
     exit -1
 fi
 
@@ -52,7 +52,7 @@ else
     GREETER="lightdm-slick-greeter"
     
     sudo sed -i "s/^greeter-session.*=.*$/greeter-session=$GREETER/g" /etc/lightdm/lightdm.conf
-    sudo sed -i "s/^display-setup-script.*=.*$/display-setup-script=\/opt\/screenlayout.sh/g" /etc/lightdm/lightdm.conf
+    sudo sed -i "s/^#display-setup-script.*=.*$/display-setup-script=\/opt\/screenlayout.sh/g" /etc/lightdm/lightdm.conf
 
         echo "[SeatDefaults]
 #

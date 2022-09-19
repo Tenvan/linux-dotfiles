@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 source "${0:a:h}/config"
 
@@ -13,7 +13,7 @@ fi
 
 docker pull mcr.microsoft.com/mssql/server:2022-latest
 
-docker run -dit --restart unless-stopped \
+docker run -dit --restart always \
    --net=bridge \
    --name $container_name \
    -e "ACCEPT_EULA=Y" \

@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 # Konfiguration SQL Server
 export container_name=LocalSqlServer
