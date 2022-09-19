@@ -338,6 +338,7 @@ if [ $IS_MANJARO = true ]; then
     install manjaro-artwork-icons
     install papirus-maia-icon-theme
     install maia-icon-theme
+    install sardi-icons
 fi
 
 if [ $IS_ARCO = true ]; then

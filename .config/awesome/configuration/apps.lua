@@ -76,7 +76,7 @@ local apps = {
     'alttab -n 1',
     'flameshot',
     'copyq',
-    'teams-for-linux',
+    -- 'teams-for-linux',
     'kdeconnect-indicator'
     -- 'xscreensaver'
     -- 'xsettingsd'
