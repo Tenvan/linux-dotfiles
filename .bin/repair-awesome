@@ -1,7 +1,0 @@
-#!/bin/bash
-
-rm -fr ~/.config/awesome/awesome-buttons
-rm -fr ~/home/ralf/.config/awesome/awesome-wm-widgets
-rm -fr ~/.config/awesome/lain
-
-git submodule update --recursive --force

@@ -130,5 +130,43 @@
   {
     "key": "ctrl+numpad_add",
     "command": "editor.unfold"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "-rest-client.rerun-last-request",
+    "when": "editorTextFocus && editorLangId == 'http'"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "-rest-client.rerun-last-request",
+    "when": "editorTextFocus && editorLangId == 'plaintext'"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "turboConsoleLog.displayLogMessage",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "-turboConsoleLog.displayLogMessage"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "-workbench.view.explorer",
+    "when": "viewContainer.workbench.view.explorer.enabled"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "editor.action.joinLines"
+  },
+  {
+    "key": "ctrl+[Semicolon]",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "ctrl+shift+[Equal]",
+    "command": "-workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
   }
 ]

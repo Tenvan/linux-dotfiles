@@ -74,7 +74,8 @@ else
     GREETER_THEME="$MAIN_THEME"
     if [ $IS_MANJARO = true ]; then
         GREETER_BACKGROUND="/usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg"
-        elif [ $IS_ARCO = true ]; then
+        # GREETER_BACKGROUND="/usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-dog.jpg"
+    elif [ $IS_ARCO = true ]; then
         GREETER_BACKGROUND="/usr/share/backgrounds/arcolinux/arco-wallpaper.jpg"
         GREETER_THEME="Arc-Paper-dark"
     else
@@ -191,6 +192,8 @@ sudo mv -f grub /etc/default
 
 if [ $IS_MANJARO = true ]; then
     sudo convert /usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg /usr/share/grub/themes/manjaro/background.png
+    # sudo convert /usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-dog.jpg /usr/share/grub/themes/manjaro/background.png
+    # sudo convert /usr/share/backgrounds/leather-dark.jpg /usr/share/grub/themes/manjaro/background.png
     errorCheck "convert manjaro grub image"
     sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/manjaro\/theme.txt"/g' </etc/default/grub >grub
     sudo mv -f grub /etc/default
