@@ -274,7 +274,6 @@ ruled.client.connect_signal('request::rules', function()
     },
     except_any = {
       name = { 'splash', 'Welcome *' },
-      class = { 'jetbrains-toolbox' },
       type = { 'dialog' }
     },
     properties = {
@@ -293,6 +292,17 @@ ruled.client.connect_signal('request::rules', function()
     },
     properties = {
       skip_decoration = false,
+      focus = true,
+      floating = true
+    }
+  }
+
+  ruled.client.append_rule {
+    rule = {
+      class = 'jetbrains-toolbox',
+    },
+    properties = {
+      skip_decoration = true,
       focus = true,
       floating = true
     }
@@ -339,7 +349,7 @@ ruled.client.connect_signal('request::rules', function()
   ruled.client.append_rule {
     rule_any = {
       name = { 'SysMon:*', 'Sys:*', 'CF:*' },
-      class = { 'Gnome-system-monitor' }
+      class = { 'Gnome-system-monitor', 'System-monitoring-center' }
     },
     properties = {
       screen = 2,

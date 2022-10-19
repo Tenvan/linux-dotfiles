@@ -3,7 +3,7 @@ export DOT="$DOT;.zshrc"
 
 . ~/.scripts/defs
 
-# disable console beap 
+# disable console beap
 xset -b
 
 # Set name of the theme to load --- if set to "random", it will
@@ -51,13 +51,13 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 
 # Use powerline
-USE_POWERLINE="true"
+USE_POWERLINE="false"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
-csource "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# csource "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 # LS_COLORS
 csource /usr/share/LS_COLORS/dircolors.sh
@@ -218,17 +218,17 @@ zinit ice depth=1;
 zinit load romkatv/powerlevel10k
 
 zinit wait lucid for \
-        b4b4r07/enhancd \
-        junegunn/fzf-bin \
-        g-plane/icd \
-    atinit"zicompinit; zicdreplay" \
-        zdharma-continuum/fast-syntax-highlighting \
-        zdharma-continuum/history-search-multi-word \
-    atload"_zsh_autosuggest_start; zicdreplay" \
-        zsh-users/zsh-autosuggestions \
-        memark/zsh-dotnet-completion \
-    blockf atpull'zinit creinstall -q .' \
-        zsh-users/zsh-completions
+b4b4r07/enhancd \
+junegunn/fzf-bin \
+g-plane/icd \
+atinit"zicompinit; zicdreplay" \
+zdharma-continuum/fast-syntax-highlighting \
+zdharma-continuum/history-search-multi-word \
+atload"_zsh_autosuggest_start; zicdreplay" \
+zsh-users/zsh-autosuggestions \
+memark/zsh-dotnet-completion \
+blockf atpull'zinit creinstall -q .' \
+zsh-users/zsh-completions
 
 # zinit light g-plane/icd
 
@@ -337,6 +337,11 @@ fi
 # ░▀░░░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░░▀░░▀▀▀░▀▀▀░▀▀▀░░▀░░▀░▀
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+
+if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+    csource"$(code --locate-shell-integration-path zsh)"
+fi
+
 case ${TERM} in
     xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
         print "Init Powershell10k for XWindows"
@@ -353,4 +358,3 @@ csource "$HOME/.scripts/ranger.zsh"
 
 # archey4
 neofetch
-

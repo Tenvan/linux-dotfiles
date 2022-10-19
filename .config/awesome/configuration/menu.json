@@ -209,24 +209,20 @@
     ],
     "SYSTEM_MONITOR": [
         [
-            "💿 System Resourcen",
+            "📈 System Monitoring Center",
+            "system-monitoring-center"
+        ],
+        [
+            "📈 System Resourcen",
             "gnome-system-monitor -r"
         ],
         [
-            "💿 bpytop",
+            "📈 bpytop",
             "$TERMINAL --title SysMon:bashtop bpytop"
         ],
         [
-            "💿 glances",
+            "📈 glances",
             "$TERMINAL --title SysMon:glances glances"
-        ],
-        [
-            "💿 gtop",
-            "$TERMINAL --title SysMon:gtop gtop"
-        ],
-        [
-            "💿 htop",
-            "$TERMINAL --title SysMon:htop htop"
         ],
         [
             "💽 iftop (sudo)",

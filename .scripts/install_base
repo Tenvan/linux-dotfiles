@@ -118,6 +118,7 @@ install scrot
 install shell-color-scripts
 install spectacle
 install stow
+install system-monitoring-center
 install time
 install timeshift
 install toilet

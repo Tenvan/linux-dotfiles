@@ -74,7 +74,7 @@
 
 [pull]
 	verbose = true
-	rebase = true
+	rebase = false
 
 [alias]
   	logp = log --pretty=format:'%h %ad | %fs%d [%an]' --graph --date=short
