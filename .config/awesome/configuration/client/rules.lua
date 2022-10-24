@@ -225,9 +225,9 @@ ruled.client.connect_signal('request::rules', function()
       tag = screen[screen.primary].tags[7],
       switch_to_tags = true,
       skip_decoration = true,
-      floating = true,
+      floating = false,
       maximized = false,
-      placement = awful.placement.centered
+      -- placement = awful.placement.centered
     }
   }
 

@@ -17,8 +17,8 @@ local iconUtils = require('utilities.icon-utils')
 -- Defaults
 naughty.config.defaults.ontop = true
 naughty.config.defaults.icon_size = beautiful.notification_icon_size
-naughty.config.defaults.timeout = 5
-naughty.config.defaults.implicit_timeout = 5
+naughty.config.defaults.timeout = 15
+naughty.config.defaults.implicit_timeout = 15
 naughty.config.defaults.title = 'System Notification'
 naughty.config.defaults.margin = dpi(16)
 naughty.config.defaults.border_width = beautiful.tooltip_border_width
@@ -49,7 +49,7 @@ ruled.notification.connect_signal(
         fg               = beautiful.error_fg,
         margin           = dpi(16),
         position         = 'top_right',
-        implicit_timeout = 15
+        implicit_timeout = 0
       }
     }
 
@@ -95,10 +95,11 @@ ruled.notification.connect_signal(
     ruled.notification.append_rule {
       rule       = { app_name = 'teams-for-linux' },
       properties = {
-        font             = beautiful.font,
+        position         = 'top_left',
+        font             = beautiful.font_large,
         bg               = makeColorTransparent(beautiful.teams_bg, '80'),
         fg               = beautiful.fg,
-        implicit_timeout = 20,
+        implicit_timeout = 0,
         margin           = dpi(16),
         icon_size        = dpi(200)
       }
@@ -111,9 +112,22 @@ ruled.notification.connect_signal(
         font             = beautiful.font,
         bg               = makeColorTransparent(beautiful.error_bg, '70'),
         fg               = beautiful.fg,
-        implicit_timeout = 20,
+        implicit_timeout = 30,
         margin           = dpi(16),
         icon_size        = dpi(64)
+      }
+    }
+
+    -- KDE Connect
+    ruled.notification.append_rule {
+      rule       = { app_name = 'KDE Connect' },
+      properties = {
+        font             = beautiful.font,
+        bg               = makeColorTransparent(beautiful.spotify_bg, '50'),
+        fg               = beautiful.fg,
+        implicit_timeout = 20,
+        margin           = dpi(16),
+        icon_size        = dpi(320)
       }
     }
   end
@@ -159,12 +173,15 @@ naughty.connect_signal(
     dump({
       text = n.text,
       icon = n.icon,
+      icon_size = n.icon_size,
       timeout = n.timeout,
       title = n.title,
       app_name = n.app_name,
       urgency = n.urgency,
-      icon_size = n.icon_size,
-    }, 'notification', 1)
+      modulename = n.modulename,
+      category = n.category,
+      app_icon = n.app_icon,
+    }, 'notification splitted', 1)
 
     local path = iconUtils.lookup_icon(n.icon)
     n.icon = path

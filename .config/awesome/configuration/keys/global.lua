@@ -643,20 +643,34 @@ local global_keys = awful.util.table.join(
   -- ░▀▀█░░█░░▀▀█░░█░░█▀▀░█░█░░░░█░░█░█░█░█░█░░░▀▀█
   -- ░▀▀▀░░▀░░▀▀▀░░▀░░▀▀▀░▀░▀░░░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
   awful.key({ modkey, altkey }, 't', function()
+    local message = '\nDies ist eine Test Nachicht.\n' ..
+      'Amet dolor amet elitr sea justo eirmod ipsum sit.\n' ..
+      'Sit sed eos dolore vero vero ea, ea magna at et.'
+
+    notify('Teams Test Nachricht',
+      '<b>CRITICAL</b>\nDies ist eine Teams Test Nachicht.' .. message, 'critical', 'audio-card', 'teams-for-linux')
+
+    notify('Spotify Test Nachricht',
+      '<b>CRITICAL</b>\nDies ist eine Spotify Test Nachicht.' .. message, 'critical', 'audio-card', 'Spotify')
+
+    notify('Vivaldi Test Nachricht',
+      '<b>CRITICAL</b>\nDies ist eine Vivaldi Test Nachicht.' .. message, 'critical', 'audio-card', 'vivaldi-stable')
+
+    notify('KDE Connect Test Nachricht',
+      '<b>CRITICAL</b>\nDies ist eine KDE Connect Test Nachicht.' .. message, 'critical', 'audio-card', 'KDE Connect')
+
     notify('Test Nachricht 1',
-      '<b>LOW</b>\nDies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.'
-      ,
+      '<b>LOW</b>\nDies ist eine Test Nachicht.\n' .. message,
       'low', '/usr/share/icons/hicolor/scalable/status/tablet.svg')
+
     notify('Test Nachricht 2',
-      '<b>NORMAL</b>\nDies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.'
-      ,
-      'normal', 'audio-card')
+      '<b>NORMAL</b>\nDies ist eine Test Nachicht.\n' .. message, 'normal', 'audio-card')
+
     notify('Test Nachricht 3',
-      '<b>CRITICAL</b>\nDies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.'
-      ,
+      '<b>CRITICAL</b>\nDies ist eine Test Nachicht.\n' .. message,
       'critical', '/usr/share/icons/hicolor/scalable/status/tablet.svg')
     notify('Test Nachricht 4',
-      '<b>LOW</b>\nDies ist eine Test Nachicht.\nAmet dolor amet elitr sea justo eirmod ipsum sit.\nSit sed eos dolore vero vero ea, ea magna at et.')
+      '<b>LOW</b>\nDies ist eine Test Nachicht.\n' .. message)
   end, {
     description = 'Test Benachrichtigung',
     group = keys.kgSystem
