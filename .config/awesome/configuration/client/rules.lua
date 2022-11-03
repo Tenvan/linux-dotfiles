@@ -388,6 +388,18 @@ ruled.client.connect_signal('request::rules', function()
     }
   }
 
+  -- CopyQ Window
+  ruled.client.append_rule {
+    rule = {
+      class = 'copyq',
+    },
+    properties = {
+      floating = true,
+      ontop = true,
+      placement = awful.placement.centered
+    }
+  }
+
 
   -- Floating
   ruled.client.append_rule {

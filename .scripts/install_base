@@ -52,6 +52,7 @@ install dnsutils
 install docker
 install docker-compose
 install dpkg
+install ejectsy
 install exa
 install feh
 install ffmpeg

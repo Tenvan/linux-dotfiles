@@ -74,6 +74,8 @@ local function menuAction(action)
   local command = action
 
   for i, c in pairs(variables) do
+    log(c[1] .. ' -> ' .. c[2])
+
     if c[2] == '' then
       local ENV = os.getenv(c[1]) or c[2]
       command = string.gsub(command, "$" .. c[1], ENV)
@@ -81,7 +83,7 @@ local function menuAction(action)
       command = string.gsub(command, c[1], c[2])
     end
   end
-
+  log("Command: " .. command)
   awful.spawn.with_shell(command)
 end
 
