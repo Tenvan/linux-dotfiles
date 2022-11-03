@@ -48,7 +48,7 @@ if [ $IS_ARCO = true]; then
     sudo systemctl disable lightdm.service
     sudo systemctl enable sddm.service
 else
-    #GREETER="lightdm-gtk-greeter"
+    # GREETER="lightdm-gtk-greeter"
     GREETER="lightdm-slick-greeter"
     
     sudo sed -i "s/^greeter-session.*=.*$/greeter-session=$GREETER/g" /etc/lightdm/lightdm.conf

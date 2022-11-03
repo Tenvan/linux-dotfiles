@@ -132,7 +132,7 @@ ruled.client.connect_signal('request::rules', function()
       class = { 'firefox', 'Tor Browser', 'discord', 'Chromium', 'Google-chrome', 'TelegramDesktop' }
     },
     properties = {
-      screen = 2,
+      screen = (screen[2] or screen[1]).index,
       tag = (screen[2] or screen[1]).tags[1],
       maximized = false,
       floating = false
@@ -157,7 +157,7 @@ ruled.client.connect_signal('request::rules', function()
       instance = apps.default.web_browser .. ' .*'
     },
     properties = {
-      screen = 2,
+      screen = (screen[2] or screen[1]).index,
     }
   }
 
@@ -207,7 +207,7 @@ ruled.client.connect_signal('request::rules', function()
       class = { 'vlc', 'Spotify', 'shortwave' }
     },
     properties = {
-      screen = 2,
+      screen = (screen[2] or screen[1]).index,
       tag = (screen[2] or screen[1]).tags[5],
       switch_to_tags = true,
       floating = false
@@ -326,7 +326,7 @@ ruled.client.connect_signal('request::rules', function()
       name = { 'OT.:*' },
     },
     properties = {
-      screen = 2,
+      screen = (screen[2] or screen[1]).index,
       tag = (screen[2] or screen[1]).tags[2],
       switch_to_tags = true,
       maximized = false,
@@ -340,7 +340,7 @@ ruled.client.connect_signal('request::rules', function()
       name = { 'OTW:*' }
     },
     properties = {
-      screen = 2,
+      screen = (screen[2] or screen[1]).index,
       tag = (screen[2] or screen[1]).tags[3],
     }
   }
@@ -352,7 +352,7 @@ ruled.client.connect_signal('request::rules', function()
       class = { 'Gnome-system-monitor', 'System-monitoring-center' }
     },
     properties = {
-      screen = 2,
+      screen = (screen[2] or screen[1]).index,
       tag = (screen[2] or screen[1]).tags[9],
       switch_to_tags = true,
       maximized = false,
@@ -380,7 +380,7 @@ ruled.client.connect_signal('request::rules', function()
       class = { 'teams-for-linux', 'Microsoft Teams*' },
     },
     properties = {
-      screen = 2,
+      screen = (screen[2] or screen[1]).index,
       tag = (screen[2] or screen[1]).tags[4],
       switch_to_tags = true,
       maximized = false,

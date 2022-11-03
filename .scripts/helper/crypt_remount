@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+
+echo unmount crypted partitions...
+sudo umount -v /media/BIGDATA
+sudo umount -v /media/VM
+sudo umount -v /media/WORKSPACE
+
+echo close crypted partitions...
+sudo cryptsetup -v close BIGDATA
+sudo cryptsetup -v close VM
+sudo cryptsetup -v close WORKSPACE
+
+echo open crypted partitions...
+sudo cryptsetup -v open /dev/disk/by-partlabel/BIGDATA BIGDATA --key-file /crypto_keyfile.bin
+sudo cryptsetup -v open /dev/disk/by-partlabel/VM VM --key-file /crypto_keyfile.bin
+sudo cryptsetup -v open /dev/disk/by-partlabel/WORKSPACE WORKSPACE --key-file /crypto_keyfile.bin
+
+sudo mount --all
