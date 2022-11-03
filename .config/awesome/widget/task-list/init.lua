@@ -34,6 +34,45 @@ local tasklist_buttons = awful.util.table.join(
   ),
   awful.button(
     {},
+    3,
+    function(c)
+      log('Right Mouse Button pressed')
+      awesome.emit_signal('bling::task_preview::visibility', nil, false, c, c)
+
+      -- TODO Menü fertig stellen
+      -- @todo Menü fertig stellen
+      local menu = {
+        { 'Schließen',
+          function()
+            c:kill()
+          end },
+        { 'Minimieren',
+          function()
+            c:minimize()
+          end },
+        { 'Maximieren',
+          function()
+            c:maximize()
+          end },
+        { 'Abbrechen',
+          function()
+            c.popup_menu:hide()
+          end }
+      }
+      c.popup_menu = awful.menu(menu)
+      c.popup_menu:show()
+
+      c.popup_menu:connect_signal('mouse::enter', function()
+        log('Enter Menu')
+      end)
+
+      c.popup_menu:connect_signal('mouse::leave', function()
+        log('Enter Menu')
+      end)
+    end
+  ),
+  awful.button(
+    {},
     4,
     function()
       awful.client.focus.byidx(1)
