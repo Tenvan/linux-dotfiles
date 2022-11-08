@@ -1,0 +1,83 @@
+#!/usr/bin/env zsh
+. ~/.scripts/defs
+
+# Init Install
+initInstall "install_printer"
+sound count-down
+
+##############################
+# custom printer definitions #
+##############################
+
+install hplip
+
+###############################
+# uninstall unneeded packages #
+###############################
+fullUninstall
+
+#################################
+# install all (needed) packages #
+#################################
+fullInstall
+
+
+# HP MFP 178
+echo "[hp_color_laser_mfp_178_179]
+align-type=0
+clean-type=0
+farbe-kal-typ=0
+kopier-typ=0
+eingebetteter-server-typ=1
+fax-typ=7
+fw-download=False
+bild=hp_farbig_laserjet_cp2025.png
+io-mfp-mode=1
+io-modus=1
+io-support=14
+job-storage=0
+zeilenvorschub-kal-typ=0
+model1=Terrible HP Farblaser-MFP 178nwg
+monitor-typ=0
+panel-check-type=0
+pcard-typ=0
+plugin=0
+plugin-grund=65
+Strom-Einstellungen=0
+pq-diag-typ=0
+r-typ=0
+r0-agent1-kind=4
+r0-agent1-sku=CE311A
+r0-agent1-typ=4
+r0-agent2-kind=4
+r0-agent2-sku=CE310A
+r0-agent2-typ=1
+r0-agent3-typ=4
+r0-agent3-sku=CE313A
+r0-agent3-typ=5
+r0-agent4-kind=4
+r0-agent4-sku=CE312A
+r0-agent4-typ=6
+scan-src=3
+scannen-typ=5
+status-batterie-check=0
+status-dynamische-zähler=0
+status-typ=10
+support-released=True
+unterstützung-subtype=219b2b
+support-type=2
+unterstützung-ver=3.13.11
+tech-class=Hbpl1
+familienklasse=PCLM-COLOR
+tech-subclass=Color
+tech-type=4
+usb-pid=332a
+usb-vid=3f0
+wifi-config=3" | sudo tee -a /usr/share/hplip/data/models/models.dat
+
+hp-makeuri -g 192.168.0.155
+
+## FINISHING #
+finish
+
+sound complete

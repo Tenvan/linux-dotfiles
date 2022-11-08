@@ -283,6 +283,7 @@ install brother-mfc-j4420dw
 install canon-cque
 install cups-pdf
 install hplip
+install hpuld
 install system-config-printer
 install print-manager
 

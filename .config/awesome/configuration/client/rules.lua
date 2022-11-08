@@ -405,13 +405,16 @@ ruled.client.connect_signal('request::rules', function()
   ruled.client.append_rule {
     rule_any = {
       instance = { 'file_progress', 'Popup', 'nm-connection-editor' },
-      class = { 'scrcpy', 'Mugshot', 'Pulseeffects', 'Xfce4-appearance-settings' },
+      class = {
+        'scrcpy', 'Mugshot', 'Pulseeffects',
+        'Xfce4-appearance-settings', 'Nm-connection-editor'
+      },
       role = { 'AlarmWindow', 'ConfigManager', 'pop-up' }
     },
     properties = {
       titlebars_enabled = true,
-      skip_decoration = true,
-      ontop = true,
+      skip_decoration = false,
+      ontop = false,
       floating = true,
       focus = awful.client.focus.filter,
       raise = true,
