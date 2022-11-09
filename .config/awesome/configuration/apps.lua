@@ -76,8 +76,8 @@ local apps = {
     'alttab -n 1',
     'flameshot',
     'copyq',
-    -- 'eject-applet --log',
-    'ejectsy',
+    'eject-applet',
+    -- 'ejectsy',
 
     -- 'teams-for-linux',
     -- 'kdeconnect-indicator'

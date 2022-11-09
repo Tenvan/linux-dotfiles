@@ -43,16 +43,13 @@ errorCheck "copy screenlayout"
 ###############################
 # ==> Settings Display Mnager #
 ###############################
-sudo systemctl disable sddm.service
-sudo systemctl enable lightdm.service
+GREETER="lightdm-gtk-greeter"
+# GREETER="lightdm-slick-greeter"
 
-    # GREETER="lightdm-gtk-greeter"
-    GREETER="lightdm-slick-greeter"
-    
-    sudo sed -i "s/^greeter-session.*=.*$/greeter-session=$GREETER/g" /etc/lightdm/lightdm.conf
-    sudo sed -i "s/^#display-setup-script.*=.*$/display-setup-script=\/opt\/screenlayout.sh/g" /etc/lightdm/lightdm.conf
+sudo sed -i "s/^.*greeter-session.*=.*$/greeter-session=$GREETER/g" /etc/lightdm/lightdm.conf
+sudo sed -i "s/^.*display-setup-script.*=.*$/display-setup-script=\/opt\/screenlayout.sh/g" /etc/lightdm/lightdm.conf
 
-        echo "[SeatDefaults]
+echo "[SeatDefaults]
 #
 # ==> Uncomment Block for autologin
 #
@@ -60,86 +57,53 @@ sudo systemctl enable lightdm.service
 #autologin-user-timeout=0
 #user-session=awesome
 " | sudo tee -a /etc/lightdm/lightdm.conf
-    sudo micro /etc/lightdm/lightdm.conf
-    
-    sudo cp $oxygen/system-ready.oga /opt/system-ready.oga
-    echo "paplay /opt/system-ready.oga" | sudo tee /opt/system-ready.sh
-    sudo chmod +x /opt/system-ready.sh
-    
-    errorCheck "lightdm config"
-    
-    # config slick-greeter
-    GREETER_THEME="$MAIN_THEME"
-    GREETER_ICON="$ICON_THEME"
-    GREETER_CURSOR="$CURSOR_THEME"
-    
-    if [ $IS_MANJARO = true ]; then
-        GREETER_BACKGROUND="/usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg"
-    elif [ $IS_ARCO = true ]; then
-        GREETER_BACKGROUND="/usr/share/backgrounds/arcolinux/arco-login.jpg"
-        GREETER_THEME="Arc-Dark"
-    else
-        GREETER_BACKGROUND="/usr/share/backgrounds/desert.png"
-    fi
-    
-    echo "# LightDM GTK+ Configuration
-# Available configuration options listed below.
-#
-# activate-numlock=Whether to activate numlock. This features requires the installation of numlockx. (true or false)
-# background=Background file to use, either an image path or a color (e.g. #772953)
-# background-color=Background color (e.g. #772953), set before wallpaper is seen
-# draw-user-backgrounds=Whether to draw user backgrounds (true or false)
-# draw-grid=Whether to draw an overlay grid (true or false)
-# show-hostname=Whether to show the hostname in the menubar (true or false)
-# show-power=Whether to show the power indicator in the menubar (true or false)
-# show-a11y=Whether to show the accessibility options in the menubar (true or false)
-# show-keyboard=Whether to show the keyboard indicator in the menubar (true or false)
-# show-clock=Whether to show the clock in the menubar (true or false)
-# show-quit=Whether to show the quit menu in the menubar (true or false)
-# logo=Logo file to use
-# other-monitors-logo=Logo file to use for other monitors
-# theme-name=GTK+ theme to use
-# icon-theme-name=Icon theme to use
-# font-name=Font to use
-# xft-antialias=Whether to antialias Xft fonts (true or false)
-# xft-dpi=Resolution for Xft in dots per inch
-# xft-hintstyle=What degree of hinting to use (hintnone/hintslight/hintmedium/hintfull)
-# xft-rgba=Type of subpixel antialiasing (none/rgb/bgr/vrgb/vbgr)
-# onscreen-keyboard=Whether to enable the onscreen keyboard (true or false)
-# high-contrast=Whether to use a high contrast theme (true or false)
-# screen-reader=Whether to enable the screen reader (true or false)
-# play-ready-sound=A sound file to play when the greeter is ready
-# hidden-users=List of usernames that are hidden until a special key combination is hit
-# group-filter=List of groups that users must be part of to be shown (empty list shows all users)
-# enable-hidpi=Whether to enable HiDPI support (on/off/auto)
-# only-on-monitor=Sets the monitor on which to show the login window, -1 means "follow the mouse"
-# stretch-background-across-monitors=Whether to stretch the background across multiple monitors (false by default)
-# clock-format=What clock format to use (e.g., %H:%M or %l:%M %p)
-[Greeter]
-activate-numlock=true
-background=$GREETER_BACKGROUND
-draw-user-backgrounds=true
-draw-grid=true
-show-hostname=true
-show-power=true
-show-a11y=false
-show-quit=true
-theme-name=$GREETER_THEME
-icon-theme-$GREETER_ICON
-font-name='Noto Sans Bold 20'
-xft-antialias=true
-xft-dpi=144
-xft-hintstyle=hintfull
-enable-hidpi=off
-#enable-hidpi=on
-cursor-theme-name=$GREETER_CURSOR
-    " | sudo tee /etc/lightdm/slick-greeter.conf
-    sudo micro /etc/lightdm/slick-greeter.conf
-    errorCheck "display manager config"
+sudo micro /etc/lightdm/lightdm.conf
 
-    sudo systemctl enable lightdm.service
-    sudo systemctl disable sddm.service
-    
+sudo cp $oxygen/system-ready.oga /opt/system-ready.oga
+echo "paplay /opt/system-ready.oga" | sudo tee /opt/system-ready.sh
+sudo chmod +x /opt/system-ready.sh
+
+errorCheck "lightdm config"
+
+# config slick-greeter
+GREETER_THEME="$MAIN_THEME"
+GREETER_ICON="$ICON_THEME"
+GREETER_CURSOR="$CURSOR_THEME"
+
+if [ $IS_MANJARO = true ]; then
+    GREETER_BACKGROUND="/usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg"
+    elif [ $IS_ARCO = true ]; then
+    GREETER_BACKGROUND="/usr/share/backgrounds/arcolinux/arco-login.jpg"
+else
+    GREETER_BACKGROUND="/usr/share/backgrounds/desert.png"
+fi
+
+sudo sed -i "s/^.*background.*=.*$/background=$GREETER_BACKGROUND/g" /etc/lightdm/lightdm-gtk-greeter.conf
+
+sudo sed -i "s/^.*theme-name=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
+sudo sed -i "s/^.*icon-theme-name=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
+sudo sed -i "s/^.*cursor-theme-name=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
+echo "theme-name=$GREETER_THEME
+icon-theme-name=$GREETER_ICON
+cursor-theme-name=$GREETER_CURSOR" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
+sudo micro /etc/lightdm/lightdm-gtk-greeter.conf
+
+sudo sed -i "s/^.*background.*=.*$/background=$GREETER_BACKGROUND/g" /etc/lightdm/slick-greeter.conf
+sudo sed -i "s/^.*enable-hidpi.*=.*$/#enable-hidpi=on/g" /etc/lightdm/slick-greeter.conf
+
+sudo sed -i "s/^.*theme-name.*=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
+sudo sed -i "s/^.*icon-theme.*=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
+sudo sed -i "s/^.*cursor-theme-name.*=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
+echo "theme-name=$GREETER_THEME
+icon-theme=$GREETER_ICON
+cursor-theme-name=$GREETER_CURSOR" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
+sudo micro /etc/lightdm/slick-greeter.conf
+
+errorCheck "display manager config"
+
+sudo systemctl disable sddm.service
+sudo systemctl enable lightdm.service
+
 ###############################
 # <== Settings Display Mnager #
 ###############################
@@ -183,16 +147,12 @@ sudo systemctl enable fstrim.timer
 errorCheck "fstrim service"
 
 # grub config
-sed 's/.*GRUB_GFXMODE=.*$/GRUB_GFXMODE="3840x2160,2560x1080,1920x1080,auto"/g' </etc/default/grub >grub
-sudo mv -f grub /etc/default
-sed 's/.*GRUB_TERMINAL_OUTPUT=.*$/#GRUB_TERMINAL_OUTPUT=console/g' </etc/default/grub >grub
-sudo mv -f grub /etc/default
-sed 's/.*GRUB_TERMINAL_OUTPUT=.*$/#GRUB_TERMINAL_INPUT=console/g' </etc/default/grub >grub
-sudo mv -f grub /etc/default
+sudo sed -i 's/.*GRUB_GFXMODE=.*$/GRUB_GFXMODE="3840x2160,2560x1080,1920x1080,auto"/g' /etc/default/grub
+sudo sed -i 's/.*GRUB_TERMINAL_OUTPUT=.*$/#GRUB_TERMINAL_OUTPUT=console/g' /etc/default/grub
+sudo sed -i 's/.*GRUB_TERMINAL_INPUT=.*$/#GRUB_TERMINAL_INPUT=console/g' /etc/default/grub
 
 if [ $IS_MANJARO = true ]; then
-    sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/manjaro\/theme.txt"/g' </etc/default/grub >grub
-    sudo mv -f grub /etc/default
+    suo sed -i 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/manjaro\/theme.txt"/g' /etc/default/grub
     sudo cp $SCRIPTS/setup/manjaro-cat.png /usr/share/grub/themes/manjaro/background.png
     echo '#
 #
@@ -203,7 +163,7 @@ if [ $IS_MANJARO = true ]; then
     #
     # ==> ADD "bootsplash-manjaro" to HOOKS
     #' | sudo tee -a /etc/mkinitcpio.conf
-
+    
     errorCheck "convert add bootsplash"
     echo '#
 #
@@ -219,8 +179,7 @@ fi
 if [ $IS_ARCO = true ]; then
     sudo convert /usr/share/backgrounds/archlinux-login-backgrounds/background15.jpg /usr/share/grub/themes/Vimix/background.png
     errorCheck "convert arcolinux grub image"
-    sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/Vimix\/theme.txt"/g' </etc/default/grub >grub
-    sudo mv -f grub /etc/default
+    sudo sed -i 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/Vimix\/theme.txt"/g' /etc/default/grub
     errorCheck "move arcolinux grub file"
 fi
 

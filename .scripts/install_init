@@ -15,23 +15,17 @@ sound count-down &
 
 # Config pacman
 if [ -f /etc/pacman.conf ]; then
-	sed 's/^#Color$/Color/g' </etc/pacman.conf >pacman.conf
-	sudo mv pacman.conf /etc/
-	sed 's/^.*ParallelDownloads.*$/ParallelDownloads = 10/g' </etc/pacman.conf >pacman.conf
-	sudo mv pacman.conf /etc/
-	sed 's/^.*VerbosePkgLists.*$/VerbosePkgLists/g' </etc/pacman.conf >pacman.conf
-	sudo mv pacman.conf /etc/
+	sudo sed -i 's/^#Color$/Color/g' /etc/pacman.conf
+	sudo sed -i 's/^.*ParallelDownloads.*$/ParallelDownloads = 10/g' /etc/pacman.conf
+	sudo sed -i 's/^.*VerbosePkgLists.*$/VerbosePkgLists/g' /etc/pacman.conf
 	errorCheck "pacman config"
 fi
 
 # Config pamac
 if [ -f /etc/pamac.conf ]; then
-	sed 's/^.*ILoveCandy$/ILoveCandy/g' </etc/pamac.conf >pamac.conf
-	sudo mv pamac.conf /etc/
-	sed 's/^.*EnableAUR$/EnableAUR/g' </etc/pamac.conf >pamac.conf
-	sudo mv pamac.conf /etc/
-	sed 's/^.*KeepBuiltPkgs$/KeepBuiltPkgs/g' </etc/pamac.conf >pamac.conf
-	sudo mv pamac.conf /etc/
+	sudo sed -i 's/^.*ILoveCandy$/ILoveCandy/g' /etc/pamac.conf
+	sudo sed -i 's/^.*EnableAUR$/EnableAUR/g' /etc/pamac.conf
+	sudo sed -i 's/^.*KeepBuiltPkgs$/KeepBuiltPkgs/g' /etc/pamac.conf
 	errorCheck "pamac config"
 fi
 
