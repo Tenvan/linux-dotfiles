@@ -57,6 +57,7 @@ install lsd
 install micro
 install polkit
 install ranger
+install python2-bin
 
 # base install awesome 
 if [ $IS_MANJARO = true ]; then

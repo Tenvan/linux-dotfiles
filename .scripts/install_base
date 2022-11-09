@@ -52,7 +52,6 @@ install dnsutils
 install docker
 install docker-compose
 install dpkg
-install ejectsy
 install exa
 install feh
 install ffmpeg
@@ -123,7 +122,6 @@ install system-monitoring-center
 install time
 install timeshift
 install toilet
-install toilet-fonts
 install unclutter
 install unrar
 install upower
@@ -165,8 +163,15 @@ install sp
 install tvolnoti
 install pulseeffects-legacy
 
+install glfw-x11
+
+# Diabled Packages
+
+# python2 dependency
+uninstall ejectsy
+
 if [ $IS_ARCO = true ]; then
-    install pa-applet-git
+    # install pa-applet-git
 fi
 
 if [ $IS_MANJARO = false ]; then
@@ -248,6 +253,7 @@ if [ $IS_ARCO = true ]; then
     install arcolinux-rofi-git
     install arcolinux-rofi-themes-git
     install rofi-themes
+    install rofi-theme-fonts
 fi
 install rofi
 install rofimoji
@@ -313,7 +319,7 @@ install ripgrep
 install shellcheck
 install tar
 
-# wallpapers, themes, icons and fonts
+# wallpapers, themes and icons
 
 # themes
 # install themix-full-git
@@ -391,36 +397,6 @@ if [ $IS_MANJARO = true]; then
     install maia-cursor-theme
 fi
 
-# fonts
-install font-manager
-
-# powerline in linux console
-install awesome-terminal-fonts
-install powerline-fonts
-install powerline-console-fonts-git
-install terminus-font
-install ttf-meslo-nerd-font-powerlevel10k
-install zsh-theme-powerlevel10k
-
-# install nerd-fonts-complete
-install nerd-fonts-fira-code
-if [ $IS_MANJARO = true ]; then
-    install nerd-fonts-noto-sans-mono
-else
-    install nerd-fonts-noto
-fi
-install nerd-fonts-source-code-pro
-install nerd-fonts-terminus
-install ttf-cascadia-code
-install ttf-devicons
-install ttf-fira-code
-install ttf-iosevka
-install ttf-jetbrains-mono
-install ttf-meslo-nerd-font-powerlevel10k
-install ttf-nerd-fonts-symbols-2048-em
-install ttf-twemoji
-install ttf-weather-icons
-
 # lightdm config
 install lightdm
 install lightdm-settings
@@ -486,9 +462,6 @@ finish
 # ranger plugins
 mkdir "$HOME/.config/ranger/plugins"
 ln -sf /usr/share/ranger/plugins/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
-
-# twitter emoji font
-sudo ln -sf /usr/share/fontconfig/conf.avail/75-twemoji.conf /etc/fonts/conf.d/75-twemoji.conf
 
 # micro plugins
 micro -plugin install comment editorconfig joinLines quoter filemanager \

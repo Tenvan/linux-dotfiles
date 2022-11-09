@@ -1,0 +1,61 @@
+#!/usr/bin/env zsh
+
+. ~/.scripts/defs
+
+# Init Install
+initInstall "install_base"
+sound count-down
+
+###########################
+# collect needed packages #
+###########################
+
+# font apps
+install font-manager
+
+install toilet-fonts
+
+# powerline in linux console
+install awesome-terminal-fonts
+install powerline-fonts
+install powerline-console-fonts-git
+install terminus-font
+install zsh-theme-powerlevel10k
+# install ttf-meslo-nerd-font-powerlevel10k
+
+install nerd-fonts-complete
+
+# install nerd-fonts-fira-code
+# if [ $IS_MANJARO = true ]; then
+    # install nerd-fonts-noto-sans-mono
+# else
+    # install nerd-fonts-noto
+# fi
+# install nerd-fonts-source-code-pro
+# install nerd-fonts-terminus
+
+# ttf fonts
+install ttf-cascadia-code
+install ttf-devicons
+install ttf-fira-code
+install ttf-iosevka
+install ttf-jetbrains-mono
+# install ttf-nerd-fonts-symbols-2048-em
+install ttf-twemoji
+install ttf-weather-icons
+
+###############################
+# uninstall unneeded packages #
+###############################
+fullUninstall
+
+#################################
+# install all (needed) packages #
+#################################
+fullInstall
+
+# twitter emoji font
+sudo ln -sf /usr/share/fontconfig/conf.avail/75-twemoji.conf /etc/fonts/conf.d/75-twemoji.conf
+
+## FINISHING #
+finish

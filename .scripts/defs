@@ -35,26 +35,27 @@ PACKER="$PACTOOL"
 ERROR_PAKAGE_UNINST=
 ERROR_PAKAGE_INST=
 
+echo "Linux Version => $LINUX_VERSION_NAME"
+
 if [ $LINUX_VERSION_NAME = "Arch" ]; then
     IS_ARCH=true
+    echo "Linx Distro   -> ArchLinux"
 fi
 
 if [ $LINUX_VERSION_NAME = "ArcoLinux" ]; then
     IS_ARCO=true
+    echo "Linx-Distro   -> ArcoLinux"
 fi
 
 if [ $LINUX_VERSION_NAME = "ManjaroLinux" ]; then
     IS_MANJARO=true
+    echo "Linx-Distro   -> Mnajaro"
 fi
 
-# echo "Linux Version.: $LINUX_VERSION_NAME"
-# echo "IsArch........: $IS_ARCH"
-# echo "IsArco........: $IS_ARCO"
-# echo "IsManjaro.....: $IS_MANJARO"
-# echo "AUR Manager...: $PACKER"
+echo "AUR Manager...: $PACKER"
 
 MAKEFLAGS="-j$(nproc)"
-PAKKER_ALL="--color always --needed --useask --overwrite \* $@"
+PAKKER_ALL="--color always --needed --useask --overwrite \* --failfast --stats $@"
 
 initInstall() {
     INSTALL_SCRIPT=$1
