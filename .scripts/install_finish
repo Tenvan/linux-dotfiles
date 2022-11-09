@@ -43,10 +43,9 @@ errorCheck "copy screenlayout"
 ###############################
 # ==> Settings Display Mnager #
 ###############################
-if [ $IS_ARCO = true]; then
-    sudo systemctl disable lightdm.service
-    sudo systemctl enable sddm.service
-else
+sudo systemctl disable sddm.service
+sudo systemctl enable lightdm.service
+
     # GREETER="lightdm-gtk-greeter"
     GREETER="lightdm-slick-greeter"
     
@@ -71,12 +70,14 @@ else
     
     # config slick-greeter
     GREETER_THEME="$MAIN_THEME"
+    GREETER_ICON="$ICON_THEME"
+    GREETER_CURSOR="$CURSOR_THEME"
+    
     if [ $IS_MANJARO = true ]; then
         GREETER_BACKGROUND="/usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg"
-        # GREETER_BACKGROUND="/usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-dog.jpg"
     elif [ $IS_ARCO = true ]; then
-        GREETER_BACKGROUND="/usr/share/backgrounds/arcolinux/arco-wallpaper.jpg"
-        GREETER_THEME="Arc-Paper-dark"
+        GREETER_BACKGROUND="/usr/share/backgrounds/arcolinux/arco-login.jpg"
+        GREETER_THEME="Arc-Dark"
     else
         GREETER_BACKGROUND="/usr/share/backgrounds/desert.png"
     fi
@@ -117,28 +118,28 @@ else
 [Greeter]
 activate-numlock=true
 background=$GREETER_BACKGROUND
-draw-user-backgrounds=false
+draw-user-backgrounds=true
 draw-grid=true
 show-hostname=true
 show-power=true
 show-a11y=false
 show-quit=true
 theme-name=$GREETER_THEME
-icon-theme-name=Papirus-Dark
+icon-theme-$GREETER_ICON
 font-name='Noto Sans Bold 20'
 xft-antialias=true
 xft-dpi=144
 xft-hintstyle=hintfull
 enable-hidpi=off
 #enable-hidpi=on
-cursor-theme-name=Bibata-Modern-Ice
+cursor-theme-name=$GREETER_CURSOR
     " | sudo tee /etc/lightdm/slick-greeter.conf
     sudo micro /etc/lightdm/slick-greeter.conf
     errorCheck "display manager config"
 
     sudo systemctl enable lightdm.service
     sudo systemctl disable sddm.service
-fi
+    
 ###############################
 # <== Settings Display Mnager #
 ###############################
@@ -190,16 +191,9 @@ sed 's/.*GRUB_TERMINAL_OUTPUT=.*$/#GRUB_TERMINAL_INPUT=console/g' </etc/default/
 sudo mv -f grub /etc/default
 
 if [ $IS_MANJARO = true ]; then
-    sudo convert /usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-cat.jpg /usr/share/grub/themes/manjaro/background.png
-    # sudo convert /usr/share/backgrounds/manjaro-wallpapers-18.0/manjaro-dog.jpg /usr/share/grub/themes/manjaro/background.png
-    # sudo convert /usr/share/backgrounds/leather-dark.jpg /usr/share/grub/themes/manjaro/background.png
-    errorCheck "convert manjaro grub image"
     sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/manjaro\/theme.txt"/g' </etc/default/grub >grub
     sudo mv -f grub /etc/default
-    errorCheck "move manjaro grub file"
     sudo cp $SCRIPTS/setup/manjaro-cat.png /usr/share/grub/themes/manjaro/background.png
-    sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/manjaro\/theme.txt"/g' </etc/default/grub >grub
-    sudo mv -f grub /etc/default
     echo '#
 #
 # ==> ADD "bootsplash.bootfile=bootsplash-themes/manjaro/bootsplash" to GRUB_CMDLINE_LINUX_DEFAULT
@@ -209,6 +203,25 @@ if [ $IS_MANJARO = true ]; then
     #
     # ==> ADD "bootsplash-manjaro" to HOOKS
     #' | sudo tee -a /etc/mkinitcpio.conf
+
+    errorCheck "convert add bootsplash"
+    echo '#
+#
+# ==> ADD "bootsplash.bootfile=bootsplash-themes/manjaro/bootsplash" to GRUB_CMDLINE_LINUX_DEFAULT
+#' | sudo tee -a /etc/default/grub
+
+    echo '#
+    #
+    # ==> ADD "bootsplash-manjaro" to HOOKS
+    #' | sudo tee -a /etc/mkinitcpio.conf
+fi
+
+if [ $IS_ARCO = true ]; then
+    sudo convert /usr/share/backgrounds/archlinux-login-backgrounds/background15.jpg /usr/share/grub/themes/Vimix/background.png
+    errorCheck "convert arcolinux grub image"
+    sed 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/Vimix\/theme.txt"/g' </etc/default/grub >grub
+    sudo mv -f grub /etc/default
+    errorCheck "move arcolinux grub file"
 fi
 
 errorCheck "grub config"

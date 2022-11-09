@@ -328,6 +328,7 @@ install tar
 if [ $IS_ARCO = true ]; then
     install arcolinux-arc-archlinux-blue-git
     install arcolinux-arc-arcolinux-blue-git
+    install arcolinux-arc-paper-git
     install arcolinux-arc-smoke-git
     install arcolinux-arc-soft-blue-git
 fi
