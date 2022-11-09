@@ -78,25 +78,26 @@ else
     GREETER_BACKGROUND="/usr/share/backgrounds/desert.png"
 fi
 
-sudo sed -i "s/^.*background.*=.*$/background=$GREETER_BACKGROUND/g" /etc/lightdm/lightdm-gtk-greeter.conf
-
+sudo sed -i "s/^.*background.*=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
 sudo sed -i "s/^.*theme-name=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
 sudo sed -i "s/^.*icon-theme-name=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
 sudo sed -i "s/^.*cursor-theme-name=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
-echo "theme-name=$GREETER_THEME
+echo "background=$GREETER_BACKGROUND
+theme-name=$GREETER_THEME
 icon-theme-name=$GREETER_ICON
 cursor-theme-name=$GREETER_CURSOR" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
 sudo micro /etc/lightdm/lightdm-gtk-greeter.conf
 
-sudo sed -i "s/^.*background.*=.*$/background=$GREETER_BACKGROUND/g" /etc/lightdm/slick-greeter.conf
-sudo sed -i "s/^.*enable-hidpi.*=.*$/#enable-hidpi=on/g" /etc/lightdm/slick-greeter.conf
-
+sudo sed -i "s/^.*background.*=.*$//g" /etc/lightdm/slick-greeter.conf
+sudo sed -i "s/^.*enable-hidpi.*=.*$//g" /etc/lightdm/slick-greeter.conf
 sudo sed -i "s/^.*theme-name.*=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
 sudo sed -i "s/^.*icon-theme.*=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
 sudo sed -i "s/^.*cursor-theme-name.*=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
-echo "theme-name=$GREETER_THEME
+echo "background=$GREETER_BACKGROUND
+theme-name=$GREETER_THEME
 icon-theme=$GREETER_ICON
-cursor-theme-name=$GREETER_CURSOR" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
+cursor-theme-name=$GREETER_CURSOR
+#enable-hidpi=on" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
 sudo micro /etc/lightdm/slick-greeter.conf
 
 errorCheck "display manager config"
