@@ -1,8 +1,8 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 sudo pacman -Syy --needed lsb-release
 
-. ~/.scripts/defs
+source "$HOME/.scripts/defs"
 
 if [ $IS_MANJARO = true ]; then
 	sudo pacman -S --needed yay

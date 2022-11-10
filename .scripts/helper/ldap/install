@@ -19,7 +19,7 @@ sudo docker exec $ldap_container_name ldapsearch -x -H ldap://localhost -b dc=$d
 
 # Admin Container erstellen und starten
 sudo docker run -dit --privileged --restart always \
-	 -p $admin_port:443 \
+	-p $admin_port:443 \
      --name $admin_container_name \
      --hostname $admin_host_name \
      --link $ldap_container_name:ldap-host \

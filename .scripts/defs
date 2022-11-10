@@ -179,7 +179,7 @@ expand() {
 
 prepare_sessiondown() {
     # Custom Script ausführen
-    sessiondownscript="$CUSTOMS/sessiondown"
+    sessiondownscript="$CUSTOMS/sessiondown.sh"
     if [ ! -f "$sessiondownscript" ]; then
         $sessiondownscript
     fi

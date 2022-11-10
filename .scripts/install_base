@@ -1,6 +1,6 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
-. ~/.scripts/defs
+source "$HOME/.scripts/defs"
 
 # Init Install
 initInstall "install_base"
@@ -81,7 +81,7 @@ install lhasa
 install libgnome-keyring
 install libsecret
 install light
-install lscolors-git
+install lscolors
 install lsd
 install luacheck
 install lxsession
@@ -171,7 +171,7 @@ install glfw-x11
 uninstall ejectsy
 
 if [ $IS_ARCO = true ]; then
-    # install pa-applet-git
+    install pa-applet-git
 fi
 
 if [ $IS_MANJARO = false ]; then
@@ -321,10 +321,6 @@ install tar
 
 # wallpapers, themes and icons
 
-# themes
-# install themix-full-git
-# install themix-plugin-base16-git
-
 if [ $IS_ARCO = true ]; then
     install arcolinux-arc-archlinux-blue-git
     install arcolinux-arc-arcolinux-blue-git
@@ -352,15 +348,9 @@ if [ $IS_MANJARO = true ]; then
 fi
 
 if [ $IS_ARCO = true ]; then
-    install surfn-icons-git
     install paper-icon-theme
     install papirus-icon-theme
-    # install tela-icon-theme
     
-    # install sardi-colora-variations-icons-git
-    # install sardi-flat-colora-variations-icons-git
-    # install sardi-flat-mint-y-icons-git
-    # install sardi-flat-mixing-icons-git
     install sardi-flexible-colora-variations-icons-git
     install sardi-flexible-luv-colora-variations-icons-git
     install sardi-flexible-mint-y-icons-git
@@ -373,21 +363,20 @@ if [ $IS_ARCO = true ]; then
     install edu-system-git
     install edu-skel-git
     install arcolinux-meta-sddm-themes
-    install sddm-config-editor-git
     install archlinux-login-backgrounds-git
     
-    install arcolinux_repo_3party/grub-theme-whitesur-whitesur-4k-git
-    install arcolinux_repo_3party/grub-theme-whitesur-white-4k-git
-    install arcolinux_repo_3party/grub-theme-whitesur-color-4k-git
+    install arcolinux_repo_3party/grub-theme-vimix-whitesur-ultrawide-git
+    install arcolinux_repo_3party/grub-theme-vimix-whitesur-1080p-git
+    install arcolinux_repo_3party/grub-theme-vimix-whitesur-2k-git
     install arcolinux_repo_3party/grub-theme-vimix-whitesur-4k-git
+    install arcolinux_repo_3party/grub-theme-vimix-white-ultrawide-git
+    install arcolinux_repo_3party/grub-theme-vimix-white-1080p-git
+    install arcolinux_repo_3party/grub-theme-vimix-white-2k-git
     install arcolinux_repo_3party/grub-theme-vimix-white-4k-git
+    install arcolinux_repo_3party/grub-theme-vimix-color-ultrawide-git
+    install arcolinux_repo_3party/grub-theme-vimix-color-1080p-git
+    install arcolinux_repo_3party/grub-theme-vimix-color-2k-git
     install arcolinux_repo_3party/grub-theme-vimix-color-4k-git
-    install arcolinux_repo_3party/grub-theme-tela-whitesur-4k-git
-    install arcolinux_repo_3party/grub-theme-tela-white-4k-git
-    install arcolinux_repo_3party/grub-theme-tela-color-4k-git
-    install arcolinux_repo_3party/grub-theme-stylish-whitesur-4k-git
-    install arcolinux_repo_3party/grub-theme-stylish-white-4k-git
-    install arcolinux_repo_3party/grub-theme-stylish-color-4k-git
 fi
 
 # cursor

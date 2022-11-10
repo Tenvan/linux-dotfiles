@@ -1,6 +1,9 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
-. ~/.scripts/defs
+source "$HOME/.scripts/defs"
+
+sudo timeshift --create --comments "before install_finish"
+errorCheck "timeshift"
 
 # Init Install
 initInstall "install_finish"
@@ -14,6 +17,7 @@ fi
 
 install docker
 install lightdm
+install lightdm-gtk-greeter
 
 ###############################
 # uninstall unneeded packages #
@@ -85,20 +89,12 @@ sudo sed -i "s/^.*cursor-theme-name=.*$//g" /etc/lightdm/lightdm-gtk-greeter.con
 echo "background=$GREETER_BACKGROUND
 theme-name=$GREETER_THEME
 icon-theme-name=$GREETER_ICON
-cursor-theme-name=$GREETER_CURSOR" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
-sudo micro /etc/lightdm/lightdm-gtk-greeter.conf
-
-sudo sed -i "s/^.*background.*=.*$//g" /etc/lightdm/slick-greeter.conf
-sudo sed -i "s/^.*enable-hidpi.*=.*$//g" /etc/lightdm/slick-greeter.conf
-sudo sed -i "s/^.*theme-name.*=.*$//g" /etc/lightdm/slick-greeter.conf
-sudo sed -i "s/^.*icon-theme.*=.*$//g" /etc/lightdm/slick-greeter.conf
-sudo sed -i "s/^.*cursor-theme-name.*=.*$//g" /etc/lightdm/slick-greeter.conf
-echo "background=$GREETER_BACKGROUND
-theme-name=$GREETER_THEME
-icon-theme=$GREETER_ICON
 cursor-theme-name=$GREETER_CURSOR
-#enable-hidpi=on" | sudo tee -a /etc/lightdm/slick-greeter.conf
-sudo micro /etc/lightdm/slick-greeter.conf
+# 1080p Monitor
+xft-dpi=144
+# 4k Monitor
+#xft-dpi=200" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
+sudo micro /etc/lightdm/lightdm-gtk-greeter.conf
 
 errorCheck "display manager config"
 

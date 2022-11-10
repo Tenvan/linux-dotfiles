@@ -1,6 +1,6 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
-. ~/.scripts/defs
+source "$HOME/.scripts/defs"
 
 # Init Install
 initInstall "install_vm"

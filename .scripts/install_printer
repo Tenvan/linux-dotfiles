@@ -1,5 +1,6 @@
-#!/usr/bin/env zsh
-. ~/.scripts/defs
+#!/usr/bin/env bash
+
+source "$HOME/.scripts/defs"
 
 # Init Install
 initInstall "install_printer"

@@ -10,4 +10,3 @@ echo "Login DN: cn=$admin,dc=$domain_host,dc=$domain_suffix"
 echo "Password: $adminpw"
 
 xdg-open "https://$PHPLDAP_IP"
-

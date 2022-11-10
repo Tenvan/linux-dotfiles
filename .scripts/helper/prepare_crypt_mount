@@ -1,29 +1,39 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
-sudo mkdir /media
-sudo mkdir /media/WORKSPACE
-sudo mkdir /media/BIGDATA
-sudo mkdir /media/VM
-sudo mkdir /media/BACKUP
+MOUNT_BASE="/media"
 
-sudo cryptsetup luksAddKey /dev/disk/by-partlabel/WORKSPACE /crypto_keyfile.bin
-sudo cryptsetup luksAddKey /dev/disk/by-partlabel/BACKUP /crypto_keyfile.bin
-sudo cryptsetup luksAddKey /dev/disk/by-partlabel/BIGDATA /crypto_keyfile.bin
+for PART in \
+"BACKUP" \
+"BIGDATA" \
+"HD_BACKUP" \
+"VM" \
+"WORKSPACE"
+do
+    NAMED_PART="/dev/disk/by-partlabel/$PART"
+    MOUNT_PART="$MOUNT_BASE/$PART"
+    MAPPER_PART="/dev/mapper/$PART"
+    
+    if [ -b "$NAMED_PART" ]; then
+        echo "PARTITION $NAMED_PART found."
+        
+        echo "Prepare Mount $MOUNT_PART."
+        sudo mkdir -p "$MOUNT_PART"
+        
+        echo "Add LUKS Key for $NAMED_PART:"
+        sudo cryptsetup luksAddKey $NAMED_PART /crypto_keyfile.bin
+        
+        echo "Add $NAMED_PART to /etc/crypttab file"
+        echo "$PART  $NAMED_PART    /crypto_keyfile.bin luks" | sudo tee -a /etc/crypttab
+        
+        echo "Add Mount $MAPPER_PART to /etc/fstab file"
+        echo "$MAPPER_PART	$MOUNT_PART ext4    defaults,noatime 0 2" | sudo tee -a /etc/fstab
+    fi
+done
 
-echo "# Custom LUKS
-# Custom LUKS
-WORKSPACE   /dev/disk/by-partlabel/WORKSPACE    /crypto_keyfile.bin luks
-BACKUP      /dev/disk/by-partlabel/BACKUP       /crypto_keyfile.bin luks
-BIGDATA     /dev/disk/by-partlabel/BIGDATA      /crypto_keyfile.bin luks
-VM          /dev/disk/by-partlabel/VM           /crypto_keyfile.bin luks
-" | sudo tee -a /etc/crypttab
+sudo micro /etc/crypttab /etc/fstab
 
-echo "# Custom Mounts
-/dev/mapper/WORKSPACE	/media/WORKSPACE	ext4    defaults,noatime 0 2
-/dev/mapper/BACKUP		/media/BACKUP		ext4    defaults,noatime 0 2
-/dev/mapper/BIGDATA		/media/BIGDATA		ext4    defaults,noatime 0 2
-/dev/mapper/VM          /media/VM           ext4    defaults,noatime 0 2
-" | sudo tee -a /etc/fstab
-
+echo "Reload Mount-Daemon."
 sudo systemctl daemon-reload
+
+echo "Mount all Partitons."
 sudo mount --all

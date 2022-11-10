@@ -1,5 +1,6 @@
-#!/usr/bin/env zsh
-. ~/.scripts/defs
+#!/usr/bin/env bash
+
+source "$HOME/.scripts/defs"
 
 # Init Install
 initInstall "install_apps"
@@ -70,9 +71,6 @@ install freerdp
 # File Indexing
 install fsearch
 
-# Audio Radio
-install radiotray-ng
-
 # jetbrains apps
 install jetbrains-toolbox
 
@@ -93,7 +91,7 @@ finish
 sudo ln -f -s /bin/true /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
 
 # flatpaks
-# flatpak install shortwave
+flatpak install shortwave
 # flatpak install bottles
 
 sudo flatpak override --env=GTK_THEME=Adwaita:dark

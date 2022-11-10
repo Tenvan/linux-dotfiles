@@ -1,6 +1,6 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
-. ~/.scripts/defs
+source "$HOME/.scripts/defs"
 
 # Init Install
 initInstall "install_base"
@@ -42,7 +42,7 @@ install ttf-iosevka
 install ttf-jetbrains-mono
 # install ttf-nerd-fonts-symbols-2048-em
 install ttf-twemoji
-install ttf-weather-icons
+install ttf-all-the-icons
 
 ###############################
 # uninstall unneeded packages #

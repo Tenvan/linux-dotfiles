@@ -1,5 +1,6 @@
-#!/usr/bin/env zsh
-. ~/.scripts/defs
+#!/usr/bin/env bash
+
+source "$HOME/.scripts/defs"
 
 # Init Install
 initInstall "install_games"
@@ -16,11 +17,6 @@ install wesnoth
 install 0ad
 install widelands
 install runescape
-
-# gimicks
-if [ $IS_ARCO = true ]; then
-else
-fi
 
 ###############################
 # uninstall unneeded packages #

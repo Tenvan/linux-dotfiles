@@ -1,17 +1,30 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
-sudo mkdir /media
-sudo mkdir /media/WORKSPACE
-sudo mkdir /media/BIGDATA
-sudo mkdir /media/VM
-sudo mkdir /media/BACKUP
+MOUNT_BASE="/media"
 
-echo "
-/dev/disk/by-partlabel/BACKUP /media/BACKUP ext4 defaults 0 0
-/dev/disk/by-partlabel/BIGDATA /media/BIGDATA ext4 defaults 0 0
-/dev/disk/by-partlabel/WORKSPACE /media/WORKSPACE ext4 defaults 0 0
-/dev/disk/by-partlabel/VM /media/VM ext4 defaults 0 0
-" | sudo tee -a /etc/fstab
+for PART in \
+"BACKUP" \
+"BIGDATA" \
+"HD_BACKUP" \
+"VM" \
+"WORKSPACE"
+do
+    NAMED_PART="/dev/disk/by-partlabel/$PART"
+    MOUNT_PART="/$MOUNT_BASE/$PART"
+    
+    if [ -b "$NAMED_PART" ]; then
+        echo "Prepare Mount $MOUNT_PART."
+        sudo mkdir -p "$MOUNT_PART"
+        
+        echo "Add Mount $MOUNT_PART to /etc/fstab file"
+        echo "$MAPPER_PART	$MOUNT_PART ext4    defaults,noatime 0 2" | sudo tee -a /etc/fstab        
+    fi
+done
 
+sudo micro /etc/crypttab /etc/fstab
+
+echo "Reload Mount-Daemon."
 sudo systemctl daemon-reload
+
+echo "Mount all Partitons."
 sudo mount --all
