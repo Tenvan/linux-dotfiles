@@ -10,18 +10,21 @@ for PART in \
 "WORKSPACE"
 do
     NAMED_PART="/dev/disk/by-partlabel/$PART"
-    MOUNT_PART="/$MOUNT_BASE/$PART"
+    MOUNT_PART="$MOUNT_BASE/$PART"
+
     
     if [ -b "$NAMED_PART" ]; then
+        sudo umount -f "$MOUNT_PART"
+        
         echo "Prepare Mount $MOUNT_PART."
         sudo mkdir -p "$MOUNT_PART"
         
         echo "Add Mount $MOUNT_PART to /etc/fstab file"
-        echo "$MAPPER_PART	$MOUNT_PART ext4    defaults,noatime 0 2" | sudo tee -a /etc/fstab        
+        echo "$NAMED_PART   $MOUNT_PART     ext4    defaults,noatime 0 2" | sudo tee -a /etc/fstab
     fi
 done
 
-sudo micro /etc/crypttab /etc/fstab
+sudo micro /etc/fstab
 
 echo "Reload Mount-Daemon."
 sudo systemctl daemon-reload

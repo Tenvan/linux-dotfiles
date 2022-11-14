@@ -32,10 +32,10 @@ fi
 # system packages
 install acpi
 install acpid
-install alttab-git
+uninstall alttab-git
 install at
 install arandr
-install archivefs
+uninstall archivefs
 install arj
 install ark
 install bashtop
@@ -57,9 +57,9 @@ install feh
 install ffmpeg
 install flameshot
 install fzf
-install genius
+uninstall genius
 install glances
-install glogg
+uninstall glogg
 install gnome-keyring
 install gparted
 install gpick
@@ -67,9 +67,9 @@ install grc
 install gtop
 install gvfs-smb
 install hardinfo
-install hstr
+uninstall hstr
 install htop
-install ibus-daemon
+uninstall ibus-daemon
 install iftop
 install inotify-tools
 install iotop
@@ -81,13 +81,13 @@ install lhasa
 install libgnome-keyring
 install libsecret
 install light
-install lscolors
+uninstall lscolors
 install lsd
 install luacheck
 install lxsession
 install mpc
 install mpd
-install mpdris2
+uninstall mpdris2
 install mpv
 install multitail
 install ncmpcpp
@@ -112,7 +112,7 @@ install qjournalctl
 install ranger
 install redshift
 install ripgrep
-install rsyslog
+uninstall rsyslog
 install s-tui
 install scrot
 install shell-color-scripts
@@ -150,7 +150,7 @@ install polkit
 # sound setup
 install alsa-oss
 install alsa-utils
-install gst123
+uninstall gst123
 install livecd-sounds
 install pamixer
 install paprefs
@@ -159,9 +159,9 @@ install pavucontrol
 install pnmixer
 install ponymix
 install sound-theme-smooth
-install sp
+uninstall sp
 install tvolnoti
-install pulseeffects-legacy
+uninstall pulseeffects-legacy
 
 install glfw-x11
 
@@ -169,10 +169,6 @@ install glfw-x11
 
 # python2 dependency
 uninstall ejectsy
-
-if [ $IS_ARCO = true ]; then
-    install pa-applet-git
-fi
 
 if [ $IS_MANJARO = false ]; then
     install pulseaudio-alsa
@@ -222,15 +218,15 @@ install network-manager-applet
 install qt5ct
 install qt5gtk2
 install qt5-styleplugins
-install gtk-theme-switch2
+uninstall gtk-theme-switch2
 install gtk-engine-murrine
 
 # file manager
 install mc
-install rnr-fm
+uninstall rnr-fm
 install ranger
 install ranger_devicons-git
-install ufraw-thumbnailer
+uninstall ufraw-thumbnailer
 
 # Nemo
 install cinnamon-translations

@@ -95,4 +95,5 @@ local config = {
   },
 }
 
+-- TODO Config-Files einlesen (default und custom)
 return config
