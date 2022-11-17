@@ -14,5 +14,6 @@ else
     done
     
     notify-send.sh "Picom loaded" "$PICOM_CONF"
-    picom -b --experimental-backends --dbus --config "$PICOM_CONF" &
+    picom -b --dbus --config "$PICOM_CONF" &
+    # picom -b --dbus --config "$PICOM_CONF" &
 fi

@@ -12,7 +12,7 @@ local icons = require('theme.icons')
 local clickable_container = require('widget.clickable-container')
 
 local action_name = wibox.widget {
-  text = 'Blur Strength',
+  text = 'Blur Deviation',
   font = beautiful.font,
   align = 'left',
   widget = wibox.widget.textbox
@@ -43,7 +43,7 @@ local action_level = wibox.widget {
 local slider = wibox.widget {
   nil,
   {
-    id                  = 'blur_strength_slider',
+    id                  = 'blur_deviation_slider',
     bar_shape           = gears.shape.rounded_rect,
     bar_height          = dpi(2),
     bar_color           = '#ffffff20',
@@ -62,18 +62,18 @@ local slider = wibox.widget {
   layout = wibox.layout.align.vertical
 }
 
-local blur_slider = slider.blur_strength_slider
+local blur_slider = slider.blur_deviation_slider
 
 local update_slider_value = function()
   awful.spawn.easy_async_with_shell(
     [[bash -c "
-		grep -F 'strength =' $HOME/.config/awesome/configuration/picom.conf | 
+		grep -F 'deviation =' $HOME/.config/awesome/configuration/picom.conf | 
 		awk 'NR==1 {print $3}' | tr -d ';'
 		"]],
     function(stdout, stderr)
-      local strength = stdout:match('%d+')
-      blur_strength = tonumber(strength) / 20 * 100
-      blur_slider:set_value(tonumber(blur_strength))
+      local deviation = stdout:match('%d+')
+      local blur_deviation = tonumber(deviation) / 20 * 100
+      blur_slider:set_value(tonumber(blur_deviation))
       start_up = false
     end
   )
@@ -114,7 +114,7 @@ action_level:buttons(
 local adjust_blur = function(power)
   awful.spawn.with_shell(
     [[bash -c "
-		sed -i 's/.*strength = .*/  strength = ]] .. power .. [[;/g' \
+		sed -i 's/.*deviation = .*/  deviation = ]] .. power .. [[;/g' \
 		$HOME/.config/awesome/configuration/picom.conf
 		"]]
   )
@@ -124,13 +124,13 @@ blur_slider:connect_signal(
   'property::value',
   function()
     if not start_up then
-      local strength = math.floor(blur_slider:get_value() / 50 * 10)
-      adjust_blur(strength)
+      local deviation = math.floor(blur_slider:get_value() / 50 * 10)
+      adjust_blur(deviation)
     end
   end
 )
 
--- Adjust slider value to change blur strength
+-- Adjust slider value to change blur deviation
 awesome.connect_signal(
   'widget::blur:increase',
   function()
