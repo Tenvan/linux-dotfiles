@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-. $SCRIPTS/defs
+
+. ~/.script/defs
 
 SINK_COUNT=$(ponymix list-short --sink | wc -l)
 SINKS_JOB="$(ponymix list-short --sink)"

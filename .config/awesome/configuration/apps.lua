@@ -69,11 +69,9 @@ local apps = {
 
     -- You can add more start-up applications here
     -- 'xfce4-power-manager',
-    '$HOME/.bin/volume-osd',
     'pamac-tray',
     'nm-applet',
     'pasystray',
-    'alttab -n 1',
     'flameshot',
     'copyq',
     'eject-applet',

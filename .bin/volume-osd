@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-. $SCRIPTS/defs
+
+. ~/.script/defs
 
 OLD_VOL=0
 OLD_MUTE="[on]"
