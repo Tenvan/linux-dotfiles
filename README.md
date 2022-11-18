@@ -57,7 +57,8 @@ LightDm lädt die User-Konfigurationsdateien in folgender Reihenfolge:
 
 ### notify-send Hints
 
-+------------------------------------------------------------------------+
+```
+   +------------------------------------------------------------------------+
    |       Name       | Value Type |              Description               |
    |------------------+------------+----------------------------------------|
    | "urgency"        | byte       |   The urgency level.                   |
@@ -101,9 +102,10 @@ LightDm lädt die User-Konfigurationsdateien in folgender Reihenfolge:
    |                  |            | point to. The "x" hint must also be    |
    |                  |            | specified.                             |
    +------------------------------------------------------------------------+
+
 ### notify-send Kategorien
 
-+------------------------------------------------------------------------+
+   +------------------------------------------------------------------------+
    |          Type          |                  Description                  |
    |------------------------+-----------------------------------------------|
    | "device"               |   A generic device-related notification that  |
@@ -165,3 +167,5 @@ LightDm lädt die User-Konfigurationsdateien in folgender Reihenfolge:
    |------------------------+-----------------------------------------------|
    | "transfer.error"       | A file transfer or download error.            |
    +------------------------------------------------------------------------+
+   
+  ```
