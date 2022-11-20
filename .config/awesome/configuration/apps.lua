@@ -57,6 +57,7 @@ local apps = {
     -- Blueman applet
     -- 'blueman-applet',
     -- Polkit and keyring
+    'lxsession',
     -- '/usr/bin/lxqt-policykit-agent &' ..	' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
     -- '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &' .. ' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
     -- Audio equalizer

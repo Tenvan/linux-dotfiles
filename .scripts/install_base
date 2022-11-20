@@ -112,7 +112,6 @@ install qjournalctl
 install ranger
 install redshift
 install ripgrep
-uninstall rsyslog
 install s-tui
 install scrot
 install shell-color-scripts
@@ -142,6 +141,7 @@ install xorg-xsetroot
 install xscreensaver
 install xsel
 install xwallpaper
+install eject-applet
 
 # polkits
 install polkit-gnome
@@ -150,7 +150,6 @@ install polkit
 # sound setup
 install alsa-oss
 install alsa-utils
-uninstall gst123
 install livecd-sounds
 install pamixer
 install paprefs
@@ -159,16 +158,10 @@ install pavucontrol
 install pnmixer
 install ponymix
 install sound-theme-smooth
-uninstall sp
+install sp
 install tvolnoti
-uninstall pulseeffects-legacy
 
 install glfw-x11
-
-# Diabled Packages
-
-# python2 dependency
-uninstall ejectsy
 
 if [ $IS_MANJARO = false ]; then
     install pulseaudio-alsa
