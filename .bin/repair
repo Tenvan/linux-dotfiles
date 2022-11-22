@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sudo pamac build --no-confirm qt5-styleplugins
+rm -fr .zinit

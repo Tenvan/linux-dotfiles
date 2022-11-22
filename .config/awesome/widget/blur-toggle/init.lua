@@ -1,6 +1,6 @@
 local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local awful      = require('awful')
 local wibox      = require('wibox')
@@ -81,10 +81,10 @@ local toggle_blur = function(togglemode)
 
 	case ]] .. togglemode .. [[ in
 		'enable')
-		sed -i -e 's/method = \"none\"/method = \"dual_kawase\"/g' \"]] .. config_dir .. [[configuration/picom.conf\"
+		sed -i -e 's/method = \"none\"/method = \"gaussian\"/g' \"]] .. config_dir .. [[configuration/picom.conf\"
 		;;
 		'disable')
-		sed -i -e 's/method = \"dual_kawase\"/method = \"none\"/g' \"]] .. config_dir .. [[configuration/picom.conf\"
+		sed -i -e 's/method = \"gaussian\"/method = \"none\"/g' \"]] .. config_dir .. [[configuration/picom.conf\"
 		;;
 	esac
 	"]]

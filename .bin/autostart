@@ -1,10 +1,6 @@
-
 #!/usr/bin/env bash
-export SCRIPTS="$HOME/.scripts"
 
-. $SCRIPTS/defs
-
-$SCRIPTS/picom-toggle-awesome.sh
+~/.script/picom-toggle-awesome.sh
 
 #==============
 # System tools
@@ -13,9 +9,9 @@ $SCRIPTS/picom-toggle-awesome.sh
 # /usr/bin/lxqt-policykit-agent & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
 # run /usr/lib/xfce-polkit/xfce-polkit
 # run lxqt-policykit-agent
-# run /usr/lib/polkit-gnome/polkit-gno0me-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
-run lxsession
-# run xfce4-session
+# run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
+# run lxsession
+
 # run ibus-daemon -d -x
 # run unclutter --root --timeout 3
 # run xfce4-power-manager

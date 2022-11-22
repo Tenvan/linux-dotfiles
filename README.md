@@ -3,7 +3,8 @@
 - Komplett konfigurierter Awesome-Desktop.
 - Support für Dual-Monitor
 
-Als Basis dient eine Manajaro Full Cinnamon Installation, oder eine vergleichbare.
+Als Basis dient eine eine beliebige ArchLinux/Manjaro Installation.
+Alle benötigten Packete werden mit Scripts nach installiert.
 
 ## Installation
 
@@ -30,19 +31,28 @@ chmod +x .bin/*
 chmod +x .scripts/*
 ```
 
-### Installation Softwarepaket mit folgenden Scripten
+### Installation Softwarepaket mit folgenden Scripten (erforderlich)
 
 ```bash
 install_init.zsh
 install_base.zsh
+install_fonts.zsh
 install_finish.zsh
+```
+### Zusatz Packete installieren (optional)
+
+```bash
+install_apps.zsh
+install_arduino.zsh
+install_vm.zsh
+install_games.zsh
+install_printer.zsh
 ```
 
 ## Manuelle Konfiguration
 
 ### Monitor Definition erstellen
-
-Mit 'arandr' die Monitoreinstellung vornehmen und in der Datei '~/.screenlayout/screenlayout.sh' speichern.
+Mit 'arandr' die Monitoreinstellung vornehmen und in der Datei '~/.screenlayout/screenlayout-system.sh' speichern.
 
 Das Install-Script nochmal laufen lassen, anschließend neu booten.
 

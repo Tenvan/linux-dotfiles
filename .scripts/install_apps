@@ -68,11 +68,11 @@ install freerdp
 #install colord-sane
 #install sane
 
-# File Indexing
-install fsearch
-
 # jetbrains apps
 install jetbrains-toolbox
+
+# tools
+install translate-shell
 
 ###############################
 # uninstall unneeded packages #

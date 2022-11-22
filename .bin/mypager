@@ -1,2 +1,3 @@
-#!/bin/bash
- highlight -O xterm256 $@ | less -R
+#!/usr/bin/env bash
+
+highlight -O xterm256 $@ | less -R
