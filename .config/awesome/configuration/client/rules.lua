@@ -435,8 +435,26 @@ ruled.client.connect_signal('request::rules', function()
       fullscreen = false
     }
   }
+
+  AppendCustomRules(ruled.client)
 end)
 
+function AppendCustomRules(client)
+  local customRulesFile = os.getenv("HOME") .. '/.config/awesome/customs/awesome/rules.lua'
+  local file = io.open(customRulesFile, 'r') -- r read mode
+  if not file then
+    log("custom rule-file '" .. customRulesFile .. "' NOT found")
+    return
+  end
+
+  log("custom rule-file '" .. customRulesFile .. "' found")
+
+  local rules = require('customs.awesome.rules')
+
+  for i = 1, #rules do
+    client.append_rule(rules[i])
+  end
+end
 
 -- Normally we'd do this with a rule, but some program like spotify doesn't set its class or name
 -- until after it starts up, so we need to catch that signal.

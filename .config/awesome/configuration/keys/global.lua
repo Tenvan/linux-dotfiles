@@ -416,26 +416,26 @@ local global_keys = awful.util.table.join(
   -- ░█▀▀░█░░░█▀█░░█░░█▀▀░█▀▄░░░█░░░█░█░█░█░░█░░█▀▄░█░█░█░░
   -- ░▀░░░▀▀▀░▀░▀░░▀░░▀▀▀░▀░▀░░░▀▀▀░▀▀▀░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀
   awful.key({}, 'XF86AudioNext', function()
-    awful.spawn('playerctl next', false)
+    awful.spawn('playerctl -a next', false)
   end, {
     description = 'next music',
     group = keys.kgHotkeys
   }),
   awful.key({}, 'XF86AudioPrev', function()
-    awful.spawn('playerctl previous', false)
+    awful.spawn('playerctl -a previous', false)
   end, {
     description = 'previous music',
     group = keys.kgHotkeys
   }),
   awful.key({}, 'XF86AudioPlay', function()
-    awful.spawn('playerctl play-pause', false)
+    awful.spawn('playerctl -a play-pause', false)
   end, {
     description = 'Player Start/Pause',
     group = keys.kgHotkeys
   }),
   awful.key({}, 'XF86AudioStop', function()
-    notify('playerctl stop')
-    awful.spawn('playerctl stop', false)
+    notify('playerctl -a stop')
+    awful.spawn('playerctl -a stop', false)
   end, {
     description = 'Player Stop',
     group = keys.kgHotkeys
@@ -736,7 +736,31 @@ local global_keys = awful.util.table.join(
   end, {
     description = 'open notification center',
     group = keys.kgLauncher
-  }))
+  })
+)
+
+function GetCustomKeys()
+  local customGlobalKeys = os.getenv('HOME') .. '/.config/awesome/customs/awesome/keys-global.lua'
+  local file = io.open(customGlobalKeys, 'r') -- r read mode
+  if not file then
+    log("custom global keys '" .. customGlobalKeys .. "' NOT found")
+    return
+  end
+
+  log("custom global keys '" .. customGlobalKeys .. "' found")
+
+  local keys = require('customs.awesome.keys-global')
+
+  return keys
+end
+
+dump(global_keys, 'global keys before merge', 1)
+
+local custom_keys = GetCustomKeys()
+dump(global_keys, 'global keys', 1)
+
+global_keys = awful.util.table.join(global_keys, custom_keys)
+dump(global_keys, 'global keys after merge', 1)
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.

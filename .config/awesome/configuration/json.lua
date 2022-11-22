@@ -9,7 +9,7 @@ local config_dir = filesystem.get_configuration_dir()
 local readJson = require('utilities.json').readJsonFile
 
 local configJson = config_dir .. 'configuration/config.json'
-local customConfigJson = os.getenv('HOME') .. '/.custom/config.json'
+local customConfigJson = os.getenv('CUSTOMS') .. '/awesome/config.json'
 
 log('--> config json file: ' .. configJson)
 log('--> custom config json file: ' .. customConfigJson)

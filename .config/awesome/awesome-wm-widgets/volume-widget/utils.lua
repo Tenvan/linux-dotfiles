@@ -23,7 +23,7 @@ function utils.extract_sinks_and_sources(pacmd_output)
     local in_source = false
     local in_device = false
     local in_properties = false
-    local in_ports = false
+    local in_ports = falset
     for line in pacmd_output:gmatch("[^\r\n]+") do
         if string.match(line, 'source%(s%) available.') then
             in_sink = false

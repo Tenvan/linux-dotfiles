@@ -56,9 +56,6 @@ local apps = {
     -- '$SCRIPTS/picom-toggle-awesome.sh',
     -- Blueman applet
     -- 'blueman-applet',
-    -- Polkit and keyring
-    -- '/usr/bin/lxqt-policykit-agent &' ..	' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
-    -- '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &' .. ' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
     -- Audio equalizer
     -- 'pulseeffects --gapplication-service',
     -- Lockscreen timer
@@ -72,15 +69,14 @@ local apps = {
     '$HOME/.bin/volume-osd',
     'pamac-tray',
     'nm-applet',
-    'pasystray',
+    'pasystray --notify=all',
     'alttab -n 1',
     'flameshot',
-    'copyq',
     'eject-applet',
-    -- 'ejectsy',
-
+    'redshift-gtk',
+    'xfce4-power-manager'
+    -- 'copyq',
     -- 'teams-for-linux',
-    -- 'kdeconnect-indicator'
     -- 'xscreensaver'
     -- 'xsettingsd'
   },

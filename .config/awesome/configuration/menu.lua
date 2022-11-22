@@ -55,7 +55,7 @@ local mainmenu = freedesktop.menu.build({
 local function getMenuData(name)
   local menuJson = config_dir .. 'configuration/menu.json'
   local menus = readJson(menuJson)
-  local customMenuJson = os.getenv('CUSTOMS') .. '/menu.json'
+  local customMenuJson = os.getenv('CUSTOMS') .. '/awesome/menu.json'
   local customMenus = readJson(customMenuJson)
 
   local beforeMenu = (customMenus[name] or {}).BEFORE_MENU or {}

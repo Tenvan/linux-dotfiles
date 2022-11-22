@@ -9,11 +9,13 @@ $SCRIPTS/picom-toggle-awesome.sh
 #==============
 # System tools
 #==============
+# Polkit and keyring
+# /usr/bin/lxqt-policykit-agent & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
 # run /usr/lib/xfce-polkit/xfce-polkit
 # run lxqt-policykit-agent
-# run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
+# run /usr/lib/polkit-gnome/polkit-gno0me-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
 run lxsession
-
+# run xfce4-session
 # run ibus-daemon -d -x
 # run unclutter --root --timeout 3
 # run xfce4-power-manager
@@ -25,15 +27,18 @@ run lxsession
 # run flameshot
 # run alttab -n 1
 # run pamac-tray
+# run copyq
+# run eject-applet
+# run redshift-gtk
 
 #run blueman-tray
 #run blueman-applet
-# run nm-applet
+run nm-applet
 
 # Sound Tray Icons
 # restart start-pulseaudio-x11
 # run pa-applet
-# run pasystray
+run pasystray
 
 
 file=$HOME/.custom/autostart

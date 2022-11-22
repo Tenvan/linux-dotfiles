@@ -144,8 +144,9 @@ install xsel
 install xwallpaper
 
 # polkits
-install polkit-gnome
 install polkit
+install polkit-gnome
+install xfce-polkit
 
 # sound setup
 install alsa-oss

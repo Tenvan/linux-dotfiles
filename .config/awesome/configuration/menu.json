@@ -103,12 +103,12 @@
             "qjournalctl"
         ],
         [
-            "📛 Log Viewer (Gui)",
-            "glogg"
+            "📛 System Logs (user)",
+            "gnome-logs"
         ],
         [
-            "📛 System Logs (Gui)",
-            "sudo ksystemlog"
+            "📛 System Logs (root)",
+            "gksudo gnome-logs"
         ],
         [
             "📛 System Logs (Console)",
@@ -117,10 +117,6 @@
         [
             "📛 xsession Errors (lightdm)",
             "$TERMINAL --hold --title Sys:XSessionError multitail -cs -i $HOME/.xsession-errors"
-        ],
-        [
-            "📛 xsession Errors (sddm)",
-            "$TERMINAL --hold --title Sys:XSessionError multitail -cs -i $HOME/.local/share/sddm/xorg-session.log"
         ]
     ],
     "EDIT_CONFIG": [

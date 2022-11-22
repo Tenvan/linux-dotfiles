@@ -193,14 +193,16 @@ local client_keys = awful.util.table.join(
   end, {
     description = 'decrease floating client size vertically by 10 px down',
     group = kgClient
-  }), awful.key({ modkey, controlkey }, leftkey, function(c)
+  }),
+  awful.key({ modkey, controlkey }, leftkey, function(c)
     if c.width > 10 then
       c:relative_move(0, 0, dpi(-10), 0)
     end
   end, {
     description = 'decrease floating client size horizontally by 10 px left',
     group = kgClient
-  }), awful.key({ modkey, controlkey }, rightkey, function(c)
+  }),
+  awful.key({ modkey, controlkey }, rightkey, function(c)
     local c_width = c.width
     c:relative_move(0, 0, dpi(-10), 0)
     if c.width ~= c_width and c.width > 10 then
@@ -210,5 +212,28 @@ local client_keys = awful.util.table.join(
     description = 'decrease floating client size horizontally by 10 px right',
     group = kgClient
   }))
+
+function GetCustomKeys(client)
+  local customClientKeys = os.getenv('HOME') .. '/.config/awesome/customs/awesome/keys-client.lua'
+  local file = io.open(customClientKeys, 'r') -- r read mode
+  if not file then
+    log("custom client keys '" .. customClientKeys .. "' NOT found")
+    return
+  end
+
+  log("custom client keys '" .. customClientKeys .. "' found")
+
+  local keys = require('customs.awesome.keys-client')
+
+  return keys
+end
+
+dump(client_keys, 'client keys before merge', 1)
+
+local custom_keys = GetCustomKeys()
+dump(custom_keys, 'custom keys', 1)
+
+client_keys =  awful.util.table.join(client_keys, custom_keys)
+dump(client_keys, 'client keys after merge', 1)
 
 return client_keys
