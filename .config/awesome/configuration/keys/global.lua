@@ -754,13 +754,8 @@ function GetCustomKeys()
   return keys
 end
 
-dump(global_keys, 'global keys before merge', 1)
-
 local custom_keys = GetCustomKeys()
-dump(global_keys, 'global keys', 1)
-
 global_keys = awful.util.table.join(global_keys, custom_keys)
-dump(global_keys, 'global keys after merge', 1)
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.

@@ -8,17 +8,19 @@ gdebug.print_warning('[STARTUP]: ==============================')
 gdebug.print_warning('[STARTUP]: ==> start of loading rc.lua ==')
 gdebug.print_warning('[STARTUP]: ==============================')
 
+-- often used globals
+awful = require('awful')
+beautiful = require('beautiful')
+gears = require('gears')
+wibox = require('wibox')
+dpi = beautiful.xresources.apply_dpi
 log = require('utilities.debug').log
 trace = require('utilities.debug').trace
 dump = require('utilities.debug').dump
 notify = require('utilities.notify')
-
 log('Enter Module => rc.lua')
 
 pcall(require, 'luarocks.loader')
-local gears = require('gears')
-local beautiful = require('beautiful')
-local awful = require('awful')
 
 -- Zwölf Boxkämpfer  ==>
 
@@ -48,6 +50,11 @@ require('configuration.client')
 require('configuration.root')
 require('configuration.tags')
 root.keys(require('configuration.keys.global'))
+
+-- ░█▀▀░█▀▀░█▀▄░█░█░▀█▀░█▀▀░█▀▀░█▀▀
+-- ░▀▀█░█▀▀░█▀▄░▀▄▀░░█░░█░░░█▀▀░▀▀█
+-- ░▀▀▀░▀▀▀░▀░▀░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
+require('services')
 
 -- ░█▄█░█▀█░█▀▄░█░█░█░░░█▀▀░█▀▀
 -- ░█░█░█░█░█░█░█░█░█░░░█▀▀░▀▀█

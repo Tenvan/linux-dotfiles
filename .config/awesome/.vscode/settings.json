@@ -9,6 +9,12 @@
         "notify",
         "dump",
         "log",
-        "tag"
+        "tag",
+        "dpi",
+        "trace",
+        "beautiful",
+        "gears",
+        "wibox",
+        "awful"
     ]
 }

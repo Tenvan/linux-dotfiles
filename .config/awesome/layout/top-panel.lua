@@ -31,13 +31,15 @@ local top_panel = function(s, offset)
     end
   end)
 
-  local clock              = require('widget.clock')(s)
-  local layout_box         = require('widget.layoutbox')(s)
-  local hard_drives        = require('widget.harddrive-meter').widget
-  local weather            = require('widget.weather.weather-aw').widget
-  local systray            = require('widget.systray').widget
-  local net_speed_widget   = require('awesome-wm-widgets.net-speed-widget.net-speed')
-  local volume_widget      = require('awesome-wm-widgets.volume-widget.volume')
+  local clock            = require('widget.clock')(s)
+  local layout_box       = require('widget.layoutbox')(s)
+  local hard_drives      = require('widget.harddrive-meter').widget
+  local weather          = require('widget.weather.weather-aw').widget
+  local systray          = require('widget.systray').widget
+  local net_speed_widget = require('awesome-wm-widgets.net-speed-widget.net-speed')
+  local volume_widget    = require('awesome-wm-widgets.volume-widget.volume')
+  local spotify_widget   = require('widget.spotify')
+
   local updater            = require('widget.package-updater')()
   local screen_rec         = require('widget.screen-recorder')()
   local info_center_toggle = require('widget.info-center-toggle')()
@@ -49,10 +51,11 @@ local top_panel = function(s, offset)
         align  = 'center',
         valign = 'center',
         font   = beautiful.font_large,
-        widget = wibox.widget.textbox
+        forced_width = dpi(32),
+        widget       = wibox.widget.textbox
       },
-      margins  = dpi(2),
-      widget = wibox.container.margin
+      margins = dpi(2),
+      widget  = wibox.container.margin
     },
     nil,
     require('widget.ram-widget.ram-widget')({
@@ -60,18 +63,19 @@ local top_panel = function(s, offset)
     }),
     layout = wibox.layout.align.horizontal
   }
-  
+
   local cpu_meter = {
     {
       {
-        text   = 'ﴟ',
-        align  = 'center',
-        valign = 'center',
-        font   = beautiful.font_large,
-        widget = wibox.widget.textbox
+        text         = 'ﴟ',
+        align        = 'center',
+        valign       = 'center',
+        font         = beautiful.font_large,
+        forced_width = dpi(32),
+        widget       = wibox.widget.textbox
       },
-      margins  = dpi(2),
-      widget = wibox.container.margin
+      margins = dpi(2),
+      widget  = wibox.container.margin
     },
     nil,
     require('widget.cpu-meter-top-panel').widget,
@@ -90,6 +94,7 @@ local top_panel = function(s, offset)
       color_palette,
       cpu_meter,
       ram_widget,
+      spotify_widget,
       spacing = dpi(2),
       layout = wibox.layout.fixed.horizontal,
     },

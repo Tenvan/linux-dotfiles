@@ -228,12 +228,7 @@ function GetCustomKeys(client)
   return keys
 end
 
-dump(client_keys, 'client keys before merge', 1)
-
 local custom_keys = GetCustomKeys()
-dump(custom_keys, 'custom keys', 1)
-
 client_keys =  awful.util.table.join(client_keys, custom_keys)
-dump(client_keys, 'client keys after merge', 1)
 
 return client_keys
