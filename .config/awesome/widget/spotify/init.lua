@@ -1,40 +1,47 @@
 log('Enter Module => ' .. ...)
 
 local makeColorTransparent = require('utilities.utils').makeColorTransparent
+local awesomebuttons = require('awesome-buttons.awesome-buttons')
 
--- Declare widgets
-local spotify_status = wibox.widget.textbox()
 local spotify_artist = wibox.widget.textbox()
 local spotify_title = wibox.widget.textbox()
 
-local pausedText = ''
-local stoppedText = ''
-local playingText = ''
+local createBookmarkPopups = require('widget.spotify.bookmarks')
+local metaHelper = require('widget.spotify.meta')
 
-local bookmarks_widget = require("widget.spotify.bookmarks")
+local bookmarksWidget = nil
+local lastMetaData = metaHelper.emptyMetaData
 
-local lastMetaData = {
-    artist = '--',
-    title = '--',
-    status = stoppedText,
-    discNumber = '--',
-    trackNumber = '--',
-    album = '--',
-    url = '--',
-    trackid = '--',
-    artUrl = '--',
+-- create cache folder, if not exists
+local cacheDirSpotify = metaHelper.GetCachePath()
+awful.spawn.with_shell('mkdir -p ' .. cacheDirSpotify)
+
+local status_button = wibox.widget {
+    align = 'center',
+    text = metaHelper.stoppedText,
+    font = 'sans 14',
+    widget = wibox.widget.textbox(),
+    forced_width = dpi(32)
+}
+
+local bookmark_button = awesomebuttons.with_text {
+    text = ' ',
+    onclick = function()
+        if bookmarksWidget ~= nil then
+            bookmarksWidget.visible = false
+            bookmarksWidget = nil
+        else
+            bookmarksWidget = createBookmarkPopups()
+            bookmarksWidget:move_next_to(mouse.current_widget_geometry)
+            bookmarksWidget.visible = true
+        end
+    end
 }
 
 -- Main widget that includes all others
 local widget = wibox.widget {
     -- Status Icon
-    {
-        align = 'center',
-        text = stoppedText,
-        font = 'sans 14',
-        widget = spotify_status,
-        forced_width = dpi(32)
-    },
+    status_button,
     -- Title widget
     {
         align = 'center',
@@ -42,21 +49,13 @@ local widget = wibox.widget {
         font = 'sans 12',
         widget = spotify_title
     },
+    bookmark_button,
     spacing = dpi(4),
     layout = wibox.layout.fixed.horizontal
 }
 
-local function getMetaText()
-    return '<span size="x-large">Titel: ' .. lastMetaData.title .. '</span>\n' ..
-      '<b>Künstler</b>: ' .. lastMetaData.artist .. '\n' ..
-      '<b>Album</b>: ' .. lastMetaData.album .. '\n' ..
-      '<b>Disk</b>: ' .. lastMetaData.discNumber .. '\n' ..
-      '<b>Track</b>: ' .. lastMetaData.trackNumber .. '\n' ..
-      '<b>Track Link</b>: ' .. lastMetaData.url .. '\n'
-end
-
 local popup_text_widget = wibox.widget {
-    markup = getMetaText(),
+    markup = metaHelper.GetLargeMetaText(lastMetaData),
     widget = wibox.widget.textbox(),
 }
 
@@ -102,7 +101,7 @@ local popup = awful.popup {
     shape = gears.shape.rounded_rect,
 }
 
-widget:connect_signal(
+spotify_title:connect_signal(
     'mouse::enter',
     function(w)
         popup:move_next_to(mouse.current_widget_geometry)
@@ -110,50 +109,40 @@ widget:connect_signal(
     end
 )
 
-widget:connect_signal(
+spotify_title:connect_signal(
     'mouse::leave',
     function(w)
         popup.visible = false
     end
 )
 
--- process meta data cache
-local function cacheMetaData(meta)
-    local cacheDir = os.getenv('HOME') .. '/.cache/awesome'
-    local cacheDirSpotify = cacheDir .. '/com/spotify/track'
-
-    log('image cache dir ===> ' .. cacheDirSpotify)
-    awful.spawn.with_shell('mkdir -p ' .. cacheDirSpotify)
-
-    local artCacheFile = cacheDir .. meta.trackid .. '.jpeg'
-    log('image cache file ===> ' .. artCacheFile)
-
-    local get_art_script = 'curl -sf ' .. meta.artUrl .. ' --output ' .. artCacheFile
-    awful.spawn.easy_async_with_shell(get_art_script, function()
-        log("link '" .. meta.artUrl .. "' fetched")
-        popup_artimage_widget.image = artCacheFile
-    end)
-end
-
 -- Subcribe to spotify updates
-awesome.connect_signal('service::spotify', function(artist, title, status, meta)
-    dump(meta, 'spotify widget <- meta data')
-
-    lastMetaData = meta
-    cacheMetaData(meta)
-
-    if status == 'Paused' then
-        spotify_status.text = pausedText
-    elseif status == 'Playing' then
-        spotify_status.text = playingText
-    else
-        spotify_status.text = stoppedText
+awesome.connect_signal('service::spotify', function(meta)
+    -- close bookmarks when received new metadata
+    if bookmarksWidget ~= nil then
+        bookmarksWidget.visible = false
+        bookmarksWidget = nil
     end
 
-    spotify_artist.text = artist
-    spotify_title.text = title
+    dump(meta, 'spotify widget <- meta data')
+    local status = meta.status
 
-    popup_text_widget.markup = getMetaText()
+    lastMetaData = meta
+    metaHelper.CacheMetaData(meta)
+
+    local status_text = metaHelper.stoppedText
+    if status == 'Paused' then
+        status_text = metaHelper.pausedText
+    elseif status == 'Playing' then
+        status_text = metaHelper.playingText
+    end
+
+    status_button.text = status_text
+    spotify_artist.text = meta.artist
+    spotify_title.text = meta.title
+
+    popup_artimage_widget.image = metaHelper.GetImagePath(meta)
+    popup_text_widget.markup = metaHelper.GetLargeMetaText(meta)
 end)
 
 return widget

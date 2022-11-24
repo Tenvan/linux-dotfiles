@@ -4,6 +4,9 @@ local open = io.open
 
 local json = require('library.json')
 
+---@deprecated use utilities.file
+---@param path any
+---@return nil
 local function read_file(path)
   local file = open(path, 'r') -- r read mode
   if not file then
@@ -15,6 +18,9 @@ local function read_file(path)
   return content
 end
 
+---@deprecated use utilities.file
+---@param path any
+---@return nil
 local function write_file(path, content)
   local file = open(path, 'w+') -- w+ clear and write mode
   if not file then

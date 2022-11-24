@@ -170,18 +170,18 @@ naughty.connect_signal(
   function(n)
     log('spawn::request::display')
 
-    dump({
-      text = n.text,
-      icon = n.icon,
-      icon_size = n.icon_size,
-      timeout = n.timeout,
-      title = n.title,
-      app_name = n.app_name,
-      urgency = n.urgency,
-      modulename = n.modulename,
-      category = n.category,
-      app_icon = n.app_icon,
-    }, 'notification splitted', 1)
+    -- dump({
+    --   text = n.text,
+    --   icon = n.icon,
+    --   icon_size = n.icon_size,
+    --   timeout = n.timeout,
+    --   title = n.title,
+    --   app_name = n.app_name,
+    --   urgency = n.urgency,
+    --   modulename = n.modulename,
+    --   category = n.category,
+    --   app_icon = n.app_icon,
+    -- }, 'notification splitted', 1)
 
     local path = iconUtils.lookup_icon(n.icon)
     n.icon = path

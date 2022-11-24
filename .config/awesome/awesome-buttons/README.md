@@ -24,7 +24,6 @@ Button widget library for Awesome Window Manager
 | `text_size` | `10` | Size of the text |
 | `onclick` | `function() end` | Function which is called when button is clicked |
 
-
 ## Icon button
 
 | Name | Default | Description |
@@ -47,7 +46,7 @@ Button widget library for Awesome Window Manager
 | `text_size` | `10` | Size of the text |
 | `onclick` | `function() end` | Function which is called when button is clicked |
 
-Buttons come with preinstalled icons (taken from https://feathericons.com/). So you can either specify the name of the icon to use (to check available icons check the https://feathericons.com/ or under the icons folder):
+Buttons come with preinstalled icons (taken from <https://feathericons.com/>). So you can either specify the name of the icon to use (to check available icons check the <https://feathericons.com/> or under the icons folder):
 
 ```lua
 awesomebuttons.with_icon{ icon = 'moon', color = '#f88' }

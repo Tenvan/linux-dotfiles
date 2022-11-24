@@ -4,20 +4,12 @@ local json = require('library.json')
 
 -- Provides:
 -- service::spotify
---      artist (string)
---      song (string)
---      status (string) [playing | paused | stopped]
 --      metadata (table) complete metadata as table
 local awful = require('awful')
 
 local function emit_info(playerctl_output)
   local metaData = json.parse(playerctl_output) or {}
-
-  local artist = metaData.artist
-  local title = metaData.title
-  local status = metaData.status
-
-  awesome.emit_signal('service::spotify', artist, title, status, metaData)
+  awesome.emit_signal('service::spotify', metaData)
 end
 
 local HOME_DIR = os.getenv('HOME')
