@@ -429,9 +429,30 @@ local awesome_overrides = function(theme)
   theme.tag_preview_widget_border_width  = theme.popup_border_width -- The border width of the widget
   theme.tag_preview_widget_margin        = dpi(5) -- The margin of the widget
 
+  -- charts
   theme.graph_bg = theme.transparent -- The graph background color.
   theme.graph_fg = theme.fg_normal -- The graph foreground color.
   theme.graph_border_color = theme.border_normal -- The graph border color.
+  theme.piechart_border_color = theme.graph_border_color
+  theme.piechart_border_width = dpi(10)
+  theme.piechart_colors = {
+    theme.transparent,
+    theme.xres_vars.color1,
+    theme.xres_vars.color2,
+    theme.xres_vars.color3,
+    theme.xres_vars.color4,
+    theme.xres_vars.color5,
+    theme.xres_vars.color6,
+    theme.xres_vars.color7,
+    theme.xres_vars.color9,
+    theme.xres_vars.color10,
+    theme.xres_vars.color11,
+    theme.xres_vars.color12,
+    theme.xres_vars.color13,
+    theme.xres_vars.color14,
+    theme.xres_vars.color15,
+    theme.xres_vars.color16,
+  }
 end
 
 return {

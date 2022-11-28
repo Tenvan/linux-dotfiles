@@ -109,8 +109,8 @@ screen.connect_signal('request::desktop_decoration', function(s)
       end
     end
 
-    log(' --> tag:' .. stateTag .. ' layout: ' .. stateLayout .. ' screen:' .. stateScreen)
-    log('resolved layout: ' .. tostring(tagStartLayout))
+    -- log(' --> tag:' .. stateTag .. ' layout: ' .. stateLayout .. ' screen:' .. stateScreen)
+    -- log('resolved layout: ' .. tostring(tagStartLayout))
 
     awful.tag.add(i, {
       text = tagnames[i],

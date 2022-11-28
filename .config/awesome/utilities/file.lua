@@ -35,8 +35,24 @@ local function file_exists(path)
   return false
 end
 
+local function ensureDir(dir)
+  local create_dir_cmd = [[
+	dir="]] .. dir .. [["
+
+	if [ ! -d "$dir" ]; then
+		mkdir -p "$dir"
+	fi
+	]]
+
+  awful.spawn.easy_async_with_shell(
+    create_dir_cmd,
+    function(stdout) end
+  )
+end
+
 return {
   read_file = read_file,
   write_file = write_file,
-  file_exists = file_exists
+  file_exists = file_exists,
+  ensureDir = ensureDir
 }

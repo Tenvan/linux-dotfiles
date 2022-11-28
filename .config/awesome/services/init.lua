@@ -13,6 +13,7 @@ log('Enter Module => ' .. ...)
 -- require("services.mpd")
 -- require("services.brightness")
 require("services.spotify")
+require("services.spotify-bookmarks")
 
 -- Internet access required
 -- Note: These daemons use a temp file to store the retrieved values in order

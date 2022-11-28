@@ -1,12 +1,13 @@
 log('Enter Module => ' .. ...)
 
+local file = require('utilities.file')
 local readJson = require('utilities.json').readJsonFile
 local writeJson = require('utilities.json').writeJsonFile
 
-
-local statePath = os.getenv('HOME') .. '/.local/state/awesome/'
+local statePath = string.format('%s/.local/state/awesome/', os.getenv('HOME'))
 local stateFile = statePath .. 'awesome-state.json'
 
+file.ensureDir(statePath)
 os.execute('mkdir -p ' .. statePath)
 
 local stateData = readJson(stateFile) or {}

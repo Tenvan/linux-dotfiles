@@ -46,7 +46,7 @@ local wall_config = {
   },
 }
 
-dump(wall_config, 'dynamic wallpaer config')
+-- dump(wall_config, 'dynamic wallpaer config')
 
 --  ========================================
 -- 				   Processes

@@ -1,8 +1,8 @@
 log('Enter Module => ' .. ...)
 
 local awful = require('awful')
-local wibox = require('wibox')
 local beautiful = require('beautiful')
+local wibox = require('wibox')
 
 local tag_list = function(pScreen)
   return awful.widget.taglist {

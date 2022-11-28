@@ -1,5 +1,6 @@
 log('Enter Module => ' .. ...)
 
+local metaHelper = require('module.spotify')
 local json = require('library.json')
 
 -- Provides:
@@ -9,15 +10,14 @@ local awful = require('awful')
 
 local function emit_info(playerctl_output)
   local metaData = json.parse(playerctl_output) or {}
-  awesome.emit_signal('service::spotify', metaData)
+  metaData.lastPlayDate = os.time()
+  metaHelper.ValidateImage(metaData)
+  awesome.emit_signal('service::spotify::meta', metaData)
 end
 
-local HOME_DIR = os.getenv('HOME')
-local spotify_listener = HOME_DIR .. '/.scripts/services/spotify-listener.sh'
+local spotify_listener = string.format('%s/.scripts/services/spotify-listener.sh', os.getenv('HOME'))
 
 local spotify_script = "sh -c '" .. spotify_listener .. "'"
-
-log('=> spawn spotify daemon: ' .. spotify_script)
 
 awful.spawn.with_line_callback(spotify_script, {
   stdout = function(line)

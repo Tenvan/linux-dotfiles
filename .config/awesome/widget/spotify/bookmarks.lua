@@ -1,73 +1,23 @@
 log('Enter Module => ' .. ...)
 
 local awesomebuttons = require('awesome-buttons.awesome-buttons')
+local clickable_container = require('widget.clickable-container')
 local file = require('utilities.file')
-local json = require('library.json')
 local makeColorTransparent = require('utilities.utils').makeColorTransparent
-local metaHelper = require('widget.spotify.meta')
-local readJson = require('utilities.json').readJsonFile
-local writeJson = require('utilities.json').writeJsonFile
+local metaHelper = require('module.spotify')
+local find_clients = require('helpers').find_clients
 
-local bookmarks = {
-  {
-    artist = 'Michael Marcus Thurner',
-    title = 'Kapitel 3 - Unter dem Nabel von Zou Skost - Perry Rhodan Erstauflage 3192',
-    status = 'Paused',
-    discNumber = 1,
-    trackNumber = 3,
-    album = 'Unter dem Nabel von Zou Skost [Perry Rhodan Erstauflage 3192 (Ungekürzt)]',
-    url = 'https://open.spotify.com/track/09TF6JA1ZGGxbr54PBMkhw',
-    trackid = '/com/spotify/track/09TF6JA1ZGGxbr54PBMkhw',
-    artUrl = 'https://i.scdn.co/image/ab67616d0000b273b353daa8e93d0b2403315ff7'
-  },
-  {
-    title = 'Track 4 - Der erste Thort - Perry Rhodan - Neo 18',
-    artist = 'Michelle Stern',
-    trackid = '/com/spotify/track/0HGtuUVTOCVs5Sd4l5uDzN',
-    status = 'Playing',
-    trackNumber = 4,
-    artUrl = 'https://i.scdn.co/image/ab67616d0000b273652b53f2f7f750b4acd2f486',
-    url = 'https://open.spotify.com/track/0HGtuUVTOCVs5Sd4l5uDzN',
-    discNumber = 1,
-    album = 'Der erste Thort [Perry Rhodan - Neo 18 (Ungekürzt)]'
-  },
-  {
-    title = 'Track 115 - Der Administrator - Perry Rhodan - Neo 17',
-    artist = 'Frank Borsch',
-    trackid = '/com/spotify/track/62oOO3ZEtxxbZyOxJGN644',
-    status = 'Playing',
-    trackNumber = 115,
-    artUrl = 'https://i.scdn.co/image/ab67616d0000b2731b1e172d3854ff6099b83894',
-    url = 'https://open.spotify.com/track/62oOO3ZEtxxbZyOxJGN644',
-    discNumber = 1,
-    album = 'Der Administrator [Perry Rhodan - Neo 17 (Ungekürzt)]'
-  }
-}
+local currentBookmarks = {}
 
-local function mergeMetaToBookmarks(meta)
-  for i = 1, #bookmarks do
-    local bookmark = bookmarks[i]
-    if bookmark.album == meta.album then
-      bookmarks[i] = meta
-      dump(bookmarks, 'replaced bookmarks', 1)
-      return
-    end
-  end
-
-  table.insert(bookmarks, meta)
-  dump(bookmarks, 'added bookmark', 1)
+-- emitter
+local function remove_bookmark(meta)
+  log('widget::spotify-bookmarks => service::spotify::bookmarks::remove : ' .. meta.title)
+  awesome.emit_signal('service::spotify::bookmarks::remove', meta)
 end
 
--- Subcribe to spotify updates
-awesome.connect_signal('service::spotify', function(meta)
-  dump(meta, 'bookmark <- meta data')
-  mergeMetaToBookmarks(meta)
-end)
-
---- spotify tooltip widget (extended album infos)
-
-local function createBookmarkPopups()
+local function createBookmarkList(bookmarks)
   local bookmarkList = {
+
     layout = wibox.layout.fixed.vertical,
     {
       markup = '<span size="x-large">Bookmarks</span>',
@@ -77,43 +27,132 @@ local function createBookmarkPopups()
   for i = 1, #bookmarks do
     local meta = bookmarks[i]
     local item = wibox.widget {
-      markup = metaHelper.GetSmallMetaText(meta),
-      widget = wibox.widget.textbox()
+      {
+        markup = metaHelper.GetSmallMetaText(meta),
+        widget = wibox.widget.textbox()
+      },
+      margins = dpi(2),
+      widget = wibox.container.margin
     }
 
     local popup_artimage_widget = wibox.widget {
-      forced_height = dpi(96),
-      forced_width = dpi(96),
-      widget = wibox.widget.imagebox(),
+      {
+        forced_height = dpi(96),
+        forced_width = dpi(96),
+        widget = wibox.widget.imagebox(),
+      },
+      margins = dpi(2),
+      widget = wibox.container.margin
     }
 
     local imagePath = metaHelper.GetImagePath(meta)
     if file.file_exists(imagePath) then
-      popup_artimage_widget.image = imagePath
+      popup_artimage_widget.widget.image = imagePath
     else
-      metaHelper.ValidateImage(meta)
+      metaHelper.CacheMetaImage(meta)
     end
 
-    table.insert(bookmarkList, {
+    local open_button = wibox.widget {
+      {
+        align = 'center',
+        text = '',
+        font = 'sans 20',
+        widget = wibox.widget.textbox(),
+        forced_width = dpi(48),
+      },
+      widget = clickable_container
+    }
+
+    open_button:buttons(
+      gears.table.join(
+        awful.button(
+          {},
+          1,
+          nil,
+          function()
+            local spotify = find_clients({ class = 'Spotify' }, true)
+            if spotify ~= nil then
+              spotify:jump_to()
+            else
+              awful.spawn('spotify')
+            end
+
+            local cmd = string.format('sp open %s', meta.url)
+            log('play command: ' .. cmd)
+            -- awful.spawn(string.format('playerctl open open spotify:track:%s', metaHelper.GetTrackId(meta)))
+            awful.spawn(cmd)
+          end
+        )
+      )
+    )
+
+    local delete_button = wibox.widget {
+      {
+        align = 'center',
+        text = '',
+        font = 'sans 24',
+        widget = wibox.widget.textbox(),
+        forced_width = dpi(48),
+      },
+      widget = clickable_container
+    }
+
+    delete_button:buttons(
+      gears.table.join(
+        awful.button(
+          {},
+          1,
+          nil,
+          function()
+            log('remove bookmark: ' .. meta.title)
+            remove_bookmark(meta)
+          end
+        )
+      )
+    )
+
+    local listItem = wibox.widget {
       popup_artimage_widget,
       item,
-      layout = wibox.layout.fixed.horizontal,
-    })
+      {
+        open_button,
+        delete_button,
+        layout = wibox.layout.align.horizontal,
+      },
+      layout = wibox.layout.align.horizontal,
+    }
+
+    table.insert(bookmarkList, listItem)
   end
 
-  -- Declare widgets
-  local bookmarks_widget = awful.popup {
+  return bookmarkList
+end
+
+local function createPopup()
+  local container = wibox.widget {
+    createBookmarkList(currentBookmarks),
+    strategy = 'max',
+    height = dpi(600),
+    widget = wibox.container.constraint,
+  }
+
+  local popup = awful.popup {
+    widget = container,
     ontop = true,
-    widget = bookmarkList,
     visible = false,
     valign = 'top',
     border_color = beautiful.popup_border,
     border_width = beautiful.popup_border_width,
-    forced_height = dpi(600),
-    forced_width = dpi(800),
     shape = gears.shape.rounded_rect,
   }
-  return bookmarks_widget
+
+  return popup
 end
 
-return createBookmarkPopups
+-- Subcribe to spotify updates
+awesome.connect_signal('service::spotify::bookmarks', function(bookmarks)
+  log('widget::spotify-bookmarks <- bookmarks: ' .. tostring(#bookmarks))
+  currentBookmarks = bookmarks
+end)
+
+return createPopup

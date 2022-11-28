@@ -17,6 +17,12 @@
 		},
 		{
 			"path": "elanapan-dotfiles"
+		},
+		{
+			"path": ".local/state/awesome"
+		},
+		{
+			"path": ".cache/awesome/spotify"
 		}
 	],
 	"settings": {

@@ -1,8 +1,10 @@
 log('Enter Module => ' .. ...)
 
 local pausedText = ''
-local stoppedText = ''
+local stoppedText = ''
 local playingText = ''
+local prevText = ''
+local nextText = ''
 
 local emptyMetaData = {
   artist = '--',
@@ -24,22 +26,34 @@ local function getTrackId(meta)
 end
 
 local function getLargeMetaText(meta)
-  return '<span size="x-large">Titel: ' .. meta.title .. '</span>\n' ..
-    '<b>Künstler</b>: ' .. meta.artist .. '\n' ..
-    '<b>Album</b>: ' .. meta.album .. '\n' ..
-    '<b>Disk</b>: ' .. meta.discNumber .. '\n' ..
-    '<b>Track</b>: ' .. meta.trackNumber .. '\n' ..
-    '<b>Track Link</b>: ' .. meta.url .. '\n'
+  return string.format(
+    [[<b>Titel</b>: <span size="x-large">%s</span>
+<b>Künstler</b>: %s
+<b>Album</b>: %s
+<b>Disk</b>: %s
+<b>Track</b>: %s
+<b>Track Link</b>: %s
+<b>Zuletzt gespielt</b>: <span size="large">%s</span>]],
+    meta.title,
+    meta.artist,
+    meta.album,
+    meta.discNumber,
+    meta.trackNumber,
+    meta.url,
+    os.date('%a %b %d, %H:%M ', meta.lastPlayDate or os.time()))
 end
 
 local function getSmallMetaText(meta)
-  return string.format([[<b>Album</b>: <span size="large">%s</span>
-<b>Titel</b>: %s
-<b>Disk</b> %s / <b>Track</b> %s]],
+  return string.format(
+    [[<b>Titel</b>: <span size="large">%s</span>
+<b>Album</b>: %s
+<b>Disk</b> %s / <b>Track</b> %s
+<b>Zuletzt gespielt</b>: <span size="large">%s</span>]],
     meta.album,
     meta.title,
     meta.discNumber,
-    meta.trackNumber)
+    meta.trackNumber,
+    os.date('%a %b %d, %H:%M ', meta.lastPlayDate or os.time()))
 end
 
 local function getCachePath()
@@ -56,51 +70,65 @@ local function getImagePath(meta)
   local trackid = getTrackId(meta)
   local cacheDirSpotify = getCachePath()
   local artCacheFile = string.format('%s/%s.jpeg', cacheDirSpotify, trackid)
-  log('image cache file --> ' .. artCacheFile)
-
   return artCacheFile
+end
+
+local function getStatus(meta)
+  local status = stoppedText
+  if meta.status == 'Paused' then
+    status = playingText
+  elseif meta.status == 'Playing' then
+    status = pausedText
+  end
+
+  return status
 end
 
 ---comment process meta data cache
 ---@param meta any
-local function cacheMetaData(meta)
+local function cacheMetaImage(meta)
   local artCacheFile = getImagePath(meta)
-  log('image cache file ===> ' .. artCacheFile)
+  log('request image file ==> ' .. artCacheFile)
 
   local get_art_script = string.format('curl -sf %s --output %s', meta.artUrl, artCacheFile)
-  -- awful.spawn.easy_async_with_shell(get_art_script, function()
-  --   log("link '" .. meta.artUrl .. "' fetched")
-  -- end)
-  awful.spawn.with_shell(get_art_script)
+
+  awful.spawn.easy_async_with_shell(get_art_script, function()
+    log('image file received <-- ' .. artCacheFile)
+    awesome.emit_signal('service::spotify::image', artCacheFile)
+  end)
 end
 
----comment validates existing of imagefile. 
+---comment validates existing of imagefile.
 --- if not, then request it again
 ---
 ---@param meta any
 ---@return string
 local function validateImage(meta)
   local artCacheFile = getImagePath(meta)
+
   if not file.file_exists(artCacheFile) then
-    cacheMetaData(meta)
+    cacheMetaImage(meta)
   end
 
   return artCacheFile
 end
 
 local result = {
-  GetTrackId = getTrackId,
-  GetImagePath = getImagePath,
+  CacheMetaImage = cacheMetaImage,
   GetCachePath = getCachePath,
+  GetImagePath = getImagePath,
   GetLargeMetaText = getLargeMetaText,
   GetSmallMetaText = getSmallMetaText,
-  CacheMetaData = cacheMetaData,
+  GetStatus = getStatus,
+  GetTrackId = getTrackId,
   ValidateImage = validateImage,
 
   emptyMetaData = emptyMetaData,
+  nextText = nextText,
   pausedText = pausedText,
-  stoppedText = stoppedText,
   playingText = playingText,
+  prevText = prevText,
+  stoppedText = stoppedText,
 }
 
 return result

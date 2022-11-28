@@ -74,14 +74,15 @@ local function worker(user_args)
     ontop = true,
     visible = false,
     widget = {
+      {
+
       widget = wibox.widget.piechart,
-      forced_height = dpi(400),
-      forced_width = dpi(600),
-      colors = {
-        color_buf,
-        color_used,
-        color_free,
+      border_width = dpi(20),
       },
+      forced_height = dpi(500),
+      forced_width = dpi(700),
+      margins = dpi(10),
+      widget = wibox.container.margin
     },
     shape = gears.shape.rounded_rect,
     border_color = beautiful.popup_border,
@@ -92,10 +93,10 @@ local function worker(user_args)
   widget:connect_signal(
     'mouse::enter',
     function(w)
-      popup:get_widget().data_list = {
-        { 'buff_cache ' .. getPercentage(buff_cache), buff_cache },
-        { 'used ' .. getPercentage(used + used_swap), used + used_swap },
-        { 'free ' .. getPercentage(free + free_swap), free + free_swap },
+      popup.widget:get_widget().data_list = {
+        { string.format('free %s %%', getPercentage(free + free_swap)), free + free_swap },
+        { string.format('used %s %%', getPercentage(used + used_swap)), used + used_swap },
+        { string.format('buffer cache %s %%', getPercentage(buff_cache)), buff_cache },
       }
 
       popup:move_next_to(mouse.current_widget_geometry)
