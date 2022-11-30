@@ -46,8 +46,8 @@ helpers.remote_watch(weather_details_script, update_interval, temp_file, functio
     if icon_code == "..." then
         -- Remove temp_file to force an update the next time
         awful.spawn.with_shell("rm "..temp_file)
-        awesome.emit_signal("evil::weather", 999, "Weather unavailable", "")
+        emit("evil::weather", 999, "Weather unavailable", "")
     else
-        awesome.emit_signal("evil::weather", tonumber(temperature), description, icon_code)
+        emit("evil::weather", tonumber(temperature), description, icon_code)
     end
 end)

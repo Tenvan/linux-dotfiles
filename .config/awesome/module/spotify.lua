@@ -58,8 +58,6 @@ end
 
 local function getCachePath()
   local cacheDirSpotify = string.format('%s/.cache/awesome/spotify', os.getenv('HOME'))
-  log('image cache dir ==> ' .. cacheDirSpotify)
-
   return cacheDirSpotify
 end
 
@@ -88,13 +86,11 @@ end
 ---@param meta any
 local function cacheMetaImage(meta)
   local artCacheFile = getImagePath(meta)
-  log('request image file ==> ' .. artCacheFile)
-
   local get_art_script = string.format('curl -sf %s --output %s', meta.artUrl, artCacheFile)
 
   awful.spawn.easy_async_with_shell(get_art_script, function()
-    log('image file received <-- ' .. artCacheFile)
-    awesome.emit_signal('service::spotify::image', artCacheFile)
+    log('image file received: ' .. artCacheFile)
+    emit('service::spotify::image', artCacheFile)
   end)
 end
 

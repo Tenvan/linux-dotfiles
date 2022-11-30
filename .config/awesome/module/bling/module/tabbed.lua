@@ -60,7 +60,7 @@ tabbed.remove = function(c)
     c.bling_tabbed = nil
     c:disconnect_signal("focus", update_tabbar_from)
     c:disconnect_signal("unfocus", update_tabbar_from)
-    awesome.emit_signal("bling::tabbed::client_removed", tabobj, c)
+    emit("bling::tabbed::client_removed", tabobj, c)
     tabbed.switch_to(tabobj, 1)
 end
 
@@ -86,7 +86,7 @@ tabbed.add = function(c, tabobj)
     -- but the new client needs to have the tabobj property
     -- before a clean switch can happen
     tabbed.update(tabobj)
-    awesome.emit_signal("bling::tabbed::client_added", tabobj, c)
+    emit("bling::tabbed::client_added", tabobj, c)
     tabbed.switch_to(tabobj, #tabobj.clients)
 end
 
@@ -202,7 +202,7 @@ tabbed.update = function(tabobj)
     end
 
     -- Maybe remove if I'm the only one using it?
-    awesome.emit_signal("bling::tabbed::update", tabobj)
+    emit("bling::tabbed::update", tabobj)
     if not beautiful.tabbar_disable then
         tabbed.update_tabbar(tabobj)
     end
@@ -224,7 +224,7 @@ tabbed.switch_to = function(tabobj, new_idx)
             helpers.client.sync(c, old_focused_c)
         end
     end
-    awesome.emit_signal("bling::tabbed::changed_focus", tabobj)
+    emit("bling::tabbed::changed_focus", tabobj)
     tabbed.update(tabobj)
 end
 

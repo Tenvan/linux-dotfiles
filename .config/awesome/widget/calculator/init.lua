@@ -268,11 +268,11 @@ local kb_button_widget = wibox.widget {
 local toggle_btn_keygrab = function()
   if keygrab_running then
     kb_imagebox:set_image(widget_icon_dir .. 'kb-off' .. '.svg')
-    awesome.emit_signal('widget::calc_stop_keygrab')
+    emit('widget::calc_stop_keygrab')
     keygrab_running = false
   else
     kb_imagebox:set_image(widget_icon_dir .. 'kb' .. '.svg')
-    awesome.emit_signal('widget::calc_start_keygrab')
+    emit('widget::calc_start_keygrab')
     keygrab_running = true
   end
 end
@@ -306,7 +306,7 @@ local calcu_keygrabber = awful.keygrabber {
       clear_screen()
 
     elseif key == 'x' then
-      awesome.emit_signal('widget::calc_stop_keygrab')
+      emit('widget::calc_stop_keygrab')
 
     elseif key == '=' or key == 'Return' then
       -- Calculate
@@ -378,12 +378,12 @@ calculator_body:connect_signal('mouse::leave', function()
   calcu_keygrabber:stop()
 end)
 
-awesome.connect_signal('widget::calc_start_keygrab', function()
+connect('widget::calc_start_keygrab', function()
   -- Stop keygrabbing
   calcu_keygrabber:start()
 end)
 
-awesome.connect_signal('widget::calc_stop_keygrab', function()
+connect('widget::calc_stop_keygrab', function()
   -- Stop keygrabbing
   calcu_keygrabber:stop()
 end)

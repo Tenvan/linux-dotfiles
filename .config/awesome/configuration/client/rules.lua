@@ -297,17 +297,6 @@ ruled.client.connect_signal('request::rules', function()
     }
   }
 
-  ruled.client.append_rule {
-    rule = {
-      class = 'jetbrains-toolbox',
-    },
-    properties = {
-      skip_decoration = true,
-      focus = true,
-      floating = true
-    }
-  }
-
   -- System Tools
   ruled.client.append_rule {
     rule_any = {
@@ -345,7 +334,7 @@ ruled.client.connect_signal('request::rules', function()
     }
   }
 
-  -- -- System Monitor Consolen auf Screen 2 tag 9 schieben
+  -- System Monitor Consolen auf Screen 2 tag 9 schieben
   ruled.client.append_rule {
     rule_any = {
       name = { 'SysMon:*', 'Sys:*', 'CF:*' },
@@ -371,6 +360,27 @@ ruled.client.connect_signal('request::rules', function()
       floating = true,
       ontop = true,
       placement = awful.placement.centered
+    }
+  }
+
+  ---
+  --- Application Settings
+  ---
+  --- jetbrain ToolBox
+  --- client class: com-jetbrains-toolbox-entry-ToolboxEntry
+  --- client instance: com-jetbrains-toolbox-entry-ToolboxEntry
+  --- client name: JetBrains Toolbox
+  --- client class: jetbrains-toolbox
+  --- client instance: JetBrains Toolbox
+  --- client name: JetBrains Toolbox
+  ruled.client.append_rule {
+    rule_any = {
+      class = { 'jetbrains-toolbox', 'com-jetbrains-toolbox-entry-ToolboxEntry', }
+    },
+    properties = {
+      skip_decoration = true,
+      focus = true,
+      floating = true
     }
   }
 
@@ -400,6 +410,17 @@ ruled.client.connect_signal('request::rules', function()
     }
   }
 
+  -- Dialogs everytime floating
+  ruled.client.append_rule {
+    rule_any = {
+      type = { 'dialog' }
+    },
+    properties = {
+      floating = true,
+      maximized = false,
+      fullscreen = false
+    }
+  }
 
   -- Floating
   ruled.client.append_rule {
@@ -424,23 +445,11 @@ ruled.client.connect_signal('request::rules', function()
     }
   }
 
-  -- Dialogs everytime floating
-  ruled.client.append_rule {
-    rule_any = {
-      type = { 'dialog' }
-    },
-    properties = {
-      floating = true,
-      maximized = false,
-      fullscreen = false
-    }
-  }
-
   AppendCustomRules(ruled.client)
 end)
 
 function AppendCustomRules(client)
-  local customRulesFile = os.getenv("HOME") .. '/.config/awesome/customs/awesome/rules.lua'
+  local customRulesFile = os.getenv('HOME') .. '/.config/awesome/customs/awesome/rules.lua'
   local file = io.open(customRulesFile, 'r') -- r read mode
   if not file then
     log("custom rule-file '" .. customRulesFile .. "' NOT found")

@@ -37,7 +37,7 @@ local tasklist_buttons = awful.util.table.join(
     3,
     function(c)
       log('Right Mouse Button pressed')
-      awesome.emit_signal('bling::task_preview::visibility', nil, false, c, c)
+      emit('bling::task_preview::visibility', nil, false, c, c)
 
       -- TODO Menü fertig stellen
       -- @todo Menü fertig stellen
@@ -140,11 +140,11 @@ local task_list = function(pScreen)
 
         -- BLING: Toggle the popup on hover and disable it off hover
         self:connect_signal('mouse::enter', function()
-          awesome.emit_signal('bling::task_preview::visibility', pScreen, true, c, self)
+          emit('bling::task_preview::visibility', pScreen, true, c, self)
         end)
 
         self:connect_signal('mouse::leave', function()
-          awesome.emit_signal('bling::task_preview::visibility', pScreen, false, c, self)
+          emit('bling::task_preview::visibility', pScreen, false, c, self)
         end)
       end,
       -- layout = wibox.layout.align.vertical,

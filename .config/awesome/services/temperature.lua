@@ -11,5 +11,5 @@ local temp_script = [[
 
 -- Periodically get temperature info
 awful.widget.watch(temp_script, update_interval, function(widget, stdout)
-    awesome.emit_signal("evil::temperature", tonumber(stdout))
+    emit("evil::temperature", tonumber(stdout))
 end)

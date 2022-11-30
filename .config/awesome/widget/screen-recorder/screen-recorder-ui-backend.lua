@@ -366,7 +366,7 @@ local sr_recording_stop = function()
 	sr_stop_recording()
 end
 
-awesome.connect_signal(
+connect(
 	'widget::screen_recorder',
 	function()
 		sr_recording_stop()

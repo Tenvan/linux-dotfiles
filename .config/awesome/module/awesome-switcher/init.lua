@@ -408,7 +408,6 @@ local function cycle(dir)
   end
 
   local nextClient = altTabTable[altTabIndex].client
-  log(' --> Jump to: ' .. tostring(nextClient))
   nextClient:raise()
   nextClient:jump_to()
 
@@ -448,7 +447,7 @@ local function switch(dir, alt, tab, shift_tab)
 
       -- Stop alt-tabbing when the alt-key is released
       if key == 'Escape' or (key == alt and event == 'release') then
-        log('==> Stop KeyGrabber')
+        log('Stop KeyGrabber')
         if preview_wbox.visible == true then
           preview_wbox.visible = false
           preview_live_timer:stop()
@@ -491,12 +490,10 @@ local function switch(dir, alt, tab, shift_tab)
 
         -- Move to next client on each Tab-press
       elseif ((key == tab and not shiftStatus) or key == 'Right') and event == 'press' then
-        log('  --> Cycle next')
         cycle(1)
         
         -- Move to previous client on Shift-Tab
       elseif ((key == shift_tab and shiftStatus) or key == 'Left') and event == 'press' then
-        log('  --> Cycle previous')
         cycle(-1)
       end
     end

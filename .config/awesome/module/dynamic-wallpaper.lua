@@ -249,16 +249,14 @@ end
 
 -- Set wallpaper
 local set_wallpaper = function(path)
-  log('--> set_wallpaper: ' .. path)
+  log('set_wallpaper: ' .. path)
   for s in screen do
     -- Update wallpaper based on the data in the array
     -- local cmd = 'nitrogen --head=' .. (s.index - 1) .. ' --set-zoom-fill ' .. path
     local cmd = 'xwallpaper --screen ' .. (s.index - 1) .. ' --debug --zoom ' .. path
     log('WallPaper Command peer Screen: ' .. cmd)
     awful.spawn.easy_async_with_shell(cmd, function(e)
-      log('==> set_wallpaper callback')
-      log(' -> cmd: ' .. cmd)
-      log(' -> args: ' .. tostring(e))
+      log('set_wallpaper callback')
     end)
   end
 end
@@ -269,7 +267,7 @@ end
 -- We need some delay.
 -- Hey it's working, so whatever
 local update_wallpaper = function(wall_name)
-  log('==> update wallpaper: ' .. wall_name)
+  log('update wallpaper: ' .. wall_name)
   local wall_dir = wall_config.wall_dir .. wall_name
   set_wallpaper(wall_dir)
 
@@ -346,13 +344,12 @@ local wall_updater = gears.timer {
   call_now  = true,
   callback  = function()
     -- Emit signal to update wallpaper
-    awesome.emit_signal('module::change_wallpaper')
+    emit('module::change_wallpaper')
   end
 }
 
 -- Update wallpaper here and update the timeout for the next schedule
-awesome.connect_signal(
-  'module::change_wallpaper',
+connect('module::change_wallpaper',
   function()
     --set_wallpaper(wall_dir .. wall_data[2])
 

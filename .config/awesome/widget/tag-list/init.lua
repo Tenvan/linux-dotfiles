@@ -59,9 +59,9 @@ local tag_list = function(pScreen)
           -- BLING: Only show widget when there are clients in the tag
           if #c3:clients() > 0 then
             -- BLING: Update the widget with the new tag
-            awesome.emit_signal('bling::tag_preview::update', c3)
+            emit('bling::tag_preview::update', c3)
             -- BLING: Show the widget
-            awesome.emit_signal('bling::tag_preview::visibility', pScreen, true, self)
+            emit('bling::tag_preview::visibility', pScreen, true, self)
           end
 
           if self.bg ~= beautiful.accent then
@@ -75,7 +75,7 @@ local tag_list = function(pScreen)
 
         self:connect_signal('mouse::leave', function()
           -- BLING: Turn the widget off
-          awesome.emit_signal('bling::tag_preview::visibility', pScreen, false, self)
+          emit('bling::tag_preview::visibility', pScreen, false, self)
 
           local t = awful.screen.focused().selected_tag
           local ct = objects[index]

@@ -67,7 +67,7 @@ end)
 
 -- Create tags for each screen
 screen.connect_signal('request::desktop_decoration', function(s)
-  log('==> Layout restore tags')
+  log('layout restore tags')
   local state = stateModul.getState()
 
   for i, tag in pairs(tags) do
@@ -108,9 +108,6 @@ screen.connect_signal('request::desktop_decoration', function(s)
         end
       end
     end
-
-    -- log(' --> tag:' .. stateTag .. ' layout: ' .. stateLayout .. ' screen:' .. stateScreen)
-    -- log('resolved layout: ' .. tostring(tagStartLayout))
 
     awful.tag.add(i, {
       text = tagnames[i],
@@ -159,7 +156,7 @@ tag.connect_signal('property::layout', function(t)
   local stateScreen = tostring(t.screen.index)
   local stateTag = tostring(t.name)
   local stateLayout = tostring(t.layout.name)
-  log('==> Layout changed: tag:' .. stateTag .. ' layout: ' .. stateLayout .. ' screen:' .. stateScreen)
+  log('layout changed: tag:' .. stateTag .. ' layout: ' .. stateLayout .. ' screen:' .. stateScreen)
   local state = stateModul.getState()
 
   if state == nil then

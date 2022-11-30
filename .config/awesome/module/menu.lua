@@ -235,7 +235,7 @@ local tools_menu = {
 	{
 		'End Session',
 		function()
-			awesome.emit_signal('module::exit_screen:show')
+			emit('module::exit_screen:show')
 		end,
 		menubar.utils.lookup_icon('system-shutdown') 
 	}

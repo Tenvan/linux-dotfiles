@@ -320,16 +320,16 @@ local global_keys = awful.util.table.join(
   -- ░▀▀░░▀░▀░▀▀▀░▀▀▀░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀░▀▀▀
   awful.key({}, 'XF86MonBrightnessUp', function()
     awful.spawn('light -A 10', false)
-    awesome.emit_signal('widget::brightness')
-    awesome.emit_signal('module::brightness_osd:show', true)
+    emit('widget::brightness')
+    emit('module::brightness_osd:show', true)
   end, {
     description = 'increase brightness by 10%',
     group = keys.kgHotkeys
   }),
   awful.key({}, 'XF86MonBrightnessDown', function()
     awful.spawn('light -U 10', false)
-    awesome.emit_signal('widget::brightness')
-    awesome.emit_signal('module::brightness_osd:show', true)
+    emit('widget::brightness')
+    emit('module::brightness_osd:show', true)
   end, {
     description = 'decrease brightness by 10%',
     group = keys.kgHotkeys
@@ -358,48 +358,48 @@ local global_keys = awful.util.table.join(
   -- ░▀░▀░▀▀▀░▀▀▀░▀░▀░░░░▀░░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░░░▀▀▀░▀▀▀░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀
   awful.key({}, 'XF86AudioRaiseVolume', function()
     awful.spawn('amixer -D pulse sset Master 5%+', false)
-    awesome.emit_signal('widget::volume')
-    awesome.emit_signal('module::volume_osd:show', true)
+    emit('widget::volume')
+    emit('module::volume_osd:show', true)
   end, {
     description = 'increase volume up by 5%',
     group = keys.kgHotkeys
   }),
   awful.key({ modkey, altkey }, 'KP_Add', function()
     awful.spawn('amixer -D pulse sset Master 5%+', false)
-    awesome.emit_signal('widget::volume')
-    awesome.emit_signal('module::volume_osd:show', true)
+    emit('widget::volume')
+    emit('module::volume_osd:show', true)
   end, {
     description = '+5% Volume',
     group = keys.kgSound
   }),
   awful.key({}, 'XF86AudioLowerVolume', function()
     awful.spawn('amixer -D pulse sset Master 5%-', false)
-    awesome.emit_signal('widget::volume')
-    awesome.emit_signal('module::volume_osd:show', true)
+    emit('widget::volume')
+    emit('module::volume_osd:show', true)
   end, {
     description = '-5% Volume',
     group = keys.kgHotkeys
   }),
   awful.key({ modkey, altkey }, 'KP_Subtract', function()
     awful.spawn('amixer -D pulse sset Master 5%-', false)
-    awesome.emit_signal('widget::volume')
-    awesome.emit_signal('module::volume_osd:show', true)
+    emit('widget::volume')
+    emit('module::volume_osd:show', true)
   end, {
     description = '-5% Volume',
     group = keys.kgSound
   }),
   awful.key({}, 'XF86AudioMute', function()
     awful.spawn('amixer -D pulse set Master 1+ toggle', false)
-    awesome.emit_signal('widget::volume')
-    awesome.emit_signal('module::volume_osd:show', true)
+    emit('widget::volume')
+    emit('module::volume_osd:show', true)
   end, {
     description = 'toggle mute',
     group = keys.kgHotkeys
   }),
   awful.key({ modkey, altkey }, 'KP_Multiply', function()
     awful.spawn('amixer -D pulse set Master 1+ toggle', false)
-    awesome.emit_signal('widget::volume')
-    awesome.emit_signal('module::volume_osd:show', true)
+    emit('widget::volume')
+    emit('module::volume_osd:show', true)
   end, {
     description = 'Mute Volume',
     group = keys.kgSound
@@ -454,7 +454,7 @@ local global_keys = awful.util.table.join(
     group = keys.kgHotkeys
   }),
   awful.key({}, 'XF86PowerOff', function()
-    awesome.emit_signal('module::exit_screen:show')
+    emit('module::exit_screen:show')
   end, {
     description = 'toggle exit screen',
     group = keys.kgHotkeys
@@ -466,14 +466,14 @@ local global_keys = awful.util.table.join(
     group = keys.kgHotkeys
   }),
   awful.key({ shiftkey, modkey }, 'q', function()
-    awesome.emit_signal('module::exit_screen:show')
+    emit('module::exit_screen:show')
   end, {
     description = 'toggle exit screen',
     group = keys.kgHotkeys
   }),
 
   awful.key({ altkey, modkey }, returnkey, function()
-    awesome.emit_signal('module::quake_terminal:toggle')
+    emit('module::quake_terminal:toggle')
   end, {
     description = 'dropdown terminal (all screens)',
     group = keys.kgLauncher
@@ -489,7 +489,7 @@ local global_keys = awful.util.table.join(
 
   awful.key({ modkey, shiftkey }, 'm', function()
     if awful.screen.focused().musicpop then
-      awesome.emit_signal('widget::music', 'keyboard')
+      emit('widget::music', 'keyboard')
     end
   end, {
     description = 'toggle music widget',
@@ -510,19 +510,19 @@ local global_keys = awful.util.table.join(
     group = keys.kgUtils
   }),
   awful.key({ modkey }, ']', function()
-    awesome.emit_signal('widget::blur:increase')
+    emit('widget::blur:increase')
   end, {
     description = 'increase blur effect by 10%',
     group = keys.kgUtils
   }),
   awful.key({ modkey }, '[', function()
-    awesome.emit_signal('widget::blur:decrease')
+    emit('widget::blur:decrease')
   end, {
     description = 'decrease blur effect by 10%',
     group = keys.kgUtils
   }),
   awful.key({ modkey }, 'b', function()
-    awesome.emit_signal('widget::blue_light:toggle')
+    emit('widget::blue_light:toggle')
   end, {
     description = 'toggle redshift filter',
     group = keys.kgUtils

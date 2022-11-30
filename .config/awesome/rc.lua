@@ -13,16 +13,18 @@ awful = require('awful')
 beautiful = require('beautiful')
 gears = require('gears')
 wibox = require('wibox')
-dpi = beautiful.xresources.apply_dpi
+
 log = require('utilities.debug').log
 trace = require('utilities.debug').trace
 dump = require('utilities.debug').dump
+dpi = beautiful.xresources.apply_dpi
 notify = require('utilities.notify')
+emit = require('services.utils').emit
+connect = require('services.utils').connect
+
 log('Enter Module => rc.lua')
 
 pcall(require, 'luarocks.loader')
-
--- Zwölf Boxkämpfer  ==>
 
 local test = (1 == 2)
 

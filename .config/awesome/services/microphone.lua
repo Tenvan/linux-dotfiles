@@ -10,7 +10,7 @@ local function emit_microphone_info()
         local muted = stdout:match('muted:(%s+)[yes]')
         local muted_int = muted and 1 or 0
         if not (muted_int == muted_old) then
-            awesome.emit_signal("evil::microphone", muted)
+            emit("evil::microphone", muted)
             muted_old = muted_int
         end
     end)

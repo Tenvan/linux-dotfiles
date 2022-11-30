@@ -1,6 +1,6 @@
 local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local awful = require('awful')
 local gears = require('gears')
@@ -59,13 +59,10 @@ vol_osd_slider:connect_signal(
     osd_value.text = volume_level .. '%'
 
     -- Update the volume slider if values here change
-    awesome.emit_signal('widget::volume:update', volume_level)
+    emit('widget::volume:update', volume_level)
 
     if awful.screen.focused().show_vol_osd then
-      awesome.emit_signal(
-        'module::volume_osd:show',
-        true
-      )
+      emit('module::volume_osd:show', true)
     end
   end
 )
@@ -85,7 +82,7 @@ vol_osd_slider:connect_signal(
 )
 
 -- The emit will come from the volume-slider
-awesome.connect_signal(
+connect(
   'module::volume_osd',
   function(volume)
     vol_osd_slider:set_value(volume)
@@ -168,7 +165,7 @@ screen.connect_signal(
       'mouse::enter',
       function()
         awful.screen.focused().show_vol_osd = true
-        awesome.emit_signal('module::volume_osd:rerun')
+        emit('module::volume_osd:rerun')
       end
     )
   end
@@ -184,7 +181,7 @@ local hide_osd = gears.timer {
   end
 }
 
-awesome.connect_signal(
+connect(
   'module::volume_osd:rerun',
   function()
     if hide_osd.started then
@@ -252,14 +249,14 @@ local placement_placer = function()
   )
 end
 
-awesome.connect_signal(
+connect(
   'module::volume_osd:show',
   function(bool)
     placement_placer()
     awful.screen.focused().volume_osd_overlay.visible = bool
     if bool then
-      awesome.emit_signal('module::volume_osd:rerun')
-      awesome.emit_signal(
+      emit('module::volume_osd:rerun')
+      emit(
         'module::brightness_osd:show',
         false
       )

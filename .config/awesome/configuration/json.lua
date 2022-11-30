@@ -11,8 +11,8 @@ local readJson = require('utilities.json').readJsonFile
 local configJson = config_dir .. 'configuration/config.json'
 local customConfigJson = os.getenv('CUSTOMS') .. '/awesome/config.json'
 
-log('--> config json file: ' .. configJson)
-log('--> custom config json file: ' .. customConfigJson)
+log('config json file: ' .. configJson)
+log('custom config json file: ' .. customConfigJson)
 
 local config = readJson(configJson)
 local customConfig = readJson(customConfigJson)

@@ -114,8 +114,7 @@ local action_widget = wibox.widget {
   widget = wibox.container.margin
 }
 
-awesome.connect_signal(
-  'widget::blue_light:toggle',
+connect('widget::blue_light:toggle',
   function()
     toggle_action()
   end

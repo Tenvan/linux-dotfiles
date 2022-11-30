@@ -436,7 +436,7 @@ local enable = function(opts)
         end
     end)
 
-    awesome.connect_signal("bling::window_switcher::turn_on", function()
+    connect("bling::window_switcher::turn_on", function()
         resetIndex()
 
         local number_of_clients = getNumClients()

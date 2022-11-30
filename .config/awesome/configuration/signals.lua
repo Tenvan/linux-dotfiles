@@ -20,8 +20,6 @@ local ChromiumMatch = {
 -- No borders when rearranging only 1 non-floating or maximized client
 screen.connect_signal('arrange', function(s)
   local only_one = #s.tiled_clients == 1
-  -- log('spawned::arrange')
-  -- log(' --> only_one: ' .. tostring(only_one))
 
   for _, c in pairs(s.clients) do
     local match = awful.rules.match_any(c, ChromiumMatch)
@@ -39,11 +37,11 @@ client.connect_signal('property::border_width', function(c)
   log(string.format('property::border_width for %s with width=%d', tostring(c), c.border_width))
 end)
 
-awesome.connect_signal('debug::deprecation', function(hint, see, args)
+connect('debug::deprecation', function(hint, see, args)
   notify('Deprecated Function called!', tostring(hint), 'critical')
 end)
 
-awesome.connect_signal('startup', function()
+connect('startup', function()
   log("'awesome:startup' event raised")
   sound('desktop-login')
 end)
@@ -51,7 +49,7 @@ end)
 -- Handle runtime errors after startup
 do
   local in_error = false
-  awesome.connect_signal('debug::error', function(err)
+  connect('debug::error', function(err)
     -- Make sure we don't go into an endless error loop
     if in_error then return end
     in_error = true

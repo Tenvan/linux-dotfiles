@@ -1,4 +1,4 @@
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local awful = require('awful')
 local gears = require('gears')
@@ -169,7 +169,7 @@ local build_power_button = function(name, icon, callback)
 end
 
 local suspend_command = function()
-  awesome.emit_signal('module::exit_screen:hide')
+  emit('module::exit_screen:hide')
   awful.spawn.with_shell(apps.default.lock .. ' & systemctl suspend')
 end
 
@@ -178,18 +178,18 @@ local logout_command = function()
 end
 
 local lock_command = function()
-  awesome.emit_signal('module::exit_screen:hide')
+  emit('module::exit_screen:hide')
   awful.spawn.with_shell(apps.default.lock)
 end
 
 local poweroff_command = function()
   awful.spawn.with_shell('poweroff')
-  awesome.emit_signal('module::exit_screen:hide')
+  emit('module::exit_screen:hide')
 end
 
 local reboot_command = function()
   awful.spawn.with_shell('reboot')
-  awesome.emit_signal('module::exit_screen:hide')
+  emit('module::exit_screen:hide')
 end
 
 local poweroff = build_power_button('Shutdown', icons.power, poweroff_command)
@@ -219,14 +219,14 @@ local create_exit_screen = function(s)
         {},
         2,
         function()
-          awesome.emit_signal('module::exit_screen:hide')
+          emit('module::exit_screen:hide')
         end
       ),
       awful.button(
         {},
         3,
         function()
-          awesome.emit_signal('module::exit_screen:hide')
+          emit('module::exit_screen:hide')
         end
       )
     )
@@ -334,13 +334,12 @@ local exit_screen_grabber = awful.keygrabber {
       reboot_command()
 
     elseif key == 'Escape' or key == 'q' or key == 'x' then
-      awesome.emit_signal('module::exit_screen:hide')
+      emit('module::exit_screen:hide')
     end
   end
 }
 
-awesome.connect_signal(
-  'module::exit_screen:show',
+connect('module::exit_screen:show',
   function()
     for s in screen do
       s.exit_screen.visible = false
@@ -350,8 +349,7 @@ awesome.connect_signal(
   end
 )
 
-awesome.connect_signal(
-  'module::exit_screen:hide',
+connect('module::exit_screen:hide',
   function()
     update_greeter_msg()
     exit_screen_grabber:stop()

@@ -131,7 +131,7 @@ blur_slider:connect_signal(
 )
 
 -- Adjust slider value to change blur deviation
-awesome.connect_signal(
+connect(
   'widget::blur:increase',
   function()
     -- On startup, the slider.value returns nil so...
@@ -152,7 +152,7 @@ awesome.connect_signal(
 )
 
 -- Decrease blur
-awesome.connect_signal(
+connect(
   'widget::blur:decrease',
   function()
     -- On startup, the slider.value returns nil so...

@@ -73,8 +73,8 @@ refresh_button:buttons(
 			1,
 			nil,
 			function()
-				awesome.emit_signal('widget::weather_fetch')
-				awesome.emit_signal('widget::forecast_fetch')
+				emit('widget::weather_fetch')
+				emit('widget::forecast_fetch')
 			end
 		)
 	)
@@ -248,7 +248,7 @@ local create_weather_script = function(mode)
 	return weather_script
 end
 
-awesome.connect_signal(
+connect(
 	'widget::forecast_fetch',
 	function()
 		awful.spawn.easy_async_with_shell(
@@ -282,14 +282,14 @@ awesome.connect_signal(
 	end
 )
 
-awesome.connect_signal(
+connect(
 	'widget::weather_fetch',
 	function()
 		awful.spawn.easy_async_with_shell(
 			create_weather_script('weather'),
 			function(stdout)
 				if stdout:match('error') then
-					awesome.emit_signal(
+					emit(
 						'widget::weather_update', 
 						'...', 
 						'Dust and clouds, -1000°C', 
@@ -321,7 +321,7 @@ awesome.connect_signal(
 					-- Contantenate city and country
 					local weather_location = location .. ', ' .. country
 
-					awesome.emit_signal(
+					emit(
 						'widget::weather_update', 
 						weather_icon, 
 						weather_description, 
@@ -342,20 +342,20 @@ local update_widget_timer = gears.timer {
 	call_now  = true,
 	single_shot = false,
 	callback  = function()
-		awesome.emit_signal('widget::weather_fetch')
-		awesome.emit_signal('widget::forecast_fetch')
+		emit('widget::weather_fetch')
+		emit('widget::forecast_fetch')
 	end
 }
 
-awesome.connect_signal(
+connect(
 	'system::network_connected',
 	function() 
-		awesome.emit_signal('widget::weather_fetch')
-		awesome.emit_signal('widget::forecast_fetch')
+		emit('widget::weather_fetch')
+		emit('widget::forecast_fetch')
 	end
 )
 
-awesome.connect_signal(
+connect(
 	'widget::weather_update', 
 	function(code, desc, location, sunrise, sunset, data_receive)
 		local widget_icon_name = 'weather-error'

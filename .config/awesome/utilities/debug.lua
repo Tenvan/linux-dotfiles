@@ -6,7 +6,7 @@ local function log(message, level)
 end
 
 local function trace(message, level)
-  if config.debug_mode then
+  if config.trace_mode then
     gdebug.print_warning('[' .. (level or 'TRACE') .. ']: ' .. message)
   end
 end
@@ -14,12 +14,12 @@ end
 local function dump(object, tag, depth)
   local traceback = debug.traceback()
   local level = 'DUMP'
-  log('==> Dump', level)
+  log('Dump: [[', level)
   log(gdebug.dump_return(object, tag, depth), level)
   if config.debug_mode then
     log(traceback, level)
   end
-  log('<== Dump', level)
+  log(']]', level)
 end
 
 return {

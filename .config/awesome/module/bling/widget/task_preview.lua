@@ -168,7 +168,7 @@ local enable = function(opts)
         }
     end)
 
-    awesome.connect_signal("bling::task_preview::visibility",
+    connect("bling::task_preview::visibility",
         function(s, v, c, t)
             if v then
                 -- Update task preview contents

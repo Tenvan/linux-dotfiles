@@ -47,7 +47,7 @@ local return_button = function()
 				nil,
 				function()
 					music_tooltip.visible = false
-					awesome.emit_signal('widget::music', 'mouse')
+					emit('widget::music', 'mouse')
 				end
 			)
 		)

@@ -25,7 +25,7 @@ awful.spawn.easy_async_with_shell("sh -c 'out=\"$(find /sys/class/power_supply/B
     end
     -- Periodically get battery info
     awful.widget.watch("cat "..battery_file, update_interval, function(_, stdout)
-        awesome.emit_signal("evil::battery", tonumber(stdout))
+        emit("evil::battery", tonumber(stdout))
     end)
 end)
 
@@ -39,7 +39,7 @@ awful.spawn.easy_async_with_shell("sh -c 'out=\"$(find /sys/class/power_supply/*
     local emit_charger_info = function()
         awful.spawn.easy_async_with_shell("cat "..charger_file, function (out)
             local status = tonumber(out) == 1
-            awesome.emit_signal("evil::charger", status)
+            emit("evil::charger", status)
         end)
     end
 

@@ -133,7 +133,7 @@ local ffmpeg_start_recording = function(audio, filename)
 					timeout = 60,
 					urgency = 'normal'
 				})
-				awesome.emit_signal('widget::screen_recorder')
+				emit('widget::screen_recorder')
 				return
 			end
 			create_notification(filename)

@@ -21,5 +21,5 @@ awful.widget.watch(disk_script, update_interval, function(_, stdout)
     -- the 5% storage reserved for `root`, which is misleading.
     local available = tonumber(stdout:match('^(.*)@')) / 1000
     local used = tonumber(stdout:match('@(.*)$')) / 1000
-    awesome.emit_signal("evil::disk", used, used + available)
+    emit("evil::disk", used, used + available)
 end)

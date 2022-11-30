@@ -135,8 +135,7 @@ local action_widget = wibox.widget {
   widget = wibox.container.margin
 }
 
-awesome.connect_signal(
-  'widget::blur:toggle',
+connect('widget::blur:toggle',
   function()
     toggle_blur_fx()
   end

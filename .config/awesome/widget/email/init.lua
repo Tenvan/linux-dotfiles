@@ -391,8 +391,7 @@ email_report:connect_signal(
   end
 )
 
-awesome.connect_signal(
-  'system::network_connected',
+connect('system::network_connected',
   function()
     gears.timer.start_new(
       5,

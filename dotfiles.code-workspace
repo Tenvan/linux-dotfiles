@@ -16,9 +16,6 @@
 			"path": ".config/fontconfig"
 		},
 		{
-			"path": "elanapan-dotfiles"
-		},
-		{
 			"path": ".local/state/awesome"
 		},
 		{

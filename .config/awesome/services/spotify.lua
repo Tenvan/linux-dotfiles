@@ -12,7 +12,7 @@ local function emit_info(playerctl_output)
   local metaData = json.parse(playerctl_output) or {}
   metaData.lastPlayDate = os.time()
   metaHelper.ValidateImage(metaData)
-  awesome.emit_signal('service::spotify::meta', metaData)
+  emit('service::spotify::meta', metaData)
 end
 
 local spotify_listener = string.format('%s/.scripts/services/spotify-listener.sh', os.getenv('HOME'))

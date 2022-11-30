@@ -58,28 +58,23 @@ local function loadBookmarksFromState()
 end
 
 -- emitter functions
-local function emit_statuss(status)
-  log('service::spotify-bookmarks => service::spotify::status: ' .. currentStatus .. ' -> ' .. status)
-  awesome.emit_signal('service::spotify::status', status)
+local function emit_status(status)
+  emit('service::spotify::status', status)
 end
 
 local function emit_bookmarks(bookmarks)
   table.sort(bookmarks, function(a, b)
     return (a.lastPlayDate or 0) > (b.lastPlayDate or 0)
   end)
-  log('service::spotify-bookmarks => service::spotify::bookmarks: ' .. tostring(#bookmarks))
-  awesome.emit_signal('service::spotify::bookmarks', bookmarks)
+  emit('service::spotify::bookmarks', bookmarks)
 end
 
 -- service subcriber
-awesome.connect_signal('service::spotify::meta', function(meta)
-  dump(meta, 'service::spotify::meta <- meta data')
-
+connect('service::spotify::meta', function(meta)
   local newStatus = metaHelper.GetStatus(meta)
-
   if (currentStatus ~= newStatus) then
     currentStatus = newStatus
-    emit_statuss(currentStatus)
+    emit_status(currentStatus)
   end
 
   -- bookmarks workflow
@@ -89,7 +84,7 @@ awesome.connect_signal('service::spotify::meta', function(meta)
   emit_bookmarks(currentBookmarks)
 end)
 
-awesome.connect_signal('service::spotify::bookmarks::remove', function(meta)
+connect('service::spotify::bookmarks::remove', function(meta)
   -- bookmarks workflow
   removeMetaToBookmarks(meta)
   emit_bookmarks(currentBookmarks)

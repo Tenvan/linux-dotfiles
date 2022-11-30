@@ -43,7 +43,6 @@ local setmetatable = setmetatable
 local ipairs = ipairs
 local pairs = pairs
 local type = type
-local capi = { awesome = awesome }
 
 local playerctl = { mt = {} }
 
@@ -179,7 +178,8 @@ function playerctl:get_player_of_name(name)
     return nil
 end
 
-local function emit_metadata_signal(self, title, artist, artUrl, album, new, player_name)
+local function emit_metadata_signal(self, title, artist, artUrl, album, new,
+                                    player_name)
     title = gstring.xml_escape(title)
     artist = gstring.xml_escape(artist)
     album = gstring.xml_escape(album)
@@ -192,11 +192,14 @@ local function emit_metadata_signal(self, title, artist, artUrl, album, new, pla
     if artUrl ~= "" then
         local art_path = os.tmpname()
         helpers.filesystem.save_image_async_curl(artUrl, art_path, function()
-            self:emit_signal("metadata", title, artist, art_path, album, new, player_name)
-            capi.awesome.emit_signal("bling::playerctl::title_artist_album", title, artist, art_path, player_name)
+            self:emit_signal("metadata", title, artist, art_path, album, new,
+                player_name)
+            emit("bling::playerctl::title_artist_album", title, artist, art_path
+                , player_name)
         end)
     else
-        capi.awesome.emit_signal("bling::playerctl::title_artist_album", title, artist, "", player_name)
+        emit("bling::playerctl::title_artist_album", title, artist, "",
+            player_name)
         self:emit_signal("metadata", title, artist, "", album, new, player_name)
     end
 end
@@ -221,15 +224,15 @@ local function metadata_cb(self, player, metadata)
 
         -- Callback can be called even though values we care about haven't
         -- changed, so check to see if they have
-        if
-            player ~= self._private.last_player
+        if player ~= self._private.last_player
             or title ~= self._private.last_title
             or artist ~= self._private.last_artist
             or artUrl ~= self._private.last_artUrl
         then
             if (title == "" and artist == "" and artUrl == "") then return end
 
-            if self._private.metadata_timer ~= nil and self._private.metadata_timer.started then
+            if self._private.metadata_timer ~= nil and
+                self._private.metadata_timer.started then
                 self._private.metadata_timer:stop()
             end
 
@@ -238,7 +241,8 @@ local function metadata_cb(self, player, metadata)
                 autostart = true,
                 single_shot = true,
                 callback = function()
-                    emit_metadata_signal(self, title, artist, artUrl, album, true, player.player_name)
+                    emit_metadata_signal(self, title, artist, artUrl, album, true
+                        , player.player_name)
                 end
             }
 
@@ -258,8 +262,10 @@ local function position_cb(self)
 
         local position = player:get_position() / 1000000
         local length = (player.metadata.value["mpris:length"] or 0) / 1000000
-        if position ~= self._private.last_position or length ~= self._private.last_length then
-            capi.awesome.emit_signal("bling::playerctl::position", position, length, player.player_name)
+        if position ~= self._private.last_position or
+            length ~= self._private.last_length then
+            emit("bling::playerctl::position", position, length,
+                player.player_name)
             self:emit_signal("position", position, length, player.player_name)
             self._private.last_position = position
             self._private.last_length = length
@@ -278,10 +284,10 @@ local function playback_status_cb(self, player, status)
         -- Reported as PLAYING, PAUSED, or STOPPED
         if status == "PLAYING" then
             self:emit_signal("playback_status", true, player.player_name)
-            capi.awesome.emit_signal("bling::playerctl::status", true, player.player_name)
+            emit("bling::playerctl::status", true, player.player_name)
         else
             self:emit_signal("playback_status", false, player.player_name)
-            capi.awesome.emit_signal("bling::playerctl::status", false, player.player_name)
+            emit("bling::playerctl::status", false, player.player_name)
         end
     end
 end
@@ -435,7 +441,8 @@ local function get_current_player_info(self, player)
     local artUrl = player:print_metadata_prop("mpris:artUrl") or ""
     local album = player:get_album() or ""
 
-    emit_metadata_signal(self, title, artist, artUrl, album, false, player.player_name)
+    emit_metadata_signal(self, title, artist, artUrl, album, false,
+        player.player_name)
     playback_status_cb(self, player, player.playback_status)
     volume_cb(self, player, player.volume)
     loop_status_cb(self, player, player.loop_status)
@@ -486,7 +493,7 @@ local function start_manager(self)
             _self._private.metadata_timer:stop()
             _self._private.position_timer:stop()
             _self:emit_signal("no_players")
-            capi.awesome.emit_signal("bling::playerctl::no_players")
+            emit("bling::playerctl::no_players")
         elseif player == _self._private.active_player then
             _self._private.active_player = self.players[1]
             get_current_player_info(_self, self.players[1])
@@ -515,16 +522,18 @@ end
 local function new(args)
     args = args or {}
 
-    local ret = gobject{}
+    local ret = gobject {}
     gtable.crush(ret, playerctl, true)
 
     -- Grab settings from beautiful variables if not set explicitly
     args.ignore = args.ignore or beautiful.playerctl_ignore
     args.player = args.player or beautiful.playerctl_player
     ret.update_on_activity = args.update_on_activity or
-                              beautiful.playerctl_update_on_activity or true
-    ret.interval = args.interval or beautiful.playerctl_position_update_interval or 1
-    ret.debounce_delay = args.debounce_delay or beautiful.playerctl_debounce_delay or 0.35
+        beautiful.playerctl_update_on_activity or true
+    ret.interval = args.interval or beautiful.playerctl_position_update_interval
+        or 1
+    ret.debounce_delay = args.debounce_delay or
+        beautiful.playerctl_debounce_delay or 0.35
     parse_args(ret, args)
 
     ret._private = {}

@@ -199,7 +199,7 @@ local enable = function(opts)
         }
     end)
 
-    awesome.connect_signal("bling::tag_preview::update", function(t)
+    connect("bling::tag_preview::update", function(t)
         local geo = t.screen:get_bounding_geometry({
             honor_padding = padding,
             honor_workarea = work_area,
@@ -228,7 +228,7 @@ local enable = function(opts)
         )
     end)
 
-    awesome.connect_signal("bling::tag_preview::visibility", function(s, v, t)
+    connect("bling::tag_preview::visibility", function(s, v, t)
         if not placement_fn then
             tag_preview_box.x = s.geometry.x + widget_x
             tag_preview_box.y = s.geometry.y + widget_y

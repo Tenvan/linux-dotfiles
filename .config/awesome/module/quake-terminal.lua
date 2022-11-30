@@ -10,7 +10,7 @@ local quake_id = nil
 local quake_client = nil
 local quake_opened = false
 
-local move_to_edge = require("helpers.client").move_to_edge
+local move_to_edge = require('helpers.client').move_to_edge
 
 local quake_properties = function()
   return {
@@ -92,8 +92,7 @@ local quake_toggle = function()
   end
 end
 
-awesome.connect_signal(
-  'module::quake_terminal:toggle',
+connect('module::quake_terminal:toggle',
   function()
     quake_toggle();
   end
@@ -122,9 +121,9 @@ client.connect_signal(
   'request::activate',
   function(c)
     if c.pid == quake_id then
-      log("QuakeTerminal request::activate")
+      log('QuakeTerminal request::activate')
       awful.placement.centered(c, { honor_workarea = true, honor_padding = true })
-      move_to_edge(c, "up")
+      move_to_edge(c, 'up')
     end
   end
 )

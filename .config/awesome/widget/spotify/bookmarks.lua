@@ -12,7 +12,7 @@ local currentBookmarks = {}
 -- emitter
 local function remove_bookmark(meta)
   log('widget::spotify-bookmarks => service::spotify::bookmarks::remove : ' .. meta.title)
-  awesome.emit_signal('service::spotify::bookmarks::remove', meta)
+  emit('service::spotify::bookmarks::remove', meta)
 end
 
 local function createBookmarkList(bookmarks)
@@ -150,7 +150,7 @@ local function createPopup()
 end
 
 -- Subcribe to spotify updates
-awesome.connect_signal('service::spotify::bookmarks', function(bookmarks)
+connect('service::spotify::bookmarks', function(bookmarks)
   log('widget::spotify-bookmarks <- bookmarks: ' .. tostring(#bookmarks))
   currentBookmarks = bookmarks
 end)

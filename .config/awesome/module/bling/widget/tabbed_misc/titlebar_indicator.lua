@@ -43,7 +43,7 @@ return function(c, opts)
 		spacing = opts.layout_spacing,
 	})
 
-	awesome.connect_signal("bling::tabbed::client_removed", function(_, removed_c)
+	connect("bling::tabbed::client_removed", function(_, removed_c)
 		-- Remove from list
 		for idx, icon in ipairs(tabbed_icons.children) do
 			if icon._client == removed_c then
@@ -126,8 +126,8 @@ return function(c, opts)
 		end
 	end
 
-	awesome.connect_signal("bling::tabbed::client_added", recreate)
-	awesome.connect_signal("bling::tabbed::changed_focus", recreate)
+	connect("bling::tabbed::client_added", recreate)
+	connect("bling::tabbed::changed_focus", recreate)
 
 	return tabbed_icons
 end

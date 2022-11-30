@@ -1,6 +1,6 @@
 local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local wibox = require('wibox')
 local gears = require('gears')
@@ -69,10 +69,7 @@ brightness_slider:connect_signal(
     )
 
     -- Update brightness osd
-    awesome.emit_signal(
-      'module::brightness_osd',
-      brightness_level
-    )
+    emit('module::brightness_osd', brightness_level)
   end
 )
 
@@ -146,7 +143,7 @@ action_level:buttons(
 )
 
 -- The emit will come from the global keybind
-awesome.connect_signal(
+connect(
   'widget::brightness',
   function()
     update_slider()
@@ -154,7 +151,7 @@ awesome.connect_signal(
 )
 
 -- The emit will come from the OSD
-awesome.connect_signal(
+connect(
   'widget::brightness:update',
   function(value)
     brightness_slider:set_value(tonumber(value))

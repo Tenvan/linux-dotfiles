@@ -212,7 +212,7 @@ spotify_title:connect_signal(
 )
 
 -- Subcribe to spotify updates
-awesome.connect_signal('service::spotify::meta', function(meta)
+connect('service::spotify::meta', function(meta)
     meta.lastPlayDate = os.time()
     spotify_artist.text = meta.artist
     spotify_title.text = meta.title
@@ -228,19 +228,19 @@ awesome.connect_signal('service::spotify::meta', function(meta)
 end)
 
 -- Subcribe to spotify updates
-awesome.connect_signal('service::spotify::status', function(status)
+connect('service::spotify::status', function(status)
     log('widget::spotify <- status: ' .. status)
     status_button.widget.text = status
 end)
 
 -- Subcribe to bookmarks updates
-awesome.connect_signal('service::spotify::bookmarks', function(bookmarks)
+connect('service::spotify::bookmarks', function(bookmarks)
     log('widget::spotify-bookmarks <- bookmarks: ' .. tostring(#bookmarks))
     refreshPopup()
 end)
 
 -- Subcribe to imageupdates
-awesome.connect_signal('service::spotify::image', function(image)
+connect('service::spotify::image', function(image)
     log('widget::spotify <- image: ' .. image)
     refreshPopup()
 end)
