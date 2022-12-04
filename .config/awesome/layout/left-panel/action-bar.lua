@@ -49,7 +49,7 @@ return function(s, panel, action_bar_width)
     {
       -- require('widget.search-apps')(),
       tag_list(s),
-      require('widget.xdg-folders')(),
+      -- require('widget.xdg-folders')(),
       layout = wibox.layout.fixed.vertical
     },
     nil,
