@@ -27,12 +27,20 @@ end
 
 local function getLargeMetaText(meta)
   return string.format(
-    [[<b>Titel</b>: <span size="x-large">%s</span>
-<b>Künstler</b>: %s
-<b>Album</b>: %s
-<b>Disk</b>: %s
-<b>Track</b>: %s
-<b>Track Link</b>: %s
+    [[<b>Titel</b>:
+<span size="large">%s</span>
+
+<b>Künstler</b>:
+%s
+
+<b>Album</b>:
+%s
+
+<b>Disk</b>: %s  /  <b>Track</b>: %s
+
+<b>Track Link</b>:
+%s
+
 <b>Zuletzt gespielt</b>: <span size="large">%s</span>]],
     meta.title,
     meta.artist,
@@ -65,6 +73,10 @@ end
 ---@param meta any
 ---@return string
 local function getImagePath(meta)
+  if (meta == nil) then
+    return ''
+  end
+  
   local trackid = getTrackId(meta)
   local cacheDirSpotify = getCachePath()
   local artCacheFile = string.format('%s/%s.jpeg', cacheDirSpotify, trackid)

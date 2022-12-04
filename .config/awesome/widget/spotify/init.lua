@@ -123,6 +123,20 @@ local widget = wibox.widget {
     status_button,
     next_button,
     bookmark_button,
+    -- Artist widget
+    {
+        align = 'center',
+        text = '---',
+        font = 'sans 14',
+        widget = spotify_artist
+    },
+    -- Seperator
+    {
+        align = 'center',
+        text = ' / ',
+        font = 'sans 14',
+        widget = wibox.widget.textbox()
+    },
     -- Title widget
     {
         align = 'center',
@@ -140,8 +154,8 @@ local popup_text_widget = wibox.widget {
 }
 
 local popup_artimage_widget = wibox.widget {
-    forced_height = dpi(200),
-    forced_width = dpi(200),
+    forced_height = dpi(600),
+    forced_width = dpi(600),
     widget = wibox.widget.imagebox(),
 }
 
@@ -162,8 +176,7 @@ local popup = awful.popup {
                 {
                     widget = popup_text_widget,
                 },
-                forced_height = dpi(220),
-                forced_width = dpi(1000),
+                forced_width = dpi(1200),
                 spacing = dpi(10),
                 valign = 'center',
                 layout = wibox.layout.fixed.horizontal,
@@ -242,6 +255,11 @@ end)
 -- Subcribe to imageupdates
 connect('service::spotify::image', function(image)
     log('widget::spotify <- image: ' .. image)
+    if (metaHelper.GetImagePath(lastMetaData) == image) then
+        popup_artimage_widget.image = image
+    end
+    local imageFile = metaHelper.GetImagePath(meta)
+
     refreshPopup()
 end)
 

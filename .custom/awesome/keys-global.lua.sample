@@ -1,0 +1,42 @@
+log('Enter Module => ' .. ...)
+
+local awful         = require('awful')
+local hotkeys_popup = require('awful.hotkeys_popup').widget
+
+local apps    = require('configuration.apps')
+local keys    = require('configuration.keys.mod')
+
+local modkey = keys.mod_key
+local altkey = keys.alt_key
+
+-- ░█░█░█▀▀░█░█░░░█▄█░█▀█░█▀▄░▀█▀░█▀▀░▀█▀░█▀▀░█▀▄░█▀▀░█▀▀
+-- ░█▀▄░█▀▀░░█░░░░█░█░█░█░█░█░░█░░█▀▀░░█░░█▀▀░█▀▄░█▀▀░▀▀█
+-- ░▀░▀░▀▀▀░░▀░░░░▀░▀░▀▀▀░▀▀░░▀▀▀░▀░░░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀
+local controlkey = keys.control_key
+local shiftkey   = keys.shift_key
+local returnkey  = keys.return_key
+local spacekey   = keys.space_key
+local escapekey  = keys.escape_key
+local printkey   = keys.print_key
+local tabkey     = keys.tab_key
+local downkey    = keys.down_key
+local upkey      = keys.up_key
+local leftkey    = keys.left_key
+local rightkey   = keys.right_key
+
+-- ░█▀▀░█░█░█▀▀░▀█▀░█▀█░█▄█░░░█▀▀░█░░░█▀█░█▀▄░█▀█░█░░░░░█░█░█▀▀░█░█░█▀▀
+-- ░█░░░█░█░▀▀█░░█░░█░█░█░█░░░█░█░█░░░█░█░█▀▄░█▀█░█░░░░░█▀▄░█▀▀░░█░░▀▀█
+-- ░▀▀▀░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀░░▀░▀░▀▀▀░░░▀░▀░▀▀▀░░▀░░▀▀▀
+local keys = awful.util.table.join(
+
+    awful.key({ modkey, shiftkey }, 'F1',
+        function()
+            notify('Test Message')
+        end,
+        {
+            description = 'show help',
+            group = keys.kgAwesome
+        })
+)
+
+return keys

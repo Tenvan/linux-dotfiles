@@ -1,0 +1,16 @@
+-- Main Browser
+local rules = {
+    {
+        rule = {
+            instance = 'vivaldi*'
+        },
+        properties = {
+            screen = 1,
+            tag = screen[1].tags[2],
+            maximized = true,
+            floating = false
+        }
+    }
+}
+
+return rules

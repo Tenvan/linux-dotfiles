@@ -1,0 +1,57 @@
+log('Enter Module => ' .. ...)
+
+local awful = require('awful')
+local keys = require('configuration.keys.mod')
+
+local modkey = keys.mod_key
+local altkey = keys.alt_key
+
+-- ░█░█░█▀▀░█░█░░░█▄█░█▀█░█▀▄░▀█▀░█▀▀░▀█▀░█▀▀░█▀▄░█▀▀░█▀▀
+-- ░█▀▄░█▀▀░░█░░░░█░█░█░█░█░█░░█░░█▀▀░░█░░█▀▀░█▀▄░█▀▀░▀▀█
+-- ░▀░▀░▀▀▀░░▀░░░░▀░▀░▀▀▀░▀▀░░▀▀▀░▀░░░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀
+
+-- modkey or mod4 = super key
+local controlkey = keys.control_key
+local downkey = keys.down_key
+local escapekey = keys.escape_key
+local leftkey = keys.left_key
+local returnkey = keys.return_key
+local rightkey = keys.right_key
+local shiftkey = keys.shift_key
+local spacekey = keys.space_key
+local tabkey = keys.tab_key
+local upkey = keys.up_key
+
+-- key groups
+local kgClient = keys.kgClient
+
+-- ░█▀▀░█░█░█▀▀░▀█▀░█▀█░█▄█░░░█▀▀░█░░░▀█▀░█▀▀░█▀█░▀█▀░░░█░█░█▀▀░█░█░█▀▀
+-- ░█░░░█░█░▀▀█░░█░░█░█░█░█░░░█░░░█░░░░█░░█▀▀░█░█░░█░░░░█▀▄░█▀▀░░█░░▀▀█
+-- ░▀▀▀░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░░▀░░░░▀░▀░▀▀▀░░▀░░▀▀▀
+local client_keys = awful.util.table.join(
+
+-- Move client by direction
+  awful.key({ modkey, shiftkey }, 'F3', function(c)
+    dump(c, 'client', 2)
+    local message = '\nClient Name:' .. tostring(c.name) .. '\n' ..
+      '\nClient Instanz:' .. tostring(c.instance) .. '\n' ..
+      '\nClient Title:' .. tostring(c.title)
+
+    notify('Teams Test Nachricht',
+      '<b>CRITICAL</b>\nDies ist eine Teams Test Nachicht.' .. message, 'critical', 'audio-card', 'teams-for-linux')
+
+    notify('Spotify Test Nachricht',
+      '<b>CRITICAL</b>\nDies ist eine Spotify Test Nachicht.' .. message, 'critical', 'audio-card', 'Spotify')
+
+    notify('Vivaldi Test Nachricht',
+      '<b>CRITICAL</b>\nDies ist eine Vivaldi Test Nachicht.' .. message, 'critical', 'audio-card', 'vivaldi-stable')
+
+    notify('KDE Connect Test Nachricht',
+      '<b>CRITICAL</b>\nDies ist eine KDE Connect Test Nachicht.' .. message, 'critical', 'audio-card', 'KDE Connect')
+  end, {
+    description = 'toggle minimize client',
+    group = kgClient
+  })
+)
+
+return client_keys

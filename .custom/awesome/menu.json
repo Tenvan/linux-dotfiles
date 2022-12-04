@@ -1,0 +1,205 @@
+{
+    "VARIABLES": {
+        "BEFORE_MENU": [
+            [
+                "@@ONETIMECLIENT_SHELL",
+                "$TERMINAL --directory @@WORK_ONETIMECLIENT"
+            ],
+            [
+                "@@ONETIMESERVER_SHELL",
+                "$TERMINAL --directory @@WORK_ONETIMESERVER"
+            ],
+            [
+                "@@OTW_BLL_SHELL",
+                "$TERMINAL --directory @@WORK_OTW_BLL"
+            ],
+            [
+                "@@OTW_ATOMIC_SHELL",
+                "$TERMINAL --directory @@WORK_OTW_ATOMIC"
+            ],
+            [
+                "@@OTW_WIDGETS_SHELL",
+                "$TERMINAL --directory @@WORK_OTW_WIDGETS"
+            ],
+            [
+                "@@OTW_WIDGETS_ELEMENTS_SHELL",
+                "$TERMINAL --directory @@WORK_OTW_WIDGETS_ELEMENTS"
+            ],
+            [
+                "@@WORK_ONETIMESERVER",
+                "$WORKSPACE/Node/OneTimeServer"
+            ],
+            [
+                "@@WORK_ONETIMECLIENT",
+                "$WORKSPACE/Node/OneTimeClient"
+            ],
+            [
+                "@@WORK_OTW_WIDGETS_ELEMENTS",
+                "$WORKSPACE/Node/OtwWidgetsElements"
+            ],
+            [
+                "@@WORK_OTW_WIDGETS",
+                "$WORKSPACE/Node/OtwWidgets"
+            ],
+            [
+                "@@WORK_OTW_ATOMIC",
+                "$WORKSPACE/Node/OtwAtomic"
+            ],
+            [
+                "@@WORK_OTW_BLL",
+                "$WORKSPACE/Node/OtwBll"
+            ],
+            [
+                "WORKSPACE",
+                ""
+            ]
+        ]
+    },
+    "APP_MENU": {
+        "BEFORE_MENU": [
+            [
+                "📈 TenHeim Log (Default)",
+                "$TERMINAL --hold --title ValHeim:XSessionError multitail -n 1000 -m 10000 -bw f -Ev '(Shader|shader|\\[Debug.*\\]|\\[Info.*\\]|\\/mono\\/.*|Fallback)' -s 2 -Cs -i /media/BIGDATA/STEAM/Valheim/logs/Server.log -i /media/BIGDATA/STEAM/Valheim/logs/Player.log"
+            ],
+            [
+                "📈 TenHeim Log (Test)",
+                "$TERMINAL --hold --title ValHeim:XSessionError multitail -n 1000 -m 10000 -bw f -Ev '(Shader|shader|\\[Debug.*\\]|\\[Info.*\\]|\\/mono\\/.*|Fallback)' -s 2 -Cs -i /media/BIGDATA/STEAM/ValheimTest/logs/Server.log -i /media/BIGDATA/STEAM/ValheimTest/logs/Player.log"
+            ],
+            [
+                "📈 Screenlayout Standard",
+                "$HOME/.screenlayout/screenlayout-system.sh"
+            ],
+            [
+                "📈 Screenlayout Games",
+                "$HOME/.screenlayout/screenlayout-games.sh"
+            ],
+            [
+                "📈 Screenlayout Full Resolution",
+                "$HOME/.screenlayout/screenlayout-full.sh"
+            ]
+        ]
+    },
+    "DEVELOP_MENU": {
+        "BEFORE_MENU": [
+            [
+                "🏄 OTS: Start Server",
+                "@@ONETIMESERVER_SHELL --hold --title OTC:StartServer yarn start"
+            ],
+            [
+                "🛫 OTC: Pug Watcher Atomic",
+                "@@OTW_ATOMIC_SHELL --hold --title OTC:PugWatcher yarn run watch:pug"
+            ],
+            [
+                "🛫 OTC: Npm Watcher Atomic",
+                "@@OTW_ATOMIC_SHELL --hold --title OTC:PugWatcher yarn run watch:npm"
+            ],
+            [
+                "🛫 OTC: Start TestApp Atomic",
+                "@@OTW_ATOMIC_SHELL --hold --title OTC:AtomicTestApp yarn run start:test:atomic"
+            ],
+
+            [
+                "🛫 OTC: Pug Watcher Widgets",
+                "@@OTW_WIDGETS_SHELL --hold --title OTC:PugWatcher yarn run watch:pug"
+            ],
+            [
+                "🛫 OTC: Npm Watcher Widgets",
+                "@@OTW_WIDGETS_SHELL --hold --title OTC:PugWatcher yarn run watch:npm"
+            ],
+            [
+                "🛫 OTC: Start TestApp Widgets",
+                "@@OTW_WIDGETS_SHELL --hold --title OTC:WidgetsTestApp yarn run start:test:widgets"
+            ],
+            [
+                "🛫 OTC: Start TestApp SSO",
+                "@@OTW_WIDGETS_SHELL --hold --title OTC:WidgetsTestApp yarn run start:test:sso"
+            ],
+
+            [
+                "🛫 OTC: Pug Watcher Client",
+                "@@ONETIMECLIENT_SHELL --hold --title OTC:PugWatcher yarn run watch:pug"
+            ],
+            [
+                "🛫 OTC: Npm Watcher Client",
+                "@@ONETIMECLIENT_SHELL --hold --title OTC:NpmWatcher yarn run watch:npm"
+            ],
+            [
+                "🛫 OTC: Start OneTimeClient",
+                "@@ONETIMECLIENT_SHELL --hold --title OTC:StartClient yarn run start:client"
+            ],
+
+            [
+                "💻 OTS: Shell OneTimeServer",
+                "@@ONETIMESERVER_SHELL --hold --title 'OTS:Shell OneTimeServer'"
+            ],
+            [
+                "💻 OTC: Shell OneTimeClient",
+                "@@ONETIMECLIENT_SHELL --hold --title 'OTC:Shell OneTimeClient'"
+            ],
+            [
+                "💻 OTW: Shell OtwWidgetsElements",
+                "@@OTW_WIDGETS_ELEMENTS_SHELL --hold --title 'OTW:Shell OtwWidgetsElements'"
+            ],
+            [
+                "💻 OTW: Shell OtwWidgets",
+                "@@OTW_WIDGETS_SHELL --hold --title 'OTW:Shell OtwWidgets'"
+            ],
+            [
+                "💻 OTW: Shell OtwAtomic",
+                "@@OTW_ATOMIC_SHELL --hold --title 'OTW:Shell OtwAtomic'"
+            ]
+        ],
+        "AFTER_MENU": [
+            [
+                "🇬 OTS: Server Code",
+                "code @@WORK_ONETIMESERVER"
+            ],
+            [
+                "🇬 OTC: Client Code",
+                "code @@WORK_ONETIMECLIENT"
+            ],
+            [
+                "🇬 OTC: Widget Elements Code",
+                "code @@WORK_OTW_WIDGETS_ELEMENTS"
+            ],
+            [
+                "🇬 OTC: Widget Code",
+                "code @@WORK_OTW_WIDGETS"
+            ],
+            [
+                "🇬 OTC: Atomic Code",
+                "code @@WORK_OTW_ATOMIC"
+            ]
+        ]
+    },
+    "SYSTEM_TOOLS_MENU": {
+        "BEFORE_MENU": [
+            [
+                "🖥 Monitor Standard",
+                "sh $HOME/.screenlayout/screenlayout.sh"
+            ],
+            [
+                "🖥 Monitor FlameShot",
+                "sh $HOME/.screenlayout/screenlayout-flameshot.sh"
+            ]
+        ],
+        "AFTER_MENU": [
+            [
+                "🪲 Webstorm 2022.2 Log (Console)",
+                "$TERMINAL --hold --title Sys:WebstormLogs multitail -cs -i $HOME/.cache/JetBrains/WebStorm2022.2/log/idea.log"
+            ],
+            [
+                "🪲 Webstorm 2022.3 Log (Console)",
+                "$TERMINAL --hold --title Sys:WebstormLogs multitail -cs -i $HOME/.cache/JetBrains/WebStorm2022.3/log/idea.log"
+            ],
+            [
+                "🪲 Spotify Log (Console)",
+                "$TERMINAL --hold --title Sys:XSessionError multitail -cs -i $HOME/spotify-log.log"
+            ],
+            [
+                "🪲 Spotify Trace (Console)",
+                "$TERMINAL --hold --title Sys:XSessionError multitail -cs -i $HOME/spotify-trace.log"
+            ]
+        ]
+    }
+}

@@ -38,9 +38,10 @@ local function worker(user_args)
     step_width = step_width,
     step_spacing = step_spacing,
     stack_colors = {
-      color_buf,
-      color_used,
-      color_free
+      beautiful.transparent,
+      beautiful.xres_vars.color1,
+      beautiful.xres_vars.color2,
+      beautiful.xres_vars.color3
     },
     id = 'graph_role',
     widget = wibox.widget.graph,
@@ -60,9 +61,9 @@ local function worker(user_args)
       local p_free = getPercentage(free + free_swap)
       local p_buff_cache = getPercentage(buff_cache)
 
-      widget:add_value(p_buff_cache, 1)
+      widget:add_value(p_free, 1)
       widget:add_value(p_used, 2)
-      widget:add_value(p_free, 3)
+      widget:add_value(p_buff_cache, 3)
 
       -- log('Memory Watcher => Used: ' .. p_used .. ' Free: ' .. p_free .. ' Cache: ' .. p_buff_cache)
     end,
@@ -75,9 +76,8 @@ local function worker(user_args)
     visible = false,
     widget = {
       {
-
-      widget = wibox.widget.piechart,
-      border_width = dpi(20),
+        widget = wibox.widget.piechart,
+        border_width = dpi(20),
       },
       forced_height = dpi(500),
       forced_width = dpi(700),
@@ -90,9 +90,16 @@ local function worker(user_args)
     offset = { y = dpi(5) },
   }
 
+  local old_cursor, old_wibox
   widget:connect_signal(
     'mouse::enter',
-    function(w)
+    function(self)
+      local wb = mouse.current_wibox
+      if wb ~= nil then
+        old_cursor, old_wibox = wb.cursor, wb
+        wb.cursor = 'hand2'
+      end
+
       popup.widget:get_widget().data_list = {
         { string.format('free %s %%', getPercentage(free + free_swap)), free + free_swap },
         { string.format('used %s %%', getPercentage(used + used_swap)), used + used_swap },
@@ -106,10 +113,21 @@ local function worker(user_args)
 
   widget:connect_signal(
     'mouse::leave',
-    function(w)
+    function(self)
+      if old_wibox then
+        old_wibox.cursor = old_cursor
+        old_wibox = nil
+      end
       popup.visible = false
     end
   )
+
+  widget:connect_signal('button::press',
+    function()
+      awful.spawn.with_shell("sync")
+      awful.spawn.with_shell("echo 1 | sudo tee /proc/sys/vm/drop_caches")
+    end)
+
 
   return widget
 end

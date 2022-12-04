@@ -1,0 +1,190 @@
+{
+    "VARIABLES": {
+        "BEFORE_MENU": [
+            [
+                "@@ONETIMECLIENT_SHELL",
+                "$TERMINAL --directory @@WORK_ONETIMECLIENT"
+            ],
+            [
+                "@@ONETIMESERVER_SHELL",
+                "$TERMINAL --directory @@WORK_ONETIMESERVER"
+            ],
+            [
+                "@@OTW_BLL_SHELL",
+                "$TERMINAL --directory @@WORK_OTW_BLL"
+            ],
+            [
+                "@@OTW_ATOMIC_SHELL",
+                "$TERMINAL --directory @@WORK_OTW_ATOMIC"
+            ],
+            [
+                "@@OTW_WIDGETS_SHELL",
+                "$TERMINAL --directory @@WORK_OTW_WIDGETS"
+            ],
+            [
+                "@@WORK_ONETIMESERVER",
+                "$WORKSPACE/Node/OneTimeServer"
+            ],
+            [
+                "@@WORK_ONETIMECLIENT",
+                "$WORKSPACE/Node/OneTimeClient"
+            ],
+            [
+                "@@WORK_OTW_WIDGETS",
+                "$WORKSPACE/Node/OtwWidgets"
+            ],
+            [
+                "@@WORK_OTW_ATOMIC",
+                "$WORKSPACE/Node/OtwAtomic"
+            ],
+            [
+                "@@WORK_OTW_BLL",
+                "$WORKSPACE/Node/OtwBll"
+            ],
+            [
+                "WORKSPACE",
+                ""
+            ]
+        ]
+    },
+    "APP_MENU": {
+        "BEFORE_MENU": [
+            [
+                "📈 TenHeim Log (small)",
+                "$TERMINAL --hold --title ValHeim:XSessionError multitail -Ev '(Shader|shader|\\[Debug.*\\]|\\[Info.*\\]|\\/mono\\/.*|Fallback)' -s 2 -Cs -i $HOME/Valheim/logs/Server.log -i $HOME/.config/unity3d/IronGate/Valheim/Player.log"
+            ],
+            [
+                "📈 TenHeim Log (all)",
+                "$TERMINAL --hold --title ValHeim:XSessionError multitail -Ev '(Shader|shader|\\/mono\\/.*|Fallback)' -s 2 -Cs -i $HOME/Valheim/logs/Server.log -i $HOME/.config/unity3d/IronGate/Valheim/Player.log"
+            ],
+            [
+                "📈 Screenlayout Standard",
+                "$HOME/.screenlayout/screenlayout-system.sh"
+            ],
+            [
+                "📈 Screenlayout Games",
+                "$HOME/.screenlayout/screenlayout-games.sh"
+            ],
+            [
+                "📈 Screenlayout Full Resolution",
+                "$HOME/.screenlayout/screenlayout-full.sh"
+            ]
+        ]
+    },
+    "DEVELOP_MENU": {
+        "BEFORE_MENU": [
+            [
+                "🏄 OTS: Start Server",
+                "@@ONETIMESERVER_SHELL --hold --title OTC:StartServer yarn start"
+            ],
+            [
+                "🛫 OTC: Pug Watcher Atomic",
+                "@@OTW_WIDGETS_SHELL --hold --title OTC:PugWatcher yarn run watch:pug"
+            ],
+            [
+                "🛫 OTC: Pug Watcher Widgets",
+                "@@OTW_WIDGETS_SHELL --hold --title OTC:PugWatcher yarn run watch:pug"
+            ],
+            [
+                "🛫 OTC: Start Pug Watcher",
+                "@@ONETIMECLIENT_SHELL --hold --title OTC:PugWatcher yarn run watch:pug"
+            ],
+            [
+                "🛫 OTC: Start Npm Watcher",
+                "@@ONETIMECLIENT_SHELL --hold --title OTC:NpmWatcher yarn run watch:npm"
+            ],
+            [
+                "🛫 OTC: Start OneTimeClient",
+                "@@ONETIMECLIENT_SHELL --hold --title OTC:StartClient yarn run start:client"
+            ],
+            [
+                "🛫 OTC: Start TestApp Atomic",
+                "@@OTW_ATOMIC_SHELL --hold --title OTC:AtomicTestApp yarn run start:test:atomic"
+            ],
+            [
+                "🛫 OTC: Start TestApp Widgets",
+                "@@OTW_WIDGETS_SHELL --hold --title OTC:WidgetsTestApp yarn run start:test:widgets"
+            ],
+            [
+                "🛫 OTC: Start TestApp SSO",
+                "@@OTW_WIDGETS_SHELL --hold --title OTC:WidgetsTestApp yarn run start:test:sso"
+            ],
+            [
+                "🏄 Keycloak Workdir",
+                "$TERMINAL --directory $WORKSPACE/KeyCloak --hold --title KeyCloak"
+            ],
+            [
+                "💻 OTS: Shell Server",
+                "@@ONETIMESERVER_SHELL --hold --title OTS:Shell"
+            ],
+            [
+                "💻 OTC: Shell OneTimeClient",
+                "@@ONETIMECLIENT_SHELL --hold --title OTC:Shell"
+            ],
+            [
+                "💻 OTW: Shell OtwWidgets",
+                "@@OTW_WIDGETS_SHELL --hold --title OTW:Shell"
+            ],
+            [
+                "💻 OTW: Shell OtwAtomic",
+                "@@OTW_ATOMIC_SHELL --hold --title OTW:Shell"
+            ]
+        ],
+        "AFTER_MENU": [
+            [
+                "🇬 OTC: Client Code",
+                "code @@WORK_ONETIMECLIENT"
+            ],
+            [
+                "🇬 OTC: Widget Code",
+                "code @@OTW_WIDGETS_SHELL"
+            ],
+            [
+                "🇬 OTC: Widget Code",
+                "code @@OTW_ATOMIC_SHELL"
+            ],
+            [
+                "🇬 OTS: Server Code",
+                "code @@WORK_ONETIMESERVER"
+            ]
+        ]
+    },
+    "SYSTEM_TOOLS_MENU": {
+        "BEFORE_MENU": [
+            [
+                "🖥 Monitor Standard",
+                "sh $HOME/.screenlayout/screenlayout.sh"
+            ],
+            [
+                "🖥 Monitor FlameShot",
+                "sh $HOME/.screenlayout/screenlayout-flameshot.sh"
+            ]
+        ],
+        "AFTER_MENU": [
+            [
+                "🚧 Awmtt Default Start",
+                "$TERMINAL --hold --title AWMTT awmtt start -C $myLua --size 1920x1080"
+            ],
+            [
+                "🚧 Awmtt Default Restart",
+                "$TERMINAL --title AWMTT awmtt restart"
+            ],
+            [
+                "🚧 Awmtt Default Stop",
+                "$TERMINAL --title AWMTT awmtt stop"
+            ],
+            [
+                "🚧 Awmtt Test Start",
+                "$TERMINAL --hold --title AWMTT awmtt start -C $myTestLua -D 1 --size 1920x1080"
+            ],
+            [
+                "🚧 Awmtt Test Restart",
+                "awmtt restart"
+            ],
+            [
+                "🚧 Awmtt Test Stop",
+                "awmtt stop"
+            ]
+        ]
+    }
+}
