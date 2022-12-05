@@ -82,4 +82,6 @@ fullInstall
 ## FINISHING #
 finish
 
+sudo pamac build --no-confirm qt5-styleplugins
+ 
 sound complete
