@@ -48,12 +48,14 @@ end
 
 local function loadBookmarksFromState()
   local bookmarksFile = getBookmarksPath()
-  local bookmarksStr = file.read_file(bookmarksFile)
-  local bookmarks = json.parse(bookmarksStr)
-  currentBookmarks = bookmarks
+  if file.file_exists(bookmarksFile) then
+    local bookmarksStr = file.read_file(bookmarksFile)
+    local bookmarks = json.parse(bookmarksStr)
+    currentBookmarks = bookmarks
 
-  for i = 1, #bookmarks do
-    metaHelper.ValidateImage(bookmarks[i])
+    for i = 1, #bookmarks do
+      metaHelper.ValidateImage(bookmarks[i])
+    end
   end
 end
 
