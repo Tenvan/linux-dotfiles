@@ -312,7 +312,6 @@ install tar
 # wallpapers, themes and icons
 
 if [ $IS_ARCO = true ]; then
-    install arcolinux-arc-archlinux-blue-git
     install arcolinux-arc-arcolinux-blue-git
     install arcolinux-arc-paper-git
     install arcolinux-arc-smoke-git
@@ -335,17 +334,12 @@ if [ $IS_MANJARO = true ]; then
     install papirus-maia-icon-theme
     install maia-icon-theme
     install sardi-icons
-fi
+fie
 
 if [ $IS_ARCO = true ]; then
     install paper-icon-theme
     install papirus-icon-theme
-    
-    install sardi-flexible-colora-variations-icons-git
-    install sardi-flexible-luv-colora-variations-icons-git
-    install sardi-flexible-mint-y-icons-git
-    install sardi-flexible-mixing-icons-git
-    install sardi-flexible-variations-icons-git
+    install zafiro-icon-theme   
 fi
 
 # Extra
@@ -373,7 +367,7 @@ fi
 install bibata-cursor-theme
 install bibata-cursor-translucent
 
-if [ $IS_MANJARO = true]; then
+if [ $IS_MANJARO = true ]; then
     install maia-cursor-theme
 fi
 

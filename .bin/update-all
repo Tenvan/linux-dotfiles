@@ -5,7 +5,7 @@ sudo timeshift --create
 sudo update-grub
 
 # System Update
-$PACTOOL -Syyu --needed
+$PACTOOL -Syyu --needed --overwrite
 
 # Flatpak Update
 flatpak update -v --noninteractive

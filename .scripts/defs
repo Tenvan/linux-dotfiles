@@ -21,11 +21,14 @@ SCRIPTS="$HOME/.scripts"
 DEBUG=false
 
 PACTOOL=pacman
+PAKKER_ALL="--color always --needed --useask --overwrite \* $@"
 
 if [ -x "$(command -v yay)" ]; then
     export PACTOOL=yay
+    PAKKER_ALL="--color always --needed --useask --overwrite \* $@"
 fi
 if [ -x "$(command -v paru)" ]; then
+    PAKKER_ALL="--color always --needed --useask --overwrite \* --nofailfast --stats $@"
     export PACTOOL=paru
 fi
 
@@ -53,9 +56,6 @@ if [ $LINUX_VERSION_NAME = "ManjaroLinux" ]; then
 fi
 
 echo "AUR Manager...: $PACKER"
-
-MAKEFLAGS="-j$(nproc)"
-PAKKER_ALL="--color always --needed --useask --overwrite \* --nofailfast --stats $@"
 
 initInstall() {
     INSTALL_SCRIPT=$1
@@ -183,7 +183,7 @@ prepare_sessiondown() {
     if [ ! -f "$sessiondownscript" ]; then
         $sessiondownscript
     fi
-
+    
     # Alle Docker beenden
     docker kill $(docker ps -q)
 }

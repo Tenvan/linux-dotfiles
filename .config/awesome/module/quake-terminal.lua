@@ -24,9 +24,9 @@ local quake_properties = function()
     above = true,
     sticky = true,
     hidden = not quake_opened,
-    maximized_horizontal = false,
+    maximized_horizontal = true,
     skip_center = false,
-    round_corners = false,
+    round_corners = true,
     -- keys = require('configuration.client.keys'),
     buttons = require('configuration.client.buttons'),
     placement = awful.placement.top,
@@ -121,6 +121,7 @@ client.connect_signal(
   'request::activate',
   function(c)
     if c.pid == quake_id then
+      c.screen = awful.screen.focused()
       log('QuakeTerminal request::activate')
       awful.placement.centered(c, { honor_workarea = true, honor_padding = true })
       move_to_edge(c, 'up')

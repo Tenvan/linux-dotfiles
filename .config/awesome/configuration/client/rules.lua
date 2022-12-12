@@ -281,7 +281,8 @@ ruled.client.connect_signal('request::rules', function()
       tag = screen[screen.primary].tags[1],
       skip_decoration = true,
       maximized = false,
-      floating = false
+      floating = false,
+      switch_to_tags = true,
     }
   }
 
@@ -293,7 +294,8 @@ ruled.client.connect_signal('request::rules', function()
     properties = {
       skip_decoration = false,
       focus = true,
-      floating = true
+      floating = true,
+      switch_to_tags = true,
     }
   }
 

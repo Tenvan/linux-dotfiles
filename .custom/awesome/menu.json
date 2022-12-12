@@ -59,23 +59,11 @@
         "BEFORE_MENU": [
             [
                 "📈 TenHeim Log (Default)",
-                "$TERMINAL --hold --title ValHeim:XSessionError multitail -n 1000 -m 10000 -bw f -Ev '(Shader|shader|\\[Debug.*\\]|\\[Info.*\\]|\\/mono\\/.*|Fallback)' -s 2 -Cs -i /media/BIGDATA/STEAM/Valheim/logs/Server.log -i /media/BIGDATA/STEAM/Valheim/logs/Player.log"
+                "$TERMINAL --hold --title ValHeim:XSessionError multitail -n 1000 -m 10000 -bw f -Ev '(Shader|shader|\\/mono\\/.*|Fallback)' -s 2 -Cs -i /media/BIGDATA/STEAM/Valheim/Server/BepInEx/LogOutput.log -i /media/BIGDATA/STEAM/Valheim/Client/BepInEx/LogOutput.log"
             ],
             [
                 "📈 TenHeim Log (Test)",
-                "$TERMINAL --hold --title ValHeim:XSessionError multitail -n 1000 -m 10000 -bw f -Ev '(Shader|shader|\\[Debug.*\\]|\\[Info.*\\]|\\/mono\\/.*|Fallback)' -s 2 -Cs -i /media/BIGDATA/STEAM/ValheimTest/logs/Server.log -i /media/BIGDATA/STEAM/ValheimTest/logs/Player.log"
-            ],
-            [
-                "📈 Screenlayout Standard",
-                "$HOME/.screenlayout/screenlayout-system.sh"
-            ],
-            [
-                "📈 Screenlayout Games",
-                "$HOME/.screenlayout/screenlayout-games.sh"
-            ],
-            [
-                "📈 Screenlayout Full Resolution",
-                "$HOME/.screenlayout/screenlayout-full.sh"
+                "$TERMINAL --hold --title ValHeim:XSessionError multitail -n 1000 -m 10000 -bw f -Ev '(Shader|shader|\\/mono\\/.*|Fallback)' -s 2 -Cs -i /media/BIGDATA/STEAM/ValheimTest/logs/Server.log -i /media/BIGDATA/STEAM/ValheimTest/logs/Player.log"
             ]
         ]
     },
@@ -175,12 +163,16 @@
     "SYSTEM_TOOLS_MENU": {
         "BEFORE_MENU": [
             [
-                "🖥 Monitor Standard",
-                "sh $HOME/.screenlayout/screenlayout.sh"
+                "🖥 Screenlayout Standard",
+                "$HOME/.screenlayout/screenlayout-default.sh"
             ],
             [
-                "🖥 Monitor FlameShot",
-                "sh $HOME/.screenlayout/screenlayout-flameshot.sh"
+                "🖥 Screenlayout Games",
+                "$HOME/.screenlayout/screenlayout-games.sh"
+            ],
+            [
+                "🖥 Screenlayout Full Resolution",
+                "$HOME/.screenlayout/screenlayout-full.sh"
             ]
         ],
         "AFTER_MENU": [

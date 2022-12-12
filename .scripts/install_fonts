@@ -23,7 +23,7 @@ install terminus-font
 install zsh-theme-powerlevel10k
 # install ttf-meslo-nerd-font-powerlevel10k
 
-install nerd-fonts-complete
+uninstall nerd-fonts-complete
 
 # install nerd-fonts-fira-code
 # if [ $IS_MANJARO = true ]; then
@@ -35,12 +35,13 @@ install nerd-fonts-complete
 # install nerd-fonts-terminus
 
 # ttf fonts
+install ttf-font-awesome
 install ttf-cascadia-code
 install ttf-devicons
 install ttf-fira-code
 install ttf-iosevka
 install ttf-jetbrains-mono
-# install ttf-nerd-fonts-symbols-2048-em
+install ttf-nerd-fonts-symbols
 install ttf-twemoji
 install ttf-all-the-icons
 

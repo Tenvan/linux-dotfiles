@@ -5,8 +5,8 @@ local rules = {
             class = 'Spotify'
         },
         properties = {
-            screen = 2,
-            tag = screen[2].tags[5],
+            screen = (screen[2] or screen[1]).index,
+            tag = (screen[2] or screen[1]).tags[5],
             maximized = true,
             floating = false
         }

@@ -1,12 +1,18 @@
 #!/usr/bin/env bash
 
+export DOT="$DOT;.xprofile"
+
 . "$HOME/.scripts/defs"
 
 if [ "$SCRIPTS" != "" ]; then
     csource ~/.profile
 fi
 
-export DOT="$DOT;.xprofile"
+# Load custom resources
+file="$CUSTOMS/.Xresources"
+if [ -f $file ]; then
+    xrdb -merge "$file"
+fi
 
 # Theme Definitionen
 export MAIN_THEME="Adwaita-dark"
@@ -59,3 +65,6 @@ export BROWSER=
 csource ~/.custom/.xprofile
 
 ~/.bin/merge-themes
+
+"$HOME/.bin/autostart"
+"$HOME/.screenlayout/screenlayout-awesome.sh"

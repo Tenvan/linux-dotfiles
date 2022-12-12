@@ -472,14 +472,14 @@ local global_keys = awful.util.table.join(
     group = keys.kgHotkeys
   }),
 
-  awful.key({ altkey, modkey }, returnkey, function()
+  awful.key({ controlkey, modkey }, returnkey, function()
     emit('module::quake_terminal:toggle')
   end, {
     description = 'dropdown terminal (all screens)',
     group = keys.kgLauncher
   }),
 
-  awful.key({ controlkey, modkey }, returnkey, function()
+  awful.key({ altkey, modkey }, returnkey, function()
     local QuakeTerminal = require('module.scratchpad').quake
     QuakeTerminal:toggle()
   end, {
