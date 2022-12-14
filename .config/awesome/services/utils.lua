@@ -10,7 +10,10 @@ local function emit_signal(signal, ...)
     trace(string.format('  --> %s', tostring(...)))
   elseif count > 1 then
     for i = 1, count do
-      trace(string.format('  --> %i: %s', i, tostring(({ ... })[i])))
+      local v = ({ ... })
+      if v ~= nil then
+        trace(string.format('  --> %i: %s', i, tostring(({ ... })[i])))
+      end
     end
   end
 

@@ -18,8 +18,10 @@ local tie = 'png'
 local theme = {}
 
 -- Font
-theme.font = 'Inter Regular 10'
-theme.font_bold = 'Inter Bold 10'
+theme.font_family = 'Iosevka '
+
+theme.font = theme.font_family .. ' Regular 12'
+theme.font_bold = theme.font_family .. ' Bold 12'
 
 -- Font
 theme.font_small_size = dpi(config.font_size_small or 8)
@@ -29,12 +31,11 @@ theme.font_big_size   = dpi(config.font_size_big or 20)
 
 theme.element_size = specs.elementSize
 
+log('Font Font Family: ' .. theme.font_small_size)
 log('Font Small Size: ' .. theme.font_small_size)
 log('Font Normal Size: ' .. theme.font_size)
 log('Font Large Size: ' .. theme.font_large_size)
 log('Font Big Size: ' .. theme.font_big_size)
-
-theme.font_family = 'Inter '
 
 theme.font_small = theme.font_family .. ' Regular ' .. theme.font_small_size
 theme.font       = theme.font_family .. ' Regular ' .. theme.font_size
@@ -195,7 +196,7 @@ local awesome_overrides = function(theme)
   theme.border_color_floating = theme.titlebar_bg_normal
   theme.border_color_maximized = theme.titlebar_bg_normal
   theme.border_color_fullscreen = theme.titlebar_bg_normal
-  
+
   -- Decorations
   theme.useless_gap = dpi(4)
   theme.client_shape_rectangle = gears.shape.rectangle

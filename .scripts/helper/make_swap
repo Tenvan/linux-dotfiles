@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+swapfile=/srv/swapfile
+
+if [ ! -f "$swapfile" ]; then
+	echo "KEIN swapfile gefunden, anlegen"
+	sudo dd if=/dev/zero of="$swapfile" bs=1G count=32
+	sudo mkswap "$swapfile"
+	sudo chmod 600 "$swapfile"
+	# sudo swapon "$swapfile"
+fi
+
+if [ -f "$swapfile" ]; then
+	echo "swapfile gefunden, mounten"
+	echo "$swapfile none    swap    defaults 0 0" | sudo tee -a /etc/fstab
+	sudo micro /etc/fstab
+	sudo mount -a
+fi

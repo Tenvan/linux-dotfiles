@@ -77,7 +77,7 @@ local function createBookmarkList(bookmarks)
               awful.spawn('spotify')
             end
 
-            local cmd = string.format('playerctl open %s', meta.url)
+            local cmd = string.format('playerctl open --player=spotify %s', meta.url)
             log('play command: ' .. cmd)
             -- awful.spawn(string.format('playerctl open open spotify:track:%s', metaHelper.GetTrackId(meta)))
             awful.spawn(cmd)

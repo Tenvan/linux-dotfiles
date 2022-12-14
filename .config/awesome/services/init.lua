@@ -1,8 +1,8 @@
 log('Enter Module => ' .. ...)
 
 -- Monitoring
--- require("services.cpu")
--- require("services.ram")
+require("services.cpu")
+require("services.ram")
 -- require("services.temperature")
 -- require("services.battery")
 -- require("services.disk")

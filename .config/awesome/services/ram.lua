@@ -1,23 +1,25 @@
+log('Enter Module => ' .. ...)
+
 -- Provides:
--- evil::ram
---      used (integer - mega bytes)
---      total (integer - mega bytes)
-local awful = require("awful")
+-- service::ram
+--      { total, used, free, shared, buff_cache, available, total_swap, used_swap, free_swap }
+--      all: (integer - mega bytes)
 
-local update_interval = 20
--- Returns the used amount of ram in percentage
--- TODO output of free is affected by system language. The following command
--- works for any language:
--- free -m | sed -n '2p' | awk '{printf "%d available out of %d\n", $7, $2}'
-local ram_script = [[
-  sh -c "
-  free -m | grep 'Mem:' | awk '{printf \"%d@@%d@\", $7, $2}'
-  "]]
+local watch = require('awful.widget.watch')
 
--- Periodically get ram info
-awful.widget.watch(ram_script, update_interval, function(widget, stdout)
-    local available = stdout:match('(.*)@@')
-    local total = stdout:match('@@(.*)@')
-    local used = tonumber(total) - tonumber(available)
-    emit("evil::ram", used, tonumber(total))
-end)
+local update_interval = 5
+local ram_idle_script = 'bash -c "LANGUAGE=en_US free | grep -z \"Mem.*Swap.*\""'
+
+watch(
+  ram_idle_script,
+  update_interval,
+  function(_, stdout)
+    -- trace('RAM Service: ' .. stdout)
+    local total, used, free, shared, buff_cache, available, total_swap, used_swap, free_swap =
+    stdout:match('(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*Swap:%s*(%d+)%s*(%d+)%s*(%d+)')
+    emit('service::ram',
+      { tonumber(total), tonumber(used), tonumber(free), tonumber(shared),
+        tonumber(buff_cache), tonumber(available),
+        tonumber(total_swap), tonumber(used_swap), tonumber(free_swap) })
+  end
+)

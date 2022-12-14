@@ -1,18 +1,35 @@
+log('Enter Module => ' .. ...)
+
 -- Provides:
 -- evil::cpu
 --      used percentage (integer)
-local awful = require("awful")
+--      total, diff_idle, diff_total, diff_usage,
+--      user, nice, system, idle, iowait, irq, softirq, steal, guest, guest_nice
 
-local update_interval = 5
-local cpu_idle_script = [[
-  sh -c "
-  vmstat 1 2 | tail -1 | awk '{printf \"%d\", $15}'
-  "]]
+local watch = require('awful.widget.watch')
 
--- Periodically get cpu info
-awful.widget.watch(cpu_idle_script, update_interval, function(widget, stdout)
-    -- local cpu_idle = stdout:match('+(.*)%.%d...(.*)%(')
-    local cpu_idle = stdout
-    cpu_idle = string.gsub(cpu_idle, '^%s*(.-)%s*$', '%1')
-    emit("evil::cpu", 100 - tonumber(cpu_idle))
-end)
+local update_interval = 1
+local cpu_idle_script = [[bash -c "
+	cat /proc/stat | grep '^cpu '
+	"]]
+
+watch(
+  cpu_idle_script, update_interval,
+  function(_, stdout)
+    -- trace('CPU Service: ' .. stdout)
+    local user, nice, system, idle, iowait, irq, softirq, steal, guest, guest_nice =
+    stdout:match('(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s')
+
+    local total = user + nice + system + idle + iowait + irq + softirq + steal
+
+    local diff_idle = idle - idle_prev
+    local diff_total = total - total_prev
+    local diff_usage = (1000 * (diff_total - diff_idle) / diff_total + 5) / 10
+
+    emit('evil::cpu',
+      tonumber(total), tonumber(diff_idle), tonumber(diff_total), tonumber(diff_usage),
+      tonumber(user), tonumber(nice), tonumber(system), tonumber(idle),
+      tonumber(irq), tonumber(softirq),
+      tonumber(steal), tonumber(guest), tonumber(guest_nice))
+  end
+)

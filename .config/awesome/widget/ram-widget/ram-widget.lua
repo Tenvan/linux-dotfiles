@@ -26,6 +26,22 @@ local function worker(user_args)
   local widget_height = args.widget_height or beautiful.element_size
   local widget_width  = args.widget_width or beautiful.element_size * 5
 
+  local value_colors = {
+    beautiful.xres_vars.color2,
+    beautiful.xres_vars.color3,
+    beautiful.xres_vars.color4,
+    beautiful.xres_vars.color1,
+    beautiful.xres_vars.color5,
+  }
+
+  local chart_text = [[
+<span size="large" color="]] .. value_colors[1] .. [[">Free Memory     </span>: <b>%3d %% / %6.1f MB</b>
+<span size="large" color="]] .. value_colors[2] .. [[">Free Swap Memory</span>: <b>%3d %% / %6.1f MB</b>
+<span size="large" color="]] .. value_colors[3] .. [[">Buffer Cache    </span>: <b>%3d %% / %6.1f MB</b>
+<span size="large" color="]] .. value_colors[4] .. [[">Used Memory     </span>: <b>%3d %% / %6.1f MB</b>
+<span size="large" color="]] .. value_colors[5] .. [[">Used Swap Memory</span>: <b>%3d %% / %6.1f MB</b>
+]]
+
   --- Main ram widget shown on wibar
   widget = wibox.widget {
 
@@ -37,12 +53,7 @@ local function worker(user_args)
     forced_width = widget_width,
     step_width = step_width,
     step_spacing = step_spacing,
-    stack_colors = {
-      beautiful.transparent,
-      beautiful.xres_vars.color1,
-      beautiful.xres_vars.color2,
-      beautiful.xres_vars.color3
-    },
+    stack_colors = value_colors,
     id = 'graph_role',
     widget = wibox.widget.graph,
   }
@@ -53,36 +64,36 @@ local function worker(user_args)
     return math.floor(value / (total + total_swap) * 100 + 0.5)
   end
 
-  watch('bash -c "LANGUAGE=en_US.UTF-8 free | grep -z Mem.*Swap.*"', timeout,
-    function(widget, stdout)
-      total, used, free, shared, buff_cache, available, total_swap, used_swap, free_swap = stdout:match('(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*Swap:%s*(%d+)%s*(%d+)%s*(%d+)')
-
-      local p_used = getPercentage(used + used_swap)
-      local p_free = getPercentage(free + free_swap)
-      local p_buff_cache = getPercentage(buff_cache)
-
-      widget:add_value(p_free, 1)
-      widget:add_value(p_used, 2)
-      widget:add_value(p_buff_cache, 3)
-
-      -- log('Memory Watcher => Used: ' .. p_used .. ' Free: ' .. p_free .. ' Cache: ' .. p_buff_cache)
-    end,
-    widget:get_children_by_id('graph_role')[1]
-  )
-
   --- Widget which is shown when user clicks on the ram widget
   local popup = awful.popup {
     ontop = true,
     visible = false,
     widget = {
       {
-        widget = wibox.widget.piechart,
-        border_width = dpi(20),
+        widget = wibox.widget {
+          markup = chart_text,
+          widget = wibox.widget.textbox
+        },
+        id = 'text_role',
+      },
+      {
+        widget = wibox.container.arcchart,
+        id = 'chart_role',
+        min_value = 0,
+        max_value = 100,
+        paddings = dpi(20),
+        rounded_edge = true,
+        colors = value_colors,
+        background_color = beautiful.transparent,
+        border_color = beautiful.graph_border_color,
+        border_width = dpi(10),
+        thickness = dpi(50),
+        forced_width  = dpi(300),
+        forced_height  = dpi(300),
       },
       forced_height = dpi(500),
-      forced_width = dpi(700),
-      margins = dpi(10),
-      widget = wibox.container.margin
+      forced_width  = dpi(400),
+      layout        = wibox.layout.align.vertical,
     },
     shape = gears.shape.rounded_rect,
     border_color = beautiful.popup_border,
@@ -99,12 +110,11 @@ local function worker(user_args)
         old_cursor, old_wibox = wb.cursor, wb
         wb.cursor = 'hand2'
       end
-
-      popup.widget:get_widget().data_list = {
-        { string.format('free %s %%', getPercentage(free + free_swap)), free + free_swap },
-        { string.format('used %s %%', getPercentage(used + used_swap)), used + used_swap },
-        { string.format('buffer cache %s %%', getPercentage(buff_cache)), buff_cache },
-      }
+      -- { string.format('free mem %s %%', getPercentage(free)), free },
+      -- { string.format('free swap %s %%', getPercentage(free_swap)), free_swap },
+      -- { string.format('buffer cache %s %%', getPercentage(buff_cache)), buff_cache },
+      -- { string.format('used mem %s %%', getPercentage(used)), used },
+      -- { string.format('used swap %s %%', getPercentage(used_swap)), used_swap },
 
       popup:move_next_to(mouse.current_widget_geometry)
       popup.visible = true
@@ -124,10 +134,58 @@ local function worker(user_args)
 
   widget:connect_signal('button::press',
     function()
-      awful.spawn.with_shell("sync")
-      awful.spawn.with_shell("echo 1 | sudo tee /proc/sys/vm/drop_caches")
+      awful.spawn.with_shell('sync')
+      awful.spawn.with_shell('echo 1 | sudo tee /proc/sys/vm/drop_caches')
     end)
 
+  local top_widget_graph = widget:get_children_by_id('graph_role')[1]
+  local popup_widget_graph = popup.widget:get_children_by_id('chart_role')[1]
+  local popup_widget_text = popup.widget:get_children_by_id('text_role')[1]
+
+  connect('service::ram',
+    function(values)
+      total = values[1]
+      used = values[2]
+      free = values[3]
+      buff_cache = values[5]
+      total_swap = values[7]
+      used_swap = values[8]
+      free_swap = values[9]
+
+      local p_used = getPercentage(used + used_swap)
+      local p_free = getPercentage(free + free_swap)
+      local p_buff_cache = getPercentage(buff_cache)
+
+      -- top_widget_graph:add_value(p_buff_cache, 1)
+      -- top_widget_graph:add_value(p_used, 2)
+      -- top_widget_graph:add_value(p_free, 3)
+      top_widget_graph:add_value(getPercentage(free), 1)
+      top_widget_graph:add_value(getPercentage(free_swap), 2)
+      top_widget_graph:add_value(getPercentage(buff_cache), 3)
+      top_widget_graph:add_value(getPercentage(used), 4)
+      top_widget_graph:add_value(getPercentage(used_swap), 5)
+
+      popup_widget_graph.values = {
+        getPercentage(free),
+        getPercentage(free_swap),
+        getPercentage(buff_cache),
+        getPercentage(used),
+        getPercentage(used_swap),
+      }
+
+      popup_widget_text.markup = string.format(chart_text,
+        getPercentage(free), free / 1024,
+        getPercentage(free_swap), free_swap / 1024,
+        getPercentage(buff_cache), buff_cache / 1024,
+        getPercentage(used), used / 1024,
+        getPercentage(used_swap), used_swap / 1024)
+
+      -- poup_widget_graph:add_value(getPercentage(free), 1)
+      -- poup_widget_graph:add_value(getPercentage(free_swap), 2)
+      -- poup_widget_graph:add_value(getPercentage(buff_cache), 3)
+      -- poup_widget_graph:add_value(getPercentage(used), 4)
+      -- poup_widget_graph:add_value(getPercentage(used_swap), 5)
+    end)
 
   return widget
 end

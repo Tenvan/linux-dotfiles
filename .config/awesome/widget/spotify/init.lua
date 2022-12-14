@@ -14,13 +14,13 @@ local spotify_title = wibox.widget.textbox()
 local bookmarksWidget = nil
 local lastMetaData = metaHelper.emptyMetaData
 
-local TOGGLE_MPD_CMD = 'playerctl play-pause'
-local PLAY_MPD_CMD = 'playerctl play'
-local PAUSE_MPD_CMD = 'playerctl pause'
-local NEXT_MPD_CMD = 'playerctl next'
-local PREV_MPD_CMD = 'playerctl previous'
+local TOGGLE_MPD_CMD = 'playerctl play-pause --player=spotify '
+local PLAY_MPD_CMD = 'playerctl play --player=spotify '
+local PAUSE_MPD_CMD = 'playerctl pause --player=spotify '
+local NEXT_MPD_CMD = 'playerctl next --player=spotify '
+local PREV_MPD_CMD = 'playerctl previous --player=spotify '
 local START_SPOTIFY_CMD = 'spotify'
-local OPEN_SPOTIFY_TRACK_CMD = 'playerctl open'
+local OPEN_SPOTIFY_TRACK_CMD = 'playerctl open --player=spotify '
 
 -- create cache folder, if not exists
 local cacheDirSpotify = metaHelper.GetCachePath()
