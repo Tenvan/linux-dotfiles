@@ -1,6 +1,6 @@
 local log = require('utilities.debug').log
 local dump = require('utilities.debug').dump
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local wibox = require('wibox')
 local gears = require('gears')
@@ -9,16 +9,13 @@ local watch = require('awful.widget.watch')
 local dpi = beautiful.xresources.apply_dpi
 local icons = require('theme.icons')
 
-local total_prev = 0
-local idle_prev = 0
-
 local slider = wibox.widget {
   nil,
   {
     id               = 'cpu_usage',
     max_value        = 100,
     value            = 29,
-    forced_height    = dpi(2),
+    forced_height    = dpi(10),
     color            = beautiful.fg_normal,
     background_color = beautiful.groups_bg,
     shape            = gears.shape.rounded_rect,
@@ -29,28 +26,16 @@ local slider = wibox.widget {
   layout = wibox.layout.align.vertical
 }
 
-watch(
-  [[bash -c "
-	cat /proc/stat | grep '^cpu '
-	"]],
-  10,
-  function(_, stdout)
-    local user, nice, system, idle, iowait, irq, softirq, steal, guest, guest_nice =
-    stdout:match('(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s')
-
-    local total = user + nice + system + idle + iowait + irq + softirq + steal
-
-    local diff_idle = idle - idle_prev
-    local diff_total = total - total_prev
-    local diff_usage = (1000 * (diff_total - diff_idle) / diff_total + 5) / 10
-
+connect('service::cpu',
+  function(total, diff_idle, diff_total, diff_usage,
+           user, nice, system, idle, iowait, irq, softirq, steal, guest, guest_nice)
+    --      total, diff_idle, diff_total, diff_usage,
+    --      user, nice, system, idle, iowait, irq, softirq, steal, guest, guest_nice
     slider.cpu_usage:set_value(diff_usage)
 
-    total_prev = total
-    idle_prev = idle
     collectgarbage('collect')
-  end
-)
+  end)
+
 
 local cpu_meter = wibox.widget {
   {

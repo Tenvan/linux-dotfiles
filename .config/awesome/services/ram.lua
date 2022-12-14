@@ -14,7 +14,6 @@ watch(
   ram_idle_script,
   update_interval,
   function(_, stdout)
-    -- trace('RAM Service: ' .. stdout)
     local total, used, free, shared, buff_cache, available, total_swap, used_swap, free_swap =
     stdout:match('(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*Swap:%s*(%d+)%s*(%d+)%s*(%d+)')
     emit('service::ram',

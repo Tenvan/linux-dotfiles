@@ -4,7 +4,7 @@ local awful = require('awful')
 
 local function emit_signal(signal, ...)
   local count = select('#', ...)
-  log(string.format('====> %s [params: %s]', signal, count))
+  trace(string.format('====> %s [params: %s]', signal, count))
 
   if count == 1 then
     trace(string.format('  --> %s', tostring(...)))
@@ -22,11 +22,10 @@ end
 
 local function connect_signal(signal, callback)
   log(string.format('==> register signal: %s', signal))
-  dump(signal)
 
   awesome.connect_signal(signal, function(...)
     local count = select('#', ...)
-    log(string.format('<==== %s [params: %s]', signal, count))
+    trace(string.format('<==== %s [params: %s]', signal, count))
 
     if count == 1 then
       trace(string.format('  --> %s', tostring(...)))

@@ -17,6 +17,8 @@
         "wibox",
         "awful",
         "emit",
-        "connect"
+        "connect",
+        "ldebug",
+        "logd"
     ]
 }

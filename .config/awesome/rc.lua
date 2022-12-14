@@ -15,6 +15,7 @@ gears = require('gears')
 wibox = require('wibox')
 
 log = require('utilities.debug').log
+logd = require('utilities.debug').logd
 trace = require('utilities.debug').trace
 dump = require('utilities.debug').dump
 dpi = beautiful.xresources.apply_dpi

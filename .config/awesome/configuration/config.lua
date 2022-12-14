@@ -1,6 +1,6 @@
 local config = {
   debug_mode = false,
-  trace_mode = true,
+  trace_mode = false,
   sounds = false,
   widget = {
     email = {
