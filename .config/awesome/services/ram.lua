@@ -7,7 +7,7 @@ log('Enter Module => ' .. ...)
 
 local watch = require('awful.widget.watch')
 
-local update_interval = 5
+local update_interval = 2
 local ram_idle_script = 'bash -c "LANGUAGE=en_US free | grep -z \"Mem.*Swap.*\""'
 
 watch(
