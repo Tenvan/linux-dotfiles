@@ -27,12 +27,8 @@ local slider = wibox.widget {
 }
 
 connect('service::cpu',
-  function(total, diff_idle, diff_total, diff_usage,
-           user, nice, system, idle, iowait, irq, softirq, steal, guest, guest_nice)
-    --      total, diff_idle, diff_total, diff_usage,
-    --      user, nice, system, idle, iowait, irq, softirq, steal, guest, guest_nice
-    slider.cpu_usage:set_value(diff_usage)
-
+  function(cores, diff_usage)
+    slider.cpu_usage:set_value(diff_usage[1])
     collectgarbage('collect')
   end)
 

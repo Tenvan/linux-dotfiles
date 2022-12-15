@@ -43,14 +43,17 @@ local top_panel = function(s, offset)
   local updater            = require('widget.package-updater')()
   local screen_rec         = require('widget.screen-recorder')()
   local info_center_toggle = require('widget.info-center-toggle')()
+  local toolbar_ram_widget = require('widget.ram-widget.ram-widget')({
+    -- width = dpi(200)
+  })
 
   local ram_widget = {
     {
       {
-        text   = '',
-        align  = 'center',
-        valign = 'center',
-        font   = beautiful.font_large,
+        text         = '',
+        align        = 'center',
+        valign       = 'center',
+        font         = beautiful.font_large,
         forced_width = dpi(32),
         widget       = wibox.widget.textbox
       },
@@ -58,9 +61,7 @@ local top_panel = function(s, offset)
       widget  = wibox.container.margin
     },
     nil,
-    require('widget.ram-widget.ram-widget')({
-      -- width = dpi(200)
-    }),
+    toolbar_ram_widget,
     layout = wibox.layout.align.horizontal
   }
 
@@ -77,8 +78,8 @@ local top_panel = function(s, offset)
       margins = dpi(2),
       widget  = wibox.container.margin
     },
-    nil,
-    require('widget.cpu-meter-top-panel').widget,
+    require('widget.cpu-meter-top-panel.histo').widget,
+    require('widget.cpu-meter-top-panel.kern'),
     layout = wibox.layout.align.horizontal
   }
 

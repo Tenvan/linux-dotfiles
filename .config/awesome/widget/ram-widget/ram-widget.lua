@@ -58,12 +58,10 @@ local function worker(user_args)
 
   --- Main ram widget shown on wibar
   widget = wibox.widget {
-
     max_value = 100,
     stack = true,
     background_color = background_color,
     border_color = beautiful.graph_border_color,
-
     forced_width = widget_width,
     step_width = step_width,
     step_spacing = step_spacing,
