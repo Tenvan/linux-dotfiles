@@ -6,8 +6,9 @@ source "$HOME/.scripts/defs"
 
 if [ $IS_MANJARO = true ]; then
 	sudo pacman -S --needed yay
-	yay -S --needed paru-bin
 fi
+
+yay -S --needed paru-bin
 
 # Init Install
 initInstall "install_init"
@@ -68,6 +69,7 @@ install picom
 install lain-git
 install rofi
 install xfce4-meta
+install sysstat
 
 ###############################
 # uninstall unneeded packages #

@@ -47,6 +47,13 @@ local top_panel = function(s, offset)
     -- width = dpi(200)
   })
 
+  local seperator = {
+    orientation = 'vertical',
+    forced_width = dpi(5),
+    color = beautiful.bg_focus,
+    widget = wibox.widget.separator
+  }
+
   local ram_widget = {
     {
       {
@@ -79,8 +86,11 @@ local top_panel = function(s, offset)
       widget  = wibox.container.margin
     },
     require('widget.cpu-meter-top-panel.histo').widget,
-    require('widget.cpu-meter-top-panel.kern'),
-    layout = wibox.layout.align.horizontal
+    seperator,
+    require('widget.cpu-meter-top-panel.kern').widget,
+    seperator,
+    spacing = dpi(2),
+    layout = wibox.layout.fixed.horizontal
   }
 
   local color_palette = nil

@@ -27,6 +27,7 @@ if [ -x "$(command -v yay)" ]; then
     export PACTOOL=yay
     PAKKER_ALL="--color always --needed --useask --overwrite \* $@"
 fi
+
 if [ -x "$(command -v paru)" ]; then
     PAKKER_ALL="--color always --needed --useask --overwrite \* --nofailfast --stats $@"
     export PACTOOL=paru

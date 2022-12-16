@@ -27,6 +27,8 @@ log('Enter Module => rc.lua')
 
 pcall(require, 'luarocks.loader')
 
+hardware = require("services.hardware")
+
 local test = (1 == 2)
 
 -- Everything related to window managment

@@ -2,59 +2,36 @@ log('Enter Module => ' .. ...)
 
 -- Provides:
 -- service::cpu
---      used percentage (integer)
---      core_count, diff_core_data
---        diff_core_data[1] = Full Usage
---        diff_core_data[2...] = Core Usage
+--      cpu_usages
+--        cpu_usages[0] = Full Usage
+--        cpu_usages[1...cores] = Core Usage
 
-local watch = require('awful.widget.watch')
-
-local update_interval = 1
-local cpu_idle_script = [[bash -c "
-cat /proc/stat | grep '^cpu'
+local core_idle_script = [[bash -c "
+mpstat -P ALL 1
 "]]
 
 local cpu_data = {}
+local cpu_usages = {}
+for i = 0, hardware.core_count do
+  cpu_usages[i] = 0
+end
 
-watch(
-  cpu_idle_script,
-  update_interval,
-  function(_, stdout)
-    logd('CPU Service: ' .. stdout)
+awful.spawn.with_line_callback(core_idle_script, {
+  stdout = function(line)
+    local cpu = gears.string.split(line, ' ')
 
-    local cpudata = gears.string.split(stdout, '\n')
-
-    local core_count = #cpudata - 2
-    logd('core count: ' .. tostring(core_count))
-
-    local core_usage_data = {}
-
-    for i = 1, core_count + 1 do
-      if cpu_data[i] == nil then cpu_data[i] = {} end
-
-      local core_cpu = cpudata[i]
-      logd('core cpu data: ' .. core_cpu)
-
-      local user, nice, system, idle, iowait, irq, softirq, steal, guest, guest_nice =
-      core_cpu:match('(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)')
-
-      local total = user + nice + system + idle + iowait + irq + softirq + steal
-
-      local diff_idle = idle - tonumber(cpu_data[i]['idle_prev'] == nil and 0 or cpu_data[i]['idle_prev'])
-      local diff_total = total -
-        tonumber(cpu_data[i]['total_prev'] == nil and 0 or cpu_data[i]['total_prev'])
-      local diff_usage = (1000 * (diff_total - diff_idle) / diff_total) / 10
-
-      if i == 1 then
-        core_usage_data[i] = diff_usage
-      else
-        core_usage_data[i] = 100- diff_usage
-      end
-
-      cpu_data[i]['total_prev'] = total
-      cpu_data[i]['idle_prev'] = tonumber(idle)
+    local core = 0
+    if cpu[2] == 'all' then
+      local usage = tonumber(cpu[3])
+      local core = 0
+      cpu_usages[core] = usage
+      emit('service::cpu', cpu_usages)
+    elseif not (cpu[2] == 'CPU' or cpu[1] ~= nil) then
+      -- log(string.format('CORE %d: %d', tonumber(cpu[2]), tonumber(cpu[3])))
+    else
+      local core = tonumber(cpu[2]) or 0
+      local usage = tonumber(cpu[3]) or 0
+      cpu_usages[core] = usage
     end
-
-    emit('service::cpu', core_count, core_usage_data)
   end
-)
+})

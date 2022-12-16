@@ -19,6 +19,7 @@
         "emit",
         "connect",
         "ldebug",
-        "logd"
+        "logd",
+        "hardware"
     ]
 }
