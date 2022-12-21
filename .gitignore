@@ -17,6 +17,7 @@
 
 # Ausnahmen Samples in Custom Folder
 !.custom/*.sample
+!.config/awesome/customs
 
 # Ausnahmen im .local folder
 !.local
