@@ -18,34 +18,34 @@ picom-toggle-awesome
 #==============
 # Polkit and keyring
 # /usr/bin/lxqt-policykit-agent & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
-# run /usr/lib/xfce-polkit/xfce-polkit
+run /usr/lib/xfce-polkit/xfce-polkit
 # run lxqt-policykit-agent
 # run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
-run lxsession
+# run lxsession
 
 run ibus-daemon -d -x
 # run unclutter --root --timeout 3
-run xfce4-power-manager
+# run xfce4-power-manager
 
 #---------------
 # Desktop Tools
 #---------------
 # $HOME/.bin/volume-osd &
-run flameshot
+# run flameshot
 # run alttab -n 1
-run pamac-tray
+# run pamac-tray
 # run copyq
-run eject-applet
-run redshift-gtk
+# run eject-applet
+# run redshift-gtk
 
-#run blueman-tray
-#run blueman-applet
-run nm-applet
+# run blueman-tray
+# run blueman-applet
+# run nm-applet
 
 # Sound Tray Icons
 # restart start-pulseaudio-x11
 # run pa-applet
-run pasystray
+# run pasystray
 
 # set wallpaper
 dwall -s $WALLPAPER_THEME

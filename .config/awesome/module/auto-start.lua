@@ -6,6 +6,7 @@ local awful = require('awful')
 local apps = require('configuration.apps')
 
 local run_once = function(cmd)
+  log ("====> try to autostart: " .. cmd)
   local findme = cmd
   local firstspace = cmd:find(' ')
   if firstspace then
@@ -17,12 +18,12 @@ local run_once = function(cmd)
       -- Debugger
       if not stderr or stderr == '' then
         trace('  ->  auto started: ' .. cmd)
-        -- notify('Auto Start', cmd)
+        notify('Auto Start', cmd)
         return
       end
 
       log(' ->  error on start: ' .. cmd)
-      -- log('  ERROR: ' .. stderr:gsub('%\n', ''))
+      log('  ERROR: ' .. stderr:gsub('%\n', ''))
 
       notify('<b>Oof! Error detected when starting an application!</b>',
         stderr:gsub('%\n', ''),

@@ -1,5 +1,5 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-settings 6.05 for ralf on Fri Nov 11 11:42:38 2022.
+# Written by xscreensaver-settings 6.06 for ralf on Wed Dec 21 14:47:03 2022.
 # https://www.jwz.org/xscreensaver/
 
 timeout:	0:30:00
@@ -20,9 +20,9 @@ fadeSeconds:	0:00:03
 ignoreUninstalledPrograms:False
 dpmsEnabled:	True
 dpmsQuickOff:	False
-dpmsStandby:	1:00:00
+dpmsStandby:	0:30:00
 dpmsSuspend:	1:00:00
-dpmsOff:	1:00:00
+dpmsOff:	2:00:00
 grabDesktopImages:  True
 grabVideoFrames:    True
 chooseRandomImages: False
@@ -37,7 +37,7 @@ textFile:
 textProgram:	fortune
 textURL:	https://en.wikipedia.org/w/index.php?title=Special:NewPages&feed=rss
 dialogTheme:	darkgray
-settingsGeom:	
+settingsGeom:	598,207 -1,-1
 
 programs:								      \
 -				maze --root				    \n\
@@ -291,6 +291,7 @@ programs:								      \
 - GL: 				squirtorus --root			    \n\
   GL: 				chompytower --root			    \n\
   GL: 				nakagin --root				    \n\
+  GL: 				hextrail --root				    \n\
 
 
 pointerHysteresis:  10

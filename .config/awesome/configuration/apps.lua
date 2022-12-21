@@ -70,16 +70,16 @@ local apps = {
 
     -- You can add more start-up applications here
     -- 'xfce4-power-manager',
-    -- 'pamac-tray',
-    -- 'nm-applet',
-    -- 'pasystray',
-    -- 'flameshot',
-    -- 'eject-applet',
-    -- 'redshift-gtk',
+    'pamac-tray',
+    'nm-applet',
+    'pasystray',
+    'flameshot',
+    'eject-applet',
+    'redshift-gtk',
     -- 'xfce4-power-manager'
-    -- 'copyq',
+    'copyq',
     -- 'teams-for-linux',
-    -- 'xscreensaver'
+    'xscreensaver'
     -- 'xsettingsd'
   },
 
