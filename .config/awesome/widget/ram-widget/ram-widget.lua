@@ -1,90 +1,109 @@
-local awful = require('awful')
-local beautiful = require('beautiful')
-local gears = require('gears')
+log('Enter Module => ' .. ...)
+
 local watch = require('awful.widget.watch')
-local wibox = require('wibox')
 
 local dpi = require('beautiful.xresources').apply_dpi
 
-local widget = {}
+local seperator = wibox.widget {
+  orientation = 'vertical',
+  forced_width = dpi(5),
+  color = beautiful.bg_focus,
+  widget = wibox.widget.separator
+}
+
+local ram_widgets = {}
 
 local function worker(user_args)
   local args = user_args or {}
 
   local step_width = args.step_width or dpi(4)
   local step_spacing = args.step_spacing or dpi(1)
-  local color = args.color or beautiful.graph_fg
   local background_color = args.background_color or beautiful.graph_bg
-
-  local timeout    = args.timeout or 1
-  local color_buf  = args.color_buf or beautiful.xres_vars.color1
-  local color_used = args.color_used or beautiful.xres_vars.color2
-  local color_free = args.color_free or beautiful.transparent
-
-  local widget_show_buf = args.widget_show_buf or false
 
   local widget_height = args.widget_height or beautiful.element_size
   local widget_width  = args.widget_width or beautiful.element_size * 5
 
-  local value_colors_top_widget = {
-    beautiful.xres_vars.color2,
-    beautiful.xres_vars.color3,
-    beautiful.xres_vars.color4,
-    beautiful.xres_vars.color1,
-    beautiful.xres_vars.color5,
-  }
-
   local value_colors_mem_widget = {
-    beautiful.xres_vars.color2,
     beautiful.xres_vars.color3,
     beautiful.xres_vars.color4,
+    beautiful.xres_vars.color2,
   }
 
   local value_colors_swap_widget = {
-    beautiful.xres_vars.color2,
     beautiful.xres_vars.color3,
+    beautiful.xres_vars.color2,
   }
 
   local chart_text_memory = [[
-<span size="large" color="]] .. value_colors_mem_widget[1] .. [[">Free Memory     </span>: <b>%3d %% / %6.1f MB</b>
-<span size="large" color="]] .. value_colors_mem_widget[2] .. [[">Used Memory     </span>: <b>%3d %% / %6.1f MB</b>
-<span size="large" color="]] .. value_colors_mem_widget[3] .. [[">Buffer Cache    </span>: <b>%3d %% / %6.1f MB</b>
+<span size="large" color="]] .. value_colors_mem_widget[1] .. [[">Used Memory     </span>: <b>%3d %% / %6.1f MB</b>
+<span size="large" color="]] .. value_colors_mem_widget[2] .. [[">Buffer Cache    </span>: <b>%3d %% / %6.1f MB</b>
+<span size="large" color="]] .. value_colors_mem_widget[3] .. [[">Free Memory     </span>: <b>%3d %% / %6.1f MB</b>
 ]]
 
   local chart_text_swap = [[
-<span size="large" color="]] .. value_colors_swap_widget[1] .. [[">Free Swap Memory</span>: <b>%3d %% / %6.1f MB</b>
-<span size="large" color="]] .. value_colors_swap_widget[2] .. [[">Used Swap Memory</span>: <b>%3d %% / %6.1f MB</b>
+<span size="large" color="]] .. value_colors_swap_widget[1] .. [[">Used Swap Memory</span>: <b>%3d %% / %6.1f MB</b>
+<span size="large" color="]] .. value_colors_swap_widget[2] .. [[">Free Swap Memory</span>: <b>%3d %% / %6.1f MB</b>
 ]]
 
-  --- Main ram widget shown on wibar
-  widget = wibox.widget {
+  local memory_widget_graph = wibox.widget {
+    --- Main ram widget shown on wibar
     max_value = 100,
     stack = true,
     background_color = background_color,
     border_color = beautiful.graph_border_color,
-    forced_width = widget_width,
+    forced_width = widget_width / 2,
     step_width = step_width,
     step_spacing = step_spacing,
-    stack_colors = value_colors_top_widget,
-    id = 'graph_role',
+    stack_colors = value_colors_mem_widget,
+    id = 'memory_graph_role',
     widget = wibox.widget.graph,
   }
 
-  local total, used, free, shared, buff_cache, available, total_swap, used_swap, free_swap
+  local swap_widget_graph = wibox.widget {
+    --- swap ram widget shown on wibar
+    max_value = 100,
+    stack = true,
+    background_color = background_color,
+    border_color = beautiful.graph_border_color,
+    forced_width = widget_width / 2,
+    step_width = step_width,
+    step_spacing = step_spacing,
+    stack_colors = value_colors_swap_widget,
+    id = 'swap_graph_role',
+    widget = wibox.widget.graph,
+  }
 
-  local function getPercentageAll(value)
-    return math.floor(value / (total + total_swap) * 100 + 0.5)
-  end
+
+  ram_widgets = wibox.widget {
+    {
+      {
+        text         = '',
+        align        = 'center',
+        valign       = 'center',
+        font         = beautiful.font_large,
+        forced_width = dpi(32),
+        widget       = wibox.widget.textbox
+      },
+      margins = dpi(2),
+      widget  = wibox.container.margin
+    },
+    memory_widget_graph,
+    seperator,
+    swap_widget_graph,
+    layout = wibox.layout.fixed.horizontal
+  }
+
+  local total_memory, used_memory, free_memory, shared, buff_cache, available, total_swap, used_swap, free_swap
 
   local function getPercentageMemory(value)
-    return math.floor(value / total * 100 + 0.5)
+    return math.floor(value / total_memory * 100 + 0.5)
   end
 
   local function getPercentageSwap(value)
     return math.floor(value / total_swap * 100 + 0.5)
   end
 
-  local widget_memory_chart = wibox.widget {
+  local popup_widget_memory_chart = wibox.widget {
     {
       {
         widget = wibox.widget {
@@ -114,8 +133,8 @@ local function worker(user_args)
     widget = wibox.container.margin
   }
 
-  local widget_memory_text = widget_memory_chart:get_children_by_id('text_role')[1]
-  local widget_graph_memory = widget_memory_chart:get_children_by_id('role_chart')[1]
+  local popup_widget_memory_text = popup_widget_memory_chart:get_children_by_id('text_role')[1]
+  local popup_widget_graph_memory = popup_widget_memory_chart:get_children_by_id('role_chart')[1]
 
   local widget_swap_chart = wibox.widget {
     {
@@ -155,7 +174,7 @@ local function worker(user_args)
     ontop = true,
     visible = false,
     widget = {
-      widget_memory_chart,
+      popup_widget_memory_chart,
       widget_swap_chart,
       -- forced_height = dpi(500),
       -- forced_width  = dpi(400),
@@ -168,7 +187,7 @@ local function worker(user_args)
   }
 
   local old_cursor, old_wibox
-  widget:connect_signal(
+  ram_widgets:connect_signal(
     'mouse::enter',
     function(self)
       local wb = mouse.current_wibox
@@ -181,7 +200,7 @@ local function worker(user_args)
     end
   )
 
-  widget:connect_signal(
+  ram_widgets:connect_signal(
     'mouse::leave',
     function(self)
       if old_wibox then
@@ -192,59 +211,60 @@ local function worker(user_args)
     end
   )
 
-  widget:connect_signal('button::press',
+  ram_widgets:connect_signal('button::press',
     function()
       awful.spawn.with_shell('sync')
       awful.spawn.with_shell('echo 1 | sudo tee /proc/sys/vm/drop_caches')
     end)
 
-  local top_widget_graph = widget:get_children_by_id('graph_role')[1]
-
   connect('service::ram',
     function(values)
       -- calculate values
-      total = values[1]
-      used = values[2]
-      free = values[3]
+      total_memory = values[1]
+      used_memory = values[2]
+      free_memory = values[3]
+
       buff_cache = values[5]
+
       total_swap = values[7]
       used_swap = values[8]
       free_swap = values[9]
 
       -- refresh top widget chart
-      top_widget_graph:add_value(getPercentageAll(free), 1)
-      top_widget_graph:add_value(getPercentageAll(free_swap), 2)
-      top_widget_graph:add_value(getPercentageAll(buff_cache), 3)
-      top_widget_graph:add_value(getPercentageAll(used), 4)
-      top_widget_graph:add_value(getPercentageAll(used_swap), 5)
+      memory_widget_graph:add_value(getPercentageMemory(used_memory), 1)
+      memory_widget_graph:add_value(getPercentageMemory(buff_cache), 2)
+      memory_widget_graph:add_value(getPercentageMemory(free_memory), 3)
+
+      swap_widget_graph:add_value(getPercentageSwap(used_swap), 1)
+      swap_widget_graph:add_value(getPercentageSwap(free_swap), 2)
 
       if popup.visible then
 
         -- refresh memory chart
-        widget_memory_text.markup = string.format(chart_text_memory,
-          getPercentageMemory(free), free / 1024,
-          getPercentageMemory(used), used / 1024,
-          getPercentageMemory(buff_cache), buff_cache / 1024)
-        widget_graph_memory.values = {
-          getPercentageMemory(free),
-          getPercentageMemory(free_swap),
+        popup_widget_memory_text.markup = string.format(chart_text_memory,
+          getPercentageMemory(used_memory), used_memory / 1024,
+          getPercentageMemory(buff_cache), buff_cache / 1024,
+          getPercentageMemory(free_memory), free_memory / 1024)
+        popup_widget_graph_memory.values = {
+          getPercentageMemory(used_memory),
           getPercentageMemory(buff_cache),
+          getPercentageMemory(free_memory),
         }
 
         -- refresh swap chart
         widget_swap_text.markup = string.format(chart_text_swap,
-          getPercentageSwap(free_swap), free_swap / 1024,
-          getPercentageSwap(used_swap), used_swap / 1024)
+          getPercentageSwap(used_swap), used_swap / 1024,
+          getPercentageSwap(free_swap), free_swap / 1024)
         widget_graph_swap.values = {
-          getPercentageSwap(free_swap),
           getPercentageSwap(used_swap),
+          getPercentageSwap(free_swap),
         }
       end
     end)
 
-  return widget
+  return ram_widgets
 end
 
-return setmetatable(widget, { __call = function(_, ...)
+return setmetatable(ram_widgets, { __call = function(_, ...)
   return worker(...)
 end })

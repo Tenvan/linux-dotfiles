@@ -16,22 +16,21 @@ fi
 
 # Theme Definitionen
 export MAIN_THEME="Adwaita-dark"
-export ICON_THEME="Adwaita"
+export ICON_THEME="Papirus-Dark"
 export CURSOR_THEME="Bibata-Modern-Ice"
 export CURSOR_SIZE=32
 export THEME_FONT="Noto Sans Medium 14"
 export SOUND_THEME="Smooth"
 export KVANTUM_THEME="kvantum"
+export WALLPAPER_THEME="island"
 
 if [ $IS_MANJARO = true ]; then
     export MAIN_THEME="Adapta-Nokto-Maia"
-    export ICON_THEME="Papirus-Adapta-Nokto-Maia"
     export KVANTUM_THEME="kvantum-dark"
 fi
 
 if [ $IS_ARCO = true ]; then
     export MAIN_THEME="Arc-Arcolinux-blue-Dark"
-    export ICON_THEME="Papirus-Dark"
 fi
 
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
@@ -66,5 +65,5 @@ csource ~/.custom/.xprofile
 
 ~/.bin/merge-themes
 
-"$HOME/.bin/autostart"
 "$HOME/.screenlayout/screenlayout-awesome.sh"
+"$HOME/.bin/autostart"

@@ -1,7 +1,9 @@
+log('Enter Module => ' .. ...)
+
 -- Provides:
--- evil::battery
+-- service::battery
 --      percentage (integer)
--- evil::charger
+-- service::charger
 --      plugged (boolean)
 
 local awful = require("awful")
@@ -25,7 +27,7 @@ awful.spawn.easy_async_with_shell("sh -c 'out=\"$(find /sys/class/power_supply/B
     end
     -- Periodically get battery info
     awful.widget.watch("cat "..battery_file, update_interval, function(_, stdout)
-        emit("evil::battery", tonumber(stdout))
+        emit("service::battery", tonumber(stdout))
     end)
 end)
 
@@ -38,8 +40,8 @@ awful.spawn.easy_async_with_shell("sh -c 'out=\"$(find /sys/class/power_supply/*
     -- Then initialize function that emits charger info
     local emit_charger_info = function()
         awful.spawn.easy_async_with_shell("cat "..charger_file, function (out)
-            local status = tonumber(out) == 1
-            emit("evil::charger", status)
+            local status = tonumber(out) == 1            
+            emit("service::charger", status)
         end)
     end
 

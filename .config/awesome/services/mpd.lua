@@ -1,11 +1,13 @@
+log('Enter Module => ' .. ...)
+
 -- Provides:
--- evil::mpd
+-- service::mpd
 --      artist (string)
 --      song (string)
 --      paused (boolean)
--- evil::mpd_volume
+-- service::mpd_volume
 --      value (integer from 0 to 100)
--- evil::mpd_options
+-- service::mpd_options
 --      loop (boolean)
 --      random (boolean)
 local awful = require("awful")
@@ -34,7 +36,7 @@ local function emit_info()
                 paused = true
             end
 
-            emit("evil::mpd", artist, title, paused)
+            emit("service::mpd", artist, title, paused)
         end
     )
 end
@@ -64,7 +66,7 @@ end)
 local function emit_volume_info()
     awful.spawn.easy_async_with_shell("mpc volume | awk '{print substr($2, 1, length($2)-1)}'",
         function(stdout)
-            emit("evil::mpd_volume", tonumber(stdout))
+            emit("service::mpd_volume", tonumber(stdout))
         end
     )
 end
@@ -102,7 +104,7 @@ local function emit_options_info()
         function(stdout)
             local loop = stdout:match('repeat: (.*)')
             local random = stdout:match('random: (.*)')
-            emit("evil::mpd_options", loop:sub(1, 2) == "on", random:sub(1, 2) == "on")
+            emit("service::mpd_options", loop:sub(1, 2) == "on", random:sub(1, 2) == "on")
         end
     )
 end

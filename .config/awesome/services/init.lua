@@ -3,15 +3,16 @@ log('Enter Module => ' .. ...)
 -- Monitoring
 require("services.cpu")
 require("services.ram")
--- require("services.temperature")
--- require("services.battery")
--- require("services.disk")
+require("services.temperature")
+require("services.battery")
+require("services.disk")
+require("services.network")
 
 -- User controlled
--- require("services.volume")
--- require("services.microphone")
+require("services.volume")
+require("services.microphone")
 -- require("services.mpd")
--- require("services.brightness")
+require("services.brightness")
 require("services.spotify")
 require("services.spotify-bookmarks")
 

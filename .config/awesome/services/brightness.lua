@@ -1,5 +1,7 @@
+log('Enter Module => ' .. ...)
+
 -- Provides:
--- evil::brightness
+-- service::brightness
 --      percentage (integer)
 local awful = require("awful")
 
@@ -19,7 +21,7 @@ local emit_brightness_info = function()
     awful.spawn.with_line_callback(brightness_script, {
         stdout = function(line)
             percentage = math.floor(tonumber(line))
-            emit("evil::brightness", percentage)
+            emit("service::brightness", percentage)
         end
     })
 end

@@ -47,6 +47,8 @@ run nm-applet
 # run pa-applet
 run pasystray
 
+# set wallpaper
+dwall -s $WALLPAPER_THEME
 
 file=$HOME/.custom/autostart
 if [ -f "$file" ]; then

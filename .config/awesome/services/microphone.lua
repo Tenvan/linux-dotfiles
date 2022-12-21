@@ -1,5 +1,7 @@
+log('Enter Module => ' .. ...)
+
 -- Provides:
--- evil::microphone
+-- service::microphone
 --      muted (boolean)
 local awful = require("awful")
 
@@ -10,7 +12,7 @@ local function emit_microphone_info()
         local muted = stdout:match('muted:(%s+)[yes]')
         local muted_int = muted and 1 or 0
         if not (muted_int == muted_old) then
-            emit("evil::microphone", muted)
+            emit("service::microphone", muted)
             muted_old = muted_int
         end
     end)

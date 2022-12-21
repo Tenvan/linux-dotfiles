@@ -1,5 +1,7 @@
+log('Enter Module => ' .. ...)
+
 -- Provides:
--- evil::weather
+-- service::weather
 --      temperature (integer)
 --      description (string)
 --      icon_code (string)
@@ -46,8 +48,8 @@ helpers.remote_watch(weather_details_script, update_interval, temp_file, functio
     if icon_code == "..." then
         -- Remove temp_file to force an update the next time
         awful.spawn.with_shell("rm "..temp_file)
-        emit("evil::weather", 999, "Weather unavailable", "")
+        emit("service::weather", 999, "Weather unavailable", "")
     else
-        emit("evil::weather", tonumber(temperature), description, icon_code)
+        emit("service::weather", tonumber(temperature), description, icon_code)
     end
 end)

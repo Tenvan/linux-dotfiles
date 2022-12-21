@@ -1,5 +1,7 @@
+log('Enter Module => ' .. ...)
+
 -- Provides:
--- evil::disk
+-- service::disk
 --      used (integer - mega bytes)
 --      total (integer - mega bytes)
 local awful = require("awful")
@@ -21,5 +23,5 @@ awful.widget.watch(disk_script, update_interval, function(_, stdout)
     -- the 5% storage reserved for `root`, which is misleading.
     local available = tonumber(stdout:match('^(.*)@')) / 1000
     local used = tonumber(stdout:match('@(.*)$')) / 1000
-    emit("evil::disk", used, used + available)
+    emit("service::disk", used, used + available)
 end)

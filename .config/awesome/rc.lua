@@ -89,7 +89,7 @@ require('module.auto-start')
 -- ░█░█░█▀█░█░░░█░░░█▀█░█▀█░█▀█░█▀▀░█▀▄
 -- ░█▄█░█▀█░█░░░█░░░█▀▀░█▀█░█▀▀░█▀▀░█▀▄
 -- ░▀░▀░▀░▀░▀▀▀░▀▀▀░▀░░░▀░▀░▀░░░▀▀▀░▀░▀
-require('module.wallpaper')
+-- require('module.wallpaper')
 
 if awesome.startup_errors then
   notify('Oops, there were errors during startup!', awesome.startup_errors, 'critical')

@@ -10,7 +10,7 @@ require('module.focus-flash');
 -- ░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀░░░▀░▀░▀▀▀░▀▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
 require('module.titlebar')
 require('module.brightness-osd')
-require('module.dynamic-wallpaper')
+-- require('module.dynamic-wallpaper')
 require('module.exit-screen')
 require('module.notifications')
 require('module.quake-terminal')

@@ -31,18 +31,19 @@ local top_panel = function(s, offset)
     end
   end)
 
-  local clock            = require('widget.clock')(s)
-  local layout_box       = require('widget.layoutbox')(s)
-  local hard_drives      = require('widget.harddrive-meter').widget
-  local weather          = require('widget.weather.weather-aw').widget
-  local systray          = require('widget.systray').widget
-  local net_speed_widget = require('awesome-wm-widgets.net-speed-widget.net-speed')
-  local volume_widget    = require('awesome-wm-widgets.volume-widget.volume')
-  local spotify_widget   = require('widget.spotify')
+  local clock                = require('widget.clock')(s)
+  local layout_box           = require('widget.layoutbox')(s)
+  local hard_drives          = require('widget.harddrive-meter').widget
+  local weather              = require('widget.weather.weather-aw').widget
+  local systray              = require('widget.systray').widget
+  local net_speed_widget_old = require('awesome-wm-widgets.net-speed-widget.net-speed')
+  local volume_widget        = require('awesome-wm-widgets.volume-widget.volume')
+  local spotify_widget       = require('widget.spotify')
 
   local updater            = require('widget.package-updater')()
   local screen_rec         = require('widget.screen-recorder')()
   local info_center_toggle = require('widget.info-center-toggle')()
+  local net_speed_widget   = require('widget.network-speed')
   local toolbar_ram_widget = require('widget.ram-widget.ram-widget')({
     -- width = dpi(200)
   })
@@ -102,9 +103,14 @@ local top_panel = function(s, offset)
     {
       -- left widgets
       layout_box,
-      color_palette,
+      seperator,
+      -- color_palette,
+      -- seperator,
       cpu_meter,
-      ram_widget,
+      toolbar_ram_widget,
+      seperator,
+      net_speed_widget,
+      seperator,
       spotify_widget,
       spacing = dpi(2),
       layout = wibox.layout.fixed.horizontal,
@@ -115,7 +121,7 @@ local top_panel = function(s, offset)
       -- right widgets
       layout = wibox.layout.fixed.horizontal,
       spacing = dpi(5),
-      net_speed_widget({
+      net_speed_widget_old({
         widget_width = dpi(66),
         width = dpi(100)
       }),

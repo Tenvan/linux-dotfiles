@@ -12,7 +12,7 @@ local function emit_signal(signal, ...)
     for i = 1, count do
       local v = ({ ... })
       if v ~= nil then
-        trace(string.format('  --> %i: %s', i, tostring(({ ... })[i])))
+        trace(string.format('  --> %i: %s', i, tostring((({ ... }) or{})[i])))
       end
     end
   end
@@ -31,7 +31,7 @@ local function connect_signal(signal, callback)
       trace(string.format('  --> %s', tostring(...)))
     elseif count > 1 then
       for i = 1, count do
-        trace(string.format('  --> %i: %s', i, tostring(({ ... })[i])))
+        trace(string.format('  --> %i: %s', i, tostring((({ ... }) or {})[i])))
       end
     end
 

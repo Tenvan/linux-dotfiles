@@ -1,9 +1,9 @@
--- Provides:
--- evil::temperature
---      temperature (integer - in Celcius)
-local awful = require("awful")
+log('Enter Module => ' .. ...)
 
-local update_interval = 15
+-- Provides:
+-- service::temperature
+--      temperature (integer - in Celcius)
+local update_interval = 5
 local temp_script = [[
   sh -c "
   sensors | grep Package | awk '{print $4}' | cut -c 2-3
@@ -11,5 +11,5 @@ local temp_script = [[
 
 -- Periodically get temperature info
 awful.widget.watch(temp_script, update_interval, function(widget, stdout)
-    emit("evil::temperature", tonumber(stdout))
+  emit('service::temperature', tonumber(stdout))
 end)

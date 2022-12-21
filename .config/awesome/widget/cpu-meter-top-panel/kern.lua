@@ -1,3 +1,5 @@
+log('Enter Module => ' .. ...)
+
 local bar_width = dpi(9)
 local bar_spacing = dpi(1)
 

@@ -19,9 +19,4 @@ export SSH_AUTH_SOCK
 # see https://github.com/NixOS/nixpkgs/issues/14966#issuecomment-520083836
 mkdir -p "$HOME"/.local/share/keyrings
 
-echo "do run autostarts"
-
-"$HOME/.bin/autostart"
-"$HOME/.screenlayout/screenlayout-awesome.sh"
-
 csource "$CUSTOMS/.xsession"
