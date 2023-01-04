@@ -5,7 +5,7 @@ log('Enter Module => ' .. ...)
 --      speed_rx (integer) = received bytes per interval
 --      speed_tx (integer) = send bytes per interval
 
-local update_interval = 1
+local update_interval = 0.3
 -- scripts
 
 -- Use /dev/sdxY according to your setup
@@ -43,7 +43,7 @@ awful.widget.watch(net_speed_script, update_interval, function(_, stdout)
     prev_rx = cur_rx
     prev_tx = cur_tx
 
-    log(string.format('network speed: %d send: %d', speed_rx, speed_tx))
+    log(string.format('network speed: %s send: %s', tostring(speed_rx), tostring(speed_tx)))
 
     emit('service::network', speed_rx, speed_tx)
 end)

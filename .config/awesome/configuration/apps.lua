@@ -58,6 +58,10 @@ local apps = {
     -- 'blueman-applet',
     -- Polkit and keyring
     -- 'lxsession',
+    -- lxat-desktop tools
+    'lxqt-session',
+    'lxqt-policykit-agent',
+    'lxqt-powermanagement',
     -- '/usr/bin/lxqt-policykit-agent &' ..	' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
     -- '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &' .. ' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
     -- Audio equalizer
@@ -69,7 +73,6 @@ local apps = {
     -- ]],
 
     -- You can add more start-up applications here
-    -- 'xfce4-power-manager',
     'pamac-tray',
     'nm-applet',
     'pasystray',
@@ -79,8 +82,9 @@ local apps = {
     -- 'xfce4-power-manager'
     'copyq',
     -- 'teams-for-linux',
-    'xscreensaver'
+    'xscreensaver',
     -- 'xsettingsd'
+    '$SCRIPTS/services/update-wallpaper.sh',
   },
 
   -- List of binaries/shell scripts that will execute for a certain task

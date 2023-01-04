@@ -19,9 +19,13 @@ local theme = {}
 
 -- Font
 theme.font_family = 'Iosevka '
+-- theme.symbol_font_family = 'Material-Design-Iconic-Font'
+-- theme.symbol_font_family = 'Symbol Nerd Font, Material-Design-Iconic-Font, '
+theme.symbol_font_family = 'Symbols'
 
-theme.font = theme.font_family .. ' Regular 12'
-theme.font_bold = theme.font_family .. ' Bold 12'
+theme.font        = theme.font_family .. ' Regular ' .. dpi(12)
+theme.font_bold   = theme.font_family .. ' Bold ' .. dpi(12)
+theme.font_symbol = theme.symbol_font_family .. ' Regular ' .. dpi(14)
 
 -- Font
 theme.font_small_size = dpi(config.font_size_small or 8)

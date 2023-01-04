@@ -59,12 +59,8 @@
     ],
     "SYSTEM_TOOLS_MENU": [
         [
-            "🔌 PowerManager ...",
-            "xfce4-power-manager-settings"
-        ],
-        [
-            "🖥 Bildschirmschoner ...",
-            "xfce4-screensaver-preferences"
+            "🛠 System Settings (LXQT) ...",
+            "lxqt-config"
         ],
         [
             "🖥 Monitor einrichten",

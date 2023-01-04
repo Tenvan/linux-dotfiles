@@ -44,6 +44,7 @@ install ttf-jetbrains-mono
 install ttf-nerd-fonts-symbols
 install ttf-twemoji
 install ttf-all-the-icons
+install ttf-nerd-fonts-symbols-common
 
 ###############################
 # uninstall unneeded packages #

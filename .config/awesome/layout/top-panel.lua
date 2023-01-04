@@ -1,10 +1,11 @@
 log('Enter Module => ' .. ...)
 
 local beautiful = require('beautiful')
-local dpi = beautiful.xresources.apply_dpi
-local wibox = require('wibox')
-local specs = require('layout.specs')
-local config = require('configuration.config')
+local dpi       = beautiful.xresources.apply_dpi
+local wibox     = require('wibox')
+local specs     = require('layout.specs')
+local config    = require('configuration.config')
+local icon      = require('widget.icon')
 
 local top_panel = function(s, offset)
   local panel = wibox {
@@ -31,14 +32,13 @@ local top_panel = function(s, offset)
     end
   end)
 
-  local clock                = require('widget.clock')(s)
-  local layout_box           = require('widget.layoutbox')(s)
-  local hard_drives          = require('widget.harddrive-meter').widget
-  local weather              = require('widget.weather.weather-aw').widget
-  local systray              = require('widget.systray').widget
-  local net_speed_widget_old = require('awesome-wm-widgets.net-speed-widget.net-speed')
-  local volume_widget        = require('awesome-wm-widgets.volume-widget.volume')
-  local spotify_widget       = require('widget.spotify')
+  local clock          = require('widget.clock')(s)
+  local layout_box     = require('widget.layoutbox')(s)
+  local hard_drives    = require('widget.harddrive-meter').widget
+  local weather        = require('widget.weather.weather-aw').widget
+  local systray        = require('widget.systray').widget
+  local volume_widget  = require('awesome-wm-widgets.volume-widget.volume')
+  local spotify_widget = require('widget.spotify')
 
   local updater            = require('widget.package-updater')()
   local screen_rec         = require('widget.screen-recorder')()
@@ -56,18 +56,7 @@ local top_panel = function(s, offset)
   }
 
   local ram_widget = {
-    {
-      {
-        text         = '',
-        align        = 'center',
-        valign       = 'center',
-        font         = beautiful.font_large,
-        forced_width = dpi(32),
-        widget       = wibox.widget.textbox
-      },
-      margins = dpi(2),
-      widget  = wibox.container.margin
-    },
+    icon({ icon = '' }),
     nil,
     toolbar_ram_widget,
     layout = wibox.layout.align.horizontal
@@ -119,25 +108,18 @@ local top_panel = function(s, offset)
     nil,
     {
       -- right widgets
-      layout = wibox.layout.fixed.horizontal,
-      spacing = dpi(5),
-      net_speed_widget_old({
-        widget_width = dpi(66),
-        width = dpi(100)
-      }),
       weather,
       updater,
       hard_drives,
-      volume_widget({
-        widget_type = 'arc',
-        size = dpi(32)
-      }),
+      volume_widget({ widget_type = 'arc', size = dpi(32) }),
       -- s.bluetooth,
       -- s.battery,
       screen_rec,
       systray,
       clock,
-      info_center_toggle
+      info_center_toggle,
+      spacing = dpi(5),
+      layout = wibox.layout.fixed.horizontal,
     },
     expand = 'none',
     spacing = 4,

@@ -82,11 +82,13 @@ else
     GREETER_BACKGROUND="/usr/share/backgrounds/desert.png"
 fi
 
+sudo sed -i "s/^.*user-background.*=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
 sudo sed -i "s/^.*background.*=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
 sudo sed -i "s/^.*theme-name=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
 sudo sed -i "s/^.*icon-theme-name=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
 sudo sed -i "s/^.*cursor-theme-name=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
 echo "background=$GREETER_BACKGROUND
+user-background=false
 theme-name=$GREETER_THEME
 icon-theme-name=$GREETER_ICON
 cursor-theme-name=$GREETER_CURSOR

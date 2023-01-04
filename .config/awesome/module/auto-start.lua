@@ -26,7 +26,7 @@ local run_once = function(cmd)
       log('  ERROR: ' .. stderr:gsub('%\n', ''))
 
       notify('<b>Oof! Error detected when starting an application!</b>',
-        stderr:gsub('%\n', ''),
+        string.format("Command: %s\nError: %s", cmd,   stderr:gsub('%\n', '')),
         'critical',
         nil,
         'Start-up Applications')

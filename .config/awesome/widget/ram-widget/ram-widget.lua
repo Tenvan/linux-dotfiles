@@ -1,8 +1,8 @@
 log('Enter Module => ' .. ...)
 
 local watch = require('awful.widget.watch')
-
 local dpi = require('beautiful.xresources').apply_dpi
+local icon = require('widget.icon')
 
 local seperator = wibox.widget {
   orientation = 'vertical',
@@ -75,18 +75,7 @@ local function worker(user_args)
 
 
   ram_widgets = wibox.widget {
-    {
-      {
-        text         = '',
-        align        = 'center',
-        valign       = 'center',
-        font         = beautiful.font_large,
-        forced_width = dpi(32),
-        widget       = wibox.widget.textbox
-      },
-      margins = dpi(2),
-      widget  = wibox.container.margin
-    },
+    icon({icon = ''}),
     memory_widget_graph,
     seperator,
     swap_widget_graph,
