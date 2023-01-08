@@ -10,16 +10,32 @@
                 "$TERMINAL --directory @@WORK_ONETIMESERVER"
             ],
             [
+                "@@OTW_CORE_SHELL",
+                "$TERMINAL --directory @@WORK_NODE/OtwCore"
+            ],
+            [
+                "@@OTW_RESTCLIENT_SHELL",
+                "$TERMINAL --directory @@WORK_NODE/OtwRestClient"
+            ],
+            [
                 "@@OTW_BLL_SHELL",
-                "$TERMINAL --directory @@WORK_OTW_BLL"
+                "$TERMINAL --directory @@WORK_NODE/OtwBll"
+            ],
+            [
+                "@@OTW_STATE_SHELL",
+                "$TERMINAL --directory @@WORK_NODE/OtwState"
             ],
             [
                 "@@OTW_ATOMIC_SHELL",
-                "$TERMINAL --directory @@WORK_OTW_ATOMIC"
+                "$TERMINAL --directory @@WORK_NODE/OtwAtomic"
             ],
             [
                 "@@OTW_WIDGETS_SHELL",
-                "$TERMINAL --directory @@WORK_OTW_WIDGETS"
+                "$TERMINAL --directory @@WORK_NODE/OtwWidgets"
+            ],
+            [
+                "@@OTW_WIDGETS_ELEMENTS_SHELL",
+                "$TERMINAL --directory @@WORK_NODE/OtwWidgetsElements"
             ],
             [
                 "@@WORK_ONETIMESERVER",
@@ -30,16 +46,8 @@
                 "$WORKSPACE/Node/OneTimeClient"
             ],
             [
-                "@@WORK_OTW_WIDGETS",
-                "$WORKSPACE/Node/OtwWidgets"
-            ],
-            [
-                "@@WORK_OTW_ATOMIC",
-                "$WORKSPACE/Node/OtwAtomic"
-            ],
-            [
-                "@@WORK_OTW_BLL",
-                "$WORKSPACE/Node/OtwBll"
+                "@@WORK_NODE",
+                "$WORKSPACE/Node"
             ],
             [
                 "WORKSPACE",
@@ -50,24 +58,12 @@
     "APP_MENU": {
         "BEFORE_MENU": [
             [
-                "📈 TenHeim Log (small)",
-                "$TERMINAL --hold --title ValHeim:XSessionError multitail -Ev '(Shader|shader|\\[Debug.*\\]|\\[Info.*\\]|\\/mono\\/.*|Fallback)' -s 2 -Cs -i $HOME/Valheim/logs/Server.log -i $HOME/.config/unity3d/IronGate/Valheim/Player.log"
+                "📈 TenHeim Log (Default)",
+                "$TERMINAL --hold --title ValHeim:XSessionError multitail -n 1000 -m 10000 -bw f -Ev '(Shader|shader|\\/mono\\/.*|Fallback)' -s 2 -Cs -i /media/BIGDATA/STEAM/Valheim/Server/BepInEx/LogOutput.log -i /media/BIGDATA/STEAM/Valheim/Client/BepInEx/LogOutput.log"
             ],
             [
-                "📈 TenHeim Log (all)",
-                "$TERMINAL --hold --title ValHeim:XSessionError multitail -Ev '(Shader|shader|\\/mono\\/.*|Fallback)' -s 2 -Cs -i $HOME/Valheim/logs/Server.log -i $HOME/.config/unity3d/IronGate/Valheim/Player.log"
-            ],
-            [
-                "📈 Screenlayout Standard",
-                "$HOME/.screenlayout/screenlayout-system.sh"
-            ],
-            [
-                "📈 Screenlayout Games",
-                "$HOME/.screenlayout/screenlayout-games.sh"
-            ],
-            [
-                "📈 Screenlayout Full Resolution",
-                "$HOME/.screenlayout/screenlayout-full.sh"
+                "📈 TenHeim Log (Test)",
+                "$TERMINAL --hold --title ValHeim:XSessionError multitail -n 1000 -m 10000 -bw f -Ev '(Shader|shader|\\/mono\\/.*|Fallback)' -s 2 -Cs -i /media/BIGDATA/STEAM/ValheimTest/logs/Server.log -i /media/BIGDATA/STEAM/ValheimTest/logs/Player.log"
             ]
         ]
     },
@@ -77,113 +73,129 @@
                 "🏄 OTS: Start Server",
                 "@@ONETIMESERVER_SHELL --hold --title OTC:StartServer yarn start"
             ],
+
             [
-                "🛫 OTC: Pug Watcher Atomic",
-                "@@OTW_WIDGETS_SHELL --hold --title OTC:PugWatcher yarn run watch:pug"
+                "🛫 OTC: Npm Watcher Client",
+                "@@ONETIMECLIENT_SHELL --hold --title OTC:NpmWatcher yarn run watch:npm"
+            ],
+            [
+                "🛫 OTC: Npm Watcher Widgets",
+                "@@OTW_WIDGETS_SHELL --hold --title OTC:NpmWatcher yarn run watch:npm"
+            ],
+            [
+                "🛫 OTC: Npm Watcher Atomic",
+                "@@OTW_ATOMIC_SHELL --hold --title OTC:NpmWatcher yarn run watch:npm"
+            ],
+            [
+                "🛫 OTC: Npm Watcher State",
+                "@@OTW_STATE_SHELL --hold --title OTC:NpmWatcher yarn run watch:npm"
+            ],
+            [
+                "🛫 OTC: Npm Watcher Bll",
+                "@@OTW_BLL_SHELL --hold --title OTC:NpmWatcher yarn run watch:npm"
+            ],
+            [
+                "🛫 OTC: Npm Watcher RestClient",
+                "@@OTW_RESTCLIENT_SHELL --hold --title OTC:NpmWatcher yarn run watch:npm"
+            ],
+
+            [
+                "🛫 OTC: Pug Watcher Client",
+                "@@ONETIMECLIENT_SHELL --hold --title OTC:PugWatcher yarn run watch:pug"
             ],
             [
                 "🛫 OTC: Pug Watcher Widgets",
                 "@@OTW_WIDGETS_SHELL --hold --title OTC:PugWatcher yarn run watch:pug"
             ],
             [
-                "🛫 OTC: Start Pug Watcher",
-                "@@ONETIMECLIENT_SHELL --hold --title OTC:PugWatcher yarn run watch:pug"
+                "🛫 OTC: Pug Watcher Atomic",
+                "@@OTW_ATOMIC_SHELL --hold --title OTC:PugWatcher yarn run watch:pug"
             ],
+
             [
-                "🛫 OTC: Start Npm Watcher",
-                "@@ONETIMECLIENT_SHELL --hold --title OTC:NpmWatcher yarn run watch:npm"
-            ],
-            [
-                "🛫 OTC: Start OneTimeClient",
-                "@@ONETIMECLIENT_SHELL --hold --title OTC:StartClient yarn run start:client"
-            ],
-            [
-                "🛫 OTC: Start TestApp Atomic",
-                "@@OTW_ATOMIC_SHELL --hold --title OTC:AtomicTestApp yarn run start:test:atomic"
+                "🛫 OTC: Start TestApp SSO",
+                "@@OTW_WIDGETS_SHELL --hold --title OTC:SSoTestApp yarn run start:test:sso"
             ],
             [
                 "🛫 OTC: Start TestApp Widgets",
                 "@@OTW_WIDGETS_SHELL --hold --title OTC:WidgetsTestApp yarn run start:test:widgets"
             ],
             [
-                "🛫 OTC: Start TestApp SSO",
-                "@@OTW_WIDGETS_SHELL --hold --title OTC:WidgetsTestApp yarn run start:test:sso"
+                "🛫 OTC: Start TestApp Atomic",
+                "@@OTW_ATOMIC_SHELL --hold --title OTC:AtomicTestApp yarn run start:test:atomic"
             ],
+
             [
-                "🏄 Keycloak Workdir",
-                "$TERMINAL --directory $WORKSPACE/KeyCloak --hold --title KeyCloak"
-            ],
-            [
-                "💻 OTS: Shell Server",
-                "@@ONETIMESERVER_SHELL --hold --title OTS:Shell"
+                "💻 OTS: Shell OneTimeServer",
+                "@@ONETIMESERVER_SHELL --hold --title 'OTS:Shell OneTimeServer'"
             ],
             [
                 "💻 OTC: Shell OneTimeClient",
-                "@@ONETIMECLIENT_SHELL --hold --title OTC:Shell"
+                "@@ONETIMECLIENT_SHELL --hold --title 'OTC:Shell OneTimeClient'"
+            ],
+            [
+                "💻 OTW: Shell OtwWidgetsElements",
+                "@@OTW_WIDGETS_ELEMENTS_SHELL --hold --title 'OTW:Shell OtwWidgetsElements'"
             ],
             [
                 "💻 OTW: Shell OtwWidgets",
-                "@@OTW_WIDGETS_SHELL --hold --title OTW:Shell"
+                "@@OTW_WIDGETS_SHELL --hold --title 'OTW:Shell OtwWidgets'"
             ],
             [
                 "💻 OTW: Shell OtwAtomic",
-                "@@OTW_ATOMIC_SHELL --hold --title OTW:Shell"
+                "@@OTW_ATOMIC_SHELL --hold --title 'OTW:Shell OtwAtomic'"
+            ],
+            [
+                "💻 OTW: Shell OtwState",
+                "@@OTW_STATE_SHELL --hold --title 'OTW:Shell OtwState'"
+            ],
+            [
+                "💻 OTW: Shell OtwBll",
+                "@@OTW_BLL_SHELL --hold --title 'OTW:Shell OtwBll'"
+            ],
+            [
+                "💻 OTW: Shell OtwRestClient",
+                "@@OTW_RESTCLIENT_SHELL --hold --title 'OTW:Shell OtwRestClient'"
+            ],
+            [
+                "💻 OTW: Shell OtwCore",
+                "@@OTW_CORE_SHELL --hold --title 'OTW:Shell OtwCore'"
             ]
         ],
         "AFTER_MENU": [
-            [
-                "🇬 OTC: Client Code",
-                "code @@WORK_ONETIMECLIENT"
-            ],
-            [
-                "🇬 OTC: Widget Code",
-                "code @@OTW_WIDGETS_SHELL"
-            ],
-            [
-                "🇬 OTC: Widget Code",
-                "code @@OTW_ATOMIC_SHELL"
-            ],
-            [
-                "🇬 OTS: Server Code",
-                "code @@WORK_ONETIMESERVER"
-            ]
         ]
     },
     "SYSTEM_TOOLS_MENU": {
         "BEFORE_MENU": [
             [
-                "🖥 Monitor Standard",
-                "sh $HOME/.screenlayout/screenlayout.sh"
+                "🖥 Screenlayout Standard",
+                "$HOME/.screenlayout/screenlayout-default.sh"
             ],
             [
-                "🖥 Monitor FlameShot",
-                "sh $HOME/.screenlayout/screenlayout-flameshot.sh"
+                "🖥 Screenlayout Games",
+                "$HOME/.screenlayout/screenlayout-games.sh"
+            ],
+            [
+                "🖥 Screenlayout Full Resolution",
+                "$HOME/.screenlayout/screenlayout-full.sh"
             ]
         ],
         "AFTER_MENU": [
             [
-                "🚧 Awmtt Default Start",
-                "$TERMINAL --hold --title AWMTT awmtt start -C $myLua --size 1920x1080"
+                "🪲 Webstorm 2022.2 Log (Console)",
+                "$TERMINAL --hold --title Sys:WebstormLogs multitail -cs -i $HOME/.cache/JetBrains/WebStorm2022.2/log/idea.log"
             ],
             [
-                "🚧 Awmtt Default Restart",
-                "$TERMINAL --title AWMTT awmtt restart"
+                "🪲 Webstorm 2022.3 Log (Console)",
+                "$TERMINAL --hold --title Sys:WebstormLogs multitail -cs -i $HOME/.cache/JetBrains/WebStorm2022.3/log/idea.log"
             ],
             [
-                "🚧 Awmtt Default Stop",
-                "$TERMINAL --title AWMTT awmtt stop"
+                "🪲 Spotify Log (Console)",
+                "$TERMINAL --hold --title Sys:XSessionError multitail -cs -i $HOME/spotify-log.log"
             ],
             [
-                "🚧 Awmtt Test Start",
-                "$TERMINAL --hold --title AWMTT awmtt start -C $myTestLua -D 1 --size 1920x1080"
-            ],
-            [
-                "🚧 Awmtt Test Restart",
-                "awmtt restart"
-            ],
-            [
-                "🚧 Awmtt Test Stop",
-                "awmtt stop"
+                "🪲 Spotify Trace (Console)",
+                "$TERMINAL --hold --title Sys:XSessionError multitail -cs -i $HOME/spotify-trace.log"
             ]
         ]
     }
