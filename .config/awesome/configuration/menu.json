@@ -59,7 +59,7 @@
     ],
     "SYSTEM_TOOLS_MENU": [
         [
-            "🛠 System Settings (LXQT) ...",
+            "🛠 System Settings (LXQT)",
             "lxqt-config"
         ],
         [

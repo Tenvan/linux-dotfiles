@@ -10,7 +10,9 @@ sound count-down
 # custom printer definitions #
 ##############################
 
+uninstall hpuld
 install hplip
+install samsung-unified-driver-printer
 
 ###############################
 # uninstall unneeded packages #

@@ -1,4 +1,4 @@
-log("Enter Module => " .. ... )
+log('Enter Module => ' .. ...)
 
 local awesome, client, screen = awesome, client, screen
 
@@ -78,12 +78,12 @@ local function menuAction(action)
 
     if c[2] == '' then
       local ENV = os.getenv(c[1]) or c[2]
-      command = string.gsub(command, "$" .. c[1], ENV)
+      command = string.gsub(command, '$' .. c[1], ENV)
     else
       command = string.gsub(command, c[1], c[2])
     end
   end
-  log("Command: " .. command)
+  log('Command: ' .. command)
   awful.spawn.with_shell(command)
 end
 
@@ -91,32 +91,53 @@ local function arrayToMenu(array)
   local menu = {}
 
   for i, c in pairs(array) do
-    menu[i] = { c[1],
-      function()
-        menuAction(c[2])
-      end }
+    local caption = c[1]
+    local content = c[2]
+    if type(content) == 'table' then
+      menu[i] = { caption, arrayToMenu(content) }
+    else
+      menu[i] = { caption,
+        function()
+          menuAction(content)
+        end }
+    end
   end
   return menu
+end
+
+local specs      = require('layout.specs')
+local menuCoords = {
+  coords = { x = specs.leftPanel.actionBarWidth * 2, y = specs.topPanel.height * 2 },
+}
+
+local function showMenu(menu)
+  awful.menu(menu):show(menuCoords)
 end
 
 return {
   mainmenu          = mainmenu,
   APP_MENU          = function()
-    return arrayToMenu(getMenuData('APP_MENU'))
+    local menu = arrayToMenu(getMenuData('APP_MENU'))
+    showMenu(menu)
   end,
   DEVELOP_MENU      = function()
-    return arrayToMenu(getMenuData('DEVELOP_MENU'))
+    local menu = arrayToMenu(getMenuData('DEVELOP_MENU'))
+    showMenu(menu)
   end,
   EDIT_CONFIG       = function()
-    return arrayToMenu(getMenuData('EDIT_CONFIG'))
+    local menu = arrayToMenu(getMenuData('EDIT_CONFIG'))
+    showMenu(menu)
   end,
   SYSTEM_TOOLS_MENU = function()
-    return arrayToMenu(getMenuData('SYSTEM_TOOLS_MENU'))
+    local menu = arrayToMenu(getMenuData('SYSTEM_TOOLS_MENU'))
+    showMenu(menu)
   end,
   SYSTEM_MENU       = function()
-    return arrayToMenu(getMenuData('SYSTEM_MENU'))
+    local menu = arrayToMenu(getMenuData('SYSTEM_MENU'))
+    showMenu(menu)
   end,
   SYSTEM_MONITOR    = function()
-    return arrayToMenu(getMenuData('SYSTEM_MONITOR'))
+    local menu = arrayToMenu(getMenuData('SYSTEM_MONITOR'))
+    showMenu(menu)
   end,
 }

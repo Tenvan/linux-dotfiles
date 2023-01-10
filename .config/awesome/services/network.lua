@@ -43,7 +43,7 @@ awful.widget.watch(net_speed_script, update_interval, function(_, stdout)
     prev_rx = cur_rx
     prev_tx = cur_tx
 
-    log(string.format('network speed: %s send: %s', tostring(speed_rx), tostring(speed_tx)))
+    trace(string.format('network speed: %s send: %s', tostring(speed_rx), tostring(speed_tx)))
 
     emit('service::network', speed_rx, speed_tx)
 end)

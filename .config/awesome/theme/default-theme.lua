@@ -221,6 +221,7 @@ local awesome_overrides = function(theme)
   theme.menu_bg_normal    = theme.gtk_vars.menubar_bg_color:sub(1, 7)
   theme.menu_bg_focus     = theme.accent:sub(1, 7) .. 'CC'
   theme.menu_border_color = theme.border_normal:sub(1, 7)
+  theme.menu_submenu_icon = theme.icons .. "submenu.png"
 
   -- Tooltips
 
