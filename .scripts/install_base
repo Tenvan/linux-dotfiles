@@ -133,7 +133,6 @@ install xclip
 install xclip
 install xdotool
 install xdotool
-install xfce4-power-manager
 install xorg-server-xephyr
 install xorg-xbacklight
 install xorg-xfd
@@ -146,10 +145,15 @@ install xorg-xrandr
 install feh
 install cronie
 
+# handling XFCE4
+install xfce4-power-manager
+uninstall xfce4-screensaver
+uninstall xfce4-power-manager
+
 # polkits
 install polkit
 install polkit-gnome
-install xfce-polkit
+uninstall xfce-polkit
 
 # sound setup
 install alsa-oss
@@ -282,7 +286,7 @@ install brother-mfc-j4420dw
 install canon-cque
 install cups-pdf
 install hplip
-install hpuld
+uninstall hpuld
 install system-config-printer
 install print-manager
 
@@ -313,9 +317,6 @@ install shellcheck
 install tar
 
 # wallpapers, themes and icons
-install dynamic-wallpaper 
-install dynamic-wallpaper-editor
-
 if [ "$IS_ARCO" = true ]; then
     install arcolinux-arc-arcolinux-blue-git
     install arcolinux-arc-paper-git
@@ -439,10 +440,13 @@ fullInstall
 finish
 
 # dynamic wallpaper
-git clone https://github.com/adi1090x/dynamic-wallpaper.git
-cd dynamic-wallpaper.git
-./install.sh -s forest
+git clone https://github.com/adi1090x/dynamic-wallpaper.git DynamicWallper
+errorCheck "clone dynamic wallpaper"
+cd DynamicWallper
+./install.sh -s island
+errorCheck "install dynamic wallpaper"
 cd ..
+rm -fr DynamicWallper
 
 echo '
 # In this section, we will show you different crontab syntax with examples.
@@ -466,7 +470,7 @@ echo '
 # @yearly                    Execute a job once a year
 # @reboot                    Execute the job when the system boots
 
-0 * * * * env PATH=/usr/local/bin:/usr/bin DISPLAY=:0 DESKTOP_SESSION=awesome DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" /usr/bin/dwall -s $WALLPAPER_THEME' >> /var/spool/cron/$USER
+0 * * * * env PATH=/usr/local/bin:/usr/bin DISPLAY=:0 DESKTOP_SESSION=awesome DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" /usr/bin/dwall -s $WALLPAPER_THEME' | sudo tee /var/spool/cron/$USER
 
 crontab -e
 
