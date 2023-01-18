@@ -17,7 +17,6 @@
 
 # Ausnahmen Samples in Custom Folder
 !.custom/*.sample
-!.config/awesome/customs
 
 # Ausnahmen im .local folder
 !.local
@@ -41,6 +40,7 @@
 !.config/alacritty/*
 !.config/awesome
 !.config/awesome/**/*
+.config/awesome/customs
 !.config/copyq
 !.config/copyq/copyq.conf
 !.config/copyq/themes
