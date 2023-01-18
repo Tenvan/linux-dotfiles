@@ -32,10 +32,8 @@ fi
 # system packages
 install acpi
 install acpid
-uninstall alttab-git
 install at
 install arandr
-uninstall archivefs
 install arj
 install ark
 install bashtop
@@ -57,9 +55,7 @@ install feh
 install ffmpeg
 install flameshot
 install fzf
-uninstall genius
 install glances
-uninstall glogg
 install gnome-keyring
 install gparted
 install gpick
@@ -67,9 +63,8 @@ install grc
 install gtop
 install gvfs-smb
 install hardinfo
-uninstall hstr
 install htop
-uninstall ibus-daemon
+install ibus-daemon
 install iftop
 install inotify-tools
 install iotop
@@ -81,13 +76,9 @@ install lhasa
 install libgnome-keyring
 install libsecret
 install light
-uninstall lscolors
 install lsd
 install luacheck
 install lxsession
-install mpc
-install mpd
-uninstall mpdris2
 install mpv
 install multitail
 install ncmpcpp
@@ -102,7 +93,6 @@ install openconnect
 install p7zip
 install packagekit
 install picom
-install playerctl
 install pm-utils
 install polkit-gnome
 install powershell-bin

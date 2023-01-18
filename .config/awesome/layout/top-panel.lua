@@ -100,7 +100,7 @@ local top_panel = function(s, offset)
       seperator,
       net_speed_widget,
       seperator,
-      spotify_widget,
+      -- spotify_widget,
       spacing = dpi(2),
       layout = wibox.layout.fixed.horizontal,
     },

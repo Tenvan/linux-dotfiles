@@ -204,7 +204,7 @@ ruled.client.connect_signal('request::rules', function()
   -- Multimedia
   ruled.client.append_rule {
     rule_any = {
-      class = { 'vlc', 'Spotify', 'shortwave' }
+      class = { 'vlc', 'Spotify', 'shortwave', 'YouTube Music' }
     },
     properties = {
       screen = (screen[2] or screen[1]).index,

@@ -355,6 +355,32 @@ case ${TERM} in
 esac
 
 csource "$HOME/.scripts/ranger.zsh"
+csource /usr/share/nvm/init-nvm.sh
+
+# Load right version of NVM
+autoload -U add-zsh-hook
+load-nvmrc() {
+  # OLD_PREFIX=PREFIX
+  unset PREFIX
+  
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -f "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+    if [ "$nvmrc_node_version" != "$node_version" ]; then
+         echo "use nvm from .nvmrc: $nvmrc_node_version"
+        nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "use nvm from default"
+    nvm use default
+  else
+    echo "no nvm use change"
+  fi 
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
 
 # archey4
 neofetch

@@ -644,6 +644,9 @@ local global_keys = awful.util.table.join(
     notify('Teams Test Nachricht',
       '<b>CRITICAL</b>\nDies ist eine Teams Test Nachicht.' .. message, 'critical', 'audio-card', 'teams-for-linux')
 
+    notify('Yourtube Music Test Nachricht',
+      '<b>CRITICAL</b>\nDies ist eine Youtube Music Test Nachicht.' .. message, 'critical', 'audio-card', 'YouTube Music')
+
     notify('Spotify Test Nachricht',
       '<b>CRITICAL</b>\nDies ist eine Spotify Test Nachicht.' .. message, 'critical', 'audio-card', 'Spotify')
 
@@ -663,6 +666,7 @@ local global_keys = awful.util.table.join(
     notify('Test Nachricht 3',
       '<b>CRITICAL</b>\nDies ist eine Test Nachicht.\n' .. message,
       'critical', '/usr/share/icons/hicolor/scalable/status/tablet.svg')
+      
     notify('Test Nachricht 4',
       '<b>LOW</b>\nDies ist eine Test Nachicht.\n' .. message)
   end, {

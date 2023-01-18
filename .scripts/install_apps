@@ -23,6 +23,13 @@ install krita
 install feh
 install imv
 
+# music
+install playerctl
+install mpc
+install mpd
+install youtube-music-bin
+install spotify
+
 # optional application packages
 install aspell
 install baobab-gtk3
@@ -31,7 +38,7 @@ install kdeconnect
 # install gwenview
 install partitionmanager
 install playerctl
-install teams
+uninstall teams
 install teams-for-linux
 
 # Browser

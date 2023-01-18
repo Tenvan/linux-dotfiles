@@ -78,6 +78,19 @@ ruled.notification.connect_signal(
       }
     }
 
+    -- Youtube Music notifs
+    ruled.notification.append_rule {
+      rule       = { app_name = 'YouTube Music' },
+      properties = {
+        font             = beautiful.font,
+        bg               = makeColorTransparent(beautiful.spotify_bg, '80'),
+        fg               = beautiful.fg,
+        implicit_timeout = 20,
+        margin           = dpi(16),
+        icon_size        = dpi(200)
+      }
+    }
+
     -- Spotify notifs
     ruled.notification.append_rule {
       rule       = { app_name = 'Spotify' },

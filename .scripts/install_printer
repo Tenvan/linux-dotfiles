@@ -10,9 +10,9 @@ sound count-down
 # custom printer definitions #
 ##############################
 
-uninstall hpuld
+uninstall samsung-unified-driver-printer
+install hpuld
 install hplip
-install samsung-unified-driver-printer
 
 ###############################
 # uninstall unneeded packages #
@@ -78,7 +78,7 @@ usb-pid=332a
 usb-vid=3f0
 wifi-config=3" | sudo tee -a /usr/share/hplip/data/models/models.dat
 
-hp-makeuri -g 192.168.0.155
+hp-makeuri -g 192.168.2.155
 
 ## FINISHING #
 finish
