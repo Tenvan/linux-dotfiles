@@ -99,7 +99,6 @@ install powershell-bin
 install python-mutagen
 install qbittorrent
 install qjournalctl
-install ranger
 install redshift
 install ripgrep
 install s-tui
@@ -214,10 +213,24 @@ install gtk-engine-murrine
 
 # file manager
 install mc
-uninstall rnr-fm
 install ranger
 install ranger_devicons-git
-uninstall ufraw-thumbnailer
+
+# useful tools for ranger
+install atool
+install atool-desktop
+install elinks 
+install ffmpegthumbnailer 
+install highlight 
+install highlight-gui 
+install imagemagick 
+install libcaca 
+install lynx 
+install mediainfo 
+install odt2txt 
+install poppler 
+install ueberzug 
+install w3m
 
 # Nemo
 install cinnamon-translations

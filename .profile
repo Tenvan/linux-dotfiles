@@ -23,7 +23,7 @@ export DISPLAYMANAGER=sddm
 
 # Development profile
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
-export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
 export WORKSPACE=/media/WORKSPACE/$USER
 
 # Conditional PATH additions
