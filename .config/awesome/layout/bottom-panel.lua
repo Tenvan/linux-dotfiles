@@ -6,7 +6,7 @@ local wibox = require('wibox')
 local clickable_container = require('widget.clickable-container')
 local task_list = require('widget.task-list')
 local specs = require('layout.specs')
-local config = require('configuration.config')
+local config = require('configuration.json')
 
 local offsetx = specs.leftPanel.actionBarWidth
 

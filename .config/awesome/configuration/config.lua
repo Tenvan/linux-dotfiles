@@ -1,5 +1,5 @@
 local config = {
-  debug_mode = false,
+  debug_mode = true,
   trace_mode = false,
   sounds = false,
   widget = {
@@ -52,6 +52,9 @@ local config = {
       mic_level = '20',
       -- FPS
       fps = '30'
+    },
+    spotify = {
+      enabled = true
     }
   },
 
@@ -96,5 +99,4 @@ local config = {
   },
 }
 
--- TODO Config-Files einlesen (default und custom)
 return config

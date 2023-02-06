@@ -4,7 +4,6 @@ local awesome, client = awesome, client
 
 local awful = require('awful')
 local beautiful = require('beautiful')
-local config = require('configuration.config')
 
 local notify = require('utilities.notify')
 local sound = require('utilities.sound')

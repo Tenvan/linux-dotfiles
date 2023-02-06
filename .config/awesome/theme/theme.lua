@@ -5,8 +5,6 @@ local gears = require('gears')
 local dpi = require('beautiful').xresources.apply_dpi
 
 local theme_dir = require('theme.default-theme').theme_dir
-local modConfig = require('configuration.config').module
-
 local makeColorTransparent = require('utilities.utils').makeColorTransparent
 
 -- Create theme table
@@ -20,8 +18,8 @@ local awesome_overrides = function(theme)
   theme.awesome_icon = theme_dir .. '/icons/awesome.png'
 
   -- Default wallpaper path
-  theme.wallpaper = modConfig.dynamic_wallpaper.wall_dir .. '/locksreen-bg.jpg'
-  theme.wallpaper_path = modConfig.dynamic_wallpaper.wall_dir
+  theme.wallpaper = ""
+  theme.wallpaper_path = ""
 
   -- Foreground
   -- theme.fg_normal = theme.theme_fg_color

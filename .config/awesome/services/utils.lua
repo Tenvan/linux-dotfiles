@@ -1,6 +1,6 @@
 log('Enter Module => ' .. ...)
 
-local config = require('configuration.config')
+local config = require('configuration.json')
 
 local awful = require('awful')
 

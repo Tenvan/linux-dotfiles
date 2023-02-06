@@ -4,7 +4,7 @@ local beautiful = require('beautiful')
 local dpi       = beautiful.xresources.apply_dpi
 local wibox     = require('wibox')
 local specs     = require('layout.specs')
-local config    = require('configuration.config')
+local config = require('configuration.json') or {}
 local icon      = require('widget.icon')
 
 local top_panel = function(s, offset)
@@ -32,14 +32,13 @@ local top_panel = function(s, offset)
     end
   end)
 
-  local clock          = require('widget.clock')(s)
-  local layout_box     = require('widget.layoutbox')(s)
-  local hard_drives    = require('widget.harddrive-meter').widget
-  local weather        = require('widget.weather.weather-aw').widget
-  local systray        = require('widget.systray').widget
-  local volume_widget  = require('awesome-wm-widgets.volume-widget.volume')
-  local spotify_widget = require('widget.spotify')
-
+  local clock              = require('widget.clock')(s)
+  local layout_box         = require('widget.layoutbox')(s)
+  local hard_drives        = require('widget.harddrive-meter').widget
+  local weather            = require('widget.weather.weather-aw').widget
+  local systray            = require('widget.systray').widget
+  local volume_widget      = require('awesome-wm-widgets.volume-widget.volume')
+  local spotify_widget     = require('widget.spotify')
   local updater            = require('widget.package-updater')()
   local screen_rec         = require('widget.screen-recorder')()
   local info_center_toggle = require('widget.info-center-toggle')()
@@ -88,39 +87,43 @@ local top_panel = function(s, offset)
     color_palette = require('widget.color-palette.popup')
   end
 
+  local leftWidgets = {
+    spacing = dpi(2),
+    layout = wibox.layout.fixed.horizontal,
+    layout_box,
+    seperator,
+    -- color_palette,
+    -- seperator,
+    cpu_meter,
+    toolbar_ram_widget,
+    seperator,
+    net_speed_widget,
+    seperator,
+  }
+  if config.widget.spotify.enabled then
+    leftWidgets[#leftWidgets + 1] = spotify_widget
+  end
+
+  local middleWidgets = nil
+
+  local rightWidgets = {
+    weather,
+    updater,
+    hard_drives,
+    volume_widget({ widget_type = 'arc', size = dpi(32) }),
+    -- s.bluetooth,
+    -- s.battery,
+    screen_rec,
+    systray,
+    clock,
+    info_center_toggle,
+    spacing = dpi(5),
+    layout = wibox.layout.fixed.horizontal,
+  }
   panel:setup {
-    {
-      -- left widgets
-      layout_box,
-      seperator,
-      -- color_palette,
-      -- seperator,
-      cpu_meter,
-      toolbar_ram_widget,
-      seperator,
-      net_speed_widget,
-      seperator,
-      -- spotify_widget,
-      spacing = dpi(2),
-      layout = wibox.layout.fixed.horizontal,
-    },
-    -- middle widgets
-    nil,
-    {
-      -- right widgets
-      weather,
-      updater,
-      hard_drives,
-      volume_widget({ widget_type = 'arc', size = dpi(32) }),
-      -- s.bluetooth,
-      -- s.battery,
-      screen_rec,
-      systray,
-      clock,
-      info_center_toggle,
-      spacing = dpi(5),
-      layout = wibox.layout.fixed.horizontal,
-    },
+    leftWidgets,
+    middleWidgets,
+    rightWidgets,
     expand = 'none',
     spacing = 4,
     layout = wibox.layout.align.horizontal,

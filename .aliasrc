@@ -10,7 +10,7 @@ alias speed='speedtest-cli --server 2406 --simple'
 
 # Cleanup orphaned packages
 alias cleanup='cleanup-all'
-
+alias docker-prune='docker container prune -f && docker image prune -f'
 # get actual mirrors
 alias mirror-upd="$HOME/.bin/update-mirrors"
 
@@ -59,8 +59,8 @@ alias pacman='sudo pacman --color auto'
 alias update-fc='sudo fc-cache -fv'
 
 #package manager
-alias inst="$PACTOOL -S --color always --needed"
-alias inst_over="$PACTOOL -S --color always --needed --overwrite \*"
+alias inst="$PACTOOL -Sy --color always --needed"
+alias inst_over="$PACTOOL -Sy --color always --needed --overwrite \*"
 alias uninst="$PACTOOL -Rcn"
 alias upall="$HOME/.bin/update-all"
 alias search="$PACTOOL -Ss --bottomup"
