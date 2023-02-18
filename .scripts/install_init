@@ -45,7 +45,7 @@ sudo chmod -R -v +x ~/.bin
 errorCheck "set script flags"
 
 # base install tools
-install archey4
+install fastfetch
 install exa
 install kitty
 install lsd

@@ -18,7 +18,7 @@ picom-toggle-awesome
 #==============
 # Polkit and keyring
 # /usr/bin/lxqt-policykit-agent & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
-run /usr/lib/xfce-polkit/xfce-polkit
+# run /usr/lib/xfce-polkit/xfce-polkit
 # run lxqt-policykit-agent
 # run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
 # run lxsession

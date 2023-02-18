@@ -383,4 +383,4 @@ add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
 # archey4
-neofetch
+fastfetch

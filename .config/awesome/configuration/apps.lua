@@ -76,7 +76,7 @@ local apps = {
     -- You can add more start-up applications here
     'pamac-tray',
     'nm-applet',
-    'pasystray',
+    -- 'pasystray',
     'flameshot',
     'eject-applet',
     'redshift-gtk',
