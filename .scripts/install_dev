@@ -40,8 +40,8 @@ if [ $IS_FEDORA_BASED = true ]; then
 	install gitflow
 	install dotnet-sdk-6.0
 	install dotnet-sdk-7.0
-
 fi
+
 # nvm
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 nvm install 18

@@ -35,9 +35,7 @@ install at
 install arandr
 install arj
 install ark
-install bashtop
 install bat
-install bitwarden
 install blueman
 install bpytop
 install brightnessctl
@@ -51,7 +49,6 @@ install docker-compose
 install dpkg
 install exa
 install feh
-install ffmpeg
 install flameshot
 install fzf
 install glances
@@ -59,11 +56,8 @@ install gnome-keyring
 install gparted
 install gpick
 install grc
-install gtop
 install gvfs-smb
-install hardinfo
 install htop
-install ibus-daemon
 install iftop
 install inotify-tools
 install iotop
@@ -71,49 +65,28 @@ install iptraf-ng
 install jq
 install kitty
 install kteatime
-install lhasa
 install libgnome-keyring
 install libsecret
 install light
 install lsd
-install luacheck
 install lxsession
 install mpv
 install multitail
 install ncmpcpp
-install neofetch
-install networkmanager
-install networkmanager-openconnect
 install nitrogen
-install notify-send.sh
 install numlockx
-install oh-my-posh-bin
 install openconnect
 install p7zip
-install packagekit
-install picom
-install pm-utils
-install polkit-gnome
-install powershell-bin
 install python-mutagen
 install qbittorrent
-install qjournalctl
-install redshift
-install ripgrep
-install s-tui
 install scrot
-install shell-color-scripts
-install spectacle
 install stow
-install system-monitoring-center
 install time
 install timeshift
 install toilet
 install unclutter
 install unrar
 install upower
-install watchexec
-install wezterm
 install wmctrl
 install xautolock
 install xbindkeys
@@ -121,20 +94,44 @@ install xclip
 install xclip
 install xdotool
 install xdotool
-install xorg-server-xephyr
-install xorg-xbacklight
-install xorg-xfd
-install xorg-xsetroot
 install xscreensaver
 install xsel
 install xset
-install xwallpaper
-install eject-applet
-install xorg-xrandr
 install feh
 install cronie
 
+
+if [ $IS_FEDORA_BASED = true ]; then
+	# system packages
+	install i-nex
+	install xorg-x11-server-Xephyr
+fi
+
 if [ $IS_ARCH_BASED = true ]; then
+	# system packages
+	install hardinfo
+	install ibus-daemon
+	install bitwarden
+	install oh-my-posh-bin
+	install picom
+	install shell-color-scripts
+	install luacheck
+	install networkmanager
+	install networkmanager-openconnect
+	install notify-send.sh
+	install packagekit
+	install pm-utils
+	install powershell-bin
+	install eject-applet
+	install system-monitoring-center
+	install watchexec
+	install wezterm
+	install xorg-xrandr
+	install xorg-server-xephyr
+	install xorg-xbacklight
+	install xorg-xfd
+	install xorg-xsetroot
+	
 	# handling XFCE4
 	install xfce4-power-manager
 	uninstall xfce4-screensaver
@@ -160,13 +157,14 @@ if [ $IS_ARCH_BASED = true ]; then
 	install tvolnoti
 
 	install glfw-x11
+	
+	if [ $IS_MANJARO = false ]; then
+	    install pulseaudio-alsa
+	    install pulseaudio-bluetooth
+	    install pulseaudio-equalizer
+	fi
 fi
 
-if [ $IS_MANJARO = false ]; then
-    install pulseaudio-alsa
-    install pulseaudio-bluetooth
-    install pulseaudio-equalizer
-fi
 
 # ssh
 install openssh
@@ -367,7 +365,7 @@ if [ $IS_ARCH_BASED = true ]; then
 	install bibata-cursor-theme
 	install bibata-cursor-translucent
 else
-	sudo dnf copr enable peterwu/rendezvous
+	sudo dnf copr enable peterwu/rendezvous -y
 	install bibata-cursor-themes
 fi
 

@@ -77,6 +77,8 @@ if [ $IS_FEDORA_BASED = true ]; then
 	install picom
 	install rofi
 	install sysstat
+	sudo wget -O /usr/bin/awmtt https://raw.githubusercontent.com/mikar/awmtt/master/awmtt.sh
+	sudo chmod a+x /usr/bin/awmtt	
 fi
 
 ###############################
