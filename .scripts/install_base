@@ -4,7 +4,6 @@ source "$HOME/.scripts/defs"
 
 # Init Install
 initInstall "install_base"
-sound count-down
 
 ###########################
 # collect needed packages #
@@ -128,37 +127,40 @@ install xorg-xfd
 install xorg-xsetroot
 install xscreensaver
 install xsel
+install xset
 install xwallpaper
 install eject-applet
 install xorg-xrandr
 install feh
 install cronie
 
-# handling XFCE4
-install xfce4-power-manager
-uninstall xfce4-screensaver
-uninstall xfce4-power-manager
+if [ $IS_ARCH_BASED = true ]; then
+	# handling XFCE4
+	install xfce4-power-manager
+	uninstall xfce4-screensaver
+	uninstall xfce4-power-manager
 
-# polkits
-install polkit
-install polkit-gnome
-uninstall xfce-polkit
+	# polkits
+	install polkit
+	install polkit-gnome
+	uninstall xfce-polkit
 
-# sound setup
-install alsa-oss
-install alsa-utils
-install livecd-sounds
-install pamixer
-install paprefs
-install pasystray
-install pavucontrol
-install pnmixer
-install ponymix
-install sound-theme-smooth
-install sp
-install tvolnoti
+	# sound setup
+	install alsa-oss
+	install alsa-utils
+	install livecd-sounds
+	install pamixer
+	install paprefs
+	install pasystray
+	install pavucontrol
+	install pnmixer
+	install ponymix
+	install sound-theme-smooth
+	install sp
+	install tvolnoti
 
-install glfw-x11
+	install glfw-x11
+fi
 
 if [ $IS_MANJARO = false ]; then
     install pulseaudio-alsa
@@ -169,84 +171,62 @@ fi
 # ssh
 install openssh
 
-# Base Development Tools
-install base-devel
-install git
-install gitflow-avh
-install git-delta
-install pass
-install gradle
-install jdk-openjdk
-install jdk8-openjdk
-install nodejs-emojione
-install nodejs-lts-gallium
-install nvm
-install nuget
-install npm
-install svn
-install yarn
-install tk
-install nsis
-install jq
+if [ $IS_ARCH_BASED = true ]; then
 
-# DotNet/Mono Setup
-install dotnet-sdk
-install mono
-install mono-msbuild
+	# config tools
+	install lxappearance
 
-# config tools
-install lxappearance
+	# utilities from gnome
+	install gnome-disk-utility
+	install gnome-system-monitor
+	install gnome-system-tools
+	install gnome-logs
+	install gnome-calculator
+	install network-manager-applet
 
-# utilities from gnome
-install gnome-disk-utility
-install gnome-system-monitor
-install gnome-system-tools
-install gnome-logs
-install gnome-calculator
-install network-manager-applet
+	install qt5ct
+	install qt5gtk2
+	install qt5-styleplugins
+	uninstall gtk-theme-switch2
+	install gtk-engine-murrine
 
-install qt5ct
-install qt5gtk2
-install qt5-styleplugins
-uninstall gtk-theme-switch2
-install gtk-engine-murrine
+	# file manager
+	install mc
+	install ranger
+	install ranger_devicons-git
 
-# file manager
-install mc
-install ranger
-install ranger_devicons-git
+	# useful tools for ranger
+	install atool
+	install atool-desktop
+	install elinks 
+	install ffmpegthumbnailer 
+	install highlight 
+	install highlight-gui 
+	install imagemagick 
+	install libcaca 
+	install lynx 
+	install mediainfo 
+	install odt2txt 
+	install poppler 
+	install ueberzug 
+	install w3m
 
-# useful tools for ranger
-install atool
-install atool-desktop
-install elinks 
-install ffmpegthumbnailer 
-install highlight 
-install highlight-gui 
-install imagemagick 
-install libcaca 
-install lynx 
-install mediainfo 
-install odt2txt 
-install poppler 
-install ueberzug 
-install w3m
-
-# Nemo
-install cinnamon-translations
-install gtkhash-nemo
-install nemo
-install nemo-audio-tab
-install nemo-compare
-install nemo-emblems
-install nemo-fileroller
-install nemo-image-converter
-install nemo-media-columns
-install nemo-mediainfo-tab
-install nemo-preview
-install nemo-qml-plugin-notifications
-install nemo-seahorse
-install nemo-share
+	# Nemo
+	install cinnamon-translations
+	install gtkhash-nemo
+	install nemo
+	install nemo-audio-tab
+	install nemo-compare
+	install nemo-emblems
+	install nemo-fileroller
+	install nemo-image-converter
+	install nemo-media-columns
+	install nemo-mediainfo-tab
+	install nemo-preview
+	install nemo-qml-plugin-notifications
+	install nemo-seahorse
+	install nemo-share
+fi
 
 # Rofi Configs
 if [ $IS_ARCO = true ]; then
@@ -255,15 +235,19 @@ if [ $IS_ARCO = true ]; then
     install rofi-themes
     install rofi-theme-fonts
 fi
-install rofi
-install rofimoji
 
-# Python libs
-install python
-install python-pip
+if [ $IS_ARCH_BASED = true ]; then
 
-# other
-install bleachbit
+	install rofi
+	install rofimoji
+
+	# Python libs
+	install python
+	install python-pip
+
+	# other
+	install bleachbit
+fi
 
 # bluetooth setup
 if [ $IS_MANJARO = true ]; then
@@ -285,49 +269,53 @@ fi
 if [ $IS_MANJARO = true ]; then
     install manjaro-printer
 fi
-install brother-mfc-j4420dw
-install canon-cque
-install cups-pdf
-install hplip
-uninstall hpuld
-install system-config-printer
-install print-manager
 
-install ghostscript
-install gsfonts
-install foomatic-db-engine
-install foomatic-db
-install foomatic-db-ppds
-install foomatic-db-nonfree
-install foomatic-db-nonfree-ppds
-install foomatic-db-gutenprint-ppds
-install gutenprint
+if [ $IS_ARCH_BASED = true ]; then
 
-# installation of important editors
-install micro
-install neovim
-install aur/visual-studio-code-bin
+	install brother-mfc-j4420dw
+	install canon-cque
+	install cups-pdf
+	install hplip
+	uninstall hpuld
+	install system-config-printer
+	install print-manager
 
-# utils for editors
-install bash-completion
-install clang
-install fd
-install gdb
-install graphviz
-install prettier
-install ripgrep
-install shellcheck
-install tar
+	install ghostscript
+	install gsfonts
+	install foomatic-db-engine
+	install foomatic-db
+	install foomatic-db-ppds
+	install foomatic-db-nonfree
+	install foomatic-db-nonfree-ppds
+	install foomatic-db-gutenprint-ppds
+	install gutenprint
+
+	# installation of important editors
+	install micro
+	install neovim
+	install aur/visual-studio-code-bin
+
+	# utils for editors
+	install bash-completion
+	install clang
+	install fd
+	install gdb
+	install graphviz
+	install prettier
+	install ripgrep
+	install shellcheck
+	install tar
+fi
 
 # wallpapers, themes and icons
-if [ "$IS_ARCO" = true ]; then
+if [ $IS_ARCO = true ]; then
     install arcolinux-arc-arcolinux-blue-git
     install arcolinux-arc-paper-git
     install arcolinux-arc-smoke-git
     install arcolinux-arc-soft-blue-git
 fi
 
-if [ "$IS_MANJARO" = true ]; then
+if [ $IS_MANJARO = true ]; then
     install kvantum-manjaro
     install maia-console
     install maia-wallpaper
@@ -338,7 +326,7 @@ if [ "$IS_MANJARO" = true ]; then
 fi
 
 # icons
-if [ "$IS_MANJARO" = true ]; then
+if [ $IS_MANJARO = true ]; then
     install manjaro-artwork-icons
     install papirus-maia-icon-theme
     install maia-icon-theme
@@ -373,8 +361,15 @@ if [ $IS_ARCO = true ]; then
 fi
 
 # cursor
-install bibata-cursor-theme
-install bibata-cursor-translucent
+
+
+if [ $IS_ARCH_BASED = true ]; then
+	install bibata-cursor-theme
+	install bibata-cursor-translucent
+else
+	sudo dnf copr enable peterwu/rendezvous
+	install bibata-cursor-themes
+fi
 
 if [ $IS_MANJARO = true ]; then
     install maia-cursor-theme
@@ -388,40 +383,42 @@ install lightdm-gtk-greeter
 install lightdm-slick-greeter
 
 # grub
-if [ $IS_MANJARO = false ]; then
+if [ $IS_ARCH_BASED = true ]; then
     install grub-customizer
     install update-grub
+	# btrfs tools
+	install grub-btrfs
 fi
 
-if [ [ "$IS_MANJARO" != true ] && [ "$IS_ARCO" != true ] ]; then
+if [ [ $IS_MANJARO != true ] && [ $IS_ARCO != true ] ]; then
     install grub2-theme-archlinux
 fi
-
-# btrfs tools
-install grub-btrfs
 
 #########################
 # collect optional apps #
 #########################
 #install epdfview
 
-# language files
-install man-pages-de
-install aspell-de
-install mythes-de
-install libmythes
-install languagetool
+if [ $IS_ARCH_BASED = true ]; then
 
-# Browser
-install vivaldi
-install vivaldi-ffmpeg-codecs
+	# language files
+	install man-pages-de
+	install aspell-de
+	install mythes-de
+	install libmythes
+	install languagetool
 
-# rust apps
-install bat
-install fd
-install ripgrep
-install tokei
-install procs
+	# Browser
+	install vivaldi
+	install vivaldi-ffmpeg-codecs
+
+	# rust apps
+	install bat
+	install fd
+	install ripgrep
+	install tokei
+	install procs
+fi
 
 # other Metas
 if [ $IS_MANJARO = true ]; then
@@ -497,5 +494,3 @@ sudo pamac build --no-confirm qt5-styleplugins
 yarn global add eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
 yarn global upgrade
 errorCheck "install global yarn"
-
-sound complete

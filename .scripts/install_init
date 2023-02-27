@@ -1,18 +1,13 @@
 #!/usr/bin/env bash
 
-sudo pacman -Syy --needed lsb-release
-
-source "$HOME/.scripts/defs"
+. "$HOME/.scripts/defs"
 
 if [ $IS_MANJARO = true ]; then
 	sudo pacman -S --needed yay
 fi
 
-yay -S --needed paru-bin
-
 # Init Install
 initInstall "install_init"
-sound count-down &
 
 # Config pacman
 if [ -f /etc/pacman.conf ]; then
@@ -30,7 +25,11 @@ if [ -f /etc/pamac.conf ]; then
 	errorCheck "pamac config"
 fi
 
-eval "sudo pacman -S --needed $PACKER_ALL git base-devel curl colorgcc go ruby rust"
+if [ $IS_FEDORA_BASED = true ]; then
+	sudo $PACKER install git go ruby rust make
+else
+	eval "sudo pacman -S --needed $PACKER_ALL git base-devel curl colorgcc go ruby rust"
+fi
 errorCheck "installation base-devel"
 
 # disable sudo password
@@ -52,7 +51,6 @@ install lsd
 install micro
 install polkit
 install ranger
-install python2-bin
 
 # base install awesome 
 if [ $IS_MANJARO = true ]; then
@@ -63,13 +61,23 @@ if [ $IS_ARCO = true ]; then
 fi
 
 # awesome
-install awesome-git
-install awmtt
-install picom
-install lain-git
-install rofi
-install xfce4-meta
-install sysstat
+install luarocks
+
+if [ $IS_ARCH_BASED = true ]; then
+	install awesome-git
+	install awmtt
+	install picom
+	install lain-git
+	install rofi
+	install sysstat
+fi 
+
+if [ $IS_FEDORA_BASED = true ]; then
+	install awesome
+	install picom
+	install rofi
+	install sysstat
+fi
 
 ###############################
 # uninstall unneeded packages #
@@ -84,6 +92,8 @@ fullInstall
 ## FINISHING #
 finish
 
-sudo pamac build --no-confirm qt5-styleplugins
- 
-sound complete
+sudo luarocks install lain
+
+if [ $IS_ARCH_BASED = true ]; then
+	sudo pamac build --no-confirm qt5-styleplugins
+fi

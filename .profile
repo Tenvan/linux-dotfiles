@@ -1,15 +1,6 @@
 #!/usr/bin/env bash
 export DOT="$DOT;.profile"
-
-. ~/.scripts/defs
-
-# mods korrigieren
-if [ -r "$HOME/.bin" ]; then
-  chmod +x $HOME/.bin/*
-fi
-if [ -r "$SCRIPTS" ]; then
-  chmod +x $SCRIPTS/*
-fi
+echo PROFILE: $DOT
 
 export SCRIPTS="$HOME/.scripts"
 export CUSTOMS="$HOME/.custom"
@@ -25,6 +16,10 @@ export DISPLAYMANAGER=sddm
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
 export WORKSPACE=/media/WORKSPACE/$USER
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Conditional PATH additions
 for path_candidate in \
@@ -48,4 +43,6 @@ do
   fi
 done
 
-csource "$CUSTOMS/.profile"
+if [ -x "$HOME/.customs/.profile" ]; then
+	source "$HOME/.customs/.profile"
+fi

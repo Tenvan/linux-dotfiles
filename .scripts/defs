@@ -6,57 +6,99 @@ csource() {
     fi
 }
 
-csource ~/.scripts/sounds
+csource /etc/os-release
 
 #####################
 # init distro check #
 #####################
-LINUX_VERSION_NAME=$(lsb_release -si)
+LINUX_VERSION_NAME="$NAME"
+LINUX_BASED="$ID_LIKE"
+IS_ARCH_BASED=false
+IS_FEDORA_BASED=false
+
 IS_ARCH=false
 IS_ARCO=false
 IS_MANJARO=false
+
+IS_FEDORA=false
+IS_RHEL=false
+IS_CENTOS=false
 
 SCRIPTS="$HOME/.scripts"
 
 DEBUG=false
 
-PACTOOL=pacman
-PAKKER_ALL="--color always --needed --useask --overwrite \* $@"
-
-if [ -x "$(command -v yay)" ]; then
-    export PACTOOL=yay
-    PAKKER_ALL="--color always --needed --useask --overwrite \* $@"
-fi
-
-if [ -x "$(command -v paru)" ]; then
-    PAKKER_ALL="--color always --needed --useask --overwrite \* --nofailfast --stats $@"
-    export PACTOOL=paru
-fi
-
-PACKER="$PACTOOL"
-
 #DEBUG=true
 ERROR_PAKAGE_UNINST=
 ERROR_PAKAGE_INST=
 
-echo "Linux Version => $LINUX_VERSION_NAME"
+# Distro Basis
+if [ "$LINUX_BASED" = "arch" ]; then
+    IS_ARCH_BASED=true
+fi
 
-if [ $LINUX_VERSION_NAME = "Arch" ]; then
+if [ "$LINUX_BASED" = "fedora" -o "$ID" = "fedora" ]; then
+    IS_FEDORA_BASED=true
+fi
+
+# Distro
+if [ "$LINUX_VERSION_NAME" = "Arch" ]; then
     IS_ARCH=true
-    echo "Linx Distro   -> ArchLinux"
 fi
 
-if [ $LINUX_VERSION_NAME = "ArcoLinux" ]; then
+if [ "$LINUX_VERSION_NAME" = "ArcoLinux" ]; then
     IS_ARCO=true
-    echo "Linx-Distro   -> ArcoLinux"
 fi
 
-if [ $LINUX_VERSION_NAME = "ManjaroLinux" ]; then
+if [ "$LINUX_VERSION_NAME" = "ManjaroLinux" ]; then
     IS_MANJARO=true
-    echo "Linx-Distro   -> Mnajaro"
 fi
 
-echo "AUR Manager...: $PACKER"
+if [ "$LINUX_VERSION_NAME" = "Fedora Linux" ]; then
+    IS_FEDORA=true
+fi
+
+if [ "$LINUX_VERSION_NAME" = "Red Hat Enterprise Linux" ]; then
+    IS_RHEL=true
+fi
+
+if [ "$LINUX_VERSION_NAME" = "CentOS Stream" ]; then
+    IS_CENTOS=true
+fi
+
+if [ $IS_FEDORA_BASED = true ]; then
+    PACTOOL=dnf
+else
+    PACTOOL=pacman
+    if [ -x "$(command -v yay)" ]; then
+        export PACTOOL=yay
+    fi
+fi
+
+
+PACKER="$PACTOOL"
+MAKEFLAGS="-j$(nproc)"
+
+if [ "$IS_FEDORA_BASED" = true ]; then
+    PACKER_ALL="--verbose -y $@"
+else
+    PACKER_ALL="--color always --needed --overwrite \* $@"
+fi
+
+dumpVersion() {
+	echo "Linux Version..: $LINUX_VERSION_NAME"
+	echo "Based on ArchLinux...: $IS_ARCH_BASED"
+	echo "Based on Fedora/RHEL.: $IS_FEDORA_BASED"
+	echo "IsArch...............: $IS_ARCH"
+	echo "IsArco...............: $IS_ARCO"
+	echo "IsManjaro............: $IS_MANJARO"
+	echo "IsFedora.............: $IS_FEDORA"
+	echo "IsRHEL...............: $IS_RHEL"
+	echo "IsCentOS.............: $IS_CENTOS"
+	echo "Package Manager......: $PACTOOL"
+	echo "AUR Manager..........: $PACKER"
+	echo "Packer Params........: $PACKER_ALL"
+}
 
 initInstall() {
     INSTALL_SCRIPT=$1
@@ -68,12 +110,15 @@ install() {
     PAKAGE_INST="${PAKAGE_INST} $1"
     
     if [ $DEBUG = true ]; then
-        eval "$PACKER -S $PAKKER_ALL $1"
+        if [ $IS_FEDORA_BASED = true ]; then
+            eval "sudo $PACKER install $PACKER_ALL $1"
+        else
+            eval "$PACKER -S $PACKER_ALL $1"
+        fi
         
         retVal=$?
         if [ $retVal -ne 0 ]; then
             echo "error on install: $1"
-            sound error
             ERROR_PAKAGE_INST="${ERROR_PAKAGE_INST} $1"
         fi
     fi
@@ -82,7 +127,11 @@ install() {
 fullInstall() {
     echo "Step: full Install"
     if [ $DEBUG != true -a "$PAKAGE_INST" != "" ]; then
-        eval "$PACKER -S $PAKKER_ALL $PAKAGE_INST"
+        if [ $IS_FEDORA_BASED = true ]; then
+            eval "sudo $PACKER install $PACKER_ALL $PAKAGE_INST"
+        else
+            eval "$PACKER -S $PACKER_ALL $PAKAGE_INST"
+        fi
         errorCheck "install packages"
     fi
 }
@@ -90,11 +139,14 @@ fullInstall() {
 uninstall() {
     PAKAGE_UNINST="${PAKAGE_UNINST} $1"
     
-    eval "$PACKER -R $1"
+    if [ $IS_FEDORA_BASED = true ]; then
+        eval "sudo $PACKER remove $1"
+    else
+        eval "$PACKER -R --noconfirm $1"
+    fi
     
     retVal=$?
     if [ $retVal -ne 0 ]; then
-        sound error &
         echo "error on uninstall: $1"
         ERROR_PAKAGE_UNINST="${ERROR_PAKAGE_UNINST} $1"
     fi
@@ -103,14 +155,17 @@ uninstall() {
 fullUninstall() {
     echo "Step: full Uninstall"
     if [ $DEBUG != true -a "$PAKAGE_UNINST" != "" ]; then
-        eval "$PACKER -R --noconfirm $PAKAGE_UNINST"
+        if [ $IS_FEDORA_BASED = true ]; then
+            eval "sudo $PACKER remove $PAKAGE_UNINST"
+        else
+            eval "$PACKER -R --noconfirm $PAKAGE_UNINST"
+        fi
     fi
 }
 
 errorCheck() {
     retVal=$?
     if [ $retVal -ne 0 ]; then
-        sound error &
         echo "abort installation script '$INSTALL_SCRIPT': $1 ($retVal)"
         exit $retVal
     fi
@@ -138,7 +193,7 @@ run() {
     if command -v $1 &>/dev/null; then
         #pgrep -u "$USER" -fx "$1" >/dev/null || ($@) &
         if ! pgrep "$1"; then
-            $@ &
+            "$@" &
         fi
         notify-send -t 10000 "AUTOSTART" "Kommando:\n'$1'"
     else
@@ -149,7 +204,7 @@ run() {
 restart() {
     killall "$1"
     sleep 1
-    run $@
+    run "$@"
 }
 
 # # ex = EXtractor for all kinds of archives
@@ -178,13 +233,4 @@ expand() {
     fi
 }
 
-prepare_sessiondown() {
-    # Custom Script ausführen
-    sessiondownscript="$CUSTOMS/sessiondown.sh"
-    if [ ! -f "$sessiondownscript" ]; then
-        $sessiondownscript
-    fi
-    
-    # Alle Docker beenden
-    docker kill $(docker ps -q)
-}
+dumpVersion

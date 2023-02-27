@@ -1,7 +1,12 @@
 #!/usr/bin/env zsh
 export DOT="$DOT;.zshrc"
+echo ZSHRC: $DOT
 
 . ~/.scripts/defs
+
+if [ $IS_FEDORA_BASED = true ]; then
+	source ~/.profile
+fi
 
 # disable console beap
 xset -b
@@ -350,12 +355,11 @@ case ${TERM} in
     *)
         print "Init Powershell10k for vconsole"
         csource ~/.bin/.p10k-v.zsh
-        csource ~/.profile
     ;;
 esac
 
 csource "$HOME/.scripts/ranger.zsh"
-csource /usr/share/nvm/init-nvm.sh
+# csource /usr/share/nvm/init-nvm.sh
 
 # Load right version of NVM
 autoload -U add-zsh-hook
