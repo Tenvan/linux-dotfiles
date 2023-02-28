@@ -1,0 +1,65 @@
+---
+# is Arch based
+- name: detect ArchLinux Family
+  set_fact:
+    is_arch_based: true
+  when: ansible_facts['os_family'].lower() == "archlinux"
+
+# is Fedora based
+- name: detect Fedora Family
+  set_fact:
+    is_fedora_based: true
+  when: ansible_facts['os_family'].lower() == "fedora"
+
+# is Manjaro
+- name: detect Manjaro
+  set_fact:
+    is_manjaro: true
+  when: ansible_facts['lsb']['description'].lower() == 'manjaro'
+
+# is ArcoLinux
+- name: detect ArcoLinux
+  set_fact:
+    is_arcolinux: true
+  when: ansible_facts['lsb']['description'].lower() == 'arcolinux'
+
+# is Fedora
+- name: detect Fedora
+  set_fact:
+    is_fedora: true
+  when: ansible_facts['lsb']['description'].lower() == 'fedora'
+
+# is CentOS
+- name: detect CentOS
+  set_fact:
+    is_centos: true
+  when: ansible_facts['lsb']['description'].lower() == 'centos'
+
+# Compile Awesome on Fedora Systems
+- name: Install initial dependencies
+  include_tasks: base.yml
+  when: false
+
+# Compile Awesome on Fedora Systems
+- name: Install awesome-wm dependencies
+  include_tasks: awesome.yml
+  when: false
+
+- block:
+  - debug: var=ansible_facts
+    when: false
+  - debug: var=ansible_facts['lsb']
+    when: false
+  - debug: var=ansible_facts['os_family']
+  - debug: var=ansible_facts['distribution']
+  - debug: var=ansible_facts['distribution_major_version']
+  - debug: var=ansible_facts['lsb']['description']
+  - debug: var=ansible_distribution
+  - debug: var=ansible_os_family
+  - debug: var=is_fedora_based
+  - debug: var=is_arch_based
+  - debug: var=is_arcolinux
+  - debug: var=is_manjaro
+  - debug: var=is_fedora
+  - debug: var=is_centos
+  when: false

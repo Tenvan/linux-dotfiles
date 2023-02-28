@@ -1,56 +1,40 @@
 ---
-- hosts: localhost
-  connection: local
-  become: yes
-  name: Install Awesome-WM (TM)
-  tasks:
-    - name: Install awesome-wm dependencies
-      dnf:
-        state: present
-        name:
-          - gcc
-          - git
-          - make
-          - cmake
-          - xterm
-          - xterm-resize
-          - Xephyr
-          - libxcb
-          - rlwrap
-          - openssh
-          - asciidoc
-          - lua-lgi
-          - luarocks
-          - lua-json
-          - lua-devel
-          - lua-filesystem
-          - rpm-build
-          - xcb-proto
-          - xdg-utils
-          - libX11-xcb
-          - xcb-util-*
-          - libX11-xcb
-          - dbus-devel
-          - gdk-pixbuf2
-          - cairo-devel
-          - ImageMagick
-          - cairo-gobject
-          - libxkbcommon
-          - libxcb-devel
-          - libX11-devel
-          - libxdg-basedir
-          - libxkbcommon-x11
-          - gdk-pixbuf2-devel
-          - libxdg-basedir-devel
-          - libxdg-basedir-devel
-          - startup-notification
-          - libxkbcommon-x11-devel
-          - xorg-x11-server-Xorg
-          - xorg-x11-xinit
-          - startup-notification-devel
-          - dbus-x11
-          # - pulseaudio
-          - gobject-introspection-devel
+- name: instal awesome-wm dependencies
+  vars:
+    global_init:
+      - luarocks
+    archlinux_based_init:
+      - awesome-git
+      - awmtt
+      - base-devel
+#      - lain-git
+    fedora_base__init:
+      - Xephyr
+      - gobject-introspection-devel
+      - libX11-devel
+      - libX11-xcb
+      - libX11-xcb
+      - libxcb
+      - libxcb-devel
+      - libxdg-basedir
+      - libxdg-basedir-devel
+      - libxdg-basedir-devel
+      - libxkbcommon
+      - libxkbcommon-x11
+      - libxkbcommon-x11-devel
+      - lua-devel
+      - lua-filesystem
+      - lua-json
+      - lua-lgi
+      - rpm-build
+      - xcb-proto
+      - xcb-util-*
+
+  include_tasks: lib/install.yml
+
+- name: install luarocks libs
+  become: true
+  block:
     - name: Install lua luacov
       command: /usr/bin/luarocks install luacov
     - name: Install lua luacheck
@@ -61,9 +45,46 @@
       command: /usr/bin/luarocks install ldoc
     - name: Install lua markdown
       command: /usr/bin/luarocks install markdown
-    # - name: Install lgi
+    - name: Install lgi
+      command: /usr/bin/luarocks install lgi
+    - name: Install lgi
+      command: /usr/bin/luarocks install lain
+    - name: Install lua pulseaudio_widget
+      command: /usr/bin/luarocks install pulseaudio_widget
+
+    - name: Create build directory
+      file:
+        path: $HOME/build
+        state: directory
+    - name: Clone awesome repository
+      git:
+        repo: 'https://github.com/awesomeWM/awesome'
+        clone: yes
+        dest: $HOME/build/awesome
+    - name: Build and install awesome source
+      shell: |
+        make package
+        dnf localinstall -y build/*.rpm
+      args:
+        executable: /bin/bash
+        chdir: $HOME/build/awesome
+
+- name: install awesome-wm dependencies on Fedora
+  when: ansible_facts['os_family'] == "Fedora"
+  block:
+    - name: Install lua luacov
+      command: /usr/bin/luarocks install luacov
+    - name: Install lua luacheck
+      command: /usr/bin/luarocks install luacheck
+    - name: Install lua busted
+      command: /usr/bin/luarocks install busted
+    - name: Install lua ldoc
+      command: /usr/bin/luarocks install ldoc
+    - name: Install lua markdown
+      command: /usr/bin/luarocks install markdown
+      # - name: Install lgi
       # command: /usr/bin/luarocks install lgi
-    # - name: Install lua pulseaudio_widget
+      # - name: Install lua pulseaudio_widget
       # command: /usr/bin/luarocks install pulseaudio_widget
     - name: Create build directory
       file:
@@ -81,4 +102,40 @@
       args:
         executable: /bin/bash
         chdir: $HOME/build/awesome
-        
+
+
+- when: is_arch_based
+  block:
+    - name: install awesome-wm dependencies on ArchLinux
+      kewlfft.aur.aur:
+        state: present
+        name:
+          - awesome-git
+          - awmtt
+          - base-devel
+          - colorgcc
+          - curl
+          - git
+          - go
+          - lain-git
+          - picom
+          - rofi
+          - ruby
+          - rust
+          - sysstat
+
+- when: is_manjaro
+  block:
+    - name: install awesome settings on Manjaro
+      kewlfft.aur.aur:
+        state: present
+        name:
+          - manjaro-awesome-settings
+
+- when: is_arcolinux
+  block:
+    - name: install awesome settings on ArcoLinux
+      kewlfft.aur.aur:
+        state: present
+        name:
+          - arcolinux-config-awesome-git

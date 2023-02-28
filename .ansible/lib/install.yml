@@ -1,0 +1,45 @@
+---
+####################################################################################################################
+# Installer Part
+#
+# Installs all packages defined in distro dependend arrays
+#
+# Arrays:
+#   - global_init     => global packages for all distros
+#   - fedora_init     => fedora only packages
+#   - archlinux_init  => archlinux only packages
+####################################################################################################################
+
+####################################################################################################################
+# Install Fedora Part
+####################################################################################################################
+- name: install global packages for Fedora based systems
+  become: true
+  dnf:
+    state: present
+    name: "{{ global_init }}"
+  when: is_fedora_based
+
+- name: install packages only for Fedora based systems
+  become: true
+  dnf:
+    state: present
+    name: "{{ fedora_based_init }}"
+  when: is_fedora_based
+
+####################################################################################################################
+# Install ArchLinux Part
+####################################################################################################################
+- name: install global packages for ArchLinux based systems
+  become: false
+  kewlfft.aur.aur:
+    state: present
+    name: "{{ global_init }}"
+  when: is_arch_based
+
+- name: install packages only for ArchLinux based systems
+  become: false
+  kewlfft.aur.aur:
+    state: present
+    name: "{{ archlinux_based_init }}"
+  when: is_arch_based

@@ -5,9 +5,10 @@
 if [ $IS_MANJARO = true ]; then
 	sudo pacman -S --needed yay
 fi
+install ansible
 
 # Init Install
-initInstall "install_init"
+initInstall "install_ansible"
 
 # Config pacman
 if [ -f /etc/pacman.conf ]; then
@@ -25,13 +26,6 @@ if [ -f /etc/pamac.conf ]; then
 	errorCheck "pamac config"
 fi
 
-if [ $IS_FEDORA_BASED = true ]; then
-	sudo $PACKER install git go ruby rust make
-else
-	eval "sudo pacman -S --needed $PACKER_ALL git base-devel curl colorgcc go ruby rust"
-fi
-errorCheck "installation base-devel"
-
 # disable sudo password
 echo "Cmnd_Alias INSTALL = /usr/bin/pacman, /usr/share/pacman
 Cmnd_Alias POWER = /usr/bin/pm-hibernate, /usr/bin/pm-powersave, /usr/bin/pm-suspend-hybrid, /usr/bin/pm-suspend
@@ -43,42 +37,12 @@ sudo chmod -R -v +x ~/.scripts
 sudo chmod -R -v +x ~/.bin
 errorCheck "set script flags"
 
-# base install tools
-install fastfetch
-install exa
-install kitty
-install lsd
-install micro
-install polkit
-install ranger
-
-# base install awesome 
-if [ $IS_MANJARO = true ]; then
-    install manjaro-awesome-settings
-fi
-if [ $IS_ARCO = true ]; then
-    install arcolinux-config-awesome-git
-fi
-
 # awesome
 install luarocks xorg-x11-xinit-session
 
-if [ $IS_ARCH_BASED = true ]; then
-	install awesome-git
-	install awmtt
-	install picom
-	install lain-git
-	install rofi
-	install sysstat
-fi 
-
 if [ $IS_FEDORA_BASED = true ]; then
-	install awesome
-	install picom
-	install rofi
-	install sysstat
 	sudo wget -O /usr/bin/awmtt https://raw.githubusercontent.com/mikar/awmtt/master/awmtt.sh
-	sudo chmod a+x /usr/bin/awmtt	
+	sudo chmod a+x /usr/bin/awmtt
 fi
 
 ###############################
@@ -94,7 +58,7 @@ fullInstall
 ## FINISHING #
 finish
 
-sudo luarocks install lain
+ansible-galaxy collection install -r ~/.ansible/lib/requirements.yml
 
 if [ $IS_ARCH_BASED = true ]; then
 	sudo pamac build --no-confirm qt5-styleplugins

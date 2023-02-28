@@ -1,0 +1,27 @@
+---
+- name: install initial dependencies
+  vars:
+    global_init:
+      - cmake
+      - colorgcc
+      - curl
+      - exa
+      - gcc
+      - git
+      - go
+      - kitty
+      - lsd
+      - make
+      - picom
+      - rofi
+      - ruby
+      - rust
+      - sysstat
+    archlinux_based_init:
+      - base-devel
+      - micro
+      - xinit-xsession
+    fedora_based_init:
+      - xorg-x11-xinit-session
+
+  include_tasks: lib/install.yml
