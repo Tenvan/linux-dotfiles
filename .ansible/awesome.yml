@@ -1,6 +1,8 @@
 ---
 - hosts: localhost
-  name: Install Awesome-WM (TM) from (Szechuan) sauce
+  connection: local
+  become: yes
+  name: Install Awesome-WM (TM)
   tasks:
     - name: Install awesome-wm dependencies
       dnf:
@@ -47,7 +49,7 @@
           - xorg-x11-xinit
           - startup-notification-devel
           - dbus-x11
-          - pulseaudio
+          # - pulseaudio
           - gobject-introspection-devel
     - name: Install lua luacov
       command: /usr/bin/luarocks install luacov
@@ -59,10 +61,10 @@
       command: /usr/bin/luarocks install ldoc
     - name: Install lua markdown
       command: /usr/bin/luarocks install markdown
-    - name: Install lgi
-      command: /usr/bin/luarocks install lgi
-    - name: Install lua pulseaudio_widget
-      command: /usr/bin/luarocks install pulseaudio_widget
+    # - name: Install lgi
+      # command: /usr/bin/luarocks install lgi
+    # - name: Install lua pulseaudio_widget
+      # command: /usr/bin/luarocks install pulseaudio_widget
     - name: Create build directory
       file:
         path: $HOME/build

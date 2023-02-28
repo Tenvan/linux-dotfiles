@@ -61,7 +61,7 @@ if [ $IS_ARCO = true ]; then
 fi
 
 # awesome
-install luarocks
+install luarocks xorg-x11-xinit-session
 
 if [ $IS_ARCH_BASED = true ]; then
 	install awesome-git
