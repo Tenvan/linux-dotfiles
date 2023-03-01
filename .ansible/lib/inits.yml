@@ -15,13 +15,13 @@
 - name: Detect Manjaro
   set_fact:
     is_manjaro: true
-  when: ansible_facts['lsb']['description'].lower() == 'manjaro'
+  when: ansible_distribution.lower() == 'manjaro'
 
 # is ArcoLinux
 - name: Detect ArcoLinux
   set_fact:
     is_arcolinux: true
-  when: ansible_facts['lsb']['description'].lower() == 'arcolinux'
+  when: ansible_distribution.lower() == 'arcolinux'
 
 # is RHEL
 - name: Detect RHEL (Red Hat Enterprise Linux)

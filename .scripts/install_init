@@ -5,14 +5,6 @@
 install ansible
 errorCheck "install ansible"
 
-ansible-galaxy collection install -r ~/.ansible/lib/requirements.yml
-errorCheck "install ansible-galaxy"
-
-ansible-playbook ~/.ansible/desktop.yml
-errorCheck "run ansible playbook"
-
-exit 0
-
 # Config pacman
 if [ -f /etc/pacman.conf ]; then
 	sudo sed -i 's/^#Color$/Color/g' /etc/pacman.conf
@@ -39,6 +31,15 @@ $USER ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/100-myrules
 sudo chmod -R -v +x ~/.scripts
 sudo chmod -R -v +x ~/.bin
 errorCheck "set script flags"
+
+ansible-galaxy collection install -r ~/.ansible/lib/requirements.yml
+errorCheck "install ansible-galaxy"
+
+ansible-playbook ~/.ansible/desktop.yml
+errorCheck "run ansible playbook"
+
+exit 0
+
 
 if [ $IS_FEDORA_BASED = true ]; then
 	sudo wget -O /usr/bin/awmtt https://raw.githubusercontent.com/mikar/awmtt/master/awmtt.sh

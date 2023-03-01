@@ -1,9 +1,15 @@
 # code: language=ansible
 ---
+- name: "DefineCopr (BibataCursor)"
+  become: true
+  community.general.copr:
+    name: peterwu/rendezvous
+    state: enabled
+  when: is_fedora
+
 - name: DefineLayoutPackages
   vars:
     global_init:
-
 
     archlinux_based_init:
       # font apps
@@ -38,6 +44,9 @@
       - bibata-cursor-translucent
 
     fedora_based_init:
+      # cursor
+      # dnf copr enable peterwu/rendezvous -y
+      - bibata-cursor-themes
 
     arcolinux_init:
       # Interesting Packages

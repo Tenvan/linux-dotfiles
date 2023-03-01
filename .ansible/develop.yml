@@ -1,5 +1,12 @@
 # code: language=ansible
 ---
+- name: "DefineCopr (GitFlow)"
+  become: true
+  community.general.copr:
+    name: elegos/gitflow
+    state: enabled
+  when: is_fedora
+      
 - name: DefineDevelopmentPackages
   vars:
     global_init:

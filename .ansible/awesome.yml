@@ -35,6 +35,9 @@
       - gdk-pixbuf2
       - gdk-pixbuf2-devel
       - dbus-x11
+      - ImageMagick
+      - cairo-devel
+      - cairo-gobject
     arcolinux_init:
       - arcolinux-config-awesome-git
     manjaro_init:
@@ -57,12 +60,11 @@
       command: /usr/bin/luarocks install markdown
     - name: Install lain
       command: /usr/bin/luarocks install lain
-  when: false
-      
+  when: true
 
 - name: install awesome-wm dependencies on Fedora
   when: is_fedora_based
-  become: false
+  become: true
   block:
     - name: Create build directory
       file:
