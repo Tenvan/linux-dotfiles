@@ -3,10 +3,15 @@
 . "$HOME/.scripts/defs"
 
 install ansible
-ansible-galaxy collection install -r .ansible/lib/requirements.yml
+errorCheck "install ansible"
 
-# Init Install
-initInstall "install_ansible"
+ansible-galaxy collection install -r ~/.ansible/lib/requirements.yml
+errorCheck "install ansible-galaxy"
+
+ansible-playbook ~/.ansible/desktop.yml
+errorCheck "run ansible playbook"
+
+exit 0
 
 # Config pacman
 if [ -f /etc/pacman.conf ]; then
