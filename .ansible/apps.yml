@@ -1,0 +1,84 @@
+# code: language=ansible
+---
+- name: DefineAppPackages
+  vars:
+    global_init:
+      # graphics
+      - blender
+      - feh
+      - gimp
+      - gimp-help-de
+      - imv
+      - inkscape
+      - krita
+      - pinta
+
+      # music
+      - mpc
+      - mpd
+      - playerctl
+      - spotify
+      - youtube-music-bin
+
+      # optional application packages
+      - aspell
+      - baobab-gtk3
+      - kdeconnect
+
+      # Communication
+      - teams-for-linux
+
+      # Browser
+      - chromium
+      - firefox-i18n-de
+      - google-chrome
+      - microsoft-edge-dev-bin
+      - vivaldi
+      - vivaldi-ffmpeg-codecs
+
+      # Office
+      - libreoffice-fresh
+      - libreoffice-fresh-de
+
+      # remmina
+      - remmina
+      - remmina-plugin-open
+      - remmina-plugin-rdesktop
+      - remmina-plugin-url
+      - remmina-plugin-folder
+      - remmina-plugin-open
+      - freerdp
+
+      # scanner setup
+      #- xsane
+      #- simple-scan
+      #- skanlite
+      #- colord-sane
+      #- sane
+
+      # jetbrains apps
+      - jetbrains-toolbox
+
+      # tools
+      - translate-shell
+
+      # gimicks
+      - cmatrix
+      - hollywood
+
+    archlinux_based_init:
+
+    fedora_based_init:
+      - imagemagick-full
+
+    arcolinux_init:
+      # gimicks
+      - cmatrix-git
+
+      # graphics
+      - imagemagick
+
+    manjaro_init:
+      - imagemagick-full
+
+  include_tasks: lib/install.yml

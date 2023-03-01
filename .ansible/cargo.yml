@@ -1,0 +1,12 @@
+# code: language=ansible
+---
+- name: DefineCargoApps
+  vars:
+    cargo_init:
+      - bat
+      - git-delta
+      - procs
+      - ripgrep
+      - tokei
+
+  include_tasks: lib/install.yml

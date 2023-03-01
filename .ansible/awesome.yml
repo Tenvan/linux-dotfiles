@@ -1,5 +1,5 @@
 ---
-- name: instal awesome-wm dependencies
+- name: DefineAwesomeWmPackages
   vars:
     global_init:
       - luarocks
@@ -29,6 +29,10 @@
       - rpm-build
       - xcb-proto
       - xcb-util-*
+    arcolinux_init:
+      - arcolinux-config-awesome-git
+    manjaro_init:
+      - manjaro-awesome-settings
 
   include_tasks: lib/install.yml
 
@@ -45,47 +49,16 @@
       command: /usr/bin/luarocks install ldoc
     - name: Install lua markdown
       command: /usr/bin/luarocks install markdown
-    - name: Install lgi
-      command: /usr/bin/luarocks install lgi
-    - name: Install lgi
+    # - name: Install lgi
+    #   command: /usr/bin/luarocks install lgi
+    - name: Install lain
       command: /usr/bin/luarocks install lain
-    - name: Install lua pulseaudio_widget
-      command: /usr/bin/luarocks install pulseaudio_widget
-
-    - name: Create build directory
-      file:
-        path: $HOME/build
-        state: directory
-    - name: Clone awesome repository
-      git:
-        repo: 'https://github.com/awesomeWM/awesome'
-        clone: yes
-        dest: $HOME/build/awesome
-    - name: Build and install awesome source
-      shell: |
-        make package
-        dnf localinstall -y build/*.rpm
-      args:
-        executable: /bin/bash
-        chdir: $HOME/build/awesome
+    # - name: Install lua pulseaudio_widget
+    #   command: /usr/bin/luarocks install pulseaudio_widget
 
 - name: install awesome-wm dependencies on Fedora
   when: ansible_facts['os_family'] == "Fedora"
   block:
-    - name: Install lua luacov
-      command: /usr/bin/luarocks install luacov
-    - name: Install lua luacheck
-      command: /usr/bin/luarocks install luacheck
-    - name: Install lua busted
-      command: /usr/bin/luarocks install busted
-    - name: Install lua ldoc
-      command: /usr/bin/luarocks install ldoc
-    - name: Install lua markdown
-      command: /usr/bin/luarocks install markdown
-      # - name: Install lgi
-      # command: /usr/bin/luarocks install lgi
-      # - name: Install lua pulseaudio_widget
-      # command: /usr/bin/luarocks install pulseaudio_widget
     - name: Create build directory
       file:
         path: $HOME/build
@@ -102,40 +75,3 @@
       args:
         executable: /bin/bash
         chdir: $HOME/build/awesome
-
-
-- when: is_arch_based
-  block:
-    - name: install awesome-wm dependencies on ArchLinux
-      kewlfft.aur.aur:
-        state: present
-        name:
-          - awesome-git
-          - awmtt
-          - base-devel
-          - colorgcc
-          - curl
-          - git
-          - go
-          - lain-git
-          - picom
-          - rofi
-          - ruby
-          - rust
-          - sysstat
-
-- when: is_manjaro
-  block:
-    - name: install awesome settings on Manjaro
-      kewlfft.aur.aur:
-        state: present
-        name:
-          - manjaro-awesome-settings
-
-- when: is_arcolinux
-  block:
-    - name: install awesome settings on ArcoLinux
-      kewlfft.aur.aur:
-        state: present
-        name:
-          - arcolinux-config-awesome-git

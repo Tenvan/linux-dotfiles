@@ -5,435 +5,6 @@ source "$HOME/.scripts/defs"
 # Init Install
 initInstall "install_base"
 
-###########################
-# collect needed packages #
-###########################
-
-# Manjaro Packages
-if [ $IS_MANJARO = true ]; then
-    install samba
-    install manjaro-settings-samba
-fi
-
-# ArcoLinux Packages
-if [ $IS_ARCO = true ]; then
-    install arcolinux-config-awesome-git
-    # Meta Packages
-    install arcolinux-meta-log
-    install arcolinux-meta-logout
-    install arcolinux-meta-fun
-    install arcolinux-meta-samba
-    install arcolinux-meta-utilities
-    # Interesting Packages
-    install arcolinux-candy-beauty-git
-fi
-
-# system packages
-install acpi
-install acpid
-install at
-install arandr
-install arj
-install ark
-install bat
-install blueman
-install bpytop
-install brightnessctl
-install clamav
-install clamtk
-install copyq
-install dex
-install dnsutils
-install docker
-install docker-compose
-install dpkg
-install exa
-install feh
-install flameshot
-install fzf
-install glances
-install gnome-keyring
-install gparted
-install gpick
-install grc
-install gvfs-smb
-install htop
-install iftop
-install inotify-tools
-install iotop
-install iptraf-ng
-install jq
-install kitty
-install kteatime
-install libgnome-keyring
-install libsecret
-install light
-install lsd
-install lxsession
-install mpv
-install multitail
-install ncmpcpp
-install nitrogen
-install numlockx
-install openconnect
-install p7zip
-install python-mutagen
-install qbittorrent
-install scrot
-install stow
-install time
-install timeshift
-install toilet
-install unclutter
-install unrar
-install upower
-install wmctrl
-install xautolock
-install xbindkeys
-install xclip
-install xclip
-install xdotool
-install xdotool
-install xscreensaver
-install xsel
-install xset
-install feh
-install cronie
-
-
-if [ $IS_FEDORA_BASED = true ]; then
-	# system packages
-	install i-nex
-	install xorg-x11-server-Xephyr
-fi
-
-if [ $IS_ARCH_BASED = true ]; then
-	# system packages
-	install hardinfo
-	install ibus-daemon
-	install bitwarden
-	install oh-my-posh-bin
-	install picom
-	install shell-color-scripts
-	install luacheck
-	install networkmanager
-	install networkmanager-openconnect
-	install notify-send.sh
-	install packagekit
-	install pm-utils
-	install powershell-bin
-	install eject-applet
-	install system-monitoring-center
-	install watchexec
-	install wezterm
-	install xorg-xrandr
-	install xorg-server-xephyr
-	install xorg-xbacklight
-	install xorg-xfd
-	install xorg-xsetroot
-	
-	# handling XFCE4
-	install xfce4-power-manager
-	uninstall xfce4-screensaver
-	uninstall xfce4-power-manager
-
-	# polkits
-	install polkit
-	install polkit-gnome
-	uninstall xfce-polkit
-
-	# sound setup
-	install alsa-oss
-	install alsa-utils
-	install livecd-sounds
-	install pamixer
-	install paprefs
-	install pasystray
-	install pavucontrol
-	install pnmixer
-	install ponymix
-	install sound-theme-smooth
-	install sp
-	install tvolnoti
-
-	install glfw-x11
-	
-	if [ $IS_MANJARO = false ]; then
-	    install pulseaudio-alsa
-	    install pulseaudio-bluetooth
-	    install pulseaudio-equalizer
-	fi
-fi
-
-
-# ssh
-install openssh
-
-if [ $IS_ARCH_BASED = true ]; then
-
-	# config tools
-	install lxappearance
-
-	# utilities from gnome
-	install gnome-disk-utility
-	install gnome-system-monitor
-	install gnome-system-tools
-	install gnome-logs
-	install gnome-calculator
-	install network-manager-applet
-
-	install qt5ct
-	install qt5gtk2
-	install qt5-styleplugins
-	uninstall gtk-theme-switch2
-	install gtk-engine-murrine
-
-	# file manager
-	install mc
-	install ranger
-	install ranger_devicons-git
-
-	# useful tools for ranger
-	install atool
-	install atool-desktop
-	install elinks 
-	install ffmpegthumbnailer 
-	install highlight 
-	install highlight-gui 
-	install imagemagick 
-	install libcaca 
-	install lynx 
-	install mediainfo 
-	install odt2txt 
-	install poppler 
-	install ueberzug 
-	install w3m
-
-	# Nemo
-	install cinnamon-translations
-	install gtkhash-nemo
-	install nemo
-	install nemo-audio-tab
-	install nemo-compare
-	install nemo-emblems
-	install nemo-fileroller
-	install nemo-image-converter
-	install nemo-media-columns
-	install nemo-mediainfo-tab
-	install nemo-preview
-	install nemo-qml-plugin-notifications
-	install nemo-seahorse
-	install nemo-share
-fi
-
-# Rofi Configs
-if [ $IS_ARCO = true ]; then
-    install arcolinux-rofi-git
-    install arcolinux-rofi-themes-git
-    install rofi-themes
-    install rofi-theme-fonts
-fi
-
-if [ $IS_ARCH_BASED = true ]; then
-
-	install rofi
-	install rofimoji
-
-	# Python libs
-	install python
-	install python-pip
-
-	# other
-	install bleachbit
-fi
-
-# bluetooth setup
-if [ $IS_MANJARO = true ]; then
-    install manjaro-bluetooth
-fi
-
-if [ $IS_ARCO = true ]; then
-    #install bluetooth-autoconnect
-    install blueman
-    #install bluez
-    #install bluez-hid2hci
-    #install bluez-libs
-    #install bluez-plugins
-    #install bluez-tools
-    #install bluez-utils
-fi
-
-# printer setup
-if [ $IS_MANJARO = true ]; then
-    install manjaro-printer
-fi
-
-if [ $IS_ARCH_BASED = true ]; then
-
-	install brother-mfc-j4420dw
-	install canon-cque
-	install cups-pdf
-	install hplip
-	uninstall hpuld
-	install system-config-printer
-	install print-manager
-
-	install ghostscript
-	install gsfonts
-	install foomatic-db-engine
-	install foomatic-db
-	install foomatic-db-ppds
-	install foomatic-db-nonfree
-	install foomatic-db-nonfree-ppds
-	install foomatic-db-gutenprint-ppds
-	install gutenprint
-
-	# installation of important editors
-	install micro
-	install neovim
-	install aur/visual-studio-code-bin
-
-	# utils for editors
-	install bash-completion
-	install clang
-	install fd
-	install gdb
-	install graphviz
-	install prettier
-	install ripgrep
-	install shellcheck
-	install tar
-fi
-
-# wallpapers, themes and icons
-if [ $IS_ARCO = true ]; then
-    install arcolinux-arc-arcolinux-blue-git
-    install arcolinux-arc-paper-git
-    install arcolinux-arc-smoke-git
-    install arcolinux-arc-soft-blue-git
-fi
-
-if [ $IS_MANJARO = true ]; then
-    install kvantum-manjaro
-    install maia-console
-    install maia-wallpaper
-    install papirus-maia-icon-theme
-    install xcursor-maia
-    install manjaro-artwork
-    install manjaro-artwork-extra
-fi
-
-# icons
-if [ $IS_MANJARO = true ]; then
-    install manjaro-artwork-icons
-    install papirus-maia-icon-theme
-    install maia-icon-theme
-    install sardi-icons
-fi
-
-if [ $IS_ARCO = true ]; then
-    install paper-icon-theme
-    install papirus-icon-theme
-    install zafiro-icon-theme
-fi
-
-# Extra
-if [ $IS_ARCO = true ]; then
-    install edu-system-git
-    install edu-skel-git
-    install arcolinux-meta-sddm-themes
-    install archlinux-login-backgrounds-git
-    
-    install arcolinux_repo_3party/grub-theme-vimix-whitesur-ultrawide-git
-    install arcolinux_repo_3party/grub-theme-vimix-whitesur-1080p-git
-    install arcolinux_repo_3party/grub-theme-vimix-whitesur-2k-git
-    install arcolinux_repo_3party/grub-theme-vimix-whitesur-4k-git
-    install arcolinux_repo_3party/grub-theme-vimix-white-ultrawide-git
-    install arcolinux_repo_3party/grub-theme-vimix-white-1080p-git
-    install arcolinux_repo_3party/grub-theme-vimix-white-2k-git
-    install arcolinux_repo_3party/grub-theme-vimix-white-4k-git
-    install arcolinux_repo_3party/grub-theme-vimix-color-ultrawide-git
-    install arcolinux_repo_3party/grub-theme-vimix-color-1080p-git
-    install arcolinux_repo_3party/grub-theme-vimix-color-2k-git
-    install arcolinux_repo_3party/grub-theme-vimix-color-4k-git
-fi
-
-# cursor
-
-
-if [ $IS_ARCH_BASED = true ]; then
-	install bibata-cursor-theme
-	install bibata-cursor-translucent
-else
-	sudo dnf copr enable peterwu/rendezvous -y
-	install bibata-cursor-themes
-fi
-
-if [ $IS_MANJARO = true ]; then
-    install maia-cursor-theme
-fi
-
-# lightdm config
-install lightdm
-install lightdm-settings
-install lightdm-gtk-greeter-settings
-install lightdm-gtk-greeter
-install lightdm-slick-greeter
-
-# grub
-if [ $IS_ARCH_BASED = true ]; then
-    install grub-customizer
-    install update-grub
-	# btrfs tools
-	install grub-btrfs
-fi
-
-if [ [ $IS_MANJARO != true ] && [ $IS_ARCO != true ] ]; then
-    install grub2-theme-archlinux
-fi
-
-#########################
-# collect optional apps #
-#########################
-#install epdfview
-
-if [ $IS_ARCH_BASED = true ]; then
-
-	# language files
-	install man-pages-de
-	install aspell-de
-	install mythes-de
-	install libmythes
-	install languagetool
-
-	# Browser
-	install vivaldi
-	install vivaldi-ffmpeg-codecs
-
-	# rust apps
-	install bat
-	install fd
-	install ripgrep
-	install tokei
-	install procs
-fi
-
-# other Metas
-if [ $IS_MANJARO = true ]; then
-    install plasma-meta
-    install xfce4-meta
-fi
-
-###############################
-# uninstall unneeded packages #
-###############################
-fullUninstall
-
-#################################
-# install all (needed) packages #
-#################################
-fullInstall
-
 ## FINISHING #
 finish
 
@@ -448,9 +19,9 @@ rm -fr DynamicWallper
 
 echo '
 # In this section, we will show you different crontab syntax with examples.
-# 
+#
 # MIN HOUR  DOM MON     DOW  DESCRIPTION
-# 
+#
 # 10  09    05  02      *    Execute a job on 5th Feb 09:10 AM
 # *   *     *   *       *    Execute a job on every minutes of every hour of every day
 # 10  14    *   *       *    Execute a job on every day at 02:10 PM
@@ -492,3 +63,89 @@ sudo pamac build --no-confirm qt5-styleplugins
 yarn global add eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
 yarn global upgrade
 errorCheck "install global yarn"
+
+# Base Development Tools
+
+# nvm
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+nvm install 18
+corepack enable
+errorCheck "install nvm"
+
+# Fix Teams Black Screen
+sudo ln -f -s /bin/true /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
+
+# flatpaks
+flatpak install shortwave
+# flatpak install bottles
+errorCheck "install flatpaks"
+
+sudo flatpak override --env=GTK_THEME=Adwaita:dark
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+
+# twitter emoji font
+sudo ln -sf /usr/share/fontconfig/conf.avail/75-twemoji.conf /etc/fonts/conf.d/75-twemoji.conf
+
+# vms
+sudo systemctl enable --now libvirtd
+errorCheck "libvirtd service"
+
+# printer
+# HP MFP 178
+echo "[hp_color_laser_mfp_178_179]
+align-type=0
+clean-type=0
+farbe-kal-typ=0
+kopier-typ=0
+eingebetteter-server-typ=1
+fax-typ=7
+fw-download=False
+bild=hp_farbig_laserjet_cp2025.png
+io-mfp-mode=1
+io-modus=1
+io-support=14
+job-storage=0
+zeilenvorschub-kal-typ=0
+model1=Terrible HP Farblaser-MFP 178nwg
+monitor-typ=0
+panel-check-type=0
+pcard-typ=0
+plugin=0
+plugin-grund=65
+Strom-Einstellungen=0
+pq-diag-typ=0
+r-typ=0
+r0-agent1-kind=4
+r0-agent1-sku=CE311A
+r0-agent1-typ=4
+r0-agent2-kind=4
+r0-agent2-sku=CE310A
+r0-agent2-typ=1
+r0-agent3-typ=4
+r0-agent3-sku=CE313A
+r0-agent3-typ=5
+r0-agent4-kind=4
+r0-agent4-sku=CE312A
+r0-agent4-typ=6
+scan-src=3
+scannen-typ=5
+status-batterie-check=0
+status-dynamische-zähler=0
+status-typ=10
+support-released=True
+unterstützung-subtype=219b2b
+support-type=2
+unterstützung-ver=3.13.11
+tech-class=Hbpl1
+familienklasse=PCLM-COLOR
+tech-subclass=Color
+tech-type=4
+usb-pid=332a
+usb-vid=3f0
+wifi-config=3" | sudo tee -a /usr/share/hplip/data/models/models.dat
+
+hp-makeuri -g 192.168.2.155
+
+# arduino and cnc
+yarn global add cncjs
+sudo usermod -a -G "$(stat -c "%G" /dev/ttyUSB0)" $USER

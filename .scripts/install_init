@@ -2,10 +2,8 @@
 
 . "$HOME/.scripts/defs"
 
-if [ $IS_MANJARO = true ]; then
-	sudo pacman -S --needed yay
-fi
 install ansible
+ansible-galaxy collection install -r .ansible/lib/requirements.yml
 
 # Init Install
 initInstall "install_ansible"
@@ -37,29 +35,14 @@ sudo chmod -R -v +x ~/.scripts
 sudo chmod -R -v +x ~/.bin
 errorCheck "set script flags"
 
-# awesome
-install luarocks xorg-x11-xinit-session
-
 if [ $IS_FEDORA_BASED = true ]; then
 	sudo wget -O /usr/bin/awmtt https://raw.githubusercontent.com/mikar/awmtt/master/awmtt.sh
 	sudo chmod a+x /usr/bin/awmtt
 fi
 
-###############################
-# uninstall unneeded packages #
-###############################
-fullUninstall
-
-#################################
-# install all (needed) packages #
-#################################
-fullInstall
-
 ## FINISHING #
 finish
 
-ansible-galaxy collection install -r ~/.ansible/lib/requirements.yml
-
-if [ $IS_ARCH_BASED = true ]; then
-	sudo pamac build --no-confirm qt5-styleplugins
-fi
+# if [ $IS_ARCH_BASED = true ]; then
+# 	sudo pamac build --no-confirm qt5-styleplugins
+# fi

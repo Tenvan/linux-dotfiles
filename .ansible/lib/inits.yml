@@ -1,36 +1,36 @@
 ---
 # is Arch based
-- name: detect ArchLinux Family
+- name: Detect ArchLinux Family
   set_fact:
     is_arch_based: true
   when: ansible_facts['os_family'].lower() == "archlinux"
 
 # is Fedora based
-- name: detect Fedora Family
+- name: Detect Fedora Family
   set_fact:
     is_fedora_based: true
   when: ansible_facts['os_family'].lower() == "fedora"
 
 # is Manjaro
-- name: detect Manjaro
+- name: Detect Manjaro
   set_fact:
     is_manjaro: true
   when: ansible_facts['lsb']['description'].lower() == 'manjaro'
 
 # is ArcoLinux
-- name: detect ArcoLinux
+- name: Detect ArcoLinux
   set_fact:
     is_arcolinux: true
   when: ansible_facts['lsb']['description'].lower() == 'arcolinux'
 
 # is Fedora
-- name: detect Fedora
+- name: Detect Fedora
   set_fact:
     is_fedora: true
   when: ansible_facts['lsb']['description'].lower() == 'fedora'
 
 # is CentOS
-- name: detect CentOS
+- name: Detect CentOS
   set_fact:
     is_centos: true
   when: ansible_facts['lsb']['description'].lower() == 'centos'
@@ -45,21 +45,21 @@
   include_tasks: awesome.yml
   when: false
 
-- block:
-  - debug: var=ansible_facts
-    when: false
-  - debug: var=ansible_facts['lsb']
-    when: false
-  - debug: var=ansible_facts['os_family']
-  - debug: var=ansible_facts['distribution']
-  - debug: var=ansible_facts['distribution_major_version']
-  - debug: var=ansible_facts['lsb']['description']
-  - debug: var=ansible_distribution
-  - debug: var=ansible_os_family
-  - debug: var=is_fedora_based
-  - debug: var=is_arch_based
-  - debug: var=is_arcolinux
-  - debug: var=is_manjaro
-  - debug: var=is_fedora
-  - debug: var=is_centos
-  when: false
+#- block:
+#  - debug: var=ansible_facts
+#    when: false
+#  - debug: var=ansible_facts['lsb']
+#    when: false
+#  - debug: var=ansible_facts['os_family']
+#  - debug: var=ansible_facts['distribution']
+#  - debug: var=ansible_facts['distribution_major_version']
+#  - debug: var=ansible_facts['lsb']['description']
+#  - debug: var=ansible_distribution
+#  - debug: var=ansible_os_family
+#  - debug: var=is_fedora_based
+#  - debug: var=is_arch_based
+#  - debug: var=is_arcolinux
+#  - debug: var=is_manjaro
+#  - debug: var=is_fedora
+#  - debug: var=is_centos
+#  when: is_dry

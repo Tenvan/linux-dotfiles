@@ -11,35 +11,85 @@
 ####################################################################################################################
 
 ####################################################################################################################
-# Install Fedora Part
+# Install Fedora Based Part
 ####################################################################################################################
-- name: install global packages for Fedora based systems
+- name: "[INSTALL][DNF] GlobalPackages"
   become: true
   dnf:
     state: present
     name: "{{ global_init }}"
-  when: is_fedora_based
+  when: is_dry is false and is_fedora_based and global_init is not undefined and global_init is not none
 
-- name: install packages only for Fedora based systems
+- name: "[INSTALL][DNF] FedoraPackages"
   become: true
   dnf:
     state: present
     name: "{{ fedora_based_init }}"
-  when: is_fedora_based
+  when: is_dry is false and is_fedora_based and fedora_based_init is not undefined and fedora_based_init is not none
 
 ####################################################################################################################
-# Install ArchLinux Part
+# Install ArchLinux Based Part
 ####################################################################################################################
-- name: install global packages for ArchLinux based systems
+- name: "[INSTALL][AUR] GlobalPackages"
   become: false
   kewlfft.aur.aur:
     state: present
     name: "{{ global_init }}"
-  when: is_arch_based
+  when: is_dry is false and is_arch_based and global_init is not undefined and global_init is not none
 
-- name: install packages only for ArchLinux based systems
+
+- name: "[INSTALL][AUR] ArchLinuxPackages"
   become: false
   kewlfft.aur.aur:
     state: present
     name: "{{ archlinux_based_init }}"
-  when: is_arch_based
+  when: is_dry is false and is_arch_based and archlinux_based_init is not undefined and archlinux_based_init is not none
+
+####################################################################################################################
+# Install Manjaro Part
+####################################################################################################################
+- name: "[INSTALL][AUR] ManjaroPackages"
+  become: false
+  kewlfft.aur.aur:
+    state: present
+    name: "{{ manjaro_init }}"
+  when: is_dry is false and is_manjaro and manjaro_init is not undefined and manjaro_init is not none
+
+####################################################################################################################
+# Install ArcoLinux Part
+####################################################################################################################
+- name: "[INSTALL][AUR] ArcoLinuxPackages"
+  become: false
+  kewlfft.aur.aur:
+    state: present
+    name: "{{ arcolinux_init }}"
+  when: is_dry is false and is_arcolinux and arcolinux_init is not undefined and arcolinux_init is not none
+
+####################################################################################################################
+# Install Cargo Apps
+####################################################################################################################
+- name: "[INSTALL][CARGO] GlobalCargoApps"
+  become: true
+  community.general.cargo:
+    state: present
+    name: "{{ cargo_init }}"
+  when: is_dry is false and cargo_init is not undefined and cargo_init is not none
+
+####################################################################################################################
+# Install Pip Apps
+####################################################################################################################
+- name: "[INSTALL][PIP] GlobalPipApps"
+  become: true
+  ansible.builtin.pip:
+    state: present
+    name: "{{ pip_init }}"
+  when: is_dry is false and pip_init is not undefined and pip_init is not none
+
+#- block:
+#    - debug: var=global_init
+#    - debug: var=fedora_based_init
+#    - debug: var=archlinux_based_init
+#    - debug: var=manjaro_init
+#    - debug: var=arcolinux_init
+#    - debug: var=cargo_init
+#  when: is_dry

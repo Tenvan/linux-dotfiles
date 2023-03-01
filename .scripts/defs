@@ -24,11 +24,9 @@ IS_FEDORA=false
 IS_RHEL=false
 IS_CENTOS=false
 
-SCRIPTS="$HOME/.scripts"
-
 DEBUG=false
-
 #DEBUG=true
+
 ERROR_PAKAGE_UNINST=
 ERROR_PAKAGE_INST=
 
@@ -75,9 +73,7 @@ else
     fi
 fi
 
-
 PACKER="$PACTOOL"
-MAKEFLAGS="-j$(nproc)"
 
 if [ "$IS_FEDORA_BASED" = true ]; then
     PACKER_ALL="--verbose -y $@"
@@ -86,18 +82,18 @@ else
 fi
 
 dumpVersion() {
-	echo "Linux Version..: $LINUX_VERSION_NAME"
-	echo "Based on ArchLinux...: $IS_ARCH_BASED"
-	echo "Based on Fedora/RHEL.: $IS_FEDORA_BASED"
-	echo "IsArch...............: $IS_ARCH"
-	echo "IsArco...............: $IS_ARCO"
-	echo "IsManjaro............: $IS_MANJARO"
-	echo "IsFedora.............: $IS_FEDORA"
-	echo "IsRHEL...............: $IS_RHEL"
-	echo "IsCentOS.............: $IS_CENTOS"
-	echo "Package Manager......: $PACTOOL"
-	echo "AUR Manager..........: $PACKER"
-	echo "Packer Params........: $PACKER_ALL"
+    echo "Linux Version..: $LINUX_VERSION_NAME"
+    echo "Based on ArchLinux...: $IS_ARCH_BASED"
+    echo "Based on Fedora/RHEL.: $IS_FEDORA_BASED"
+    echo "IsArch...............: $IS_ARCH"
+    echo "IsArco...............: $IS_ARCO"
+    echo "IsManjaro............: $IS_MANJARO"
+    echo "IsFedora.............: $IS_FEDORA"
+    echo "IsRHEL...............: $IS_RHEL"
+    echo "IsCentOS.............: $IS_CENTOS"
+    echo "Package Manager......: $PACTOOL"
+    echo "AUR Manager..........: $PACKER"
+    echo "Packer Params........: $PACKER_ALL"
 }
 
 initInstall() {
@@ -109,30 +105,16 @@ initInstall() {
 install() {
     PAKAGE_INST="${PAKAGE_INST} $1"
     
-    if [ $DEBUG = true ]; then
-        if [ $IS_FEDORA_BASED = true ]; then
-            eval "sudo $PACKER install $PACKER_ALL $1"
-        else
-            eval "$PACKER -S $PACKER_ALL $1"
-        fi
-        
-        retVal=$?
-        if [ $retVal -ne 0 ]; then
-            echo "error on install: $1"
-            ERROR_PAKAGE_INST="${ERROR_PAKAGE_INST} $1"
-        fi
+    if [ $IS_FEDORA_BASED = true ]; then
+        eval "sudo $PACKER install $PACKER_ALL $1"
+    else
+        eval "$PACKER -S $PACKER_ALL $1"
     fi
-}
-
-fullInstall() {
-    echo "Step: full Install"
-    if [ $DEBUG != true -a "$PAKAGE_INST" != "" ]; then
-        if [ $IS_FEDORA_BASED = true ]; then
-            eval "sudo $PACKER install $PACKER_ALL $PAKAGE_INST"
-        else
-            eval "$PACKER -S $PACKER_ALL $PAKAGE_INST"
-        fi
-        errorCheck "install packages"
+    
+    retVal=$?
+    if [ $retVal -ne 0 ]; then
+        echo "error on install: $1"
+        ERROR_PAKAGE_INST="${ERROR_PAKAGE_INST} $1"
     fi
 }
 
@@ -149,17 +131,6 @@ uninstall() {
     if [ $retVal -ne 0 ]; then
         echo "error on uninstall: $1"
         ERROR_PAKAGE_UNINST="${ERROR_PAKAGE_UNINST} $1"
-    fi
-}
-
-fullUninstall() {
-    echo "Step: full Uninstall"
-    if [ $DEBUG != true -a "$PAKAGE_UNINST" != "" ]; then
-        if [ $IS_FEDORA_BASED = true ]; then
-            eval "sudo $PACKER remove $PAKAGE_UNINST"
-        else
-            eval "$PACKER -R --noconfirm $PAKAGE_UNINST"
-        fi
     fi
 }
 
@@ -233,4 +204,4 @@ expand() {
     fi
 }
 
-dumpVersion
+# dumpVersion

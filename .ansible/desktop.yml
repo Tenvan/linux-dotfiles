@@ -1,9 +1,11 @@
+# code: language=ansible
 ---
 - hosts: localhost
   connection: local
-  name: Install Awesome-WM (TM) from (Szechuan) sauce
+  name: Install Tenvans Dotfiles with AwesomeWm Desktop
 
   vars:
+    is_dry: false
     is_fedora_based: false
     is_arch_based: false
     is_arcolinux: false
@@ -12,16 +14,37 @@
     is_centos: false
 
   tasks:
-    # Ansible inits
-    - name: Install initial dependencies
+    - name: InitialPackages
       include_tasks: lib/inits.yml
 
-    # Compile Awesome on Fedora Systems
-    - name: Install initial dependencies
+    - name: InstallDevelopmentPackages
+      include_tasks: develop.yml
+      when: true
+
+    - name: InstallAwesomeWmAndDependenciesPackages
+      include_tasks: awesome.yml
+      when: true
+
+    - name: InstallBaseSystemPackages
       include_tasks: base.yml
       when: true
 
-    # Compile Awesome on Fedora Systems
-    - name: Install awesome-wm dependencies
-      include_tasks: awesome.yml
+    - name: InstallCargoApps
+      include_tasks: cargo.yml
+      when: true
+
+    - name: InstallLayoutPackages
+      include_tasks: layout.yml
+      when: true
+
+    - name: InstallAppPackages
+      include_tasks: apps.yml
+      when: true
+
+    - name: InstallVmsPackages
+      include_tasks: vm.yml
+      when: true
+
+    - name: InstallArduinoPackages
+      include_tasks: arduino.yml
       when: true

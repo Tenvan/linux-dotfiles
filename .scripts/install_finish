@@ -5,33 +5,6 @@ source "$HOME/.scripts/defs"
 sudo timeshift --create --comments "before install_finish"
 errorCheck "timeshift"
 
-# Init Install
-initInstall "install_finish"
-sound count-down
-
-if [ $IS_MANJARO = true ]; then
-    install manjaro-wallpapers-18.0
-    install bootsplash-systemd
-    install bootsplash-theme-manjaro
-fi
-
-install docker
-install lightdm
-install lightdm-gtk-greeter
-
-###############################
-# uninstall unneeded packages #
-###############################
-fullUninstall
-
-#################################
-# install all (needed) packages #
-#################################
-fullInstall
-
-## FINISHING #
-finish
-
 # refresh icons
 sudo gdk-pixbuf-query-loaders --update-cache
 
@@ -162,7 +135,7 @@ if [ $IS_MANJARO = true ]; then
     #
     # ==> ADD "bootsplash-manjaro" to HOOKS
     #' | sudo tee -a /etc/mkinitcpio.conf
-    
+
     errorCheck "convert add bootsplash"
     echo '#
 #

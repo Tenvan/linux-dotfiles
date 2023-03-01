@@ -1,0 +1,51 @@
+# code: language=ansible
+---
+- name: DefineDevelopmentPackages
+  vars:
+    global_init:
+      - cargo
+      - cmake
+      - colorgcc
+      - gcc
+      - git
+      - go
+      - jq
+      - make
+      - npm
+      - nuget
+      - python-pip
+      - ruby
+      - rust
+      - tk
+
+    archlinux_based_init:
+      - base-devel
+      - gitflow-avh
+      - gradle
+      - jdk-openjdk
+      - jdk17-openjdk
+      - svn
+      - nsis
+
+      # DotNet/Mono Setup
+      - dotnet-sdk
+      - mono
+      - mono-msbuild
+      - pass
+      - shellcheck
+
+    fedora_based_init:
+      #	sudo dnf copr enable elegos/gitflow -y
+      - subversion
+      - mingw32-nsis
+
+      # DotNet/Mono Setup
+      - mono-complete
+      - gitflow
+      - dotnet-sdk-6.0
+      - dotnet-sdk-7.0
+      -
+    pip_init:
+      - anybadge
+
+  include_tasks: lib/install.yml

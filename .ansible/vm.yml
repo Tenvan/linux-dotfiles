@@ -1,0 +1,23 @@
+# code: language=ansible
+---
+- name: DefineVmPackages
+  vars:
+    global_init:
+      - bridge-utils
+      - dnsmasq
+      - ebtables
+      - iptables-nft
+      - libvirt
+      - openbsd-netcat
+      - ovmf
+      - qemu-arch-extra
+      - qemu-desktop
+      - vde2
+      - virt-manager
+      - virtio-win
+
+    archlinux_based_init:
+
+    fedora_based_init:
+
+  include_tasks: lib/install.yml

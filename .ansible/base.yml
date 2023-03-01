@@ -1,27 +1,294 @@
+# code: language=ansible
 ---
-- name: install initial dependencies
+- name: DefineBaseSystemPackages
   vars:
     global_init:
-      - cmake
-      - colorgcc
+      - acpi
+      - acpid
+      - ansible-language-server
+      - ansible-lint
+      - arandr
+      - arj
+      - ark
+      - at
+      - bat
+      - blueman
+      - bpytop
+      - brightnessctl
+      - clamav
+      - clamtk
+      - copyq
+      - cronie
       - curl
+      - dex
+      - dnsutils
+      - docker
+      - docker-compose
+      - dpkg
       - exa
-      - gcc
-      - git
-      - go
+      - feh
+      - flameshot
+      - fzf
+      - glances
+      - glfw-x11
+      - gnome-keyring
+      - gparted
+      - gpick
+      - grc
+      - gvfs-smb
+      - htop
+      - iftop
+      - inotify-tools
+      - iotop
+      - iptraf-ng
+      - jq
       - kitty
+      - kteatime
+      - libgnome-keyring
+      - libsecret
+      - light
       - lsd
-      - make
+      - lxsession
+      - mpv
+      - multitail
+      - ncmpcpp
+      - nitrogen
+      - numlockx
+      - openconnect
+      - openssh
+      - p7zip
       - picom
+      - python-mutagen
+      - qbittorrent
       - rofi
-      - ruby
-      - rust
+      - scrot
+      - stow
       - sysstat
+      - time
+      - timeshift
+      - toilet
+      - unclutter
+      - unrar
+      - upower
+      - wmctrl
+      - xautolock
+      - xbindkeys
+      - xclip
+      - xdotool
+      - xscreensaver
+      - xsel
+
+      # system tools
+      - grub-btrfs
+      - grub-customizer
+      - partitionmanager
+      - update-grub
+
+      # Python libs
+      - python
+      - python-pip
+
+      # utils for editors
+      - bash-completion
+      - clang
+      - gdb
+
+      # config tools
+      - lxappearance
+
+      # utilities from gnome
+      - gnome-disk-utility
+      - gnome-system-monitor
+      - gnome-system-tools
+      - gnome-logs
+      - gnome-calculator
+      - network-manager-applet
+
+      - qt5ct
+      - qt5gtk2
+      - qt5-styleplugins
+      - gtk-engine-murrine
+
+      # file manager
+      - mc
+      - ranger
+      - ranger_devicons-git
+
+      # useful tools for ranger
+      - atool
+      - atool-desktop
+      - elinks
+      - ffmpegthumbnailer
+      - highlight
+      - highlight-gui
+      - imagemagick
+      - libcaca
+      - lynx
+      - mediainfo
+      - odt2txt
+      - poppler
+      - ueberzug
+      - w3m
+
+      # Nemo
+      - cinnamon-translations
+      - gtkhash-nemo
+      - nemo
+      - nemo-audio-tab
+      - nemo-compare
+      - nemo-emblems
+      - nemo-fileroller
+      - nemo-image-converter
+      - nemo-media-columns
+      - nemo-mediainfo-tab
+      - nemo-preview
+      - nemo-qml-plugin-notifications
+      - nemo-seahorse
+      - nemo-share
+
+      # other
+      - rofi
+      - rofimoji
+
+      # other
+      - bleachbit
+
+      # bluetooth
+      - blueman
+
+      # printer setup
+      - brother-mfc-j4420dw
+      - canon-cque
+      - cups-pdf
+      - foomatic-db
+      - foomatic-db-engine
+      - foomatic-db-gutenprint-ppds
+      - foomatic-db-nonfree
+      - foomatic-db-nonfree-ppds
+      - foomatic-db-ppds
+      - ghostscript
+      - gsfonts
+      - gutenprint
+      - hplip
+      - print-manager
+      - system-config-printer
+
+      # utils for editors
+      - bash-completion
+      - clang
+      - fd
+      - gdb
+      - graphviz
+      - prettier
+      - ripgrep
+      - shellcheck
+
+      # language files
+      - man-pages-de
+      - aspell-de
+      - mythes-de
+      - libmythes
+      - languagetool
+
     archlinux_based_init:
       - base-devel
-      - micro
       - xinit-xsession
+
+      # installation of important editors
+      - micro
+      - aur/visual-studio-code-bin
+
+      # system packages
+      - bitwarden
+      - eject-applet
+      - hardinfo
+      - ibus-daemon
+      - luacheck
+      - networkmanager
+      - networkmanager-openconnect
+      - notify-send.sh
+      - oh-my-posh-bin
+      - packagekit
+      - picom
+      - pm-utils
+      - powershell-bin
+      - shell-color-scripts
+      - system-monitoring-center
+      - watchexec
+      - wezterm
+      - xorg-server-xephyr
+      - xorg-xbacklight
+      - xorg-xfd
+      - xorg-xrandr
+      - xorg-xsetroot
+
+      # polkits
+      - polkit
+      - polkit-gnome
+
+      # sound setup
+      - alsa-oss
+      - alsa-utils
+      - livecd-sounds
+      - pamixer
+      - paprefs
+      - pasystray
+      - pavucontrol
+      - pnmixer
+      - ponymix
+      - sound-theme-smooth
+      - sp
+      - tvolnoti
+
+      # lightdm config
+      - lightdm
+      - lightdm-settings
+      - lightdm-gtk-greeter-settings
+      - lightdm-gtk-greeter
+      - lightdm-slick-greeter
+
     fedora_based_init:
       - xorg-x11-xinit-session
+      - i-nex
+      - xset
+
+      # cursor
+      # dnf copr enable peterwu/rendezvous -y
+      - bibata-cursor-themes
+
+    arcolinux_init:
+      - arcolinux-config-awesome-git
+
+      # Meta Packages
+      - arcolinux-meta-log
+      - arcolinux-meta-logout
+      - arcolinux-meta-fun
+      - arcolinux-meta-samba
+      - arcolinux-meta-utilities
+
+      # Rofi Configs
+      - arcolinux-rofi-git
+      - arcolinux-rofi-themes-git
+      - rofi-themes
+      - rofi-theme-fonts
+
+    manjaro_init:
+      - samba
+      - manjaro-settings-samba
+
+      # sound setup
+      - pulseaudio-alsa
+      - pulseaudio-bluetooth
+      - pulseaudio-equalizer
+
+      # bluetooth
+      - manjaro-bluetooth
+
+      # printer setup
+      - manjaro-printer
+
+      # other Metas
+      - plasma-meta
+      - xfce4-meta
 
   include_tasks: lib/install.yml

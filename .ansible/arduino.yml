@@ -1,0 +1,34 @@
+# code: language=ansible
+---
+- name: DefineArduinoPackages
+  vars:
+    global_init:
+      # IDEs
+      - arduino
+
+      # Microcontroler Develop
+      - platformio
+      - esptool
+
+      # cnc tools
+      - inkscape
+      - blender
+      # - lux
+      # - luxcorerender-bin
+
+      # utils for editors
+      - clang
+      - gdb
+      - graphviz
+      - prettier
+      - shellcheck
+
+    archlinux_based_init:
+
+    fedora_based_init:
+
+    pip_init:
+      - wheel
+#      - esphome
+
+  include_tasks: lib/install.yml
