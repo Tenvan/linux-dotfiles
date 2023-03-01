@@ -8,15 +8,15 @@
       - ebtables
       - iptables-nft
       - libvirt
+      - virt-manager
+
+    archlinux_based_init:
       - openbsd-netcat
       - ovmf
       - qemu-arch-extra
       - qemu-desktop
       - vde2
-      - virt-manager
       - virtio-win
-
-    archlinux_based_init:
 
     fedora_based_init:
 

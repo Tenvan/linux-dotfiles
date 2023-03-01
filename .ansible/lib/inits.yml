@@ -3,13 +3,13 @@
 - name: Detect ArchLinux Family
   set_fact:
     is_arch_based: true
-  when: ansible_facts['os_family'].lower() == "archlinux"
+  when: ansible_os_family.lower() == "archlinux"
 
 # is Fedora based
 - name: Detect Fedora Family
   set_fact:
     is_fedora_based: true
-  when: ansible_facts['os_family'].lower() == "fedora"
+  when: ansible_os_family.lower() == "redhat"
 
 # is Manjaro
 - name: Detect Manjaro
@@ -23,17 +23,23 @@
     is_arcolinux: true
   when: ansible_facts['lsb']['description'].lower() == 'arcolinux'
 
+# is RHEL
+- name: Detect RHEL (Red Hat Enterprise Linux)
+  set_fact:
+    is_rhel: true
+  when: ansible_distribution.lower() == 'rhel'
+
 # is Fedora
 - name: Detect Fedora
   set_fact:
     is_fedora: true
-  when: ansible_facts['lsb']['description'].lower() == 'fedora'
+  when: ansible_distribution.lower() == 'fedora'
 
 # is CentOS
 - name: Detect CentOS
   set_fact:
     is_centos: true
-  when: ansible_facts['lsb']['description'].lower() == 'centos'
+  when: ansible_distribution.lower() == 'centos'
 
 # Compile Awesome on Fedora Systems
 - name: Install initial dependencies
@@ -45,21 +51,21 @@
   include_tasks: awesome.yml
   when: false
 
-#- block:
-#  - debug: var=ansible_facts
-#    when: false
-#  - debug: var=ansible_facts['lsb']
-#    when: false
-#  - debug: var=ansible_facts['os_family']
-#  - debug: var=ansible_facts['distribution']
-#  - debug: var=ansible_facts['distribution_major_version']
-#  - debug: var=ansible_facts['lsb']['description']
-#  - debug: var=ansible_distribution
-#  - debug: var=ansible_os_family
-#  - debug: var=is_fedora_based
-#  - debug: var=is_arch_based
-#  - debug: var=is_arcolinux
-#  - debug: var=is_manjaro
-#  - debug: var=is_fedora
-#  - debug: var=is_centos
-#  when: is_dry
+- block:
+  - debug: var=ansible_facts
+    when: false
+  - debug: var=ansible_facts['lsb']
+    when: false
+  - debug: var=ansible_facts['os_family']
+  - debug: var=ansible_facts['distribution']
+  - debug: var=ansible_facts['distribution_major_version']
+  - debug: var=ansible_facts['lsb']['description']
+  - debug: var=ansible_distribution
+  - debug: var=ansible_os_family
+  - debug: var=is_fedora_based
+  - debug: var=is_arch_based
+  - debug: var=is_arcolinux
+  - debug: var=is_manjaro
+  - debug: var=is_fedora
+  - debug: var=is_centos
+  when: is_dry

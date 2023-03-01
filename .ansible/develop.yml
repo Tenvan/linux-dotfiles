@@ -24,8 +24,8 @@
       - gradle
       - jdk-openjdk
       - jdk17-openjdk
-      - svn
       - nsis
+      - svn
 
       # DotNet/Mono Setup
       - dotnet-sdk
@@ -44,7 +44,7 @@
       - gitflow
       - dotnet-sdk-6.0
       - dotnet-sdk-7.0
-      -
+
     pip_init:
       - anybadge
 

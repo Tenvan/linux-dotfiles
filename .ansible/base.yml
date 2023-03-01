@@ -3,9 +3,9 @@
 - name: DefineBaseSystemPackages
   vars:
     global_init:
+      # global
       - acpi
       - acpid
-      - ansible-language-server
       - ansible-lint
       - arandr
       - arj
@@ -30,7 +30,6 @@
       - flameshot
       - fzf
       - glances
-      - glfw-x11
       - gnome-keyring
       - gparted
       - gpick
@@ -79,10 +78,7 @@
       - xsel
 
       # system tools
-      - grub-btrfs
       - grub-customizer
-      - partitionmanager
-      - update-grub
 
       # Python libs
       - python
@@ -99,35 +95,26 @@
       # utilities from gnome
       - gnome-disk-utility
       - gnome-system-monitor
-      - gnome-system-tools
+      - gnome-system-log
       - gnome-logs
       - gnome-calculator
       - network-manager-applet
 
       - qt5ct
-      - qt5gtk2
-      - qt5-styleplugins
-      - gtk-engine-murrine
 
       # file manager
       - mc
       - ranger
-      - ranger_devicons-git
 
       # useful tools for ranger
-      - atool
-      - atool-desktop
       - elinks
-      - ffmpegthumbnailer
       - highlight
       - highlight-gui
-      - imagemagick
       - libcaca
       - lynx
       - mediainfo
       - odt2txt
       - poppler
-      - ueberzug
       - w3m
 
       # Nemo
@@ -139,61 +126,85 @@
       - nemo-emblems
       - nemo-fileroller
       - nemo-image-converter
-      - nemo-media-columns
-      - nemo-mediainfo-tab
       - nemo-preview
-      - nemo-qml-plugin-notifications
       - nemo-seahorse
-      - nemo-share
 
       # other
       - rofi
       - rofimoji
-
-      # other
       - bleachbit
 
       # bluetooth
       - blueman
 
       # printer setup
-      - brother-mfc-j4420dw
-      - canon-cque
       - cups-pdf
       - foomatic-db
-      - foomatic-db-engine
-      - foomatic-db-gutenprint-ppds
-      - foomatic-db-nonfree
-      - foomatic-db-nonfree-ppds
       - foomatic-db-ppds
       - ghostscript
-      - gsfonts
       - gutenprint
       - hplip
-      - print-manager
       - system-config-printer
 
       # utils for editors
       - bash-completion
       - clang
-      - fd
       - gdb
       - graphviz
-      - prettier
-      - ripgrep
       - shellcheck
 
       # language files
       - man-pages-de
       - aspell-de
       - mythes-de
-      - libmythes
-      - languagetool
 
     archlinux_based_init:
+      # global
+      - ansible-language-server
+      - glfw-x11
+
       - base-devel
       - xinit-xsession
 
+      # system tools
+      - grub-btrfs
+      - partitionmanager
+      - update-grub
+
+      # utilities from gnome
+      - gnome-system-tools
+
+      # QT Tools
+      - qt5gtk2
+      - qt5-styleplugins
+      - gtk-engine-murrine
+      
+      # useful tools for ranger
+      - atool
+      - atool-desktop
+      - ffmpegthumbnailer
+      - imagemagick
+      - ueberzug
+
+      # file manager
+      - ranger_devicons-git
+
+      # Nemo
+      - nemo-media-columns
+      - nemo-mediainfo-tab
+      - nemo-qml-plugin-notifications
+      - nemo-share
+
+      # printer setup
+      - brother-mfc-j4420dw
+      - canon-cque
+      - foomatic-db-engine
+      - foomatic-db-gutenprint-ppds
+      - foomatic-db-nonfree
+      - foomatic-db-nonfree-ppds
+      - gsfonts
+      - print-manager
+      
       # installation of important editors
       - micro
       - aur/visual-studio-code-bin
@@ -247,10 +258,26 @@
       - lightdm-gtk-greeter
       - lightdm-slick-greeter
 
+      # language files
+      - languagetool
+
     fedora_based_init:
       - xorg-x11-xinit-session
       - i-nex
       - xset
+
+      # system tools
+      - kde-partitionmanager
+
+      # printer setup
+      - kde-print-manager
+      - printer-driver-brlaser
+      - foomatic
+      - foomatic-db
+      - foomatic-db-ppds
+
+      # file manager
+      - vim-devicons
 
       # cursor
       # dnf copr enable peterwu/rendezvous -y

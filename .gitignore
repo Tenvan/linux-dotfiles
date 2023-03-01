@@ -17,8 +17,7 @@
 
 # Ausnahmen Ansible Folder
 !.ansible
-!.ansible/**/*
-.ansible/tmp/
+.ansible/*
 
 # Ausnahmen Samples in Custom Folder
 !.custom/*.sample

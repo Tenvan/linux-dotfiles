@@ -7,17 +7,17 @@
       - awesome-git
       - awmtt
       - base-devel
-#      - lain-git
-    fedora_base__init:
+    fedora_based_init:
       - Xephyr
+      - asciidoc
+      - startup-notification-devel
+      - xterm-resize
       - gobject-introspection-devel
       - libX11-devel
-      - libX11-xcb
       - libX11-xcb
       - libxcb
       - libxcb-devel
       - libxdg-basedir
-      - libxdg-basedir-devel
       - libxdg-basedir-devel
       - libxkbcommon
       - libxkbcommon-x11
@@ -29,6 +29,12 @@
       - rpm-build
       - xcb-proto
       - xcb-util-*
+      - rlwrap
+      - xdg-utils
+      - dbus-devel
+      - gdk-pixbuf2
+      - gdk-pixbuf2-devel
+      - dbus-x11
     arcolinux_init:
       - arcolinux-config-awesome-git
     manjaro_init:
@@ -49,15 +55,14 @@
       command: /usr/bin/luarocks install ldoc
     - name: Install lua markdown
       command: /usr/bin/luarocks install markdown
-    # - name: Install lgi
-    #   command: /usr/bin/luarocks install lgi
     - name: Install lain
       command: /usr/bin/luarocks install lain
-    # - name: Install lua pulseaudio_widget
-    #   command: /usr/bin/luarocks install pulseaudio_widget
+  when: false
+      
 
 - name: install awesome-wm dependencies on Fedora
-  when: ansible_facts['os_family'] == "Fedora"
+  when: is_fedora_based
+  become: false
   block:
     - name: Create build directory
       file:

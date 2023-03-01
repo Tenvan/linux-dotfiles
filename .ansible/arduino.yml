@@ -3,11 +3,7 @@
 - name: DefineArduinoPackages
   vars:
     global_init:
-      # IDEs
-      - arduino
-
       # Microcontroler Develop
-      - platformio
       - esptool
 
       # cnc tools
@@ -16,19 +12,17 @@
       # - lux
       # - luxcorerender-bin
 
-      # utils for editors
-      - clang
-      - gdb
-      - graphviz
-      - prettier
-      - shellcheck
-
     archlinux_based_init:
+      # IDEs
+      - arduino
+
+      # Microcontroler Develop
+      - platformio
 
     fedora_based_init:
 
     pip_init:
       - wheel
-#      - esphome
+      - esphome
 
   include_tasks: lib/install.yml

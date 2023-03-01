@@ -4,6 +4,7 @@
   vars:
     cargo_init:
       - bat
+      - fd-find
       - git-delta
       - procs
       - ripgrep

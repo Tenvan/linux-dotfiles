@@ -3,6 +3,9 @@
 - name: DefineLayoutPackages
   vars:
     global_init:
+
+
+    archlinux_based_init:
       # font apps
       - font-manager
       - toilet-fonts
@@ -29,12 +32,10 @@
 
       # nerd font symbols meta
       - nerd-fonts
-
-    archlinux_based_init:
+      
       # cursor
       - bibata-cursor-theme
       - bibata-cursor-translucent
-
 
     fedora_based_init:
 
@@ -95,3 +96,11 @@
       - bootsplash-theme-manjaro
 
   include_tasks: lib/install.yml
+
+# - name: InstallNerFonts
+  # command:
+    # - git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git
+    # - cd nerd-fonts
+    # - ./install.sh
+    # - cd ..
+    
