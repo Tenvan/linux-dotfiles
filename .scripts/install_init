@@ -32,8 +32,10 @@ sudo chmod -R -v +x ~/.scripts
 sudo chmod -R -v +x ~/.bin
 errorCheck "set script flags"
 
-ansible-galaxy collection install -r ~/.ansible/lib/requirements.yml
-errorCheck "install ansible-galaxy"
+ansible-galaxy collection install -r ~/.ansible/lib/collections.yml
+errorCheck "install ansible-galaxy collections"
+ansible-galaxy role install -r ~/.ansible/lib/collections.yml
+errorCheck "install ansible-galaxy roles"
 
 ansible-playbook ~/.ansible/desktop.yml
 errorCheck "run ansible playbook"

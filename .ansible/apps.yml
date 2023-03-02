@@ -1,5 +1,12 @@
 # code: language=ansible
 ---
+# - name: Enable the RPM Fusion repository
+  # become: true
+  # dnf:
+    # name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm"
+    # state: present
+  # when: is_fedora
+  
 - name: DefineAppPackages
   vars:
     global_init:
@@ -17,36 +24,16 @@
       - mpc
       - mpd
       - playerctl
-      - spotify
-      - youtube-music-bin
 
       # optional application packages
       - aspell
-      - baobab-gtk3
-      - kdeconnect
-
-      # Communication
-      - teams-for-linux
 
       # Browser
       - chromium
-      - firefox-i18n-de
       - google-chrome
-      - microsoft-edge-dev-bin
-      - vivaldi
-      - vivaldi-ffmpeg-codecs
-
-      # Office
-      - libreoffice-fresh
-      - libreoffice-fresh-de
 
       # remmina
       - remmina
-      - remmina-plugin-open
-      - remmina-plugin-rdesktop
-      - remmina-plugin-url
-      - remmina-plugin-folder
-      - remmina-plugin-open
       - freerdp
 
       # scanner setup
@@ -56,25 +43,52 @@
       #- colord-sane
       #- sane
 
-      # jetbrains apps
-      - jetbrains-toolbox
-
       # tools
       - translate-shell
 
       # gimicks
       - cmatrix
-      - hollywood
+      
+    arch_based_init:
+      - spotify
+      - baobab-gtk3
 
-    rhel_based_init:
-      - imagemagick-full
+      # Communication
+      - teams-for-linux
 
-    arcolinux_init:
+      # Browser
+      - vivaldi
+      - vivaldi-ffmpeg-codecs
+      - firefox-i18n-de
+      - microsoft-edge-dev-bin
+
+      # Office
+      - libreoffice-fresh
+      - libreoffice-fresh-de
+
+      # jetbrains apps
+      - jetbrains-toolbox
+
       # gimicks
+      - hollywood
       - cmatrix-git
 
       # graphics
       - imagemagick
+      
+    rhel_based_init:
+      - baobab
+
+      # Browser
+      - firefox
+      - firefox-langpacks
+
+      # graphics
+      - GraphicsMagick
+      
+      # Office
+      - libreoffice
+      - libreoffice-help-de
 
     manjaro_init:
       - imagemagick-full

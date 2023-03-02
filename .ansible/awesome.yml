@@ -53,7 +53,7 @@
   include_tasks: lib/install.yml
 
 - name: install awesome-wm dependencies on Fedora
-  when: is_rhel_based
+  when: false and is_rhel_based
   become: true
   block:
     - name: Create build directory

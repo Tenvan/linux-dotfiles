@@ -46,6 +46,9 @@
       # dnf copr enable peterwu/rendezvous -y
       - bibata-cursor-themes
 
+      # jetbrains fonts
+      - jetbrains-mono-fonts-all
+
     arcolinux_init:
       # Interesting Packages
       - arcolinux-candy-beauty-git

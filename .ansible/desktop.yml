@@ -2,7 +2,14 @@
 ---
 - hosts: localhost
   connection: local
-  name: Install Tenvans Dotfiles with AwesomeWm Desktop
+  name: "==========> Install Tenvans Dotfiles with AwesomeWm Desktop <=========="
+  become: yes
+  gather_facts: yes
+
+  # install galaxy roles
+  roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.rpmfusion
 
   vars:
     is_dry: false
@@ -15,37 +22,37 @@
     is_centos: false
 
   tasks:
-    - name: InitialPackages
+    - name: "=====> InitialPackages <====="
       include_tasks: lib/inits.yml
 
-    - name: InstallDevelopmentPackages
+    - name: "=====> InstallDevelopmentPackages <====="
       include_tasks: develop.yml
       when: true
 
-    - name: InstallAwesomeWmAndDependenciesPackages
+    - name: "=====> InstallAwesomeWmAndDependenciesPackages <====="
       include_tasks: awesome.yml
-      when: false
+      when: true
 
-    - name: InstallBaseSystemPackages
+    - name: "=====> InstallBaseSystemPackages <====="
       include_tasks: base.yml
-      when: false
+      when: true
 
-    - name: InstallCargoApps
+    - name: "=====> InstallCargoApps <====="
       include_tasks: cargo.yml
-      when: false
+      when: true
 
-    - name: InstallLayoutPackages
+    - name: "=====> InstallLayoutPackages <====="
       include_tasks: layout.yml
-      when: false
+      when: true
 
-    - name: InstallAppPackages
+    - name: "=====> InstallAppPackages <====="
       include_tasks: apps.yml
-      when: false
+      when: true
 
-    - name: InstallVmsPackages
+    - name: "=====> InstallVmsPackages <====="
       include_tasks: vm.yml
-      when: false
+      when: true
 
-    - name: InstallArduinoPackages
+    - name: "=====> InstallArduinoPackages <====="
       include_tasks: arduino.yml
-      when: false
+      when: true
