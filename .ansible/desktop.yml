@@ -6,7 +6,7 @@
 
   vars:
     is_dry: false
-    is_fedora_based: false
+    is_rhel_based: false
     is_arch_based: false
     is_arcolinux: false
     is_manjaro: false
@@ -24,28 +24,28 @@
 
     - name: InstallAwesomeWmAndDependenciesPackages
       include_tasks: awesome.yml
-      when: true
+      when: false
 
     - name: InstallBaseSystemPackages
       include_tasks: base.yml
-      when: true
+      when: false
 
     - name: InstallCargoApps
       include_tasks: cargo.yml
-      when: true
+      when: false
 
     - name: InstallLayoutPackages
       include_tasks: layout.yml
-      when: true
+      when: false
 
     - name: InstallAppPackages
       include_tasks: apps.yml
-      when: true
+      when: false
 
     - name: InstallVmsPackages
       include_tasks: vm.yml
-      when: true
+      when: false
 
     - name: InstallArduinoPackages
       include_tasks: arduino.yml
-      when: true
+      when: false

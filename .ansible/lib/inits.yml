@@ -8,7 +8,7 @@
 # is Fedora based
 - name: Detect Fedora Family
   set_fact:
-    is_fedora_based: true
+    is_rhel_based: true
   when: ansible_os_family.lower() == "redhat"
 
 # is Manjaro
@@ -62,7 +62,7 @@
   - debug: var=ansible_facts['lsb']['description']
   - debug: var=ansible_distribution
   - debug: var=ansible_os_family
-  - debug: var=is_fedora_based
+  - debug: var=is_rhel_based
   - debug: var=is_arch_based
   - debug: var=is_arcolinux
   - debug: var=is_manjaro
