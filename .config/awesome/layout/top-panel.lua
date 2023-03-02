@@ -100,9 +100,11 @@ local top_panel = function(s, offset)
     net_speed_widget,
     seperator,
   }
-  if config.widget.spotify.enabled then
-    leftWidgets[#leftWidgets + 1] = spotify_widget
-  end
+
+  -- TODO config options optinal machen
+  -- if config.widget.spotify.enabled then
+    -- leftWidgets[#leftWidgets + 1] = spotify_widget
+  -- end
 
   local middleWidgets = nil
 

@@ -33,6 +33,10 @@ if [ $IS_ARCO = true ]; then
     export MAIN_THEME="Arc-Arcolinux-blue-Dark"
 fi
 
+if [ $IS_FEDORA = true ]; then
+    export MAIN_THEME="deepin-dark"
+fi
+
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 # export GTK_THEME=Adwaita:dark
 # export GTK_THEME=oomox-cobalt

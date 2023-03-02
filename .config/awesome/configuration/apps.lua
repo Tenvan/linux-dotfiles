@@ -74,12 +74,12 @@ local apps = {
     -- ]],
 
     -- You can add more start-up applications here
-    'pamac-tray',
+    -- 'pamac-tray',
     'nm-applet',
     -- 'pasystray',
     'flameshot',
-    'eject-applet',
-    'redshift-gtk',
+    -- 'eject-applet',
+    -- 'redshift-gtk',
     -- 'xfce4-power-manager'
     'copyq',
     -- 'teams-for-linux',

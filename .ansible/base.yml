@@ -36,6 +36,7 @@
       - grc
       - gvfs-smb
       - htop
+      - hwinfo
       - iftop
       - inotify-tools
       - iotop

@@ -1,5 +1,3 @@
-local log = require('utilities.debug').log
-local dump = require('utilities.debug').dump
 log("Enter Module => " .. ... )
 
 local wibox = require('wibox')
@@ -58,7 +56,7 @@ awful.spawn.easy_async_with_shell(
 			]],
 			10,
 			function(_, stdout)
-				local temp = stdout:match('(%d+)')
+				local temp = stdout:match('(%d+)') or 0
 				slider.temp_status:set_value((temp / 1000) / max_temp * 100)
 				collectgarbage('collect')
 			end

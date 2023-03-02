@@ -103,7 +103,7 @@ local update_slider = function()
 	awful.spawn.easy_async_with_shell(
 		[[bash -c "amixer -D pulse sget Master"]],
 		function(stdout)
-			local volume = string.match(stdout, '(%d?%d?%d)%%')
+			local volume = string.match(stdout, '(%d?%d?%d)%%') or 0
 			volume_slider:set_value(tonumber(volume))
 		end
 	)

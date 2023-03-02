@@ -49,6 +49,19 @@
       # jetbrains fonts
       - jetbrains-mono-fonts-all
 
+      # gtk-themes
+      - arc-kde
+      - adwaita-blue-gtk-theme
+      - adwaita-blue-gtk-theme
+      - breeze-gtk
+      - bluecurve-gtk-themes
+      - bluecurve-gtk-themes
+      - deepin-gtk-theme
+      - materia-gtk-theme
+      - materia-kde
+      - numix-gtk-theme
+      - sweet-gtk-theme
+
     arcolinux_init:
       # Interesting Packages
       - arcolinux-candy-beauty-git

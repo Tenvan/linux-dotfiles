@@ -10,7 +10,7 @@ export VISUAL="$EDITOR"
 export FILEMANAGER="nemo"
 export TERMINAL="kitty"
 export TIME="/usr/bin/time -v "
-export DISPLAYMANAGER=sddm
+export DISPLAYMANAGER=gdm
 
 # Development profile
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
