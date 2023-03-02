@@ -27,23 +27,23 @@
 
     - name: "=====> InstallDevelopmentPackages <====="
       include_tasks: develop.yml
-      when: true
+      when: false
 
     - name: "=====> InstallAwesomeWmAndDependenciesPackages <====="
       include_tasks: awesome.yml
-      when: true
+      when: false
 
     - name: "=====> InstallBaseSystemPackages <====="
       include_tasks: base.yml
-      when: true
+      when: false
 
     - name: "=====> InstallCargoApps <====="
       include_tasks: cargo.yml
-      when: true
+      when: false
 
     - name: "=====> InstallLayoutPackages <====="
       include_tasks: layout.yml
-      when: true
+      when: false
 
     - name: "=====> InstallAppPackages <====="
       include_tasks: apps.yml
@@ -51,8 +51,8 @@
 
     - name: "=====> InstallVmsPackages <====="
       include_tasks: vm.yml
-      when: true
+      when: false
 
     - name: "=====> InstallArduinoPackages <====="
       include_tasks: arduino.yml
-      when: true
+      when: false

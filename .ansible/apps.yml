@@ -6,7 +6,7 @@
     # name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm"
     # state: present
   # when: is_fedora
-  
+
 - name: DefineAppPackages
   vars:
     global_init:
@@ -89,6 +89,9 @@
       # Office
       - libreoffice
       - libreoffice-help-de
+
+      # Communication
+      - teams
 
     manjaro_init:
       - imagemagick-full
