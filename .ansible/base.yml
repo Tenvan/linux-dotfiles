@@ -95,7 +95,6 @@
       # utilities from gnome
       - gnome-disk-utility
       - gnome-system-monitor
-      - gnome-system-log
       - gnome-logs
       - gnome-calculator
       - network-manager-applet
@@ -178,7 +177,7 @@
       - qt5gtk2
       - qt5-styleplugins
       - gtk-engine-murrine
-      
+
       # useful tools for ranger
       - atool
       - atool-desktop
@@ -204,7 +203,7 @@
       - foomatic-db-nonfree-ppds
       - gsfonts
       - print-manager
-      
+
       # installation of important editors
       - micro
       - aur/visual-studio-code-bin
@@ -261,7 +260,7 @@
       # language files
       - languagetool
 
-    fedora_based_init:
+    rhel_based_init:
       - xorg-x11-xinit-session
       - i-nex
       - xset
@@ -269,6 +268,9 @@
       # system tools
       - kde-partitionmanager
       - inotify-tools
+
+      # utilities from gnome
+      - gnome-system-log
 
       # printer setup
       - kde-print-manager

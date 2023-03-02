@@ -19,10 +19,8 @@
       # Microcontroler Develop
       - platformio
 
-    fedora_based_init:
-
-    pip_init:
-      - wheel
-      - esphome
+#    pip_init:
+#      - wheel
+#      - esphome
 
   include_tasks: lib/install.yml

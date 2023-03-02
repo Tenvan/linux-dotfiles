@@ -41,7 +41,7 @@
       - pass
       - shellcheck
 
-    fedora_based_init:
+    rhel_based_init:
       #	sudo dnf copr enable elegos/gitflow -y
       - subversion
       - mingw32-nsis

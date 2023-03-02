@@ -21,7 +21,7 @@
 - name: Detect ArcoLinux
   set_fact:
     is_arcolinux: true
-  when: ansible_distribution.lower() == 'arcolinux'
+  when: ansible_facts['lsb']['description'].lower() == 'arcolinux'
 
 # is RHEL
 - name: Detect RHEL (Red Hat Enterprise Linux)

@@ -5,91 +5,103 @@
 # Installs all packages defined in distro dependend arrays
 #
 # Arrays:
-#   - global_init     => global packages for all distros
-#   - fedora_init     => fedora only packages
-#   - archlinux_init  => archlinux only packages
+#   - global_init          => for all distros
+#   - rhel_based_init      => for all RHEL/CentOS/Fedora distros
+#   - archlinux_based_init => for all ArchLinux distro
+#   - fedora_init          => Fedora only packages
+#   - arcolinux_init       => ArcoLinux only packages
+#   - manjaro_init         => Manjaro only packages
 ####################################################################################################################
 
 ####################################################################################################################
 # Install Fedora Based Part
 ####################################################################################################################
-- name: "[INSTALL][DNF] GlobalPackages"
-  become: true
-  dnf:
-    state: present
-    name: "{{ global_init }}"
-  when: is_dry is false and is_fedora_based and global_init is not undefined and global_init is not none
-
-- name: "[INSTALL][DNF] FedoraPackages"
-  become: true
-  dnf:
-    state: present
-    name: "{{ fedora_based_init }}"
-  when: is_dry is false and is_fedora_based and fedora_based_init is not undefined and fedora_based_init is not none
-
-####################################################################################################################
-# Install ArchLinux Based Part
-####################################################################################################################
-- name: "[INSTALL][AUR] GlobalPackages"
-  become: false
-  kewlfft.aur.aur:
-    state: present
-    name: "{{ global_init }}"
-  when: is_dry is false and is_arch_based and global_init is not undefined and global_init is not none
-
-
-- name: "[INSTALL][AUR] ArchLinuxPackages"
-  become: false
-  kewlfft.aur.aur:
-    state: present
-    name: "{{ archlinux_based_init }}"
-  when: is_dry is false and is_arch_based and archlinux_based_init is not undefined and archlinux_based_init is not none
-
-####################################################################################################################
-# Install Manjaro Part
-####################################################################################################################
-- name: "[INSTALL][AUR] ManjaroPackages"
-  become: false
-  kewlfft.aur.aur:
-    state: present
-    name: "{{ manjaro_init }}"
-  when: is_dry is false and is_manjaro and manjaro_init is not undefined and manjaro_init is not none
+- block:
+  - set_fact:
+      combined_array: "{{ (global_init | default([])) + (rhel_based_init | default([])) + (fedora_init | default([])) }}"
+  - debug:
+      msg: "{{ combined_array }}"
+  - name: "[INSTALL][DNF] FedoraPackages"
+    become: true
+    dnf:
+      state: present
+      name: "{{ combined_array }}"
+    when: is_dry is false and combined_array|length > 0
+  when: is_fedora
 
 ####################################################################################################################
 # Install ArcoLinux Part
 ####################################################################################################################
-- name: "[INSTALL][AUR] ArcoLinuxPackages"
-  become: false
-  kewlfft.aur.aur:
-    state: present
-    name: "{{ arcolinux_init }}"
-  when: is_dry is false and is_arcolinux and arcolinux_init is not undefined and arcolinux_init is not none
+- block:
+  - set_fact:
+      combined_array: "{{ (global_init | default([])) + (archlinux_based_init | default([])) + (arcolinux_init | default([])) }}"
+  - debug:
+      msg: "{{ combined_array }}"
+  - name: "[INSTALL][AUR] ArcoLinuxPackages"
+    become: false
+    kewlfft.aur.aur:
+      state: present
+      name: "{{ combined_array }}"
+#    when: is_dry is false and combined_array is not undefined and combined_array is not none and combined_array|length > 0
+    when: is_dry is false and combined_array|length > 0
+  when: is_arcolinux
+
+####################################################################################################################
+# Install Manjaro Part
+####################################################################################################################
+- block:
+  - set_fact:
+      combined_array: "{{ (global_init | default([])) + (archlinux_based_init | default([])) + (manjaro_init | default([])) }}"
+  - debug:
+      msg: "{{ combined_array }}"
+  - name: "[INSTALL][AUR] ManjaroPackages"
+    become: false
+    kewlfft.aur.aur:
+      state: present
+      name: "{{ manjaro_init }}"
+    when: is_dry is false and combined_array|length > 0
+  when: is_manjaro
 
 ####################################################################################################################
 # Install Cargo Apps
 ####################################################################################################################
-- name: "[INSTALL][CARGO] GlobalCargoApps"
-  become: true
-  community.general.cargo:
-    state: present
-    name: "{{ cargo_init }}"
-  when: is_dry is false and cargo_init is not undefined and cargo_init is not none
+- block:
+  - set_fact:
+      combined_array: "{{ (cargo_init | default([])) }}"
+  - debug:
+      msg: "{{ combined_array }}"
+  - name: "[INSTALL][CARGO] GlobalCargoApps"
+    become: true
+    community.general.cargo:
+      state: present
+      name: "{{ combined_array }}"
+  when: is_dry is false and combined_array|length > 0
 
 ####################################################################################################################
 # Install Pip Apps
 ####################################################################################################################
-- name: "[INSTALL][PIP] GlobalPipApps"
-  become: true
-  ansible.builtin.pip:
-    state: present
-    name: "{{ pip_init }}"
-  when: is_dry is false and pip_init is not undefined and pip_init is not none
+- block:
+  - set_fact:
+      combined_array: "{{ (pip_init | default([])) }}"
+  - debug:
+      msg: "{{ combined_array }}"
+  - name: "[INSTALL][PIP] GlobalPipApps"
+    become: true
+    ansible.builtin.pip:
+      state: present
+      name: "{{ combined_array }}"
+  when: is_dry is false and combined_array|length > 0
 
-#- block:
-#    - debug: var=global_init
-#    - debug: var=fedora_based_init
-#    - debug: var=archlinux_based_init
-#    - debug: var=manjaro_init
-#    - debug: var=arcolinux_init
-#    - debug: var=cargo_init
-#  when: is_dry
+####################################################################################################################
+# Install Luarocks Libs
+####################################################################################################################
+- block:
+  - set_fact:
+      combined_array: "{{ (luarocks_init | default([])) }}"
+  - debug:
+      msg: "{{ combined_array }}"
+  - name: "[INSTALL][PIP] GlobalLuarocksLibs"
+    become: true
+    command: "/usr/bin/luarocks install {{ item }}"
+    loop: "{{ combined_array }}"
+  when: is_dry is false and combined_array|length > 0

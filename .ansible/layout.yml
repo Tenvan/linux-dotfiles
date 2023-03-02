@@ -9,8 +9,6 @@
 
 - name: DefineLayoutPackages
   vars:
-    global_init:
-
     archlinux_based_init:
       # font apps
       - font-manager
@@ -38,12 +36,12 @@
 
       # nerd font symbols meta
       - nerd-fonts
-      
+
       # cursor
       - bibata-cursor-theme
       - bibata-cursor-translucent
 
-    fedora_based_init:
+    rhel_based_init:
       # cursor
       # dnf copr enable peterwu/rendezvous -y
       - bibata-cursor-themes
@@ -112,4 +110,3 @@
     # - cd nerd-fonts
     # - ./install.sh
     # - cd ..
-    

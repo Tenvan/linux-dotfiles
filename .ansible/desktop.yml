@@ -20,11 +20,11 @@
 
     - name: InstallDevelopmentPackages
       include_tasks: develop.yml
-      when: false
+      when: true
 
     - name: InstallAwesomeWmAndDependenciesPackages
       include_tasks: awesome.yml
-      when: false
+      when: true
 
     - name: InstallBaseSystemPackages
       include_tasks: base.yml
@@ -48,5 +48,4 @@
 
     - name: InstallArduinoPackages
       include_tasks: arduino.yml
-      when: true     
-    
+      when: true

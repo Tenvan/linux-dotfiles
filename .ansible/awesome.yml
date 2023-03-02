@@ -1,13 +1,20 @@
 ---
 - name: DefineAwesomeWmPackages
   vars:
+    luarocks_init:
+      - luacov
+      - luacheck
+      - busted
+      - ldoc
+      - markdown
+      - lain
     global_init:
       - luarocks
     archlinux_based_init:
       - awesome-git
       - awmtt
       - base-devel
-    fedora_based_init:
+    rhel_based_init:
       - Xephyr
       - asciidoc
       - startup-notification-devel
@@ -44,23 +51,6 @@
       - manjaro-awesome-settings
 
   include_tasks: lib/install.yml
-
-- name: install luarocks libs
-  become: true
-  block:
-    - name: Install lua luacov
-      command: /usr/bin/luarocks install luacov
-    - name: Install lua luacheck
-      command: /usr/bin/luarocks install luacheck
-    - name: Install lua busted
-      command: /usr/bin/luarocks install busted
-    - name: Install lua ldoc
-      command: /usr/bin/luarocks install ldoc
-    - name: Install lua markdown
-      command: /usr/bin/luarocks install markdown
-    - name: Install lain
-      command: /usr/bin/luarocks install lain
-  when: true
 
 - name: install awesome-wm dependencies on Fedora
   when: is_fedora_based

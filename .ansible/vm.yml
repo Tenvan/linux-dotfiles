@@ -18,6 +18,4 @@
       - vde2
       - virtio-win
 
-    fedora_based_init:
-
   include_tasks: lib/install.yml

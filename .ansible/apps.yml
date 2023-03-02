@@ -66,9 +66,7 @@
       - cmatrix
       - hollywood
 
-    archlinux_based_init:
-
-    fedora_based_init:
+    rhel_based_init:
       - imagemagick-full
 
     arcolinux_init:
