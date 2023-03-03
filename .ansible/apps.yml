@@ -1,12 +1,4 @@
-# code: language=ansible
 ---
-# - name: Enable the RPM Fusion repository
-  # become: true
-  # dnf:
-    # name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm"
-    # state: present
-  # when: is_fedora
-
 - name: DefineAppPackages
   vars:
     global_init:
@@ -80,6 +72,7 @@
       - baobab
 
       # Browser
+      - vivaldi-stable
       - firefox
       - firefox-langpacks
 
@@ -91,7 +84,7 @@
       - libreoffice-help-de
 
       # Communication
-      - teams
+      # - teams
 
     manjaro_init:
       - imagemagick-full

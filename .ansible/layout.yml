@@ -1,12 +1,4 @@
-# code: language=ansible
 ---
-- name: "DefineCopr (BibataCursor)"
-  become: true
-  community.general.copr:
-    name: peterwu/rendezvous
-    state: enabled
-  when: is_fedora
-
 - name: DefineLayoutPackages
   vars:
     archlinux_based_init:

@@ -1,4 +1,3 @@
-# code: language=ansible
 ---
 - hosts: localhost
   connection: local
@@ -22,37 +21,45 @@
     is_centos: false
 
   tasks:
-    - name: "=====> InitialPackages <====="
+    - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
 
-    - name: "=====> InstallDevelopmentPackages <====="
+    - name: "=====> Pre Installation Prepare <====="
+      include_tasks: prepare.yml
+      when: true
+
+    - name: "=====> Install Development Packages <====="
       include_tasks: develop.yml
       when: false
 
-    - name: "=====> InstallAwesomeWmAndDependenciesPackages <====="
+    - name: "=====> Install AwesomeWm Dependencies Packages <====="
       include_tasks: awesome.yml
       when: false
 
-    - name: "=====> InstallBaseSystemPackages <====="
+    - name: "=====> Install Base System Packages <====="
       include_tasks: base.yml
       when: false
 
-    - name: "=====> InstallCargoApps <====="
+    - name: "=====> Install Cargo Apps <====="
       include_tasks: cargo.yml
       when: false
 
-    - name: "=====> InstallLayoutPackages <====="
+    - name: "=====> Install Layout Packages <====="
       include_tasks: layout.yml
       when: false
 
-    - name: "=====> InstallAppPackages <====="
+    - name: "=====> Install Apps <====="
       include_tasks: apps.yml
-      when: true
+      when: false
 
-    - name: "=====> InstallVmsPackages <====="
+    - name: "=====> Install Vms Packages <====="
       include_tasks: vm.yml
       when: false
 
-    - name: "=====> InstallArduinoPackages <====="
+    - name: "=====> Install Arduino Packages <====="
       include_tasks: arduino.yml
       when: false
+
+    - name: "=====> Post Installation Finishing <====="
+      include_tasks: finish.yml
+      when: true
