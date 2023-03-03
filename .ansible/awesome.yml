@@ -58,18 +58,18 @@
   block:
     - name: Create build directory
       file:
-        path: $HOME/build
+        path: $HOME/.build
         state: directory
     - name: Clone awesome repository
       git:
         repo: 'https://github.com/awesomeWM/awesome'
         clone: yes
         depth: 10
-        dest: $HOME/build/awesome
+        dest: $HOME/.build/awesome
     - name: Build and install awesome source
       shell: |
         make package
-        dnf localinstall -y build/*.rpm
+        dnf localinstall -y .build/*.rpm
       args:
         executable: /bin/bash
-        chdir: $HOME/build/awesome
+        chdir: $HOME/.build/awesome

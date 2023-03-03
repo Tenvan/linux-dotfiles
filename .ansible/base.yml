@@ -80,7 +80,23 @@
 
       # system tools
       - grub-customizer
+      - cockpit
+      - cockpit-machines
+      - cockpit-networkmanager
+      - cockpit-packagekit
+      - cockpit-podman
+      - cockpit-storaged
+      - cockpit-system
+      - subscription-manager-cockpit
 
+      # podman
+      - podman
+      - pcp-pmda-podman
+      - podman-tui
+
+      # ansible tools
+      - ansible-collection-containers-podman
+      
       # Python libs
       - python
       - python-pip

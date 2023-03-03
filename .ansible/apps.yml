@@ -90,3 +90,24 @@
       - imagemagick-full
 
   include_tasks: lib/install.yml
+
+- name: Install all Nerdfonts
+  become: true
+  block:
+    - name: Create build directory
+      file:
+        path: $HOME/.build
+        state: directory
+    - name: Clone awesome repository
+      git:
+        repo: 'https://github.com/ryanoasis/nerd-fonts.git'
+        clone: yes
+        depth: 1
+        dest: $HOME/.build/nerd-fonts
+    - name: Install Fonts
+      shell: |
+        ./install.sh
+        fc-cache -f -v
+      args:
+        executable: /bin/bash
+        chdir: $HOME/.build/nerd-fonts
