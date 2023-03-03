@@ -50,6 +50,9 @@ run ibus-daemon -d -x
 # set wallpaper
 dwall -s $WALLPAPER_THEME
 
+# set lefthanded mouse (bug)
+xinput set-prop 14 298 1
+
 file=$HOME/.custom/autostart
 if [ -f "$file" ]; then
     . "$file"

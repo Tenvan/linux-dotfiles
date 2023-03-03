@@ -85,6 +85,9 @@
       - python
       - python-pip
 
+      # installation of important editors
+      - micro
+      
       # utils for editors
       - bash-completion
       - clang
@@ -99,7 +102,6 @@
       - gnome-logs
       - gnome-calculator
       - network-manager-applet
-
       - qt5ct
 
       # file manager
@@ -206,7 +208,6 @@
       - print-manager
 
       # installation of important editors
-      - micro
       - aur/visual-studio-code-bin
 
       # system packages
@@ -265,6 +266,10 @@
       - xorg-x11-xinit-session
       - i-nex
       - xset
+
+      # installation of important editors
+      - micro
+      - code
 
       # system tools
       - kde-partitionmanager

@@ -10,7 +10,7 @@
     # - role: robertdebock.rpmfusion
 
   vars:
-    is_dry: true
+    is_dry: false
     is_rhel_based: false
     is_arch_based: false
     is_arcolinux: false
@@ -23,42 +23,32 @@
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
 
-    # - name: "=====> Pre Installation Prepare <====="
-      # include_tasks: prepare.yml
-      # when: false
-# 
-    # - name: "=====> Install Development Packages <====="
-      # include_tasks: develop.yml
-      # when: false
+    - name: "=====> Pre Installation Prepare <====="
+      include_tasks: prepare.yml
+ 
+    - name: "=====> Install Development Packages <====="
+      include_tasks: develop.yml
+ 
+    # - name: "=====> Install AwesomeWm Dependencies Packages <====="
+      # include_tasks: awesome.yml
 
-    - name: "=====> Install AwesomeWm Dependencies Packages <====="
-      include_tasks: awesome.yml
-      when: true
+    - name: "=====> Install Base System Packages <====="
+      include_tasks: base.yml
 
-    # - name: "=====> Install Base System Packages <====="
-      # include_tasks: base.yml
-      # when: false
-# 
     # - name: "=====> Install Cargo Apps <====="
       # include_tasks: cargo.yml
-      # when: false
-# 
+ 
     # - name: "=====> Install Layout Packages <====="
       # include_tasks: layout.yml
-      # when: false
-# 
+
     # - name: "=====> Install Apps <====="
       # include_tasks: apps.yml
-      # when: false
-# 
+ 
     # - name: "=====> Install Vms Packages <====="
       # include_tasks: vm.yml
-      # when: false
 # 
     # - name: "=====> Install Arduino Packages <====="
       # include_tasks: arduino.yml
-      # when: false
-# 
+ 
     # - name: "=====> Post Installation Finishing <====="
       # include_tasks: finish.yml
-      # when: false
