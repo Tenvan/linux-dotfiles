@@ -103,15 +103,6 @@ sudo usermod -aG docker $USER
 ###########################
 # enable services
 
-# printer Service
-sudo systemctl enable cups.socket
-sudo systemctl enable cups.service
-errorCheck "printer service"
-
-# docker
-sudo systemctl enable docker
-errorCheck "docker service"
-
 #sudo systemctl enable --now bluetooth-autoconnect
 #errorCheck "bluetooth-autoconnect service"
 

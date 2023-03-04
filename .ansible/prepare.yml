@@ -1,0 +1,49 @@
+---
+###############################################
+# Do some needed preparings for installations #
+###############################################
+
+# create build folder for some manuel installations
+- name: Create build directory
+  file:
+    path: "{{ build_dir }}"
+    state: directory
+
+- name: Add Vivaldi Repository
+  ansible.builtin.yum_repository:
+    name: vivaldi
+    description: Vivaldi Yum Repo
+    baseurl: https://repo.vivaldi.com/archive/rpm/$basearch
+    gpgcheck: yes
+    gpgkey: https://repo.vivaldi.com/archive/linux_signing_key.pub
+
+- name: Add VSCode Repository
+  ansible.builtin.yum_repository:
+    name: vscode
+    description: Visual Studio Code
+    baseurl: https://packages.microsoft.com/yumrepos/vscode
+    gpgcheck: yes
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: Enable Gitflow Copr
+  community.general.copr:
+    name: elegos/gitflow
+
+- name: Enable Bibata-Cursor Copr
+  community.general.copr:
+    name: peterwu/rendezvous
+
+##########################
+# add some flatpak repos #
+##########################
+- name: Add the dl.flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: absent
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+- name: Add the flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo

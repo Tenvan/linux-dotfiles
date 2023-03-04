@@ -1,5 +1,21 @@
 ---
 # is Arch based
+- name: store user id
+  become: false
+  set_fact:
+    user_id: "{{ lookup('ansible.builtin.env', 'USER') }}"
+
+- name: store home dir
+  become: false
+  set_fact:
+    home_dir: "{{ lookup('ansible.builtin.env', 'HOME') }}"
+
+- name: store build dir
+  become: false
+  set_fact:
+    build_dir: "{{ home_dir }}/.build"
+
+# is Arch based
 - name: Detect ArchLinux Family
   set_fact:
     is_arch_based: true
@@ -52,20 +68,23 @@
   when: false
 
 - block:
-  - debug: var=ansible_facts
-    when: false
-  - debug: var=ansible_facts['lsb']
-    when: false
-  - debug: var=ansible_facts['os_family']
-  - debug: var=ansible_facts['distribution']
-  - debug: var=ansible_facts['distribution_major_version']
-  - debug: var=ansible_facts['lsb']['description']
-  - debug: var=ansible_distribution
-  - debug: var=ansible_os_family
-  - debug: var=is_rhel_based
-  - debug: var=is_arch_based
-  - debug: var=is_arcolinux
-  - debug: var=is_manjaro
-  - debug: var=is_fedora
-  - debug: var=is_centos
+    - debug: var=ansible_facts
+      when: false
+    - debug: var=ansible_facts['lsb']
+      when: false
+    - debug: var=ansible_facts['os_family']
+    - debug: var=ansible_facts['distribution']
+    - debug: var=ansible_facts['distribution_major_version']
+    - debug: var=ansible_facts['lsb']['description']
+    - debug: var=ansible_distribution
+    - debug: var=ansible_os_family
+    - debug: var=is_rhel_based
+    - debug: var=is_arch_based
+    - debug: var=is_arcolinux
+    - debug: var=is_manjaro
+    - debug: var=is_fedora
+    - debug: var=is_centos
+    - debug: var=user_id
+    - debug: var=home_dir
+    - debug: var=build_dir
   when: is_dry

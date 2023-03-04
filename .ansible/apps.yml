@@ -40,13 +40,9 @@
 
       # gimicks
       - cmatrix
-      
-    arch_based_init:
-      - spotify
-      - baobab-gtk3
 
-      # Communication
-      - teams-for-linux
+    arch_based_init:
+      - baobab-gtk3
 
       # Browser
       - vivaldi
@@ -67,7 +63,7 @@
 
       # graphics
       - imagemagick
-      
+
     rhel_based_init:
       - baobab
 
@@ -78,7 +74,7 @@
 
       # graphics
       - GraphicsMagick
-      
+
       # Office
       - libreoffice
       - libreoffice-help-de
@@ -89,25 +85,12 @@
     manjaro_init:
       - imagemagick-full
 
-  include_tasks: lib/install.yml
+    flatpak_init:
+      # Communication
+      - com.github.IsmaelMartinez.teams_for_linux
 
-- name: Install all Nerdfonts
-  become: true
-  block:
-    - name: Create build directory
-      file:
-        path: $HOME/.build
-        state: directory
-    - name: Clone awesome repository
-      git:
-        repo: 'https://github.com/ryanoasis/nerd-fonts.git'
-        clone: yes
-        depth: 1
-        dest: $HOME/.build/nerd-fonts
-    - name: Install Fonts
-      shell: |
-        ./install.sh
-        fc-cache -f -v
-      args:
-        executable: /bin/bash
-        chdir: $HOME/.build/nerd-fonts
+      # Media
+      - com.spotify.Client
+      - de.haeckerfelix.Shortwave
+
+  include_tasks: lib/install.yml

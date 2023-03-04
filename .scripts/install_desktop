@@ -2,7 +2,7 @@
 
 . "$HOME/.scripts/defs"
 
-install ansible
+^install ansible
 if [ $IS_FEDORA_BASED = true ]; then
 	install redhat-lsb-core
 fi

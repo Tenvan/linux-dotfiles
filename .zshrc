@@ -365,26 +365,32 @@ csource "$HOME/.scripts/ranger.zsh"
 autoload -U add-zsh-hook
 load-nvmrc() {
   # OLD_PREFIX=PREFIX
-  unset PREFIX
-  
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
+  if [ "$(command -v nvm_find_nvmrc)" ]; then
+      unset PREFIX
+      
+      local node_version="$(nvm version)"
+      local nvmrc_path="$(nvm_find_nvmrc)"
 
-  if [ -f "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-    if [ "$nvmrc_node_version" != "$node_version" ]; then
-         echo "use nvm from .nvmrc: $nvmrc_node_version"
-        nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "use nvm from default"
-    nvm use default
-  else
-    echo "no nvm use change"
-  fi 
+      if [ -f "$nvmrc_path" ]; then
+        local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+        if [ "$nvmrc_node_version" != "$node_version" ]; then
+             echo "use nvm from .nvmrc: $nvmrc_node_version"
+            nvm use
+        fi
+      elif [ "$node_version" != "$(nvm version default)" ]; then
+        echo "use nvm from default"
+        nvm use default
+      else
+        echo "no nvm use change"
+      fi 
+  fi
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
 # archey4
 fastfetch
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

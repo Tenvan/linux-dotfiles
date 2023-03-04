@@ -16,8 +16,11 @@
 !.bin/**/*
 
 # Ausnahmen Ansible Folder
-!.ansible
-.ansible/*
+!.ansible/
+!.ansible/**/*
+.ansible/collections
+.ansible/roles
+.ansible/tmp
 
 # Ausnahmen Samples in Custom Folder
 !.custom/*.sample
@@ -71,3 +74,5 @@
 
 **/.history
 .config/awesome/configuration/user-profile/*.png
+
+.idea/

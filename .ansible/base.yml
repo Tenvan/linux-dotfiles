@@ -96,14 +96,14 @@
 
       # ansible tools
       - ansible-collection-containers-podman
-      
+
       # Python libs
       - python
       - python-pip
 
       # installation of important editors
       - micro
-      
+
       # utils for editors
       - bash-completion
       - clang
@@ -227,7 +227,6 @@
       - aur/visual-studio-code-bin
 
       # system packages
-      - bitwarden
       - eject-applet
       - hardinfo
       - ibus-daemon
@@ -338,5 +337,8 @@
       # other Metas
       - plasma-meta
       - xfce4-meta
+
+    flatpak_init:
+      - com.bitwarden.desktop
 
   include_tasks: lib/install.yml
