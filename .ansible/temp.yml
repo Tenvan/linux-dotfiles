@@ -2,6 +2,28 @@
 ############################################
 # Install manuel setups from Github, etc.) #
 ############################################
+- name: add awesome sessioen 1
+  ansible.builtin.blockinfile:
+    create: true
+    path: /usr/share/xsessions/xsession1.desktop
+    block: |
+      [Desktop Entry]
+      Name=XSession (XSESSION)
+      Comment=Start Awesome with Xsession script
+      Exec=/etc/X11/Xsession
+      TryExec=awesome
+      Type=Application
+
+- name: add awesome sessioen 1
+  ansible.builtin.blockinfile:
+    create: true
+    path: /usr/share/xsessions/xsession2.desktop
+    block: |
+      [Desktop Entry]
+      Name=XSession (AWESOME)
+      Comment=Start AwesomeWM with awesome file
+      Exec=/etc/X11/Xsession
+      TryExec=awesome
 
 # TODO noch umzusetzende Aktionen, wenn nötig
 

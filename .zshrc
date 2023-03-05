@@ -4,10 +4,6 @@ echo ZSHRC: $DOT
 
 . ~/.scripts/defs
 
-if [ $IS_FEDORA_BASED = true ]; then
-	source ~/.profile
-fi
-
 # disable console beap
 xset -b
 
@@ -364,26 +360,26 @@ csource "$HOME/.scripts/ranger.zsh"
 # Load right version of NVM
 autoload -U add-zsh-hook
 load-nvmrc() {
-  # OLD_PREFIX=PREFIX
-  if [ "$(command -v nvm_find_nvmrc)" ]; then
-      unset PREFIX
-      
-      local node_version="$(nvm version)"
-      local nvmrc_path="$(nvm_find_nvmrc)"
-
-      if [ -f "$nvmrc_path" ]; then
-        local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-        if [ "$nvmrc_node_version" != "$node_version" ]; then
-             echo "use nvm from .nvmrc: $nvmrc_node_version"
-            nvm use
+    # OLD_PREFIX=PREFIX
+    if [ "$(command -v nvm_find_nvmrc)" ]; then
+        unset PREFIX
+        
+        local node_version="$(nvm version)"
+        local nvmrc_path="$(nvm_find_nvmrc)"
+        
+        if [ -f "$nvmrc_path" ]; then
+            local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+            if [ "$nvmrc_node_version" != "$node_version" ]; then
+                echo "use nvm from .nvmrc: $nvmrc_node_version"
+                nvm use
+            fi
+            elif [ "$node_version" != "$(nvm version default)" ]; then
+            echo "use nvm from default"
+            nvm use default
+        else
+            echo "no nvm use change"
         fi
-      elif [ "$node_version" != "$(nvm version default)" ]; then
-        echo "use nvm from default"
-        nvm use default
-      else
-        echo "no nvm use change"
-      fi 
-  fi
+    fi
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc

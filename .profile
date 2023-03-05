@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 export DOT="$DOT;.profile"
-echo PROFILE: $DOT
+echo "PROFILE: $DOT"
 
 export SCRIPTS="$HOME/.scripts"
 export CUSTOMS="$HOME/.custom"

@@ -116,6 +116,6 @@
         msg: "{{ flatpak_combined_array }}"
     - name: "[INSTALL][LUA] FlatPaks"
       community.general.flatpak:
-        name: {{ item }}
+        name: "{{ item }}"
       loop: "{{ flatpak_combined_array }}"
   when: is_dry is false and flatpak_combined_array is not undefined and flatpak_combined_array is not none and flatpak_combined_array|length > 0

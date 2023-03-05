@@ -113,6 +113,10 @@
         [
             "📛 xsession Errors (lightdm)",
             "$TERMINAL --hold --title Sys:XSessionError multitail -cs -i $HOME/.xsession-errors"
+        ],
+        [
+            "📛 User Journal",
+            "$TERMINAL --hold --title Sys:UserLog journalctl _UID=$(id --user) -f -n 1000"
         ]
     ],
     "EDIT_CONFIG": [
@@ -150,7 +154,7 @@
         ],
         [
             "📑 shell configs",
-            "@@FILES_EDIT $HOME/.alias* $HOME/.profile* $HOME/.xprofile* $HOME/.xsession* $HOME/.Xresources* $HOME/.zshrc* $HOME/.alias* $HOME/.bashrc* "
+            "@@FILES_EDIT $HOME/.xinit* $HOME/.alias* $HOME/.profile* $HOME/.xprofile* $HOME/.xsession* $HOME/.Xresources* $HOME/.zshrc* $HOME/.alias* $HOME/.bashrc* "
         ],
         [
             "📑 themes Files",

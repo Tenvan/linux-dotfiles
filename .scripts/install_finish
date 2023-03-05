@@ -21,5 +21,3 @@ if [ $IS_ARCO = true ]; then
     sudo sed -i 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/Vimix\/theme.txt"/g' /etc/default/grub
     errorCheck "move arcolinux grub file"
 fi
-
-sound complete

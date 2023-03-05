@@ -1,6 +1,6 @@
-### EXPORT ###
+#!/usr/bin/env bash
 export DOT="$DOT;.bashrc"
-echo BASHRC: $DOT
+echo "BASHRC: $DOT"
 
 export EDITOR='nano'
 export VISUAL='nano'

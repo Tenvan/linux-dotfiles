@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 export DOT="$DOT;.xprofile"
+echo "XPROFILE: $DOT"
 
-. "$HOME/.scripts/defs"
+. "~/.scripts/defs"
 
 if [ "$SCRIPTS" != "" ]; then
     csource ~/.profile

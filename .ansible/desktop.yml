@@ -5,9 +5,9 @@
   become: yes
 
   # install galaxy roles
-  # roles:
-  # - role: robertdebock.bootstrap
-  # - role: robertdebock.rpmfusion
+  roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.rpmfusion
 
   vars:
     is_dry: false
@@ -23,15 +23,15 @@
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
 
-#    - name: "=====> Pre Installation Prepare <====="
-#      include_tasks: prepare.yml
-#
-#    - name: "=====> Install Development Packages <====="
-#      include_tasks: develop.yml
-#
-#    - name: "=====> Install AwesomeWm Dependencies Packages <====="
-#      include_tasks: awesome.yml
-#
+    - name: "=====> Pre Installation Prepare <====="
+      include_tasks: prepare.yml
+
+    - name: "=====> Install Development Packages <====="
+      include_tasks: develop.yml
+
+    - name: "=====> Install AwesomeWm Dependencies Packages <====="
+      include_tasks: awesome.yml
+
 #    - name: "=====> Install Base System Packages <====="
 #      include_tasks: base.yml
 #

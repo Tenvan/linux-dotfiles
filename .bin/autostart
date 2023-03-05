@@ -24,6 +24,10 @@ picom-toggle-awesome
 # run lxsession
 
 run ibus-daemon -d -x
+
+# left handed mouse
+xmodmap -e "pointer = 3 2 1"
+
 # run unclutter --root --timeout 3
 # run xfce4-power-manager
 
