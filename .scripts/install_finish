@@ -2,46 +2,6 @@
 
 source "$HOME/.scripts/defs"
 
-sudo timeshift --create --comments "before install_finish"
-errorCheck "timeshift"
-
-# refresh icons
-sudo gdk-pixbuf-query-loaders --update-cache
-
-layoutscript="$HOME/.screenlayout/screenlayout-system.sh"
-if [ ! -f "$layoutscript" ]; then
-    print 'Fehler: keine .screenlayout-system.sh gefunden'
-    exit -1
-fi
-
-sudo cp "$layoutscript" /opt/screenlayout.sh
-errorCheck "copy screenlayout"
-
-###############################
-# ==> Settings Display Mnager #
-###############################
-GREETER="lightdm-gtk-greeter"
-# GREETER="lightdm-slick-greeter"
-
-sudo sed -i "s/^.*greeter-session.*=.*$/greeter-session=$GREETER/g" /etc/lightdm/lightdm.conf
-sudo sed -i "s/^.*display-setup-script.*=.*$/display-setup-script=\/opt\/screenlayout.sh/g" /etc/lightdm/lightdm.conf
-
-echo "[SeatDefaults]
-#
-# ==> Uncomment Block for autologin
-#
-#autologin-user=$USER
-#autologin-user-timeout=0
-#user-session=awesome
-" | sudo tee -a /etc/lightdm/lightdm.conf
-sudo micro /etc/lightdm/lightdm.conf
-
-sudo cp $oxygen/system-ready.oga /opt/system-ready.oga
-echo "paplay /opt/system-ready.oga" | sudo tee /opt/system-ready.sh
-sudo chmod +x /opt/system-ready.sh
-
-errorCheck "lightdm config"
-
 # config slick-greeter
 GREETER_THEME="$MAIN_THEME"
 GREETER_ICON="$ICON_THEME"
@@ -55,109 +15,11 @@ else
     GREETER_BACKGROUND="/usr/share/backgrounds/desert.png"
 fi
 
-sudo sed -i "s/^.*user-background.*=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
-sudo sed -i "s/^.*background.*=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
-sudo sed -i "s/^.*theme-name=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
-sudo sed -i "s/^.*icon-theme-name=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
-sudo sed -i "s/^.*cursor-theme-name=.*$//g" /etc/lightdm/lightdm-gtk-greeter.conf
-echo "background=$GREETER_BACKGROUND
-user-background=false
-theme-name=$GREETER_THEME
-icon-theme-name=$GREETER_ICON
-cursor-theme-name=$GREETER_CURSOR
-# 1080p Monitor
-xft-dpi=144
-# 4k Monitor
-#xft-dpi=200" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
-sudo micro /etc/lightdm/lightdm-gtk-greeter.conf
-
-errorCheck "display manager config"
-
-sudo systemctl disable sddm.service
-sudo systemctl enable lightdm.service
-
-###############################
-# <== Settings Display Mnager #
-###############################
-
-# aus Folder /usr/share/kbd/consolefonts/
-echo "KEYMAP=de
-FONT=ter-powerline-v12n
-FONT_MAP=" | sudo tee /etc/vconsole.conf
-
-# Default Browser setzen (vorher $BROWSER Variable entfernen)
-export BROWSER=
-xdg-settings set default-web-browser vivaldi-stable.desktop
-
-# Standard Dateimanager setzen
-xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
-
-sudo fc-cache -fv
-errorCheck "fontcache"
-
-rm -f $PKG_FILE
-rm -f $PKG_UNINST_FILE
-
-sudo usermod -aG docker $USER
-
-###########################
-# enable services
-
-#sudo systemctl enable --now bluetooth-autoconnect
-#errorCheck "bluetooth-autoconnect service"
-
-sudo systemctl enable fstrim.timer
-errorCheck "fstrim service"
-
-# grub config
-sudo sed -i 's/.*GRUB_GFXMODE=.*$/GRUB_GFXMODE="3840x2160,2560x1080,1920x1080,auto"/g' /etc/default/grub
-sudo sed -i 's/.*GRUB_TERMINAL_OUTPUT=.*$/#GRUB_TERMINAL_OUTPUT=console/g' /etc/default/grub
-sudo sed -i 's/.*GRUB_TERMINAL_INPUT=.*$/#GRUB_TERMINAL_INPUT=console/g' /etc/default/grub
-
-if [ $IS_MANJARO = true ]; then
-    suo sed -i 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/manjaro\/theme.txt"/g' /etc/default/grub
-    sudo cp $SCRIPTS/setup/manjaro-cat.png /usr/share/grub/themes/manjaro/background.png
-    echo '#
-#
-# ==> ADD "bootsplash.bootfile=bootsplash-themes/manjaro/bootsplash" to GRUB_CMDLINE_LINUX_DEFAULT
-#' | sudo tee -a /etc/default/grub
-
-    echo '#
-    #
-    # ==> ADD "bootsplash-manjaro" to HOOKS
-    #' | sudo tee -a /etc/mkinitcpio.conf
-
-    errorCheck "convert add bootsplash"
-    echo '#
-#
-# ==> ADD "bootsplash.bootfile=bootsplash-themes/manjaro/bootsplash" to GRUB_CMDLINE_LINUX_DEFAULT
-#' | sudo tee -a /etc/default/grub
-
-    echo '#
-    #
-    # ==> ADD "bootsplash-manjaro" to HOOKS
-    #' | sudo tee -a /etc/mkinitcpio.conf
-fi
-
 if [ $IS_ARCO = true ]; then
     sudo convert /usr/share/backgrounds/archlinux-login-backgrounds/background15.jpg /usr/share/grub/themes/Vimix/background.png
     errorCheck "convert arcolinux grub image"
     sudo sed -i 's/.*GRUB_THEME=.*$/GRUB_THEME="\/usr\/share\/grub\/themes\/Vimix\/theme.txt"/g' /etc/default/grub
     errorCheck "move arcolinux grub file"
 fi
-
-errorCheck "grub config"
-
-sudo micro /etc/mkinitcpio.conf
-sudo micro /etc/default/grub
-
-sudo mkinitcpio -P
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-errorCheck "grub mkconfig"
-
-echo "check_mail:0" | sudo tee -a /usr/local/etc/multitail.conf
-
-# login screen console
-sudo cp $SCRIPTS/issue /etc
 
 sound complete

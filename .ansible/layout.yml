@@ -1,6 +1,10 @@
 ---
 - name: DefineLayoutPackages
   vars:
+    global_init:
+      # powerline in linux console
+      - powerline-fonts
+
     archlinux_based_init:
       # font apps
       - font-manager
@@ -10,9 +14,8 @@
       - awesome-terminal-fonts
       - nerd-fonts-source-code-pro
       - powerline-console-fonts-git
-      - powerline-fonts
-      - terminus-font
       - zsh-theme-powerlevel10k
+      - terminus-font
 
       # ttf fonts
       - ttf-all-the-icons
@@ -34,8 +37,10 @@
       - bibata-cursor-translucent
 
     rhel_based_init:
+      # powerline in linux console
+      - terminus-fonts
+
       # cursor
-      # dnf copr enable peterwu/rendezvous -y
       - bibata-cursor-themes
 
       # jetbrains fonts

@@ -50,5 +50,14 @@
 #    - name: "=====> Install Arduino Packages <====="
 #      include_tasks: arduino.yml
 
+#    - name: "=====> Post Installation Finishing <====="
+#      include_tasks: displays.yml
+
+#    - name: "=====> Post Installation Finishing <====="
+#      include_tasks: finish.yml
+
+#    - name: "=====> Post Installation Finishing <====="
+#      include_tasks: grub.yml
+
     - name: "=====> Post Installation Finishing <====="
-      include_tasks: finish.yml
+      include_tasks: temp.yml

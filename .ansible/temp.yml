@@ -1,0 +1,28 @@
+---
+############################################
+# Install manuel setups from Github, etc.) #
+############################################
+
+# TODO noch umzusetzende Aktionen, wenn nötig
+
+#  yarn global add eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
+#  yarn global upgrade
+#  errorCheck "install global yarn"
+
+###############################
+# create some needed symlinks #
+###############################
+# sudo ln -f -s /bin/true /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
+
+# twitter emoji font
+#  sudo ln -sf /usr/share/fontconfig/conf.avail/75-twemoji.conf /etc/fonts/conf.d/75-twemoji.conf
+# arduino and cnc
+
+#  yarn global add cncjs
+#  sudo usermod -a -G "$(stat -c "%G" /dev/ttyUSB0)" $USER
+
+#  sudo flatpak override --env=GTK_THEME=Adwaita:dark
+#  gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+
+#  sudo timeshift --create --comments "before install_finish"
+#  errorCheck "timeshift"

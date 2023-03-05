@@ -1,0 +1,76 @@
+---
+############################################
+# Install manuel setups from Github, etc.) #
+############################################
+- name: fetch display names
+  shell: "xrandr | grep -e ' connected'"
+  register: monitors
+
+- name: get primary monitor
+  set_fact:
+    monitor1: "{{ monitors.stdout | regex_replace('^(?P<display>.*)\\sconnected primary .*$', '\\g<display>', multiline=True) | regex_replace('^(.*)\\sconnected \\d.*$', '', multiline=True) | regex_replace('(\\n)', '', multiline=False) }}"
+
+- name: get secondary monitor
+  set_fact:
+    monitor2: "{{ monitors.stdout | regex_replace('^(?P<display>.*)\\sconnected \\d.*$', '\\g<display>', multiline=True) | regex_replace('^(.*)\\sconnected.*$', '', multiline=True) | regex_replace('(\\n)', '', multiline=False) }}"
+
+- debug: var=monitor2
+
+- name: create system screenlayout script (for display managers)
+  ansible.builtin.blockinfile:
+    path: "/opt/screenlayout-system.sh"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK screenlayout"
+    create: true
+    mode: u=rwx,g=rx,o=rx
+    block: |
+      #!/bin/sh
+      MONITOR1={{ monitor1 }}
+      MONITOR2={{ monitor2 }}
+      xrandr --output "$MONITOR1" --auto --primary --preferred --scale 1
+      xrandr --output "$MONITOR2" --auto --scale 1 --right-of "$MONITOR1"
+      exit 0
+
+- name: create low resultion screenlayout script on 4K displays (for games, etc.)
+  become: false
+  ansible.builtin.blockinfile:
+    path: "{{ home_dir }}/.screenlayout/screenlayout-low.sh"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK screenlayout"
+    create: true
+    mode: u=rwx,g=rx,o=rx
+    block: |
+      #!/bin/sh
+      MONITOR1={{ monitor1 }}
+      MONITOR2={{ monitor2 }}
+      xrandr --output "$MONITOR1" --auto --primary --preferred --scale 0.5
+      xrandr --output "$MONITOR2" --auto --scale 1 --right-of "$MONITOR1"
+      awesome-client 'awesome.restart()'
+
+- name: create medium resultion screenlayout script on 4K displays (for Coding, etc.)
+  become: false
+  ansible.builtin.blockinfile:
+    path: "{{ home_dir }}/.screenlayout/screenlayout-medium.sh"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK screenlayout"
+    create: true
+    mode: u=rwx,g=rx,o=rx
+    block: |
+      #!/bin/sh
+      MONITOR1={{ monitor1 }}
+      MONITOR2={{ monitor2 }}
+      xrandr --output "$MONITOR1" --auto --primary --preferred --scale 0.7
+      xrandr --output "$MONITOR2" --auto --scale 1 --right-of "$MONITOR1"
+      awesome-client 'awesome.restart()'
+
+- name: create full resultion screenlayout script on 4K displays (for CAD, etc.)
+  become: false
+  ansible.builtin.blockinfile:
+    path: "{{ home_dir }}/.screenlayout/screenlayout-high.sh"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK screenlayout"
+    create: true
+    mode: u=rwx,g=rx,o=rx
+    block: |
+      #!/bin/sh
+      MONITOR1={{ monitor1 }}
+      MONITOR2={{ monitor2 }}
+      xrandr --output "$MONITOR1" --auto --primary --preferred --scale 1
+      xrandr --output "$MONITOR2" --auto --scale 1 --right-of "$MONITOR1"
+      awesome-client 'awesome.restart()'
