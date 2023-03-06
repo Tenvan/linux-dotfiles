@@ -157,24 +157,13 @@
     regexp: '^.*check_mail:.*'
     line: 'check_mail:0'
 
-- name: add awesome session (gdm)
+- name: add awesome session
   ansible.builtin.blockinfile:
     create: true
-    path: /usr/share/xsessions/awesome-gdm.desktop
+    path: /usr/share/xsessions/awesome.desktop
     block: |
       [Desktop Entry]
-      Name=AwesomeWM (gdm)
-      # awesome have to be execute in .xsession
-      Comment=XSession with custom param
-      Exec=/etc/gdm/Xsession custom
-
-- name: add awesome session (wayland)
-  ansible.builtin.blockinfile:
-    create: true
-    path: /usr/share/xsessions/awesome-wayland.desktop
-    block: |
-      [Desktop Entry]
-      Name=AwesomeWM (gdm)
+      Name=AwesomeWM
       # awesome have to be execute in .xsession
       Comment=XSession with custom param
       Exec=/etc/gdm/Xsession custom

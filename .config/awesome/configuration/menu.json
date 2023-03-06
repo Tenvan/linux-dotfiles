@@ -125,6 +125,10 @@
             "code"
         ],
         [
+            "📁 ansible dir",
+            "@@FOLDER_EDIT $HOME/.ansible"
+        ],
+        [
             "📁 custom dir",
             "@@FOLDER_EDIT $HOME/.custom"
         ],

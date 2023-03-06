@@ -69,6 +69,6 @@ sound() {
     esac
     
     # echo "Play: $sound"
-    # notify-send.sh -t 1000 Sound $sound
+    # notify-send -t 1000 Sound $sound
     paplay $sound
 }

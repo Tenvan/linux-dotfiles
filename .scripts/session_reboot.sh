@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 . $SCRIPTS/defs
 
-notify-send.sh -t 3000 -u critical System "Rechner wird neu gestartet..."
+notify-send -t 3000 -u critical System "Rechner wird neu gestartet..."
 sound reboot &
 
 prepare_sessiondown

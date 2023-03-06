@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-export CUSTOM_BOTTOM_ACTIONS=(
-    "🇬 Workspace" "code -r $HOME/dotfiles.code-workspace"
-    "📑 git files" "$filesEdit $HOME/.gitignore* $HOME/.gitconfig*"
-)

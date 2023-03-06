@@ -49,10 +49,6 @@
         grub-mkconfig -o /boot/grub/grub.cfg
       when: is_arch_based
 
-- name: generate distro logo
-  shell: toilet "| Fedora |" -f slant --metal -k -E ansi
-  register: distro
-
 - name: write issue file
   ansible.builtin.blockinfile:
     path: /etc/issue

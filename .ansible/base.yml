@@ -187,7 +187,6 @@
       - glfw-x11
 
       - base-devel
-      - xinit-xsession
 
       # system tools
       - grub-btrfs
@@ -238,7 +237,6 @@
       - luacheck
       - networkmanager
       - networkmanager-openconnect
-      - notify-send.sh
       - oh-my-posh-bin
       - packagekit
       - picom
@@ -279,7 +277,6 @@
       - languagetool
 
     rhel_based_init:
-      - xorg-x11-xinit-session
       - i-nex
       - xset
 
