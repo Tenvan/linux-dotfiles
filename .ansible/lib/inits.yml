@@ -15,6 +15,11 @@
   set_fact:
     build_dir: "{{ home_dir }}/.build"
 
+- name: themes dir
+  become: false
+  set_fact:
+    themes_dir: "{{ home_dir }}/.themes"
+
 # is Arch based
 - name: Detect ArchLinux Family
   set_fact:

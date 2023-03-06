@@ -4,8 +4,13 @@
     global_init:
       # fonts
       - powerline-fonts
+      - gtk-murrine-engine
 
     archlinux_based_init:
+      # QT Tools
+      - qt5gtk2
+      - qt5-styleplugins
+
       # font apps
       - font-manager
       - toilet-fonts
@@ -117,6 +122,49 @@
       - bootsplash-theme-manjaro
 
   include_tasks: lib/install.yml
+
+# install themes
+- name: install some gtk themes
+  become: true
+  block:
+    - name: Clone Valyrian repository
+      git:
+        repo: 'https://github.com/rtlewis1/GTK.git'
+        single_branch: true
+        clone: yes
+        version: VALYRIAN
+        dest: "{{ build_dir }}/themes/Valyrian"
+
+    - name: Synchronization Valyrian themes
+      ansible.posix.synchronize:
+        src: "{{ build_dir }}/themes/Valyrian/"
+        dest: "{{ themes_dir }}/"
+        owner: true
+        rsync_opts:
+          - "--chown={{ user_id }}:{{ user_id }}"
+          - "--exclude=.git"
+          - "--exclude=README.md"
+          - "--exclude=VALYRIAN.conf"
+          - "--include=VALYRIAN*/*"
+
+    - name: Clone Catppuccin repository
+      git:
+        repo: 'https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme.git'
+        single_branch: true
+        clone: yes
+        dest: "{{ build_dir }}/themes/Catppuccin"
+
+    - name: Synchronization Catppuccin themes
+      ansible.posix.synchronize:
+        src: "{{ build_dir }}/themes/Catppuccin/themes/"
+        dest: "{{ themes_dir }}/"
+        owner: true
+        rsync_opts:
+          - "--chown={{ user_id }}:{{ user_id }}"
+          - "--exclude=.git"
+          - "--exclude=README.md"
+          - "--exclude=VALYRIAN.conf"
+          - "--include=VALYRIAN*/*"
 
 - name: Install Nerd Fonts
   become: false

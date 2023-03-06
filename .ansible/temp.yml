@@ -2,8 +2,8 @@
 ############################################
 # Install manuel setups from Github, etc.) #
 ############################################
-# TODO noch umzusetzende Aktionen, wenn nötig
 
+# TODO noch umzusetzende Aktionen, wenn nötig
 #  yarn global add eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
 #  yarn global upgrade
 #  errorCheck "install global yarn"

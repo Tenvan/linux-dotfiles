@@ -196,11 +196,6 @@
       # utilities from gnome
       - gnome-system-tools
 
-      # QT Tools
-      - qt5gtk2
-      - qt5-styleplugins
-      - gtk-engine-murrine
-
       # useful tools for ranger
       - atool
       - atool-desktop
