@@ -54,7 +54,7 @@
 
 - name: install awesome-wm dependencies on Fedora
   when: is_rhel_based
-  become: true
+  become: false
   block:
     - name: Create build directory
       file:
@@ -64,12 +64,11 @@
       git:
         repo: 'https://github.com/awesomeWM/awesome'
         clone: yes
-        depth: 10
         dest: "{{ build_dir }}/awesome"
     - name: Build and install awesome source
       shell: |
         make package
-        dnf localinstall -y .build/*.rpm
+        dnf localinstall -y build/*.rpm
       args:
         executable: /bin/bash
         chdir: "{{ build_dir }}/awesome"
