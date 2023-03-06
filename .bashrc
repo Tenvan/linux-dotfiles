@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
+######################################
+# initial environment for bash shell #
+######################################
 export DOT="$DOT;.bashrc"
-echo "BASHRC: $DOT"
 
-export EDITOR='nano'
-export VISUAL='nano'
+. ~/.scripts/defs
+
 export HISTCONTROL=ignoreboth:erasedups
-export PAGER='most'
 
 #Ibus settings if you need them
 #type ibus-setup in terminal to change settings and start the daemon
@@ -73,7 +74,3 @@ ex ()
 
 # reporting tools - install when not installed
 fastfetch
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -51,13 +51,15 @@ local apps = {
 
   -- List of apps to start once on start-up
   run_on_start_up = {
+    -- Fix left hnaded Mouse on Fedora
+    -- 'xmodmap -e "pointer = 1 2 3 4 5 6 7 8 9 10"',
     -- Compositor
     -- 'picom -b --experimental-backends --dbus --config ' .. config_dir .. '/configuration/picom.conf',
     -- '$SCRIPTS/picom-toggle-awesome.sh',
     -- Blueman applet
     -- 'blueman-applet',
     -- Polkit and keyring
-    'lxsession',
+    -- 'lxsession',
     -- lxqt-desktop tools
     -- 'lxqt-session',
     -- 'lxqt-policykit-agent',

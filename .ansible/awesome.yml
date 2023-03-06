@@ -54,12 +54,8 @@
 
 - name: install awesome-wm dependencies on Fedora
   when: is_rhel_based
-  become: false
+  become: true
   block:
-    - name: Create build directory
-      file:
-        path: "{{ build_dir }}"
-        state: directory
     - name: Clone awesome repository
       git:
         repo: 'https://github.com/awesomeWM/awesome'

@@ -5,6 +5,7 @@
 
 # create build folder for some manuel installations
 - name: Create build directory
+  become: true
   file:
     path: "{{ build_dir }}"
     state: directory

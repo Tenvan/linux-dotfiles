@@ -2,7 +2,7 @@
 - name: DefineLayoutPackages
   vars:
     global_init:
-      # powerline in linux console
+      # fonts
       - powerline-fonts
 
     archlinux_based_init:
@@ -17,7 +17,7 @@
       - zsh-theme-powerlevel10k
       - terminus-font
 
-      # ttf fonts
+      # fonts
       - ttf-all-the-icons
       - ttf-cascadia-code
       - ttf-devicons
@@ -37,8 +37,9 @@
       - bibata-cursor-translucent
 
     rhel_based_init:
-      # powerline in linux console
+      # fonts
       - terminus-fonts
+      - twitter-twemoji-fonts
 
       # cursor
       - bibata-cursor-themes
@@ -117,9 +118,30 @@
 
   include_tasks: lib/install.yml
 
-# - name: InstallNerFonts
-  # command:
-    # - git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git
-    # - cd nerd-fonts
-    # - ./install.sh
-    # - cd ..
+- name: Install Nerd Fonts
+  become: false
+  block:
+    - name: create build directory
+      file:
+        path: "{{ build_dir }}"
+        state: directory
+    - name: clone nerd-fonts
+      git:
+        repo: 'https://github.com/ryanoasis/nerd-fonts.git'
+        clone: yes
+        depth: 1
+        dest: "{{ build_dir }}/nerd-fonts"
+    - name: install nerd-fonts
+      become: true
+      shell: |
+        ./install.sh
+        fc-cache -f -v
+      args:
+        executable: /bin/bash
+        chdir: "{{ build_dir }}/nerd-fonts"
+  when: false
+
+# twitter emoji font
+#  sudo ln -sf /usr/share/fontconfig/conf.avail/75-twemoji.conf /etc/fonts/conf.d/75-twemoji.conf
+# arduino and cnc
+

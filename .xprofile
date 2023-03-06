@@ -1,19 +1,16 @@
 #!/usr/bin/env bash
-
+#########################################
+# initial environment for XWin sessions #
+#########################################
 export DOT="$DOT;.xprofile"
-echo "XPROFILE: $DOT"
 
-. "~/.scripts/defs"
+csource() {
+    if [ -r "$@" ]; then
+        . "$@"
+    fi
+}
 
-if [ "$SCRIPTS" != "" ]; then
-    csource ~/.profile
-fi
-
-# Load custom resources
-file="$CUSTOMS/.Xresources"
-if [ -f $file ]; then
-    xrdb -merge "$file"
-fi
+export FILEMANAGER="nemo"
 
 # Theme Definitionen
 export MAIN_THEME="Adwaita-dark"
@@ -59,17 +56,12 @@ unset QT_STYLE_OVERRIDE
 # export QT_QPA_PLATFORM_THEME="gtk2"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
-export MAIL=$(which thunderbird)
-export SSH_ASKPASS=$(which lxqt-openssh-askpass)
-
 # fix "xdg-open fork-bomb" export your preferred browser from here
 # export BROWSER=$(which firefox)
 export BROWSER=
 
-csource ~/.custom/.xprofile
+csource "$CUSTOMS/.xprofile"
 
-~/.bin/merge-themes
-
-"$HOME/.screenlayout/screenlayout-awesome.sh"
+"$HOME/.bin/merge-themes"
+# "$HOME/.screenlayout/screenlayout-medium.sh"
 "$HOME/.bin/autostart"
-

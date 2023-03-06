@@ -8,25 +8,37 @@ rm -f ~/.config/awesome/customs
 ln -s -f ~/.custom ~/.config/awesome/customs
 
 # init re/startup picom
-killall -q picom
-while pgrep -u $UID -x "picom" >/dev/null; do sleep 1; done
-
-picom-toggle-awesome
+# killall -q picom
+# while pgrep -u $UID -x "picom" >/dev/null; do sleep 1; done
+# 
+# picom-toggle-awesome
 
 #==============
 # System tools
 #==============
 # Polkit and keyring
+
+# see https://wiki.archlinux.org/title/GNOME/Keyring#xinitrc
+if [ $IS_ARCH_BASED = true ]; then
+    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+else
+    /usr/libexec/polkit-gnome-authentication-agent-1 &
+fi
+eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
+export SSH_AUTH_SOCK
+
+# see https://github.com/NixOS/nixpkgs/issues/14966#issuecomment-520083836
+# mkdir -p "$HOME"/.local/share/keyrings
+
 # /usr/bin/lxqt-policykit-agent & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
 # run /usr/lib/xfce-polkit/xfce-polkit
 # run lxqt-policykit-agent
 # run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
 # run lxsession
 
-run ibus-daemon -d -x
+# run ibus-daemon -d -x
 
-# left handed mouse
-xmodmap -e "pointer = 3 2 1"
+# xinput set-prop 14 298 1
 
 # run unclutter --root --timeout 3
 # run xfce4-power-manager
@@ -52,10 +64,7 @@ xmodmap -e "pointer = 3 2 1"
 # run pasystray
 
 # set wallpaper
-dwall -s $WALLPAPER_THEME
-
-# set lefthanded mouse (bug)
-xinput set-prop 14 298 1
+# dwall -s $WALLPAPER_THEME
 
 file=$HOME/.custom/autostart
 if [ -f "$file" ]; then

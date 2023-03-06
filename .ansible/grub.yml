@@ -49,17 +49,20 @@
         grub-mkconfig -o /boot/grub/grub.cfg
       when: is_arch_based
 
-- name: add HP MFP 178/179 Printer Model
+- name: generate distro logo
+  shell: toilet "| Fedora |" -f slant --metal -k -E ansi
+  register: distro
+
+- name: write issue file
   ansible.builtin.blockinfile:
     path: /etc/issue
-    block: |
-      \e[H\e[2J
-                                                                 \e[1;30m| \e[34m\r \s
-             \e[36;1m/\\\\                        \e[37m||      \e[36m| =                 \e[30m|
-            \e[36m/  \\\\                       \e[37m||      \e[36m|                   \e[30m| \e[32m\t
-           \e[1;36m/ \e[0;36m.. \e[1m\\\\   \e[37m//==\\\\\\ ||/= /==\\\\ ||/=\\\\  \e[36m| | |/\\\\ |  | \\\\ /  \e[30m| \e[32m\d
-          \e[0;36m/ .  . \\\\ \e[37m||    || ||  ||     ||  ||  \e[36m| | |  | |  |   X   \e[1;30m|
-         \e[0;36m/  .  .  \\\\ \e[37m\\\\\\==/| ||   \\\\==/ ||  ||  \e[36m| | |  |\  \\/|  / \\\\ \e[1;30m| \e[31m\U
-        \e[0;36m/ ..    .. \\\\   \e[0;37mA simple, lightweight linux distribution.   \e[1;30m|
-       \e[0;36m/_'        `_\\\\                                              \e[1;30m| \e[35m\l \e[0mon \e[1;33m\n
-      \e[0m
+    create: true
+    block: |      
+      1: \e[37mWelcome to Fedora!
+      2: \e[34m\r \s 
+      3: \e[32m\t 
+      4: \e[32m\d 
+      5: \e[31m\U 
+      6: \e[35m\l \e[0mon \e[1;33m
+      7: \v
+      8: \o

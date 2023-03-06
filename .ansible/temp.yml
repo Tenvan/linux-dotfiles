@@ -2,29 +2,6 @@
 ############################################
 # Install manuel setups from Github, etc.) #
 ############################################
-- name: add awesome sessioen 1
-  ansible.builtin.blockinfile:
-    create: true
-    path: /usr/share/xsessions/xsession1.desktop
-    block: |
-      [Desktop Entry]
-      Name=XSession (XSESSION)
-      Comment=Start Awesome with Xsession script
-      Exec=/etc/X11/Xsession
-      TryExec=awesome
-      Type=Application
-
-- name: add awesome sessioen 1
-  ansible.builtin.blockinfile:
-    create: true
-    path: /usr/share/xsessions/xsession2.desktop
-    block: |
-      [Desktop Entry]
-      Name=XSession (AWESOME)
-      Comment=Start AwesomeWM with awesome file
-      Exec=/etc/X11/Xsession
-      TryExec=awesome
-
 # TODO noch umzusetzende Aktionen, wenn nötig
 
 #  yarn global add eslint jshint jsxhint stylelint sass-lint markdownlint-cli raml-cop typescript tern js-beautify iconv-lite
@@ -35,10 +12,6 @@
 # create some needed symlinks #
 ###############################
 # sudo ln -f -s /bin/true /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay
-
-# twitter emoji font
-#  sudo ln -sf /usr/share/fontconfig/conf.avail/75-twemoji.conf /etc/fonts/conf.d/75-twemoji.conf
-# arduino and cnc
 
 #  yarn global add cncjs
 #  sudo usermod -a -G "$(stat -c "%G" /dev/ttyUSB0)" $USER

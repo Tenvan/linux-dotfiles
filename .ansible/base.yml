@@ -27,6 +27,7 @@
       - exa
       - fastfetch
       - feh
+      - figlet
       - flameshot
       - fzf
       - glances
@@ -77,6 +78,10 @@
       - xdotool
       - xscreensaver
       - xsel
+
+      # polkits
+      - polkit
+      - polkit-gnome
 
       # system tools
       - grub-customizer
@@ -248,10 +253,6 @@
       - xorg-xfd
       - xorg-xrandr
       - xorg-xsetroot
-
-      # polkits
-      - polkit
-      - polkit-gnome
 
       # sound setup
       - alsa-oss

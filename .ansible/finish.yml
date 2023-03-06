@@ -51,29 +51,6 @@
     special_time: reboot
     job: "env PATH=/usr/local/bin:/usr/bin DISPLAY=:0 DESKTOP_SESSION=awesome DBUS_SESSION_BUS_ADDRESS=\"unix:path=/run/user/1000/bus\" /usr/bin/dwall -s $WALLPAPER_THEME'"
 
-- name: Install Nerd Fonts
-  become: false
-  block:
-    - name: create build directory
-      file:
-        path: "{{ build_dir }}"
-        state: directory
-    - name: clone nerd-fonts
-      git:
-        repo: 'https://github.com/ryanoasis/nerd-fonts.git'
-        clone: yes
-        depth: 1
-        dest: "{{ build_dir }}/nerd-fonts"
-    - name: install nerd-fonts
-      become: true
-      shell: |
-        ./install.sh
-        fc-cache -f -v
-      args:
-        executable: /bin/bash
-        chdir: "{{ build_dir }}/nerd-fonts"
-  when: false
-
 - name: install dynamic wallpaper (dwall)
   become: false
   block:
@@ -179,6 +156,28 @@
     create: true
     regexp: '^.*check_mail:.*'
     line: 'check_mail:0'
+
+- name: add awesome session (gdm)
+  ansible.builtin.blockinfile:
+    create: true
+    path: /usr/share/xsessions/awesome-gdm.desktop
+    block: |
+      [Desktop Entry]
+      Name=AwesomeWM (gdm)
+      # awesome have to be execute in .xsession
+      Comment=XSession with custom param
+      Exec=/etc/gdm/Xsession custom
+
+- name: add awesome session (wayland)
+  ansible.builtin.blockinfile:
+    create: true
+    path: /usr/share/xsessions/awesome-wayland.desktop
+    block: |
+      [Desktop Entry]
+      Name=AwesomeWM (gdm)
+      # awesome have to be execute in .xsession
+      Comment=XSession with custom param
+      Exec=/etc/gdm/Xsession custom
 
 ##################################
 # enable and start some services #

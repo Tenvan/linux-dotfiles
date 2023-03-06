@@ -1,21 +1,23 @@
 #!/usr/bin/env bash
+#########################################
+# initial environment for every session #
+#########################################
 export DOT="$DOT;.profile"
-echo "PROFILE: $DOT"
+
+. ~/.scripts/defs
 
 export SCRIPTS="$HOME/.scripts"
 export CUSTOMS="$HOME/.custom"
 export EDITOR=micro
-# export PAGER=mypager
 export VISUAL="$EDITOR"
-export FILEMANAGER="nemo"
 export TERMINAL="kitty"
 export TIME="/usr/bin/time -v "
 export DISPLAYMANAGER=gdm
 
 # Development profile
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
-export WORKSPACE=/media/WORKSPACE/$USER
+export JAVA_HOME="/usr/lib/jvm/jre"
+export WORKSPACE=/srv/WORKSPACE/$USER
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -43,6 +45,4 @@ do
   fi
 done
 
-if [ -x "$HOME/.customs/.profile" ]; then
-	source "$HOME/.customs/.profile"
-fi
+csource "$CUSTOMS/.profile"
