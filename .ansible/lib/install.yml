@@ -71,10 +71,11 @@
     - debug:
         msg: "{{ cargo_combined_array }}"
     - name: "[INSTALL][CARGO] GlobalCargoApps"
-      become: true
+      become: false
       community.general.cargo:
         state: present
         name: "{{ cargo_combined_array }}"
+      
   when: is_dry is false and cargo_init is not undefined and cargo_init is not none and cargo_init|length > 0
 
 ####################################################################################################################
@@ -89,7 +90,8 @@
       become: true
       ansible.builtin.pip:
         state: present
-        name: "{{ pip_combined_array }}"
+        name: "{{ item }}"
+      loop: "{{ pip_combined_array }}"
   when: is_dry is false and pip_init is not undefined and pip_init is not none and pip_init|length > 0
 
 ####################################################################################################################
@@ -118,4 +120,4 @@
       community.general.flatpak:
         name: "{{ item }}"
       loop: "{{ flatpak_combined_array }}"
-  when: is_dry is false and flatpak_combined_array is not undefined and flatpak_combined_array is not none and flatpak_combined_array|length > 0
+  when: is_dry is false and flatpak_init is not undefined and flatpak_init is not none and flatpak_init|length > 0

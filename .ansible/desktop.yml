@@ -4,10 +4,10 @@
   name: "==========> Install Tenvans Dotfiles with AwesomeWm Desktop <=========="
   become: yes
 
-  # install galaxy roles
-  # roles:
-  #   - role: robertdebock.bootstrap
-  #   - role: robertdebock.rpmfusion
+  #install galaxy roles
+  roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.rpmfusion
 
   vars:
     is_dry: false
@@ -23,41 +23,38 @@
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
 
-    # - name: "=====> Pre Installation Prepare <====="
-    #   include_tasks: prepare.yml
+    - name: "=====> Pre Installation Prepare <====="
+      include_tasks: prepare.yml
 
-    # - name: "=====> Install Development Packages <====="
-    #   include_tasks: develop.yml
+    - name: "=====> Install Development Packages <====="
+      include_tasks: develop.yml
 
-    # - name: "=====> Install AwesomeWm Dependencies Packages <====="
-    #   include_tasks: awesome.yml
+    - name: "=====> Install AwesomeWm Dependencies Packages <====="
+      include_tasks: awesome.yml
 
-    # - name: "=====> Install Base System Packages <====="
-    #   include_tasks: base.yml
+    - name: "=====> Install Base System Packages <====="
+      include_tasks: base.yml
 
-    # - name: "=====> Install Cargo Apps <====="
-    #   include_tasks: cargo.yml
+    - name: "=====> Install Cargo Apps <====="
+      include_tasks: cargo.yml
 
-    # - name: "=====> Install Layout Packages <====="
-    #   include_tasks: layout.yml
+    - name: "=====> Install Layout Packages <====="
+      include_tasks: layout.yml
 
-    # - name: "=====> Install Apps <====="
-    #   include_tasks: apps.yml
+    - name: "=====> Install Apps <====="
+      include_tasks: apps.yml
 
-    # - name: "=====> Install Vms Packages <====="
-    #   include_tasks: vm.yml
+    - name: "=====> Install Vms Packages <====="
+      include_tasks: vm.yml
 
-    # - name: "=====> Install Arduino Packages <====="
-    #   include_tasks: arduino.yml
-
-    # - name: "=====> Post Installation Finishing <====="
-    #   include_tasks: displays.yml
-
-    # - name: "=====> Post Installation Finishing <====="
-    #   include_tasks: finish.yml
-
-    # - name: "=====> Post Installation Finishing <====="
-    #   include_tasks: grub.yml
+    - name: "=====> Install Arduino Packages <====="
+      include_tasks: arduino.yml
 
     - name: "=====> Post Installation Finishing <====="
-      include_tasks: temp.yml
+      include_tasks: displays.yml
+
+    - name: "=====> Post Installation Finishing <====="
+      include_tasks: finish.yml
+
+    - name: "=====> Post Installation Finishing <====="
+      include_tasks: grub.yml

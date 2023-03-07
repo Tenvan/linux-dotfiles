@@ -2,6 +2,28 @@
 ############################################
 # Install manuel setups from Github, etc.) #
 ############################################
+- name: install dynamic wallpaper (dwall)
+  block:
+    - name: clone dwall
+      git:
+        repo: 'https://github.com/adi1090x/dynamic-wallpaper.git'
+        clone: yes
+        depth: 1
+        dest: "{{ build_dir }}/DynamicWallper"
+    - name: install dwall
+      shell: |
+        ./install.sh -s island
+      args:
+        executable: /bin/bash
+        chdir: "{{ build_dir }}/DynamicWallper"
+
+- name: install nvm and enable embedded yarn 1.2x
+  become: false
+  shell:
+    curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+    # nvm install 18
+    # corepack enable
+
 - name: set doku header in cronie config
   become: true
   ansible.builtin.blockinfile:
@@ -51,23 +73,6 @@
     special_time: reboot
     job: "env PATH=/usr/local/bin:/usr/bin DISPLAY=:0 DESKTOP_SESSION=awesome DBUS_SESSION_BUS_ADDRESS=\"unix:path=/run/user/1000/bus\" /usr/bin/dwall -s $WALLPAPER_THEME'"
 
-- name: install dynamic wallpaper (dwall)
-  become: false
-  block:
-    - name: clone dwall
-      git:
-        repo: 'https://github.com/adi1090x/dynamic-wallpaper.git'
-        clone: yes
-        depth: 1
-        dest: "{{ build_dir }}/DynamicWallper"
-    - name: install dwall
-      shell: |
-        ./install.sh -s island
-      args:
-        executable: /bin/bash
-        chdir: "{{ build_dir }}/DynamicWallper"
-  when: false
-
 - name: install ranger DevIcons
   become: false
   block:
@@ -85,13 +90,6 @@
       detectindent go snippets crystal quickfix wc manipulator diff ftoptions \
       linter literate status monokai-dark gotham-colors nordcolors
     micro -plugin update
-
-- name: install nvm and enable embedded yarn 1.2x
-  become: false
-  shell: |
-    curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-    nvm install 18
-    corepack enable
 
 - name: add HP MFP 178/179 Printer Model
   ansible.builtin.blockinfile:
@@ -157,16 +155,29 @@
     regexp: '^.*check_mail:.*'
     line: 'check_mail:0'
 
-- name: add awesome session
+- name: add awesome session (fedora)
   ansible.builtin.blockinfile:
     create: true
-    path: /usr/share/xsessions/awesome.desktop
+    path: /usr/share/xsessions/awesome-fedora.desktop
     block: |
       [Desktop Entry]
-      Name=AwesomeWM
+      Name=AwesomeWM (Fedora)
       # awesome have to be execute in .xsession
-      Comment=XSession with custom param
-      Exec=/etc/gdm/Xsession custom
+      Comment=This session runs ~/.xsession or ~/.Xclients if available
+      Exec=/usr/libexec/xinit-compat
+  when: is_fedora
+
+- name: add awesome session (archlinux)
+  ansible.builtin.blockinfile:
+    create: true
+    path: /usr/share/xsessions/awesome-arch.desktop
+    block: |
+      [Desktop Entry]
+      Name=AwesomeWM (ArchLinux)
+      # awesome have to be execute in .xsession
+      Comment=This session runs ~/.xsession or ~/.Xclients if available
+      Exec=/usr/lib/xinit-compat
+  when: is_arch_based
 
 ##################################
 # enable and start some services #

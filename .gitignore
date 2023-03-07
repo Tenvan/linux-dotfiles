@@ -18,6 +18,7 @@
 # Ausnahmen Ansible Folder
 !.ansible/
 !.ansible/**/*
+.ansible/*token*
 .ansible/collections
 .ansible/roles
 .ansible/tmp

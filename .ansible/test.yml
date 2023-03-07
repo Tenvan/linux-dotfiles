@@ -1,0 +1,27 @@
+---
+- hosts: localhost
+  connection: local
+  name: "==========> Install Tenvans Dotfiles with AwesomeWm Desktop <=========="
+  become: yes
+
+  #install galaxy roles
+  #roles:
+  #  - role: robertdebock.bootstrap
+  #  - role: robertdebock.rpmfusion
+
+  vars:
+    is_dry: false
+    is_rhel_based: false
+    is_arch_based: false
+    is_arcolinux: false
+    is_manjaro: false
+    is_rhel: false
+    is_fedora: false
+    is_centos: false
+
+  tasks:
+    - name: "=====> Initiate <====="
+      include_tasks: lib/inits.yml
+
+    - name: "=====> Initiate <====="
+      include_tasks: grub.yml

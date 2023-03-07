@@ -10,6 +10,11 @@
   set_fact:
     monitor1: "{{ monitors.stdout | regex_replace('^(?P<display>.*)\\sconnected primary .*$', '\\g<display>', multiline=True) | regex_replace('^(.*)\\sconnected \\d.*$', '', multiline=True) | regex_replace('(\\n)', '', multiline=False) }}"
 
+- assert:
+    that: monitor1 is not none
+    success_msg: "primary display detected."
+    fail_msg: "no primary display detected!"
+
 - name: get secondary monitor
   set_fact:
     monitor2: "{{ monitors.stdout | regex_replace('^(?P<display>.*)\\sconnected \\d.*$', '\\g<display>', multiline=True) | regex_replace('^(.*)\\sconnected.*$', '', multiline=True) | regex_replace('(\\n)', '', multiline=False) }}"
@@ -32,7 +37,7 @@
 
 - name: create low resultion screenlayout script on 4K displays (for games, etc.)
   become: false
-  ansible.builtin.blockinfile:
+  ansible.builtin.blockinfile:    
     path: "{{ home_dir }}/.screenlayout/screenlayout-low.sh"
     marker: "# {mark} ANSIBLE MANAGED BLOCK screenlayout"
     create: true

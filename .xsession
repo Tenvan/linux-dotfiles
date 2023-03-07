@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-##################################
-# starts awesome as XWin session #
-##################################
+#############################
+# initialize a XWin session #
+#############################
 export DOT="$DOT;.xsession"
 
 . ~/.scripts/defs
