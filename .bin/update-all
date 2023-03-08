@@ -1,11 +1,11 @@
 #!/usr/bin/env zsh
 
-# Snapshot erstellen
-sudo timeshift --create
-sudo update-grub
-
 # System Update
-$PACTOOL -Syyu $PAKKER_ALL
+if [ $IS_ARCH_BASE = true ]; then
+  $PACTOOL -Syyu $PAKKER_ALL
+else
+  sudo dnf update -y
+fi
 
 # Flatpak Update
 flatpak update -v --noninteractive

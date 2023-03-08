@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-. $SCRIPTS/defs
-
-# run radiotray-ng
-run shortwave
-run kteatime

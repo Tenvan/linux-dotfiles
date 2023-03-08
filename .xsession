@@ -16,4 +16,5 @@ fi
 # load x-environemnt
 csource "$HOME/.xprofile"
 
-exec /usr/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
+exec /usr/bin/awesome >> ~/.xsession-stdout 2>> ~/.xsession-stderr
+# exec /usr/bin/awesome

@@ -1,8 +1,18 @@
 #!/usr/bin/env bash
 
-pacman -Sccd --noconfirm
-yay -Sccd --noconfirm
-paru -Sccd --noconfirm
+. ~/.scripts/defs
+
+if [ $IS_ARCH_BASED = true ]; then
+	pacman -Sccd --noconfirm
+	yay -Sccd --noconfirm
+	paru -Sccd --noconfirm
+fi
+
+if [ $IS_FEDORA_BASED = true ]; then
+	sudo dnf clean all 	
+fi
+
 yarn cache clean --all
+
 sudo rm -fr "$HOME/.cache"
 sudo rm -fr "$HOME/.npm"

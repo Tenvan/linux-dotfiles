@@ -352,6 +352,7 @@ case ${TERM} in
     ;;
     *)
         print "Init Powershell10k for vconsole"
+        csource ~/.profile
         csource ~/.bin/.p10k-v.zsh
     ;;
 esac

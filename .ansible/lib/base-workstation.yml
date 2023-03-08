@@ -31,6 +31,7 @@
       - xdotool
       - xscreensaver
       - xsel
+      - xterm
       - zsh
 
       # polkits
@@ -188,8 +189,6 @@
       - foomatic-db-ppds
 
     arcolinux_init:
-      - arcolinux-config-awesome-git
-
       # Meta Packages
       - arcolinux-meta-log
       - arcolinux-meta-logout

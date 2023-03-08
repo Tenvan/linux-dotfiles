@@ -11,6 +11,7 @@ csource() {
 }
 
 export FILEMANAGER="nemo"
+export PICOM_CONF="$HOME/.config/picom/picom.conf"
 
 # Theme Definitionen
 export MAIN_THEME="VALYRIAN-Molten-Steel"
@@ -47,8 +48,27 @@ export QT_QPA_PLATFORMTHEME="qt6ct"
 # export BROWSER=$(which firefox)
 export BROWSER=
 
+# init customs folder
+rm -f ~/.config/awesome/customs
+ln -s -f ~/.custom ~/.config/awesome/customs
+
+#========================
+# System tools autostart
+#=======================
+
+# picom starten
+picom -b --dbus --config "$PICOM_CONF" &
+
+# Polkit and keyring
+
+# see https://wiki.archlinux.org/title/GNOME/Keyring#xinitrc
+if [ $IS_ARCH_BASED = true ]; then
+    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+else
+    /usr/libexec/polkit-gnome-authentication-agent-1 &
+fi
+eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
+export SSH_AUTH_SOCK
+
 csource "$CUSTOMS/.xprofile"
 
-"$HOME/.bin/merge-themes"
-# "$HOME/.screenlayout/screenlayout-medium.sh"
-"$HOME/.bin/autostart"

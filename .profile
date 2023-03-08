@@ -23,9 +23,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-[ -s "$NVM_DIR/nvm.sh" ] && nvm install 18
-[ -s "$NVM_DIR/nvm.sh" ] && [ !$(command -v yarnk) ] && corepack enable
-
 # Conditional PATH additions
 for path_candidate in \
   /opt/local/bin \

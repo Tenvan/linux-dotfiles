@@ -78,15 +78,12 @@ local apps = {
     -- You can add more start-up applications here
     -- 'pamac-tray',
     'nm-applet',
-    -- 'pasystray',
+    'pasystray',
     'flameshot',
     -- 'eject-applet',
     -- 'redshift-gtk',
-    -- 'xfce4-power-manager'
     'copyq',
-    -- 'teams-for-linux',
     'xscreensaver',
-    -- 'xsettingsd'
     '$SCRIPTS/services/update-wallpaper.sh',
   },
 

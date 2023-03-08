@@ -1,0 +1,230 @@
+{
+    "VARIABLES": {
+        "BEFORE_MENU": [
+            [
+                "@@ONETIMECLIENT_SHELL",
+                "$TERMINAL --directory @@WORK_ONETIMECLIENT"
+            ],
+            [
+                "@@ONETIMESERVER_SHELL",
+                "$TERMINAL --directory @@WORK_ONETIMESERVER"
+            ],
+            [
+                "@@OTW_CORE_SHELL",
+                "$TERMINAL --directory @@WORK_NODE/OtwCore"
+            ],
+            [
+                "@@OTW_RESTCLIENT_SHELL",
+                "$TERMINAL --directory @@WORK_NODE/OtwRestClient"
+            ],
+            [
+                "@@OTW_BLL_SHELL",
+                "$TERMINAL --directory @@WORK_NODE/OtwBll"
+            ],
+            [
+                "@@OTW_STATE_SHELL",
+                "$TERMINAL --directory @@WORK_NODE/OtwState"
+            ],
+            [
+                "@@OTW_ATOMIC_SHELL",
+                "$TERMINAL --directory @@WORK_NODE/OtwAtomic"
+            ],
+            [
+                "@@OTW_WIDGETS_SHELL",
+                "$TERMINAL --directory @@WORK_NODE/OtwWidgets"
+            ],
+            [
+                "@@OTW_WIDGETS_ELEMENTS_SHELL",
+                "$TERMINAL --directory @@WORK_NODE/OtwWidgetsElements"
+            ],
+            [
+                "@@WORK_ONETIMESERVER",
+                "$WORKSPACE/Node/OneTimeServer"
+            ],
+            [
+                "@@WORK_ONETIMECLIENT",
+                "$WORKSPACE/Node/OneTimeClient"
+            ],
+            [
+                "@@WORK_NODE",
+                "$WORKSPACE/Node"
+            ],
+            [
+                "WORKSPACE",
+                ""
+            ]
+        ]
+    },
+    "APP_MENU": {
+        "BEFORE_MENU": [
+            [
+                "📈 TenHeim Log (Default)",
+                "$TERMINAL --hold --title ValHeim:XSessionError multitail -n 1000 -m 10000 -bw f -Ev '(Shader|shader|\\/mono\\/.*|Fallback)' -s 2 -Cs -i /media/BIGDATA/STEAM/Valheim/Server/BepInEx/LogOutput.log -i /media/BIGDATA/STEAM/Valheim/Client/BepInEx/LogOutput.log"
+            ],
+            [
+                "📈 TenHeim Log (Test)",
+                "$TERMINAL --hold --title ValHeim:XSessionError multitail -n 1000 -m 10000 -bw f -Ev '(Shader|shader|\\/mono\\/.*|Fallback)' -s 2 -Cs -i /media/BIGDATA/STEAM/ValheimTest/logs/Server.log -i /media/BIGDATA/STEAM/ValheimTest/logs/Player.log"
+            ]
+        ]
+    },
+    "DEVELOP_MENU": {
+        "BEFORE_MENU": [
+            [
+                "🛫 OneTimeServer",
+                [
+                    [
+                        "🏄 OTS: Start Server",
+                        "@@ONETIMESERVER_SHELL --hold --title OTC:StartServer yarn start"
+                    ],
+                    [
+                        "💻 OTS: Shell OneTimeServer",
+                        "@@ONETIMESERVER_SHELL --hold --title 'OTS:Shell OneTimeServer'"
+                    ]
+                ]
+            ],
+            [
+                "🛫 OneTimeClient",
+                [
+                    [
+                        "🛫 OTC: Pug Watcher Client",
+                        "@@ONETIMECLIENT_SHELL --hold --title OTC:PugWatcherClient yarn run watch:pug"
+                    ],
+                    [
+                        "💻 OTC: Shell OneTimeClient",
+                        "@@ONETIMECLIENT_SHELL --hold --title 'OTC:ShellClient OneTimeClient'"
+                    ]
+                ]
+            ],
+            [
+                "🛫 OneWidgetsElements",
+                [
+                    [
+                        "🛫 OTC: Start TestApp Widgets Elements",
+                        "@@OTW_WIDGETS_ELEMENTS_SHELL --hold --title OTC:WidgetsElementsTestApp yarn run start:test:widgets"
+                    ],
+                    [
+                        "💻 OTW: Shell OtwWidgetsElements",
+                        "@@OTW_WIDGETS_ELEMENTS_SHELL --hold --title 'OTW:ShellWidgetsElements OtwWidgetsElements'"
+                    ]
+                ]
+            ],
+            [
+                "🛫 OneWidgets",
+                [
+                    [
+                        "🛫 OTC: Pug Watcher Widgets",
+                        "@@OTW_WIDGETS_SHELL --hold --title OTC:PugWatcherWidgets yarn run watch:pug"
+                    ],
+                    [
+                        "🛫 OTC: Npm Watcher Widgets",
+                        "@@OTW_WIDGETS_SHELL --hold --title OTC:NpmWatcherWidgets yarn run watch:npm"
+                    ],
+                    [
+                        "💻 OTW: Shell OtwWidgets",
+                        "@@OTW_WIDGETS_SHELL --hold --title 'OTW:ShellWidgets OtwWidgets'"
+                    ],
+                    [
+                        "🛫 OTC: Start TestApp SSO",
+                        "@@OTW_WIDGETS_SHELL --hold --title OTC:SSoTestApp yarn run start:test:sso"
+                    ],
+                    [
+                        "🛫 OTC: Start TestApp Widgets",
+                        "@@OTW_WIDGETS_SHELL --hold --title OTC:WidgetsTestApp yarn run start:test:widgets"
+                    ]
+                ]
+            ],
+            [
+                "🛫 OtwAtomic",
+                [
+                    [
+                        "🛫 OTC: Pug Watcher Atomic",
+                        "@@OTW_ATOMIC_SHELL --hold --title OTC:PugWatcherAtomic yarn run watch:pug"
+                    ],
+                    [
+                        "🛫 OTC: Npm Watcher Atomic",
+                        "@@OTW_ATOMIC_SHELL --hold --title OTC:NpmWatcherAtomic yarn run watch:npm"
+                    ],
+                    [
+                        "💻 OTW: Shell OtwAtomic",
+                        "@@OTW_ATOMIC_SHELL --hold --title 'OTW:ShellAtomic OtwAtomic'"
+                    ],
+                    [
+                        "🛫 OTC: Start TestApp Atomic",
+                        "@@OTW_ATOMIC_SHELL --hold --title OTC:AtomicTestApp yarn run start:test:atomic"
+                    ]
+                ]
+            ],
+            [
+                "🛫 OtwState",
+                [
+                    [
+                        "🛫 OTC: Npm Watcher State",
+                        "@@OTW_STATE_SHELL --hold --title OTC:NpmWatcherState yarn run watch:npm"
+                    ],
+                    [
+                        "💻 OTW: Shell OtwState",
+                        "@@OTW_STATE_SHELL --hold --title 'OTW:ShellState OtwState'"
+                    ]
+                ]
+            ],
+            [
+                "🛫 OtwBll",
+                [
+                    [
+                        "🛫 OTC: Npm Watcher Bll",
+                        "@@OTW_BLL_SHELL --hold --title OTC:NpmWatcherBll yarn run watch:npm"
+                    ],
+                    [
+                        "💻 OTW: Shell OtwBll",
+                        "@@OTW_BLL_SHELL --hold --title 'OTW:ShellBll OtwBll'"
+                    ]
+                ]
+            ],
+            [
+                "🛫 OtwRestClient",
+                [
+                    [
+                        "🛫 OTC: Npm Watcher RestClient",
+                        "@@OTW_RESTCLIENT_SHELL --hold --title OTC:NpmWatcherRestClient yarn run watch:npm"
+                    ],
+                    [
+                        "💻 OTW: Shell OtwRestClient",
+                        "@@OTW_RESTCLIENT_SHELL --hold --title 'OTW:ShellRestClient OtwRestClient'"
+                    ]
+                ]
+            ],
+            [
+                "🛫 OtwCore",
+                [
+                    [
+                        "🛫 OTC: Npm Watcher Core",
+                        "@@OTW_CORE_SHELL --hold --title OTC:NpmWatcherCore yarn run watch:npm"
+                    ],
+                    [
+                        "💻 OTW: Shell OtwCore",
+                        "@@OTW_CORE_SHELL --hold --title 'OTW:ShellCore OtwCore'"
+                    ]
+                ]
+            ]
+        ],
+        "AFTER_MENU": []
+    },
+    "SYSTEM_TOOLS_MENU": {
+        "BEFORE_MENU": [
+            [
+                "🖥 Screenlayout Standard",
+                "$HOME/.screenlayout/screenlayout-medium.sh"
+            ],
+            [
+                "🖥 Screenlayout Games",
+                "$HOME/.screenlayout/screenlayout-low.sh"
+            ],
+            [
+                "🖥 Screenlayout Full Resolution",
+                "$HOME/.screenlayout/screenlayout-high.sh"
+            ]
+        ],
+        "AFTER_MENU": [
+        ]
+    }
+}

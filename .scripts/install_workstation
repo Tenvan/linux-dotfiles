@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+. "$HOME/.scripts/defs"
+
+ansible-playbook ~/.ansible/workstation.yml
+errorCheck "run ansible playbook"

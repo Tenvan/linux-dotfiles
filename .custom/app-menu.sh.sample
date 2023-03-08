@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-. $SCRIPTS/defs
-
-export CUSTOM_BOTTOM_ACTIONS=(
-    "🌤 Wetter Mainz" "$TERMINAL --hold --title Wetter:Mainz curl wttr.in/Mainz?lang=de"
-)

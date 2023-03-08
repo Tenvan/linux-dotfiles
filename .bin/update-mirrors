@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-echo "Starte Messung deutscher Mirror Server..."
-sudo reflector --country Germany --latest 5 --age 2 --fastest 5 --protocol https --sort rate --verbose --save /etc/pacman.d/mirrorlist
-cat /etc/pacman.d/mirrorlist 
-echo "Messung abgeschlossen, Test der Server starten..."
-rankmirrors -n 0 -t /etc/pacman.d/mirrorlist
-echo "Update Pacman"
-sudo pacman -Syu
