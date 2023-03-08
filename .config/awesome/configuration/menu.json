@@ -11,16 +11,16 @@
     ],
     "APP_MENU": [
         [
-            "🇯 JetBrains Toolbox",
+            "Bild Betrachter",
+            "flatpak run org.photoqt.PhotoQt"
+        ],
+        [
+            "🛟 JetBrains Toolbox",
             "jetbrains-toolbox"
         ],
         [
-            "🇹 Teams",
-            "teams-for-linux"
-        ],
-        [
-            "🇫 Font Manager",
-            "font-manager"
+            "🙋 Teams",
+            "flatpak run com.github.IsmaelMartinez.teams_for_linux"
         ],
         [
             "🇻 Virtio Manager",
@@ -31,7 +31,7 @@
             "remmina"
         ],
         [
-            "🗂 Dateimanager",
+            "🗃️ Dateimanager",
             "$FILEMANAGER"
         ],
         [
@@ -43,11 +43,7 @@
             "$TERMINAL --hold curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html"
         ],
         [
-            "🌤 Wetter Brakel",
-            "$TERMINAL --hold --title Wetter:Brakel curl wttr.in/33034?lang=de"
-        ],
-        [
-            "🌤 Wetter Höxter",
+            "🌥️ Wetter Höxter",
             "$TERMINAL --hold --title Wetter:Höxter curl wttr.in/37671?lang=de"
         ]
     ],
@@ -121,7 +117,7 @@
     ],
     "EDIT_CONFIG": [
         [
-            "🇬 Editor",
+            "✏️ Editor",
             "code"
         ],
         [

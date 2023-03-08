@@ -22,4 +22,4 @@
 #      - wheel
 #      - esphome
 
-  include_tasks: lib/install.yml
+  include_tasks: install.yml

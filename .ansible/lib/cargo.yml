@@ -9,4 +9,4 @@
       - ripgrep
       - tokei
 
-  include_tasks: lib/install.yml
+  include_tasks: install.yml

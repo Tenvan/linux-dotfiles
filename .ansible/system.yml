@@ -1,0 +1,57 @@
+---
+- hosts: localhost
+  connection: local
+  name: "==========> Install Tenvans Dotfiles with AwesomeWm Desktop <=========="
+  become: yes
+
+  #install galaxy roles
+  roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.rpmfusion
+
+  vars:
+    is_dry: false
+    is_rhel_based: false
+    is_arch_based: false
+    is_arcolinux: false
+    is_manjaro: false
+    is_rhel: false
+    is_fedora: false
+    is_centos: false
+
+  tasks:
+    - name: "=====> Initiate <====="
+      include_tasks: lib/inits.yml
+
+    - name: "=====> Pre Installation Prepare <====="
+      include_tasks: lib/prepare.yml
+
+    - name: "=====> Install Development Packages <====="
+      include_tasks: lib/develop.yml
+
+    - name: "=====> Install AwesomeWm Dependencies Packages <====="
+      include_tasks: lib/awesome.yml
+
+    - name: "=====> Install Base System Packages <====="
+      include_tasks: lib/base.yml
+
+    - name: "=====> Install Cargo Apps <====="
+      include_tasks: lib/cargo.yml
+
+    - name: "=====> Install Layout Packages <====="
+      include_tasks: lib/layout-system.yml
+
+    - name: "=====> Install Apps <====="
+      include_tasks: lib/apps.yml
+
+    - name: "=====> Install Vms Packages <====="
+      include_tasks: lib/vm.yml
+
+    - name: "=====> Install Arduino Packages <====="
+      include_tasks: lib/arduino.yml
+
+    - name: "=====> Post Installation Finishing <====="
+      include_tasks: lib/grub.yml
+
+    - name: "=====> Post Installation Finishing <====="
+      include_tasks: lib/finish-system.yml

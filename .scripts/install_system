@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+. "$HOME/.scripts/defs"
+
+install ansible
+if [ $IS_FEDORA_BASED = true ]; then
+	install redhat-lsb-core
+fi
+errorCheck "install ansible"
+
+ansible-galaxy collection install -r ~/.ansible/lib/collections.yml
+errorCheck "install ansible-galaxy collections"
+
+ansible-galaxy role install -r ~/.ansible/lib/roles.yml
+errorCheck "install ansible-galaxy roles"
+
+ansible-playbook ~/.ansible/sudo.yml
+errorCheck "set sudoer rights"
+
+ansible-playbook ~/.ansible/system.yml
+errorCheck "run ansible playbook"

@@ -47,11 +47,7 @@
     pip_init:
       - anybadge
 
-  include_tasks: lib/install.yml
+  include_tasks: install.yml
 
 - name: install JetBrains Toolbox
   shell: 'curl -fsSL https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash'
-
-- name: start JetBrains Toolbox (needed for install completion)
-  become: false
-  command: jetbrains-toolbox &

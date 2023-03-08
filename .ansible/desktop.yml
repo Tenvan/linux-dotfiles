@@ -23,38 +23,15 @@
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
 
-    - name: "=====> Pre Installation Prepare <====="
-      include_tasks: prepare.yml
-
-    - name: "=====> Install Development Packages <====="
-      include_tasks: develop.yml
-
-    - name: "=====> Install AwesomeWm Dependencies Packages <====="
-      include_tasks: awesome.yml
-
-    - name: "=====> Install Base System Packages <====="
-      include_tasks: base.yml
-
-    - name: "=====> Install Cargo Apps <====="
-      include_tasks: cargo.yml
-
     - name: "=====> Install Layout Packages <====="
-      include_tasks: layout.yml
-
-    - name: "=====> Install Apps <====="
-      include_tasks: apps.yml
-
-    - name: "=====> Install Vms Packages <====="
-      include_tasks: vm.yml
-
-    - name: "=====> Install Arduino Packages <====="
-      include_tasks: arduino.yml
+      include_tasks: lib/layout-desktop.yml
 
     - name: "=====> Post Installation Finishing <====="
-      include_tasks: displays.yml
+      include_tasks: lib/displays.yml
+
+    - name: start JetBrains Toolbox (needed for install completion)
+      become: false
+      command: jetbrains-toolbox &
 
     - name: "=====> Post Installation Finishing <====="
-      include_tasks: finish.yml
-
-    - name: "=====> Post Installation Finishing <====="
-      include_tasks: grub.yml
+      include_tasks: lib/finish-desktop.yml

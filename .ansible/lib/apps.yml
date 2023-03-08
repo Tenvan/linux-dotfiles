@@ -93,4 +93,4 @@
       - com.spotify.Client
       - de.haeckerfelix.Shortwave
 
-  include_tasks: lib/install.yml
+  include_tasks: install.yml

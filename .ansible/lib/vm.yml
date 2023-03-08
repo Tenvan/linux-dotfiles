@@ -17,4 +17,4 @@
       - vde2
       - virtio-win
 
-  include_tasks: lib/install.yml
+  include_tasks: install.yml

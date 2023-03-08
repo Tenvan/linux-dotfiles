@@ -335,4 +335,4 @@
     flatpak_init:
       - com.bitwarden.desktop
 
-  include_tasks: lib/install.yml
+  include_tasks: install.yml

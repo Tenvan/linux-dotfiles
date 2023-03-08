@@ -50,7 +50,7 @@
     manjaro_init:
       - manjaro-awesome-settings
 
-  include_tasks: lib/install.yml
+  include_tasks: install.yml
 
 - name: install awesome-wm dependencies on Fedora
   when: is_rhel_based

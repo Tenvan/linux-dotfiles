@@ -1,0 +1,72 @@
+---
+- name: install nvm and enable embedded yarn 1.2x
+  become: false
+  shell:
+    curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+
+- name: set doku header in cronie config
+  become: true
+  ansible.builtin.blockinfile:
+    path: "/var/spool/cron/{{ user_id }}"
+    create: true
+    marker: "# {mark} ANSIBLE MANAGED BLOCK cronie header"
+    block: |
+      # In this section, we will show you different crontab syntax with examples.
+      #
+      # MIN HOUR  DOM MON     DOW  DESCRIPTION
+      #
+      # 10  09    05  02      *    Execute a job on 5th Feb 09:10 AM
+      # *   *     *   *       *    Execute a job on every minutes of every hour of every day
+      # 10  14    *   *       *    Execute a job on every day at 02:10 PM
+      # */5 *     *   *       *    Execute a job on every 5 minutes of every hour of every day
+      # 15  15    *   *       1-4  Execute a job at 03:15 PM on Monday to Friday
+      # 10  05    2   *       *    Execute a job on every month on 2nd date at 05:10 AM
+      # 00  08,11 *   *       *    Execute a job every day at 08:00 AM and 11:00 AM
+      # 00  10-18 *   *       *    Execute a job every day at every hours during 10AM to 06:00 PM
+      # 00  */2   *   *       *    Execute a job at every 2 hours every day
+      # 00  11    *   mar,dec *    Execute a job on March and December at 11:00 AM
+      # @hourly                    Execute a job once an hour
+      # @daily                     Execute a job once a day
+      # @weekly                    Execute a job once a week
+      # @monthly                   Execute a job once a month
+      # @yearly                    Execute a job once a year
+      # @reboot                    Execute the job when the system boots
+    owner: "{{ user_id }}"
+    group: "{{ user_id }}"
+    mode: 'u=rw,g=r,o=r'
+
+#
+# define cron jobs
+# see: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/cron_module.html#ansible-collections-ansible-builtin-cron-module
+#
+- name: set cronie config for dwall
+  ansible.builtin.cron:
+    user: "{{ user_id }}"
+    name: "dwall job for hourly"
+    special_time: hourly
+    job: "env PATH=/usr/local/bin:/usr/bin DISPLAY=:0 DESKTOP_SESSION=awesome DBUS_SESSION_BUS_ADDRESS=\"unix:path=/run/user/1000/bus\" /usr/bin/dwall -s $WALLPAPER_THEME'"
+
+- name: set cronie config for dwall
+  ansible.builtin.cron:
+    user: "{{ user_id }}"
+    name: "dwall job for reboot"
+    special_time: reboot
+    job: "env PATH=/usr/local/bin:/usr/bin DISPLAY=:0 DESKTOP_SESSION=awesome DBUS_SESSION_BUS_ADDRESS=\"unix:path=/run/user/1000/bus\" /usr/bin/dwall -s $WALLPAPER_THEME'"
+
+- name: install ranger DevIcons
+  become: false
+  block:
+    - name: clone devicons
+      git:
+        repo: 'https://github.com/alexanderjeurissen/ranger_devicons'
+        clone: yes
+        depth: 1
+        dest: "{{ home_dir }}/.config/ranger/plugins/ranger_devicons"
+
+- name: install micro plugins
+  become: false
+  shell: |
+    micro -plugin install comment editorconfig joinLines quoter filemanager jump \
+      detectindent go snippets crystal quickfix wc manipulator diff ftoptions \
+      linter literate status monokai-dark gotham-colors nordcolors
+    micro -plugin update
