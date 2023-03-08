@@ -4,11 +4,6 @@
   name: "==========> Install Tenvans Dotfiles with AwesomeWm Desktop <=========="
   become: yes
 
-  #install galaxy roles
-  roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.rpmfusion
-
   vars:
     is_dry: false
     is_rhel_based: false
@@ -23,15 +18,27 @@
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
 
-    - name: "=====> Install Layout Packages <====="
-      include_tasks: lib/layout-desktop.yml
+    - name: "=====> Install AwesomeWm Dependencies Packages <====="
+      include_tasks: lib/awesome.yml
+
+    - name: "=====> Install System Development Packages <====="
+      include_tasks: lib/develop-workstation.yml
+
+    - name: "=====> Install Desktop Base Packages <====="
+      include_tasks: lib/base-workstation.yml
+
+    - name: "=====> Install Apps <====="
+      include_tasks: lib/apps.yml
 
     - name: "=====> Post Installation Finishing <====="
       include_tasks: lib/displays.yml
 
+    - name: "=====> Install Arduino Packages <====="
+      include_tasks: lib/arduino.yml
+
+    - name: "=====> Post Installation Finishing <====="
+      include_tasks: lib/finish-workstation.yml
+
     - name: start JetBrains Toolbox (needed for install completion)
       become: false
       command: jetbrains-toolbox &
-
-    - name: "=====> Post Installation Finishing <====="
-      include_tasks: lib/finish-desktop.yml

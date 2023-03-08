@@ -1,4 +1,3 @@
----
 - name: DefineLayoutPackages
   vars:
     global_init:
@@ -125,30 +124,50 @@
 
   include_tasks: install.yml
 
-- name: Install Nerd Fonts
-  become: false
+# install themes
+- name: install some gtk themes
   block:
-    - name: create build directory
-      file:
-        path: "{{ build_dir }}"
-        state: directory
-    - name: clone nerd-fonts
+    - name: Clone Valyrian repository
       git:
-        repo: 'https://github.com/ryanoasis/nerd-fonts.git'
+        repo: 'https://github.com/rtlewis1/GTK.git'
+        single_branch: true
         clone: yes
-        depth: 1
-        dest: "{{ build_dir }}/nerd-fonts"
-    - name: install nerd-fonts
-      become: true
-      shell: |
-        ./install.sh
-        fc-cache -f -v
-      args:
-        executable: /bin/bash
-        chdir: "{{ build_dir }}/nerd-fonts"
-  when: false
+        version: VALYRIAN
+        dest: "{{ build_dir }}/themes/Valyrian"
 
-# twitter emoji font
-#  sudo ln -sf /usr/share/fontconfig/conf.avail/75-twemoji.conf /etc/fonts/conf.d/75-twemoji.conf
-# arduino and cnc
+    - name: Synchronization Valyrian themes
+      ansible.posix.synchronize:
+        src: "{{ build_dir }}/themes/Valyrian/"
+        dest: "{{ themes_dir }}/"
+        owner: true
+        rsync_opts:
+          - "--chown={{ user_id }}:{{ user_id }}"
+          - "--exclude=.git"
+          - "--exclude=README.md"
+          - "--exclude=VALYRIAN.conf"
+          - "--include=VALYRIAN*/*"
 
+    - name: Clone Catppuccin repository
+      git:
+        repo: 'https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme.git'
+        single_branch: true
+        clone: yes
+        dest: "{{ build_dir }}/themes/Catppuccin"
+
+    - name: Synchronization Catppuccin themes
+      ansible.posix.synchronize:
+        src: "{{ build_dir }}/themes/Catppuccin/themes/"
+        dest: "{{ themes_dir }}/"
+        owner: true
+        rsync_opts:
+          - "--chown={{ user_id }}:{{ user_id }}"
+          - "--exclude=.git"
+          - "--exclude=README.md"
+          - "--exclude=VALYRIAN.conf"
+          - "--include=VALYRIAN*/*"
+
+- name: Synchronization themes in /usr/share
+  become: true
+  ansible.posix.synchronize:
+    src: "{{ themes_dir }}/"
+    dest: "/usr/share/themes/"

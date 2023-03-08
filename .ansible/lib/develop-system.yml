@@ -19,28 +19,15 @@
 
     archlinux_based_init:
       - base-devel
-      - gitflow-avh
-      - gradle
-      - jdk-openjdk
-      - jdk17-openjdk
-      - nsis
-      - svn
 
       # DotNet/Mono Setup
       - dotnet-sdk
       - mono
       - mono-msbuild
-      - pass
-      - shellcheck
 
     rhel_based_init:
-      #	sudo dnf copr enable elegos/gitflow -y
-      - subversion
-      - mingw32-nsis
-
       # DotNet/Mono Setup
       - mono-complete
-      - gitflow
       - dotnet-sdk-6.0
       - dotnet-sdk-7.0
 
@@ -48,6 +35,3 @@
       - anybadge
 
   include_tasks: install.yml
-
-- name: install JetBrains Toolbox
-  shell: 'curl -fsSL https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash'

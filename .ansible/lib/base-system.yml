@@ -1,0 +1,128 @@
+---
+- name: DefineBaseSystemPackages
+  vars:
+    global_init:
+      # global
+      - acpi
+      - acpid
+      - arj
+      - ark
+      - at
+      - bpytop
+      - clamav
+      - cronie
+      - curl
+      - dex
+      - dnsutils
+      - dpkg
+      - exa
+      - fastfetch
+      - figlet
+      - fzf
+      - grc
+      - gvfs-smb
+      - htop
+      - hwinfo
+      - iftop
+      - iotop
+      - iptraf-ng
+      - jq
+      - lsd
+      - multitail
+      - numlockx
+      - openconnect
+      - openssh
+      - p7zip
+      - python-mutagen
+      - stow
+      - sysstat
+      - time
+      - timeshift
+      - toilet
+      - unclutter
+      - unrar
+      - upower
+      - zsh
+
+      # system tools
+      - cockpit
+      - cockpit-machines
+      - cockpit-networkmanager
+      - cockpit-packagekit
+      - cockpit-podman
+      - cockpit-storaged
+      - cockpit-system
+      - subscription-manager-cockpit
+
+      # podman + docker
+      - docker
+      - podman
+      - pcp-pmda-podman
+      - podman-tui
+
+      # ansible tools
+      - ansible-collection-containers-podman
+
+      # Python libs
+      - python
+      - python-pip
+
+      # installation of important editors
+      - micro
+
+      # file manager
+      - mc
+      - ranger
+
+      # useful tools for ranger
+      - elinks
+      - highlight
+      - highlight-gui
+      - libcaca
+      - lynx
+      - mediainfo
+      - odt2txt
+      - poppler
+      - w3m
+
+      # language files
+      - man-pages-de
+
+    archlinux_based_init:
+      # global
+      - base-devel
+
+      # system tools
+      - grub-btrfs
+      - update-grub
+
+      # useful tools for ranger
+      - atool
+      - atool-desktop
+      - ffmpegthumbnailer
+      - imagemagick
+      - ueberzug
+
+      # system packages
+      - hardinfo
+      - networkmanager
+      - networkmanager-openconnect
+      - powershell-bin
+      - shell-color-scripts
+
+    rhel_based_init:
+
+      # installation of important editors
+      - code
+
+    manjaro_init:
+      - samba
+      - manjaro-settings-samba
+
+    cargo_init:
+      - bat
+      - fd-find
+      - procs
+      - ripgrep
+
+  include_tasks: install.yml

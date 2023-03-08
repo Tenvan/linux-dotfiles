@@ -10,6 +10,11 @@
   set_fact:
     home_dir: "{{ lookup('ansible.builtin.env', 'HOME') }}"
 
+- name: store custom dir
+  become: false
+  set_fact:
+    custom_dir: "{{ home_dir }}/.custom"
+
 - name: store build dir
   become: false
   set_fact:
@@ -61,16 +66,6 @@
   set_fact:
     is_centos: true
   when: ansible_distribution.lower() == 'centos'
-
-# Compile Awesome on Fedora Systems
-- name: Install initial dependencies
-  include_tasks: base.yml
-  when: false
-
-# Compile Awesome on Fedora Systems
-- name: Install awesome-wm dependencies
-  include_tasks: awesome.yml
-  when: false
 
 - block:
     - debug: var=ansible_facts

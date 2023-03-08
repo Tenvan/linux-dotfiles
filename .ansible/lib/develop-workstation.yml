@@ -1,0 +1,26 @@
+---
+- name: DefineDevelopmentPackages
+  vars:
+    archlinux_based_init:
+      - gitflow-avh
+      - gradle
+      - jdk-openjdk
+      - jdk17-openjdk
+      - nsis
+      - svn
+
+      # DotNet/Mono Setup
+      - pass
+      - shellcheck
+
+    rhel_based_init:
+      - subversion
+      - mingw32-nsis
+
+      # DotNet/Mono Setup
+      - gitflow
+
+  include_tasks: install.yml
+
+- name: install JetBrains Toolbox
+  shell: 'curl -fsSL https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash'

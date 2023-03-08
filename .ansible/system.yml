@@ -26,29 +26,17 @@
     - name: "=====> Pre Installation Prepare <====="
       include_tasks: lib/prepare.yml
 
-    - name: "=====> Install Development Packages <====="
-      include_tasks: lib/develop.yml
+    - name: "=====> Install System Development Packages <====="
+      include_tasks: lib/develop-system.yml
 
-    - name: "=====> Install AwesomeWm Dependencies Packages <====="
-      include_tasks: lib/awesome.yml
-
-    - name: "=====> Install Base System Packages <====="
-      include_tasks: lib/base.yml
-
-    - name: "=====> Install Cargo Apps <====="
-      include_tasks: lib/cargo.yml
+    - name: "=====> Install System Base Packages <====="
+      include_tasks: lib/base-system.yml
 
     - name: "=====> Install Layout Packages <====="
-      include_tasks: lib/layout-system.yml
-
-    - name: "=====> Install Apps <====="
-      include_tasks: lib/apps.yml
+      include_tasks: lib/layout-user.yml
 
     - name: "=====> Install Vms Packages <====="
       include_tasks: lib/vm.yml
-
-    - name: "=====> Install Arduino Packages <====="
-      include_tasks: lib/arduino.yml
 
     - name: "=====> Post Installation Finishing <====="
       include_tasks: lib/grub.yml

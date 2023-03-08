@@ -3,74 +3,27 @@
   vars:
     global_init:
       # global
-      - acpi
-      - acpid
       - ansible-lint
       - arandr
-      - arj
-      - ark
-      - at
-      - bat
       - blueman
-      - bpytop
       - brightnessctl
-      - clamav
       - clamtk
       - copyq
-      - cronie
-      - curl
-      - dex
-      - dnsutils
-      - docker
-      - docker-compose
-      - dpkg
-      - exa
-      - fastfetch
       - feh
-      - figlet
       - flameshot
-      - fzf
-      - glances
       - gnome-keyring
       - gparted
-      - gpick
-      - grc
-      - gvfs-smb
-      - htop
-      - hwinfo
-      - iftop
       - inotify-tools
-      - iotop
-      - iptraf-ng
-      - jq
       - kitty
       - kteatime
       - libgnome-keyring
       - libsecret
       - light
-      - lsd
-      - lxsession
       - mpv
-      - multitail
-      - ncmpcpp
-      - nitrogen
-      - numlockx
-      - openconnect
-      - openssh
-      - p7zip
       - picom
-      - python-mutagen
       - qbittorrent
       - rofi
       - scrot
-      - stow
-      - sysstat
-      - time
-      - timeshift
-      - toilet
-      - unclutter
-      - unrar
-      - upower
       - wmctrl
       - xautolock
       - xbindkeys
@@ -86,29 +39,6 @@
 
       # system tools
       - grub-customizer
-      - cockpit
-      - cockpit-machines
-      - cockpit-networkmanager
-      - cockpit-packagekit
-      - cockpit-podman
-      - cockpit-storaged
-      - cockpit-system
-      - subscription-manager-cockpit
-
-      # podman
-      - podman
-      - pcp-pmda-podman
-      - podman-tui
-
-      # ansible tools
-      - ansible-collection-containers-podman
-
-      # Python libs
-      - python
-      - python-pip
-
-      # installation of important editors
-      - micro
 
       # utils for editors
       - bash-completion
@@ -125,21 +55,7 @@
       - gnome-calculator
       - network-manager-applet
       - qt5ct
-
-      # file manager
-      - mc
-      - ranger
-
-      # useful tools for ranger
-      - elinks
-      - highlight
-      - highlight-gui
-      - libcaca
-      - lynx
-      - mediainfo
-      - odt2txt
-      - poppler
-      - w3m
+      - qt6ct
 
       # Nemo
       - cinnamon-translations
@@ -178,7 +94,6 @@
       - shellcheck
 
       # language files
-      - man-pages-de
       - aspell-de
       - mythes-de
 
@@ -187,25 +102,12 @@
       - ansible-language-server
       - glfw-x11
 
-      - base-devel
-
       # system tools
-      - grub-btrfs
       - partitionmanager
-      - update-grub
+      - docker-compose
 
       # utilities from gnome
       - gnome-system-tools
-
-      # useful tools for ranger
-      - atool
-      - atool-desktop
-      - ffmpegthumbnailer
-      - imagemagick
-      - ueberzug
-
-      # file manager
-      - ranger_devicons-git
 
       # Nemo
       - nemo-media-columns
@@ -228,20 +130,15 @@
 
       # system packages
       - eject-applet
-      - hardinfo
       - ibus-daemon
       - luacheck
-      - networkmanager
-      - networkmanager-openconnect
       - oh-my-posh-bin
-      - packagekit
       - picom
       - pm-utils
       - powershell-bin
       - shell-color-scripts
       - system-monitoring-center
       - watchexec
-      - wezterm
       - xorg-server-xephyr
       - xorg-xbacklight
       - xorg-xfd
@@ -262,27 +159,23 @@
       - sp
       - tvolnoti
 
-      # lightdm config
-      - lightdm
-      - lightdm-settings
-      - lightdm-gtk-greeter-settings
-      - lightdm-gtk-greeter
-      - lightdm-slick-greeter
-
       # language files
       - languagetool
 
     rhel_based_init:
-      - i-nex
       - xset
 
       # installation of important editors
-      - micro
       - code
 
       # system tools
       - kde-partitionmanager
-      - inotify-tools
+
+      # sound setup
+      - alsa-utils
+      - paman
+      - pasystray
+      - pavucontrol
 
       # utilities from gnome
       - gnome-system-log
@@ -293,9 +186,6 @@
       - foomatic
       - foomatic-db
       - foomatic-db-ppds
-
-      # file manager
-      - vim-devicons
 
     arcolinux_init:
       - arcolinux-config-awesome-git
@@ -314,9 +204,6 @@
       - rofi-theme-fonts
 
     manjaro_init:
-      - samba
-      - manjaro-settings-samba
-
       # sound setup
       - pulseaudio-alsa
       - pulseaudio-bluetooth
@@ -334,5 +221,9 @@
 
     flatpak_init:
       - com.bitwarden.desktop
+
+    cargo_init:
+      - git-delta
+      - tokei
 
   include_tasks: install.yml
