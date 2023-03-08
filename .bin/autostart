@@ -8,10 +8,10 @@ rm -f ~/.config/awesome/customs
 ln -s -f ~/.custom ~/.config/awesome/customs
 
 # init re/startup picom
-# killall -q picom
-# while pgrep -u $UID -x "picom" >/dev/null; do sleep 1; done
-# 
-# picom-toggle-awesome
+killall -q picom
+while pgrep -u $UID -x "picom" >/dev/null; do sleep 1; done
+
+picom-toggle-awesome
 
 #==============
 # System tools

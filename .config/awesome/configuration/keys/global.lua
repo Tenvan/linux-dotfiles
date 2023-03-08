@@ -679,8 +679,8 @@ local global_keys = awful.util.table.join(
     description = 'Xprop',
     group = keys.kgSystem
   }),
-  awful.key({ modkey, controlkey }, 't', function()
-    awful.spawn.with_shell('sh ~/.scripts/picom-toggle-awesome.sh')
+  awful.key({ modkey, controlkey }, 'p', function()
+    awful.spawn('picom-toggle-awesome')
   end, {
     description = 'Picom Toggle',
     group = keys.kgSystem

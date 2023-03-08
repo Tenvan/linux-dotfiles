@@ -49,8 +49,3 @@ do
 done
 
 csource "$CUSTOMS/.profile"
-
-
-# Added by Toolbox App
-export PATH="$PATH:/home/stira/.local/share/JetBrains/Toolbox/scripts"
-

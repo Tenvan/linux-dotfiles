@@ -3,6 +3,7 @@
 # initialize a XWin session #
 #############################
 export DOT="$DOT;.xsession"
+export errfile="$HOME/.xsession-errors"
 
 . ~/.scripts/defs
 
@@ -15,4 +16,4 @@ fi
 # load x-environemnt
 csource "$HOME/.xprofile"
 
-exec awesome
+exec /usr/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr

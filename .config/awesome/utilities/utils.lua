@@ -12,6 +12,23 @@ local function makeColorTransparent(colorkey, opacity)
   return transColor
 end
 
+local function getScreen(screenId)
+  local result = screen[1]
+  if screen[2] ~= nil then
+    result = screen[screenId]
+  end
+  
+  log('Detected Screen: ' .. tostring(screenId) .. ' -> ' .. tostring(result.index))
+  return result
+end
+
+local function getScreenIndex(screen)
+  local result = getScreen(screen)
+  return result.index
+end
+
 return {
-  makeColorTransparent = makeColorTransparent
+  makeColorTransparent = makeColorTransparent,
+  getScreenIndex = getScreenIndex,
+  getScreen = getScreen
 }

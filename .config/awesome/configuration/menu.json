@@ -107,8 +107,8 @@
             "$TERMINAL --hold --title Sys:Install journalctl -f"
         ],
         [
-            "📛 xsession Errors (lightdm)",
-            "$TERMINAL --hold --title Sys:XSessionError multitail -cs -i $HOME/.xsession-errors"
+            "📛 awesome error log",
+            "$TERMINAL --hold --title Sys:XSessionError multitail -cs -i $HOME/.cache/awesome/stderr"
         ],
         [
             "📛 User Journal",

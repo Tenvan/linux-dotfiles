@@ -8,10 +8,10 @@ local beautiful = require('beautiful')
 local client_keys = require('configuration.client.keys')
 local client_buttons = require('configuration.client.buttons')
 local apps = require('configuration.apps')
+local getScreen = require('utilities.utils').getScreen
 
--- TODO screen 2 ermitteln
-local screen1 = screen[1]
-local screen2 = screen[1]
+local screen1 = getScreen(1)
+local screen2 = getScreen(2)
 
 ruled.client.connect_signal('request::rules', function()
   -- All clients will match this rule.
@@ -136,8 +136,8 @@ ruled.client.connect_signal('request::rules', function()
       class = { 'firefox', 'Tor Browser', 'discord', 'Chromium', 'Google-chrome', 'TelegramDesktop' }
     },
     properties = {
-      screen = (screen2 or screen1).index,
-      tag = (screen2 or screen1).tags[1],
+      screen = screen2.index,
+      tag = screen2.tags[1],
       maximized = false,
       floating = false
     }
@@ -161,7 +161,7 @@ ruled.client.connect_signal('request::rules', function()
       instance = apps.default.web_browser .. ' .*'
     },
     properties = {
-      screen = (screen2 or screen1).index,
+      screen = screen2.index,
     }
   }
 
@@ -171,7 +171,7 @@ ruled.client.connect_signal('request::rules', function()
       name = { 'LibreOffice', 'libreoffice' }
     },
     properties = {
-      screen = screen1,
+      screen = screen1.index,
       tag = screen1.tags[3],
       maximized = false,
       floating = false
@@ -211,8 +211,8 @@ ruled.client.connect_signal('request::rules', function()
       class = { 'vlc', 'Spotify', 'shortwave', 'YouTube Music' }
     },
     properties = {
-      screen = (screen2 or screen1).index,
-      tag = (screen2 or screen1).tags[5],
+      screen = screen2.index,
+      tag = screen2.tags[5],
       switch_to_tags = true,
       floating = false
     }
@@ -321,8 +321,8 @@ ruled.client.connect_signal('request::rules', function()
       name = { 'OT.:*' },
     },
     properties = {
-      screen = (screen2 or screen1).index,
-      tag = (screen2 or screen1).tags[2],
+      screen = screen2.index,
+      tag = screen2.tags[2],
       switch_to_tags = true,
       maximized = false,
       floating = false
@@ -335,8 +335,8 @@ ruled.client.connect_signal('request::rules', function()
       name = { 'OTW:*' }
     },
     properties = {
-      screen = (screen2 or screen1).index,
-      tag = (screen2 or screen1).tags[3],
+      screen = screen2.index,
+      tag = screen2.tags[3],
     }
   }
 
@@ -347,8 +347,8 @@ ruled.client.connect_signal('request::rules', function()
       class = { 'Gnome-system-monitor', 'System-monitoring-center' }
     },
     properties = {
-      screen = (screen2 or screen1).index,
-      tag = (screen2 or screen1).tags[9],
+      screen = screen2.index,
+      tag = screen2.tags[9],
       switch_to_tags = true,
       maximized = false,
       floating = false
@@ -396,8 +396,8 @@ ruled.client.connect_signal('request::rules', function()
       class = { 'teams-for-linux', 'Microsoft Teams*' },
     },
     properties = {
-      screen = (screen2 or screen1).index,
-      tag = (screen2 or screen1).tags[4],
+      screen = screen2.index,
+      tag = screen2.tags[4],
       switch_to_tags = true,
       maximized = false,
       floating = false,
@@ -512,7 +512,7 @@ client.connect_signal('property::class', function(c)
       end
     else
       -- Move the instance to specified tag on this screen
-      local t = awful.tag.find_by_name((screen2 or screen1), '5')
+      local t = awful.tag.find_by_name(screen2, '5')
       c:move_to_tag(t)
       c:move_to_screen(2)
 
