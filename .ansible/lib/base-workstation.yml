@@ -40,6 +40,7 @@
 
       # system tools
       - grub-customizer
+      - ponymix
 
       # utils for editors
       - bash-completion
@@ -155,7 +156,6 @@
       - pasystray
       - pavucontrol
       - pnmixer
-      - ponymix
       - sound-theme-smooth
       - sp
       - tvolnoti

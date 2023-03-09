@@ -34,6 +34,10 @@
   community.general.copr:
     name: peterwu/rendezvous
 
+- name: Enable ponymix
+  community.general.copr:
+    name: en4aew/desktop-tools
+
 ##########################
 # add some flatpak repos #
 ##########################

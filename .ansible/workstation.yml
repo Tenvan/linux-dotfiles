@@ -18,6 +18,9 @@
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
 
+    - name: "=====> Pre Installation Prepare <====="
+      include_tasks: lib/prepare.yml
+
     - name: "=====> Install AwesomeWm Dependencies Packages <====="
       include_tasks: lib/awesome.yml
 

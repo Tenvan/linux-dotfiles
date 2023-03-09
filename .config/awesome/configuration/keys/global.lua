@@ -357,7 +357,7 @@ local global_keys = awful.util.table.join(
   -- ░█▀█░█░░░▀▀█░█▀█░░░▀▄▀░█░█░█░░░█░█░█░█░█▀▀░░░█░░░█░█░█░█░░█░░█▀▄░█░█░█░░
   -- ░▀░▀░▀▀▀░▀▀▀░▀░▀░░░░▀░░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░░░▀▀▀░▀▀▀░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀
   awful.key({}, 'XF86AudioRaiseVolume', function()
-    awful.spawn('amixer -D pulse sset Master 5%+', false)
+    awful.spawn('ponymix increase 5%', false)
     emit('widget::volume')
     emit('module::volume_osd:show', true)
   end, {
@@ -365,7 +365,7 @@ local global_keys = awful.util.table.join(
     group = keys.kgHotkeys
   }),
   awful.key({ modkey, altkey }, 'KP_Add', function()
-    awful.spawn('amixer -D pulse sset Master 5%+', false)
+    awful.spawn('ponymix increase 5%', false)
     emit('widget::volume')
     emit('module::volume_osd:show', true)
   end, {
@@ -373,7 +373,7 @@ local global_keys = awful.util.table.join(
     group = keys.kgSound
   }),
   awful.key({}, 'XF86AudioLowerVolume', function()
-    awful.spawn('amixer -D pulse sset Master 5%-', false)
+    awful.spawn('ponymix decrease 5%', false)
     emit('widget::volume')
     emit('module::volume_osd:show', true)
   end, {
@@ -381,7 +381,7 @@ local global_keys = awful.util.table.join(
     group = keys.kgHotkeys
   }),
   awful.key({ modkey, altkey }, 'KP_Subtract', function()
-    awful.spawn('amixer -D pulse sset Master 5%-', false)
+    awful.spawn('ponymix decrease 5%', false)
     emit('widget::volume')
     emit('module::volume_osd:show', true)
   end, {
@@ -389,7 +389,7 @@ local global_keys = awful.util.table.join(
     group = keys.kgSound
   }),
   awful.key({}, 'XF86AudioMute', function()
-    awful.spawn('amixer -D pulse set Master 1+ toggle', false)
+    awful.spawn('amixer set Master 1+ toggle', false)
     emit('widget::volume')
     emit('module::volume_osd:show', true)
   end, {
@@ -397,7 +397,7 @@ local global_keys = awful.util.table.join(
     group = keys.kgHotkeys
   }),
   awful.key({ modkey, altkey }, 'KP_Multiply', function()
-    awful.spawn('amixer -D pulse set Master 1+ toggle', false)
+    awful.spawn('amixer set Master 1+ toggle', false)
     emit('widget::volume')
     emit('module::volume_osd:show', true)
   end, {

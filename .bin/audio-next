@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-. $SCRIPTS/defs
+
+. ~/.scripts/defs
 . ~/.bin/audio-test
 
 ponymix set-default --sink -d "$SINK_NEXT"

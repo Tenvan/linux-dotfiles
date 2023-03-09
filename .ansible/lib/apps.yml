@@ -92,5 +92,6 @@
       # Media
       - com.spotify.Client
       - de.haeckerfelix.Shortwave
+      - org.photoqt.PhotoQt
 
   include_tasks: install.yml

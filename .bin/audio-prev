@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. ~/.script/defs
+. ~/.scripts/defs
 . ~/.bin/audio-test
 
 ponymix set-default --sink -d "$SINK_PREV"
