@@ -1,13 +1,15 @@
-local wibox = require('wibox')
-local gears = require('gears')
-local awful = require('awful')
-local beautiful = require('beautiful')
-local spawn = awful.spawn
-local dpi = beautiful.xresources.apply_dpi
-local icons = require('theme.icons')
+local wibox               = require('wibox')
+local gears               = require('gears')
+local awful               = require('awful')
+local beautiful           = require('beautiful')
+local spawn               = awful.spawn
+local dpi                 = beautiful.xresources.apply_dpi
+local icons               = require('theme.icons')
 local clickable_container = require('widget.clickable-container')
 
-local icon = wibox.widget {
+local sound               = require('utilities.sound')
+
+local icon                = wibox.widget {
 	layout = wibox.layout.align.vertical,
 	expand = 'none',
 	nil,
@@ -19,7 +21,7 @@ local icon = wibox.widget {
 	nil
 }
 
-local action_level = wibox.widget {
+local action_level        = wibox.widget {
 	{
 		icon,
 		widget = clickable_container,
@@ -29,7 +31,7 @@ local action_level = wibox.widget {
 	widget = wibox.container.background
 }
 
-local slider = wibox.widget {
+local slider              = wibox.widget {
 	nil,
 	{
 		id                  = 'volume_slider',
@@ -54,16 +56,10 @@ local slider = wibox.widget {
 
 local volume_slider = slider.volume_slider
 
-volume_slider:connect_signal(
-	'property::value',
+volume_slider:connect_signal('property::value',
 	function()
 		local volume_level = volume_slider:get_value()
-
-		spawn('amixer -D pulse sset Master ' ..
-			volume_level .. '%',
-			false
-		)
-
+		sound.setVol(volume_level)
 		-- Update volume osd
 		emit('module::volume_osd', volume_level)
 	end
@@ -101,9 +97,12 @@ volume_slider:buttons(
 
 local update_slider = function()
 	awful.spawn.easy_async_with_shell(
-		[[bash -c "amixer -D pulse sget Master"]],
+		[[bash -c "ponymix get-volume"]],
 		function(stdout)
-			local volume = string.match(stdout, '(%d?%d?%d)%%') or 0
+			-- local volume = string.match(stdout, '(%d?%d?%d)%%') or 0
+			local volume = stdout or 0
+			log('slider get new volume:' .. volume)
+			log('stdout:' .. stdout)
 			volume_slider:set_value(tonumber(volume))
 		end
 	)
@@ -164,7 +163,6 @@ local volume_setting = wibox.widget {
 		slider,
 		spacing = dpi(24),
 		layout = wibox.layout.fixed.horizontal
-
 	},
 	left = dpi(24),
 	right = dpi(24),

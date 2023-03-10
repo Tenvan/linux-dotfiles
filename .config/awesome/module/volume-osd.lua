@@ -1,16 +1,15 @@
-local log = require('utilities.debug').log
-local dump = require('utilities.debug').dump
 log('Enter Module => ' .. ...)
 
-local awful = require('awful')
-local gears = require('gears')
-local wibox = require('wibox')
-local beautiful = require('beautiful')
-local dpi = beautiful.xresources.apply_dpi
+local awful               = require('awful')
+local gears               = require('gears')
+local wibox               = require('wibox')
+local beautiful           = require('beautiful')
+local dpi                 = beautiful.xresources.apply_dpi
 local clickable_container = require('widget.clickable-container')
-local icons = require('theme.icons')
+local icons               = require('theme.icons')
+local sound               = require('utilities.sound')
 
-local osd_header = wibox.widget {
+local osd_header          = wibox.widget {
   text = 'Volume',
   font = beautiful.font_bold,
   align = 'left',
@@ -18,7 +17,7 @@ local osd_header = wibox.widget {
   widget = wibox.widget.textbox
 }
 
-local osd_value = wibox.widget {
+local osd_value           = wibox.widget {
   text = '0%',
   font = beautiful.font_bold,
   align = 'center',
@@ -26,7 +25,7 @@ local osd_value = wibox.widget {
   widget = wibox.widget.textbox
 }
 
-local slider_osd = wibox.widget {
+local slider_osd          = wibox.widget {
   nil,
   {
     id = 'vol_osd_slider',
@@ -47,13 +46,13 @@ local slider_osd = wibox.widget {
   layout = wibox.layout.align.vertical
 }
 
-local vol_osd_slider = slider_osd.vol_osd_slider
+local vol_osd_slider      = slider_osd.vol_osd_slider
 
 vol_osd_slider:connect_signal(
   'property::value',
   function()
     local volume_level = vol_osd_slider:get_value()
-    awful.spawn('amixer -D pulse sset Master ' .. volume_level .. '%', false)
+    sound.setVol(volume_level)
 
     -- Update textbox widget text
     osd_value.text = volume_level .. '%'
@@ -83,9 +82,10 @@ vol_osd_slider:connect_signal(
 
 -- The emit will come from the volume-slider
 connect(
-  'module::volume_osd',
+  'service::volume',
   function(volume)
     vol_osd_slider:set_value(volume)
+    emit('module::volume_osd:show', true)
   end
 )
 

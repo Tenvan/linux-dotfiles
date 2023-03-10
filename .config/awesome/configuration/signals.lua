@@ -4,7 +4,7 @@ local awful = require('awful')
 local beautiful = require('beautiful')
 
 local notify = require('utilities.notify')
-local sound = require('utilities.sound')
+local sound = require('utilities.sound').sound
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal('property::geometry', function(s)

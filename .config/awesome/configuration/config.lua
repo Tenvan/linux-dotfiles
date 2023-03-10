@@ -1,7 +1,7 @@
 local config = {
   debug_mode = true,
   trace_mode = false,
-  sounds = false,
+  sounds = true,
   widget = {
     email = {
       -- Email address

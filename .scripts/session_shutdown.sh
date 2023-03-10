@@ -2,9 +2,7 @@
 . $SCRIPTS/defs
 
 notify-send -t 3000 -u critical System "Rechner wird herunter gefahren..."
-sound shutdown &
-
+playsound shutdown &
 prepare_sessiondown
-
 sudo systemctl poweroff
 # shutdown --poweroff 0

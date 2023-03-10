@@ -1,8 +1,9 @@
 local awesome, root = awesome, root
-local gears = require('gears')
-local awful = require('awful')
+local gears         = require('gears')
+local awful         = require('awful')
+local sound         = require('utilities.sound')
 
-local mainmenu = require('configuration.menu').mainmenu
+local mainmenu      = require('configuration.menu').mainmenu
 
 root.buttons(
   gears.table.join(
@@ -33,12 +34,8 @@ root.buttons(
       emit('module::brightness_osd:show', true)
     end),
     awful.button({ 'Control' }, 4, function()
-      awful.spawn('amixer -D pulse sset Master 5%+', false)
-      emit('widget::volume')
-      emit('module::volume_osd:show', true)
+      sound.increaseVol(5)
     end),
     awful.button({ 'Control' }, 5, function()
-      awful.spawn('amixer -D pulse sset Master 5%-', false)
-      emit('widget::volume')
-      emit('module::volume_osd:show', true)
+      sound.decreaseVol(5)
     end)))

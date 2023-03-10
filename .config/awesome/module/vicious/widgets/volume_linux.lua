@@ -53,7 +53,7 @@ end
 function volume_linux.async(format, warg, callback)
     if not warg then return callback{} end
     if type(warg) ~= "table" then warg = { warg } end
-    spawn.easy_async("amixer -M get " .. table.concat(warg, " "),
+    spawn.easy_async("ponymix get-volume",
                      function (...) callback(parse(...)) end)
 end
 -- }}}

@@ -1,0 +1,71 @@
+#!/usr/bin/env zsh
+# Sound themes
+
+# freedesktop
+freedesktop=/usr/share/sounds/freedesktop/stereo
+# freedesktop
+mint=/usr/share/sounds/LinuxMint/stereo
+# freedesktop
+smooth=/usr/share/sounds/Smooth/stereo
+# Enchanted
+enchanted=~/.local/share/sounds/Enchanted/stereo
+# Oxygen
+oxygen=/usr/share/sounds
+# macOS
+mac=~/.local/share/sounds/macOS_Big_Sur_Sounds
+
+case $1 in
+    
+    "alarm-clock") sound=$freedesktop/alarm-clock-elapsed.oga;;
+    "audio-volume-change") sound=$freedesktop/audio-volume-change.oga;;
+    "audio-volume-dec") sound=$freedesktop/audio-volume-change.oga;;
+    "audio-volume-inc") sound=$freedesktop/audio-volume-change.oga;;
+    "bell") sound=$enchanted/bell.ogg ;;
+    "button-pressed") sound=$enchanted/button-pressed.ogg ;;
+    "button-released") sound=$enchanted/button-released.ogg ;;
+    "camera-shutter") sound=$freedesktop/camera-shutter.oga;;
+    "complete") sound=$freedesktop/complete.oga;;
+    "count-down") sound=$enchanted/count-down.ogg;;
+    "desktop-login") sound=$oxygen/desktop-login.oga;;
+    "desktop-logout") sound=$oxygen/service-logout.oga;;
+    "device-added") sound=$freedesktop/device-added.oga;;
+    "device-removed") sound=$freedesktop/device-removed.oga;;
+    "dialog-error") sound=$freedesktop/dialog-error.oga;;
+    "dialog-information") sound=$freedesktop/dialog-information.ogg;;
+    "dialog-question") sound=$oxygen/dialog-question.oga;;
+    "dialog-warning") sound=$freedesktop/dialog-warning.ogg;;
+    "error") sound=$freedesktop/bell.ogg;;
+    "lock-screen") sound=$freedesktop/service-logout.oga;;
+    "menu-popdown") sound=$mac/Blow.wav;;
+    "menu-popup") sound=$mac/Morse.wav;;
+    "menu-replace") sound=$enchanted/menu-replace.ogg;;
+    "notebook-tab-changed") sound=$enchanted/notebook-tab-changed.ogg;;
+    "notify-error") sound=$oxygen/dialog-error.oga;;
+    "notify") sound=$enchanted/dialog-information.ogg;;
+    "reboot") sound=$oxygen/service-logout.oga;;
+    "screen-capture") sound=$freedesktop/camera-shutter.oga;;
+    "session-hibernate") sound=$oxygen/service-logout.oga;;
+    "session-lock") sound=$enchanted/count-down.ogg;;
+    "session-logout") sound=$oxygen/service-logout.oga;;
+    "service-login") sound=$freedesktop/service-login.oga;;
+    "service-logout") sound=$freedesktop/service-logout.oga;;
+    "shutdown") sound=$oxygen/service-logout.oga;;
+    "ssession-switch-user") sound=$oxygen/service-logout.oga;;
+    "suspend") sound=$oxygen/service-logout.oga;;
+    "system-ready") sound=$oxygen/system-ready.oga;;
+    "trash-empty") sound=$freedesktop/trash-empty.ogg;;
+    "window-attention-active") sound=$oxygen/Oxygen-Window-Shade-Up.ogg;;
+    "window-attention-inactive") sound=$oxygen/Oxygen-Window-Shade-Down.ogg;;
+    "window-close") sound=$enchanted/window-close.ogg;;
+    "window-maximized") sound=$enchanted/window-maximized.ogg;;
+    "window-minimized") sound=$enchanted/window-minimized.ogg;;
+    "window-slide") sound=$mint/window-slide.ogg;;
+    "window-switch") sound=$enchanted/window-switch.ogg;;
+    "window-unmaximized") sound=$enchanted/window-unmaximized.ogg;;
+    "window-unminimized") sound=$enchanted/window-unminimized.ogg;;
+    *) sound=$enchanted/dialog-error.ogg;;
+esac
+
+# echo "Play: $sound"
+# notify-send -t 1000 Sound $sound
+paplay $sound

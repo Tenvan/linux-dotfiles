@@ -103,12 +103,8 @@
             "gksudo gnome-logs"
         ],
         [
-            "📛 System Logs (Console)",
-            "$TERMINAL --hold --title Sys:Install journalctl -f"
-        ],
-        [
             "📛 awesome error log",
-            "$TERMINAL --hold --title Sys:XSessionError multitail -cs -i $HOME/.cache/awesome/stderr"
+            "$TERMINAL --hold --title Sys:XSessionError multitail -cs -i $HOME/.xsession-stderr"
         ],
         [
             "📛 User Journal",

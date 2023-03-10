@@ -6,7 +6,7 @@ local awful = require('awful')
 local beautiful = require('beautiful')
 
 local notify = require('utilities.notify')
-local sound = require('utilities.sound')
+local sound = require('utilities.sound').sound
 
 local update_client = function(c)
   -- Set client's shape based on its tag's layout and status (floating, maximized, etc.)
@@ -141,10 +141,10 @@ client.connect_signal('raised', function(c)
   log(' -> client type: ' .. tostring(c.type))
   log(' -> client role: ' .. tostring(c.role))
 
-  sound('window-attention-active')
+  -- sound('window-attention-active')
 end)
 
 client.connect_signal('lowered', function(c)
   log('spawn::window-attention-inactive')
-  sound('window-attention-inactive')
+  -- sound('window-attention-inactive')
 end)

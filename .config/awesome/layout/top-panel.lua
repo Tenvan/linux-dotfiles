@@ -37,7 +37,6 @@ local top_panel = function(s, offset)
   local hard_drives        = require('widget.harddrive-meter').widget
   local weather            = require('widget.weather.weather-aw').widget
   local systray            = require('widget.systray').widget
-  local volume_widget      = require('awesome-wm-widgets.volume-widget.volume')
   local spotify_widget     = require('widget.spotify')
   local updater            = require('widget.package-updater')()
   local screen_rec         = require('widget.screen-recorder')()
@@ -112,9 +111,6 @@ local top_panel = function(s, offset)
     weather,
     updater,
     hard_drives,
-    volume_widget({ widget_type = 'arc', size = dpi(32) }),
-    -- s.bluetooth,
-    -- s.battery,
     screen_rec,
     systray,
     clock,

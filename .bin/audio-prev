@@ -5,14 +5,10 @@
 
 ponymix set-default --sink -d "$SINK_PREV"
 
-sound device-changed &
+playsound device-changed &
 notify-send "Prev Sound Card" "$CARD_PREV"
 
 VOL=$(amixer get Master | grep -Po "[0-9]+(?=%)" | tail -1)
 MUTE=$(amixer get Master | grep -Po "\[off\]" | tail -1)
 
-if  [[ "$MUTE" == "[off]" ]]; then
-    tvolnoti-show -m
-else
-    tvolnoti-show $VOL
-fi
+echo "Vol: $VOL | Mute: $MUTE"

@@ -2,45 +2,47 @@ log('Enter Module => ' .. ...)
 
 local awesome, client, screen = awesome, client, screen
 
-local awful         = require('awful')
-local hotkeys_popup = require('awful.hotkeys_popup').widget
+local awful                   = require('awful')
+local hotkeys_popup           = require('awful.hotkeys_popup').widget
 
-local apps    = require('configuration.apps')
-local keys    = require('configuration.keys.mod')
-local specs   = require('layout.specs')
-local helpers = require('helpers')
+local apps                    = require('configuration.apps')
+local keys                    = require('configuration.keys.mod')
+local specs                   = require('layout.specs')
+local helpers                 = require('helpers')
 
-local switcher = require('module.window-switcher')
-local resize_client = require('helpers.client').resize_client
-local move_client = require('helpers.client').move_client
-local move_focus = require('helpers.client').move_focus
+local switcher                = require('module.window-switcher')
+local resize_client           = require('helpers.client').resize_client
+local move_client             = require('helpers.client').move_client
+local move_focus              = require('helpers.client').move_focus
 
-local modkey = keys.mod_key
-local altkey = keys.alt_key
+local sound                   = require('utilities.sound')
+
+local modkey                  = keys.mod_key
+local altkey                  = keys.alt_key
 
 -- ░█░█░█▀▀░█░█░░░█▄█░█▀█░█▀▄░▀█▀░█▀▀░▀█▀░█▀▀░█▀▄░█▀▀░█▀▀
 -- ░█▀▄░█▀▀░░█░░░░█░█░█░█░█░█░░█░░█▀▀░░█░░█▀▀░█▀▄░█▀▀░▀▀█
 -- ░▀░▀░▀▀▀░░▀░░░░▀░▀░▀▀▀░▀▀░░▀▀▀░▀░░░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀
-local controlkey = keys.control_key
-local shiftkey   = keys.shift_key
-local returnkey  = keys.return_key
-local spacekey   = keys.space_key
-local escapekey  = keys.escape_key
-local printkey   = keys.print_key
-local tabkey     = keys.tab_key
-local downkey    = keys.down_key
-local upkey      = keys.up_key
-local leftkey    = keys.left_key
-local rightkey   = keys.right_key
+local controlkey              = keys.control_key
+local shiftkey                = keys.shift_key
+local returnkey               = keys.return_key
+local spacekey                = keys.space_key
+local escapekey               = keys.escape_key
+local printkey                = keys.print_key
+local tabkey                  = keys.tab_key
+local downkey                 = keys.down_key
+local upkey                   = keys.up_key
+local leftkey                 = keys.left_key
+local rightkey                = keys.right_key
 
-local menuCoords = {
+local menuCoords              = {
   coords = { x = specs.leftPanel.actionBarWidth * 2, y = specs.topPanel.height * 2 },
 }
 
 -- ░█░█░█▀▀░█░█░░░█▀▄░▀█▀░█▀█░█▀▄░▀█▀░█▀█░█▀▀░█▀▀
 -- ░█▀▄░█▀▀░░█░░░░█▀▄░░█░░█░█░█░█░░█░░█░█░█░█░▀▀█
 -- ░▀░▀░▀▀▀░░▀░░░░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀
-local global_keys = awful.util.table.join(
+local global_keys             = awful.util.table.join(
 
 -- ░█▀█░█░█░█▀▀░█▀▀░█▀█░█▄█░█▀▀
 -- ░█▀█░█▄█░█▀▀░▀▀█░█░█░█░█░█▀▀
@@ -231,25 +233,33 @@ local global_keys = awful.util.table.join(
   -- ░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀
   -- -- Resize focused client
   awful.key({ modkey, controlkey }, upkey, function(c)
-    resize_client(awful.client.focus, 'up')
-  end,
-    { description = 'resize to the up',
-      group = keys.kgClient }),
+      resize_client(awful.client.focus, 'up')
+    end,
+    {
+      description = 'resize to the up',
+      group = keys.kgClient
+    }),
   awful.key({ modkey, controlkey }, downkey, function(c)
-    resize_client(awful.client.focus, 'down')
-  end,
-    { description = 'resize to the down',
-      group = keys.kgClient }),
+      resize_client(awful.client.focus, 'down')
+    end,
+    {
+      description = 'resize to the down',
+      group = keys.kgClient
+    }),
   awful.key({ modkey, controlkey }, leftkey, function(c)
-    resize_client(awful.client.focus, 'left')
-  end,
-    { description = 'resize to the left',
-      group = keys.kgClient }),
+      resize_client(awful.client.focus, 'left')
+    end,
+    {
+      description = 'resize to the left',
+      group = keys.kgClient
+    }),
   awful.key({ modkey, controlkey }, rightkey, function(c)
-    resize_client(awful.client.focus, 'right')
-  end,
-    { description = 'resize to the right',
-      group = keys.kgClient }),
+      resize_client(awful.client.focus, 'right')
+    end,
+    {
+      description = 'resize to the right',
+      group = keys.kgClient
+    }),
 
 
   -- ░█▀█░█▀█░█░█░▀█▀░█▀▀░█▀█░▀█▀░▀█▀░█▀█░█▀█
@@ -311,9 +321,9 @@ local global_keys = awful.util.table.join(
 
   awful.key({ modkey }, 'u',
     awful.client.urgent.jumpto, {
-    description = 'jump to urgent client',
-    group = keys.kgClient
-  }),
+      description = 'jump to urgent client',
+      group = keys.kgClient
+    }),
 
   -- ░█▀▄░█▀▄░▀█▀░█▀▀░█░█░▀█▀░█▀█░█▀▀░█▀▀░█▀▀
   -- ░█▀▄░█▀▄░░█░░█░█░█▀█░░█░░█░█░█▀▀░▀▀█░▀▀█
@@ -356,56 +366,44 @@ local global_keys = awful.util.table.join(
   -- ░█▀█░█░░░█▀▀░█▀█░░░█░█░█▀█░█░░░█░█░█▄█░█▀▀░░░█▀▀░█▀█░█▀█░▀█▀░█▀▄░█▀█░█░░
   -- ░█▀█░█░░░▀▀█░█▀█░░░▀▄▀░█░█░█░░░█░█░█░█░█▀▀░░░█░░░█░█░█░█░░█░░█▀▄░█░█░█░░
   -- ░▀░▀░▀▀▀░▀▀▀░▀░▀░░░░▀░░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░░░▀▀▀░▀▀▀░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀
-  awful.key({}, 'XF86AudioRaiseVolume', function()
-    awful.spawn('ponymix increase 5%', false)
-    emit('widget::volume')
-    emit('module::volume_osd:show', true)
-  end, {
-    description = 'increase volume up by 5%',
-    group = keys.kgHotkeys
-  }),
   awful.key({ modkey, altkey }, 'KP_Add', function()
-    awful.spawn('ponymix increase 5%', false)
-    emit('widget::volume')
-    emit('module::volume_osd:show', true)
+    sound.increaseVol(5)
   end, {
     description = '+5% Volume',
     group = keys.kgSound
   }),
-  awful.key({}, 'XF86AudioLowerVolume', function()
-    awful.spawn('ponymix decrease 5%', false)
-    emit('widget::volume')
-    emit('module::volume_osd:show', true)
-  end, {
-    description = '-5% Volume',
-    group = keys.kgHotkeys
-  }),
   awful.key({ modkey, altkey }, 'KP_Subtract', function()
-    awful.spawn('ponymix decrease 5%', false)
-    emit('widget::volume')
-    emit('module::volume_osd:show', true)
+    sound.decreaseVol(5)
   end, {
     description = '-5% Volume',
     group = keys.kgSound
   }),
+  awful.key({}, 'XF86AudioRaiseVolume', function()
+    sound.increaseVol(5)
+  end, {
+    description = 'increase volume up by 5%',
+    group = keys.kgHotkeys
+  }),
+  awful.key({}, 'XF86AudioLowerVolume', function()
+    sound.decreaseVol(5)
+  end, {
+    description = '-5% Volume',
+    group = keys.kgHotkeys
+  }),
   awful.key({}, 'XF86AudioMute', function()
-    awful.spawn('amixer set Master 1+ toggle', false)
-    emit('widget::volume')
-    emit('module::volume_osd:show', true)
+    sound.toggleVol()
   end, {
     description = 'toggle mute',
     group = keys.kgHotkeys
   }),
   awful.key({ modkey, altkey }, 'KP_Multiply', function()
-    awful.spawn('amixer set Master 1+ toggle', false)
-    emit('widget::volume')
-    emit('module::volume_osd:show', true)
+    sound.muteVol()
   end, {
     description = 'Mute Volume',
     group = keys.kgSound
   }),
   awful.key({}, 'XF86AudioMicMute', function()
-    awful.spawn('amixer set Capture toggle', false)
+    sound.muteCapture()
   end, {
     description = 'mute microphone',
     group = keys.kgHotkeys
@@ -638,8 +636,8 @@ local global_keys = awful.util.table.join(
   -- ░▀▀▀░░▀░░▀▀▀░░▀░░▀▀▀░▀░▀░░░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
   awful.key({ modkey, altkey }, 't', function()
     local message = '\nDies ist eine Test Nachicht.\n' ..
-      'Amet dolor amet elitr sea justo eirmod ipsum sit.\n' ..
-      'Sit sed eos dolore vero vero ea, ea magna at et.'
+        'Amet dolor amet elitr sea justo eirmod ipsum sit.\n' ..
+        'Sit sed eos dolore vero vero ea, ea magna at et.'
 
     notify('Teams Test Nachricht',
       '<b>CRITICAL</b>\nDies ist eine Teams Test Nachicht.' .. message, 'critical', 'audio-card', 'teams-for-linux')
@@ -666,7 +664,7 @@ local global_keys = awful.util.table.join(
     notify('Test Nachricht 3',
       '<b>CRITICAL</b>\nDies ist eine Test Nachicht.\n' .. message,
       'critical', '/usr/share/icons/hicolor/scalable/status/tablet.svg')
-      
+
     notify('Test Nachricht 4',
       '<b>LOW</b>\nDies ist eine Test Nachicht.\n' .. message)
   end, {

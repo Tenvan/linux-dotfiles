@@ -158,7 +158,6 @@
       - pnmixer
       - sound-theme-smooth
       - sp
-      - tvolnoti
 
       # language files
       - languagetool
