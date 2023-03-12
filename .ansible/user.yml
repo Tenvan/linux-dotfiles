@@ -13,6 +13,15 @@
     is_rhel: false
     is_fedora: false
     is_centos: false
+    user_folder:
+      - Bilder
+      - Dokumente
+      - Downloads
+      - GoogleDrive
+      - Musik
+      - Videos
+      - Vorlagen
+
 
   vars_prompt:
 
@@ -28,6 +37,10 @@
     - name: browser
       prompt: What is your default browser?
       default: vivaldi-stable
+
+    - name: home_store_dir
+      prompt: What is path to the big-home folder?
+      default: "/srv/BIGDATA/HOME/{{ lookup('ansible.builtin.env', 'USER') }}"
 
   tasks:
     - name: "=====> Initiate <====="
@@ -338,11 +351,6 @@
         path: "{{ home_dir }}/.config/gtk-3.0/bookmarks"
         create: true
         block: |
-          file:///home/{{ user_id }}/Dokumente Dokumente
-          file:///home/{{ user_id }}/Musik Musik
-          file:///home/{{ user_id }}/Bilder Bilder
-          file:///home/{{ user_id }}/Videos Videos
-          file:///home/{{ user_id }}/Downloads Downloads          
           file:///srv SRV
           file:///usr/share/backgrounds backgrounds
           file:///usr/share/sounds sounds
@@ -350,3 +358,21 @@
           sftp://{{ user_id }}@amserver1/home/{{ user_id }} {{ user_id }} auf amserver1
           sftp://{{ user_id }}@amserver2/home/{{ user_id }} {{ user_id }} auf amserver2
         marker: " # {mark} ANSIBLE MANAGED BLOCK"
+
+    - name: "=====> merge user folder bookmarks <====="
+      ansible.builtin.blockinfile:
+        path: "{{ home_dir }}/.config/gtk-3.0/bookmarks"
+        create: true
+        block: |
+          file:///home/{{ user_id }}/{{ item }} {{ item }}
+        marker: " # {mark} ANSIBLE MANAGED BLOCK {{ item }}"
+      with_items: "{{ user_folder }}"
+
+    - name: create desktop links
+      block:
+      - name: create symbolic links in home_store_dir
+        file:
+          src: "{{ home_store_dir }}/{{ item }}"
+          dest: "{{ home_dir }}/{{ item }}"
+          state: link
+        loop: "{{ user_folder }}"

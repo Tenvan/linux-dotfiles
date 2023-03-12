@@ -18,10 +18,9 @@
     is_rhel: false
     is_fedora: false
     is_centos: false
+    grub_theme: 1
 
   tasks:
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
 
-    - name: "=====> Initiate <====="
-      include_tasks: grub.yml

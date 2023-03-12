@@ -17,4 +17,3 @@ fi
 csource "$HOME/.xprofile"
 
 exec /usr/bin/awesome >> ~/.xsession-stdout 2>> ~/.xsession-stderr
-# exec /usr/bin/awesome

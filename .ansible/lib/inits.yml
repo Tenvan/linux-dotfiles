@@ -29,42 +29,49 @@
 - name: Detect ArchLinux Family
   set_fact:
     is_arch_based: true
+    grub_theme: 1
   when: ansible_os_family.lower() == "archlinux"
 
 # is Fedora based
 - name: Detect Fedora Family
   set_fact:
     is_rhel_based: true
+    grub_theme: 30
   when: ansible_os_family.lower() == "redhat"
 
 # is Manjaro
 - name: Detect Manjaro
   set_fact:
     is_manjaro: true
+    grub_theme: 24
   when: ansible_distribution.lower() == 'manjaro'
 
 # is ArcoLinux
 - name: Detect ArcoLinux
   set_fact:
     is_arcolinux: true
+    grub_theme: 46
   when: ansible_facts['lsb']['description'].lower() == 'arcolinux'
 
 # is RHEL
 - name: Detect RHEL (Red Hat Enterprise Linux)
   set_fact:
     is_rhel: true
+    grub_theme: 30
   when: ansible_distribution.lower() == 'rhel'
 
 # is Fedora
 - name: Detect Fedora
   set_fact:
     is_fedora: true
+    grub_theme: 13
   when: ansible_distribution.lower() == 'fedora'
 
 # is CentOS
 - name: Detect CentOS
   set_fact:
     is_centos: true
+    grub_theme: 6
   when: ansible_distribution.lower() == 'centos'
 
 - block:

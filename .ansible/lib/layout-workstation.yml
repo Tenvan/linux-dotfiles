@@ -47,6 +47,11 @@
       # cursor
       - bibata-cursor-themes
 
+      # wallpaper
+      - desktop-backgrounds-gnome
+      - f37-backgrounds-gnome
+      - f37-backgrounds-extras-gnome
+      
       # jetbrains fonts
       - jetbrains-mono-fonts-all
 

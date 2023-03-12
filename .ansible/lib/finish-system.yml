@@ -2,9 +2,29 @@
 ############################################
 # Install manuel setups from Github, etc.) #
 ############################################
+- name: install update-systemd-resolved for dns fix
+  block:
+    - name: clone https://github.com/jonathanio/update-systemd-resolved.git
+      git:
+        repo:  'https://github.com/jonathanio/update-systemd-resolved.git'
+        clone: yes
+        depth: 1
+        dest: "{{ build_dir }}/update-systemd-resolved"
+    - name: install update-systemd-resolved
+      shell: |
+        make
+      args:
+        executable: /bin/bash
+        chdir: "{{ build_dir }}/update-systemd-resolved"
+    - name: enable and start service systemd-resolved.service, if not started
+      ansible.builtin.service:
+        name: systemd-resolved.service
+        state: started
+        enabled: yes
+
 - name: install dynamic wallpaper (dwall)
   block:
-    - name: clone dwall
+    - name: clone https://github.com/adi1090x/dynamic-wallpaper.git
       git:
         repo: 'https://github.com/adi1090x/dynamic-wallpaper.git'
         clone: yes
@@ -116,7 +136,13 @@
 
 - name: enable and start cockpit, if not started
   ansible.builtin.service:
-    name: cockpit
+    name: cockpit.service
+    state: started
+    enabled: yes
+
+- name: enable and start cockpit, if not started
+  ansible.builtin.service:
+    name: cockpit.socket
     state: started
     enabled: yes
 
