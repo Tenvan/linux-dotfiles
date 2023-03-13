@@ -67,7 +67,7 @@ local blur_slider = slider.blur_deviation_slider
 local update_slider_value = function()
   awful.spawn.easy_async_with_shell(
     [[bash -c "
-		grep -F 'deviation =' $HOME/.config/awesome/configuration/picom.conf | 
+		grep -F 'deviation =' $HOME/.config/picom/picom.conf | 
 		awk 'NR==1 {print $3}' | tr -d ';'
 		"]],
     function(stdout, stderr)

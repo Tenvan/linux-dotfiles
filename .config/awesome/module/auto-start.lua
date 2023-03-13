@@ -18,7 +18,6 @@ local run_once = function(cmd)
       -- Debugger
       if not stderr or stderr == '' then
         trace('  ->  auto started: ' .. cmd)
-        notify('Auto Start', cmd)
         return
       end
 

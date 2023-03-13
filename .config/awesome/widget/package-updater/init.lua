@@ -12,7 +12,7 @@ local config_dir = gears.filesystem.get_configuration_dir()
 local widget_icon_dir = config_dir .. 'widget/package-updater/icons/'
 
 local update_available = false
-local number_of_updates_available = nil
+local number_of_updates_available = 0
 local update_package = nil
 
 local return_button = function()
@@ -53,44 +53,38 @@ local return_button = function()
 		)
 	)
 
-	awful.tooltip(
+	local update_tooltip = awful.tooltip(
 		{
 			objects = { widget_button },
 			mode = 'outside',
 			align = 'right',
 			margin_leftright = dpi(8),
 			margin_topbottom = dpi(8),
-			timer_function = function()
-				if update_available then
-					return update_package
-				else
-					return 'We are up-to-date!'
-				end
-			end,
 			preferred_positions = { 'right', 'left', 'top', 'bottom' }
 		}
 	)
 
-connect('system:updates',
-  function(packages, count)
-			log('Check update:\n' .. packages)
+	connect('system:updates',
+		function(packages, count)
 			number_of_updates_available = count
-			log('Update count:\n' .. tostring(number_of_updates_available))
+			log('Update count:' .. tostring(number_of_updates_available))
+
 			update_package = packages
+			-- update_package = tostring(number_of_updates_available) .. ' updates.'
+
 			local icon_name = nil
 			if number_of_updates_available ~= nil then
-				update_available = true
+				update_tooltip.text = update_package
 				icon_name = 'package-up'
 			else
-				update_available = false
+				update_tooltip.text = 'No updates current available.'
 				icon_name = 'package'
 			end
 
 			widget.icon:set_image(widget_icon_dir .. icon_name .. '.svg')
 			collectgarbage('collect')
-
-  end
-)
+		end
+	)
 
 	return widget_button
 end

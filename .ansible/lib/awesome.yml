@@ -68,3 +68,5 @@
       args:
         executable: /bin/bash
         chdir: "{{ build_dir }}/awesome"
+    - name: trust git repository
+      shell: git config --global --add safe.directory {{ build_dir }}/awesome

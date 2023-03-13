@@ -17,18 +17,17 @@ local tie                = 'png'
 -- Create theme table
 local theme              = {}
 
--- Symbol Font
-theme.symbol_font_family = 'twemoji'
-theme.font_symbol        = theme.symbol_font_family .. ' Regular ' .. dpi(14)
 -- Font
 theme.font_family        = 'Iosevka'
 -- theme.symbol_font_family = 'Material-Design-Iconic-Font'
 -- theme.symbol_font_family = 'Symbol Nerd Font, Material-Design-Iconic-Font, '
 
-theme.font               = string.format('%s Regular %d, %s Regular %d',
-  theme.font_family, dpi(12), theme.symbol_font_family, dpi(12))
-theme.font_bold          = string.format('%s Bold %d, %s Bold %d',
-  theme.font_family, dpi(12), theme.symbol_font_family, dpi(12))
+-- Symbol Font
+theme.symbol_font_family = 'twemoji'
+theme.font_symbol        = theme.symbol_font_family .. ' Regular ' .. dpi(14)
+
+theme.font               = string.format('%s Regular %d', theme.font_family, dpi(12))
+theme.font_bold          = string.format('%s Bold %d', theme.font_family, dpi(12))
 
 -- Font
 theme.font_small_size    = dpi(config.font_size_small or 8)
@@ -44,21 +43,9 @@ log('Font Normal Size: ' .. theme.font_size)
 log('Font Large Size: ' .. theme.font_large_size)
 log('Font Big Size: ' .. theme.font_big_size)
 
-theme.font_small       = string.format('%s Regular %d, %s Regular %d',
-  theme.font_family,
-  theme.font_small_size,
-  theme.symbol_font_family,
-  theme.font_small_size)
-theme.font             = string.format('%s Regular %d, %s Regular %d',
-  theme.font_family,
-  theme.font_size,
-  theme.symbol_font_family,
-  theme.font_size)
-theme.font_large       = string.format('%s Regular %d, %s Regular %d',
-  theme.font_family,
-  theme.font_large_size,
-  theme.symbol_font_family,
-  theme.font_large_size)
+theme.font_small  = theme.font_family .. ' Regular ' .. theme.font_small_size
+theme.font        = theme.font_family .. ' Regular ' .. theme.font_size
+theme.font_large  = theme.font_family .. ' Regular ' .. theme.font_large_size
 
 theme.font_bold_small  = theme.font_family .. ' Bold ' .. theme.font_small_size
 theme.font_bold        = theme.font_family .. ' Bold ' .. theme.font_size
@@ -73,7 +60,7 @@ theme.symbol_font      = theme.font_family .. ' Bold ' .. dpi(12)
 theme.widgets_font     = theme.font_light
 
 -- Menu icon theme
-theme.icon_theme       = 'Tela-blue-dark'
+theme.icon_theme       = 'twemoji'
 
 -- general Radius
 theme.radius           = dpi(15)
