@@ -23,7 +23,7 @@ theme.font_family        = 'Iosevka'
 -- theme.symbol_font_family = 'Symbol Nerd Font, Material-Design-Iconic-Font, '
 
 -- Symbol Font
-theme.symbol_font_family = 'twemoji'
+theme.symbol_font_family = 'NotoEmoji'
 theme.font_symbol        = theme.symbol_font_family .. ' Regular ' .. dpi(14)
 
 theme.font               = string.format('%s Regular %d', theme.font_family, dpi(12))

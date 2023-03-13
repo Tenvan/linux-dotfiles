@@ -17,7 +17,7 @@ export DISPLAYMANAGER=gdm
 # Development profile
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/jre"
-export WORKSPACE="$HOME/WORKSPACE"
+export WORKSPACE="/srv/WORKSPACE/$USER"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

@@ -31,6 +31,10 @@
       - dotnet-sdk-6.0
       - dotnet-sdk-7.0
 
+      # missing perl moduls
+      - perl-CPAN
+      - perl-JSON-Any
+
     pip_init:
       - anybadge
 

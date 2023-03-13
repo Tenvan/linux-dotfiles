@@ -5,7 +5,7 @@ log('Enter Module => ' .. ...)
 --      packages to update
 local awful = require('awful')
 
-local update_interval = 10 -- every 3 minutes
+local update_interval = 60 * 60 -- every hour
 
 local service_script = [[
     bash -c "~/.scripts/services/check-updates.sh"

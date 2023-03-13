@@ -17,28 +17,40 @@
         replace: 'GRUB_CMDLINE_LINUX=\1\2'
           
     - name: gfxmodes
-      ansible.builtin.lineinfile:
+      ansible.builtin.replace:
         path: /etc/default/grub
-        regexp: '^.*GRUB_GFXMODE='
-        line: 'GRUB_GFXMODE="3840x2160,2560x1080,1920x1080,auto'
+        regexp: '^.*GRUB_GFXMODE=(.*)?$'
+        replace: 'GRUB_GFXMODE="3840x2160,2560x1080,1920x1080,auto"'
 
     - name: terminal output
-      ansible.builtin.lineinfile:
+      ansible.builtin.replace:
         path: /etc/default/grub
-        regexp: '^.*GRUB_TERMINAL_OUTPUT='
-        line: '#GRUB_TERMINAL_OUTPUT="console'
+        regexp: '^.*GRUB_TERMINAL_OUTPUT=(.*)$'
+        replace: '# GRUB_TERMINAL_OUTPUT=\1'
 
     - name: terminal input
-      ansible.builtin.lineinfile:
+      ansible.builtin.replace:
         path: /etc/default/grub
-        regexp: '^.*GRUB_TERMINAL_INPUT='
-        line: '#GRUB_TERMINAL_INPUT="console'
+        regexp: '^.*GRUB_TERMINAL_INPUT=(.*)$'
+        replace: '# GRUB_TERMINAL_INPUT=\1'
 
-    - name: theme
-      ansible.builtin.lineinfile:
+    - name: menu 1
+      ansible.builtin.replace:
         path: /etc/default/grub
-        regexp: '^.*GRUB_TERMINAL_INPUT='
-        line: '#GRUB_TERMINAL_INPUT="console'
+        regexp: '^.*GRUB_HIDDEN_TIMEOUT=(.*)$'
+        replace: '# GRUB_HIDDEN_TIMEOUT=\1'
+
+    - name: menu 2
+      ansible.builtin.replace:
+        path: /etc/default/grub
+        regexp: '^.*GRUB_TIMEOUT_STYLE=(.*)$'
+        replace: '# GRUB_TIMEOUT_STYLE=\1'
+
+    - name: menu 3
+      ansible.builtin.replace:
+        path: /etc/default/grub
+        regexp: '^.*GRUB_TIMEOUT=(.*)$'
+        replace: 'GRUB_TIMEOUT=10'
 
     - name: install dark matter grub them
       block:

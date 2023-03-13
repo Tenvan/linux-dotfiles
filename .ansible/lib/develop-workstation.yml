@@ -1,6 +1,9 @@
 ---
 - name: DefineDevelopmentPackages
   vars:
+    gloabl_init:
+      - pre-commit
+      
     archlinux_based_init:
       - gitflow-avh
       - gradle

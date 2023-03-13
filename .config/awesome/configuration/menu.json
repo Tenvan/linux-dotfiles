@@ -23,11 +23,11 @@
             "flatpak run com.github.IsmaelMartinez.teams_for_linux"
         ],
         [
-            "🇻 Virtio Manager",
+            "☯️ Virtio Manager",
             "virt-manager"
         ],
         [
-            "🇷 Remmina",
+            "⚪ Remmina",
             "remmina"
         ],
         [
@@ -39,7 +39,7 @@
             "$TERMINAL --hold curl https://unicode.org/Public/emoji/5.0/emoji-test.txt"
         ],
         [
-            "☦ UTF8 Test",
+            "🚸 UTF8 Test",
             "$TERMINAL --hold curl https://www.w3.org/2001/06/utf-8-test/UTF-8-demo.html"
         ],
         [
@@ -55,11 +55,11 @@
     ],
     "SYSTEM_TOOLS_MENU": [
         [
-            "🛠 System Settings (LXQT)",
+            "⚙️ System Settings (LXQT)",
             "lxqt-config"
         ],
         [
-            "🖥 Monitor einrichten",
+            "🖥️ Monitor einrichten",
             "arandr"
         ],
         [
@@ -67,15 +67,11 @@
             "$TERMINAL --hold --title Sys:Grubup sudo update-grub"
         ],
         [
-            "🕰 🥸  🩲Timeshift",
+            "⏰ Timeshift",
             "timeshift-launcher"
         ],
         [
-            "🕰 Timeshift create Snapshot",
-            "$TERMINAL --hold --title Sys:Install sudo timeshift --create"
-        ],
-        [
-            "🗂 Belegung Verzeichnisse",
+            "📂 Belegung Verzeichnisse",
             "baobab"
         ],
         [

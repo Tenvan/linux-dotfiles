@@ -17,7 +17,6 @@ local update_package = nil
 
 local return_button = function()
 	local widget = wibox.widget {
-		icon({ icon = '📭' }),
 		{
 			id = 'icon',
 			widget = wibox.widget.imagebox,
@@ -73,11 +72,11 @@ local return_button = function()
 			-- update_package = tostring(number_of_updates_available) .. ' updates.'
 
 			local icon_name = nil
-			if number_of_updates_available ~= nil then
+			if number_of_updates_available ~= 0 then
 				update_tooltip.text = update_package
 				icon_name = 'package-up'
 			else
-				update_tooltip.text = 'No updates current available.'
+				update_tooltip.text = 'No updates currenty available.'
 				icon_name = 'package'
 			end
 
