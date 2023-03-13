@@ -75,7 +75,6 @@ local function worker(user_args)
 
 
   ram_widgets = wibox.widget {
-    icon({icon = ''}),
     memory_widget_graph,
     seperator,
     swap_widget_graph,

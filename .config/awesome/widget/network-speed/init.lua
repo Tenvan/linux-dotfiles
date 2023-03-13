@@ -75,12 +75,11 @@ local chart_tx = wibox.widget {
 
 local current_speed = wibox.widget {
   spacing = bar_spacing,
-  icon({ icon = '' }),
-  icon({ icon = '' }),
+  icon({ icon = '⬇️' }),
   speed_text_rx,
   chart_rx,
   seperator,
-  icon({ icon = '' }),
+  icon({ icon = '⬆️' }),
   speed_text_tx,
   chart_tx,
   layout = wibox.layout.fixed.horizontal,

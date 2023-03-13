@@ -4,8 +4,9 @@ local beautiful = require('beautiful')
 local dpi       = beautiful.xresources.apply_dpi
 local wibox     = require('wibox')
 local specs     = require('layout.specs')
-local config = require('configuration.json') or {}
+local config    = require('configuration.json') or {}
 local icon      = require('widget.icon')
+local text      = require('widget.text')
 
 local top_panel = function(s, offset)
   local panel = wibox {
@@ -46,33 +47,15 @@ local top_panel = function(s, offset)
     -- width = dpi(200)
   })
 
-  local seperator = {
+  local seperator          = {
     orientation = 'vertical',
     forced_width = dpi(5),
     color = beautiful.bg_focus,
     widget = wibox.widget.separator
   }
 
-  local ram_widget = {
-    icon({ icon = '' }),
-    nil,
-    toolbar_ram_widget,
-    layout = wibox.layout.align.horizontal
-  }
-
-  local cpu_meter = {
-    {
-      {
-        text         = 'ﴟ',
-        align        = 'center',
-        valign       = 'center',
-        font         = beautiful.font_large,
-        forced_width = dpi(32),
-        widget       = wibox.widget.textbox
-      },
-      margins = dpi(2),
-      widget  = wibox.container.margin
-    },
+  local cpu_meter          = {
+    icon({ icon = '🔥', label = 'CPU:' }),
     require('widget.cpu-meter-top-panel.histo').widget,
     seperator,
     require('widget.cpu-meter-top-panel.kern').widget,
@@ -81,7 +64,7 @@ local top_panel = function(s, offset)
     layout = wibox.layout.fixed.horizontal
   }
 
-  local color_palette = nil
+  local color_palette      = nil
   if config.debug_mode then
     color_palette = require('widget.color-palette.popup')
   end
@@ -94,15 +77,19 @@ local top_panel = function(s, offset)
     -- color_palette,
     -- seperator,
     cpu_meter,
+    icon({ icon = '🔥', label = 'RAM:' }),
     toolbar_ram_widget,
     seperator,
+    icon({ icon = '🌐' }),
     net_speed_widget,
     seperator,
+    icon({ icon = '🎹' }),
+    spotify_widget
   }
 
   -- TODO config options optinal machen
   -- if config.widget.spotify.enabled then
-    -- leftWidgets[#leftWidgets + 1] = spotify_widget
+  -- leftWidgets[#leftWidgets + 1] = spotify_widget
   -- end
 
   local middleWidgets = nil

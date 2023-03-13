@@ -7,11 +7,11 @@ require("services.temperature")
 require("services.battery")
 require("services.disk")
 require("services.network")
+require("services.update-check")
 
 -- User controlled
 require("services.volume")
 require("services.microphone")
--- require("services.mpd")
 require("services.brightness")
 require("services.spotify")
 require("services.spotify-bookmarks")

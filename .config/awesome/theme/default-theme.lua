@@ -44,12 +44,21 @@ log('Font Normal Size: ' .. theme.font_size)
 log('Font Large Size: ' .. theme.font_large_size)
 log('Font Big Size: ' .. theme.font_big_size)
 
-theme.font_small       = string.format('%s Regular %d, %s Regular %d', theme.font_family, theme.font_small_size,
-theme.symbol_font_family, theme.font_small_size)
-theme.font             = string.format('%s Regular %d, %s Regular %d', theme.font_family, theme.font_size,
-theme.symbol_font_family, theme.font_size)
-theme.font_large       = string.format('%s Regular %d, %s Regular %d', theme.font_family, theme.font_large_size,
-theme.symbol_font_family, theme.font_large_size)
+theme.font_small       = string.format('%s Regular %d, %s Regular %d',
+  theme.font_family,
+  theme.font_small_size,
+  theme.symbol_font_family,
+  theme.font_small_size)
+theme.font             = string.format('%s Regular %d, %s Regular %d',
+  theme.font_family,
+  theme.font_size,
+  theme.symbol_font_family,
+  theme.font_size)
+theme.font_large       = string.format('%s Regular %d, %s Regular %d',
+  theme.font_family,
+  theme.font_large_size,
+  theme.symbol_font_family,
+  theme.font_large_size)
 
 theme.font_bold_small  = theme.font_family .. ' Bold ' .. theme.font_small_size
 theme.font_bold        = theme.font_family .. ' Bold ' .. theme.font_size
