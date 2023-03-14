@@ -26,6 +26,13 @@
     gpgcheck: yes
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
 
+- name: Add IBM Odbc
+  ansible.builtin.yum_repository:
+    name: ibmi-acs
+    description: IBM i Access Client Solutions Linux
+    baseurl: https://public.dhe.ibm.com/software/ibmi/products/odbc/rpms
+    gpgcheck: no
+
 - name: Enable Gitflow Copr
   community.general.copr:
     name: elegos/gitflow

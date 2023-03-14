@@ -23,6 +23,11 @@
       # DotNet/Mono Setup
       - gitflow
 
+      # IBM Odbc
+      - ibm-iaccess
+      - unixODBC-devel
+      - unixODBC-gui-qt
+
   include_tasks: install.yml
 
 - name: install JetBrains Toolbox
