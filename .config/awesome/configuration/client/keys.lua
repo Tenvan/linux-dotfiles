@@ -213,7 +213,7 @@ local client_keys = awful.util.table.join(
     group = kgClient
   }))
 
-function GetCustomKeys(client)
+function GetCustomConfig(client)
   local customClientKeys = os.getenv('HOME') .. '/.config/awesome/customs/awesome/keys-client.lua'
   local file = io.open(customClientKeys, 'r') -- r read mode
   if not file then
@@ -228,7 +228,7 @@ function GetCustomKeys(client)
   return keys
 end
 
-local custom_keys = GetCustomKeys()
+local custom_keys = GetCustomConfig()
 client_keys =  awful.util.table.join(client_keys, custom_keys)
 
 return client_keys

@@ -2,7 +2,7 @@ log('Enter Module => ' .. ...)
 
 local awful = require('awful') -- Everything related to window managment
 local sound_path = string.format('%s/.bin/playsound', os.getenv('HOME'))
-local config = require('configuration.json')
+local config = require('configuration.config')
 
 local function sound(soundFile)
   log('play sound: ' .. soundFile)

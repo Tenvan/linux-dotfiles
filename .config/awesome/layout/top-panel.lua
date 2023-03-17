@@ -4,7 +4,7 @@ local beautiful = require('beautiful')
 local dpi       = beautiful.xresources.apply_dpi
 local wibox     = require('wibox')
 local specs     = require('layout.specs')
-local config    = require('configuration.json') or {}
+local config    = require('configuration.config')
 local icon      = require('widget.icon')
 local text      = require('widget.text')
 

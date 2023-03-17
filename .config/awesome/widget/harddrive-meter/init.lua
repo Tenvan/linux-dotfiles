@@ -8,7 +8,7 @@ local watch = require('awful.widget.watch')
 local icons = require('theme.icons')
 local fs_widget = require('awesome-wm-widgets.fs-widget.fs-widget')
 
-local config = require('configuration.json') or {}
+local config = require('configuration.config')
 
 local dpi = beautiful.xresources.apply_dpi
 

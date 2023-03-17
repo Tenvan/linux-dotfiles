@@ -6,7 +6,7 @@ local beautiful          = require('beautiful')
 
 local filesystem         = gears.filesystem
 local dpi                = beautiful.xresources.apply_dpi
-local config             = require('configuration.json') or {}
+local config             = require('configuration.config')
 local specs              = require('layout.specs')
 
 local theme_dir          = filesystem.get_configuration_dir() .. 'theme'

@@ -735,7 +735,7 @@ local global_keys             = awful.util.table.join(
   })
 )
 
-function GetCustomKeys()
+function GetCustomConfig()
   local customGlobalKeys = os.getenv('HOME') .. '/.config/awesome/customs/awesome/keys-global.lua'
   local file = io.open(customGlobalKeys, 'r') -- r read mode
   if not file then
@@ -750,7 +750,7 @@ function GetCustomKeys()
   return keys
 end
 
-local custom_keys = GetCustomKeys()
+local custom_keys = GetCustomConfig()
 global_keys = awful.util.table.join(global_keys, custom_keys)
 
 -- Bind all key numbers to tags.

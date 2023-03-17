@@ -3,7 +3,7 @@
 log('Enter Module => ' .. ...)
 
 local bling = require('module.bling')
-local config = require('configuration.json')
+local config = require('configuration.config')
 
 local wall_dir = config.module.dynamic_wallpaper.wall_dir
 
