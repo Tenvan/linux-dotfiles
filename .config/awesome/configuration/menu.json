@@ -87,16 +87,12 @@
             "qt5ct"
         ],
         [
-            "📛 Boot Logs",
-            "qjournalctl"
-        ],
-        [
             "📛 System Logs (user)",
             "gnome-logs"
         ],
         [
             "📛 System Logs (root)",
-            "gksudo gnome-logs"
+            "sudo gnome-logs"
         ],
         [
             "📛 awesome error log",
@@ -105,6 +101,14 @@
         [
             "📛 User Journal",
             "$TERMINAL --hold --title Sys:UserLog journalctl _UID=$(id --user) -f -n 1000"
+        ],
+        [
+            "📛 Boot Log",
+            "$TERMINAL --hold --title Sys:BootLog sudo multitail -cs -i /var/log/boot.log "
+        ],
+        [
+            "📛 Installer Log",
+            "$TERMINAL --hold --title Sys:InstallerLog sudo multitail -cs -i /var/log/dnf.log "
         ]
     ],
     "EDIT_CONFIG": [
