@@ -19,6 +19,7 @@
 !.ansible/
 !.ansible/**/*
 .ansible/*token*
+.ansible/galaxy_cache
 .ansible/collections
 .ansible/roles
 .ansible/tmp

@@ -1,10 +1,10 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-settings 6.06 for ralf on Wed Jan  4 16:18:39 2023.
+# Written by xscreensaver-settings 6.06 for schta on Wed Feb  1 08:11:06 2023.
 # https://www.jwz.org/xscreensaver/
 
 timeout:	0:30:00
 cycle:		0:05:00
-lock:		True
+lock:		False
 lockTimeout:	0:30:00
 passwdTimeout:	0:00:30
 visualID:	default
@@ -28,7 +28,7 @@ grabVideoFrames:    True
 chooseRandomImages: False
 imageDirectory:	/media/BIGDATA/Pictures/
 
-mode:		random-same
+mode:		random
 selected:	-1
 
 textMode:	date
@@ -37,7 +37,7 @@ textFile:
 textProgram:	fortune
 textURL:	https://en.wikipedia.org/w/index.php?title=Special:NewPages&feed=rss
 dialogTheme:	darkgray
-settingsGeom:	1490,32 -1,-1
+settingsGeom:	2398,175 -1,-1
 
 programs:								      \
 -				maze --root				    \n\
@@ -91,7 +91,7 @@ programs:								      \
 -				xjack --root				    \n\
 -				xlyap --root				    \n\
   GL: 				atlantis -root -delay 100000		    \n\
-				bsod --root				    \n\
+-				bsod --root				    \n\
   GL: 				bubble3d --root				    \n\
   GL: 				cage --root				    \n\
 -				crystal --root				    \n\

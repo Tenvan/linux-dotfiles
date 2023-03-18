@@ -54,7 +54,7 @@ local config = {
       fps = '30'
     },
     spotify = {
-      enabled = true
+      enabled = false
     },
     harddrives = {
       mounts = {

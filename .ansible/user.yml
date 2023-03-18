@@ -371,6 +371,11 @@
       block:
       - name: create symbolic links in home_store_dir
         file:
+          path: "{{ home_store_dir }}/{{ item }}"
+          state: present
+        loop: "{{ user_folder }}"
+      - name: create symbolic links in home_store_dir
+        file:
           src: "{{ home_store_dir }}/{{ item }}"
           dest: "{{ home_dir }}/{{ item }}"
           state: link
