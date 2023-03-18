@@ -23,6 +23,3 @@
   tasks:
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
-
-    - name: "=====> Post Installation Finishing <====="
-      include_tasks: lib/grub.yml

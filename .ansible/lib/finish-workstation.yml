@@ -56,6 +56,9 @@
 - name: install ranger DevIcons
   become: false
   block:
+    - name: remove old plugins
+      state: absent
+      path: "{{ home_dir }}/.config/ranger/plugins/ranger_devicons"
     - name: clone devicons
       git:
         repo: 'https://github.com/alexanderjeurissen/ranger_devicons'

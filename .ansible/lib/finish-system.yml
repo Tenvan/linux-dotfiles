@@ -101,29 +101,27 @@
     regexp: '^.*check_mail:.*'
     line: 'check_mail:0'
 
+- name: create own xinit-compat script
+  ansible.builtin.blockinfile:
+    path: "/opt/xinit-compat"
+    create: true
+    marker: "# {mark} ANSIBLE MANAGED BLOCK xinit"
+    block: |
+      #!/bin/sh          
+      # ANSIBLE MANAGED BLOCK xinit"
+      exec ~/.xsession 
+    mode: u+x,o+x,g+x
+        
 - name: add awesome session (fedora)
   ansible.builtin.blockinfile:
     create: true
     path: /usr/share/xsessions/awesome-fedora.desktop
     block: |
       [Desktop Entry]
-      Name=AwesomeWM (Fedora)
+      Name=AwesomeWM (Tenvan)
       # awesome have to be execute in .xsession
       Comment=This session runs ~/.xsession or ~/.Xclients if available
-      Exec=/usr/libexec/xinit-compat
-  when: is_fedora
-
-- name: add awesome session (archlinux)
-  ansible.builtin.blockinfile:
-    create: true
-    path: /usr/share/xsessions/awesome-arch.desktop
-    block: |
-      [Desktop Entry]
-      Name=AwesomeWM (ArchLinux)
-      # awesome have to be execute in .xsession
-      Comment=This session runs ~/.xsession or ~/.Xclients if available
-      Exec=/usr/lib/xinit-compat
-  when: is_arch_based
+      Exec=/opt/xinit-compat
 
 ##################################
 # enable and start some services #
