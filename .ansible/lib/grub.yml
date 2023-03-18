@@ -76,6 +76,10 @@
           args:
             executable: /bin/bash
             chdir: "{{ build_dir }}/darkmatter-grub-theme"
+        when: false
+
+    - name: grub-update
+      shell: grub2-mkconfig --output=/boot/grub2/grub.cfg
 
     - set_fact:
         grub: "{{ lookup('file', '/etc/default/grub') }}"
