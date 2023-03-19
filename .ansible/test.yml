@@ -23,4 +23,12 @@
   tasks:
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
-      
+
+    # - name: "=====> Post Installation Finishing <====="
+    #   include_tasks: lib/grub.yml
+
+    - name: "=====> Post Installation Finishing <====="
+      include_tasks: lib/displays.yml
+
+    - name: "=====> Install Workstation Layout Packages <====="
+      include_tasks: lib/layout-workstation.yml

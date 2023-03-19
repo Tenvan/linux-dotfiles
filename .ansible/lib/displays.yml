@@ -21,6 +21,20 @@
 
 - debug: var=monitor2
 
+- name: create default script
+  ansible.builtin.blockinfile:
+    path: "/opt/screenlayout.sh"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK screenlayout"
+    create: true
+    mode: u=rwx,g=rx,o=rx
+    block: |
+      #!/bin/sh
+      MONITOR1={{ monitor1 }}
+      MONITOR2={{ monitor2 }}
+      xrandr --output "$MONITOR1" --auto --primary --preferred --scale $1
+      sleep 1
+      xrandr --output "$MONITOR2" --auto --scale $2 --left-of "$MONITOR1"
+      sleep 1
 - name: create system screenlayout script (for display managers)
   ansible.builtin.blockinfile:
     path: "/opt/screenlayout-system.sh"
@@ -29,10 +43,7 @@
     mode: u=rwx,g=rx,o=rx
     block: |
       #!/bin/sh
-      MONITOR1={{ monitor1 }}
-      MONITOR2={{ monitor2 }}
-      xrandr --output "$MONITOR1" --auto --primary --preferred --scale 1
-      xrandr --output "$MONITOR2" --auto --scale 1 --right-of "$MONITOR1"
+      sh /opt/screenlayout.sh 1 1
       exit 0
 
 - name: create low resultion screenlayout script on 4K displays (for games, etc.)
@@ -44,11 +55,9 @@
     mode: u=rwx,g=rx,o=rx
     block: |
       #!/bin/sh
-      MONITOR1={{ monitor1 }}
-      MONITOR2={{ monitor2 }}
-      xrandr --output "$MONITOR1" --auto --primary --preferred --scale 0.5
-      xrandr --output "$MONITOR2" --auto --scale 1 --right-of "$MONITOR1"
+      sh /opt/screenlayout.sh 0.5 1
       awesome-client 'awesome.restart()'
+      exit 0
 
 - name: create medium resultion screenlayout script on 4K displays (for Coding, etc.)
   become: false
@@ -59,11 +68,9 @@
     mode: u=rwx,g=rx,o=rx
     block: |
       #!/bin/sh
-      MONITOR1={{ monitor1 }}
-      MONITOR2={{ monitor2 }}
-      xrandr --output "$MONITOR1" --auto --primary --preferred --scale 0.7
-      xrandr --output "$MONITOR2" --auto --scale 1 --right-of "$MONITOR1"
+      sh /opt/screenlayout.sh 0.7 1
       awesome-client 'awesome.restart()'
+      exit 0
 
 - name: create full resultion screenlayout script on 4K displays (for CAD, etc.)
   become: false
@@ -74,8 +81,6 @@
     mode: u=rwx,g=rx,o=rx
     block: |
       #!/bin/sh
-      MONITOR1={{ monitor1 }}
-      MONITOR2={{ monitor2 }}
-      xrandr --output "$MONITOR1" --auto --primary --preferred --scale 1
-      xrandr --output "$MONITOR2" --auto --scale 1 --right-of "$MONITOR1"
+      sh /opt/screenlayout.sh 1 1
       awesome-client 'awesome.restart()'
+      exit 0

@@ -27,8 +27,11 @@
     - name: "=====> Install System Development Packages <====="
       include_tasks: lib/develop-workstation.yml
 
-    - name: "=====> Install Desktop Base Packages <====="
+    - name: "=====> Install Workstation Base Packages <====="
       include_tasks: lib/base-workstation.yml
+
+    - name: "=====> Install Workstation Layout Packages <====="
+      include_tasks: lib/layout-workstation.yml
 
     - name: "=====> Install Apps <====="
       include_tasks: lib/apps.yml

@@ -116,7 +116,7 @@
         flatpak_combined_array: "{{ flatpak_init }}"
     - debug:
         msg: "{{ flatpak_combined_array }}"
-    - name: "[INSTALL][LUA] FlatPaks"
+    - name: "[INSTALL] FlatPaks"
       community.general.flatpak:
         name: "{{ item }}"
       loop: "{{ flatpak_combined_array }}"
