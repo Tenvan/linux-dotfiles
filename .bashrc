@@ -6,6 +6,13 @@ export DOT="$DOT;.bashrc"
 
 . ~/.scripts/defs
 
+if [[ -n $SSH_LOGIN || -z $ENV ]]; then
+     # Put here login initialization code
+     unset SSH_LOGIN
+     ENV=~/.profile
+     csource ~/.profile
+fi
+
 export HISTCONTROL=ignoreboth:erasedups
 
 #Ibus settings if you need them
@@ -71,6 +78,10 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # reporting tools - install when not installed
 fastfetch

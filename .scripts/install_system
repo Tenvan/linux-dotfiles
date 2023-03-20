@@ -2,8 +2,10 @@
 
 . "$HOME/.scripts/defs"
 
+csource "$HOME/.xprofile"
+
 install ansible
-if [ $IS_FEDORA_BASED = true ]; then
+if [ "$IS_FEDORA_BASED" = true ]; then
 	install redhat-lsb-core
 fi
 errorCheck "install ansible"

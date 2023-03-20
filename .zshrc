@@ -6,8 +6,15 @@ export DOT="$DOT;.zshrc"
 
 . ~/.scripts/defs
 
-# disable console beap
-xset -b
+if [[ -n $SSH_LOGIN || -z $ENV ]]; then
+    # Put here login initialization code
+    unset SSH_LOGIN
+    ENV=~/.profile
+    csource $ENV
+else
+    # disable console beap
+    xset -b
+fi
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -358,7 +365,10 @@ case ${TERM} in
 esac
 
 csource "$HOME/.scripts/ranger.zsh"
-# csource /usr/share/nvm/init-nvm.sh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Load right version of NVM
 autoload -U add-zsh-hook
@@ -387,5 +397,4 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-# archey4
 fastfetch

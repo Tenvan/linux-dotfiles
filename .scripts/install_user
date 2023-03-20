@@ -2,5 +2,7 @@
 
 . "$HOME/.scripts/defs"
 
+csource "$HOME/.xprofile"
+
 ansible-playbook ~/.ansible/user.yml
 errorCheck "run ansible playbook"

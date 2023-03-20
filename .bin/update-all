@@ -1,9 +1,13 @@
 #!/usr/bin/env zsh
 
+. "$HOME/.scripts/defs"
+
 # System Update
-if [ $IS_ARCH_BASE = true ]; then
+if [ $IS_ARCH_BASED = true ]; then
   $PACTOOL -Syyu $PAKKER_ALL
-else
+fi
+
+if [ $IS_FEDORA_BASED = true ]; then
   sudo dnf update -y
 fi
 
