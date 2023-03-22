@@ -74,3 +74,23 @@
       detectindent go snippets crystal quickfix wc manipulator diff ftoptions \
       linter literate status monokai-dark gotham-colors nordcolors
     micro -plugin update
+
+- name: enable autologin in gdm
+  ansible.builtin.lineinfile:
+    insertafter: "\\[daemon\\]"
+    state: present
+    path: /etc/gdm/custom.conf
+    regexp: '^.*AutomaticLoginEnable=(.*)$'
+    line: 'AutomaticLoginEnable=True'
+
+- name: set autologin user
+  ansible.builtin.lineinfile:
+    insertafter: "\\[daemon\\]"
+    path: /etc/gdm/custom.conf
+    regexp: '^.*AutomaticLogin=(.*)$'
+    line: 'AutomaticLogin={{ user_id }}'
+
+- set_fact:
+    gdm: "{{ lookup('file', '/etc/gdm/custom.conf') }}"
+
+- debug: var=gdm

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-source "${0:a:h}/config"
+source "./config"
 
 echo "Aktuell installierte Container:"
-docker container ls
+sudo podman container ls
 
 echo "Logge: $container_name"
-docker logs $container_name -n 100 -f
+sudo podman logs -f --tail 100 $container_name

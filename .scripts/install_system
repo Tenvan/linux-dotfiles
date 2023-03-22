@@ -2,7 +2,7 @@
 
 . "$HOME/.scripts/defs"
 
-csource "$HOME/.xprofile"
+csource "$HOME/.profile"
 
 install ansible
 if [ "$IS_FEDORA_BASED" = true ]; then

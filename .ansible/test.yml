@@ -27,8 +27,10 @@
     # - name: "=====> Post Installation Finishing <====="
     #   include_tasks: lib/grub.yml
 
-    - name: "=====> Post Installation Finishing <====="
-      include_tasks: lib/displays.yml
+    # - name: "=====> Post Installation Finishing <====="
+    #   include_tasks: lib/displays.yml
 
-    - name: "=====> Install Workstation Layout Packages <====="
-      include_tasks: lib/layout-workstation.yml
+    # - name: "=====> Install Workstation Layout Packages <====="
+    #   include_tasks: lib/layout-workstation.yml
+
+    # create VPN connection
