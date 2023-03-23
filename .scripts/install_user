@@ -2,7 +2,7 @@
 
 . "$HOME/.scripts/defs"
 
-csource "$HOME/.xprofile"
+csource "$HOME/.profile"
 
 ansible-playbook ~/.ansible/user.yml
 errorCheck "run ansible playbook"

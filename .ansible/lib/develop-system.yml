@@ -37,5 +37,6 @@
 
     pip_init:
       - anybadge
+      - boto3
 
   include_tasks: install.yml
