@@ -101,6 +101,9 @@ local update_slider = function()
 		function(stdout)
 			-- local volume = string.match(stdout, '(%d?%d?%d)%%') or 0
 			local volume = stdout or 0
+      if volume == nil then
+        volume = 0
+      end
 			log('slider get new volume:' .. volume)
 			log('stdout:' .. stdout)
 			volume_slider:set_value(tonumber(volume))

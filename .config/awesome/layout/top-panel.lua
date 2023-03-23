@@ -36,7 +36,7 @@ local top_panel = function(s, offset)
   local clock              = require('widget.clock')(s)
   local layout_box         = require('widget.layoutbox')(s)
   local hard_drives        = require('widget.harddrive-meter').widget
-  local weather            = require('widget.weather.weather-aw').widget
+  -- local weather            = require('widget.weather.weather-aw').widget
   local systray            = require('widget.systray').widget
   local spotify_widget     = require('widget.spotify')
   local updater            = require('widget.package-updater')()
@@ -95,7 +95,7 @@ local top_panel = function(s, offset)
   local middleWidgets = nil
 
   local rightWidgets = {
-    weather,
+    -- weather,
     updater,
     hard_drives,
     screen_rec,
