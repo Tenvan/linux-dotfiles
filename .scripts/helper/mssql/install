@@ -1,28 +1,21 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
-source "./config"
-
-# Ziel Ordner für volume vorbereiten
-if [ -d "$data_dir" ]; then
-    echo "mssql datadir '$data_dir' exists, reuse it."
-else    
-    echo "mssql datadir '$data_dir' does not exists, create it!"
-    sudo mkdir -p $data_dir
-fi
-sudo chown -R 10001:root $data_dir
-# sudo chmod -R 'u=rw,o=rw,g=rw' $data_dir
-sudo chmod -R 777 $data_dir
+# shellcheck source=./config
+source "$HOME/.scripts/helper/mssql/config"
 
 sudo podman run \
-   -dit \
-   --restart unless-stopped \
-   --privileged \
-   --name $container_name \
-   -e "ACCEPT_EULA=Y" \
-   -e "MSSQL_SA_PASSWORD=$sa_password" \
-   -p 1433:1433 \
-   -v $data_dir:/var/opt/mssql \
-   -d mcr.microsoft.com/mssql/rhel/server:2022-latest
+    -dit \
+    --restart unless-stopped \
+    --privileged \
+    --name $container_name \
+    -e "ACCEPT_EULA=Y" \
+    -e "MSSQL_SA_PASSWORD=$sa_password" \
+    -p 1433:1433 \
+    -v $data_dir:/var/opt/mssql \
+    -v $data_dir/$conf_file:/var/opt/mssql/$conf_file \
+    -v $data_dir/$cert_pem_file:/etc/ssl/certs/$cert_pem_file \
+    -v $data_dir/$cert_key_file:/etc/ssl/private/$cert_key_file \
+    -d $image_name
 
 # Docker Prozesse prüfen
 sudo podman ps -a

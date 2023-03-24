@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 
 # Konfiguration SQL Server
+export image_name=mcr.microsoft.com/mssql/rhel/server:2022-latest
 export container_name=LocalSqlServer
 export data_dir=/srv/mssql
-export sa_password=Infoniqa2022!
+export sa_password=Infoniqa2023!
+
+export conf_file=mssql.conf
+export cert_key_file=mssql.key
+export cert_pem_file=mssql.pem
+
+export cert_key_det=/etc/ssl/private
+export cert_pem_det=/etc/ssl/certs
+
+export tlsprotocol=1.2
+export forceencryption=1
