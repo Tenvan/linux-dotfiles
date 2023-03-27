@@ -3,16 +3,19 @@ log('Enter Module => ' .. ...)
 -- Provides:
 -- service::volume
 --      percentage (integer)
-local awful = require("awful")
+local awful = require('awful')
 
 local volume_old = -1
 local function emit_volume_info()
-    awful.spawn.easy_async_with_shell("ponymix get-volume", function(stdout)
-        local volume = stdout
-        local volume_int = tonumber(volume)
-        if volume_int ~= volume_old then
-            emit("service::volume", volume_int)
-            volume_old = volume_int
+    awful.spawn.easy_async_with_shell('ponymix get-volume', function(stdout)
+        if stdout ~= nil then
+            local volume = stdout
+            volume = '0'
+            local volume_int = tonumber(volume)
+            if volume_int ~= volume_old then
+                emit('service::volume', volume_int)
+                volume_old = volume_int
+            end
         end
     end)
 end
@@ -27,7 +30,7 @@ local volume_script = [[
     "]]
 
 -- Kill old pactl subscribe processes
-awful.spawn.easy_async({"pkill", "--full", "--uid", os.getenv("USER"), "^pactl subscribe"}, function ()
+awful.spawn.easy_async({ 'pkill', '--full', '--uid', os.getenv('USER'), '^pactl subscribe' }, function()
     -- Run emit_volume_info() with each line printed
     awful.spawn.with_line_callback(volume_script, {
         stdout = function()
@@ -35,5 +38,3 @@ awful.spawn.easy_async({"pkill", "--full", "--uid", os.getenv("USER"), "^pactl s
         end
     })
 end)
-
-
