@@ -36,14 +36,17 @@
 - name: Enable Gitflow Copr
   community.general.copr:
     name: elegos/gitflow
+  when: is_fedora 
 
 - name: Enable Bibata-Cursor Copr
   community.general.copr:
     name: peterwu/rendezvous
+  when: is_fedora 
 
 - name: Enable ponymix
   community.general.copr:
     name: en4aew/desktop-tools
+  when: is_fedora 
 
 ##########################
 # add some flatpak repos #

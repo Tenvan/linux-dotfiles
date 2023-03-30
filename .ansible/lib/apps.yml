@@ -14,7 +14,6 @@
 
       # music
       - mpc
-      - mpd
       - playerctl
 
       # optional application packages
@@ -63,6 +62,9 @@
 
       # graphics
       - imagemagick
+
+      # music
+      - mpd
 
     rhel_based_init:
       - baobab

@@ -10,7 +10,7 @@
   #  - role: robertdebock.rpmfusion
 
   vars:
-    is_dry: false
+    is_dry: true
     is_rhel_based: false
     is_arch_based: false
     is_arcolinux: false

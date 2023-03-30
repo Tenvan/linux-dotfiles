@@ -4,14 +4,12 @@
     global_init:
       - cargo
       - cmake
-      - colorgcc
       - gcc
       - git
       - go
       - jq
       - make
       - npm
-      - nuget
       - python-pip
       - ruby
       - rust
@@ -19,6 +17,8 @@
 
     archlinux_based_init:
       - base-devel
+      - colorgcc
+      - nuget
 
       # DotNet/Mono Setup
       - dotnet-sdk
@@ -27,9 +27,16 @@
 
     rhel_based_init:
       # DotNet/Mono Setup
-      - mono-complete
       - dotnet-sdk-6.0
       - dotnet-sdk-7.0
+
+      # missing python moduls
+      - python3-pip
+
+    fedora_init:
+      - colorgcc
+      - nuget
+      - mono-complete
 
       # missing perl moduls
       - perl-CPAN

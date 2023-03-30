@@ -31,6 +31,23 @@
   when: is_fedora
 
 ####################################################################################################################
+# Install RHEL Based Part
+####################################################################################################################
+- block:
+    - set_fact:
+        rhel_combined_array: "{{ (global_init | default([])) + (rhel_based_init | default([])) + (rhel_init | default([])) }}"
+    - debug:
+        msg: "{{ rhel_combined_array }}"
+    - name: "[INSTALL][DNF] RhelPackages"
+      become: true
+      dnf:
+        state: present
+        allowerasing: true
+        name: "{{ rhel_combined_array }}"
+      when: is_dry is false and rhel_combined_array|length > 0
+  when: is_rhel
+
+####################################################################################################################
 # Install ArcoLinux Part
 ####################################################################################################################
 - block:

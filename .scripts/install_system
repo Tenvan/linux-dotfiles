@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
 
-. "$HOME/.scripts/defs"
+source "$HOME/.scripts/defs"
 
-csource "$HOME/.profile"
+source "$HOME/.profile"
 
-install ansible
-if [ "$IS_FEDORA_BASED" = true ]; then
+if [ "$IS_RHEL" = true ]; then
+	install ansible-core
+fi
+
+if [ "$IS_FEDORA" = true ]; then
+	install ansible
 	install redhat-lsb-core
 fi
+
 errorCheck "install ansible"
 
 ansible-galaxy collection install -r ~/.ansible/lib/collections.yml

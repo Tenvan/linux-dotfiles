@@ -21,6 +21,7 @@
         name: systemd-resolved.service
         state: started
         enabled: yes
+  when: is_fedora
 
 - name: install dynamic wallpaper (dwall)
   block:

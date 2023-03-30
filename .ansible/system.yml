@@ -7,7 +7,7 @@
   #install galaxy roles
   roles:
     - role: robertdebock.bootstrap
-    - role: robertdebock.rpmfusion
+#    - role: robertdebock.rpmfusion
 
   vars:
     is_dry: false

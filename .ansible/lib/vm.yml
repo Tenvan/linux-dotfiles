@@ -2,7 +2,6 @@
 - name: DefineVmPackages
   vars:
     global_init:
-      - bridge-utils
       - dnsmasq
       - ebtables
       - iptables-nft
@@ -10,11 +9,15 @@
       - virt-manager
 
     archlinux_based_init:
+      - bridge-utils
       - openbsd-netcat
       - ovmf
       - qemu-arch-extra
       - qemu-desktop
       - vde2
       - virtio-win
+
+    fedora_init:
+      - bridge-utils
 
   include_tasks: install.yml

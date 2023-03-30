@@ -3,44 +3,18 @@
   vars:
     global_init:
       # global
-      - acpi
       - acpid
-      - arj
-      - ark
       - at
-      - bpytop
-      - clamav
       - cronie
       - curl
-      - dex
       - dnsutils
-      - dpkg
-      - exa
-      - fastfetch
-      - figlet
-      - fzf
-      - grc
       - gvfs-smb
-      - htop
-      - hwinfo
-      - iftop
       - iotop
       - iptraf-ng
       - jq
-      - lsd
-      - multitail
-      - numlockx
-      - openconnect
       - openssh
-      - p7zip
-      - python-mutagen
-      - stow
       - sysstat
       - time
-      - timeshift
-      - toilet
-      - unclutter
-      - unrar
       - upower
       - zsh
 
@@ -58,37 +32,56 @@
       - docker
       - podman
       - pcp-pmda-podman
-      - podman-tui
-
-      # ansible tools
-      - ansible-collection-containers-podman
 
       # Python libs
       - python
       - python-pip
 
+      # file manager
+      - mc
+
+      # useful tools for ranger
+      - poppler
+      - lynx
+
+    archlinux_based_init:
+      - acpi
+      - arj
+      - ark
+      - bpytop
+      - clamav
+      - dex
+      - dpkg
+      - exa
+      - fastfetch
+      - figlet
+      - fzf
+      - grc
+      - htop
+      - hwinfo
+      - iftop
+      - lsd
+      - multitail
+      - numlockx
+      - openconnect
+      - p7zip
+      - python-mutagen
+      - stow
+      - timeshift
+      - toilet
+      - unclutter
+      - unrar
+
+      # podman + docker
+      - podman-compose
+      - podman-tui
+
       # installation of important editors
       - micro
 
       # file manager
-      - mc
       - ranger
 
-      # useful tools for ranger
-      - elinks
-      - highlight
-      - highlight-gui
-      - libcaca
-      - lynx
-      - mediainfo
-      - odt2txt
-      - poppler
-      - w3m
-
-      # language files
-      - man-pages-de
-
-    archlinux_based_init:
       # global
       - base-devel
 
@@ -110,10 +103,72 @@
       - powershell-bin
       - shell-color-scripts
 
-    rhel_based_init:
+      # useful tools for ranger
+      - elinks
+      - highlight
+      - libcaca
 
+      - mediainfo
+      - odt2txt
+      - w3m
+
+      # language files
+      - man-pages-de
+
+    rhel_based_init:
       # installation of important editors
       - code
+      - python3-pip
+
+    fedora_init:
+      - acpi
+      - arj
+      - ark
+      - bpytop
+      - clamav
+      - dex
+      - dpkg
+      - exa
+      - fastfetch
+      - figlet
+      - fzf
+      - grc
+      - htop
+      - hwinfo
+      - iftop
+      - lsd
+      - multitail
+      - numlockx
+      - openconnect
+      - p7zip
+      - python-mutagen
+      - stow
+      - timeshift
+      - toilet
+      - unclutter
+      - unrar
+
+      # podman + docker
+      - podman-compose
+      - podman-tui
+
+      # installation of important editors
+      - micro
+
+      # file manager
+      - ranger
+
+      # useful tools for ranger
+      - elinks
+      - highlight
+      - libcaca
+
+      - mediainfo
+      - odt2txt
+      - w3m
+
+      # language files
+      - man-pages-de
 
     manjaro_init:
       - samba

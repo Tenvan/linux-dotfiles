@@ -140,7 +140,6 @@
       - pm-utils
       - powershell-bin
       - shell-color-scripts
-      - system-monitoring-center
       - watchexec
       - xorg-server-xephyr
       - xorg-xbacklight
@@ -220,6 +219,7 @@
 
     flatpak_init:
       - com.bitwarden.desktop
+      - io.github.hakandundar34coding.system-monitoring-center
 
     cargo_init:
       - git-delta

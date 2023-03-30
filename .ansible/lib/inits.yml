@@ -47,18 +47,18 @@
   when: ansible_distribution.lower() == 'manjaro'
 
 # is ArcoLinux
-- name: Detect ArcoLinux
-  set_fact:
-    is_arcolinux: true
-    grub_theme: 46
-  when: ansible_facts['lsb']['description'].lower() == 'arcolinux'
+#- name: Detect ArcoLinux
+#  set_fact:
+#    is_arcolinux: true
+#    grub_theme: 46
+#  when: false and ansible_facts['lsb']['description'].lower() == 'arcolinux'
 
 # is RHEL
 - name: Detect RHEL (Red Hat Enterprise Linux)
   set_fact:
     is_rhel: true
     grub_theme: 30
-  when: ansible_distribution.lower() == 'rhel'
+  when: ansible_distribution.lower() == 'redhat'
 
 # is Fedora
 - name: Detect Fedora
@@ -91,6 +91,7 @@
     - debug: var=is_manjaro
     - debug: var=is_fedora
     - debug: var=is_centos
+    - debug: var=is_rhel
     - debug: var=user_id
     - debug: var=home_dir
     - debug: var=build_dir
