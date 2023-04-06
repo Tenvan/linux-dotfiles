@@ -683,7 +683,8 @@ local global_keys             = awful.util.table.join(
     description = 'Picom Toggle',
     group = keys.kgSystem
   }),
-  awful.key({ modkey }, escapekey, function()
+    awful.key({ modkey }, escapekey, function()
+    log('start xkill')
     awful.spawn('xkill')
   end, {
     description = 'XKill',

@@ -29,6 +29,7 @@
       - xbindkeys
       - xclip
       - xdotool
+      - xkill
       - xscreensaver
       - xsel
       - xterm

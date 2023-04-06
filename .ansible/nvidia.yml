@@ -5,12 +5,12 @@
   become: yes
 
   # install galaxy roles
-  roles:
-   - role: robertdebock.bootstrap
-   - role: robertdebock.rpmfusion
+  # roles:
+   # - role: robertdebock.bootstrap
+   # - role: robertdebock.rpmfusion
 
   vars:
-    is_dry: true
+    is_dry: false
     is_rhel_based: false
     is_arch_based: false
     is_arcolinux: false
