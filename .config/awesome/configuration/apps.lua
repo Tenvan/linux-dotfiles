@@ -66,6 +66,7 @@ local apps = {
     -- 'lxqt-powermanagement',
     -- '/usr/bin/lxqt-policykit-agent &' ..	' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
     -- '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &' .. ' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
+    -- '/usr/libexec/polkit-gnome-authentication-agent-1 &' .. ' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
     -- Audio equalizer
     -- 'pulseeffects --gapplication-service',
     -- Lockscreen timer

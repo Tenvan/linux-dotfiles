@@ -187,6 +187,16 @@
       - foomatic
       - foomatic-db
       - foomatic-db-ppds
+      - cups-devel
+      - hplip-gui
+      - libusb1-devel
+      - sane-backends-devel
+      - net-snmp-devel
+      - python3-devel
+      - xsane
+      - python3-PyQt4
+      - polkit-qt
+      - polkit-qt-devel
 
     arcolinux_init:
       # Meta Packages
@@ -225,5 +235,8 @@
     cargo_init:
       - git-delta
       - tokei
+
+    pip_init:
+      - notify2
 
   include_tasks: install.yml
