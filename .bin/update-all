@@ -9,6 +9,7 @@ fi
 
 if [ $IS_FEDORA_BASED = true ]; then
   sudo dnf update -y
+  sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 fi
 
 # Flatpak Update
