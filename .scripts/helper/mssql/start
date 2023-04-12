@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
-source "./config"
+# shellcheck source=./config
+source "$HOME/.scripts/helper/mssql/config"
 
 echo "Aktuell installierte Container:"
 sudo podman container ls
 
 echo "Starte: $container_name"
 sudo podman container start $container_name
+
+echo "Logge: $container_name"
+sudo podman logs -f --tail 100 $container_name

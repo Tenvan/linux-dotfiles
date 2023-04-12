@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-source "./config"
+# shellcheck source=./config
+source "$HOME/.scripts/helper/mssql/config"
 
 echo "Aktuell installierte Container:"
 sudo podman container ls
@@ -13,3 +14,8 @@ sudo podman container prune --force
 
 echo "Aktuell installierte Container:"
 sudo podman container ls
+
+# delete old folders
+sudo rm -fr $data_dir/.system
+sudo rm -fr $data_dir/secrets
+sudo rm -fr $data_dir/mssql.*

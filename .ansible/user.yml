@@ -367,12 +367,12 @@
         marker: " # {mark} ANSIBLE MANAGED BLOCK {{ item }}"
       with_items: "{{ user_folder }}"
 
-    - name: create desktop links
+    - name: "=====> create desktop links <====="
       block:
-      - name: create symbolic links in home_store_dir
+      - name: create target folder in home_store_dir if not exists
         file:
           path: "{{ home_store_dir }}/{{ item }}"
-          state: present
+          state: directory
         loop: "{{ user_folder }}"
       - name: create symbolic links in home_store_dir
         file:

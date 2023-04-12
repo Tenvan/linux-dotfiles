@@ -32,7 +32,8 @@ export QT_FONT_DPI=96
 
 unset QT_STYLE_OVERRIDE
 # export QT_QPA_PLATFORM_THEME="gtk2"
-export QT_QPA_PLATFORMTHEME="qt6ct"
+# export QT_QPA_PLATFORMTHEME="qt6ct"
+export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # fix "xdg-open fork-bomb" export your preferred browser from here
 # export BROWSER=$(which firefox)

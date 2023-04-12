@@ -10,23 +10,8 @@ else
     echo "mssql datadir '$data_dir' does not exists, create it!"
     sudo mkdir -p $data_dir
 fi
-sudo chown -R 10001:root $data_dir
+
+# sudo rm -fr $data_dir/.system
+# sudo mkdir -p $data_dir/.system
+sudo chown 10001:root -R $data_dir
 sudo chmod -R 'u=rwx,o=rwx,g=rwx' $data_dir
-
-# create cert files
-openssl req -x509 -nodes -newkey rsa:2048 -subj '/CN=mssql.infoniqa.com' -keyout $cert_key_file -out $cert_pem_file -days 365
-
-# create conf file
-echo "[network]
-tlscert = $cert_pem_det/$cert_pem_file
-tlskey = $cert_key_det/$cert_key_file
-tlsprotocols = $tlsprotocol
-MinProtocol = TLSv$tlsprotocol
-forceencryption = $forceencryption" > $conf_file
-
-sudo chown 10001:10001 $cert_pem_file $cert_key_file $conf_file
-sudo chmod o=rwx,u=r,g=r $cert_pem_file $cert_key_file $conf_file
-
-sudo mv $cert_pem_file $data_dir
-sudo mv $cert_key_file $data_dir
-sudo mv $conf_file $data_dir

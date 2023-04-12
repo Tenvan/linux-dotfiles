@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-source "./config"
+# shellcheck source=./config
+source "$HOME/.scripts/helper/mssql/config"
 
 echo "Aktuell installierte Container:"
 sudo podman container ls
