@@ -63,10 +63,6 @@
             "arandr"
         ],
         [
-            "🪄 Grub Update (BTRFS Snapshots)",
-            "$TERMINAL --hold --title Sys:Grubup sudo update-grub"
-        ],
-        [
             "⏰ Timeshift",
             "timeshift-launcher"
         ],
@@ -96,19 +92,19 @@
         ],
         [
             "📛 awesome error log",
-            "$TERMINAL --hold --title Sys:XSessionError multitail -cs -i $HOME/.xsession-stderr"
+            "$TERMINAL --hold --class AwesomeWindow:2:9 --title XSessionError multitail -cs -i $HOME/.xsession-stderr"
         ],
         [
             "📛 User Journal",
-            "$TERMINAL --hold --title Sys:UserLog journalctl _UID=$(id --user) -f -n 1000"
+            "$TERMINAL --hold --class AwesomeWindow:2:9 --title UserLog journalctl _UID=$(id --user) -f -n 1000"
         ],
         [
             "📛 Boot Log",
-            "$TERMINAL --hold --title Sys:BootLog sudo multitail -cs -i /var/log/boot.log "
+            "$TERMINAL --hold --class AwesomeWindow:2:9 --title BootLog sudo multitail -cs -i /var/log/boot.log "
         ],
         [
             "📛 Installer Log",
-            "$TERMINAL --hold --title Sys:InstallerLog sudo multitail -cs -i /var/log/dnf.log "
+            "$TERMINAL --hold --class AwesomeWindow:2:9 --title InstallerLog sudo multitail -cs -i /var/log/dnf.log "
         ]
     ],
     "EDIT_CONFIG": [
@@ -202,7 +198,7 @@
     "SYSTEM_MONITOR": [
         [
             "📈 System Monitoring Center",
-            "system-monitoring-center"
+            "flatpak run io.github.hakandundar34coding.system-monitoring-center"
         ],
         [
             "📈 System Resourcen",
@@ -210,23 +206,23 @@
         ],
         [
             "📈 bpytop",
-            "$TERMINAL --title SysMon:bashtop bpytop"
+            "$TERMINAL --class AwesomeWindow:2:9 --title bashtop bpytop"
         ],
         [
             "📈 glances",
-            "$TERMINAL --title SysMon:glances glances"
+            "$TERMINAL --class AwesomeWindow:1:9 --title glances glances"
         ],
         [
             "💽 iftop (sudo)",
-            "$TERMINAL --title SysMon:iftop sudo iftop"
+            "$TERMINAL --class AwesomeWindow:2:9 --title iftop sudo iftop"
         ],
         [
             "💽 iotop (sudo)",
-            "$TERMINAL --title SysMon:iotop sudo iotop -Pao"
+            "$TERMINAL --class AwesomeWindow:2:9 --title iotop sudo iotop -Pao"
         ],
         [
             "💽 iptraf-ng (sudo)",
-            "$TERMINAL --title SysMon:iptraf-ng sudo iptraf-ng"
+            "$TERMINAL --class AwesomeWindow:2:9 --title iptraf-ng sudo iptraf-ng"
         ]
     ]
 }

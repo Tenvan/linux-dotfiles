@@ -19,5 +19,7 @@
 
     fedora_init:
       - bridge-utils
+      - edk2-ovmf
+      - swtpm
 
   include_tasks: install.yml

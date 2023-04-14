@@ -3,6 +3,5 @@
 
 notify-send -t 3000 -u critical System "Rechner wird herunter gefahren..."
 playsound shutdown &
-prepare_sessiondown
+sudo podman stop -a
 sudo systemctl poweroff
-# shutdown --poweroff 0

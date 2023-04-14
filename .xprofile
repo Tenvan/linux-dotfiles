@@ -63,3 +63,6 @@ eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
 export SSH_AUTH_SOCK
 
 csource "$CUSTOMS/.xprofile"
+
+sudo flatpak override --env=GTK_THEME=$MAIN_THEME
+sudo flatpak override --env=ICON_THEME=$MAIN_THEME

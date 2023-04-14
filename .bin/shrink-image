@@ -1,0 +1,11 @@
+#!/bin/bash
+# Aufruf: ./shrink-images name.qcow2
+for filename in "$@"; do
+  bak=$filename.bak
+  du -h $filename
+  mv $filename $bak
+  qemu-img convert $bak  -O qcow2 $filename 
+  rm $bak
+  du -h $filename
+  echo ""
+done

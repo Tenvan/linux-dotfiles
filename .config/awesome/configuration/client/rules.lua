@@ -143,28 +143,6 @@ ruled.client.connect_signal('request::rules', function()
     }
   }
 
-  -- Main Browser
-  ruled.client.append_rule {
-    rule = {
-      instance = apps.default.web_browser
-    },
-    properties = {
-      screen = screen.primary,
-      tag = screen[screen.primary].tags[8],
-      maximized = false,
-      floating = false
-    }
-  }
-
-  ruled.client.append_rule {
-    rule = {
-      instance = apps.default.web_browser .. ' .*'
-    },
-    properties = {
-      screen = screen2.index,
-    }
-  }
-
   -- Word processing
   ruled.client.append_rule {
     rule_any = {
@@ -315,6 +293,19 @@ ruled.client.connect_signal('request::rules', function()
     }
   }
 
+  -- Main Browser
+  ruled.client.append_rule {
+    rule = {
+      instance = apps.default.web_browser
+    },
+    properties = {
+      screen = screen1.index,
+      tag = screen1.tags[8],
+      maximized = false,
+      floating = false
+    }
+  }
+
   -- Alle Develop Apps auf Screen 2 tag 2 schieben
   ruled.client.append_rule {
     rule_any = {
@@ -343,8 +334,34 @@ ruled.client.connect_signal('request::rules', function()
   -- System Monitor Consolen auf Screen 2 tag 9 schieben
   ruled.client.append_rule {
     rule_any = {
-      name = { 'SysMon:*', 'Sys:*', 'CF:*' },
+      name = { 'SysMon:*' },
       class = { 'Gnome-system-monitor', 'System-monitoring-center' }
+    },
+    properties = {
+      screen = screen2.index,
+      tag = screen2.tags[9],
+      switch_to_tags = true,
+      maximized = false,
+      floating = false
+    }
+  }
+
+  -- Awesome Class Dispatcher
+  ruled.client.append_rule {
+    rule = {
+      class = 'AwesomeWindow:1:*'
+    },
+    properties = {
+      screen = screen1.index,
+      tag = screen1.tags[9],
+      switch_to_tags = true,
+      maximized = false,
+      floating = false
+    }
+  }
+  ruled.client.append_rule {
+    rule = {
+      class = 'AwesomeWindow:2:*'
     },
     properties = {
       screen = screen2.index,
