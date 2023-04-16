@@ -24,13 +24,12 @@
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
 
-    # - name: "=====> Post Installation Finishing <====="
-    #   include_tasks: lib/grub.yml
-
-    # - name: "=====> Post Installation Finishing <====="
-    #   include_tasks: lib/displays.yml
-
-    # - name: "=====> Install Workstation Layout Packages <====="
-    #   include_tasks: lib/layout-workstation.yml
-
-    # create VPN connection
+    - name: install hpuld
+      shell: |
+        echo | sudo tee input.txt
+        echo y | sudo tee -a input.txt
+        sh install.sh < input.txt
+        rm input.txt
+      args:
+        executable: /bin/bash
+        chdir: "{{ home_dir }}/.scripts/setup/uld/"
