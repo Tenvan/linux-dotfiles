@@ -41,7 +41,7 @@ local apps = {
     -- Default network manager
     network_manager = 'kitty iwctl',
     -- Default GUI package manager
-    package_manager = 'pamac-manager',
+    software_manager = 'gnome-software',
     -- Default locker
     lock = 'awesome-client "awesome.emit_signal(\'module::lockscreen_show\')"',
     -- Default quake terminal

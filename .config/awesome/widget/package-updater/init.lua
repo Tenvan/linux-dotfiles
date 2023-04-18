@@ -43,10 +43,18 @@ local return_button = function()
 				nil,
 				function()
 					if update_available then
-						awful.spawn(apps.default.package_manager .. ' --updates', false)
+						awful.spawn('gnome-software --mode=updates', false)
 					else
-						awful.spawn(apps.default.package_manager, false)
+						awful.spawn('gnome-software --mode=overview', false)
 					end
+				end
+			),
+			awful.button(
+				{},
+				3,
+				nil,
+				function()
+					awful.spawn('gnome-software --mode=updates', false)
 				end
 			)
 		)
@@ -66,13 +74,14 @@ local return_button = function()
 	connect('system:updates',
 		function(packages, count)
 			number_of_updates_available = count
+			update_available = number_of_updates_available ~= 0
 			log('Update count:' .. tostring(number_of_updates_available))
 
 			update_package = packages
 			-- update_package = tostring(number_of_updates_available) .. ' updates.'
 
 			local icon_name = nil
-			if number_of_updates_available ~= 0 then
+			if update_available ~= 0 then
 				update_tooltip.text = update_package
 				icon_name = 'package-up'
 			else

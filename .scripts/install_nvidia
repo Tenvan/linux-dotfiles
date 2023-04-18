@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+. "$HOME/.scripts/defs"
+
+csource "$HOME/.profile"
+
+ansible-playbook ~/.ansible/nvidia.yml
+errorCheck "run ansible playbook"
