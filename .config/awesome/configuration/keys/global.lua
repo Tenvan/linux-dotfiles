@@ -367,25 +367,25 @@ local global_keys             = awful.util.table.join(
   -- ░█▀█░█░░░▀▀█░█▀█░░░▀▄▀░█░█░█░░░█░█░█░█░█▀▀░░░█░░░█░█░█░█░░█░░█▀▄░█░█░█░░
   -- ░▀░▀░▀▀▀░▀▀▀░▀░▀░░░░▀░░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░░░▀▀▀░▀▀▀░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀
   awful.key({ modkey, altkey }, 'KP_Add', function()
-    sound.increaseVol(5)
+    sound.increaseVol(5, 'KP_Add')
   end, {
     description = '+5% Volume',
     group = keys.kgSound
   }),
   awful.key({ modkey, altkey }, 'KP_Subtract', function()
-    sound.decreaseVol(5)
+    sound.decreaseVol(5, 'KP_Subtract')
   end, {
     description = '-5% Volume',
     group = keys.kgSound
   }),
   awful.key({}, 'XF86AudioRaiseVolume', function()
-    sound.increaseVol(5)
+    sound.increaseVol(5, 'XF86AudioRaiseVolume')
   end, {
     description = 'increase volume up by 5%',
     group = keys.kgHotkeys
   }),
   awful.key({}, 'XF86AudioLowerVolume', function()
-    sound.decreaseVol(5)
+    sound.decreaseVol(5, 'XF86AudioLowerVolume')
   end, {
     description = '-5% Volume',
     group = keys.kgHotkeys

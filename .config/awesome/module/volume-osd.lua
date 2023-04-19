@@ -52,7 +52,7 @@ vol_osd_slider:connect_signal(
   'property::value',
   function()
     local volume_level = vol_osd_slider:get_value()
-    sound.setVol(volume_level)
+    -- sound.setVol(volume_level, 'volume-osd')
 
     -- Update textbox widget text
     osd_value.text = volume_level .. '%'

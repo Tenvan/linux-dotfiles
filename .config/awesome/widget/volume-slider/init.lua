@@ -59,7 +59,7 @@ local volume_slider = slider.volume_slider
 volume_slider:connect_signal('property::value',
 	function()
 		local volume_level = volume_slider:get_value()
-		sound.setVol(volume_level)
+		-- sound.setVol(volume_level, 'volume slider')
 		-- Update volume osd
 		emit('module::volume_osd', volume_level)
 	end

@@ -34,8 +34,8 @@ root.buttons(
       emit('module::brightness_osd:show', true)
     end),
     awful.button({ 'Control' }, 4, function()
-      sound.increaseVol(5)
+      sound.increaseVol(5, 'root buttons')
     end),
     awful.button({ 'Control' }, 5, function()
-      sound.decreaseVol(5)
+      sound.decreaseVol(5, 'root buttons')
     end)))

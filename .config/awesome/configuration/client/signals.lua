@@ -128,7 +128,7 @@ client.connect_signal(
 
 client.connect_signal('swapped', function(c, source, is_source)
   log('spawn::window-switch')
-  sound('window-switch')
+  -- sound('window-switch')
 end)
 
 client.connect_signal('raised', function(c)

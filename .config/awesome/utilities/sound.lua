@@ -11,44 +11,47 @@ local function sound(soundFile)
   end
 end
 
-local function increaseVol(vol)
+local function increaseVol(vol, source)
+  log(string.format('volume increase(%s): %s', source, tostring(vol)))
   awful.spawn('ponymix increase ' .. vol .. '%')
   sound('audio-volume-change')
 end
 
-local function decreaseVol(vol)
+local function decreaseVol(vol, source)
+  log(string.format('volume decrease(%s): %s', source, tostring(vol)))
   awful.spawn('ponymix decrease ' .. vol .. '%')
   sound('audio-volume-change')
 end
 
-local function setVol(vol)
-  awful.spawn('ponymix set-volume ' .. vol)
+local function setVol(vol, source)
+  log(string.format('set volume(%s): %d', source, tostring(vol)))
+  awful.spawn('ponymix set-volume ' .. vol .. '%')
   sound('audio-volume-change')
 end
 
 local function toggleVol()
+  log('volume toggle')
   awful.spawn('ponymix toggle')
-  log('Laustärke umgeschaltet')
 end
 
 local function muteVol()
+  log('volume mute')
   awful.spawn('ponymix mute')
-  log('Laustärke abgeschaltet')
 end
 
 local function unmuteVol()
+  log('volume unmute')
   awful.spawn('ponymix unmute')
-  log('Laustärke eingeschaltet')
 end
 
 local function muteCapture()
+  log('source mute')
   awful.spawn('ponymix mute --source')
-  log('Mikrofon ausgeschaltet')
 end
 
 local function unmuteCapture()
+  log('source unmute')
   awful.spawn('ponymix unmute --source')
-  log('Mikrofon ausgeschaltet')
 end
 
 return {

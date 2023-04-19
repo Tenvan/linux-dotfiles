@@ -9,10 +9,13 @@ local volume_old = -1
 local function emit_volume_info()
     awful.spawn.easy_async_with_shell('ponymix get-volume', function(stdout)
         if stdout ~= nil then
-            local volume = stdout
-            volume = '0'
+            local volume = stdout or 0
             local volume_int = tonumber(volume)
+
+            trace(string.format('get volume => %d -> %d', volume_old, volume_int))
+
             if volume_int ~= volume_old then
+                trace('new volume: ' .. stdout)
                 emit('service::volume', volume_int)
                 volume_old = volume_int
             end

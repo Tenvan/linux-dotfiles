@@ -1,6 +1,6 @@
 local config = {
   debug_mode = true,
-  trace_mode = false,
+  trace_mode = true,
   sounds = false,
   font_size_small = 8,
   font_size_normal = 12,
