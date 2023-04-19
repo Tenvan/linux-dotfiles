@@ -380,3 +380,9 @@
           dest: "{{ home_dir }}/{{ item }}"
           state: link
         loop: "{{ user_folder }}"
+
+    - name: init flatpak themes
+      shell: |
+        sudo flatpak override --env=GTK_THEME=$MAIN_THEME
+        sudo flatpak override --env=ICON_THEME=$MAIN_THEME
+

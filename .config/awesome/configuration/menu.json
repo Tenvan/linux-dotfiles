@@ -95,11 +95,19 @@
             "$TERMINAL --hold --class AwesomeWindow:2:9 --title XSessionError multitail -cs -i $HOME/.xsession-stderr"
         ],
         [
-            "📛 User Journal",
+            "📛 User Journal (show)",
+            "$TERMINAL --hold --class AwesomeWindow:2:9 --title UserLog journalctl _UID=$(id --user)"
+        ],
+        [
+            "📛 User Journal (tail)",
             "$TERMINAL --hold --class AwesomeWindow:2:9 --title UserLog journalctl _UID=$(id --user) -f -n 1000"
         ],
         [
-            "📛 Boot Log",
+            "📛 Boot Log (show)",
+            "$TERMINAL --hold --class AwesomeWindow:2:9 --title BootLog sudo bat /var/log/boot.log "
+        ],
+        [
+            "📛 Boot Log (trace)",
             "$TERMINAL --hold --class AwesomeWindow:2:9 --title BootLog sudo multitail -cs -i /var/log/boot.log "
         ],
         [

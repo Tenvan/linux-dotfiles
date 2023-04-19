@@ -36,6 +36,25 @@ if [ -f "$file" ]; then
     xrdb -merge "$file"
 fi
 
+#========================
+# System tools autostart
+#=======================
+
+# picom starten
+picom -b --dbus --config "$PICOM_CONF" &
+
+# Polkit and keyring
+
+# see https://wiki.archlinux.org/title/GNOME/Keyring#xinitrc
+if [ $IS_ARCH_BASED = true ]; then
+    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+else
+    /usr/libexec/polkit-gnome-authentication-agent-1 &
+fi
+
+eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
+export SSH_AUTH_SOCK
+
 # load x-environemnt
 csource "$HOME/.xprofile"
 

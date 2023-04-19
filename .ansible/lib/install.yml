@@ -92,7 +92,10 @@
       community.general.cargo:
         state: present
         name: "{{ cargo_combined_array }}"
-      
+    - name: copy cargo bins to /usr/bin
+      ansible.posix.synchronize:
+        src: "{{ home_dir }}/.cargo/bin/"
+        dest: /usr/bin
   when: is_dry is false and cargo_init is not undefined and cargo_init is not none and cargo_init|length > 0
 
 ####################################################################################################################

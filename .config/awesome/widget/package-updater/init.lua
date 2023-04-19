@@ -43,9 +43,9 @@ local return_button = function()
 				nil,
 				function()
 					if update_available then
-						awful.spawn('gnome-software --mode=updates', false)
+						awful.spawn(apps.default.software_manager .. ' --mode=updates', false)
 					else
-						awful.spawn('gnome-software --mode=overview', false)
+						awful.spawn(apps.default.software_manager .. ' --mode=overview', false)
 					end
 				end
 			),
@@ -54,7 +54,7 @@ local return_button = function()
 				3,
 				nil,
 				function()
-					awful.spawn('gnome-software --mode=updates', false)
+					awful.spawn(apps.default.software_manager .. ' --mode=updates', false)
 				end
 			)
 		)

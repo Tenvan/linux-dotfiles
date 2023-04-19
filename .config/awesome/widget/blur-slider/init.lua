@@ -1,15 +1,15 @@
-local log = require('utilities.debug').log
-local dump = require('utilities.debug').dump
 log("Enter Module => " .. ... )
 
-local wibox = require('wibox')
-local gears = require('gears')
-local awful = require('awful')
-local beautiful = require('beautiful')
+local filesystem = require('gears.filesystem')
+
 local spawn = awful.spawn
-local dpi = beautiful.xresources.apply_dpi
 local icons = require('theme.icons')
+
 local clickable_container = require('widget.clickable-container')
+local config_dir = filesystem.get_configuration_dir()
+local picom_config = config_dir .. '/configuration/picom.conf'
+
+log('picom config: ' .. picom_config)
 
 local action_name = wibox.widget {
   text = 'Blur Deviation',
@@ -67,7 +67,7 @@ local blur_slider = slider.blur_deviation_slider
 local update_slider_value = function()
   awful.spawn.easy_async_with_shell(
     [[bash -c "
-		grep -F 'deviation =' $HOME/.config/picom/picom.conf | 
+		grep -F 'deviation =' ]] .. picom_config .. [[ | 
 		awk 'NR==1 {print $3}' | tr -d ';'
 		"]],
     function(stdout, stderr)
@@ -115,8 +115,7 @@ local adjust_blur = function(power)
   awful.spawn.with_shell(
     [[bash -c "
 		sed -i 's/.*deviation = .*/  deviation = ]] .. power .. [[;/g' \
-		$HOME/.config/awesome/configuration/picom.conf
-		"]]
+		]] .. picom_config .. [["]]
   )
 end
 

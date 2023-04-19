@@ -3,6 +3,7 @@ log('Enter Module => ' .. ...)
 local filesystem = require('gears.filesystem')
 local config_dir = filesystem.get_configuration_dir()
 local utils_dir = config_dir .. 'utilities/'
+local picom_config = config_dir .. '/configuration/picom.conf'
 
 local apps = {
   -- Default Applications
@@ -46,15 +47,13 @@ local apps = {
     lock = 'awesome-client "awesome.emit_signal(\'module::lockscreen_show\')"',
     -- Default quake terminal
     quake = 'kitty --name QuakeTerminal --class QuakeTerminal',
-
   },
-
   -- List of apps to start once on start-up
   run_on_start_up = {
     -- Fix left hnaded Mouse on Fedora
     -- 'xmodmap -e "pointer = 1 2 3 4 5 6 7 8 9 10"',
     -- Compositor
-    -- 'picom -b --experimental-backends --dbus --config ' .. config_dir .. '/configuration/picom.conf',
+    'picom -b --dbus --config ' .. picom_config,
     -- '$SCRIPTS/picom-toggle-awesome.sh',
     -- Blueman applet
     -- 'blueman-applet',
@@ -84,9 +83,10 @@ local apps = {
     -- 'redshift-gtk',
     'copyq',
     'xscreensaver',
+    'eval $($TERMINAL --class AwesomeWindow:2:9 --title bpytop bpytop 2> /dev/null &)',
+    'eval $($TERMINAL --hold --class AwesomeWindow:2:9 --title XSessionError multitail -cs -i $HOME/.xsession-stderr  2> /dev/null &)',
     '$SCRIPTS/services/update-wallpaper.sh',
   },
-
   -- List of binaries/shell scripts that will execute for a certain task
   utils = {
     -- Fullscreen screenshot
