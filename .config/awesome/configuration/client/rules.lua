@@ -133,15 +133,29 @@ ruled.client.connect_signal('request::rules', function()
   -- Browsers and chats
   ruled.client.append_rule {
     rule_any = {
-      class = { 'firefox', 'Tor Browser', 'discord', 'Chromium', 'Google-chrome', 'TelegramDesktop' }
+      class = { 'Microsoft-edge','firefox', 'discord', 'Chromium', 'Google-chrome', 'TelegramDesktop' }
     },
     properties = {
       screen = screen2.index,
-      tag = screen2.tags[1],
+      tag = screen2.tags[8],
       maximized = false,
       floating = false
     }
   }
+
+  -- Main Browser
+  ruled.client.append_rule {
+    rule = {
+      instance = apps.default.web_browser
+    },
+    properties = {
+      screen = screen1.index,
+      tag = screen1.tags[8],
+      maximized = false,
+      floating = false
+    }
+  }
+
 
   -- Word processing
   ruled.client.append_rule {
@@ -290,19 +304,6 @@ ruled.client.connect_signal('request::rules', function()
       screen = screen.primary,
       tag = screen[screen.primary].tags[9],
       skip_decoration = true
-    }
-  }
-
-  -- Main Browser
-  ruled.client.append_rule {
-    rule = {
-      instance = apps.default.web_browser
-    },
-    properties = {
-      screen = screen1.index,
-      tag = screen1.tags[8],
-      maximized = false,
-      floating = false
     }
   }
 

@@ -1,7 +1,7 @@
 local config = {
-  debug_mode = true,
-  trace_mode = true,
-  sounds = false,
+  debug_mode = false,
+  trace_mode = false,
+  sounds = true,
   font_size_small = 8,
   font_size_normal = 12,
   font_size_large = 16,

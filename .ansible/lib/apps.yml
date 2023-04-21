@@ -47,7 +47,6 @@
       - vivaldi
       - vivaldi-ffmpeg-codecs
       - firefox-i18n-de
-      - microsoft-edge-dev-bin
 
       # Office
       - libreoffice-fresh
@@ -95,5 +94,6 @@
       - com.spotify.Client
       - de.haeckerfelix.Shortwave
       - org.photoqt.PhotoQt
+      - com.microsoft.Edge
 
   include_tasks: install.yml
