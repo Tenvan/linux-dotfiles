@@ -5,7 +5,6 @@ source "$HOME/.scripts/helper/mssql/config"
 
 sudo podman run \
     -dit \
-    --restart always \
     --privileged \
     --name $container_name \
     -e "ACCEPT_EULA=Y" \

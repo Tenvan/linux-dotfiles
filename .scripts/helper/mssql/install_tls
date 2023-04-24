@@ -5,7 +5,6 @@ source "$HOME/.scripts/helper/mssql/config"
 
 sudo podman run \
     -dit \
-    --restart always \
     --privileged \
     --name $container_name \
     -e "ACCEPT_EULA=Y" \
@@ -17,8 +16,8 @@ sudo podman run \
     -v $data_dir/$cert_key_file:/etc/ssl/private/$cert_key_file \
     -d $image_name
 
+sudo podman generate systemd --new --name $container_name | sudo tee /etc/systemd/system/$container_name.service
+sudo systemctl enable --now $container_name.service
+
 # Docker Prozesse prüfen
 sudo podman ps -a
-
-echo "Logge: $container_name"
-sudo podman logs -f --tail 100 $container_name
