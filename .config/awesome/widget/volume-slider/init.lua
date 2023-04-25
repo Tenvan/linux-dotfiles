@@ -99,13 +99,16 @@ local update_slider = function()
 	awful.spawn.easy_async_with_shell(
 		[[bash -c "ponymix get-volume"]],
 		function(stdout)
-			-- local volume = string.match(stdout, '(%d?%d?%d)%%') or 0
-			local volume = stdout or 0
-      if volume == nil then
-        volume = 0
+			local line = stdout:gsub('^[^\n]*\n', '')
+
+			log('stdout: #' .. tostring(stdout) .. '#')
+			log('line..: #' .. tostring(line) .. '#')
+			local volume =  0
+      if line ~= '' then
+        volume = tonumber(line)
       end
+
 			log('slider get new volume:' .. volume)
-			log('stdout:' .. stdout)
 			volume_slider:set_value(tonumber(volume))
 		end
 	)

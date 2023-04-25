@@ -1,9 +1,3 @@
-local wibox = require('wibox')
-local awful = require('awful')
-local gears = require('gears')
-local beautiful = require('beautiful')
-local dpi = beautiful.xresources.apply_dpi
-
 local slider = {}
 
 slider.vol_slider = wibox.widget {
