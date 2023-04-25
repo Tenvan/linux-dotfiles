@@ -73,15 +73,15 @@ local return_button = function()
 
 	connect('system:updates',
 		function(packages, count)
-			number_of_updates_available = count
-			update_available = number_of_updates_available ~= 0
-			log('Update count:' .. tostring(number_of_updates_available))
+			number_of_updates_available = tonumber(count)
+			update_available = number_of_updates_available > 0
+
+			log('Update count:' .. number_of_updates_available)
 
 			update_package = packages
-			-- update_package = tostring(number_of_updates_available) .. ' updates.'
 
 			local icon_name = nil
-			if update_available ~= 0 then
+			if update_available then
 				update_tooltip.text = update_package
 				icon_name = 'package-up'
 			else
