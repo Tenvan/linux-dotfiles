@@ -3,7 +3,7 @@
 # Install manuel setups from Github, etc.) #
 ############################################
 - name: fetch display names
-  shell: "xrandr | grep -e ' connected'"
+  shell: "xrandr | grep -e ' connected [1-9|p]'"
   register: monitors
 
 - name: get primary monitor
@@ -33,7 +33,7 @@
       MONITOR2={{ monitor2 }}
       xrandr --output "$MONITOR1" --auto --primary --preferred --scale $1
       sleep 1
-      xrandr --output "$MONITOR2" --auto --scale $2 --left-of "$MONITOR1"
+      xrandr --output "$MONITOR2" --auto --scale $2 --right-of "$MONITOR1"
       sleep 1
 - name: create system screenlayout script (for display managers)
   ansible.builtin.blockinfile:

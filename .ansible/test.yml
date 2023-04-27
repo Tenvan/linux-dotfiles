@@ -24,12 +24,5 @@
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
 
-    - name: install hpuld
-      shell: |
-        echo | sudo tee input.txt
-        echo y | sudo tee -a input.txt
-        sh install.sh < input.txt
-        rm input.txt
-      args:
-        executable: /bin/bash
-        chdir: "{{ home_dir }}/.scripts/setup/uld/"
+    - name: "=====> Post Installation Finishing <====="
+      include_tasks: lib/displays.yml
