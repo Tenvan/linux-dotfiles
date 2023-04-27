@@ -36,7 +36,7 @@ local top_panel = function(s, offset)
   local clock              = require('widget.clock')(s)
   local layout_box         = require('widget.layoutbox')(s)
   local hard_drives        = require('widget.harddrive-meter').widget
-  -- local weather            = require('widget.weather.weather-aw').widget
+  local weather            = require('widget.weather.weather-aw').widget
   local systray            = require('widget.systray').widget
   local spotify_widget     = require('widget.spotify')
   local updater            = require('widget.package-updater')()
@@ -72,39 +72,68 @@ local top_panel = function(s, offset)
   local leftWidgets = {
     spacing = dpi(2),
     layout = wibox.layout.fixed.horizontal,
-    layout_box,
-    seperator,
-    -- color_palette,
-    -- seperator,
-    cpu_meter,
-    icon({ icon = '🔥', label = 'RAM:' }),
-    toolbar_ram_widget,
-    seperator,
-    icon({ icon = '🌐' }),
-    net_speed_widget,
-    seperator,
-    icon({ icon = '🎹' }),
-    spotify_widget
   }
 
-  -- TODO config options optinal machen
-  -- if config.widget.spotify.enabled then
-  -- leftWidgets[#leftWidgets + 1] = spotify_widget
-  -- end
+  -- add layout box widget
+  if config.widget.layoutbox.enabled then
+    leftWidgets[#leftWidgets + 1] = layout_box
+    if config.widget.seperator.enabled then
+      leftWidgets[#leftWidgets + 1] = seperator
+    end
+  end
+
+  leftWidgets[#leftWidgets + 1] = color_palette
+  if config.widget.seperator.enabled then
+    leftWidgets[#leftWidgets + 1] = seperator
+  end
+
+  leftWidgets[#leftWidgets + 1] = cpu_meter
+  if config.widget.seperator.enabled then
+    leftWidgets[#leftWidgets + 1] = seperator
+  end
+
+  leftWidgets[#leftWidgets + 1] = icon({ icon = '🔥', label = 'RAM:' })
+  leftWidgets[#leftWidgets + 1] = toolbar_ram_widget
+  if config.widget.seperator.enabled then
+    leftWidgets[#leftWidgets + 1] = seperator
+  end
+
+  leftWidgets[#leftWidgets + 1] = icon({ icon = '🌐' })
+  leftWidgets[#leftWidgets + 1] = net_speed_widget
+  if config.widget.seperator.enabled then
+    leftWidgets[#leftWidgets + 1] = seperator
+  end
+
+  if config.widget.spotify.enabled then
+    leftWidgets[#leftWidgets + 1] = icon({ icon = '🎹' })
+    leftWidgets[#leftWidgets + 1] = spotify_widget
+    if config.widget.seperator.enabled then
+      leftWidgets[#leftWidgets + 1] = seperator
+    end
+  end
 
   local middleWidgets = nil
 
   local rightWidgets = {
-    -- weather,
-    updater,
-    hard_drives,
-    screen_rec,
-    systray,
-    clock,
-    info_center_toggle,
     spacing = dpi(5),
     layout = wibox.layout.fixed.horizontal,
   }
+
+  rightWidgets[#rightWidgets + 1] = seperator
+  rightWidgets[#rightWidgets + 1] = weather
+  rightWidgets[#rightWidgets + 1] = seperator
+  rightWidgets[#rightWidgets + 1] = updater
+  rightWidgets[#rightWidgets + 1] = seperator
+  rightWidgets[#rightWidgets + 1] = hard_drives
+  rightWidgets[#rightWidgets + 1] = seperator
+  rightWidgets[#rightWidgets + 1] = screen_rec
+  rightWidgets[#rightWidgets + 1] = seperator
+  rightWidgets[#rightWidgets + 1] = systray
+  rightWidgets[#rightWidgets + 1] = seperator
+  rightWidgets[#rightWidgets + 1] = clock
+  rightWidgets[#rightWidgets + 1] = seperator
+  rightWidgets[#rightWidgets + 1] = info_center_toggle
+
   panel:setup {
     leftWidgets,
     middleWidgets,

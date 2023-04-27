@@ -54,7 +54,8 @@ local config = {
       fps = '30'
     },
     spotify = {
-      enabled = false
+      enabled = false,
+      screen = 1
     },
     harddrives = {
       mounts = {
@@ -62,6 +63,13 @@ local config = {
         '/home',
       }
     },
+    seperator = {
+      enabled = true
+    },
+    layoutbox = {
+      enabled = true,
+      screen = 1
+    }
   },
   module = {
     auto_start = {
