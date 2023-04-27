@@ -1,4 +1,21 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
-sudo pamac build --no-confirm qt5-styleplugins
+. "$HOME/.scripts/defs"
+
+# System Update
+if [ $IS_ARCH_BASED = true ]; then
+  	$PACTOOL -Syyu $PAKKER_ALL
+	sudo pamac build --no-confirm qt5-styleplugins
+fi
+
+if [ $IS_FEDORA_BASED = true ]; then
+	sudo dnf update -y
+	sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+  	sudo dnf remove awesome -y
+	sudo rm ~/.build/awesome/build/*.rpm
+fi
+
+# ~/.scripts/install_system
+~/.scripts/install_workstation
+
 rm -fr .zinit
