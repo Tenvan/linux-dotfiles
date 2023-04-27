@@ -18,6 +18,6 @@ require('module.volume-osd')
 require('module.better-resize')
 require('module.window-switcher')
 require('module.task-preview')
-require('module.tag-preview')
+-- require('module.tag-preview')
 
 -- require('module.lockscreen')
