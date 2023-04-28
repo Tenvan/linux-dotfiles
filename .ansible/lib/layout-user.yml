@@ -1,137 +1,169 @@
 ---
-- name: "=====> merge gtk-2.0 settings <====="
+- name: "=====> set gtk2 settings <====="
   block:
-    - name: Remove old settings file
-      ansible.builtin.file:
+    - name: set cursor theme
+      ansible.builtin.replace:
         path: "{{ home_dir }}/.gtkrc-2.0"
-        state: absent
+        regexp: '^.*gtk-cursor-theme-name=.*$'
+        replace: "gtk-cursor-theme-name={{ lookup('ansible.builtin.env', 'CURSOR_THEME') }}"
 
-    - name: create new xettings file
-      ansible.builtin.blockinfile:
+    - name: set cursor size
+      ansible.builtin.replace:
         path: "{{ home_dir }}/.gtkrc-2.0"
-        create: true
-        block: |
-          gtk-button-images=1
-          gtk-cursor-theme-name="{{ lookup('ansible.builtin.env', 'CURSOR_THEME') }}"
-          gtk-cursor-theme-size="{{ lookup('ansible.builtin.env', 'CURSOR_SIZE') }}"
-          gtk-enable-event-sounds=1
-          gtk-enable-input-feedback-sounds=1
-          gtk-font-name="{{ lookup('ansible.builtin.env', 'THEME_FONT') }}"
-          gtk-icon-theme-name="{{ lookup('ansible.builtin.env', 'ICON_THEME') }}"
-          gtk-menu-images=0
-          gtk-modules=canberra-gtk-module
-          gtk-sound-theme-name="{{ lookup('ansible.builtin.env', 'SOUND_THEME') }}"
-          gtk-theme-name="{{ lookup('ansible.builtin.env', 'MAIN_THEME') }}"
-          gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
-          gtk-toolbar-style=GTK_TOOLBAR_ICONS
-          gtk-xft-antialias=1
-          gtk-xft-hinting=1
-          gtk-xft-hintstyle=hintfull
-          gtk-xft-rgba=rgb
+        regexp: '^.*gtk-cursor-theme-size=.*$'
+        replace: "gtk-cursor-theme-size={{ lookup('ansible.builtin.env', 'CURSOR_SIZE') }}"
 
-- name: "=====> merge gtk-3.0 settings <====="
+    - name: set font
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.gtkrc-2.0"
+        regexp: '^.*gtk-font-name=.*$'
+        replace: "gtk-font-name=\"{{ lookup('ansible.builtin.env', 'THEME_FONT') }}\""
+
+    - name: set icon theme
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.gtkrc-2.0"
+        regexp: '^.*gtk-icon-theme-name=.*$'
+        replace: "gtk-icon-theme-name=\"{{ lookup('ansible.builtin.env', 'ICON_THEME') }}\""
+
+    - name: set sound theme
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.gtkrc-2.0"
+        regexp: '^.*gtk-sound-theme-name=.*$'
+        replace: "gtk-sound-theme-name={{ lookup('ansible.builtin.env', 'SOUND_THEME') }}"
+
+    - name: set main theme
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.gtkrc-2.0"
+        regexp: '^.*gtk-theme-name=.*$'
+        replace: "gtk-theme-name={{ lookup('ansible.builtin.env', 'MAIN_THEME') }}"
+
+- name: "=====> set gtk3 settings <====="
   block:
-    - name: Remove old settings file
-      ansible.builtin.file:
+    - name: set cursor theme
+      ansible.builtin.replace:
         path: "{{ home_dir }}/.config/gtk-3.0/settings.ini"
-        state: absent
+        regexp: '^.*gtk-cursor-theme-name=.*$'
+        replace: "gtk-cursor-theme-name={{ lookup('ansible.builtin.env', 'CURSOR_THEME') }}"
 
-    - name: create new xettings file
-      ansible.builtin.blockinfile:
+    - name: set cursor size
+      ansible.builtin.replace:
         path: "{{ home_dir }}/.config/gtk-3.0/settings.ini"
-        create: true
-        block: |
-          [Settings]
-          gtk-application-prefer-dark-theme=true
-          gtk-button-images=1
-          gtk-cursor-theme-name={{ lookup('ansible.builtin.env', 'CURSOR_THEME') }}
-          gtk-cursor-theme-size={{ lookup('ansible.builtin.env', 'CURSOR_SIZE') }}
-          gtk-decoration-layout=icon:minimize,maximize,close
-          gtk-enable-animations=true
-          gtk-enable-event-sounds=1
-          gtk-enable-input-feedback-sounds=1
-          gtk-font-name="{{ lookup('ansible.builtin.env', 'THEME_FONT') }}"
-          gtk-icon-theme-name={{ lookup('ansible.builtin.env', 'ICON_THEME') }}
-          gtk-menu-images=0
-          gtk-modules=canberra-gtk-module
-          gtk-primary-button-warps-slider=false
-          gtk-sound-theme-name={{ lookup('ansible.builtin.env', 'SOUND_THEME') }}
-          gtk-theme-name={{ lookup('ansible.builtin.env', 'MAIN_THEME') }}
-          gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
-          gtk-toolbar-style=GTK_TOOLBAR_ICONS
-          gtk-xft-antialias=1
-          gtk-xft-hinting=1
-          gtk-xft-hintstyle=hintfull
-          gtk-xft-rgba=rgb
+        regexp: '^.*gtk-cursor-theme-size=.*$'
+        replace: "gtk-cursor-theme-size={{ lookup('ansible.builtin.env', 'CURSOR_SIZE') }}"
 
-- name: "=====> merge gtk-4.0 settings <====="
+    - name: set font
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.config/gtk-3.0/settings.ini"
+        regexp: '^.*gtk-font-name=.*$'
+        replace: "gtk-font-name=\"{{ lookup('ansible.builtin.env', 'THEME_FONT') }}\""
+
+    - name: set icon theme
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.config/gtk-3.0/settings.ini"
+        regexp: '^.*gtk-icon-theme-name=.*$'
+        replace: "gtk-icon-theme-name={{ lookup('ansible.builtin.env', 'ICON_THEME') }}"
+
+    - name: set sound theme
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.config/gtk-3.0/settings.ini"
+        regexp: '^.*gtk-sound-theme-name=.*$'
+        replace: "gtk-sound-theme-name={{ lookup('ansible.builtin.env', 'SOUND_THEME') }}"
+
+    - name: set main theme
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.config/gtk-3.0/settings.ini"
+        regexp: '^.*gtk-theme-name=.*$'
+        replace: "gtk-theme-name={{ lookup('ansible.builtin.env', 'MAIN_THEME') }}"
+
+- name: "=====> set gtk4 settings <====="
   block:
-    - name: Remove old settings file
-      ansible.builtin.file:
+    - name: set cursor theme
+      ansible.builtin.replace:
         path: "{{ home_dir }}/.config/gtk-4.0/settings.ini"
-        state: absent
+        regexp: '^.*gtk-cursor-theme-name=.*$'
+        replace: "gtk-cursor-theme-name={{ lookup('ansible.builtin.env', 'CURSOR_THEME') }}"
 
-    - name: create new xettings file
-      ansible.builtin.blockinfile:
+    - name: set cursor size
+      ansible.builtin.replace:
         path: "{{ home_dir }}/.config/gtk-4.0/settings.ini"
-        create: true
-        block: |
-          [Settings]
-          gtk-application-prefer-dark-theme=true
-          gtk-button-images=1
-          gtk-cursor-theme-name={{ lookup('ansible.builtin.env', 'CURSOR_THEME') }}
-          gtk-cursor-theme-size={{ lookup('ansible.builtin.env', 'CURSOR_SIZE') }}
-          gtk-decoration-layout=icon:minimize,maximize,close
-          gtk-enable-animations=true
-          gtk-enable-event-sounds=1
-          gtk-enable-input-feedback-sounds=1
-          gtk-font-name="{{ lookup('ansible.builtin.env', 'THEME_FONT') }}"
-          gtk-icon-theme-name={{ lookup('ansible.builtin.env', 'ICON_THEME') }}
-          gtk-menu-images=0
-          gtk-modules=canberra-gtk-module
-          gtk-primary-button-warps-slider=false
-          gtk-sound-theme-name={{ lookup('ansible.builtin.env', 'SOUND_THEME') }}
-          gtk-theme-name={{ lookup('ansible.builtin.env', 'MAIN_THEME') }}
-          gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
-          gtk-toolbar-style=GTK_TOOLBAR_ICONS
-          gtk-xft-antialias=1
-          gtk-xft-hinting=1
-          gtk-xft-hintstyle=hintfull
-          gtk-xft-rgba=rgb
+        regexp: '^.*gtk-cursor-theme-size=.*$'
+        replace: "gtk-cursor-theme-size={{ lookup('ansible.builtin.env', 'CURSOR_SIZE') }}"
 
-- name: "=====> merge qt5 settings <====="
+    - name: set font
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.config/gtk-4.0/settings.ini"
+        regexp: '^.*gtk-font-name=.*$'
+        replace: "gtk-font-name={{ lookup('ansible.builtin.env', 'THEME_FONT') }}"
+
+    - name: set icon theme
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.config/gtk-4.0/settings.ini"
+        regexp: '^.*gtk-icon-theme-name=.*$'
+        replace: "gtk-icon-theme-name={{ lookup('ansible.builtin.env', 'ICON_THEME') }}"
+
+    - name: set sound theme
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.config/gtk-4.0/settings.ini"
+        regexp: '^.*gtk-sound-theme-name=.*$'
+        replace: "gtk-sound-theme-name={{ lookup('ansible.builtin.env', 'SOUND_THEME') }}"
+
+    - name: set main theme
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.config/gtk-4.0/settings.ini"
+        regexp: '^.*gtk-theme-name=.*$'
+        replace: "gtk-theme-name={{ lookup('ansible.builtin.env', 'MAIN_THEME') }}"
+
+- name: "=====> set qt5 settings <====="
   block:
-    - name: Remove old settings file
-      ansible.builtin.file:
+    - name: set icon theme
+      ansible.builtin.replace:
         path: "{{ home_dir }}/.config/qt5ct/qt5ct.conf"
-        state: absent
+        regexp: '^.*icon_theme=.*$'
+        replace: "icon_theme={{ lookup('ansible.builtin.env', 'ICON_THEME') }}"
 
-    - name: create new xettings file
-      ansible.builtin.blockinfile:
+    - name: set dialogs
+      ansible.builtin.replace:
         path: "{{ home_dir }}/.config/qt5ct/qt5ct.conf"
-        create: true
-        block: |
-          [Appearance]
-          color_scheme_path=/usr/share/qt5ct/colors/airy.conf
-          custom_palette=false
-          icon_theme={{ lookup('ansible.builtin.env', 'ICON_THEME') }}
-          standard_dialogs=gtk3
-          style=Adwaita-Dark
-          
-          [Interface]
-          activate_item_on_single_click=1
-          buttonbox_layout=0
-          cursor_flash_time=1000
-          dialog_buttons_have_icons=1
-          double_click_interval=400
-          gui_effects=@Invalid()
-          keyboard_scheme=2
-          menus_have_icons=true
-          show_shortcuts_in_context_menus=true
-          stylesheets=/usr/share/qt5ct/qss/fusion-fixes.qss, /usr/share/qt5ct/qss/scrollbar-simple.qss, /usr/share/qt5ct/qss/sliders-simple.qss, /usr/share/qt5ct/qss/tooltip-simple.qss, /usr/share/qt5ct/qss/traynotification-simple.qss
-          toolbutton_style=4
-          underline_shortcut=1
-          wheel_scroll_lines=3              
+        regexp: '^.*standard_dialogs=.*$'
+        replace: "standard_dialogs=gtk3"
+
+    - name: set style
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.config/qt5ct/qt5ct.conf"
+        regexp: '^.*style=.*$'
+        replace: "style=Adwaita-Dark"
+
+    - name: set palette
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.config/qt5ct/qt5ct.conf"
+        regexp: '^.*custom_palette=.*$'
+        replace: "custom_palette=false"
+
+- name: "=====> set qt6 settings <====="
+  block:
+    - name: set icon theme
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.config/qt6ct/qt6ct.conf"
+        regexp: '^.*icon_theme=.*$'
+        replace: "icon_theme={{ lookup('ansible.builtin.env', 'ICON_THEME') }}"
+
+    - name: set dialogs
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.config/qt6ct/qt6ct.conf"
+        regexp: '^.*standard_dialogs=.*$'
+        replace: "standard_dialogs=gtk3"
+
+    - name: set style
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.config/qt6ct/qt6ct.conf"
+        regexp: '^.*style=.*$'
+        replace: "style=Adwaita-Dark"
+
+    - name: set palette
+      ansible.builtin.replace:
+        path: "{{ home_dir }}/.config/qt6ct/qt6ct.conf"
+        regexp: '^.*custom_palette=.*$'
+        replace: "custom_palette=false"
 
 - name: set themes for flatpak
   become: true

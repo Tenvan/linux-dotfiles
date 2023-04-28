@@ -1,0 +1,59 @@
+local config = require('configuration.config-system')
+
+config.widget.email.address = 'ralf.stich@infoniqa.com'
+
+config.widget.harddrives = {
+  mounts = {
+    '/',
+    '/home',
+    '/srv',
+  }
+}
+
+config.debug_mode = false
+config.trace_mode = false
+
+config.sounds = true
+
+config.widget.left_widgets = {
+  -- all screens
+  {
+    'layout_box',
+    'fire_icon',
+    'cpu',
+    'ram',
+  },
+  -- screen 1
+  {
+    'net_icon',
+    'net_speed',
+  },
+  -- screen 2
+  {
+    -- 'color_palette',
+    'media_icon',
+    'spotify',
+  }
+}
+config.widget.right_widgets = {
+  -- all screens
+  {
+    'screen_rec',
+  },
+  -- screen 1
+  {
+    'updater',
+    'hard_drives',
+    'systray',
+    'clock_icon',
+    'clock',
+    'info_center_toggle',
+  },
+  -- screen 2
+  {
+    'clock_icon',
+    'clock',
+  }
+}
+
+return config
