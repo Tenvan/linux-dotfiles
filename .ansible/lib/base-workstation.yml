@@ -232,6 +232,7 @@
       - com.bitwarden.desktop
       - com.diffingo.fwbackups
       - io.github.hakandundar34coding.system-monitoring-center
+      - org.fedoraproject.MediaWriter
 
     cargo_init:
       - git-delta
