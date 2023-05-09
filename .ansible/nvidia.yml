@@ -19,6 +19,7 @@
     is_fedora: false
     is_centos: false
     grub_theme: 1
+
     fedora_init:
       - akmod-nvidia
 
@@ -40,10 +41,10 @@
               blacklist nouveau
               options nouveau modeset=0
 
-        - name: backup old initramfrs
-          shell: mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img
-
         - name: create new initramfrs with nvidia
-          shell: sudo dracut /boot/initramfs-$(uname -r).img $(uname -r)  
+          shell: dracut /boot/initramfs-$(uname -r).img $(uname -r) --force -v
+
+        - name: grub update
+          shell: sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
       when: is_fedora    
