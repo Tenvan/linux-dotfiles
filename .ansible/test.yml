@@ -24,9 +24,3 @@
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
 
-    - name: install ventoy
-      shell: |
-        curl -LJO https://github.com/ventoy/Ventoy/releases/download/v1.0.91/ventoy-1.0.91-linux.tar.gz
-        untar ventoy-1.0.91-linux.tar.gz
-        mv ventoy-1.0.91 /opt/ventoy
-        rm ventoy-1.0.91-linux.tar.gz

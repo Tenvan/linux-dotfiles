@@ -67,6 +67,36 @@
       Comment=This session runs ~/.xsession or ~/.Xclients if available
       Exec=/opt/xinit-compat
 
+- name: install ventoy
+  block:
+  - name: remove archive
+    ansible.builtin.file:
+      state: absent
+      path: "{{ build_dir }}/ventoy"
+  - name: remove archive
+    ansible.builtin.file:
+      state: directory
+      path: "{{ build_dir }}/ventoy"
+  - name: download ventoy
+    shell: curl -LJO --remove-on-error --create-dirs https://github.com/ventoy/Ventoy/releases/download/v1.0.91/ventoy-1.0.91-linux.tar.gz
+    args:
+      executable: /bin/bash
+      chdir: "{{ build_dir }}/ventoy"
+  - name: extract ventoy
+    shell: tar -zxvf ventoy-1.0.91-linux.tar.gz
+    args:
+      executable: /bin/bash
+      chdir: "{{ build_dir }}/ventoy"
+  - name: remove archive
+    ansible.builtin.file:
+      state: directory
+      path: "/opt/local/bin"
+  - name: move ventoy to /opt/local/bin
+    become: yes
+    ansible.posix.synchronize:
+      src: "{{ build_dir }}/ventoy/ventoy-1.0.91/"
+      dest: /opt/local/bin
+
 ##################################
 # enable and start some services #
 ##################################

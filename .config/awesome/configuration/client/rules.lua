@@ -295,18 +295,6 @@ ruled.client.connect_signal('request::rules', function()
     }
   }
 
-  -- System Tools
-  ruled.client.append_rule {
-    rule_any = {
-      class = { 'Oomox', 'Unity', 'UnityHub', 'Ettercap', 'scrcpy' }
-    },
-    properties = {
-      screen = screen.primary,
-      tag = screen[screen.primary].tags[9],
-      skip_decoration = true
-    }
-  }
-
   -- Alle Develop Apps auf Screen 2 tag 2 schieben
   ruled.client.append_rule {
     rule_any = {
