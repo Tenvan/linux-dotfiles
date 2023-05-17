@@ -44,7 +44,7 @@
         ],
         [
             "🌥️ Wetter Höxter",
-            "$TERMINAL --hold --title Wetter:Höxter curl wttr.in/37671?lang=de"
+            "$TERMINAL --hold --title Wetter:Höxter curl 'wttr.in/37671?lang=de'"
         ]
     ],
     "DEVELOP_MENU": [

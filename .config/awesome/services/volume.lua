@@ -8,7 +8,9 @@ local awful = require('awful')
 local volume_old = -1
 local function emit_volume_info()
     awful.spawn.easy_async_with_shell('ponymix get-volume', function(stdout)
-        local line = stdout:gsub('^[^\n]*\n', '')
+        trace(string.format('get volume => %s', stdout))
+        local line = stdout:gsub('^[^\n]*\n/g', '')
+        trace(string.format('line -> %s', line))
 
         if line ~= '' then
             local volume = stdout or 0
@@ -17,7 +19,7 @@ local function emit_volume_info()
             trace(string.format('get volume => %s -> %s', tostring(volume_old), tostring(volume_int)))
 
             if volume_int ~= volume_old then
-                trace('new volume: ' .. stdout)
+                trace('new volume: ' .. tostring(volume_int))
                 emit('service::volume', volume_int)
                 volume_old = volume_int
             end

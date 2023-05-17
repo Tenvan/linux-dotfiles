@@ -82,7 +82,7 @@ local return_button = function()
 
 			local icon_name = nil
 			if update_available then
-				update_tooltip.text = update_package
+				update_tooltip.markup = update_package
 				icon_name = 'package-up'
 			else
 				update_tooltip.text = 'No updates currenty available.'
