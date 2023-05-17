@@ -43,9 +43,9 @@ log('Font Normal Size: ' .. theme.font_size)
 log('Font Large Size: ' .. theme.font_large_size)
 log('Font Big Size: ' .. theme.font_big_size)
 
-theme.font_small  = theme.font_family .. ' Regular ' .. theme.font_small_size
-theme.font        = theme.font_family .. ' Regular ' .. theme.font_size
-theme.font_large  = theme.font_family .. ' Regular ' .. theme.font_large_size
+theme.font_small       = theme.font_family .. ' Regular ' .. theme.font_small_size
+theme.font             = theme.font_family .. ' Regular ' .. theme.font_size
+theme.font_large       = theme.font_family .. ' Regular ' .. theme.font_large_size
 
 theme.font_bold_small  = theme.font_family .. ' Bold ' .. theme.font_small_size
 theme.font_bold        = theme.font_family .. ' Bold ' .. theme.font_size
@@ -222,7 +222,7 @@ local awesome_overrides = function(theme)
   theme.menu_fg_focus                                   = theme.fg_focus
   theme.menu_bg_normal                                  = theme.gtk_vars.menubar_bg_color:sub(1, 7)
   theme.menu_bg_focus                                   = theme.accent:sub(1, 7) .. 'CC'
-  theme.menu_border_color                               = theme.border_normal:sub(1, 7)
+  theme.menu_border_color                               = theme.border_focus:sub(1, 7) .. 'CC'
   theme.menu_submenu_icon                               = theme.icons .. 'submenu.png'
 
   -- Tooltips
