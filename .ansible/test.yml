@@ -2,7 +2,7 @@
 - hosts: localhost
   connection: local
   name: "==========> Install Tenvans Dotfiles with AwesomeWm Desktop <=========="
-  become: no
+  become: yes
 
   #install galaxy roles
   #roles:
@@ -24,5 +24,3 @@
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
 
-    - name: "=====> Install User Layout Packages <====="
-      include_tasks: lib/layout-user.yml
