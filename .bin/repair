@@ -15,7 +15,7 @@ if [ $IS_FEDORA_BASED = true ]; then
 	sudo rm ~/.build/awesome/build/*.rpm
 fi
 
-# ~/.scripts/install_system
+~/.scripts/install_system
 ~/.scripts/install_workstation
 
-rm -fr .zinit
+rm -fr ~/.zinit
