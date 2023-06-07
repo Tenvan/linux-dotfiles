@@ -48,6 +48,7 @@
 		"peacock.color": "#1857a4",
 		"yaml.schemas": {
 			"https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks": "file:///home/stira/.ansible/finish.yml"
-		}
+		},
+		"ansible.python.interpreterPath": "/bin/python"
 	}
 }

@@ -470,14 +470,14 @@ local global_keys             = awful.util.table.join(
     group = keys.kgHotkeys
   }),
 
-  awful.key({ controlkey, modkey }, returnkey, function()
+  awful.key({ altkey, modkey }, returnkey, function()
     emit('module::quake_terminal:toggle')
   end, {
     description = 'dropdown terminal (all screens)',
     group = keys.kgLauncher
   }),
 
-  awful.key({ altkey, modkey }, returnkey, function()
+  awful.key({ controlkey, modkey }, returnkey, function()
     local QuakeTerminal = require('module.scratchpad').quake
     QuakeTerminal:toggle()
   end, {
@@ -683,7 +683,7 @@ local global_keys             = awful.util.table.join(
     description = 'Picom Toggle',
     group = keys.kgSystem
   }),
-    awful.key({ modkey }, escapekey, function()
+  awful.key({ modkey }, escapekey, function()
     log('start xkill')
     awful.spawn('xkill')
   end, {

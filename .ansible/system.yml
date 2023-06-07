@@ -2,9 +2,9 @@
 - hosts: localhost
   connection: local
   name: "==========> Install Tenvans Dotfiles with AwesomeWm Desktop <=========="
-  become: yes
+  become: true
 
-  #install galaxy roles
+  # install galaxy roles
   roles:
     - role: robertdebock.bootstrap
 #    - role: robertdebock.rpmfusion
