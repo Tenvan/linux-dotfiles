@@ -23,3 +23,16 @@
   tasks:
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
+
+    - name: "Rofi Power Menu"
+      block:
+        - name: clone rofi power menu
+          git:
+            repo: 'https://github.com/jluttine/rofi-power-menu.git'
+            clone: yes
+            depth: 1
+            dest: "{{ build_dir }}/rofi-power-menu"
+        - name: copy bins to /usr/bin
+          ansible.posix.synchronize:
+            src: "{{ build_dir }}/rofi-power-menu/rofi-power-menu"
+            dest: /usr/bin

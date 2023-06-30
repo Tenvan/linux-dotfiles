@@ -10,12 +10,16 @@ local clickable_container = require('widget.clickable-container')
 local json = require('library.json')
 
 local config = require('configuration.config')
+dump(config, "config", 2)
+
 local secrets = {
 	key = config.widget.weather.key,
 	city_id = config.widget.weather.city_id,
 	units = config.widget.weather.units,
 	update_interval = config.widget.weather.update_interval
 }
+
+dump(secrets, "secrets")
 
 local weather_icon_widget = wibox.widget {
 	{

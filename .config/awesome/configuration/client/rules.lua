@@ -403,7 +403,7 @@ ruled.client.connect_signal('request::rules', function()
     },
     properties = {
       screen = screen2.index,
-      tag = screen2.tags[4],
+      tag = screen1.tags[4],
       switch_to_tags = true,
       maximized = false,
       floating = false,

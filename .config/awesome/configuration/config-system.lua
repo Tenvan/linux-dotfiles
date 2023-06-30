@@ -19,7 +19,7 @@ local config = {
     },
     weather = {
       -- API Key
-      key = 'cf806d5e1d1e72f3819d52e0e0441aac',
+      key = '<insert key>',
       -- City ID
       city_id = '',
       -- City ID
@@ -27,7 +27,7 @@ local config = {
       -- Units
       units = 'metric',
       -- Update in N seconds
-      update_interval = 1200
+      update_interval = 60 * 60
     },
     network = {
       -- Wired interface
@@ -88,7 +88,7 @@ local config = {
       },
       -- screen 1
       {
-        'weather',
+        -- 'weather',
       },
       -- screen 2
       {
