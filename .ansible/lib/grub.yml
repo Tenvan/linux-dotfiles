@@ -80,8 +80,13 @@
             chdir: "{{ build_dir }}/darkmatter-grub-theme"
       when: true
 
-    - name: grub-update
+    - name: grub-update MKCONFIG
       shell: grub2-mkconfig --output=/boot/grub2/grub.cfg
+      when: is_rhel_based is true
+
+    - name: grub-update UPDATE-GRUB
+      shell: update-grub
+      when: is_arch_based is true
 
     - set_fact:
         grub: "{{ lookup('file', '/etc/default/grub') }}"

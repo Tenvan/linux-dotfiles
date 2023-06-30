@@ -44,7 +44,3 @@
 
     - name: "=====> Post Installation Finishing <====="
       include_tasks: lib/finish-workstation.yml
-
-    - name: start JetBrains Toolbox (needed for install completion)
-      become: false
-      command: jetbrains-toolbox &

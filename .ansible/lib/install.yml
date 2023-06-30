@@ -59,6 +59,7 @@
       become: false
       kewlfft.aur.aur:
         state: present
+        use: paru
         name: "{{ arco_combined_array }}"
       when: is_dry is false and arco_combined_array|length > 0
   when: is_arcolinux
@@ -106,12 +107,21 @@
         pip_combined_array: "{{ pip_init  }}"
     - debug:
         msg: "{{ pip_combined_array }}"
-    - name: "[INSTALL][PIP] GlobalPipApps"
+
+    - name: "[INSTALL][PIP] GlobalPipApps PIP"
       become: true
       ansible.builtin.pip:
         state: present
         name: "{{ item }}"
       loop: "{{ pip_combined_array }}"
+      when: is_arch_based is false
+
+    - name: "[INSTALL][PIP] GlobalPipApps PIPX"
+      become: false
+      shell: "pipx install {{ item }} --include-deps"
+      loop: "{{ pip_combined_array }}"
+      when: is_arch_based is true
+      
   when: is_dry is false and pip_init is not undefined and pip_init is not none and pip_init|length > 0
 
 ####################################################################################################################

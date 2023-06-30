@@ -12,8 +12,6 @@
 # Ausnahmen Script Folder
 !.scripts
 !.scripts/**/*
-!.bin
-!.bin/**/*
 
 # Ausnahmen Ansible Folder
 !.ansible/

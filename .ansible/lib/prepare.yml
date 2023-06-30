@@ -17,6 +17,7 @@
     baseurl: https://repo.vivaldi.com/archive/rpm/$basearch
     gpgcheck: yes
     gpgkey: https://repo.vivaldi.com/archive/linux_signing_key.pub
+  when: is_fedora 
 
 - name: Add VSCode Repository
   ansible.builtin.yum_repository:
@@ -25,6 +26,7 @@
     baseurl: https://packages.microsoft.com/yumrepos/vscode
     gpgcheck: yes
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+  when: is_fedora 
 
 - name: Add IBM Odbc
   ansible.builtin.yum_repository:
@@ -32,6 +34,7 @@
     description: IBM i Access Client Solutions Linux
     baseurl: https://public.dhe.ibm.com/software/ibmi/products/odbc/rpms
     gpgcheck: no
+  when: is_fedora 
 
 - name: Enable Gitflow Copr
   community.general.copr:

@@ -3,20 +3,22 @@
   vars:
     global_init:
       - dnsmasq
-      - ebtables
-      - iptables-nft
       - libvirt
       - virt-manager
 
     archlinux_based_init:
       - bridge-utils
-      - openbsd-netcat
+      # - openbsd-netcat
       - ovmf
       - qemu-arch-extra
       - qemu-desktop
       - vde2
       - virtio-win
 
+    rhel_based_init:
+      - ebtables
+      - iptables-nft
+    
     fedora_init:
       - bridge-utils
       - edk2-ovmf

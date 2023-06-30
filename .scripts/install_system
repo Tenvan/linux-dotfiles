@@ -13,6 +13,11 @@ if [ "$IS_FEDORA" = true ]; then
 	install redhat-lsb-core
 fi
 
+if [ "$IS_ARCO" = true ]; then
+	install ansible
+	install lsb-release
+fi
+
 errorCheck "install ansible"
 
 ansible-galaxy collection install -r ~/.ansible/lib/collections.yml

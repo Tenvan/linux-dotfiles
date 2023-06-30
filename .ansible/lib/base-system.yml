@@ -21,12 +21,9 @@
       # system tools
       - cockpit
       - cockpit-machines
-      - cockpit-networkmanager
       - cockpit-packagekit
       - cockpit-podman
       - cockpit-storaged
-      - cockpit-system
-      - subscription-manager-cockpit
 
       # podman + docker
       - docker
@@ -118,7 +115,9 @@
     rhel_based_init:
       # installation of important editors
       - code
-      - python3-pip
+      - cockpit-networkmanager
+      - cockpit-system
+      - subscription-manager-cockpit
 
     fedora_init:
       - acpi

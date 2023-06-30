@@ -19,6 +19,7 @@
       - base-devel
       - colorgcc
       - nuget
+      - python-pipx
 
       # DotNet/Mono Setup
       - dotnet-sdk

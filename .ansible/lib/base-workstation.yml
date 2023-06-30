@@ -29,7 +29,6 @@
       - xbindkeys
       - xclip
       - xdotool
-      - xkill
       - xscreensaver
       - xsel
       - xterm
@@ -42,7 +41,6 @@
       # system tools
       - grub-customizer
       - ponymix
-      - beesu
 
       # utils for editors
       - bash-completion
@@ -77,6 +75,7 @@
       - rofi
       - rofimoji
       - bleachbit
+      - python-notify2
 
       # bluetooth
       - blueman
@@ -109,6 +108,7 @@
       # system tools
       - partitionmanager
       - docker-compose
+      - xorg-xkill
 
       # utilities from gnome
       - gnome-system-tools
@@ -121,7 +121,6 @@
 
       # printer setup
       - brother-mfc-j4420dw
-      - canon-cque
       - foomatic-db-engine
       - foomatic-db-gutenprint-ppds
       - foomatic-db-nonfree
@@ -135,7 +134,6 @@
       # system packages
       - eject-applet
       - ibus-daemon
-      - luacheck
       - oh-my-posh-bin
       - picom
       - pm-utils
@@ -171,7 +169,12 @@
 
       # system tools
       - kde-partitionmanager
+      - xkill
+      - beesu
 
+      # system packages
+      - luacheck
+      
       # sound setup
       - alsa-utils
       - paman
@@ -201,7 +204,6 @@
     arcolinux_init:
       # Meta Packages
       - arcolinux-meta-log
-      - arcolinux-meta-logout
       - arcolinux-meta-fun
       - arcolinux-meta-samba
       - arcolinux-meta-utilities
@@ -237,8 +239,5 @@
     cargo_init:
       - git-delta
       - tokei
-
-    pip_init:
-      - notify2
 
   include_tasks: install.yml

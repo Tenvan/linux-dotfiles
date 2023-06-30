@@ -24,8 +24,7 @@ IS_FEDORA=false
 IS_RHEL=false
 IS_CENTOS=false
 
-DEBUG=false
-#DEBUG=true
+DEBUG=true
 
 ERROR_PAKAGE_UNINST=
 ERROR_PAKAGE_INST=
@@ -178,8 +177,8 @@ restart() {
     run "$@"
 }
 
-# # ex = EXtractor for all kinds of archives
-# # usage: ex <file>
+# ex = EXtractor for all kinds of archives
+# usage: ex <file>
 expand() {
     if [ -f $1 ]; then
         case $1 in
@@ -204,4 +203,6 @@ expand() {
     fi
 }
 
-# dumpVersion
+if [ $DEBUG = "true" ]; then
+	dumpVersion
+fi
