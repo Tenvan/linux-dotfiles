@@ -397,4 +397,7 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-fastfetch
+if [ -x "$(command -v $FETCHER)" ]; then
+    eval $FETCHER
+fi
+

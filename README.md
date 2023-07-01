@@ -22,36 +22,57 @@ rsync -vrlptgo --include ".*" desktop-dotfiles/* ~/
 rm -fr desktop-dotfiles/
 ```
 
-### Vorbereitung der weiteren Installation
+### Installation Softwarepaket
 
-Die Scripte ausführbar machen, falls noch nicht geschehen:
+Die Installatio erfolg durch die Scripte in genau dieser Reihenfolge.
+Dabei sind alle ausser das erste Script optional.
+
+#### Basis System
+
+Installierung dess Basissystems, das auch als Server-Only Installation verwendet werden kann.
 
 ```bash
-chmod +x .bin/*
-chmod +x .scripts/*
+./.scripts/install_system
 ```
 
-### Installation Softwarepaket mit folgenden Scripten (erforderlich)
+#### Desktop System
+
+Installierung des Desktop-Parts (AWESOMEWM basierend).
 
 ```bash
-install_init.zsh
-install_base.zsh
-install_fonts.zsh
-install_finish.zsh
+./.scripts/install_workstation
 ```
-### Zusatz Packete installieren (optional)
+
+#### Benutzer Einstellungen
+
+Konfiguriert das System neu anhand der vorgenommen Konfiguration (Umgebungsvariablen).
+Dieser Schritt kann bzw. muss jedesmal ausgeführt werden, wenn an der Themekonfiguation etwas geändert wurde.
 
 ```bash
-install_apps.zsh
-install_arduino.zsh
-install_vm.zsh
-install_games.zsh
-install_printer.zsh
+./.scripts/install_user
+```
+
+#### NVIDIA Treiber Instllation
+
+Die propiritären NVIDIA Treiber können mit folgendem Script installiert werden.
+Dies ist aber nur für bestimmte Linux-Distro erforderlich, die keine eigene Treiberveraltung haben (z.B. Fedora).
+
+```bash
+./.scripts/install_nvidia
 ```
 
 ## Manuelle Konfiguration
 
+### Standard Shell auf ZSH setzen
+
+Mit folgender Anweisung wird die Standard-Shell des angemeldeten Users auf ZSH geändert.
+
+```bash
+chsh -s $(command -v zsh)
+```
+
 ### Monitor Definition erstellen
+
 Mit 'arandr' die Monitoreinstellung vornehmen und in der Datei '~/.screenlayout/screenlayout-system.sh' speichern.
 
 Das Install-Script nochmal laufen lassen, anschließend neu booten.
