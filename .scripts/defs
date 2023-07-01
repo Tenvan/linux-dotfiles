@@ -47,7 +47,7 @@ if [ "$LINUX_VERSION_NAME" = "ArcoLinux" ]; then
     IS_ARCO=true
 fi
 
-if [ "$LINUX_VERSION_NAME" = "ManjaroLinux" ]; then
+if [ "$LINUX_VERSION_NAME" = "Manjaro Linux" ]; then
     IS_MANJARO=true
 fi
 

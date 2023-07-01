@@ -13,7 +13,7 @@ if [ "$IS_FEDORA" = true ]; then
 	install redhat-lsb-core
 fi
 
-if [ "$IS_ARCO" = true ]; then
+if [ "$IS_ARCH_BASED" = true ]; then
 	install ansible
 	install lsb-release
 fi
