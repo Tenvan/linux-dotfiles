@@ -68,6 +68,10 @@ if [ "$ID" = "fedora" ]; then
     IS_FEDORA=true
 fi
 
+if [ "$ID" = "debian" ]; then
+    IS_DEBIAN=true
+fi
+
 if [ "$LINUX_VERSION_NAME" = "Red Hat Enterprise Linux" ]; then
     IS_RHEL=true
 fi
