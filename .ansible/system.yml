@@ -24,23 +24,23 @@
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
 
-    - name: "=====> Pre Installation Prepare <====="
-      include_tasks: lib/prepare.yml
+#    - name: "=====> Pre Installation Prepare <====="
+#      include_tasks: lib/prepare.yml
 
-    - name: "=====> Install System Development Packages <====="
-      include_tasks: lib/develop-system.yml
+#    - name: "=====> Install System Development Packages <====="
+#      include_tasks: lib/develop-system.yml
 
     - name: "=====> Install System Base Packages <====="
       include_tasks: lib/base-system.yml
 
-    - name: "=====> Install Layout Packages <====="
-      include_tasks: lib/layout-user.yml
+#    - name: "=====> Install Layout Packages <====="
+#      include_tasks: lib/layout-user.yml
 
-    - name: "=====> Install Vms Packages <====="
-      include_tasks: lib/vm.yml
+#    - name: "=====> Install Vms Packages <====="
+#      include_tasks: lib/vm.yml
 
-    - name: "=====> Post Installation Finishing <====="
-      include_tasks: lib/grub.yml
+#    - name: "=====> Post Installation Finishing <====="
+#      include_tasks: lib/grub.yml
 
-    - name: "=====> Post Installation Finishing <====="
-      include_tasks: lib/finish-system.yml
+#    - name: "=====> Post Installation Finishing <====="
+#      include_tasks: lib/finish-system.yml

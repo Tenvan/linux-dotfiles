@@ -5,18 +5,17 @@
       # global
       - acpid
       - at
-      - cronie
       - curl
       - dnsutils
-      - gvfs-smb
       - iotop
       - iptraf-ng
       - jq
-      - openssh
+      - ripgrep
       - sysstat
       - time
       - upower
       - zsh
+      - flatpak
 
       # system tools
       - cockpit
@@ -28,17 +27,11 @@
       # podman + docker
       - docker
       - podman
-      - pcp-pmda-podman
-
-      # Python libs
-      - python
-      - python-pip
 
       # file manager
       - mc
 
       # useful tools for ranger
-      - poppler
       - lynx
 
     archlinux_based_init:
@@ -47,6 +40,7 @@
       - ark
       - bpytop
       - clamav
+      - cronie
       - dex
       - dpkg
       - exa
@@ -54,6 +48,7 @@
       - figlet
       - fzf
       - grc
+      - gvfs-smb
       - htop
       - hwinfo
       - iftop
@@ -61,6 +56,7 @@
       - multitail
       - numlockx
       - openconnect
+      - openssh
       - p7zip
       - python-mutagen
       - stow
@@ -71,7 +67,7 @@
 
       # podman + docker
       - podman-compose
-      - podman-tui
+      - pcp-pmda-podman
 
       # installation of important editors
       - micro
@@ -79,19 +75,13 @@
       # file manager
       - ranger
 
-      # global
-      - base-devel
-
-      # system tools
-      - grub-btrfs
-      - update-grub
-
       # useful tools for ranger
       - atool
       - atool-desktop
       - ffmpegthumbnailer
       - imagemagick
       - ueberzug
+      - poppler
 
       # system packages
       - hardinfo
@@ -113,11 +103,76 @@
       - man-pages-de
 
     rhel_based_init:
+      - gvfs-smb
+      - openssh
+      
       # installation of important editors
+      - cronie
       - code
       - cockpit-networkmanager
       - cockpit-system
       - subscription-manager-cockpit
+
+    debian_based_init:
+      - gvfs
+      - openssh-client
+      - openssh-server
+      - bat
+      
+      # installation of important editors
+
+      # from archlinux
+      - acpi
+      - arj
+      - ark
+      - bpytop
+      - clamav
+      - dex
+      - dpkg
+      - exa
+      - screenfetch
+      - figlet
+      - fzf
+      - grc
+      - htop
+      - hwinfo
+      - iftop
+      - lsd
+      - multitail
+      - numlockx
+      - openconnect
+      - python3-mutagen
+      - stow
+      - timeshift
+      - toilet
+      - unclutter
+      - unrar-free
+
+      # podman + docker
+      - podman-compose
+
+      # installation of important editors
+      - micro
+
+      # file manager
+      - ranger
+
+      # useful tools for ranger
+      - atool
+      - ffmpegthumbnailer
+      - imagemagick
+      - ueberzug
+      - elinks
+      - highlight
+
+      # system packages
+      - hardinfo
+      - network-manager
+      - network-manager-openconnect
+      - powershell
+      - mediainfo
+      - odt2txt
+      - w3m
 
     fedora_init:
       - acpi
@@ -149,7 +204,6 @@
 
       # podman + docker
       - podman-compose
-      - podman-tui
 
       # installation of important editors
       - micro
@@ -177,6 +231,20 @@
       - bat
       - fd-find
       - procs
-      - ripgrep
 
   include_tasks: install.yml
+
+##########################
+# add some flatpak repos #
+##########################
+- name: Add the dl.flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: absent
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+- name: Add the flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo

@@ -6,20 +6,20 @@
       - cmake
       - gcc
       - git
-      - go
+      - golang      
       - jq
       - make
       - npm
-      - python-pip
       - ruby
-      - rust
       - tk
 
     archlinux_based_init:
       - base-devel
       - colorgcc
       - nuget
+      - python-pip
       - python-pipx
+      - rust
 
       # DotNet/Mono Setup
       - dotnet-sdk
@@ -27,12 +27,27 @@
       - mono-msbuild
 
     rhel_based_init:
+      - rust
+      
       # DotNet/Mono Setup
       - dotnet-sdk-6.0
       - dotnet-sdk-7.0
 
       # missing python moduls
       - python3-pip
+      - pipx
+
+    debian_based_init:
+      - rust-all
+      
+      # DotNet/Mono Setup
+      # TODO Dotnet in Debian
+      - dotnet-sdk-6.0
+      - dotnet-sdk-7.0
+
+      # missing python moduls
+      - python3-pip
+      - pipx
 
     fedora_init:
       - colorgcc

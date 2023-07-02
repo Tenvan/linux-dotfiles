@@ -13,7 +13,12 @@ export VISUAL="$EDITOR"
 export TERMINAL="kitty"
 export TIME="/usr/bin/time -v "
 export DISPLAYMANAGER=gdm
-export FETCHER=fastfetch
+
+if [ -x "$(command -v fastfetch)" ]; then
+	export FETCHER=fastfetch
+elif [ -x "$(command -v screenfetch)" ]; then
+	export FETCHER=screenfetch
+fi
 
 # Theme Definitionen
 export MAIN_THEME="VALYRIAN-Molten-Steel"

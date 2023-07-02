@@ -10,6 +10,9 @@
     path: "{{ build_dir }}"
     state: directory
 
+######################
+# add some yum repos #
+######################
 - name: Add Vivaldi Repository
   ansible.builtin.yum_repository:
     name: vivaldi
@@ -36,6 +39,9 @@
     gpgcheck: no
   when: is_fedora 
 
+#######################
+# add some copr repos #
+#######################
 - name: Enable Gitflow Copr
   community.general.copr:
     name: elegos/gitflow
@@ -51,17 +57,10 @@
     name: en4aew/desktop-tools
   when: is_fedora 
 
-##########################
-# add some flatpak repos #
-##########################
-- name: Add the dl.flathub flatpak repository remote to the user installation
-  community.general.flatpak_remote:
-    name: flathub
-    state: absent
-    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-
-- name: Add the flathub flatpak repository remote to the user installation
-  community.general.flatpak_remote:
-    name: flathub
-    state: present
-    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+######################
+# add some deb repos #
+######################
+- name: "DEB => packages-microsoft-prod.deb"
+  ansible.builtin.apt:
+    deb: https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb
+  when: is_debian_based
