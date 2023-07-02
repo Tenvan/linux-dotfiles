@@ -14,8 +14,12 @@ if [ "$IS_FEDORA" = true ]; then
 fi
 
 if [ "$IS_ARCH_BASED" = true ]; then
-	install ansible
-	install lsb-release
+	sudo pacman -Syy ansible
+	sudo pacman -Syy lsb-release
+fi
+
+if [ "$IS_DEBIAN_BASED" = true ]; then
+	sudo apt install -y ansible
 fi
 
 errorCheck "install ansible"
