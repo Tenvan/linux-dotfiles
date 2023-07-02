@@ -6,9 +6,34 @@
 Als Basis dient eine eine beliebige ArchLinux/Manjaro Installation.
 Alle benötigten Packete werden mit Scripts nach installiert.
 
+## Vorbereitungen
+
+Für die Installation und Betrieb ist es Notwendig, dass der Hauptuser *root* bzw. *sudo* Rechte hat.
+Am besten erreicht man dies, in dem er den *sudoers' zugeordnet wird. Hierfür gibt es je nach Distro unterschiedliche Gruppen.
+
+### Archlinux, Rehat
+
+Gruppe: wheel
+
+```bash
+su -c '/usr/sbin/usermod -aG wheel $USER; echo $USER ist jetzt sudoer'
+reboot
+```
+
+### Dedian
+
+Gruppe: sudo
+
+```bash
+su -c '/usr/sbin/usermod -aG sudo $USER; echo $USER ist jetzt sudoer'
+reboot
+```
+
 ## Installation
 
 ### Repository klonen
+
+Git und rsync müssen evtl. vorher noch manuell installiert werden, je na Distro und Installation.
 
 ```bash
 git clone https://github.com/Tenvan/desktop-dotfiles.git
@@ -22,9 +47,11 @@ rsync -vrlptgo --include ".*" desktop-dotfiles/* ~/
 rm -fr desktop-dotfiles/
 ```
 
+Anschliessen noch in der Shell neu anmelden oder die Terminalanwendung neu starten.
+
 ### Installation Softwarepaket
 
-Die Installatio erfolg durch die Scripte in genau dieser Reihenfolge.
+Die Installation erfolgt mithilfe folgender Scripte in genau dieser Reihenfolge.
 Dabei sind alle ausser das erste Script optional.
 
 #### Basis System

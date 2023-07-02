@@ -13,16 +13,19 @@ csource /etc/os-release
 #####################
 LINUX_VERSION_NAME="$NAME"
 LINUX_BASED="$ID_LIKE"
-IS_ARCH_BASED=false
-IS_FEDORA_BASED=false
 
-IS_ARCH=false
-IS_ARCO=false
-IS_MANJARO=false
+export IS_ARCH_BASED=false
+export IS_RHEL_BASED=false
+export IS_DEBIAN_BASED=false
 
-IS_FEDORA=false
-IS_RHEL=false
-IS_CENTOS=false
+export IS_ARCH=false
+export IS_RHEL=false
+export IS_MANJARO=false
+
+export IS_ARCO=false
+export IS_FEDORA=false
+export IS_CENTOS=false
+export IS_DEBIAN=false
 
 DEBUG=true
 
@@ -32,10 +35,20 @@ ERROR_PAKAGE_INST=
 # Distro Basis
 if [ "$LINUX_BASED" = "arch" ]; then
     IS_ARCH_BASED=true
+    PACTOOL=pacman
+    if [ -x "$(command -v yay)" ]; then
+        export PACTOOL=yay
+    fi
 fi
 
-if [ "$LINUX_BASED" = "fedora" -o "$ID" = "fedora" ]; then
-    IS_FEDORA_BASED=true
+if [ "$LINUX_BASED" = "fedora" ] || [ "$ID" = "fedora" ]; then
+    IS_RHEL_BASED=true
+    PACTOOL=dnf
+fi
+
+if [ "$ID" = "debian" ]; then
+    IS_DEBIAN_BASED=true
+    PACTOOL=apt
 fi
 
 # Distro
@@ -51,7 +64,7 @@ if [ "$LINUX_VERSION_NAME" = "Manjaro Linux" ]; then
     IS_MANJARO=true
 fi
 
-if [ "$LINUX_VERSION_NAME" = "Fedora Linux" ]; then
+if [ "$ID" = "fedora" ]; then
     IS_FEDORA=true
 fi
 
@@ -63,33 +76,32 @@ if [ "$LINUX_VERSION_NAME" = "CentOS Stream" ]; then
     IS_CENTOS=true
 fi
 
-if [ $IS_FEDORA_BASED = true ]; then
-    PACTOOL=dnf
-else
-    PACTOOL=pacman
-    if [ -x "$(command -v yay)" ]; then
-        export PACTOOL=yay
-    fi
-fi
-
 PACKER="$PACTOOL"
 
-if [ "$IS_FEDORA_BASED" = true ]; then
+if [ "$IS_RHEL_BASED" = true ]; then
     PACKER_ALL="--verbose -y $@"
-else
+fi 
+
+if [ "$IS_RHEL_BASED" = true ]; then
     PACKER_ALL="--color always --needed --overwrite \* $@"
+fi
+
+if [ "$IS_DEBIAN_BASED" = true ]; then
+    PACKER_ALL="--verbose -y $@"
 fi
 
 dumpVersion() {
     echo "Linux Version..: $LINUX_VERSION_NAME"
     echo "Based on ArchLinux...: $IS_ARCH_BASED"
-    echo "Based on Fedora/RHEL.: $IS_FEDORA_BASED"
+    echo "Based on Redhat......: $IS_RHEL_BASED"
+    echo "Based on Debian......: $IS_DEBIAN_BASED"
     echo "IsArch...............: $IS_ARCH"
     echo "IsArco...............: $IS_ARCO"
     echo "IsManjaro............: $IS_MANJARO"
     echo "IsFedora.............: $IS_FEDORA"
     echo "IsRHEL...............: $IS_RHEL"
     echo "IsCentOS.............: $IS_CENTOS"
+    echo "IsDebian.............: $IS_DEBIAN"
     echo "Package Manager......: $PACTOOL"
     echo "AUR Manager..........: $PACKER"
     echo "Packer Params........: $PACKER_ALL"
@@ -98,13 +110,15 @@ dumpVersion() {
 initInstall() {
     INSTALL_SCRIPT=$1
     echo "Step: init Install '$INSTALL_SCRIPT'"
-    sudo rm /var/lib/pacman/db.lck 2&> /dev/null
+    if [ $IS_ARCH_BASED = true ]; then
+        sudo rm /var/lib/pacman/db.lck 2&> /dev/null
+    fi
 }
 
 install() {
     PAKAGE_INST="${PAKAGE_INST} $1"
     
-    if [ $IS_FEDORA_BASED = true ]; then
+    if [ $IS_RHEL_BASED = true ] || [ $IS_DEBIAN_BASED = true ]; then
         eval "sudo $PACKER install $PACKER_ALL $1"
     else
         eval "$PACKER -S $PACKER_ALL $1"
@@ -120,7 +134,7 @@ install() {
 uninstall() {
     PAKAGE_UNINST="${PAKAGE_UNINST} $1"
     
-    if [ $IS_FEDORA_BASED = true ]; then
+    if [ $IS_RHEL_BASED = true ] || [ $IS_DEBIAN_BASED = true ]; then
         eval "sudo $PACKER remove $1"
     else
         eval "$PACKER -R --noconfirm $1"
@@ -204,5 +218,5 @@ expand() {
 }
 
 if [ $DEBUG = "true" ]; then
-	dumpVersion
+    dumpVersion
 fi
