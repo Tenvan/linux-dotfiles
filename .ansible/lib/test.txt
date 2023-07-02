@@ -1,0 +1,11 @@
+all                   arch    arco    manjaro   redhat          rhel            fedora          debian  ubuntu
+
+#global-packages
+acpi                  +       +       +         +               +               +               +       +
+acpid                 +       +       +         +               +               +               +       +
+
+#language-files
+man-pages-de          +       +       +         -               -               -               +       +
+
+#python
+python-posix          -       +       +         python3-posix   python3-posix   python3-posix   +       +

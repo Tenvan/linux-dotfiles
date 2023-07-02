@@ -35,3 +35,4 @@ errorCheck "set sudoer rights"
 
 ansible-playbook ~/.ansible/system.yml
 errorCheck "run ansible playbook"
+

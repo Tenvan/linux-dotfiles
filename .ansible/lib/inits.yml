@@ -1,115 +1,107 @@
----
 # is Arch based
-- name: store user id
-  become: false
-  set_fact:
+- name: Store User id
+  ansible.builtin.set_fact:
     user_id: "{{ lookup('ansible.builtin.env', 'USER') }}"
 
-- name: store home dir
-  become: false
-  set_fact:
+- name: Store home dir
+  ansible.builtin.set_fact:
     home_dir: "{{ lookup('ansible.builtin.env', 'HOME') }}"
 
-- name: store custom dir
-  become: false
-  set_fact:
+- name: Store custom dir
+  ansible.builtin.set_fact:
     custom_dir: "{{ home_dir }}/.custom"
 
-- name: store build dir
-  become: false
-  set_fact:
+- name: Store build dir
+  ansible.builtin.set_fact:
     build_dir: "{{ home_dir }}/.build"
 
-- name: themes dir
-  become: false
-  set_fact:
+- name: Themes dir
+  ansible.builtin.set_fact:
     themes_dir: "{{ home_dir }}/.themes"
 
 # is Arch based
 - name: Detect ArchLinux Family
-  set_fact:
+  ansible.builtin.set_fact:
     is_arch_based: true
     grub_theme: 1
   when: ansible_os_family.lower() == "archlinux"
 
 # is Manjaro
 - name: Detect Manjaro
-  set_fact:
+  ansible.builtin.set_fact:
     is_manjaro: true
     grub_theme: 24
   when: ansible_distribution.lower() == 'manjaro'
 
 # is ArcoLinux
 - name: Detect ArcoLinux
-  set_fact:
+  ansible.builtin.set_fact:
     is_arcolinux: true
     grub_theme: 46
   when: ansible_facts['lsb']['description'].lower() == 'arcolinux'
 
 # is Redhat based
 - name: Detect Redhat Family
-  set_fact:
+  ansible.builtin.set_fact:
     is_rhel_based: true
     grub_theme: 30
   when: ansible_os_family.lower() == "redhat"
 
 # is RHEL
 - name: Detect RHEL (Red Hat Enterprise Linux)
-  set_fact:
+  ansible.builtin.set_fact:
     is_rhel: true
     grub_theme: 30
   when: ansible_distribution.lower() == 'redhat'
 
 # is Fedora
 - name: Detect Fedora
-  set_fact:
+  ansible.builtin.set_fact:
     is_fedora: true
     grub_theme: 13
   when: ansible_distribution.lower() == 'fedora'
 
 # is CentOS
 - name: Detect CentOS
-  set_fact:
+  ansible.builtin.set_fact:
     is_centos: true
     grub_theme: 6
   when: ansible_distribution.lower() == 'centos'
 
 # is Debian based
 - name: Detect Debian Family
-  set_fact:
+  ansible.builtin.set_fact:
     is_debian_based: true
     grub_theme: 8
   when: ansible_os_family.lower() == "debian"
 
 # is Debian
 - name: Detect Debian Family
-  set_fact:
+  ansible.builtin.set_fact:
     is_debian: true
     grub_theme: 8
   when: ansible_distribution.lower() == "debian"
 
-
-- block:
-    - debug: var=ansible_facts
-      when: false
-    - debug: var=ansible_facts['lsb']
-      when: false
-    - debug: var=ansible_facts['os_family']
-    - debug: var=ansible_facts['distribution']
-    - debug: var=ansible_facts['distribution_major_version']
-    - debug: var=ansible_facts['lsb']['description']
-    - debug: var=ansible_distribution
-    - debug: var=ansible_os_family
-    - debug: var=is_arch_based
-    - debug: var=is_arcolinux
-    - debug: var=is_manjaro
-    - debug: var=is_rhel_based
-    - debug: var=is_rhel
-    - debug: var=is_fedora
-    - debug: var=is_centos
-    - debug: var=is_debian_based
-    - debug: var=is_debian
-    - debug: var=user_id
-    - debug: var=home_dir
-    - debug: var=build_dir
-  when: is_dry
+- name: Debug Diagnosis
+  ansible.builtin.debug:
+    msg:
+      # - "ansible_facts = {{ ansible_facts }}"
+      - "ansible_facts['lsb'] = {{ ansible_facts['lsb'] }}"
+      - "ansible_facts['os_family'] = {{ ansible_facts['os_family'] }}"
+      - "ansible_facts['distribution'] = {{ ansible_facts['distribution'] }}"
+      - "ansible_facts['distribution_major_version'] = {{ ansible_facts['distribution_major_version'] }}"
+      - "ansible_facts['lsb']['description'] = {{ ansible_facts['lsb']['description'] }}"
+      - "ansible_distribution = {{ ansible_distribution }}"
+      - "ansible_os_family = {{ ansible_os_family }}"
+      - "is_arch_based = {{ is_arch_based }}"
+      - "is_arcolinux = {{ is_arcolinux }}"
+      - "is_manjaro = {{ is_manjaro }}"
+      - "is_rhel_based = {{ is_rhel_based }}"
+      - "is_rhel = {{ is_rhel }}"
+      - "is_fedora = {{ is_fedora }}"
+      - "is_centos = {{ is_centos }}"
+      - "is_debian_based = {{ is_debian_based }}"
+      - "is_debian = {{ is_debian }}"
+      - "user_id = {{ user_id }}"
+      - "home_dir = {{ home_dir }}"
+      - "build_dir = {{ build_dir }}"

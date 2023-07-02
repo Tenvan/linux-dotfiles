@@ -11,15 +11,57 @@
 
   vars:
     is_dry: true
-    is_rhel_based: false
+
     is_arch_based: false
     is_arcolinux: false
     is_manjaro: false
+
+    is_rhel_based: false
     is_rhel: false
     is_fedora: false
     is_centos: false
+
+    is_debian_based: false
+    is_debian: false
+
     grub_theme: 1
 
   tasks:
     - name: "=====> Initiate <====="
-      include_tasks: lib/inits.yml
+      ansible.builtin.include_tasks: lib/inits.yml
+
+    - name: Read users from CSV file and return a dictionary
+      community.general.read_csv:
+        path: lib/test.txt
+        delimiter: " "
+        skipinitialspace: true
+        dialect: unix
+        key: all
+        strict: false
+      register: packages_json
+      delegate_to: localhost
+
+    - name: Store Packages List
+      ansible.builtin.set_fact:
+        packages_array: "{{ packages_json | community.general.json_query('dict.*[]') | remap_package_node }}"
+
+    # - name: List Packages
+    #   ansible.builtin.debug:
+    #     # var: item
+    #     msg: 'Loop Item: {{ item }}'
+    #   loop: "{{ packages_array }}"
+
+    ####################################################################################################################
+    # Install Fedora Part
+    ####################################################################################################################
+    # - block:
+    #     - ansible.builtin.set_fact:
+    #         fedora_combined_array: "{{ (fedora_init | default([])) }}"
+    #     - name: "[INSTALL][DNF] FedoraPackages"
+    #       become: true
+    #       dnf:
+    #         state: present
+    #         allowerasing: true
+    #         name: "{{ fedora_combined_array }}"
+    #       when: is_dry is false and fedora_combined_array|length > 0
+    #   when: is_fedora

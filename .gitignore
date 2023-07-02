@@ -76,3 +76,5 @@
 .config/awesome/configuration/user-profile/*.png
 
 .idea/
+
+**/__pycache__/

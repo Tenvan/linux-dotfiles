@@ -11,36 +11,42 @@
 
   vars:
     is_dry: false
-    is_rhel_based: false
+
     is_arch_based: false
     is_arcolinux: false
     is_manjaro: false
+
+    is_rhel_based: false
     is_rhel: false
     is_fedora: false
     is_centos: false
+
+    is_debian_based: false
+    is_debian: false
+
     grub_theme: 13
 
   tasks:
     - name: "=====> Initiate <====="
-      include_tasks: lib/inits.yml
+      ansible.builtin.include_tasks: lib/inits.yml
 
 #    - name: "=====> Pre Installation Prepare <====="
-#      include_tasks: lib/prepare.yml
+#      ansible.builtin.include_tasks: lib/prepare.yml
 
 #    - name: "=====> Install System Development Packages <====="
-#      include_tasks: lib/develop-system.yml
+#      ansible.builtin.include_tasks: lib/develop-system.yml
 
     - name: "=====> Install System Base Packages <====="
-      include_tasks: lib/base-system.yml
+      ansible.builtin.include_tasks: lib/base-system.yml
 
 #    - name: "=====> Install Layout Packages <====="
-#      include_tasks: lib/layout-user.yml
+#      ansible.builtin.include_tasks: lib/layout-user.yml
 
 #    - name: "=====> Install Vms Packages <====="
-#      include_tasks: lib/vm.yml
+#      ansible.builtin.include_tasks: lib/vm.yml
 
 #    - name: "=====> Post Installation Finishing <====="
-#      include_tasks: lib/grub.yml
+#      ansible.builtin.include_tasks: lib/grub.yml
 
 #    - name: "=====> Post Installation Finishing <====="
-#      include_tasks: lib/finish-system.yml
+#      ansible.builtin.include_tasks: lib/finish-system.yml
