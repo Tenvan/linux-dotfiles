@@ -1,5 +1,5 @@
 ---
-- name: DefineCargoApps
+- name: Define Cargo Apps
   vars:
     cargo_init:
       - bat
@@ -9,4 +9,4 @@
       - ripgrep
       - tokei
 
-  include_tasks: install.yml
+  ansible.builtin.include_tasks: install.yml

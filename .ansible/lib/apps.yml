@@ -1,5 +1,5 @@
 ---
-- name: DefineAppPackages
+- name: Define App Packages
   vars:
     global_init:
       # graphics
@@ -28,11 +28,11 @@
       - freerdp
 
       # scanner setup
-      #- xsane
-      #- simple-scan
-      #- skanlite
-      #- colord-sane
-      #- sane
+      # - xsane
+      # - simple-scan
+      # - skanlite
+      # - colord-sane
+      # - sane
 
       # tools
       - translate-shell
@@ -96,4 +96,4 @@
       - org.photoqt.PhotoQt
       - com.microsoft.Edge
 
-  include_tasks: install.yml
+  ansible.builtin.include_tasks: install.yml

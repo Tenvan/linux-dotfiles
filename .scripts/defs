@@ -27,7 +27,7 @@ export IS_FEDORA=false
 export IS_CENTOS=false
 export IS_DEBIAN=false
 
-DEBUG=true
+DEBUG=false
 
 ERROR_PAKAGE_UNINST=
 ERROR_PAKAGE_INST=

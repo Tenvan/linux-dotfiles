@@ -2,12 +2,12 @@
 ############################################
 # Install manuel setups from Github, etc.) #
 ############################################
-- name: fetch display names
-  shell: "xrandr | grep -e ' connected [1-9|p]'"
+- name: Fetch display names
+  ansible.builtin.shell: "xrandr | grep -e ' connected [1-9|p]'"
   register: monitors
 
-- name: get primary monitor
-  set_fact:
+- name: Get primary monitor
+  ansible.builtin.set_fact:
     monitor1: "{{ monitors.stdout | regex_replace('^(?P<display>.*)\\sconnected primary .*$', '\\g<display>', multiline=True) | regex_replace('^(.*)\\sconnected \\d.*$', '', multiline=True) | regex_replace('(\\n)', '', multiline=False) }}"
 
 - assert:
@@ -15,13 +15,13 @@
     success_msg: "primary display detected."
     fail_msg: "no primary display detected!"
 
-- name: get secondary monitor
-  set_fact:
+- name: Get secondary monitor
+  ansible.builtin.set_fact:
     monitor2: "{{ monitors.stdout | regex_replace('^(?P<display>.*)\\sconnected \\d.*$', '\\g<display>', multiline=True) | regex_replace('^(.*)\\sconnected.*$', '', multiline=True) | regex_replace('(\\n)', '', multiline=False) }}"
 
-- debug: var=monitor2
+- ansible.builtin.debug: var=monitor2
 
-- name: create default script
+- name: Create default script
   ansible.builtin.blockinfile:
     path: "/opt/screenlayout.sh"
     marker: "# {mark} ANSIBLE MANAGED BLOCK screenlayout"
@@ -35,7 +35,8 @@
       sleep 1
       xrandr --output "$MONITOR2" --auto --scale $2 --right-of "$MONITOR1"
       sleep 1
-- name: create system screenlayout script (for display managers)
+
+- name: Create system screenlayout script (for display managers)
   ansible.builtin.blockinfile:
     path: "/opt/screenlayout-system.sh"
     marker: "# {mark} ANSIBLE MANAGED BLOCK screenlayout"
@@ -46,9 +47,9 @@
       sh /opt/screenlayout.sh 1 1
       exit 0
 
-- name: create low resultion screenlayout script on 4K displays (for games, etc.)
+- name: Create low resultion screenlayout script on 4K displays (for games, etc.)
   become: false
-  ansible.builtin.blockinfile:    
+  ansible.builtin.blockinfile:
     path: "{{ home_dir }}/.screenlayout/screenlayout-low.sh"
     marker: "# {mark} ANSIBLE MANAGED BLOCK screenlayout"
     create: true
@@ -59,7 +60,7 @@
       awesome-client 'awesome.restart()'
       exit 0
 
-- name: create medium resultion screenlayout script on 4K displays (for Coding, etc.)
+- name: Create medium resultion screenlayout script on 4K displays (for Coding, etc.)
   become: false
   ansible.builtin.blockinfile:
     path: "{{ home_dir }}/.screenlayout/screenlayout-medium.sh"
@@ -72,7 +73,7 @@
       awesome-client 'awesome.restart()'
       exit 0
 
-- name: create full resultion screenlayout script on 4K displays (for CAD, etc.)
+- name: Create full resultion screenlayout script on 4K displays (for CAD, etc.)
   become: false
   ansible.builtin.blockinfile:
     path: "{{ home_dir }}/.screenlayout/screenlayout-high.sh"

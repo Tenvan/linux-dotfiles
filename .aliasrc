@@ -67,7 +67,7 @@ if [ $IS_ARCH_BASED = true ]; then
 	alias upall="$HOME/.bin/update-all"
 fi
 
-if [ $IS_FEDORA_BASED = true ]; then
+if [ $IS_RHEL_BASED = true ]; then
 	alias inst="sudo $PACTOOL install -y"
 	alias uninst="sudo $PACTOOL remove"
 	alias search="sudo $PACTOOL search"

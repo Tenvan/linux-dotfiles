@@ -2,50 +2,50 @@
 ############################################
 # Install manuel setups from Github, etc.) #
 ############################################
-- name: install update-systemd-resolved for dns fix
+- name: Install update-systemd-resolved for dns fix
+  when: is_fedora
   block:
     - name: clone https://github.com/jonathanio/update-systemd-resolved.git
       git:
-        repo:  'https://github.com/jonathanio/update-systemd-resolved.git'
-        clone: yes
+        repo: "https://github.com/jonathanio/update-systemd-resolved.git"
+        clone: true
         depth: 1
         dest: "{{ build_dir }}/update-systemd-resolved"
-    - name: install update-systemd-resolved
-      shell: |
+    - name: Install update-systemd-resolved
+      ansible.builtin.shell: |
         make
       args:
         executable: /bin/bash
         chdir: "{{ build_dir }}/update-systemd-resolved"
-    - name: enable and start service systemd-resolved.service, if not started
+    - name: Enable and start service systemd-resolved.service, if not started
       ansible.builtin.service:
         name: systemd-resolved.service
         state: started
-        enabled: yes
-  when: is_fedora
+        enabled: true
 
-- name: install dynamic wallpaper (dwall)
+- name: Install dynamic wallpaper (dwall)
   block:
     - name: clone https://github.com/adi1090x/dynamic-wallpaper.git
       git:
-        repo: 'https://github.com/adi1090x/dynamic-wallpaper.git'
-        clone: yes
+        repo: "https://github.com/adi1090x/dynamic-wallpaper.git"
+        clone: true
         depth: 1
         dest: "{{ build_dir }}/DynamicWallper"
-    - name: install dwall
-      shell: |
+    - name: Install dwall
+      ansible.builtin.shell: |
         ./install.sh -s island
       args:
         executable: /bin/bash
         chdir: "{{ build_dir }}/DynamicWallper"
 
-- name: disable email warning in multitail
+- name: Disable email warning in multitail
   ansible.builtin.lineinfile:
     path: /usr/local/etc/multitail.conf
     create: true
-    regexp: '^.*check_mail:.*'
-    line: 'check_mail:0'
+    regexp: "^.*check_mail:.*"
+    line: "check_mail:0"
 
-- name: create own xinit-compat script
+- name: Create own xinit-compat script
   ansible.builtin.blockinfile:
     path: "/opt/xinit-compat"
     create: true
@@ -53,10 +53,10 @@
     block: |
       #!/bin/sh          
       # ANSIBLE MANAGED BLOCK xinit"
-      exec ~/.xsession 
+      exec ~/.xsession
     mode: u+x,o+x,g+x
-        
-- name: add awesome session (fedora)
+
+- name: Add awesome session (fedora)
   ansible.builtin.blockinfile:
     create: true
     path: /usr/share/xsessions/awesome-fedora.desktop
@@ -67,100 +67,105 @@
       Comment=This session runs ~/.xsession or ~/.Xclients if available
       Exec=/opt/xinit-compat
 
-- name: install ventoy
+- name: Install ventoy
   block:
-  - name: remove archive
-    ansible.builtin.file:
-      state: absent
-      path: "{{ build_dir }}/ventoy"
-  - name: remove archive
-    ansible.builtin.file:
-      state: directory
-      path: "{{ build_dir }}/ventoy"
-  - name: download ventoy
-    shell: curl -LJO --remove-on-error --create-dirs https://github.com/ventoy/Ventoy/releases/download/v1.0.91/ventoy-1.0.91-linux.tar.gz
-    args:
-      executable: /bin/bash
-      chdir: "{{ build_dir }}/ventoy"
-  - name: extract ventoy
-    shell: tar -zxvf ventoy-1.0.91-linux.tar.gz
-    args:
-      executable: /bin/bash
-      chdir: "{{ build_dir }}/ventoy"
-  - name: remove archive
-    ansible.builtin.file:
-      state: directory
-      path: "/opt/local/bin"
-  - name: move ventoy to /opt/local/bin
-    become: yes
-    ansible.posix.synchronize:
-      src: "{{ build_dir }}/ventoy/ventoy-1.0.91/"
-      dest: /opt/local/bin
+    - name: Remove archive
+      ansible.builtin.file:
+        state: absent
+        path: "{{ build_dir }}/ventoy"
+
+    - name: Remove archive
+      ansible.builtin.file:
+        state: directory
+        path: "{{ build_dir }}/ventoy"
+
+    - name: Download ventoy
+      ansible.builtin.shell: curl -LJO --remove-on-error --create-dirs https://github.com/ventoy/Ventoy/releases/download/v1.0.91/ventoy-1.0.91-linux.tar.gz
+      args:
+        executable: /bin/bash
+        chdir: "{{ build_dir }}/ventoy"
+
+    - name: Extract ventoy
+      ansible.builtin.shell: tar -zxvf ventoy-1.0.91-linux.tar.gz
+      args:
+        executable: /bin/bash
+        chdir: "{{ build_dir }}/ventoy"
+
+    - name: Remove archive
+      ansible.builtin.file:
+        state: directory
+        path: "/opt/local/bin"
+
+    - name: move ventoy to /opt/local/bin
+      become: yes
+      ansible.posix.synchronize:
+        src: "{{ build_dir }}/ventoy/ventoy-1.0.91/"
+        dest: /opt/local/bin
 
 ##################################
 # enable and start some services #
 ##################################
-- name: enable and start service sshd, if not started
+- name: Enable and start service sshd, if not started
   ansible.builtin.service:
     name: sshd
     state: started
-    enabled: yes
+    enabled: true
 
-- name: enable and start cockpit, if not started
+- name: Enable and start cockpit, if not started
   ansible.builtin.service:
     name: cockpit.service
     state: started
-    enabled: yes
+    enabled: true
 
-- name: enable and start cockpit, if not started
+- name: Enable and start cockpit, if not started
   ansible.builtin.service:
     name: cockpit.socket
     state: started
-    enabled: yes
+    enabled: true
 
 - name: enable and start cronie, if not started
   ansible.builtin.service:
     name: cronie
     state: started
-    enabled: yes
+    enabled: true
   when: is_arch_based
 
-- name: enable and start libvirtd, if not started
+- name: Enable and start libvirtd, if not started
   ansible.builtin.service:
     name: libvirtd
     state: started
-    enabled: yes
+    enabled: true
 
 - name: enable and start cups.socket, if not started
   ansible.builtin.service:
     name: cups.socket
     state: started
-    enabled: yes
+    enabled: true
 
-- name: enable and start cups.service, if not started
+- name: Enable and start cups.service, if not started
   ansible.builtin.service:
     name: cups.service
     state: started
-    enabled: yes
+    enabled: true
 
 - name: enable and start podman, if not started
   ansible.builtin.service:
     name: podman.service
     state: started
-    enabled: yes
+    enabled: true
 
-- name: enable and start fstrim.timer, if not started
+- name: Enable and start fstrim.timer, if not started
   ansible.builtin.service:
     name: fstrim.timer
     state: started
-    enabled: yes
+    enabled: true
 
-- name: refresh icons on ArchLinux
+- name: Refresh icons on ArchLinux
   become: true
-  command: gdk-pixbuf-query-loaders --update-cache
+  ansible.builtin.command: gdk-pixbuf-query-loaders --update-cache
   when: is_arch_based
 
 - name: refresh icons on RHEL
   become: true
-  command: gdk-pixbuf-query-loaders-64 --update-cache
+  ansible.builtin.command: gdk-pixbuf-query-loaders-64 --update-cache
   when: is_rhel_based

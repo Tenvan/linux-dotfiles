@@ -6,7 +6,7 @@
 # create build folder for some manuel installations
 - name: Create build directory
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ build_dir }}"
     state: directory
 
@@ -14,48 +14,48 @@
 # add some yum repos #
 ######################
 - name: Add Vivaldi Repository
+  when: is_fedora
   ansible.builtin.yum_repository:
     name: vivaldi
     description: Vivaldi Yum Repo
     baseurl: https://repo.vivaldi.com/archive/rpm/$basearch
-    gpgcheck: yes
+    gpgcheck: true
     gpgkey: https://repo.vivaldi.com/archive/linux_signing_key.pub
-  when: is_fedora 
 
 - name: Add VSCode Repository
+  when: is_fedora
   ansible.builtin.yum_repository:
     name: vscode
     description: Visual Studio Code
     baseurl: https://packages.microsoft.com/yumrepos/vscode
-    gpgcheck: yes
+    gpgcheck: true
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
-  when: is_fedora 
 
 - name: Add IBM Odbc
+  when: is_fedora
   ansible.builtin.yum_repository:
     name: ibmi-acs
     description: IBM i Access Client Solutions Linux
     baseurl: https://public.dhe.ibm.com/software/ibmi/products/odbc/rpms
-    gpgcheck: no
-  when: is_fedora 
+    gpgcheck: false
 
 #######################
 # add some copr repos #
 #######################
 - name: Enable Gitflow Copr
+  when: is_fedora
   community.general.copr:
     name: elegos/gitflow
-  when: is_fedora 
 
 - name: Enable Bibata-Cursor Copr
+  when: is_fedora
   community.general.copr:
     name: peterwu/rendezvous
-  when: is_fedora 
 
 - name: Enable ponymix
+  when: is_fedora
   community.general.copr:
     name: en4aew/desktop-tools
-  when: is_fedora 
 
 ######################
 # add some deb repos #

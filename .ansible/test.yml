@@ -13,6 +13,7 @@
     is_dry: true
 
     is_arch_based: false
+    is_arch: false
     is_arcolinux: false
     is_manjaro: false
 
@@ -23,6 +24,7 @@
 
     is_debian_based: false
     is_debian: false
+    is_ubuntu: false
 
     grub_theme: 1
 
@@ -30,20 +32,23 @@
     - name: "=====> Initiate <====="
       ansible.builtin.include_tasks: lib/inits.yml
 
-    - name: Read users from CSV file and return a dictionary
-      community.general.read_csv:
-        path: lib/test.txt
-        delimiter: " "
-        skipinitialspace: true
-        dialect: unix
-        key: all
-        strict: false
-      register: packages_json
-      delegate_to: localhost
+    - name: "=====> Post Installation Finishing <====="
+      ansible.builtin.include_tasks: lib/displays.yml
 
-    - name: Store Packages List
-      ansible.builtin.set_fact:
-        packages_array: "{{ packages_json | community.general.json_query('dict.*[]') | remap_package_node }}"
+    # - name: Read users from CSV file and return a dictionary
+    #   community.general.read_csv:
+    #     path: lib/test.txt
+    #     delimiter: " "
+    #     skipinitialspace: true
+    #     dialect: unix
+    #     key: all
+    #     strict: false
+    #   register: packages_json
+    #   delegate_to: localhost
+
+    # - name: Store Packages List
+    #   ansible.builtin.set_fact:
+    #     packages_array: "{{ packages_json | community.general.json_query('dict.*[]') | remap_package_node }}"
 
     # - name: List Packages
     #   ansible.builtin.debug:

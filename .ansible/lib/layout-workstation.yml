@@ -51,7 +51,7 @@
       - desktop-backgrounds-gnome
       - f37-backgrounds-gnome
       - f37-backgrounds-extras-gnome
-      
+
       # jetbrains fonts
       - jetbrains-mono-fonts-all
 
@@ -131,7 +131,7 @@
   block:
     - name: Clone Valyrian repository
       git:
-        repo: 'https://github.com/rtlewis1/GTK.git'
+        repo: "https://github.com/rtlewis1/GTK.git"
         single_branch: true
         clone: yes
         version: VALYRIAN
@@ -150,10 +150,10 @@
           - "--include=VALYRIAN*/*"
 
     - name: Clone Catppuccin repository
-      git:
-        repo: 'https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme.git'
+      ansible.builtin.git:
+        repo: "https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme.git"
         single_branch: true
-        clone: yes
+        clone: true
         dest: "{{ build_dir }}/themes/Catppuccin"
 
     - name: Synchronization Catppuccin themes

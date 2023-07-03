@@ -9,13 +9,11 @@ if [ "$IS_RHEL" = true ]; then
 fi
 
 if [ "$IS_FEDORA" = true ]; then
-	install ansible
-	install redhat-lsb-core
+	sudo dnf install -y ansible redhat-lsb-core
 fi
 
 if [ "$IS_ARCH_BASED" = true ]; then
-	sudo pacman -Syy ansible
-	sudo pacman -Syy lsb-release
+	sudo pacman -Syy ansible lsb-release
 fi
 
 if [ "$IS_DEBIAN_BASED" = true ]; then

@@ -1,5 +1,5 @@
 ---
-- name: DefineAwesomeWmPackages
+- name: Define Awesome Wm Packages
   vars:
     luarocks_init:
       - luacov
@@ -8,12 +8,15 @@
       - ldoc
       - markdown
       - lain
+
     global_init:
       - luarocks
+
     archlinux_based_init:
       - awesome-git
       - awmtt
       - base-devel
+
     rhel_based_init:
       - Xephyr
       - asciidoc
@@ -45,28 +48,30 @@
       - ImageMagick
       - cairo-devel
       - cairo-gobject
+
     arcolinux_init:
       - arcolinux-config-awesome-git
+
     manjaro_init:
       - manjaro-awesome-settings
 
-  include_tasks: install.yml
+  ansible.builtin.include_tasks: install.yml
 
-- name: install awesome-wm dependencies on Fedora
+- name: Install awesome-wm dependencies on Fedora
   when: is_rhel_based
   become: true
   block:
     - name: Clone awesome repository
       git:
-        repo: 'https://github.com/awesomeWM/awesome'
-        clone: yes
+        repo: "https://github.com/awesomeWM/awesome"
+        clone: true
         dest: "{{ build_dir }}/awesome"
     - name: Build and install awesome source
-      shell: |
+      ansible.builtin.shell: |
         make package
         dnf localinstall -y build/*.rpm
       args:
         executable: /bin/bash
         chdir: "{{ build_dir }}/awesome"
-    - name: trust git repository
-      shell: git config --global --add safe.directory {{ build_dir }}/awesome
+    - name: Trust git repository
+      ansible.builtin.shell: git config --global --add safe.directory {{ build_dir }}/awesome

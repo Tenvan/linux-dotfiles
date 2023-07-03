@@ -1,13 +1,12 @@
 ---
-- name: install hpuld
-  shell: "{{ home_dir }}/.scripts/setup/uld/install.sh"
- 
-- name: install nvm 
-  become: false
-  shell:
-    curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+- name: Install hpuld
+  ansible.builtin.command: "{{ home_dir }}/.scripts/setup/uld/install.sh"
 
-- name: set doku header in cronie config
+- name: Install nvm
+  become: false
+  ansible.builtin.shell: curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+
+- name: Set doku header in cronie config
   become: true
   ansible.builtin.blockinfile:
     path: "/var/spool/cron/{{ user_id }}"
@@ -36,64 +35,61 @@
       # @reboot                    Execute the job when the system boots
     owner: "{{ user_id }}"
     group: "{{ user_id }}"
-    mode: 'u=rw,g=r,o=r'
+    mode: "u=rw,g=r,o=r"
 
 #
 # define cron jobs
 # see: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/cron_module.html#ansible-collections-ansible-builtin-cron-module
 #
-- name: set cronie config for dwall
+- name: Set cronie config for dwall
   ansible.builtin.cron:
     user: "{{ user_id }}"
     name: "dwall job for hourly"
     special_time: hourly
-    job: "env PATH=/usr/local/bin:/usr/bin DISPLAY=:0 DESKTOP_SESSION=awesome DBUS_SESSION_BUS_ADDRESS=\"unix:path=/run/user/1000/bus\" /usr/bin/dwall -s $WALLPAPER_THEME'"
+    job: 'env PATH=/usr/local/bin:/usr/bin DISPLAY=:0 DESKTOP_SESSION=awesome DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" /usr/bin/dwall -s $WALLPAPER_THEME'''
 
-- name: set cronie config for dwall
+- name: Set cronie config for dwall
   ansible.builtin.cron:
     user: "{{ user_id }}"
     name: "dwall job for reboot"
     special_time: reboot
-    job: "env PATH=/usr/local/bin:/usr/bin DISPLAY=:0 DESKTOP_SESSION=awesome DBUS_SESSION_BUS_ADDRESS=\"unix:path=/run/user/1000/bus\" /usr/bin/dwall -s $WALLPAPER_THEME'"
+    job: 'env PATH=/usr/local/bin:/usr/bin DISPLAY=:0 DESKTOP_SESSION=awesome DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" /usr/bin/dwall -s $WALLPAPER_THEME'''
 
-- name: install ranger DevIcons
+- name: Install ranger DevIcons
   become: false
   block:
-    - name: remove old plugins
+    - name: Remove old plugins
       ansible.builtin.file:
         state: absent
         path: "{{ home_dir }}/.config/ranger/plugins/ranger_devicons"
-    - name: clone devicons
-      git:
-        repo: 'https://github.com/alexanderjeurissen/ranger_devicons'
-        clone: yes
+    - name: Clone devicons
+      ansible.builtin.git:
+        repo: "https://github.com/alexanderjeurissen/ranger_devicons"
+        clone: true
         depth: 1
         dest: "{{ home_dir }}/.config/ranger/plugins/ranger_devicons"
 
-- name: install micro plugins
+- name: Install micro plugins
   become: false
-  shell: |
+  ansible.builtin.shell: |
     micro -plugin install comment editorconfig joinLines quoter filemanager jump \
       detectindent go snippets crystal quickfix wc manipulator diff ftoptions \
       linter literate status monokai-dark gotham-colors nordcolors
     micro -plugin update
+  register: my_output
+  changed_when: my_output.rc != 0
 
-- name: enable autologin in gdm
+- name: Enable autologin in gdm
   ansible.builtin.lineinfile:
     insertafter: "\\[daemon\\]"
     state: present
     path: /etc/gdm/custom.conf
-    regexp: '^.*AutomaticLoginEnable=(.*)$'
-    line: 'AutomaticLoginEnable=True'
+    regexp: "^.*AutomaticLoginEnable=(.*)$"
+    line: "AutomaticLoginEnable=True"
 
-- name: set autologin user
+- name: Set autologin user
   ansible.builtin.lineinfile:
     insertafter: "\\[daemon\\]"
     path: /etc/gdm/custom.conf
-    regexp: '^.*AutomaticLogin=(.*)$'
-    line: 'AutomaticLogin={{ user_id }}'
-
-- set_fact:
-    gdm: "{{ lookup('file', '/etc/gdm/custom.conf') }}"
-
-- debug: var=gdm
+    regexp: "^.*AutomaticLogin=(.*)$"
+    line: "AutomaticLogin={{ user_id }}"

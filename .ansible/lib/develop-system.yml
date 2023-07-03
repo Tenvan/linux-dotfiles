@@ -1,12 +1,12 @@
 ---
-- name: DefineDevelopmentPackages
+- name: Define Development Packages
   vars:
     global_init:
       - cargo
       - cmake
       - gcc
       - git
-      - golang      
+      - golang
       - jq
       - make
       - npm
@@ -28,7 +28,7 @@
 
     rhel_based_init:
       - rust
-      
+
       # DotNet/Mono Setup
       - dotnet-sdk-6.0
       - dotnet-sdk-7.0
@@ -39,7 +39,7 @@
 
     debian_based_init:
       - rust-all
-      
+
       # DotNet/Mono Setup
       # TODO Dotnet in Debian
       - dotnet-sdk-6.0
@@ -62,4 +62,4 @@
       - anybadge
       - boto3
 
-  include_tasks: install.yml
+  ansible.builtin.include_tasks: install.yml

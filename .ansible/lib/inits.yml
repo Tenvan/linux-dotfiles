@@ -85,7 +85,6 @@
 - name: Debug Diagnosis
   ansible.builtin.debug:
     msg:
-      # - "ansible_facts = {{ ansible_facts }}"
       - "ansible_facts['lsb'] = {{ ansible_facts['lsb'] }}"
       - "ansible_facts['os_family'] = {{ ansible_facts['os_family'] }}"
       - "ansible_facts['distribution'] = {{ ansible_facts['distribution'] }}"

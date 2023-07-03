@@ -2,45 +2,52 @@
 - hosts: localhost
   connection: local
   name: "==========> Install Tenvans Dotfiles with AwesomeWm Desktop <=========="
-  become: yes
+  become: true
 
   vars:
     is_dry: false
-    is_rhel_based: false
+
     is_arch_based: false
+    is_arch: false
     is_arcolinux: false
     is_manjaro: false
+
+    is_rhel_based: false
     is_rhel: false
     is_fedora: false
     is_centos: false
 
+    is_debian_based: false
+    is_debian: false
+    is_ubuntu: false
+
   tasks:
     - name: "=====> Initiate <====="
-      include_tasks: lib/inits.yml
+      ansible.builtin.include_tasks: lib/inits.yml
 
     - name: "=====> Pre Installation Prepare <====="
-      include_tasks: lib/prepare.yml
+      ansible.builtin.include_tasks: lib/prepare.yml
 
     - name: "=====> Install AwesomeWm Dependencies Packages <====="
-      include_tasks: lib/awesome.yml
+      ansible.builtin.include_tasks: lib/awesome.yml
 
     - name: "=====> Install System Development Packages <====="
-      include_tasks: lib/develop-workstation.yml
+      ansible.builtin.include_tasks: lib/develop-workstation.yml
 
     - name: "=====> Install Workstation Base Packages <====="
-      include_tasks: lib/base-workstation.yml
+      ansible.builtin.include_tasks: lib/base-workstation.yml
 
     - name: "=====> Install Workstation Layout Packages <====="
-      include_tasks: lib/layout-workstation.yml
+      ansible.builtin.include_tasks: lib/layout-workstation.yml
 
     - name: "=====> Install Apps <====="
-      include_tasks: lib/apps.yml
+      ansible.builtin.include_tasks: lib/apps.yml
 
     - name: "=====> Post Installation Finishing <====="
-      include_tasks: lib/displays.yml
+      ansible.builtin.include_tasks: lib/displays.yml
 
     - name: "=====> Install Arduino Packages <====="
-      include_tasks: lib/arduino.yml
+      ansible.builtin.include_tasks: lib/arduino.yml
 
     - name: "=====> Post Installation Finishing <====="
-      include_tasks: lib/finish-workstation.yml
+      ansible.builtin.include_tasks: lib/finish-workstation.yml

@@ -4,8 +4,14 @@
   name: "==========> Install Tenvans Dotfiles with AwesomeWm Desktop <=========="
   become: true
 
+  # install galaxy roles
+  # roles:
+  #  - role: robertdebock.bootstrap
+  #  - role: robertdebock.rpmfusion
+
   vars:
-    is_dry: false
+    is_dry: true
+
     is_arch_based: false
     is_arch: false
     is_arcolinux: false
@@ -20,15 +26,11 @@
     is_debian: false
     is_ubuntu: false
 
+    grub_theme: 1
+
   tasks:
     - name: "=====> Initiate <====="
       ansible.builtin.include_tasks: lib/inits.yml
 
-    - name: Allow the backup user to sudo /usr/local/bin/backup
-      community.general.sudoers:
-        name: 100-myrules
-        state: present
-        user: "{{ user_id }}"
-        commands: ALL
-        runas: ALL
-        nopassword: true
+    - name: install JetBrains Toolbox
+      ansible.builtin.shell: "curl -fsSL https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash"

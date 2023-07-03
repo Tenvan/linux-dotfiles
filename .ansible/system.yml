@@ -7,12 +7,12 @@
   # install galaxy roles
   roles:
     - role: robertdebock.bootstrap
-#    - role: robertdebock.rpmfusion
 
   vars:
     is_dry: false
 
     is_arch_based: false
+    is_arch: false
     is_arcolinux: false
     is_manjaro: false
 
@@ -23,6 +23,7 @@
 
     is_debian_based: false
     is_debian: false
+    is_ubuntu: false
 
     grub_theme: 13
 
@@ -30,23 +31,23 @@
     - name: "=====> Initiate <====="
       ansible.builtin.include_tasks: lib/inits.yml
 
-#    - name: "=====> Pre Installation Prepare <====="
-#      ansible.builtin.include_tasks: lib/prepare.yml
+    - name: "=====> Pre Installation Prepare <====="
+      ansible.builtin.include_tasks: lib/prepare.yml
 
-#    - name: "=====> Install System Development Packages <====="
-#      ansible.builtin.include_tasks: lib/develop-system.yml
+    - name: "=====> Install System Development Packages <====="
+      ansible.builtin.include_tasks: lib/develop-system.yml
 
     - name: "=====> Install System Base Packages <====="
       ansible.builtin.include_tasks: lib/base-system.yml
 
-#    - name: "=====> Install Layout Packages <====="
-#      ansible.builtin.include_tasks: lib/layout-user.yml
+    - name: "=====> Install Layout Packages <====="
+      ansible.builtin.include_tasks: lib/layout-user.yml
 
-#    - name: "=====> Install Vms Packages <====="
-#      ansible.builtin.include_tasks: lib/vm.yml
+    - name: "=====> Install Vms Packages <====="
+      ansible.builtin.include_tasks: lib/vm.yml
 
-#    - name: "=====> Post Installation Finishing <====="
-#      ansible.builtin.include_tasks: lib/grub.yml
+    - name: "=====> Post Installation Finishing <====="
+      ansible.builtin.include_tasks: lib/grub.yml
 
-#    - name: "=====> Post Installation Finishing <====="
-#      ansible.builtin.include_tasks: lib/finish-system.yml
+    - name: "=====> Post Installation Finishing <====="
+      ansible.builtin.include_tasks: lib/finish-system.yml

@@ -105,7 +105,7 @@
     rhel_based_init:
       - gvfs-smb
       - openssh
-      
+
       # installation of important editors
       - cronie
       - code
@@ -118,7 +118,7 @@
       - openssh-client
       - openssh-server
       - bat
-      
+
       # installation of important editors
 
       # from archlinux

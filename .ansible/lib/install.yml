@@ -15,10 +15,12 @@
 ####################################################################################################################
 
 ####################################################################################################################
-# Install Archlinux Based Part
+# Archlinux Based Part
 ####################################################################################################################
-- block:
-    - set_fact:
+- name: Install Archlinux Based Part
+  when: is_arch_based
+  block:
+    - ansible.builtin.set_fact:
         arch_combined_array: "{{ (global_init | default([])) + (archlinux_based_init | default([])) }}"
     - name: "[INSTALL][AUR] ArchLinuxPackages"
       become: false
@@ -27,61 +29,65 @@
         use: paru
         name: "{{ arch_combined_array }}"
       when: is_dry is false and arch_combined_array|length > 0
-  when: is_arch_based
 
 ####################################################################################################################
-# Install RHEL Based Part
+# RHEL Based Part
 ####################################################################################################################
-- block:
-    - set_fact:
+- name: Install RHEL Based Part
+  when: is_rhel_based
+  block:
+    - ansible.builtin.set_fact:
         rhel_combined_array: "{{ (global_init | default([])) + (rhel_based_init | default([])) }}"
     - name: "[INSTALL][DNF] RhelPackages"
       become: true
-      dnf:
+      ansible.builtin.dnf:
         state: present
         allowerasing: true
         name: "{{ rhel_combined_array }}"
       when: is_dry is false and rhel_combined_array|length > 0
-  when: is_rhel
 
 ####################################################################################################################
-# Install Debian Based Part
+# Debian Based Part
 ####################################################################################################################
-- block:
-    - set_fact:
+- name: Install Debian Based Part
+  when: is_debian_based
+  block:
+    - ansible.builtin.set_fact:
         debian_combined_array: "{{ (global_init | default([])) + (debian_based_init | default([])) }}"
     - name: "[INSTALL][DNF] DebianPackages"
       become: true
-      apt:
+      ansible.builtin.apt:
         state: present
         autoclean: true
         autoremove: false
-        update_cache: yes
+        update_cache: true
         install_recommends: true
         name: "{{ debian_combined_array }}"
       when: is_dry is false and debian_combined_array|length > 0
-  when: is_debian_based
 
 ####################################################################################################################
-# Install Fedora Part
+# Fedora Part
 ####################################################################################################################
-- block:
-    - set_fact:
+- name: Install Fedora Part
+  when: is_fedora
+  block:
+    - ansible.builtin.set_fact:
         fedora_combined_array: "{{ (fedora_init | default([])) }}"
     - name: "[INSTALL][DNF] FedoraPackages"
       become: true
-      dnf:
+      ansible.builtin.dnf:
         state: present
         allowerasing: true
         name: "{{ fedora_combined_array }}"
       when: is_dry is false and fedora_combined_array|length > 0
-  when: is_fedora
 
 ####################################################################################################################
-# Install ArcoLinux Part
+# ArcoLinux Part
 ####################################################################################################################
-- block:
-    - set_fact:
+- name: Install ArcoLinux Part
+  when: is_arcolinux
+  block:
+    - ansible.builtin.set_fact:
         arco_combined_array: "{{ (arcolinux_init | default([])) }}"
     - name: "[INSTALL][AUR] ArcoLinuxPackages"
       become: false
@@ -90,82 +96,85 @@
         use: paru
         name: "{{ arco_combined_array }}"
       when: is_dry is false and arco_combined_array|length > 0
-  when: is_arcolinux
 
 ####################################################################################################################
-# Install Manjaro Part
+# Manjaro Part
 ####################################################################################################################
-- block:
-    - set_fact:
+- name: Install Manjaro Part
+  when: is_manjaro
+  block:
+    - ansible.builtin.set_fact:
         manjaro_combined_array: "{{ (manjaro_init | default([])) }}"
     - name: "[INSTALL][AUR] ManjaroPackages"
+      when: is_dry is false and manjaro_combined_array|length > 0
       become: false
       kewlfft.aur.aur:
         state: present
         name: "{{ manjaro_combined_array }}"
-      when: is_dry is false and manjaro_combined_array|length > 0
-  when: is_manjaro
 
 ####################################################################################################################
-# Install Cargo Apps
+# Cargo Apps
 ####################################################################################################################
-- block:
-    - set_fact:
+- name: Install Cargo Apps
+  when: is_dry is false and is_debian_based is false and cargo_init is not undefined and cargo_init is not none and cargo_init|length > 0
+  block:
+    - ansible.builtin.set_fact:
         cargo_combined_array: "{{ cargo_init }}"
     - name: "[INSTALL][CARGO] GlobalCargoApps"
       become: false
       community.general.cargo:
         state: present
         name: "{{ cargo_combined_array }}"
-    - name: copy cargo bins to /usr/bin
+    - name: Copy cargo bins to /usr/bin
       ansible.posix.synchronize:
         src: "{{ home_dir }}/.cargo/bin/"
         dest: /usr/bin
-  when: is_dry is false and is_debian_based is false and cargo_init is not undefined and cargo_init is not none and cargo_init|length > 0
 
 ####################################################################################################################
-# Install Pip Apps
+# Pip Apps
 ####################################################################################################################
-- block:
-    - set_fact:
+- name: Install Pip Apps
+  when: is_dry is false and pip_init is not undefined and pip_init is not none and pip_init|length > 0
+  block:
+    - ansible.builtin.set_fact:
         pip_combined_array: "{{ pip_init  }}"
 
     - name: "[INSTALL][PIP] GlobalPipApps PIP"
+      when: false
       become: true
       ansible.builtin.pip:
         state: present
         name: "{{ item }}"
       loop: "{{ pip_combined_array }}"
-      when: false
 
     - name: "[INSTALL][PIP] GlobalPipApps PIPX"
-      become: false
-      shell: "pipx install {{ item }} --include-deps"
-      loop: "{{ pip_combined_array }}"
       when: true
-      
-  when: is_dry is false and pip_init is not undefined and pip_init is not none and pip_init|length > 0
+      become: false
+      ansible.builtin.shell: "pipx install {{ item }} --include-deps"
+      loop: "{{ pip_combined_array }}"
 
 ####################################################################################################################
-# Install Luarocks Libs
+# Luarocks Libs
 ####################################################################################################################
-- block:
-    - set_fact:
+- name: Install Luarocks Libs
+  when: is_dry is false and luarocks_init is not undefined and luarocks_init is not none and luarocks_init|length > 0
+  block:
+    - ansible.builtin.set_fact:
         lua_combined_array: "{{ luarocks_init }}"
     - name: "[INSTALL][LUA] GlobalLuarocksLibs"
       become: true
-      command: "/usr/bin/luarocks install {{ item }}"
+      ansible.builtin.command: "/usr/bin/luarocks install {{ item }}"
       loop: "{{ lua_combined_array }}"
-  when: is_dry is false and luarocks_init is not undefined and luarocks_init is not none and luarocks_init|length > 0
 
 ####################################################################################################################
 # Install FlatPaks
 ####################################################################################################################
-- block:
-    - set_fact:
+- name: Install FlatPaks
+  when: is_dry is false and flatpak_init is not undefined and flatpak_init is not none and flatpak_init|length > 0
+  block:
+    - ansible.builtin.set_fact:
         flatpak_combined_array: "{{ flatpak_init }}"
     - name: "[INSTALL] FlatPaks"
       community.general.flatpak:
         name: "{{ item }}"
       loop: "{{ flatpak_combined_array }}"
-  when: is_dry is false and flatpak_init is not undefined and flatpak_init is not none and flatpak_init|length > 0

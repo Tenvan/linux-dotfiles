@@ -1,75 +1,75 @@
 ---
-- name: set powerline fonts in vconsole
+- name: Set powerline fonts in vconsole
   ansible.builtin.lineinfile:
     path: /etc/vconsole.conf
-    regexp: '^FONT='
+    regexp: "^FONT="
     line: FONT=ter-powerline-v12n
 
-- name: xdg default setzen
-  command: xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+- name: Xdg default setzen
+  ansible.builtin.command: xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
 
-- name: grub config
+- name: Grub config
   block:
-    - name: ensable quiet mode
+    - name: Enable quiet mode
       ansible.builtin.replace:
         path: /etc/default/grub
         regexp: '^GRUB_CMDLINE_LINUX=(.*)\squiet(.*)?$'
         replace: 'GRUB_CMDLINE_LINUX=quiet \1\2'
-          
-    - name: gfxmodes
+
+    - name: Gfxmodes
       ansible.builtin.lineinfile:
         path: /etc/default/grub
         state: present
-        regexp: '^.*GRUB_GFXMODE=(.*)?$'
+        regexp: "^.*GRUB_GFXMODE=(.*)?$"
         line: 'GRUB_GFXMODE="3840x2160,2560x1080,1920x1080,auto"'
 
-    - name: terminal output
+    - name: Terminal output
       ansible.builtin.lineinfile:
         path: /etc/default/grub
         state: present
-        regexp: '^.*GRUB_TERMINAL_OUTPUT=(.*)$'
-        line: '# GRUB_TERMINAL_OUTPUT=console'
+        regexp: "^.*GRUB_TERMINAL_OUTPUT=(.*)$"
+        line: "# GRUB_TERMINAL_OUTPUT=console"
 
-    - name: terminal input
+    - name: Terminal input
       ansible.builtin.lineinfile:
         path: /etc/default/grub
-        regexp: '^.*GRUB_TERMINAL_INPUT=(.*)$'
-        line: '# GRUB_TERMINAL_INPUT=console'
+        regexp: "^.*GRUB_TERMINAL_INPUT=(.*)$"
+        line: "# GRUB_TERMINAL_INPUT=console"
 
-    - name: menu 1
+    - name: Menu 1
       ansible.builtin.lineinfile:
         path: /etc/default/grub
-        regexp: '^.*GRUB_HIDDEN_TIMEOUT=(.*)$'
-        line: '# GRUB_HIDDEN_TIMEOUT=10'
+        regexp: "^.*GRUB_HIDDEN_TIMEOUT=(.*)$"
+        line: "# GRUB_HIDDEN_TIMEOUT=10"
 
-    - name: menu 2
+    - name: Menu 2
       ansible.builtin.lineinfile:
         path: /etc/default/grub
-        regexp: '^.*GRUB_TIMEOUT_STYLE=(.*)$'
-        line: '# GRUB_TIMEOUT_STYLE=hidden'
+        regexp: "^.*GRUB_TIMEOUT_STYLE=(.*)$"
+        line: "# GRUB_TIMEOUT_STYLE=hidden"
 
-    - name: menu 3
+    - name: Menu 3
       ansible.builtin.lineinfile:
         path: /etc/default/grub
-        regexp: '^.*GRUB_TIMEOUT=(.*)$'
-        line: 'GRUB_TIMEOUT=10'
+        regexp: "^.*GRUB_TIMEOUT=(.*)$"
+        line: "GRUB_TIMEOUT=10"
 
-    - name: install dark matter grub them
+    - name: Install dark matter grub them
       block:
         - name: clone https://gitlab.com/VandalByte/darkmatter-grub-theme.git
           git:
-            repo: 'https://gitlab.com/VandalByte/darkmatter-grub-theme.git'
-            clone: yes
+            repo: "https://gitlab.com/VandalByte/darkmatter-grub-theme.git"
+            clone: true
             depth: 1
             dest: "{{ build_dir }}/darkmatter-grub-theme"
-        - name: uninstall old theme
-          shell: |
+        - name: Uninstall old theme
+          ansible.builtin.shell: |
             sudo python3 darkmatter-theme.py -u < <(echo y)
           args:
             executable: /bin/bash
             chdir: "{{ build_dir }}/darkmatter-grub-theme"
-        - name: install new theme
-          shell: |
+        - name: Install new theme
+          ansible.builtin.shell: |
             echo 13 | sudo tee input.txt
             echo 2 | sudo tee -a input.txt
             echo 1 | sudo tee -a input.txt
@@ -80,28 +80,27 @@
             chdir: "{{ build_dir }}/darkmatter-grub-theme"
       when: true
 
-    - name: grub-update MKCONFIG
-      shell: grub2-mkconfig --output=/boot/grub2/grub.cfg
+    - name: Grub-update MKCONFIG
+      ansible.builtin.shell: grub2-mkconfig --output=/boot/grub2/grub.cfg
       when: is_rhel_based is true
 
-    - name: grub-update UPDATE-GRUB
-      shell: update-grub
+    - name: Grub-update UPDATE-GRUB
+      ansible.builtin.shell: update-grub
       when: is_arch_based is true
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         grub: "{{ lookup('file', '/etc/default/grub') }}"
 
-    - name: write issue file
+    - name: Write issue file
       ansible.builtin.blockinfile:
         path: /etc/issue
         create: true
-        block: |      
+        block: |
           1: \e[37mWelcome to Fedora!
-          2: \e[34m\r \s 
-          3: \e[32m\t 
-          4: \e[32m\d 
-          5: \e[31m\U 
+          2: \e[34m\r \s
+          3: \e[32m\t
+          4: \e[32m\d
+          5: \e[31m\U
           6: \e[35m\l \e[0mon \e[1;33m
           7: \v
           8: \o
-

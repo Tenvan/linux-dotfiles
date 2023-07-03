@@ -1,5 +1,5 @@
 ---
-- name: DefineBaseSystemPackages
+- name: Define Base System Packages
   vars:
     global_init:
       # global
@@ -172,9 +172,6 @@
       - xkill
       - beesu
 
-      # system packages
-      - luacheck
-      
       # sound setup
       - alsa-utils
       - paman
@@ -240,4 +237,4 @@
       - git-delta
       - tokei
 
-  include_tasks: install.yml
+  ansible.builtin.include_tasks: install.yml

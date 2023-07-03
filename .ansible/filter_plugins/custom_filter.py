@@ -17,7 +17,7 @@ def transform_package(package, option):
     return result
 
 
-def remap_package_node(values):
+def remap_package_node(values: list):
     result = []
 
     for value in values:

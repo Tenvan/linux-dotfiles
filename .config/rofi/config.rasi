@@ -77,7 +77,7 @@ configuration {
     combi-hide-mode-prefix: 	false;
 
     combi-modi:                 "window,drun,calc";
-    modi:                       "window,ssh,emoji:rofimoji,power-menu:rofi-power-menu --choices=lockscreen/logout/suspend/reboot/shutdown";
+    modi:                       "window,ssh,emoji:rofimoji";
 
     dpi: 96;
 	

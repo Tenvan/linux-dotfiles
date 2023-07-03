@@ -1,9 +1,9 @@
 ---
-- name: DefineDevelopmentPackages
+- name: Define Development Packages
   vars:
     gloabl_init:
       - pre-commit
-      
+
     archlinux_based_init:
       - gitflow-avh
       - gradle
@@ -28,7 +28,4 @@
       - unixODBC-devel
       - unixODBC-gui-qt
 
-  include_tasks: install.yml
-
-- name: install JetBrains Toolbox
-  shell: 'curl -fsSL https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash'
+  ansible.builtin.include_tasks: install.yml

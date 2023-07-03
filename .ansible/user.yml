@@ -2,17 +2,25 @@
 - hosts: localhost
   connection: local
   name: "==========> Install Tenvans Dotfiles with AwesomeWm Desktop <=========="
-  become: no
+  become: false
 
   vars:
     is_dry: false
-    is_rhel_based: false
+
     is_arch_based: false
+    is_arch: false
     is_arcolinux: false
     is_manjaro: false
+
+    is_rhel_based: false
     is_rhel: false
     is_fedora: false
     is_centos: false
+
+    is_debian_based: false
+    is_debian: false
+    is_ubuntu: false
+
     user_folder:
       - Bilder
       - Dokumente
@@ -21,9 +29,7 @@
       - Videos
       - Vorlagen
 
-
   vars_prompt:
-
     - name: user_email
       prompt: What is your email?
       default: ralf.stich@infoniqa.com
@@ -43,46 +49,47 @@
 
   tasks:
     - name: "=====> Initiate <====="
-      include_tasks: lib/inits.yml
+      ansible.builtin.include_tasks: lib/inits.yml
 
     - name: "=====> Install User Layout Packages <====="
-      include_tasks: lib/layout-user.yml
+      ansible.builtin.include_tasks: lib/layout-user.yml
 
     - name: "=====> merge .gitconfig <====="
       ansible.builtin.blockinfile:
         path: "{{ home_dir }}/.gitconfig"
+        mode: "0644"
         create: true
         block: |
           [core]
           editor = micro
           whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
           pager = delta
-          
+
           [color]
           ui = auto
-          
+
           [color "branch"]
           current = yellow bold
           local = green bold
           remote = cyan bold
-          
+
           [color "diff"]
           meta = yellow bold
           frag = magenta bold
           old = red bold
           new = green bold
           whitespace = red reverse
-          
+
           [color "status"]
           added = green bold
           changed = yellow bold
           untracked = red bold
-          
+
           [delta]
           side-by-side = true
           line-numbers = true
           diff-so-fancy = true
-          
+
           [delta "decorations"]
           minus-style = red bold normal
           plus-style = green bold normal
@@ -97,50 +104,50 @@
           minus-empty-line-marker-style = normal normal
           plus-empty-line-marker-style = normal normal
           line-numbers-right-format = "{np:^4}│ "
-          
+
           [diff]
           tool = code
-          
+
           [difftool "code"]
           cmd = /usr/bin/code --wait --diff \"$LOCAL\" \"$BASE\" \"$REMOTE\"
-          
+
           [difftool]
           prompt = false
-          
+
           [merge]
           tool = code
-          
+
           [mergetool "code"]
           cmd = /usr/bin/code --wait \"$MERGED\"
-          
+
           [mergetool "code"]
           cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
-          
+
           [mergetool]
           prompt = false
-          
+
           [push]
           default = simple
           verbose = true
           autoSetupRemote = true
-          
+
           [commit]
           verbose = true
-          
+
           [pull]
           verbose = true
           rebase = false
-          
+
           [alias]
           logp = log --pretty=format:'%h %ad | %fs%d [%an]' --graph --date=short
           lg   = log --graph --decorate --date-order --first-parent --pretty=format:'%C(auto)%h%Creset %C(auto)%d%Creset %s %C(green)(%cr) %C(bold cyan)<%an>%Creset'
           lga  = log --graph --decorate --date-order --all --pretty=format:'%C(auto)%h%Creset %C(auto)%d%Creset %s %C(green)(%cr) %C(bold cyan)<%an>%Creset'
           lgb  = log --graph --decorate --date-order --branches --first-parent --pretty=format:'%C(auto)%h%Creset %C(auto)%d%Creset %s %C(green)(%cr) %C(bold cyan)<%an>%Creset'
-          
+
           h   = help -a -g
           ha   = help -a
           hg   = help -g
-          
+
           a = add --all
           ai = add -i
           #############
@@ -318,30 +325,30 @@
           theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
           subrepo = !sh -c 'git filter-branch --prune-empty --subdirectory-filter $1 master' -
           human = name-rev --name-only --refs=refs/heads/*
-          
+
           #############
           fsw = !git branch work-"$USER"
           sww = !git switch work-"$USER"
-          
+
           [gitflow "branch"]
           master = master
           develop = develop
-          
+
           [gitflow "prefix"]
           feature = feature/
           bugfix = bugfix/
           release = release/
           hotfix = hotfix/
           support = support/
-          
+
           [user]
           email = {{ user_email }}
           name = {{ user_short }}
-          
+
           [credential]
           helper = /usr/bin/git-credential-manager-core
           credentialStore = secretservice
-          
+
           [web]
           browser = {{ browser }}
 
@@ -349,6 +356,7 @@
       ansible.builtin.blockinfile:
         path: "{{ home_dir }}/.config/gtk-3.0/bookmarks"
         create: true
+        mode: "0644"
         block: |
           file:///srv SRV
           file:///usr/share/backgrounds backgrounds
@@ -362,6 +370,7 @@
       ansible.builtin.blockinfile:
         path: "{{ home_dir }}/.config/gtk-3.0/bookmarks"
         create: true
+        mode: "0644"
         block: |
           file:///home/{{ user_id }}/{{ item }} {{ item }}
         marker: " # {mark} ANSIBLE MANAGED BLOCK {{ item }}"
@@ -369,20 +378,22 @@
 
     - name: "=====> create desktop links <====="
       block:
-      - name: create target folder in home_store_dir if not exists
-        file:
-          path: "{{ home_store_dir }}/{{ item }}"
-          state: directory
-        loop: "{{ user_folder }}"
-      - name: create symbolic links in home_store_dir
-        file:
-          src: "{{ home_store_dir }}/{{ item }}"
-          dest: "{{ home_dir }}/{{ item }}"
-          state: link
-        loop: "{{ user_folder }}"
+        - name: Create target folder in home_store_dir if not exists
+          ansible.builtin.file:
+            path: "{{ home_store_dir }}/{{ item }}"
+            mode: "0644"
+            state: directory
+          loop: "{{ user_folder }}"
+        - name: Create symbolic links in home_store_dir
+          ansible.builtin.file:
+            src: "{{ home_store_dir }}/{{ item }}"
+            dest: "{{ home_dir }}/{{ item }}"
+            state: link
+          loop: "{{ user_folder }}"
 
-    - name: init flatpak themes
-      shell: |
+    - name: Init flatpak themes
+      ansible.builtin.shell: |
         sudo flatpak override --env=GTK_THEME=$MAIN_THEME
         sudo flatpak override --env=ICON_THEME=$MAIN_THEME
-
+      register: my_output # <- Registers the command output.
+      changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
