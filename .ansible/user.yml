@@ -57,7 +57,7 @@
     - name: "=====> merge .gitconfig <====="
       ansible.builtin.blockinfile:
         path: "{{ home_dir }}/.gitconfig"
-        mode: "0644"
+        mode: u+rwx,g+rx,o+rx
         create: true
         block: |
           [core]
@@ -356,7 +356,7 @@
       ansible.builtin.blockinfile:
         path: "{{ home_dir }}/.config/gtk-3.0/bookmarks"
         create: true
-        mode: "0644"
+        mode: u+rwx,g+rx,o+rx
         block: |
           file:///srv SRV
           file:///usr/share/backgrounds backgrounds
@@ -370,7 +370,7 @@
       ansible.builtin.blockinfile:
         path: "{{ home_dir }}/.config/gtk-3.0/bookmarks"
         create: true
-        mode: "0644"
+        mode: u+rwx,g+rx,o+rx
         block: |
           file:///home/{{ user_id }}/{{ item }} {{ item }}
         marker: " # {mark} ANSIBLE MANAGED BLOCK {{ item }}"
@@ -381,7 +381,7 @@
         - name: Create target folder in home_store_dir if not exists
           ansible.builtin.file:
             path: "{{ home_store_dir }}/{{ item }}"
-            mode: "0644"
+            mode: u+rwx,g+rx,o+rx
             state: directory
           loop: "{{ user_folder }}"
         - name: Create symbolic links in home_store_dir

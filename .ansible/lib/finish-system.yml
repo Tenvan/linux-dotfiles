@@ -54,7 +54,7 @@
       #!/bin/sh          
       # ANSIBLE MANAGED BLOCK xinit"
       exec ~/.xsession
-    mode: u+x,o+x,g+x
+    mode: u+rwx,g+rx,o+rx
 
 - name: Add awesome session (fedora)
   ansible.builtin.blockinfile:

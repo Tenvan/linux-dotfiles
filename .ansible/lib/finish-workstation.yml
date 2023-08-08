@@ -35,7 +35,7 @@
       # @reboot                    Execute the job when the system boots
     owner: "{{ user_id }}"
     group: "{{ user_id }}"
-    mode: "u=rw,g=r,o=r"
+    mode: u+rwx,g+rx,o+rx
 
 #
 # define cron jobs
