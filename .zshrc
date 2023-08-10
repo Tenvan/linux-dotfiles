@@ -16,18 +16,6 @@ else
     xset -b
 fi
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -59,15 +47,6 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-
-# Use powerline
-USE_POWERLINE="false"
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
-# csource "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 # LS_COLORS
 csource /usr/share/LS_COLORS/dircolors.sh
@@ -225,8 +204,6 @@ autoload -Uz _zinit
 
 zinit ice depth=1;
 
-zinit load romkatv/powerlevel10k
-
 zinit wait lucid for \
 b4b4r07/enhancd \
 junegunn/fzf-bin \
@@ -339,30 +316,27 @@ else
     alias ping5='ping -c 5'
 fi
 
-# These need to be done after $PATH is set up so we can find
-# grc and exa
-
-# ░█▀█░█▀█░█░█░█▀▀░█▀▄░█░░░█▀▀░█░█░█▀▀░█░░░▀█░░▄▀▄░█░█
-# ░█▀▀░█░█░█▄█░█▀▀░█▀▄░█░░░█▀▀░▀▄▀░█▀▀░█░░░░█░░█//█░█▀▄
-# ░▀░░░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░░▀░░▀▀▀░▀▀▀░▀▀▀░░▀░░▀░▀
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-
-if [[ "$TERM_PROGRAM" == "vscode" ]]; then
-    csource"$(code --locate-shell-integration-path zsh)"
-fi
+# ░█▀█░█░█░░░░░█▄█░█░█░░░░░█▀█░█▀█░█▀▀░█░█
+# ░█░█░█▀█░▄▄▄░█░█░░█░░▄▄▄░█▀▀░█░█░▀▀█░█▀█
+# ░▀▀▀░▀░▀░░░░░▀░▀░░▀░░░░░░▀░░░▀▀▀░▀▀▀░▀░▀
 
 case ${TERM} in
     xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
-        print "Init Powershell10k for XWindows"
-        csource ~/.bin/.p10k-x.zsh
+        print "Init Oh-My-Posh for XWindows"
+        #print "Init Powershell10k for XWindows"
+        eval "$(oh-my-posh init zsh --config ~/.config/powershell/xsession.omp.json)"
     ;;
     *)
-        print "Init Powershell10k for vconsole"
+        print "Init Oh-My-Posh for vconsole"
+        eval "$(oh-my-posh init zsh --config ~/.config/powershell/vconsole.omp.json)"
         csource ~/.profile
-        csource ~/.bin/.p10k-v.zsh
     ;;
 esac
+
+if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+    csource "$(code --locate-shell-integration-path zsh)"
+fi
+
 
 csource "$HOME/.scripts/ranger.zsh"
 

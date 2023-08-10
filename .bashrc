@@ -79,6 +79,23 @@ ex ()
   fi
 }
 
+# ░█▀█░█░█░░░░░█▄█░█░█░░░░░█▀█░█▀█░█▀▀░█░█
+# ░█░█░█▀█░▄▄▄░█░█░░█░░▄▄▄░█▀▀░█░█░▀▀█░█▀█
+# ░▀▀▀░▀░▀░░░░░▀░▀░░▀░░░░░░▀░░░▀▀▀░▀▀▀░▀░▀
+
+case ${TERM} in
+    xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
+        echo "Init Oh-My-Posh for XWindows"
+        #print "Init Powershell10k for XWindows"
+        eval "$(oh-my-posh init bash --config ~/.config/powershell/xsession.omp.json)"
+    ;;
+    *)
+        echo "Init Oh-My-Posh for vconsole"
+        eval "$(oh-my-posh init bash --config ~/.config/powershell/vconsole.omp.json)"
+        csource ~/.profile
+    ;;
+esac
+
 # reporting tools - install when not installed
 if [ -x "$(command -v $FETCHER)" ]; then
     eval $FETCHER
