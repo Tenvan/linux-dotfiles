@@ -246,3 +246,18 @@
     name: flathub
     state: present
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+
+- block:
+    - name: remove old Oh-My-Posh install script
+      file:
+        state: absent
+        path: "{{ build_dir }}/install_oh-my-posh.sh"
+
+    - name: Download Oh-My-Posh install script
+      uri:
+        url: https://ohmyposh.dev/install.sh
+        dest: "{{ build_dir }}/install_oh-my-posh.sh"
+        mode: u+x,g+x,o+x
+
+    - name: Run Oh-My-Posh install script
+      shell: "{{ build_dir }}/install_oh-my-posh.sh"

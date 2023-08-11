@@ -134,7 +134,6 @@
       # system packages
       - eject-applet
       - ibus-daemon
-      - oh-my-posh-bin
       - picom
       - pm-utils
       - powershell-bin

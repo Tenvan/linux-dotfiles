@@ -121,6 +121,10 @@
             "code"
         ],
         [
+            "📁 powershell config",
+            "@@FOLDER_EDIT $HOME/.config/powershell"
+        ],
+        [
             "📁 ansible dir",
             "@@FOLDER_EDIT $HOME/.ansible"
         ],
