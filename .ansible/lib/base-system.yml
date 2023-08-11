@@ -87,7 +87,6 @@
       - hardinfo
       - networkmanager
       - networkmanager-openconnect
-      - powershell-bin
       - shell-color-scripts
 
       # useful tools for ranger
@@ -169,7 +168,6 @@
       - hardinfo
       - network-manager
       - network-manager-openconnect
-      - powershell
       - mediainfo
       - odt2txt
       - w3m

@@ -31,6 +31,16 @@
     gpgcheck: true
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
 
+- name: Add Microsoft Repository
+  when: is_fedora
+  ansible.builtin.yum_repository:
+    name: packages-microsoft-com-prod
+    description: Microsoft RedHat repository
+    baseurl: https://packages.microsoft.com/rhel/9.0/prod/
+    gpgcheck: true
+    enabled: true
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+
 - name: Add IBM Odbc
   when: is_fedora
   ansible.builtin.yum_repository:

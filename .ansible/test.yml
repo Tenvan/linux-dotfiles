@@ -32,8 +32,8 @@
     - name: "=====> Initiate <====="
       ansible.builtin.include_tasks: lib/inits.yml
 
-    - name: "=====> Post Installation Finishing <====="
-      ansible.builtin.include_tasks: lib/displays.yml
+    - name: "=====> Pre Installation Prepare <====="
+      ansible.builtin.include_tasks: lib/prepare.yml
 
     # - name: Read users from CSV file and return a dictionary
     #   community.general.read_csv:

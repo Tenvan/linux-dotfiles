@@ -83,7 +83,6 @@ cockpit-storaged
 hardinfo
 networkmanager
 networkmanager-openconnect
-powershell-bin
 shell-color-scripts
 
 #language-files

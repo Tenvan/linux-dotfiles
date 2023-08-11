@@ -38,6 +38,10 @@
                 "$TERMINAL --directory @@WORK_NODE/OtwWidgetsElements"
             ],
             [
+                "@@OTW_DOTNET_SHELL",
+                "$TERMINAL --directory @@WORK_DOTNET"
+            ],
+            [
                 "@@WORK_ONETIMESERVER",
                 "$WORKSPACE/Node/OneTimeServer"
             ],
@@ -48,6 +52,10 @@
             [
                 "@@WORK_NODE",
                 "$WORKSPACE/Node"
+            ],
+            [
+                "@@WORK_DOTNET",
+                "$WORKSPACE/DotNet"
             ],
             [
                 "WORKSPACE",
@@ -69,6 +77,15 @@
     },
     "DEVELOP_MENU": {
         "BEFORE_MENU": [
+            [
+                "🛫 DotNet",
+                [
+                    [
+                        "💻 OTD: DotNet Shell",
+                        "@@OTW_DOTNET_SHELL --hold --title 'OTS:Shell OneTimeServer'"
+                    ]
+                ]
+            ],
             [
                 "🛫 OneTimeServer",
                 [
