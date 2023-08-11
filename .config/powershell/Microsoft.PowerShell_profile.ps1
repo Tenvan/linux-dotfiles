@@ -2,7 +2,7 @@
 #Import-Module posh-git
 
 # Set Powershell Prompt Style
-$Env:POSH_THEME = "~/.config/powershell/.posh.omp.json" 
+$Env:POSH_THEME = "~/.config/powershell/xsession.omp.json" 
 # Oder tokyo,peru,onehalf.minimal
 
 echo "Used Theme: $Env:POSH_THEME"
