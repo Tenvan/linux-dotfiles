@@ -1,9 +1,3 @@
-local awful = require('awful')
-local wibox = require('wibox')
-local beautiful = require('beautiful')
-
-local dpi = require('beautiful').xresources.apply_dpi
-
 local tasklist_buttons = awful.util.table.join(
   awful.button(
     {},
@@ -116,13 +110,14 @@ local task_list = function(pScreen)
           {
             {
               id     = 'icon_role',
+              -- widget = awful.widget.clienticon,
               widget = awful.widget.clienticon,
             },
             margins = 2,
             widget  = wibox.container.margin,
           },
           {
-            id     = 'text_role',
+            id     = 'my_text_role',
             widget = wibox.widget.textbox,
           },
           layout = wibox.layout.fixed.horizontal,
@@ -132,11 +127,12 @@ local task_list = function(pScreen)
         widget = wibox.container.margin
       },
 
-      id = 'background_role',
+      id = 'my_background_role',
       widget = wibox.container.background,
 
       create_callback = function(self, c, index, objects)
-        self:get_children_by_id('icon_role')[1].client = c
+        local iconbox = self:get_children_by_id('icon_role')[1]
+        iconbox.client = c
 
         -- BLING: Toggle the popup on hover and disable it off hover
         self:connect_signal('mouse::enter', function()
@@ -146,6 +142,27 @@ local task_list = function(pScreen)
         self:connect_signal('mouse::leave', function()
           emit('bling::task_preview::visibility', pScreen, false, c, self)
         end)
+      end,
+      update_callback = function(self, c, index, objects)
+        local background = self:get_children_by_id('my_background_role')[1]
+        background.bg = beautiful.background
+
+        if c == client.focus then
+          log('Focused Client: ' .. c.name)
+          background.bg = beautiful.bg_focus
+        end
+        if c.minimized then
+          log('Minimized Client: ' .. c.name)
+          background.bg = beautiful.bg_urgent
+        end
+
+        local textbox = self:get_children_by_id('my_text_role')[1]
+        local textIcon = 'O'
+        if c.minimized then
+          textbox:set_text('(' .. c.name .. ')')
+        else
+          textbox:set_text(c.name)
+        end
       end,
       -- layout = wibox.layout.align.vertical,
     },

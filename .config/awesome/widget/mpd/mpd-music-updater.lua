@@ -167,7 +167,7 @@ local update_title = function()
 			
 			-- Make sure it's not null
 			if not (title == nil or title == '') then
-				title_text:set_text(title)			
+				title_text:set_text(title)
 			else
 
 				awful.spawn.easy_async_with_shell(

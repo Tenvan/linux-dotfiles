@@ -87,11 +87,11 @@ case ${TERM} in
     xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
         echo "Init Oh-My-Posh for XWindows"
         #print "Init Powershell10k for XWindows"
-        eval "$(oh-my-posh init bash --config ~/.config/powershell/xsession.omp.json)"
+        eval "$(oh-my-posh init bash --config ~/.config/powershell/xsession.omp.jsonc)"
     ;;
     *)
         echo "Init Oh-My-Posh for vconsole"
-        eval "$(oh-my-posh init bash --config ~/.config/powershell/vconsole.omp.json)"
+        eval "$(oh-my-posh init bash --config ~/.config/powershell/vconsole.omp.jsonc)"
         csource ~/.profile
     ;;
 esac
