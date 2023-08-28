@@ -48,6 +48,7 @@ for path_candidate in \
   ~/.scripts \
   ~/.local/bin \
   ~/.yarn/bin \
+  ~/.config/yarn/global/node_modules/.bin \
   ~/src/gocode/bin \
   ~/gocode \
   "$ANDROID_SDK_ROOT/platform-tools"

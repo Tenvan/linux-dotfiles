@@ -217,6 +217,7 @@ memark/zsh-dotnet-completion \
 blockf atpull'zinit creinstall -q .' \
 zsh-users/zsh-completions
 
+
 # zinit light g-plane/icd
 
 ### End of Zinit's installer chunk

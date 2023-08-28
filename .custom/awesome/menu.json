@@ -86,17 +86,17 @@
                     ]
                 ]
             ],
-            [
+[
                 "🛫 OneTimeServer",
                 [
                     [
                         "🏄 OTS: Start Server",
                         "@@ONETIMESERVER_SHELL --hold --title OTC:StartServer yarn start"
                     ],
-                    [
-                        "💻 OTS: Shell OneTimeServer",
-                        "@@ONETIMESERVER_SHELL --hold --title 'OTS:Shell OneTimeServer'"
-                    ]
+            [
+                "💻 OTS: Shell OneTimeServer",
+                "@@ONETIMESERVER_SHELL --hold --title 'OTS:Shell OneTimeServer'"
+]
                 ]
             ],
             [
@@ -105,11 +105,11 @@
                     [
                         "🛫 OTC: Pug Watcher Client",
                         "@@ONETIMECLIENT_SHELL --hold --title OTC:PugWatcherClient yarn run watch:pug"
-                    ],
-                    [
-                        "💻 OTC: Shell OneTimeClient",
-                        "@@ONETIMECLIENT_SHELL --hold --title 'OTC:ShellClient OneTimeClient'"
-                    ]
+            ],
+            [
+                "💻 OTC: Shell OneTimeClient",
+                "@@ONETIMECLIENT_SHELL --hold --title 'OTC:ShellClient OneTimeClient'"
+]
                 ]
             ],
             [
@@ -118,11 +118,11 @@
                     [
                         "🛫 OTC: Start TestApp Widgets Elements",
                         "@@OTW_WIDGETS_ELEMENTS_SHELL --hold --title OTC:WidgetsElementsTestApp yarn run start:test:widgets"
-                    ],
-                    [
-                        "💻 OTW: Shell OtwWidgetsElements",
-                        "@@OTW_WIDGETS_ELEMENTS_SHELL --hold --title 'OTW:ShellWidgetsElements OtwWidgetsElements'"
-                    ]
+            ],
+            [
+                "💻 OTW: Shell OtwWidgetsElements",
+                "@@OTW_WIDGETS_ELEMENTS_SHELL --hold --title 'OTW:ShellWidgetsElements OtwWidgetsElements'"
+]
                 ]
             ],
             [
@@ -135,12 +135,12 @@
                     [
                         "🛫 OTC: Npm Watcher Widgets",
                         "@@OTW_WIDGETS_SHELL --hold --title OTC:NpmWatcherWidgets yarn run watch:npm"
-                    ],
-                    [
-                        "💻 OTW: Shell OtwWidgets",
-                        "@@OTW_WIDGETS_SHELL --hold --title 'OTW:ShellWidgets OtwWidgets'"
-                    ],
-                    [
+            ],
+            [
+                "💻 OTW: Shell OtwWidgets",
+                "@@OTW_WIDGETS_SHELL --hold --title 'OTW:ShellWidgets OtwWidgets'"
+            ],
+[
                         "🛫 OTC: Start TestApp SSO",
                         "@@OTW_WIDGETS_SHELL --hold --title OTC:SSoTestApp yarn run start:test:sso"
                     ],
@@ -161,11 +161,11 @@
                         "🛫 OTC: Npm Watcher Atomic",
                         "@@OTW_ATOMIC_SHELL --hold --title OTC:NpmWatcherAtomic yarn run watch:npm"
                     ],
-                    [
-                        "💻 OTW: Shell OtwAtomic",
-                        "@@OTW_ATOMIC_SHELL --hold --title 'OTW:ShellAtomic OtwAtomic'"
-                    ],
-                    [
+            [
+                "💻 OTW: Shell OtwAtomic",
+                "@@OTW_ATOMIC_SHELL --hold --title 'OTW:ShellAtomic OtwAtomic'"
+            ],
+[
                         "🛫 OTC: Start TestApp Atomic",
                         "@@OTW_ATOMIC_SHELL --hold --title OTC:AtomicTestApp yarn run start:test:atomic"
                     ]
@@ -178,10 +178,10 @@
                         "🛫 OTC: Npm Watcher State",
                         "@@OTW_STATE_SHELL --hold --title OTC:NpmWatcherState yarn run watch:npm"
                     ],
-                    [
-                        "💻 OTW: Shell OtwState",
-                        "@@OTW_STATE_SHELL --hold --title 'OTW:ShellState OtwState'"
-                    ]
+            [
+                "💻 OTW: Shell OtwState",
+                "@@OTW_STATE_SHELL --hold --title 'OTW:ShellState OtwState'"
+]
                 ]
             ],
             [
@@ -190,11 +190,11 @@
                     [
                         "🛫 OTC: Npm Watcher Bll",
                         "@@OTW_BLL_SHELL --hold --title OTC:NpmWatcherBll yarn run watch:npm"
-                    ],
-                    [
-                        "💻 OTW: Shell OtwBll",
-                        "@@OTW_BLL_SHELL --hold --title 'OTW:ShellBll OtwBll'"
-                    ]
+            ],
+            [
+                "💻 OTW: Shell OtwBll",
+                "@@OTW_BLL_SHELL --hold --title 'OTW:ShellBll OtwBll'"
+]
                 ]
             ],
             [
@@ -203,11 +203,11 @@
                     [
                         "🛫 OTC: Npm Watcher RestClient",
                         "@@OTW_RESTCLIENT_SHELL --hold --title OTC:NpmWatcherRestClient yarn run watch:npm"
-                    ],
-                    [
-                        "💻 OTW: Shell OtwRestClient",
-                        "@@OTW_RESTCLIENT_SHELL --hold --title 'OTW:ShellRestClient OtwRestClient'"
-                    ]
+            ],
+            [
+                "💻 OTW: Shell OtwRestClient",
+                "@@OTW_RESTCLIENT_SHELL --hold --title 'OTW:ShellRestClient OtwRestClient'"
+]
                 ]
             ],
             [
@@ -216,12 +216,12 @@
                     [
                         "🛫 OTC: Npm Watcher Core",
                         "@@OTW_CORE_SHELL --hold --title OTC:NpmWatcherCore yarn run watch:npm"
-                    ],
-                    [
-                        "💻 OTW: Shell OtwCore",
-                        "@@OTW_CORE_SHELL --hold --title 'OTW:ShellCore OtwCore'"
-                    ]
-                ]
+            ],
+            [
+                "💻 OTW: Shell OtwCore",
+                "@@OTW_CORE_SHELL --hold --title 'OTW:ShellCore OtwCore'"
+            ]
+]
             ]
         ],
         "AFTER_MENU": []
