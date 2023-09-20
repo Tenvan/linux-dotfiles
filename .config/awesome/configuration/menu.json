@@ -16,7 +16,7 @@
         ],
         [
             "🛟 JetBrains Toolbox",
-            "jetbrains-toolbox"
+            "gtk-launch jetbrains-toolbox.desktop"
         ],
         [
             "🙋 Teams",
