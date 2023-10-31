@@ -4,5 +4,5 @@
 
 csource "$HOME/.profile"
 
-ansible-playbook ~/.ansible/nvidia.yml
+ansible-playbook ~/.ansible/nvidia.yml --flush-cache
 errorCheck "run ansible playbook"

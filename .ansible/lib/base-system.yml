@@ -24,10 +24,6 @@
       - cockpit-podman
       - cockpit-storaged
 
-      # podman + docker
-      - docker
-      - podman
-
       # file manager
       - mc
 
@@ -66,6 +62,8 @@
       - unrar
 
       # podman + docker
+      - docker
+      - podman
       - podman-compose
       - pcp-pmda-podman
 
@@ -202,6 +200,11 @@
 
       # podman + docker
       - podman-compose
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
 
       # installation of important editors
       - micro

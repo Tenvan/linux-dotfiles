@@ -49,6 +49,29 @@
     baseurl: https://public.dhe.ibm.com/software/ibmi/products/odbc/rpms
     gpgcheck: false
 
+- name: Add repository into repo.d list for yum
+  when: is_fedora
+  ansible.builtin.yum_repository:
+    name: docker-ce
+    description: Docker Stabel CE
+    baseurl: "https://download.docker.com/linux/{{ rh_distribution }}/$releasever/$basearch/stable"
+    enabled: true
+    gpgcheck: true
+    gpgkey: "https://download.docker.com/linux/{{ rh_distribution }}/gpg"
+
+- name: Update dnf packages
+  when: is_fedora
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+    update_only: true
+
+- name: Install dnf-utils if on Fedora
+  when: is_fedora
+  ansible.builtin.package:
+    name: dnf-utils
+    state: present
+
 #######################
 # add some copr repos #
 #######################

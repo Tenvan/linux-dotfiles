@@ -35,6 +35,9 @@
     - name: "=====> Pre Installation Prepare <====="
       ansible.builtin.include_tasks: lib/prepare.yml
 
+    - name: "=====> Install System Base Packages <====="
+      ansible.builtin.include_tasks: lib/base-system.yml
+
     # - name: Read users from CSV file and return a dictionary
     #   community.general.read_csv:
     #     path: lib/test.txt
