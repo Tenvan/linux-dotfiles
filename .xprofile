@@ -43,4 +43,6 @@ export BROWSER=
 rm -f ~/.config/awesome/customs
 ln -s -f ~/.custom ~/.config/awesome/customs
 
+~/.scripts/services/update-wallpaper.sh
+
 csource "$CUSTOMS/.xprofile"

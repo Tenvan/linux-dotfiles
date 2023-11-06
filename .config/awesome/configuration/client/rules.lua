@@ -133,7 +133,7 @@ ruled.client.connect_signal('request::rules', function()
   -- Browsers and chats
   ruled.client.append_rule {
     rule_any = {
-      class = { 'Microsoft-edge','firefox', 'discord', 'Chromium', 'Google-chrome', 'TelegramDesktop' }
+      class = { 'Microsoft-edge', 'firefox', 'discord', 'Chromium', 'Google-chrome', 'TelegramDesktop' }
     },
     properties = {
       screen = screen2.index,
@@ -264,24 +264,36 @@ ruled.client.connect_signal('request::rules', function()
   }
 
   -- IDEs
+
+  -- All JetBrains Windows
   ruled.client.append_rule {
     rule = {
-      class = 'jetbrains-.*'
-    },
-    except_any = {
-      name = { 'splash', 'Welcome *' },
-      type = { 'dialog' }
+      class = 'jetbrains-.*',
     },
     properties = {
       screen = screen.primary,
       tag = screen[screen.primary].tags[1],
-      skip_decoration = true,
-      maximized = false,
-      floating = false,
       switch_to_tags = true,
+      skip_decoration = true,
+
     }
   }
 
+  -- JetBrains Default Windows
+  ruled.client.append_rule {
+    rule = {
+      class = 'jetbrains-.*',
+      type = 'normal'
+    },
+    properties = {
+      skip_decoration = true,
+      switch_to_tags = true,
+      maximized = false,
+      floating = false,
+    }
+  }
+
+  -- JetBrains Dialogs
   ruled.client.append_rule {
     rule = {
       class = 'jetbrains-.*',
@@ -291,7 +303,20 @@ ruled.client.connect_signal('request::rules', function()
       skip_decoration = false,
       focus = true,
       floating = true,
-      switch_to_tags = true,
+    }
+  }
+
+  -- JetBrains Toolbox  
+  ruled.client.append_rule {
+    rule = {
+      class = 'jetbrains-toolbox',
+      type = 'normal'
+    },
+    properties = {
+      ontop = true,
+      focus = true,
+      maximized = false,
+      floating = true,      
     }
   }
 
@@ -378,23 +403,6 @@ ruled.client.connect_signal('request::rules', function()
   ---
   --- Application Settings
   ---
-  --- jetbrain ToolBox
-  --- client class: com-jetbrains-toolbox-entry-ToolboxEntry
-  --- client instance: com-jetbrains-toolbox-entry-ToolboxEntry
-  --- client name: JetBrains Toolbox
-  --- client class: jetbrains-toolbox
-  --- client instance: JetBrains Toolbox
-  --- client name: JetBrains Toolbox
-  ruled.client.append_rule {
-    rule_any = {
-      class = { 'jetbrains-toolbox', 'com-jetbrains-toolbox-entry-ToolboxEntry', }
-    },
-    properties = {
-      skip_decoration = true,
-      focus = true,
-      floating = true
-    }
-  }
 
   -- Teams Hauptfenster
   ruled.client.append_rule {

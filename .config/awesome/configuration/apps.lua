@@ -85,7 +85,7 @@ local apps = {
     'xscreensaver',
     -- 'eval $($TERMINAL --class AwesomeWindow:2:9 --title bpytop bpytop 2> /dev/null &)',
     -- 'eval $($TERMINAL --hold --class AwesomeWindow:2:9 --title XSessionError multitail -cs -i $HOME/.xsession-stderr  2> /dev/null &)',
-    '$SCRIPTS/services/update-wallpaper.sh',
+    'wallpaper.sh',
   },
   -- List of binaries/shell scripts that will execute for a certain task
   utils = {
