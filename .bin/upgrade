@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+# System Update
+if [ $IS_RHEL_BASED = true ]; then
+  sudo dnf upgrade --refresh -y  
+  sudo dnf update -y
+  sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+
+  sudo dnf install dnf-plugin-system-upgrade
+  CURRENT_VERSION=$(rpm -E %fedora)
+  NEXT_VERSION=$((CURRENT_VERSION + 1))
+  sudo dnf system-upgrade download --releasever=$NEXT_VERSION -y
+  sudo dnf system-upgrade reboot
+fi
