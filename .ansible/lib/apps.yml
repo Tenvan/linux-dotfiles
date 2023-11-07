@@ -69,6 +69,7 @@
       - baobab
 
       # Browser
+      - microsoft-edge-stable
       - vivaldi-stable
       - firefox
       - firefox-langpacks

@@ -2,6 +2,8 @@
 
 . "$HOME/.scripts/defs"
 
+sudo rm -fr .build
+
 # System Update
 if [ $IS_ARCH_BASED = true ]; then
   	$PACTOOL -Syyu $PAKKER_ALL

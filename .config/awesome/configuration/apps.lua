@@ -17,7 +17,7 @@ local apps = {
     -- Default code editor
     code_editor = 'code',
     -- Default web browser
-    web_browser = 'vivaldi-stable',
+    web_browser = 'microsoft-edge-stable',
     -- Default file manager
     file_manager = 'nemo',
     -- Default bluetooth manager

@@ -131,6 +131,19 @@ ruled.notification.connect_signal(
       }
     }
 
+    -- Edge notifs
+    ruled.notification.append_rule {
+      rule       = { app_name = 'microsoft-edge-stable' },
+      properties = {
+        font             = beautiful.font,
+        bg               = makeColorTransparent(beautiful.teams_bg, '70'),
+        fg               = beautiful.fg,
+        implicit_timeout = 30,
+        margin           = dpi(16),
+        icon_size        = dpi(64)
+      }
+    }
+
     -- KDE Connect
     ruled.notification.append_rule {
       rule       = { app_name = 'KDE Connect' },

@@ -41,7 +41,7 @@
 
     - name: browser
       prompt: What is your default browser?
-      default: vivaldi-stable
+      default: microsoft-edge-stable
 
     - name: home_store_dir
       prompt: What is path to the big-home folder?

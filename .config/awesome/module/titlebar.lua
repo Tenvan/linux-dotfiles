@@ -241,7 +241,7 @@ client.connect_signal('request::titlebars', function(c)
     elseif c.class == 'Ettercap' then
       create_vertical_bar(c, 'left', beautiful.gtk.get_theme_variables().base_color, beautiful.titlebar_size)
 
-    elseif c.class == 'vivaldi-stable' or c.class == 'Google-chrome' or c.class == 'Chromium' then
+    elseif c.class == 'Microsoft-edge' or c.class == 'vivaldi-stable' or c.class == 'Google-chrome' or c.class == 'Chromium' then
       create_vertical_bar(c, 'left', beautiful.gtk.get_theme_variables().base_color, beautiful.titlebar_size)
 
     elseif c.class == 'qt5ct' then

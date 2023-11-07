@@ -651,6 +651,10 @@ local global_keys             = awful.util.table.join(
     notify('Vivaldi Test Nachricht',
       '<b>CRITICAL</b>\nDies ist eine Vivaldi Test Nachicht.' .. message, 'critical', 'audio-card', 'vivaldi-stable')
 
+    notify('Edge Test Nachricht',
+      '<b>CRITICAL</b>\nDies ist eine Vivaldi Test Nachicht.' .. message, 'critical', 'audio-card',
+      'microsoft-edge-stable')
+
     notify('KDE Connect Test Nachricht',
       '<b>CRITICAL</b>\nDies ist eine KDE Connect Test Nachicht.' .. message, 'critical', 'audio-card', 'KDE Connect')
 
