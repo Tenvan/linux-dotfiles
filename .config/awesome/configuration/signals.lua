@@ -14,7 +14,7 @@ screen.connect_signal('property::geometry', function(s)
 end)
 
 local ChromiumMatch = {
-  class = { 'firefox*', 'Chromium', 'Google-chrome', 'Microsoft Teams.*', 'teams-for-linux', 'Code' }
+  class = { 'firefox*', 'vivladi*', 'Chromium', 'Google-chrome', 'Microsoft Teams.*', 'teams-for-linux', 'Code' }
 }
 
 -- No borders when rearranging only 1 non-floating or maximized client

@@ -15,3 +15,5 @@ export cert_pem_det=/etc/ssl/certs
 
 export tlsprotocol=1.2
 export forceencryption=1
+
+export network=localnetwork

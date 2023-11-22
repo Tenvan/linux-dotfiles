@@ -6,10 +6,12 @@ source "$HOME/.scripts/helper/mssql/config"
 sudo podman run \
     -dit \
     --privileged \
+    --network=$network \
     --name $container_name \
     -e "ACCEPT_EULA=Y" \
     -e "SA_PASSWORD=$sa_password" \
     -p 1433:1433 \
+    --publish 1433:1433 \
     -v $data_dir:/var/opt/mssql \
     -v $data_dir/$conf_file:/var/opt/mssql/$conf_file \
     -v $data_dir/$cert_pem_file:/etc/ssl/certs/$cert_pem_file \

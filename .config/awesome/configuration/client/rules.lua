@@ -61,13 +61,14 @@ ruled.client.connect_signal('request::rules', function()
   -- Dialogs
   ruled.client.append_rule {
     rule_any = {
-      type = { 'dialog' },
-      class = { 'Wicd-client.py' }
+      type = { 'dialog' }
     },
     properties = {
       titlebars_enabled = true,
-      floating = true,
       above = true,
+      maximized = false,
+      floating = true,
+      fullscreen = false,
       skip_decoration = true,
       placement = awful.placement.centered
     }
@@ -117,7 +118,7 @@ ruled.client.connect_signal('request::rules', function()
     }
   }
 
-  --   -- Terminal emulators
+  -- Terminal emulators
   ruled.client.append_rule {
     rule_any = {
       class = { apps.default.terminal, 'URxvt', 'XTerm', 'UXTerm', 'kitty', 'K3rmit', 'termite' }
@@ -137,7 +138,7 @@ ruled.client.connect_signal('request::rules', function()
     },
     properties = {
       screen = screen2.index,
-      tag = screen2.tags[8],
+      tag = screen2.tags[2],
       maximized = false,
       floating = false
     }
@@ -150,7 +151,7 @@ ruled.client.connect_signal('request::rules', function()
     },
     properties = {
       screen = screen1.index,
-      tag = screen1.tags[8],
+      tag = screen2.tags[1],
       maximized = false,
       floating = false
     }
@@ -194,19 +195,6 @@ ruled.client.connect_signal('request::rules', function()
       screen = screen.primary,
       tag = screen[screen.primary].tags[7],
       switch_to_tags = true
-    }
-  }
-
-  -- Multimedia
-  ruled.client.append_rule {
-    rule_any = {
-      class = { 'vlc', 'Spotify', 'shortwave', 'YouTube Music' }
-    },
-    properties = {
-      screen = screen2.index,
-      tag = screen2.tags[5],
-      switch_to_tags = true,
-      floating = false
     }
   }
 
@@ -260,63 +248,6 @@ ruled.client.connect_signal('request::rules', function()
       tag = screen[screen.primary].tags[6],
       floating = false,
       switch_to_tags = true
-    }
-  }
-
-  -- IDEs
-
-  -- All JetBrains Windows
-  ruled.client.append_rule {
-    rule = {
-      class = 'jetbrains-.*',
-    },
-    properties = {
-      screen = screen.primary,
-      tag = screen[screen.primary].tags[1],
-      switch_to_tags = true,
-      skip_decoration = true,
-
-    }
-  }
-
-  -- JetBrains Default Windows
-  ruled.client.append_rule {
-    rule = {
-      class = 'jetbrains-.*',
-      type = 'normal'
-    },
-    properties = {
-      skip_decoration = true,
-      switch_to_tags = true,
-      maximized = false,
-      floating = false,
-    }
-  }
-
-  -- JetBrains Dialogs
-  ruled.client.append_rule {
-    rule = {
-      class = 'jetbrains-.*',
-      type  = 'dialog',
-    },
-    properties = {
-      skip_decoration = false,
-      focus = true,
-      floating = true,
-    }
-  }
-
-  -- JetBrains Toolbox  
-  ruled.client.append_rule {
-    rule = {
-      class = 'jetbrains-toolbox',
-      type = 'normal'
-    },
-    properties = {
-      ontop = true,
-      focus = true,
-      maximized = false,
-      floating = true,      
     }
   }
 
@@ -429,19 +360,77 @@ ruled.client.connect_signal('request::rules', function()
       placement = awful.placement.centered
     }
   }
+  -- IDEs
 
-  -- Dialogs everytime floating
+  -- All JetBrains Windows
   ruled.client.append_rule {
-    rule_any = {
-      type = { 'dialog' }
+    rule = {
+      class = 'jetbrains-.*',
     },
     properties = {
-      floating = true,
-      maximized = false,
-      fullscreen = false
+      screen = screen.primary,
+      tag = screen[screen.primary].tags[1],
+      switch_to_tags = true,
+      skip_decoration = true,
+
     }
   }
 
+  -- JetBrains Default Windows
+  ruled.client.append_rule {
+    rule = {
+      class = 'jetbrains-.*',
+      type = 'normal'
+    },
+    properties = {
+      skip_decoration = true,
+      switch_to_tags = true,
+      maximized = false,
+      floating = false,
+    }
+  }
+
+  -- JetBrains Dialogs
+  ruled.client.append_rule {
+    rule = {
+      class = 'jetbrains-.*',
+      type  = 'dialog',
+    },
+    properties = {
+      skip_decoration = false,
+      focus = true,
+      floating = true,
+    }
+  }
+
+  -- JetBrains Toolbox
+  ruled.client.append_rule {
+    rule = {
+      class = 'jetbrains-toolbox',
+      type = 'normal'
+    },
+    properties = {
+      ontop = true,
+      focus = true,
+      maximized = false,
+      floating = true,
+    }
+  }
+
+  -- Multimedia
+  ruled.client.append_rule {
+    rule_any = {
+      class = { 'vlc', 'Spotify', 'shortwave', 'YouTube Music' },
+      instance = { 'shortwave', 'Shortwave' }
+    },
+    properties = {
+      screen = screen2.index,
+      tag = screen2.tags[5],
+      switch_to_tags = true,
+      maximized = false,
+      floating = false,
+    }
+  }
   -- Floating
   ruled.client.append_rule {
     rule_any = {

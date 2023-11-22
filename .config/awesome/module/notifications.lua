@@ -133,7 +133,7 @@ ruled.notification.connect_signal(
 
     -- Edge notifs
     ruled.notification.append_rule {
-      rule       = { app_name = 'microsoft-edge-stable' },
+      rule       = { app_name = 'microsoft-edge' },
       properties = {
         font             = beautiful.font,
         bg               = makeColorTransparent(beautiful.teams_bg, '70'),
