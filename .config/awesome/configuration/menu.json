@@ -11,15 +11,19 @@
     ],
     "APP_MENU": [
         [
-            "Bild Betrachter",
+            "📻 Radio",
+            "flatpak run de.haeckerfelix.Shortwave"
+        ],
+        [
+            "🖼️ Bild Betrachter",
             "flatpak run org.photoqt.PhotoQt"
         ],
         [
-            "🛟 JetBrains Toolbox",
+            "🧠 JetBrains Toolbox",
             "gtk-launch jetbrains-toolbox.desktop"
         ],
         [
-            "🙋 Teams",
+            "🫂 Teams",
             "flatpak run com.github.IsmaelMartinez.teams_for_linux"
         ],
         [

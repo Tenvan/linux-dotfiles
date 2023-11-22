@@ -5,7 +5,7 @@
       ansible.builtin.replace:
         path: "{{ home_dir }}/.gtkrc-2.0"
         regexp: "^.*gtk-cursor-theme-name=.*$"
-        replace: "gtk-cursor-theme-name={{ lookup('ansible.builtin.env', 'CURSOR_THEME') }}"
+        replace: 'gtk-cursor-theme-name="{{ lookup(''ansible.builtin.env'', ''CURSOR_THEME'') }}"'
 
     - name: Set cursor size
       ansible.builtin.replace:
@@ -22,7 +22,7 @@
     - name: Set icon theme
       ansible.builtin.replace:
         path: "{{ home_dir }}/.gtkrc-2.0"
-        regexp: "^.*gtk-icon-theme-name=.*$"
+        regexp: "^.*gtk-icon-theme-name=.*$"e
         replace: 'gtk-icon-theme-name="{{ lookup(''ansible.builtin.env'', ''ICON_THEME'') }}"'
 
     - name: Set sound theme
@@ -35,7 +35,7 @@
       ansible.builtin.replace:
         path: "{{ home_dir }}/.gtkrc-2.0"
         regexp: "^.*gtk-theme-name=.*$"
-        replace: "gtk-theme-name={{ lookup('ansible.builtin.env', 'MAIN_THEME') }}"
+        replace: 'gtk-theme-name="{{ lookup(''ansible.builtin.env'', ''MAIN_THEME'') }}"'
 
 - name: "=====> set gtk3 settings <====="
   block:
@@ -55,7 +55,7 @@
       ansible.builtin.replace:
         path: "{{ home_dir }}/.config/gtk-3.0/settings.ini"
         regexp: "^.*gtk-font-name=.*$"
-        replace: 'gtk-font-name="{{ lookup(''ansible.builtin.env'', ''THEME_FONT'') }}"'
+        replace: 'gtk-font-name={{ lookup(''ansible.builtin.env'', ''THEME_FONT'') }}'
 
     - name: Set icon theme
       ansible.builtin.replace:

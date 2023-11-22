@@ -88,9 +88,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ~='cd $HOME'
 alias cdw='cd $WORKSPACE'
-alias cda='cd $WORKSPACE/Arduino'
-alias cdd='cd $WORKSPACE/DotNet'
-alias cdn='cd $WORKSPACE/Node'
 
 alias ed=$EDITOR
 

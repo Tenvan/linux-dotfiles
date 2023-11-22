@@ -134,6 +134,8 @@ end)
 client.connect_signal('raised', function(c)
   log('spawn::window-attention-active')
 
+  dump(screen[1], ' => screen 1', 2)
+  dump(screen[2], ' => screen 2', 2)
   dump(c, ' => client', 2)
   log('---------------------' .. tostring(c.role))
   log(' -> client class....: ' .. tostring(c.class))

@@ -177,12 +177,13 @@ ruled.client.connect_signal('request::rules', function()
       class = { 'Code', 'Geany', 'Atom', 'Subl3', 'code-oss' },
       except_any = {
         name = { 'splash', 'Welcome *' },
-        type = { 'dialog' }
+        type = { 'dialog', 'normal' }
       },
     },
     properties = {
       maximized = false,
-      floating = false
+      floating = true,
+      placement = awful.placement.centered
     }
   }
 
@@ -304,6 +305,7 @@ ruled.client.connect_signal('request::rules', function()
       floating = false
     }
   }
+
   ruled.client.append_rule {
     rule = {
       class = 'AwesomeWindow:2:*'
@@ -420,15 +422,27 @@ ruled.client.connect_signal('request::rules', function()
   -- Multimedia
   ruled.client.append_rule {
     rule_any = {
-      class = { 'vlc', 'Spotify', 'shortwave', 'YouTube Music' },
-      instance = { 'shortwave', 'Shortwave' }
+      class = { 'vlc', 'Spotify', 'YouTube Music' },
     },
     properties = {
       screen = screen2.index,
       tag = screen2.tags[5],
-      switch_to_tags = true,
+      switch_to_tags = false,
       maximized = false,
       floating = false,
+    }
+  }
+  
+  ruled.client.append_rule {
+    rule = {
+      class = 'shortwave',
+    },
+    properties = {
+      screen = screen2.index,
+      tag = screen2.tags[5],
+      switch_to_tags = false,
+      maximized = false,
+      floating = true,
     }
   }
   -- Floating
@@ -450,7 +464,7 @@ ruled.client.connect_signal('request::rules', function()
       raise = true,
       keys = client_keys,
       buttons = client_buttons,
-      placement = awful.placement.centered
+      -- placement = awful.placement.centered
     }
   }
 
