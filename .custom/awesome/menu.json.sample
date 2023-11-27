@@ -2,6 +2,10 @@
     "VARIABLES": {
         "BEFORE_MENU": [
             [
+                "@@ONETIME_SHELL",
+                "$TERMINAL --directory @@WORK_ONETIME"
+            ],
+            [
                 "@@ONETIMECLIENT_SHELL",
                 "$TERMINAL --directory @@WORK_ONETIMECLIENT"
             ],
@@ -10,32 +14,8 @@
                 "$TERMINAL --directory @@WORK_ONETIMESERVER"
             ],
             [
-                "@@OTW_CORE_SHELL",
-                "$TERMINAL --directory @@WORK_NODE/OtwCore"
-            ],
-            [
-                "@@OTW_RESTCLIENT_SHELL",
-                "$TERMINAL --directory @@WORK_NODE/OtwRestClient"
-            ],
-            [
-                "@@OTW_BLL_SHELL",
-                "$TERMINAL --directory @@WORK_NODE/OtwBll"
-            ],
-            [
-                "@@OTW_STATE_SHELL",
-                "$TERMINAL --directory @@WORK_NODE/OtwState"
-            ],
-            [
-                "@@OTW_ATOMIC_SHELL",
-                "$TERMINAL --directory @@WORK_NODE/OtwAtomic"
-            ],
-            [
-                "@@OTW_WIDGETS_SHELL",
-                "$TERMINAL --directory @@WORK_NODE/OtwWidgets"
-            ],
-            [
-                "@@OTW_WIDGETS_ELEMENTS_SHELL",
-                "$TERMINAL --directory @@WORK_NODE/OtwWidgetsElements"
+                "@@OTW_DOTNET_SHELL",
+                "$TERMINAL --directory @@WORK_DOTNET"
             ],
             [
                 "@@WORK_ONETIMESERVER",
@@ -48,6 +28,10 @@
             [
                 "@@WORK_NODE",
                 "$WORKSPACE/Node"
+            ],
+            [
+                "@@WORK_DOTNET",
+                "$WORKSPACE/DotNet"
             ],
             [
                 "WORKSPACE",
@@ -69,6 +53,15 @@
     },
     "DEVELOP_MENU": {
         "BEFORE_MENU": [
+            [
+                "🛫 DotNet",
+                [
+                    [
+                        "💻 OTD: DotNet Shell",
+                        "@@OTW_DOTNET_SHELL --hold --title 'OTS:Shell OneTimeServer'"
+                    ]
+                ]
+            ],
             [
                 "🛫 OneTimeServer",
                 [
@@ -96,113 +89,15 @@
                 ]
             ],
             [
-                "🛫 OneWidgetsElements",
+                "🛫 OneTime",
                 [
                     [
-                        "🛫 OTC: Start TestApp Widgets Elements",
-                        "@@OTW_WIDGETS_ELEMENTS_SHELL --hold --title OTC:WidgetsElementsTestApp yarn run start:test:widgets"
+                        "🛫 OTC: Pug Watcher OneTime",
+                        "@@ONETIME_SHELL --hold --title OTC:PugWatcherClient yarn run watch:pug"
                     ],
                     [
-                        "💻 OTW: Shell OtwWidgetsElements",
-                        "@@OTW_WIDGETS_ELEMENTS_SHELL --hold --title 'OTW:ShellWidgetsElements OtwWidgetsElements'"
-                    ]
-                ]
-            ],
-            [
-                "🛫 OneWidgets",
-                [
-                    [
-                        "🛫 OTC: Pug Watcher Widgets",
-                        "@@OTW_WIDGETS_SHELL --hold --title OTC:PugWatcherWidgets yarn run watch:pug"
-                    ],
-                    [
-                        "🛫 OTC: Npm Watcher Widgets",
-                        "@@OTW_WIDGETS_SHELL --hold --title OTC:NpmWatcherWidgets yarn run watch:npm"
-                    ],
-                    [
-                        "💻 OTW: Shell OtwWidgets",
-                        "@@OTW_WIDGETS_SHELL --hold --title 'OTW:ShellWidgets OtwWidgets'"
-                    ],
-                    [
-                        "🛫 OTC: Start TestApp SSO",
-                        "@@OTW_WIDGETS_SHELL --hold --title OTC:SSoTestApp yarn run start:test:sso"
-                    ],
-                    [
-                        "🛫 OTC: Start TestApp Widgets",
-                        "@@OTW_WIDGETS_SHELL --hold --title OTC:WidgetsTestApp yarn run start:test:widgets"
-                    ]
-                ]
-            ],
-            [
-                "🛫 OtwAtomic",
-                [
-                    [
-                        "🛫 OTC: Pug Watcher Atomic",
-                        "@@OTW_ATOMIC_SHELL --hold --title OTC:PugWatcherAtomic yarn run watch:pug"
-                    ],
-                    [
-                        "🛫 OTC: Npm Watcher Atomic",
-                        "@@OTW_ATOMIC_SHELL --hold --title OTC:NpmWatcherAtomic yarn run watch:npm"
-                    ],
-                    [
-                        "💻 OTW: Shell OtwAtomic",
-                        "@@OTW_ATOMIC_SHELL --hold --title 'OTW:ShellAtomic OtwAtomic'"
-                    ],
-                    [
-                        "🛫 OTC: Start TestApp Atomic",
-                        "@@OTW_ATOMIC_SHELL --hold --title OTC:AtomicTestApp yarn run start:test:atomic"
-                    ]
-                ]
-            ],
-            [
-                "🛫 OtwState",
-                [
-                    [
-                        "🛫 OTC: Npm Watcher State",
-                        "@@OTW_STATE_SHELL --hold --title OTC:NpmWatcherState yarn run watch:npm"
-                    ],
-                    [
-                        "💻 OTW: Shell OtwState",
-                        "@@OTW_STATE_SHELL --hold --title 'OTW:ShellState OtwState'"
-                    ]
-                ]
-            ],
-            [
-                "🛫 OtwBll",
-                [
-                    [
-                        "🛫 OTC: Npm Watcher Bll",
-                        "@@OTW_BLL_SHELL --hold --title OTC:NpmWatcherBll yarn run watch:npm"
-                    ],
-                    [
-                        "💻 OTW: Shell OtwBll",
-                        "@@OTW_BLL_SHELL --hold --title 'OTW:ShellBll OtwBll'"
-                    ]
-                ]
-            ],
-            [
-                "🛫 OtwRestClient",
-                [
-                    [
-                        "🛫 OTC: Npm Watcher RestClient",
-                        "@@OTW_RESTCLIENT_SHELL --hold --title OTC:NpmWatcherRestClient yarn run watch:npm"
-                    ],
-                    [
-                        "💻 OTW: Shell OtwRestClient",
-                        "@@OTW_RESTCLIENT_SHELL --hold --title 'OTW:ShellRestClient OtwRestClient'"
-                    ]
-                ]
-            ],
-            [
-                "🛫 OtwCore",
-                [
-                    [
-                        "🛫 OTC: Npm Watcher Core",
-                        "@@OTW_CORE_SHELL --hold --title OTC:NpmWatcherCore yarn run watch:npm"
-                    ],
-                    [
-                        "💻 OTW: Shell OtwCore",
-                        "@@OTW_CORE_SHELL --hold --title 'OTW:ShellCore OtwCore'"
+                        "💻 OTC: Shell OneTime",
+                        "@@ONETIME_SHELL --hold --title 'OTC:ShellClient OneTime'"
                     ]
                 ]
             ]
@@ -213,34 +108,17 @@
         "BEFORE_MENU": [
             [
                 "🖥 Screenlayout Standard",
-                "$HOME/.screenlayout/screenlayout-default.sh"
+                "$HOME/.screenlayout/screenlayout-medium.sh"
             ],
             [
                 "🖥 Screenlayout Games",
-                "$HOME/.screenlayout/screenlayout-games.sh"
+                "$HOME/.screenlayout/screenlayout-low.sh"
             ],
             [
                 "🖥 Screenlayout Full Resolution",
-                "$HOME/.screenlayout/screenlayout-full.sh"
+                "$HOME/.screenlayout/screenlayout-high.sh"
             ]
         ],
-        "AFTER_MENU": [
-            [
-                "🪲 Webstorm 2022.2 Log (Console)",
-                "$TERMINAL --hold --title Sys:WebstormLogs multitail -cs -i $HOME/.cache/JetBrains/WebStorm2022.2/log/idea.log"
-            ],
-            [
-                "🪲 Webstorm 2022.3 Log (Console)",
-                "$TERMINAL --hold --title Sys:WebstormLogs multitail -cs -i $HOME/.cache/JetBrains/WebStorm2022.3/log/idea.log"
-            ],
-            [
-                "🪲 Spotify Log (Console)",
-                "$TERMINAL --hold --title Sys:XSessionError multitail -cs -i $HOME/spotify-log.log"
-            ],
-            [
-                "🪲 Spotify Trace (Console)",
-                "$TERMINAL --hold --title Sys:XSessionError multitail -cs -i $HOME/spotify-trace.log"
-            ]
-        ]
+        "AFTER_MENU": []
     }
 }
