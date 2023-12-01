@@ -13,8 +13,19 @@ csource() {
 export FILEMANAGER="nemo"
 export PICOM_CONF="$HOME/.config/picom/picom.conf"
 
+# Theme Definitionen
+# export MAIN_THEME="VALYRIAN-Molten-Steel"
+export MAIN_THEME="Materia-dark-compact"
+export ICON_THEME="Papirus-dark"
+export CURSOR_THEME="Bibata-Modern-Ice"
+export CURSOR_SIZE=32
+export THEME_FONT="Noto Sans Medium 14"
+export SOUND_THEME="Smooth"
+export KVANTUM_THEME="kvantum"
+export WALLPAPER_THEME="island"
+
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-export GTK_THEME="VALYRIAN-Molten-Steel"
+export GTK_THEME="Materia-dark-compact"
 export ICON_THEME="Papirus-Dark"
 
 # for qt5 apps

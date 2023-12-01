@@ -6,6 +6,9 @@ local beautiful = require('beautiful')
 local gtk_variable        = beautiful.gtk.get_theme_variables
 local xresources_variable = beautiful.xresources.get_current_theme
 
+dump(gtk_variable(), "GTK VARIABLEN")
+dump(xresources_variable(), 'XRESOURCE VARIABLEN')
+
 -- get default theme (gtk based)
 local default_theme = require('theme.default-theme')
 -- get custom theme

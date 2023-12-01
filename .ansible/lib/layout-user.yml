@@ -22,7 +22,7 @@
     - name: Set icon theme
       ansible.builtin.replace:
         path: "{{ home_dir }}/.gtkrc-2.0"
-        regexp: "^.*gtk-icon-theme-name=.*$"e
+        regexp: "^.*gtk-icon-theme-name=.*$"
         replace: 'gtk-icon-theme-name="{{ lookup(''ansible.builtin.env'', ''ICON_THEME'') }}"'
 
     - name: Set sound theme

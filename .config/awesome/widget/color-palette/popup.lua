@@ -20,7 +20,8 @@ local widget = wibox.widget {
     widget = wibox.container.margin
   },
   id = 'button_role',
-  bg = '#ff000070',
+  fg = beautiful.warning_fg,
+  bg = beautiful.warning_bg,
   widget = wibox.container.background
 }
 
@@ -30,12 +31,12 @@ local popup = awful.popup {
   ontop             = true,
   input_passthrough = true,
 
-  widget = require('widget.color-palette'),
+  widget            = require('widget.color-palette'),
 
-  border_color = '#00ff00',
-  border_width = 5,
+  border_color      = beautiful.bg_focus,
+  border_width      = 5,
 
-  shape = gears.shape.rounded_rect,
+  shape             = gears.shape.rounded_rect,
 }
 
 widget:buttons(

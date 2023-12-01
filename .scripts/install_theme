@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+. ~/.scripts/defs
+
+csource "$HOME/.profile"
+
+ansible-playbook ~/.ansible/theme.yml
+errorCheck "run ansible playbook"

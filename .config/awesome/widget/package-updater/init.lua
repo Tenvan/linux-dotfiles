@@ -64,7 +64,9 @@ local return_button = function()
 		{
 			objects = { widget_button },
 			mode = 'outside',
-			align = 'right',
+      align = 'right',
+      fg = beautiful.popup_fg,
+      bg = beautiful.popup_bg,
 			margin_leftright = dpi(8),
 			margin_topbottom = dpi(8),
 			preferred_positions = { 'right', 'left', 'top', 'bottom' }

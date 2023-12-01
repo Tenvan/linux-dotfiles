@@ -20,10 +20,10 @@ end
 local function dump(object, tag, depth)
   local traceback = debug.traceback()
   local level = 'DUMP'
-  log('[[', level)
+  log('[[============================================================', level)
   log(gdebug.dump_return(object, tag, depth), level)
   trace(traceback, level)
-  log(']]', level)
+  log('============================================================]]', level)
 end
 
 return {

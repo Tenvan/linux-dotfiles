@@ -20,16 +20,6 @@ elif [ -x "$(command -v screenfetch)" ]; then
 	export FETCHER=screenfetch
 fi
 
-# Theme Definitionen
-export MAIN_THEME="VALYRIAN-Molten-Steel"
-export ICON_THEME="Papirus-Dark"
-export CURSOR_THEME="Bibata-Modern-Ice"
-export CURSOR_SIZE=32
-export THEME_FONT="Noto Sans Medium 14"
-export SOUND_THEME="Smooth"
-export KVANTUM_THEME="kvantum"
-export WALLPAPER_THEME="island"
-
 # Development profile
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/jre"

@@ -1,9 +1,6 @@
 log('Enter Module => ' .. ...)
 
 local wibox = require('wibox')
-local awful = require('awful')
-local gears = require('gears')
-local beautiful = require('beautiful')
 
 local gtk_variable = beautiful.gtk.get_theme_variables
 local dpi = beautiful.xresources.apply_dpi
@@ -59,6 +56,12 @@ for i = 1, #gtkVars, 1 do
         {
           forced_width = dpi(340),
           text        = i .. ': ' .. name,
+          widget       = wibox.widget.textbox
+        },
+        {
+          forced_width = dpi(340),
+                    text         = color,
+          font = beautiful.font_large_mono,
           widget       = wibox.widget.textbox
         },
         {

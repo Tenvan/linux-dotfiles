@@ -98,6 +98,7 @@ local config = {
       -- all screens
       {
         'screen_rec',
+        'clock',
       },
       -- screen 1
       {
@@ -110,8 +111,6 @@ local config = {
       },
       -- screen 2
       {
-        'clock_icon',
-        'clock',
       }
     },
     module = {

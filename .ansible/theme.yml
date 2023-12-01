@@ -1,0 +1,29 @@
+---
+- hosts: localhost
+  connection: local
+  name: "==========> Install Tenvans Dotfiles with AwesomeWm Desktop <=========="
+  become: false
+
+  vars:
+    is_dry: false
+
+    is_arch_based: false
+    is_arch: false
+    is_arcolinux: false
+    is_manjaro: false
+
+    is_rhel_based: false
+    is_rhel: false
+    is_fedora: false
+    is_centos: false
+
+    is_debian_based: false
+    is_debian: false
+    is_ubuntu: false
+
+  tasks:
+    - name: "=====> Initiate <====="
+      ansible.builtin.include_tasks: lib/inits.yml
+
+    - name: "=====> Install User Layout Packages <====="
+      ansible.builtin.include_tasks: lib/layout-user.yml

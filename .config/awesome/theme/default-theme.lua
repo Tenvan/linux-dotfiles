@@ -17,23 +17,22 @@ local tie                = 'png'
 -- Create theme table
 local theme              = {}
 
+-- font sizes
+theme.font_small_size    = dpi(config.font_size_small or 8)
+theme.font_size          = dpi(config.font_size_normal or 12)
+theme.font_large_size    = dpi(config.font_size_large or 16)
+theme.font_big_size      = dpi(config.font_size_big or 22)
+
 -- Font
 theme.font_family        = 'Iosevka'
--- theme.symbol_font_family = 'Material-Design-Iconic-Font'
--- theme.symbol_font_family = 'Symbol Nerd Font, Material-Design-Iconic-Font, '
+theme.font               = string.format('%s Regular %d', theme.font_family, theme.font_size)
+
+-- Mono Font
+theme.font_family_mono   = 'JetBrains Mono'
 
 -- Symbol Font
 theme.symbol_font_family = 'NotoEmoji'
 theme.font_symbol        = theme.symbol_font_family .. ' Regular ' .. dpi(14)
-
-theme.font               = string.format('%s Regular %d', theme.font_family, dpi(12))
-theme.font_bold          = string.format('%s Bold %d', theme.font_family, dpi(12))
-
--- Font
-theme.font_small_size    = dpi(config.font_size_small or 8)
-theme.font_size          = dpi(config.font_size_normal or 10)
-theme.font_large_size    = dpi(config.font_size_large or 14)
-theme.font_big_size      = dpi(config.font_size_big or 20)
 
 theme.element_size       = specs.elementSize
 
@@ -43,27 +42,42 @@ log('Font Normal Size: ' .. theme.font_size)
 log('Font Large Size: ' .. theme.font_large_size)
 log('Font Big Size: ' .. theme.font_big_size)
 
-theme.font_small       = theme.font_family .. ' Regular ' .. theme.font_small_size
-theme.font             = theme.font_family .. ' Regular ' .. theme.font_size
-theme.font_large       = theme.font_family .. ' Regular ' .. theme.font_large_size
+-- standard fonts
+theme.font_small            = theme.font_family .. ' Regular ' .. theme.font_small_size
+theme.font                  = theme.font_family .. ' Regular ' .. theme.font_size
+theme.font_large            = theme.font_family .. ' Regular ' .. theme.font_large_size
 
-theme.font_bold_small  = theme.font_family .. ' Bold ' .. theme.font_small_size
-theme.font_bold        = theme.font_family .. ' Bold ' .. theme.font_size
-theme.font_bold_large  = theme.font_family .. ' Bold ' .. theme.font_large_size
+theme.font_bold_small       = theme.font_family .. ' Bold ' .. theme.font_small_size
+theme.font_bold             = theme.font_family .. ' Bold ' .. theme.font_size
+theme.font_bold_large       = theme.font_family .. ' Bold ' .. theme.font_large_size
 
-theme.font_light_small = theme.font_family .. ' Light ' .. theme.font_small_size
-theme.font_light       = theme.font_family .. ' Light ' .. theme.font_size
-theme.font_light_large = theme.font_family .. ' Light ' .. theme.font_large_size
+theme.font_light_small      = theme.font_family .. ' Light ' .. theme.font_small_size
+theme.font_light            = theme.font_family .. ' Light ' .. theme.font_size
+theme.font_light_large      = theme.font_family .. ' Light ' .. theme.font_large_size
 
-theme.hint_font        = theme.font_light_small
-theme.symbol_font      = theme.font_family .. ' Bold ' .. dpi(12)
-theme.widgets_font     = theme.font_light
+-- fonts fonts
+theme.font_small_mono       = theme.font_family_mono .. ' Regular ' .. theme.font_small_size
+theme.font_mono             = theme.font_family_mono .. ' Regular ' .. theme.font_size
+theme.font_large_mono       = theme.font_family_mono .. ' Regular ' .. theme.font_large_size
+
+theme.font_bold_small_mono  = theme.font_family_mono .. ' Bold ' .. theme.font_small_size
+theme.font_bold_mono        = theme.font_family_mono .. ' Bold ' .. theme.font_size
+theme.font_bold_large_mono  = theme.font_family_mono .. ' Bold ' .. theme.font_large_size
+
+theme.font_light_small_mono = theme.font_family_mono .. ' Light ' .. theme.font_small_size
+theme.font_light_mono       = theme.font_family_mono .. ' Light ' .. theme.font_size
+theme.font_light_large_mono = theme.font_family_mono .. ' Light ' .. theme.font_large_size
+
+-- special fonts
+theme.hint_font             = theme.font_light_small
+theme.symbol_font           = theme.font_family .. ' Bold ' .. dpi(12)
+theme.widgets_font          = theme.font_light
 
 -- Menu icon theme
-theme.icon_theme       = 'twemoji'
+theme.icon_theme            = 'twemoji'
 
 -- general Radius
-theme.radius           = dpi(15)
+theme.radius                = dpi(15)
 
 
 

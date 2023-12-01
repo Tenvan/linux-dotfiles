@@ -27,7 +27,7 @@ log('Enter Module => rc.lua')
 
 pcall(require, 'luarocks.loader')
 
-hardware = require("services.hardware")
+hardware = require('services.hardware')
 
 local test = (1 == 2)
 
@@ -96,6 +96,11 @@ if awesome.startup_errors then
   log('Startup Errors: ' .. awesome.startup_errors)
 end
 
+local gtk_variable        = beautiful.gtk.get_theme_variables
+local xresources_variable = beautiful.xresources.get_current_theme
+
+dump(gtk_variable(), 'GTK VARIABLEN')
+dump(xresources_variable(), 'XRESOURCE VARIABLEN')
 
 gdebug.print_warning('[STARTUP]: ==============================')
 gdebug.print_warning('[STARTUP]: == finish of loading rc.lua ==')

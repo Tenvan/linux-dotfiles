@@ -442,7 +442,7 @@ ruled.client.connect_signal('request::rules', function()
       tag = screen2.tags[5],
       switch_to_tags = false,
       maximized = false,
-      floating = true,
+      floating = false,
     }
   }
   -- Floating
