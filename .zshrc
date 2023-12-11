@@ -341,10 +341,6 @@ fi
 
 csource "$HOME/.scripts/ranger.zsh"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # Load right version of NVM
 autoload -U add-zsh-hook
 load-nvmrc() {
