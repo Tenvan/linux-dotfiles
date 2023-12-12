@@ -19,7 +19,7 @@ export MAIN_THEME="Materia-dark-compact"
 export ICON_THEME="Papirus-dark"
 export CURSOR_THEME="Bibata-Modern-Ice"
 export CURSOR_SIZE=32
-export THEME_FONT="Noto Sans Medium 14"
+export THEME_FONT="Noto Sans Medium 12"
 export SOUND_THEME="Smooth"
 export KVANTUM_THEME="kvantum"
 export WALLPAPER_THEME="island"
@@ -43,8 +43,8 @@ export QT_FONT_DPI=96
 
 unset QT_STYLE_OVERRIDE
 # export QT_QPA_PLATFORM_THEME="gtk2"
-# export QT_QPA_PLATFORMTHEME="qt6ct"
-export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_QPA_PLATFORMTHEME="qt6ct"
+# export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # fix "xdg-open fork-bomb" export your preferred browser from here
 # export BROWSER=$(which firefox)

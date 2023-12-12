@@ -17,9 +17,3 @@
 
 # oder dpi setzen (nicht beides gleichzeitig)
 # export QT_FONT_DPI=144
-
-# Lineheight bei 144dpi
-#export LINEHEIGHT=50
-
-# Lineheight bei 96dpi
-# export LINEHEIGHT=28
