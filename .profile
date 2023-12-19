@@ -13,6 +13,7 @@ export VISUAL="$EDITOR"
 export TERMINAL="kitty"
 export TIME="/usr/bin/time -v "
 export DISPLAYMANAGER=gdm
+export PAGER="most"
 
 if [ -x "$(command -v fastfetch)" ]; then
 	export FETCHER=fastfetch
