@@ -15,7 +15,6 @@
       - gparted
       - inotify-tools
       - kitty
-      - kteatime
       - libgnome-keyring
       - libsecret
       - light

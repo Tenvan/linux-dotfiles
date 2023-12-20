@@ -2,7 +2,7 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/stira/.gtkrc-2.0.mine"
-gtk-theme-name="Materia-dark-compact"
+gtk-theme-name="VALYRIAN-Total-Steel"
 gtk-icon-theme-name="Papirus-Dark"
 gtk-font-name="Sans, Medium 12"
 gtk-cursor-theme-name="Bibata-Modern-Ice"

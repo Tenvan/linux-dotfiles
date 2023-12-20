@@ -14,9 +14,12 @@ export FILEMANAGER="nemo"
 export PICOM_CONF="$HOME/.config/picom/picom.conf"
 
 # Theme Definitionen
+export MAIN_THEME="VALYRIAN-Total-Steel"
 # export MAIN_THEME="VALYRIAN-Molten-Steel"
-export MAIN_THEME="Materia-dark-compact"
-export ICON_THEME="Papirus-dark"
+# export MAIN_THEME="Materia-dark-compact"
+# export MAIN_THEME="Adwaita-dark"
+# export MAIN_THEME="Breeze-Dark"
+export ICON_THEME="Papirus-Dark"
 export CURSOR_THEME="Bibata-Modern-Ice"
 export CURSOR_SIZE=32
 export THEME_FONT="Noto Sans Medium 12"
@@ -25,8 +28,7 @@ export KVANTUM_THEME="kvantum"
 export WALLPAPER_THEME="island"
 
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-export GTK_THEME="Materia-dark-compact"
-export ICON_THEME="Papirus-Dark"
+export GTK_THEME="$MAIN_THEME"
 
 # for qt5 apps
 export XDG_CURRENT_DESKTOP=Unity
@@ -54,6 +56,6 @@ export BROWSER=
 rm -f ~/.config/awesome/customs
 ln -s -f ~/.custom ~/.config/awesome/customs
 
-~/.scripts/services/update-wallpaper.sh
+~/.bin/wallpaper.sh
 
 csource "$CUSTOMS/.xprofile"

@@ -3,14 +3,11 @@
   vars:
     global_init:
       # graphics
-      - blender
       - feh
       - gimp
       - gimp-help-de
       - imv
       - inkscape
-      - krita
-      - pinta
 
       # music
       - mpc
@@ -27,18 +24,8 @@
       - remmina
       - freerdp
 
-      # scanner setup
-      # - xsane
-      # - simple-scan
-      # - skanlite
-      # - colord-sane
-      # - sane
-
       # tools
       - translate-shell
-
-      # gimicks
-      - cmatrix
 
     arch_based_init:
       - baobab-gtk3
@@ -54,10 +41,6 @@
 
       # jetbrains apps
       - jetbrains-toolbox
-
-      # gimicks
-      - hollywood
-      - cmatrix-git
 
       # graphics
       - imagemagick

@@ -44,6 +44,7 @@
       # DotNet/Mono Setup
       - dotnet-sdk-6.0
       - dotnet-sdk-7.0
+      - dotnet-sdk-8.0
 
       # missing python moduls
       - python3-pip
@@ -53,9 +54,9 @@
       - rust-all
 
       # DotNet/Mono Setup
-      # TODO Dotnet in Debian
       - dotnet-sdk-6.0
       - dotnet-sdk-7.0
+      - dotnet-sdk-8.0
 
       # missing python moduls
       - python3-pip

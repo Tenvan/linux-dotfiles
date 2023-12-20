@@ -111,4 +111,4 @@ alias ssh="kitty +kitten ssh"
 alias xm="xman"
 alias exp="expand"
 
-alias fgrep="fzf --preview 'bat {}' -e"
+alias fzf="fzf --preview 'bat {}' -e"

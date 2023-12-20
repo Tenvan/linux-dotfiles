@@ -3,6 +3,9 @@
   vars:
     gloabl_init:
       - pre-commit
+      - gtk2-devel
+      - gtk3-devel
+      - gtk4-devel
 
     archlinux_based_init:
       - gitflow-avh
