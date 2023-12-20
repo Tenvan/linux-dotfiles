@@ -24,6 +24,8 @@
       - qbittorrent
       - rofi
       - scrot
+      - tlp
+      - tlp-rdw
       - wmctrl
       - xautolock
       - xbindkeys
@@ -231,6 +233,7 @@
       - com.diffingo.fwbackups
       - io.github.hakandundar34coding.system-monitoring-center
       - org.fedoraproject.MediaWriter
+      - com.github.d4nj1.tlpui
 
     cargo_init:
       - git-delta
