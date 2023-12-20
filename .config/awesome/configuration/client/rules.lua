@@ -182,8 +182,9 @@ ruled.client.connect_signal('request::rules', function()
     },
     properties = {
       maximized = false,
-      floating = true,
-      placement = awful.placement.centered
+      floating = false,
+      tag = screen1.tags[9],
+      -- placement = awful.placement.centered
     }
   }
 
@@ -373,7 +374,7 @@ ruled.client.connect_signal('request::rules', function()
       screen = screen.primary,
       tag = screen[screen.primary].tags[1],
       switch_to_tags = true,
-      skip_decoration = true,
+      -- skip_decoration = true,
 
     }
   }
@@ -385,7 +386,7 @@ ruled.client.connect_signal('request::rules', function()
       type = 'normal'
     },
     properties = {
-      skip_decoration = true,
+      -- skip_decoration = true,
       switch_to_tags = true,
       maximized = false,
       floating = false,

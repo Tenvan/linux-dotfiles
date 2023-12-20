@@ -20,3 +20,6 @@ zinit self-update
 
 # Zinit Plugin update
 zinit update --parallel
+
+# oh-my-posh update
+curl -s https://ohmyposh.dev/install.sh | sudo bash -s
