@@ -1,13 +1,8 @@
 ---
 - hosts: localhost
   connection: local
-  name: "==========> Install Tenvans Dotfiles with AwesomeWm Desktop <=========="
+  name: "==========> UnInstall NVidia Drivers from Fedora <=========="
   become: true
-
-  # install galaxy roles
-  # roles:
-   # - role: robertdebock.bootstrap
-   # - role: robertdebock.rpmfusion
 
   vars:
     is_dry: false
@@ -25,31 +20,27 @@
     is_debian: false
     is_ubuntu: false
 
-    fedora_init:
-      - akmod-nvidia
-
   tasks:
     - name: "=====> Initiate <====="
-      ansible.builtin.include_tasks: lib/inits.yml
+      ansible.builtin.include_tasks: inits.yml
 
     - name: Fedora nvidia
       when: is_fedora
       block:
 
-        - name: Install nvidia driver
-          ansible.builtin.include_tasks: lib/install.yml
+#        - name: Uninstall nvidia driver
+#          ansible.builtin.dnf:
+#            state: absent
+#            name:
+#              - akmod-nvidia*
 
-        - name: Remove nouveau driver    
-          ansible.builtin.blockinfile:
+        - name: Add nouveau driver    
+          ansible.builtin.file:
             path: /etc/modprobe.d/blacklist-nouveau.conf
-            create: true
-            block: |
-              blacklist nouveau
-              options nouveau modeset=0
+            state: absent
 
-        - name: Create new initramfrs with nvidia
+        - name: Create new initramfrs without nvidia
           shell: dracut /boot/initramfs-$(uname -r).img $(uname -r) --force -v
 
         - name: Grub update
           shell: sudo grub2-mkconfig -o /boot/grub2/grub.cfg
-

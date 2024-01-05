@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # shellcheck source=./config
-source "$HOME/.scripts/helper/mssql/config"
+source ./config
 
 # create cert files
 openssl req -x509 -nodes -newkey rsa:2048 -subj '/CN=mssql.infoniqa.com' -keyout $cert_key_file -out $cert_pem_file -days 365

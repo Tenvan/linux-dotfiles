@@ -18,7 +18,7 @@
 
       # Browser
       - chromium
-      - google-chrome
+      # - google-chrome
 
       # remmina
       - remmina
@@ -26,6 +26,9 @@
 
       # tools
       - translate-shell
+      - krusader
+      - kdiff3
+      - krename
 
     arch_based_init:
       - baobab-gtk3

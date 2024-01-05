@@ -61,6 +61,8 @@
   when: is_rhel_based
   become: true
   block:
+    - name: Clean awesome build dir
+      ansible.builtin.shell: sudo rm -fr {{ build_dir }}/awesome
     - name: Clone awesome repository
       git:
         repo: "https://github.com/awesomeWM/awesome"

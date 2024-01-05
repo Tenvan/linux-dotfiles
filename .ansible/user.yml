@@ -51,6 +51,9 @@
     - name: "=====> Initiate <====="
       ansible.builtin.include_tasks: lib/inits.yml
 
+    - name: "=====> Set User Layout <====="
+      ansible.builtin.include_tasks: lib/layout-user.yml
+
     - name: "=====> merge .gitconfig <====="
       ansible.builtin.blockinfile:
         path: "{{ home_dir }}/.gitconfig"

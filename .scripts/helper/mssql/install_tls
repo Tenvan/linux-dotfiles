@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-# shellcheck source=./config
-source "$HOME/.scripts/helper/mssql/config"
+source ./config
+
+sudo podman network create $network
 
 sudo podman run \
     -dit \

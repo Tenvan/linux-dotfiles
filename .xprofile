@@ -47,6 +47,7 @@ unset QT_STYLE_OVERRIDE
 # export QT_QPA_PLATFORM_THEME="gtk2"
 export QT_QPA_PLATFORMTHEME="qt6ct"
 # export QT_QPA_PLATFORMTHEME="qt5ct"
+export PLASMA_USE_QT_SCALING=1
 
 # fix "xdg-open fork-bomb" export your preferred browser from here
 # export BROWSER=$(which firefox)

@@ -79,17 +79,17 @@
   register: my_output
   changed_when: my_output.rc != 0
 
-- name: Enable autologin in gdm
-  ansible.builtin.lineinfile:
-    insertafter: "\\[daemon\\]"
-    state: present
-    path: /etc/gdm/custom.conf
-    regexp: "^.*AutomaticLoginEnable=(.*)$"
-    line: "AutomaticLoginEnable=True"
-
-- name: Set autologin user
-  ansible.builtin.lineinfile:
-    insertafter: "\\[daemon\\]"
-    path: /etc/gdm/custom.conf
-    regexp: "^.*AutomaticLogin=(.*)$"
-    line: "AutomaticLogin={{ user_id }}"
+# - name: Enable autologin in gdm
+#   ansible.builtin.lineinfile:
+#     insertafter: "\\[daemon\\]"
+#     state: present
+#     path: /etc/gdm/custom.conf
+#     regexp: "^.*AutomaticLoginEnable=(.*)$"
+#     line: "AutomaticLoginEnable=True"
+#
+# - name: Set autologin user
+#   ansible.builtin.lineinfile:
+#     insertafter: "\\[daemon\\]"
+#     path: /etc/gdm/custom.conf
+#     regexp: "^.*AutomaticLogin=(.*)$"
+#     line: "AutomaticLogin={{ user_id }}"

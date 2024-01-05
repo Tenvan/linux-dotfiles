@@ -8,12 +8,10 @@
       - curl
       - dnsutils
       - iotop
-      - iptraf-ng
       - jq
       - ripgrep
       - sysstat
       - time
-      - upower
       - zsh
       - flatpak
 
@@ -23,9 +21,6 @@
       - cockpit-packagekit
       - cockpit-podman
       - cockpit-storaged
-
-      # file manager
-      - mc
 
       # useful tools for ranger
       - lynx
@@ -37,9 +32,7 @@
       - bpytop
       - clamav
       - cronie
-      - dex
       - dpkg
-      - exa
       - fastfetch
       - figlet
       - fzf
@@ -56,7 +49,6 @@
       - p7zip
       - python-mutagen
       - stow
-      - timeshift
       - toilet
       - unclutter
       - unrar
@@ -75,7 +67,6 @@
 
       # useful tools for ranger
       - atool
-      - atool-desktop
       - ffmpegthumbnailer
       - imagemagick
       - ueberzug
@@ -99,17 +90,6 @@
       # language files
       - man-pages-de
 
-    rhel_based_init:
-      - gvfs-smb
-      - openssh
-
-      # installation of important editors
-      - cronie
-      - code
-      - cockpit-networkmanager
-      - cockpit-system
-      - subscription-manager-cockpit
-
     debian_based_init:
       - gvfs
       - openssh-client
@@ -124,9 +104,7 @@
       - ark
       - bpytop
       - clamav
-      - dex
       - dpkg
-      - exa
       - screenfetch
       - figlet
       - fzf
@@ -140,7 +118,6 @@
       - openconnect
       - python3-mutagen
       - stow
-      - timeshift
       - toilet
       - unclutter
       - unrar-free
@@ -170,15 +147,23 @@
       - odt2txt
       - w3m
 
+    rhel_based_init:
+      - gvfs-smb
+      - openssh
+
+      # installation of important editors
+      - cronie
+      - cockpit-networkmanager
+      - cockpit-system
+      - subscription-manager-cockpit
+
     fedora_init:
       - acpi
       - arj
       - ark
       - bpytop
       - clamav
-      - dex
       - dpkg
-      - exa
       - fastfetch
       - figlet
       - fzf
@@ -190,10 +175,8 @@
       - multitail
       - numlockx
       - openconnect
-      - p7zip
       - python-mutagen
       - stow
-      - timeshift
       - toilet
       - unclutter
       - unrar
@@ -216,7 +199,6 @@
       - elinks
       - highlight
       - libcaca
-
       - mediainfo
       - odt2txt
       - w3m

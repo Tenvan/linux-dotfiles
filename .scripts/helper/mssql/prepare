@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # shellcheck source=./config
-source "$HOME/.scripts/helper/mssql/config"
+source ./config
 
 # Ziel Ordner für volume vorbereiten
 if [ -d "$data_dir" ]; then

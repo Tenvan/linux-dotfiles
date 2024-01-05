@@ -1,4 +1,9 @@
 ---
+- name: init stable rust
+  ansible.builtin.shell: rustup default stable
+  become: false
+  ignore_errors: false
+
 - name: Install Nuget
   ansible.builtin.shell: |
     curl -o /usr/local/bin/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
@@ -6,10 +11,6 @@
     sudo chmod 777 /usr/local/bin/nuget
   register: my_output
   changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
-
-- name: Install Powershell
-  command: dotnet tool install --global PowerShell
-  ignore_errors: true
 
 - name: Define Development Packages
   vars:
@@ -76,3 +77,8 @@
       - boto3
 
   ansible.builtin.include_tasks: install.yml
+
+- name: Install Powershell
+  ansible.builtin.shell: dotnet tool install --global PowerShell
+  ignore_errors: true
+ 

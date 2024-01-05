@@ -28,9 +28,6 @@
     - name: "=====> Pre Installation Prepare <====="
       ansible.builtin.include_tasks: lib/prepare.yml
 
-    - name: "=====> Install AwesomeWm Dependencies Packages <====="
-      ansible.builtin.include_tasks: lib/awesome.yml
-
     - name: "=====> Install System Development Packages <====="
       ansible.builtin.include_tasks: lib/develop-workstation.yml
 

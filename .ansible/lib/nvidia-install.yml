@@ -1,0 +1,62 @@
+---
+- hosts: localhost
+  connection: local
+  name: "==========> Install NVidia Drivers from Fedora <=========="
+  become: true
+
+  vars:
+    is_dry: false
+    is_arch_based: false
+    is_arch: false
+    is_arcolinux: false
+    is_manjaro: false
+
+    is_rhel_based: false
+    is_rhel: false
+    is_fedora: false
+    is_centos: false
+
+    is_debian_based: false
+    is_debian: false
+    is_ubuntu: false
+
+    fedora_init:
+      - kernel-devel
+      - kernel-headers
+      - gcc
+      - make
+      - dkms
+      - acpid
+      - libglvnd-glx
+      - libglvnd-opengl
+      - libglvnd-devel
+      - pkgconfig
+
+    include_tasks: install.yml
+
+  tasks:
+    - name: "=====> Initiate <====="
+      ansible.builtin.include_tasks: inits.yml
+
+    - name: Fedora nvidia
+      when: is_fedora
+      block:
+#        - name: Install nvidia driver
+#          ansible.builtin.dnf:
+#            state: present
+#            name:
+#              - akmod-nvidia-470xx
+
+#        - name: Remove nouveau driver
+#          ansible.builtin.blockinfile:
+#            path: /etc/modprobe.d/blacklist-nouveau.conf
+#            create: true
+#            block: |
+#              blacklist nouveau
+#              options nouveau modeset=0
+
+        - name: Create new initramfrs with nvidia
+          shell: dracut /boot/initramfs-$(uname -r).img $(uname -r) --force -v
+
+        - name: Grub update
+          shell: sudo grub2-mkconfig -o /boot/grub2/grub.cfg

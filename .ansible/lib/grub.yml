@@ -14,7 +14,7 @@
       ansible.builtin.replace:
         path: /etc/default/grub
         regexp: '^GRUB_CMDLINE_LINUX=(.*)\squiet(.*)?$'
-        replace: 'GRUB_CMDLINE_LINUX=quiet \1\2'
+        replace: 'GRUB_CMDLINE_LINUX=\1 quiet \2'
 
     - name: Gfxmodes
       ansible.builtin.lineinfile:

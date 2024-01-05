@@ -5,19 +5,50 @@
       # global
       - ansible-lint
       - arandr
+      - blueman
+      - brightnessctl
       - clamtk
       - copyq
+      - feh
       - flameshot
+      - gnome-keyring
       - gparted
       - inotify-tools
+      - iptraf-ng
       - kitty
+      - libgnome-keyring
+      - libsecret
+      - light
+      - mpv
+      - picom
       - qbittorrent
+      - rofi
+      - scrot
+      - tlp
+      - tlp-rdw
+      - upower
+      - wmctrl
+      - xautolock
+      - xbindkeys
+      - xclip
+      - xdotool
+      - xscreensaver
+      - xsel
       - xterm
       - zsh
 
+      # polkits
+      - polkit
+      - polkit-gnome
+
       # system tools
       - grub-customizer
-      #- ponymix
+      # - ponymix
+
+      # utils for editors
+      - bash-completion
+      - clang
+      - gdb
 
       # config tools
       - lxappearance
@@ -27,10 +58,9 @@
       - gnome-system-monitor
       - gnome-logs
       - gnome-calculator
+      - network-manager-applet
+      - qt5ct
       - qt6ct
-
-      # utilities from kde
-      - kscreen
 
       # Nemo
       - cinnamon-translations
@@ -49,6 +79,9 @@
       - rofimoji
       - bleachbit
       - python-notify2
+
+      # bluetooth
+      - blueman
 
       # printer setup
       - cups-pdf
@@ -73,6 +106,7 @@
     archlinux_based_init:
       # global
       - ansible-language-server
+      - glfw-x11
 
       # system tools
       - partitionmanager
@@ -100,19 +134,52 @@
       # installation of important editors
       - aur/visual-studio-code-bin
 
+      # system packages
+      - eject-applet
+      - ibus-daemon
+      - picom
+      - pm-utils
+      - powershell-bin
+      - shell-color-scripts
+      - watchexec
+      - xorg-server-xephyr
+      - xorg-xbacklight
+      - xorg-xfd
+      - xorg-xrandr
+      - xorg-xsetroot
+
       # sound setup
+      - alsa-oss
+      - alsa-utils
       - livecd-sounds
+      - pamixer
+      - paprefs
+      - pasystray
+      - pavucontrol
+      - pnmixer
+      - sound-theme-smooth
+      - sp
 
       # language files
       - languagetool
 
-      # display manager
-      - gdm
-      - sddm
-
     rhel_based_init:
+      - xset
+      - p7zip
+
       # installation of important editors
       - code
+
+      # system tools
+      - kde-partitionmanager
+      - xkill
+      - beesu
+
+      # sound setup
+      - alsa-utils
+      - paman
+      - pasystray
+      - pavucontrol
 
       # utilities from gnome
       - gnome-system-log
@@ -131,6 +198,8 @@
       - python3-devel
       - xsane
       - python3-PyQt4
+      - polkit-qt
+      - polkit-qt-devel
 
     arcolinux_init:
       # Meta Packages
@@ -146,6 +215,14 @@
       - rofi-theme-fonts
 
     manjaro_init:
+      # sound setup
+      - pulseaudio-alsa
+      - pulseaudio-bluetooth
+      - pulseaudio-equalizer
+
+      # bluetooth
+      - manjaro-bluetooth
+
       # printer setup
       - manjaro-printer
 
