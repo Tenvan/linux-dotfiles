@@ -26,6 +26,24 @@ screenrule=4
 wmclass=org.remmina.remmina
 wmclassmatch=1
 
+[44731e0d-1e47-44ad-8edf-94f81615d146]
+Description=Plasma Settings
+desktops=76d0e9f4-b4c0-4e9a-98bd-9d08179ee3f0
+desktopsrule=3
+screenrule=3
+wmclass=systemsettings
+wmclassmatch=1
+
+[506ffe0f-2a74-497b-8782-1d54a5f39326]
+Description=JetBrains All
+desktops=9a00b74d-da11-4eeb-a665-55d8c1c6e194
+desktopsrule=3
+fullscreen=true
+fullscreenrule=3
+screenrule=3
+wmclass=jetbrains-*
+wmclassmatch=3
+
 [6c2c7d94-253b-4b14-843d-007ad7b415ac]
 Description=Remote Sessions
 desktops=2a615702-c391-4d4b-9f8a-95e2e191e9d2
@@ -46,8 +64,8 @@ wmclass=org.remmina.remmina
 wmclassmatch=1
 
 [General]
-count=2
-rules=1,2
+count=4
+rules=1,2,44731e0d-1e47-44ad-8edf-94f81615d146,506ffe0f-2a74-497b-8782-1d54a5f39326
 
 [a1d46bd7-6fc9-4feb-8ee3-bc8bb7221b55]
 Description=Virt Manger Arbeitsbereich

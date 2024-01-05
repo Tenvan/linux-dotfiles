@@ -6,8 +6,16 @@ idleTime=300000
 
 [AC][HandleButtonEvents]
 lidAction=1
-powerButtonAction=16
+powerButtonAction=1
 powerDownAction=16
+
+[AC][PowerProfile]
+profile=performance
+
+[AC][SuspendSession]
+idleTime=1800000
+suspendThenHibernate=false
+suspendType=1
 
 [Battery]
 icon=battery-060

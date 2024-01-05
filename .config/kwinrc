@@ -25,8 +25,20 @@ Rows=7
 [Plugins]
 blurEnabled[$d]
 desktopchangeosdEnabled=true
+diminactiveEnabled=true
 forceblurEnabled=true
 krohnkiteEnabled=true
+kwin4_effect_dimscreenEnabled=true
+kwin4_effect_translucencyEnabled=true
+mousemarkEnabled=true
+slidebackEnabled=true
+thumbnailasideEnabled=true
+touchpointsEnabled=true
+wobblywindowsEnabled=true
 
 [Xwayland]
 Scale=1
+
+[org.kde.kdecoration2]
+ButtonsOnLeft=
+ButtonsOnRight=IAX
