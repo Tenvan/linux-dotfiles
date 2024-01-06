@@ -2,26 +2,26 @@
 ############################################
 # Install manuel setups from Github, etc.) #
 ############################################
-- name: Install update-systemd-resolved for dns fix
-  when: is_fedora
-  block:
-    - name: clone https://github.com/jonathanio/update-systemd-resolved.git
-      git:
-        repo: "https://github.com/jonathanio/update-systemd-resolved.git"
-        clone: true
-        depth: 1
-        dest: "{{ build_dir }}/update-systemd-resolved"
-    - name: Install update-systemd-resolved
-      ansible.builtin.shell: |
-        make
-      args:
-        executable: /bin/bash
-        chdir: "{{ build_dir }}/update-systemd-resolved"
-    - name: Enable and start service systemd-resolved.service, if not started
-      ansible.builtin.service:
-        name: systemd-resolved.service
-        state: started
-        enabled: true
+# - name: Install update-systemd-resolved for dns fix
+#   when: is_fedora
+#   block:
+#     - name: clone https://github.com/jonathanio/update-systemd-resolved.git
+#       git:
+#         repo: "https://github.com/jonathanio/update-systemd-resolved.git"
+#         clone: true
+#         depth: 1
+#         dest: "{{ build_dir }}/update-systemd-resolved"
+#     - name: Install update-systemd-resolved
+#       ansible.builtin.shell: |
+#         make
+#       args:
+#         executable: /bin/bash
+#         chdir: "{{ build_dir }}/update-systemd-resolved"
+#     - name: Enable and start service systemd-resolved.service, if not started
+#       ansible.builtin.service:
+#         name: systemd-resolved.service
+#         state: started
+#         enabled: true
 
 - name: Install dynamic wallpaper (dwall)
   block:

@@ -68,6 +68,7 @@ if [ $IS_ARCH_BASED = true ]; then
 fi
 
 if [ $IS_RHEL_BASED = true ]; then
+	alias list="sudo $PACTOOL repoquery -l"
 	alias inst="sudo $PACTOOL install -y"
 	alias uninst="sudo $PACTOOL remove"
 	alias search="sudo $PACTOOL search"

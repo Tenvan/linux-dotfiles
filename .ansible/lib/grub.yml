@@ -5,16 +5,13 @@
     regexp: "^FONT="
     line: FONT=ter-powerline-v12n
 
-- name: Xdg default setzen
-  ansible.builtin.command: xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
-
 - name: Grub config
   block:
-    - name: Enable quiet mode
+    - name: Disable quiet mode
       ansible.builtin.replace:
         path: /etc/default/grub
         regexp: '^GRUB_CMDLINE_LINUX=(.*)\squiet(.*)?$'
-        replace: 'GRUB_CMDLINE_LINUX=\1 quiet \2'
+        replace: 'GRUB_CMDLINE_LINUX=\1\2'
 
     - name: Gfxmodes
       ansible.builtin.lineinfile:
@@ -23,14 +20,14 @@
         regexp: "^.*GRUB_GFXMODE=(.*)?$"
         line: 'GRUB_GFXMODE="3840x2160,2560x1080,1920x1080,auto"'
 
-    - name: Terminal output
+    - name: Disable Terminal output
       ansible.builtin.lineinfile:
         path: /etc/default/grub
         state: present
         regexp: "^.*GRUB_TERMINAL_OUTPUT=(.*)$"
         line: "# GRUB_TERMINAL_OUTPUT=console"
 
-    - name: Terminal input
+    - name: Disable Terminal input
       ansible.builtin.lineinfile:
         path: /etc/default/grub
         regexp: "^.*GRUB_TERMINAL_INPUT=(.*)$"
@@ -48,7 +45,7 @@
         regexp: "^.*GRUB_TIMEOUT_STYLE=(.*)$"
         line: "# GRUB_TIMEOUT_STYLE=hidden"
 
-    - name: Menu 3
+    - name: Grup Timeout to 10 sec
       ansible.builtin.lineinfile:
         path: /etc/default/grub
         regexp: "^.*GRUB_TIMEOUT=(.*)$"

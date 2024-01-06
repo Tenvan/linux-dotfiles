@@ -74,9 +74,9 @@
 
       # system packages
       - hardinfo
-      - networkmanager
-      - networkmanager-openconnect
       - shell-color-scripts
+      - NetworkManager
+      - NetworkManager-tui
 
       # useful tools for ranger
       - elinks

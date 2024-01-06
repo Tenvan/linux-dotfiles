@@ -36,6 +36,15 @@ thumbnailasideEnabled=true
 touchpointsEnabled=true
 wobblywindowsEnabled=true
 
+[Tiling]
+padding=4
+
+[Tiling][323ff5e9-473d-5440-b394-42ae33780eb3]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][92ed24da-d179-5252-93ff-40565e266f75]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Xwayland]
 Scale=1
 

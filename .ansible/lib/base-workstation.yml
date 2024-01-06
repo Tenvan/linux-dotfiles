@@ -70,6 +70,17 @@
       - aspell-de
       - mythes-de
 
+      # NetworkManager Addons
+      - cockpit-networkmanager
+      - NetworkManager-openconnect-gnome
+      - NetworkManager-openvpn-gnome
+      - NetworkManager-vpnc-gnome
+      - NetworkManager-openconnect
+      - NetworkManager-openvpn
+      - NetworkManager-vpnc
+      - NetworkManager-fortisslvpn
+      - NetworkManager-fortisslvpn-gnome
+
     archlinux_based_init:
       # global
       - ansible-language-server

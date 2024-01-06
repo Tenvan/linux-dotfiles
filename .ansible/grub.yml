@@ -31,8 +31,5 @@
     - name: "=====> Initiate <====="
       ansible.builtin.include_tasks: lib/inits.yml
 
-    - name: "=====> Pre Installation Prepare <====="
-      ansible.builtin.include_tasks: lib/prepare.yml
-
     - name: "=====> Post Installation Finishing <====="
       ansible.builtin.include_tasks: lib/grub.yml
