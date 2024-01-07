@@ -24,17 +24,3 @@
   tasks:
     - name: "=====> Initiate <====="
       ansible.builtin.include_tasks: lib/inits.yml
-
-    - name: Write xinit-system file
-      ansible.builtin.copy:
-        dest: /etc/X11/xinit/xinitrc.d/user-xinitrc.sh
-        mode: u+rwx,g+rx,o+rx
-        content: |
-          #!/usr/bin/sh
-          export DOT="$DOT;user-xinitrc"
-          
-          if [ -f $HOME/.xinitrc ]; then
-          	export DOT="$DOT;ui1"
-          	. $HOME/.xinitrc
-          fi
-   

@@ -85,20 +85,54 @@
     dest: /etc/sddm/Xsession
     force: false
 
-# - name: Enable autologin in gdm
-#   ansible.builtin.lineinfile:
-#     insertafter: "\\[daemon\\]"
-#     state: present
-#     path: /etc/gdm/custom.conf
-#     regexp: "^.*AutomaticLoginEnable=(.*)$"
-#     line: "AutomaticLoginEnable=True"
-#
-# - name: Set autologin user
-#   ansible.builtin.lineinfile:
-#     insertafter: "\\[daemon\\]"
-#     path: /etc/gdm/custom.conf
-#     regexp: "^.*AutomaticLogin=(.*)$"
-#     line: "AutomaticLogin={{ user_id }}"
+- name: Write xinit-system file
+  ansible.builtin.copy:
+    dest: /etc/X11/xinit/xinitrc.d/user-xinitrc.sh
+    mode: u+rwx,g+rx,o+rx
+    content: |
+      #!/usr/bin/sh
+      if [ -f $HOME/.xinitrc ]; then
+        . $HOME/.xinitrc
+      fi
+
+- name: Write sddm config
+  ansible.builtin.copy:
+    dest: /etc/sddm.conf.d/kde_settings.conf
+    mode: u+rwx,g+rx,o+rx
+    content: |
+      [Autologin]
+      Relogin=false
+      Session=plasmax11
+      User={{ user_id }}
+
+      [General]
+      HaltCommand=
+      RebootCommand=
+
+      [Theme]
+      Current=01-breeze-fedora
+      CursorSize=40
+      CursorTheme=default
+      Font=Noto Sans,12,-1,5,50,0,0,0,0,0
+
+      [Users]
+      MaximumUid=60000
+      MinimumUid=1000
+
+      [X11]
+      EnableHiDPI=true
+      SessionCommand=/etc/X11/xinit/xinitrc
 
 - name: Xdg default setzen
   ansible.builtin.command: xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+
+- name: Create kwin kservices5 folder
+  ansible.builtin.file:
+    path: "{{ home_dir }}/.local/share/kservices5"
+    state: directory
+
+- name: create symbolic link for krohnkite kwin script
+  ansible.builtin.file:
+    src: "{{ home_dir }}/.local/share/kwin/scripts/krohnkite/metadata.desktop"
+    dest: "{{ home_dir }}/.local/share/kservices5/krohnkite.desktop"
+    state: link

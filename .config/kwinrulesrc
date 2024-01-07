@@ -46,10 +46,6 @@ wmclassmatch=1
 Description=CopyQ
 above=true
 aboverule=3
-position=0,0
-positionrule=4
-size=2560,1380
-sizerule=4
 wmclass=copyq
 wmclassmatch=1
 

@@ -38,14 +38,14 @@ touchpointsEnabled=true
 wobblywindowsEnabled=true
 
 [Script-krohnkite]
+enableFloatingLayout=true
 enableQuarterLayout=true
-ignoreClass=krunner,yakuake,spectacle,kded5,copyq
-noTileBorder=true
-screenGapBottom=5
-screenGapLeft=5
-screenGapRight=5
-screenGapTop=5
-tileLayoutGap=5
+floatingClass=copyq
+screenGapBottom=10
+screenGapLeft=10
+screenGapRight=10
+screenGapTop=10
+tileLayoutGap=10
 
 [Script-krohnkiteExt]
 debug=true
@@ -60,9 +60,13 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 [Tiling][92ed24da-d179-5252-93ff-40565e266f75]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Windows]
+SeparateScreenFocus=true
+
 [Xwayland]
 Scale=1
 
 [org.kde.kdecoration2]
-ButtonsOnLeft=
+ButtonsOnLeft=SF
 ButtonsOnRight=IAX
+theme=kwin4_decoration_qml_plastik
