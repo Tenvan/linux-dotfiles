@@ -2,7 +2,7 @@
 #####################################
 # initial environment for zsh shell #
 #####################################
-export DOT="$DOT;.zshrc"
+export DOT="$DOT;~/.zshrc"
 
 . ~/.scripts/defs
 
@@ -330,7 +330,7 @@ case ${TERM} in
     *)
         print "Init Oh-My-Posh for vconsole"
         eval "$(oh-my-posh init zsh --config ~/.config/powershell/vconsole.omp.jsonc)"
-        csource ~/.profile
+        # csource ~/.profile
     ;;
 esac
 

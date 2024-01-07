@@ -26,8 +26,9 @@ Rows=7
 blurEnabled[$d]
 desktopchangeosdEnabled=true
 diminactiveEnabled=true
-forceblurEnabled=true
+forceblurEnabled=false
 krohnkiteEnabled=true
+krohnkiteExtEnabled=false
 kwin4_effect_dimscreenEnabled=true
 kwin4_effect_translucencyEnabled=true
 mousemarkEnabled=true
@@ -35,6 +36,20 @@ slidebackEnabled=true
 thumbnailasideEnabled=true
 touchpointsEnabled=true
 wobblywindowsEnabled=true
+
+[Script-krohnkite]
+enableQuarterLayout=true
+ignoreClass=krunner,yakuake,spectacle,kded5,copyq
+noTileBorder=true
+screenGapBottom=5
+screenGapLeft=5
+screenGapRight=5
+screenGapTop=5
+tileLayoutGap=5
+
+[Script-krohnkiteExt]
+debug=true
+noTileBorder=true
 
 [Tiling]
 padding=4

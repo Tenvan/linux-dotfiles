@@ -79,8 +79,11 @@
   register: my_output
   changed_when: my_output.rc != 0
 
-- name: Xdg default setzen
-  ansible.builtin.command: xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+- name: Copy SDDM XSession
+  ansible.builtin.copy:
+    src: /usr/share/Xsession
+    dest: /etc/sddm/Xsession
+    force: false
 
 # - name: Enable autologin in gdm
 #   ansible.builtin.lineinfile:
@@ -96,3 +99,6 @@
 #     path: /etc/gdm/custom.conf
 #     regexp: "^.*AutomaticLogin=(.*)$"
 #     line: "AutomaticLogin={{ user_id }}"
+
+- name: Xdg default setzen
+  ansible.builtin.command: xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search

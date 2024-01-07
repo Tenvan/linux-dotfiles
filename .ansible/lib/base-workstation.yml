@@ -167,9 +167,9 @@
     flatpak_init:
       - com.bitwarden.desktop
       - com.diffingo.fwbackups
-      - io.github.hakandundar34coding.system-monitoring-center
       - org.fedoraproject.MediaWriter
       - com.github.d4nj1.tlpui
+      - io.missioncenter.MissionCenter
 
     cargo_init:
       - git-delta

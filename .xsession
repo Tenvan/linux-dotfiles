@@ -2,7 +2,7 @@
 #############################
 # initialize a XWin session #
 #############################
-export DOT="$DOT;.xsession"
+export DOT="$DOT;~/.xsession"
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap

@@ -29,9 +29,8 @@ wmclassmatch=1
 Description=JetBrains All
 desktops=9a00b74d-da11-4eeb-a665-55d8c1c6e194
 desktopsrule=3
-fullscreen=true
-fullscreenrule=3
 screenrule=3
+types=1
 wmclass=jetbrains-*
 wmclassmatch=3
 
@@ -47,9 +46,9 @@ wmclassmatch=1
 Description=CopyQ
 above=true
 aboverule=3
-position=1155,648
+position=0,0
 positionrule=4
-size=1405,731
+size=2560,1380
 sizerule=4
 wmclass=copyq
 wmclassmatch=1
@@ -64,6 +63,13 @@ screenrule=3
 wmclass=jetbrains-*
 wmclassmatch=3
 
+[6]
+Description=Vivaldi Remote Work
+screen=1
+screenrule=3
+wmclass=vivaldi-stable
+wmclassmatch=1
+
 [6c2c7d94-253b-4b14-843d-007ad7b415ac]
 Description=Remote Sessions
 desktops=2a615702-c391-4d4b-9f8a-95e2e191e9d2
@@ -72,6 +78,13 @@ screenrule=3
 title=VM-DEV-STIRA
 titlematch=1
 wmclass=org.remmina.remmina
+wmclassmatch=1
+
+[955c1c91-e770-42ea-8780-18b892209716]
+Description=Vivaldi Remote Work
+screen=1
+screenrule=3
+wmclass=vivaldi-stable
 wmclassmatch=1
 
 [9d6aa3e2-5efc-4038-bdcd-d7ad3dbb028e]
@@ -84,8 +97,8 @@ wmclass=org.remmina.remmina
 wmclassmatch=1
 
 [General]
-count=5
-rules=1,2,3,4,5
+count=6
+rules=1,2,3,4,5,6
 
 [a1d46bd7-6fc9-4feb-8ee3-bc8bb7221b55]
 Description=Virt Manger Arbeitsbereich

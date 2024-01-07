@@ -2,7 +2,7 @@
 #########################################
 # initial environment for XWin sessions #
 #########################################
-export DOT="$DOT;.xprofile"
+export DOT="$DOT;~/.xprofile"
 
 csource() {
     if [ -r "$@" ]; then
@@ -54,8 +54,8 @@ export PLASMA_USE_QT_SCALING=1
 export BROWSER=
 
 # init customs folder
-rm -f ~/.config/awesome/customs
-ln -s -f ~/.custom ~/.config/awesome/customs
+#rm -f ~/.config/awesome/customs
+#ln -s -f ~/.custom ~/.config/awesome/customs
 
 ~/.bin/wallpaper.sh
 

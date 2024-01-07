@@ -2,7 +2,7 @@
 #########################################
 # initial environment for every session #
 #########################################
-export DOT="$DOT;.profile"
+export DOT="$DOT;~/.profile"
 
 . ~/.scripts/defs
 

@@ -4,11 +4,6 @@
   name: "==========> Install Tenvans Dotfiles with AwesomeWm Desktop <=========="
   become: true
 
-  # install galaxy roles
-  # roles:
-  #  - role: robertdebock.bootstrap
-  #  - role: robertdebock.rpmfusion
-
   vars:
     is_dry: true
 
@@ -26,56 +21,20 @@
     is_debian: false
     is_ubuntu: false
 
-    grub_theme: 1
-
-    fedora_init:
-      - microsoft-edge-stable
-
   tasks:
     - name: "=====> Initiate <====="
       ansible.builtin.include_tasks: lib/inits.yml
 
-    - name: "=====> Pre Installation Prepare <====="
-      ansible.builtin.include_tasks: lib/prepare.yml
-
-    - name: Define Packages
-      ansible.builtin.include_tasks: lib/install.yml
-
-    # - name: "=====> Install System Base Packages <====="
-    #   ansible.builtin.include_tasks: lib/base-system.yml
-
-    # - name: Read users from CSV file and return a dictionary
-    #   community.general.read_csv:
-    #     path: lib/test.txt
-    #     delimiter: " "
-    #     skipinitialspace: true
-    #     dialect: unix
-    #     key: all
-    #     strict: false
-    #   register: packages_json
-    #   delegate_to: localhost
-
-    # - name: Store Packages List
-    #   ansible.builtin.set_fact:
-    #     packages_array: "{{ packages_json | community.general.json_query('dict.*[]') | remap_package_node }}"
-
-    # - name: List Packages
-    #   ansible.builtin.debug:
-    #     # var: item
-    #     msg: 'Loop Item: {{ item }}'
-    #   loop: "{{ packages_array }}"
-
-    ####################################################################################################################
-    # Install Fedora Part
-    ####################################################################################################################
-    # - block:
-    #     - ansible.builtin.set_fact:
-    #         fedora_combined_array: "{{ (fedora_init | default([])) }}"
-    #     - name: "[INSTALL][DNF] FedoraPackages"
-    #       become: true
-    #       dnf:
-    #         state: present
-    #         allowerasing: true
-    #         name: "{{ fedora_combined_array }}"
-    #       when: is_dry is false and fedora_combined_array|length > 0
-    #   when: is_fedora
+    - name: Write xinit-system file
+      ansible.builtin.copy:
+        dest: /etc/X11/xinit/xinitrc.d/user-xinitrc.sh
+        mode: u+rwx,g+rx,o+rx
+        content: |
+          #!/usr/bin/sh
+          export DOT="$DOT;user-xinitrc"
+          
+          if [ -f $HOME/.xinitrc ]; then
+          	export DOT="$DOT;ui1"
+          	. $HOME/.xinitrc
+          fi
+   

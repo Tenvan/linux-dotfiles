@@ -23,7 +23,7 @@ display=Display\tMeta+P,Display\tMeta+P,Anzeige wechseln
 
 [khotkeys]
 _k_friendly_name=Dienst für eigene Kurzbefehle
-{a555c035-fbce-423c-9865-855dda607dab}=none,none,Start Terminal
+{0682a7bb-1c1e-4439-b763-19a792f4ea9e}=Meta+Ctrl+Alt+L,none,Logging
 {acc7cc2d-7e30-4adb-a943-690a16560d0a}=Meta+Ctrl+R,none,Plasma Reset
 {add22824-c5b8-477c-be8f-7112d20d2b55}=Meta+Esc,none,XKill
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=none,none,Suchen
@@ -91,6 +91,35 @@ Krohnkite: Stair Layout=none,none,
 Krohnkite: Three Column Layout=none,none,
 Krohnkite: Tile Layout=none,none,
 Krohnkite: Up/Prev=none,none,
+KrohnkiteExt: Cycle Layout=none,none,
+KrohnkiteExt: Decrease=none,none,
+KrohnkiteExt: Down/Next=Meta+J,none,
+KrohnkiteExt: Float=Meta+F,none,
+KrohnkiteExt: Float All=Meta+Shift+F,none,
+KrohnkiteExt: Floating Layout=none,none,
+KrohnkiteExt: Grow Height=Meta+Ctrl+J,none,
+KrohnkiteExt: Grow Width=Meta+Ctrl+L,none,
+KrohnkiteExt: Increase=Meta+I,none,
+KrohnkiteExt: Left=Meta+H,none,
+KrohnkiteExt: Monocle Layout=Meta+M,none,
+KrohnkiteExt: Move Down/Next=Meta+Shift+J,none,
+KrohnkiteExt: Move Left=Meta+Shift+H,none,
+KrohnkiteExt: Move Right=Meta+Shift+L,none,
+KrohnkiteExt: Move Up/Prev=Meta+Shift+K,none,
+KrohnkiteExt: Next Layout=Meta+\\\\,none,
+KrohnkiteExt: Previous Layout=Meta+|,none,
+KrohnkiteExt: Quarter Layout=none,none,
+KrohnkiteExt: Right=none,none,
+KrohnkiteExt: Rotate=Meta+R,none,
+KrohnkiteExt: Rotate Part=Meta+Shift+R,none,
+KrohnkiteExt: Set master=none,none,
+KrohnkiteExt: Shrink Height=Meta+Ctrl+K,none,
+KrohnkiteExt: Shrink Width=Meta+Ctrl+H,none,
+KrohnkiteExt: Spread Layout=none,none,
+KrohnkiteExt: Stair Layout=none,none,
+KrohnkiteExt: Three Column Layout=none,none,
+KrohnkiteExt: Tile Layout=none,none,
+KrohnkiteExt: Up/Prev=Meta+K,none,
 Move Tablet to Next Output=none,none,Move the tablet to the next output
 MoveMouseToCenter=Meta+F6,Meta+F6,Mauszeiger zentrieren
 MoveMouseToFocus=Meta+F5,Meta+F5,Mauszeiger in den Fokus verschieben
@@ -242,11 +271,11 @@ view_zoom_out=Meta+-,Meta+-,Verkleinern
 
 [mediacontrol]
 _k_friendly_name=Mediensteuerung
-mediavolumedown=none,none,Medienspieler leiser
-mediavolumeup=none,none,Medienspieler lauter
+mediavolumedown=none,,Medienspieler leiser
+mediavolumeup=none,,Medienspieler lauter
 nextmedia=Media Next,Media Next,Nächstes Medium wiedergeben
 pausemedia=Media Pause,Media Pause,Medienwiedergabe anhalten
-playmedia=none,none,Medienwiedergabe starten
+playmedia=none,,Medienwiedergabe starten
 playpausemedia=Media Play,Media Play,Medienwiedergabe starten/anhalten
 previousmedia=Media Previous,Media Previous,Vorheriges Medium wiedergeben
 stopmedia=Media Stop,Media Stop,Medienwiedergabe anhalten
@@ -266,6 +295,12 @@ _launch=Meta+E,Meta+E,Dolphin
 _k_friendly_name=KCalc
 _launch=Meta+Shift+C\tLaunch (1),Launch (1),KCalc
 
+[org.kde.konsole.desktop]
+NewTab=none,none,Ein neues Unterfenster öffnen
+NewWindow=none,none,Ein neues Fenster öffnen
+_k_friendly_name=Konsole
+_launch=none,Ctrl+Alt+T,Konsole
+
 [org.kde.krunner.desktop]
 RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Befehl mit dem Inhalt der Zwischenablage ausführen
 _k_friendly_name=KRunner
@@ -280,11 +315,11 @@ _k_friendly_name=Emoji-Auswahl
 _launch=Meta+.,Meta+.,Emoji-Auswahl
 
 [org.kde.spectacle.desktop]
-ActiveWindowScreenShot=,Meta+Print,Aktives Fenster aufnehmen
+ActiveWindowScreenShot=none,Meta+Print,Aktives Fenster aufnehmen
 CurrentMonitorScreenShot=none,none,Aktuellen Bildschirm aufnehmen
 FullScreenScreenShot=Shift+Print,Shift+Print,Gesamte Arbeitsfläche aufnehmen
 OpenWithoutScreenshot=none,none,Spectacle ohne Aufnahme starten
-RectangularRegionScreenShot=,Meta+Shift+Print,Rechteckigen Bereich aufnehmen
+RectangularRegionScreenShot=none,Meta+Shift+Print,Rechteckigen Bereich aufnehmen
 WindowUnderCursorScreenShot=Meta+Ctrl+Print,Meta+Ctrl+Print,Fenster unter dem Mauszeiger aufnehmen
 _k_friendly_name=Spectacle
 _launch=Print,Print,Spectacle starten

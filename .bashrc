@@ -2,7 +2,7 @@
 ######################################
 # initial environment for bash shell #
 ######################################
-export DOT="$DOT;.bashrc"
+export DOT="$DOT;~/.bashrc"
 
 . ~/.scripts/defs
 
