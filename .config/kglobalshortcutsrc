@@ -354,6 +354,7 @@ activate widget 25=none,none,Miniprogramm Anwendungsstarter aktivieren
 activate widget 4=none,none,Miniprogramm Anwendungsstarter aktivieren
 activate widget 45=none,none,Miniprogramm Anwendungsstarter aktivieren
 activate widget 64=none,none,Miniprogramm Anwendungsstarter aktivieren
+activate widget 71=,none,Miniprogramm Digitale Uhr aktivieren
 activate widget 88=none,none,Miniprogramm Anwendungsstarter aktivieren
 clear-history=none,,Bisherigen Inhalt der Zwischenablage löschen
 clipboard_action=Meta+Ctrl+X,Meta+Ctrl+X,Automatisches Aufklappmenü für Aktionen
