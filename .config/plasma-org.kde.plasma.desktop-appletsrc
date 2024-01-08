@@ -350,7 +350,7 @@ PreloadWeight=42
 [Containments][45][General]
 ToolBoxButtonState=topcenter
 ToolBoxButtonX=565
-ToolBoxButtonY=48
+ToolBoxButtonY=50
 
 [Containments][45][Wallpaper][org.kde.image][General]
 Image=/home/stira/.local/share/wallpapers/shared/floating-world-in-space-3000x2357.jpg
@@ -493,7 +493,7 @@ plugin=org.kde.plasma.systemmonitor.memory
 
 [Containments][47][Applets][53][Configuration]
 CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=85
+PreloadWeight=90
 
 [Containments][47][Applets][53][Configuration][Appearance]
 chartFace=org.kde.ksysguard.linechart
@@ -563,30 +563,9 @@ totalSensors=["cpu/all/usage"]
 immutability=1
 plugin=org.kde.plasma.panelspacer
 
-[Containments][47][Applets][62]
-immutability=1
-plugin=org.kde.plasma.systemmonitor.memory
-
-[Containments][47][Applets][62][Configuration]
-CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=75
-
-[Containments][47][Applets][62][Configuration][Appearance]
-chartFace=org.kde.ksysguard.piechart
-title=SWAP Speicherbelegung
-
-[Containments][47][Applets][62][Configuration][ConfigDialog]
-DialogHeight=690
-DialogWidth=920
-
-[Containments][47][Applets][62][Configuration][SensorColors]
-memory/physical/used=61,174,233
-memory/swap/used=61,233,168
-
-[Containments][47][Applets][62][Configuration][Sensors]
-highPrioritySensorIds=["memory/swap/used"]
-lowPrioritySensorIds=["memory/swap/total"]
-totalSensors=["memory/swap/usedPercent"]
+[Containments][47][Applets][59][Configuration][General]
+expanding=false
+length=10
 
 [Containments][47][Applets][67]
 immutability=1
@@ -689,40 +668,6 @@ showWeekNumbers=true
 DialogHeight=991
 DialogWidth=1373
 
-[Containments][47][Applets][72]
-immutability=1
-plugin=org.kde.plasma.systemmonitor.cpucore
-
-[Containments][47][Applets][72][Configuration]
-CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=55
-
-[Containments][47][Applets][72][Configuration][Appearance]
-chartFace=org.kde.ksysguard.barchart
-title=Auslastung einzelner Prozessorkerne
-
-[Containments][47][Applets][72][Configuration][SensorColors]
-cpu/cpu0/usage=61,174,233
-cpu/cpu1/usage=61,110,233
-cpu/cpu10/usage=217,233,61
-cpu/cpu11/usage=153,233,61
-cpu/cpu12/usage=88,233,61
-cpu/cpu13/usage=61,233,98
-cpu/cpu14/usage=61,233,163
-cpu/cpu15/usage=61,233,227
-cpu/cpu2/usage=77,61,233
-cpu/cpu3/usage=141,61,233
-cpu/cpu4/usage=206,61,233
-cpu/cpu5/usage=233,61,196
-cpu/cpu6/usage=233,61,131
-cpu/cpu7/usage=233,61,67
-cpu/cpu8/usage=233,120,61
-cpu/cpu9/usage=233,184,61
-
-[Containments][47][Applets][72][Configuration][Sensors]
-highPrioritySensorIds=["cpu/cpu.*/usage"]
-totalSensors=["cpu/all/usage"]
-
 [Containments][47][Applets][73]
 immutability=1
 plugin=org.kde.plasma.printmanager
@@ -784,12 +729,44 @@ showDetails=true
 [Containments][47][Applets][76][Configuration][org.kde.ksysguard.textonly][General]
 groupByTotal=true
 
+[Containments][47][Applets][77]
+immutability=1
+plugin=org.kde.plasma.panelspacer
+
+[Containments][47][Applets][77][Configuration][General]
+expanding=false
+length=10
+
+[Containments][47][Applets][78]
+immutability=1
+plugin=org.kde.plasma.panelspacer
+
+[Containments][47][Applets][78][Configuration][General]
+expanding=false
+length=10
+
+[Containments][47][Applets][79]
+immutability=1
+plugin=org.kde.plasma.panelspacer
+
+[Containments][47][Applets][79][Configuration][General]
+expanding=false
+length=10
+
+[Containments][47][Applets][80]
+immutability=1
+plugin=org.kde.plasma.panelspacer
+
+[Containments][47][Applets][80][Configuration][General]
+expanding=false
+length=10
+
 [Containments][47][ConfigDialog]
 DialogHeight=100
 DialogWidth=2688
 
 [Containments][47][General]
-AppletOrder=54;73;75;76;72;52;51;58;53;62;50;67;68;59;70;56;71
+AppletOrder=54;73;75;77;76;78;52;51;58;79;53;50;80;67;68;59;70;56;71
 
 [ScreenMapping]
 itemsOnDisabledScreens=
