@@ -9,9 +9,6 @@
 [PIMEventsPlugin]
 calendars=2,8
 
-[PlasmaTransientsConfig]
-PreloadWeight=0
-
 [PlasmaViews][Panel 112][Defaults]
 thickness=44
 
@@ -64,6 +61,7 @@ thickness=44
 
 [PlasmaViews][Panel 47]
 alignment=132
+floating=0
 panelOpacity=0
 
 [PlasmaViews][Panel 47][Defaults]

@@ -79,12 +79,6 @@
   register: my_output
   changed_when: my_output.rc != 0
 
-- name: Copy SDDM XSession
-  ansible.builtin.copy:
-    src: /usr/share/Xsession
-    dest: /etc/sddm/Xsession
-    force: false
-
 - name: Write xinit-system file
   ansible.builtin.copy:
     dest: /etc/X11/xinit/xinitrc.d/user-xinitrc.sh

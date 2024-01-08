@@ -5,7 +5,8 @@ update_info=kwinrules.upd:replace-placement-string-to-enum,kwinrules.upd:use-vir
 Description=Remote Sessions
 desktops=2a615702-c391-4d4b-9f8a-95e2e191e9d2
 desktopsrule=3
-screenrule=4
+screen=1
+screenrule=3
 wmclass=org.remmina.remmina
 wmclassmatch=1
 

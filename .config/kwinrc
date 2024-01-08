@@ -57,7 +57,13 @@ padding=4
 [Tiling][323ff5e9-473d-5440-b394-42ae33780eb3]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Tiling][61adec0d-ffed-5210-8395-39b87bb3f75b]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][92ed24da-d179-5252-93ff-40565e266f75]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][cd8a1631-ba6b-5976-baf3-325e3dd4e803]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Windows]

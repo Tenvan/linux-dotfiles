@@ -43,8 +43,8 @@
     - name: "=====> Install Vms Packages <====="
       ansible.builtin.include_tasks: lib/vm.yml
 
-    # - name: "=====> Post Installation Finishing <====="
-    #   ansible.builtin.include_tasks: lib/grub.yml
+    - name: "=====> Post Installation Finishing <====="
+      ansible.builtin.include_tasks: lib/grub.yml
 
     - name: "=====> Post Installation Finishing <====="
       ansible.builtin.include_tasks: lib/finish-system.yml

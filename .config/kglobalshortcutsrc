@@ -43,11 +43,11 @@ mute=Volume Mute,Volume Mute,Stummschalten
 
 [ksmserver]
 Halt Without Confirmation=none,,Ohne Rückfrage herunterfahren
-Lock Session=Meta+L\tScreensaver,Meta+L\tScreensaver,Lock Session
+Lock Session=Meta+L\tScreensaver,Meta+L\tScreensaver,Sitzung sperren
 Log Out=Ctrl+Alt+Del,Ctrl+Alt+Del,Abmelden
 Log Out Without Confirmation=none,,Ohne Rückfrage abmelden
 Reboot Without Confirmation=none,,Ohne Rückfrage neu starten
-_k_friendly_name=Session Management
+_k_friendly_name=Sitzungsverwaltung
 
 [kwin]
 Activate Window Demanding Attention=Meta+Ctrl+A,Meta+Ctrl+A,Fenster aktivieren\\, das Aufmerksamkeit erfordert
@@ -354,7 +354,7 @@ activate widget 25=none,none,Miniprogramm Anwendungsstarter aktivieren
 activate widget 4=none,none,Miniprogramm Anwendungsstarter aktivieren
 activate widget 45=none,none,Miniprogramm Anwendungsstarter aktivieren
 activate widget 64=none,none,Miniprogramm Anwendungsstarter aktivieren
-activate widget 71=,none,Miniprogramm Digitale Uhr aktivieren
+activate widget 71=none,none,Miniprogramm Digitale Uhr aktivieren
 activate widget 88=none,none,Miniprogramm Anwendungsstarter aktivieren
 clear-history=none,,Bisherigen Inhalt der Zwischenablage löschen
 clipboard_action=Meta+Ctrl+X,Meta+Ctrl+X,Automatisches Aufklappmenü für Aktionen

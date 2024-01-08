@@ -10,48 +10,9 @@ csource() {
     fi
 }
 
-export FILEMANAGER="nemo"
 export PICOM_CONF="$HOME/.config/picom/picom.conf"
 
-# Theme Definitionen
-export MAIN_THEME="VALYRIAN-Total-Steel"
-# export MAIN_THEME="VALYRIAN-Molten-Steel"
-# export MAIN_THEME="Materia-dark-compact"
-# export MAIN_THEME="Adwaita-dark"
-# export MAIN_THEME="Breeze-Dark"
-export ICON_THEME="Papirus-Dark"
-export CURSOR_THEME="Bibata-Modern-Ice"
-export CURSOR_SIZE=32
-export THEME_FONT="Noto Sans Medium 12"
-export SOUND_THEME="Smooth"
-export KVANTUM_THEME="kvantum"
-export WALLPAPER_THEME="island"
-
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-export GTK_THEME="$MAIN_THEME"
-
-# for qt5 apps
-export XDG_CURRENT_DESKTOP=Unity
-# export XDG_CURRENT_DESKTOP=KDE
-
-# Scale Factore
-# export QT_SCALE_FACTOR=1
-# export QT_AUTO_SCREEN_SET_FACTOR=1
-export GDK_SCALE=1
-export GDK_DPI_SCALE=1
-
-# oder dpi setzen (nicht beides gleichzeitig)
-export QT_FONT_DPI=96
-
-unset QT_STYLE_OVERRIDE
-# export QT_QPA_PLATFORM_THEME="gtk2"
-export QT_QPA_PLATFORMTHEME="qt6ct"
-# export QT_QPA_PLATFORMTHEME="qt5ct"
-export PLASMA_USE_QT_SCALING=1
-
 # fix "xdg-open fork-bomb" export your preferred browser from here
-# export BROWSER=$(which firefox)
-export BROWSER=
 
 # init customs folder
 #rm -f ~/.config/awesome/customs
