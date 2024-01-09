@@ -16,7 +16,7 @@ _k_friendly_name=Zugangshilfen
 [kcm_touchpad]
 Disable Touchpad=Touchpad Off,Touchpad Off,Touchpad abschalten
 Enable Touchpad=Touchpad On,Touchpad On,Touchpad aktivieren
-Toggle Touchpad=Meta+Ctrl+Zenkaku Hankaku\tTouchpad Toggle,Touchpad Toggle\tMeta+Ctrl+Zenkaku Hankaku,Touchpad umschalten
+Toggle Touchpad=Meta+Ctrl+Zenkaku Hankaku\tTouchpad Toggle,Touchpad Toggle,Touchpad umschalten
 _k_friendly_name=Touchpad
 
 [kded5]

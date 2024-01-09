@@ -87,5 +87,5 @@ SeparateScreenFocus=true
 Scale=1
 
 [org.kde.kdecoration2]
-ButtonsOnLeft=SF
+ButtonsOnLeft=SNF
 ButtonsOnRight=IAX

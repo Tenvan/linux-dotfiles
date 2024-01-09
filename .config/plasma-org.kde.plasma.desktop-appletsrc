@@ -599,7 +599,7 @@ plugin=org.kde.plasma.systemmonitor.diskusage
 
 [Containments][47][Applets][68][Configuration]
 CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=84
+PreloadWeight=94
 
 [Containments][47][Applets][68][Configuration][Appearance]
 chartFace=org.kde.ksysguard.horizontalbars
@@ -664,7 +664,7 @@ immutability=1
 plugin=org.kde.plasma.digitalclock
 
 [Containments][47][Applets][71][Configuration]
-PreloadWeight=84
+PreloadWeight=100
 popupHeight=600
 popupWidth=1080
 
@@ -697,7 +697,7 @@ plugin=org.kde.plasma.systemmonitor
 
 [Containments][47][Applets][76][Configuration]
 CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=89
+PreloadWeight=100
 
 [Containments][47][Applets][76][Configuration][Appearance]
 chartFace=org.kde.ksysguard.barchart
@@ -783,8 +783,8 @@ expanding=false
 length=10
 
 [Containments][47][ConfigDialog]
-DialogHeight=84
-DialogWidth=3413
+DialogHeight=70
+DialogWidth=2560
 
 [Containments][47][Configuration]
 PreloadWeight=34
@@ -895,9 +895,9 @@ PreloadWeight=34
 
 [Containments][88][General]
 ToolBoxButtonState=topcenter
-ToolBoxButtonX=1062
+ToolBoxButtonX=635
 ToolBoxButtonY=50
 
 [ScreenMapping]
 itemsOnDisabledScreens=
-screenMapping=desktop:/ansible.cfg,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Abschlusszertifikat_Apache Kafka lernen.pdf,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Downloads,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/dotfiles.code-workspace,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Dokumente,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/xorg.conf,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/hp-check.log,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/dotTraceSnapshots,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Videos,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Vorlagen,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Recordings,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Bilder,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Public,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/manjaro-gnome-22.0.5-230316-linux61.iso.torrent,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/DbVisualizer,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/mediacreationtool.exe,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/org.remmina.Remmina.desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/WORKSPACE,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/arcolinuxl-v23.04.03-x86_64.iso.torrent,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/README.md,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Musik,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/ranger_cd.XXX,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/go,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Autodesk Fusion 360.desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/steam.desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/cv_debug.log,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/virt-manager.desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/DataGripProjects,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/app-signed.apk,0,3946eec7-537c-4f2a-a54f-df62df3f00a3
+screenMapping=desktop:/ranger_cd.XXX,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/xorg.conf,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Abschlusszertifikat_Apache Kafka lernen.pdf,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/dotTraceSnapshots,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Vorlagen,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/manjaro-gnome-22.0.5-230316-linux61.iso.torrent,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/org.remmina.Remmina.desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Recordings,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/arcolinuxl-v23.04.03-x86_64.iso.torrent,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/virt-manager.desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/DataGripProjects,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/README.md,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/steam.desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/app-signed.apk,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Public,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/hp-check.log,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Downloads,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/go,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/ansible.cfg,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/dotfiles.code-workspace,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Bilder,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/WORKSPACE,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/mediacreationtool.exe,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Musik,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/DbVisualizer,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Videos,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Dokumente,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Autodesk Fusion 360.desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/cv_debug.log,0,3946eec7-537c-4f2a-a54f-df62df3f00a3
