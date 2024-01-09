@@ -2,18 +2,18 @@
 - name: DefineBaseSystemPackages
   vars:
     global_init:
-      # global
       - acpid
       - at
       - curl
       - dnsutils
+      - flatpak
       - iotop
       - jq
       - ripgrep
       - sysstat
       - time
       - zsh
-      - flatpak
+      # global
 
       # system tools
       - cockpit

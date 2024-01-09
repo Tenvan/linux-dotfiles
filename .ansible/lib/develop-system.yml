@@ -1,9 +1,4 @@
 ---
-- name: init stable rust
-  ansible.builtin.shell: rustup default stable
-  become: false
-  ignore_errors: false
-
 - name: Install Nuget
   ansible.builtin.shell: |
     curl -o /usr/local/bin/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
@@ -33,6 +28,7 @@
       - python-pip
       - python-pipx
       - rust
+      - rustup
 
       # DotNet/Mono Setup
       - dotnet-sdk
@@ -41,6 +37,7 @@
 
     rhel_based_init:
       - rust
+      - rustup
 
       # DotNet/Mono Setup
       - dotnet-sdk-6.0
@@ -77,6 +74,11 @@
       - boto3
 
   ansible.builtin.include_tasks: install.yml
+
+- name: init stable rust
+  ansible.builtin.shell: rustup default stable
+  become: false
+  ignore_errors: false
 
 - name: Install Powershell
   ansible.builtin.shell: dotnet tool install --global PowerShell

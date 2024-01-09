@@ -143,6 +143,10 @@
       - xsane
       - python3-PyQt4
 
+      # display manager
+      - gdm
+      - sddm
+
     arcolinux_init:
       # Meta Packages
       - arcolinux-meta-log

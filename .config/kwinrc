@@ -12,6 +12,7 @@ Id_4=9656537a-cd4c-4c06-8a6b-f2ef4b105428
 Id_5=844380bc-18cf-43c6-af2f-6aa79ffa2a2c
 Id_6=2a615702-c391-4d4b-9f8a-95e2e191e9d2
 Id_7=686a5ede-cc70-46a3-b808-04e218240ce6
+Id_8=51d3122a-3213-4d61-ad2e-fee2a9af5e0d
 Name_1=Development
 Name_2=Internet
 Name_3=Administration
@@ -19,8 +20,9 @@ Name_4=Media
 Name_5=Virtual Working
 Name_6=Remote Working
 Name_7=Gaming
-Number=7
-Rows=7
+Name_8=System Tools
+Number=8
+Rows=4
 
 [Plugins]
 blurEnabled[$d]
@@ -57,10 +59,22 @@ padding=4
 [Tiling][323ff5e9-473d-5440-b394-42ae33780eb3]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Tiling][3f505be2-289a-5170-b12e-9d43118655c0]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][61adec0d-ffed-5210-8395-39b87bb3f75b]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Tiling][8d3f61ad-2a31-59b8-a5c4-0e2f209d69b2]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][92ed24da-d179-5252-93ff-40565e266f75]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][af4a1f47-9a34-5f1b-9ed9-fb4c85419742]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][ca182399-4a16-5ac3-914c-23936735ff87]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][cd8a1631-ba6b-5976-baf3-325e3dd4e803]
@@ -75,4 +89,3 @@ Scale=1
 [org.kde.kdecoration2]
 ButtonsOnLeft=SF
 ButtonsOnRight=IAX
-theme=kwin4_decoration_qml_plastik

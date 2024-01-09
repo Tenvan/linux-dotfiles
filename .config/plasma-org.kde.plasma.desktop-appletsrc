@@ -6,33 +6,6 @@ wheel:Vertical;NoModifier=org.kde.switchdesktop
 [ActionPlugins][1]
 RightButton;NoModifier=org.kde.contextmenu
 
-[Containments][1]
-ItemGeometries-1792x1008=
-ItemGeometries-2560x1440=
-ItemGeometriesHorizontal=
-activityId=3946eec7-537c-4f2a-a54f-df62df3f00a3
-formfactor=0
-immutability=1
-lastScreen=0
-location=0
-plugin=org.kde.plasma.folder
-wallpaperplugin=org.kde.image
-
-[Containments][1][ConfigDialog]
-DialogHeight=810
-DialogWidth=1039
-
-[Containments][1][Configuration]
-PreloadWeight=0
-
-[Containments][1][General]
-ToolBoxButtonState=topcenter
-ToolBoxButtonX=501
-
-[Containments][1][Wallpaper][org.kde.image][General]
-Image=/home/stira/.local/share/wallpapers/shared/blue-earth-2880x1800.jpg
-SlidePaths=/home/stira/.local/share/wallpapers/,/usr/share/wallpapers/
-
 [Containments][13]
 activityId=
 formfactor=2
@@ -129,7 +102,7 @@ immutability=1
 plugin=org.kde.plasma.networkmanagement
 
 [Containments][13][Applets][28][Configuration]
-PreloadWeight=35
+PreloadWeight=27
 
 [Containments][13][Applets][29]
 immutability=1
@@ -156,10 +129,10 @@ PreloadWeight=0
 PreloadWeight=0
 
 [Containments][13][General]
-extraItems=org.kde.plasma.devicenotifier,org.kde.plasma.mediacontroller,org.kde.kscreen,org.kde.plasma.networkmanagement,org.kde.plasma.bluetooth,org.kde.plasma.nightcolorcontrol,org.kde.plasma.keyboardindicator,org.kde.plasma.volume,org.kde.plasma.vault,org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.manage-inputmethod,org.kde.plasma.keyboardlayout,org.kde.kdeconnect,org.kde.plasma.notifications,org.kde.plasma.printmanager
+extraItems=org.kde.plasma.devicenotifier,org.kde.plasma.mediacontroller,org.kde.kscreen,org.kde.plasma.volume,org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.manage-inputmethod,org.kde.plasma.keyboardlayout,org.kde.plasma.notifications,org.kde.plasma.printmanager,org.kde.plasma.keyboardindicator,org.kde.plasma.nightcolorcontrol,org.kde.plasma.vault,org.kde.plasma.bluetooth,org.kde.plasma.networkmanagement,org.kde.kdeconnect
 hiddenItems=Notificador de Discover_org.kde.DiscoverNotifier
 iconSpacing=1
-knownItems=org.kde.plasma.devicenotifier,org.kde.plasma.mediacontroller,org.kde.kscreen,org.kde.plasma.networkmanagement,org.kde.plasma.bluetooth,org.kde.plasma.nightcolorcontrol,org.kde.plasma.keyboardindicator,org.kde.plasma.volume,org.kde.plasma.vault,org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.manage-inputmethod,org.kde.plasma.keyboardlayout,org.kde.kdeconnect,org.kde.plasma.notifications,org.kde.plasma.printmanager
+knownItems=org.kde.plasma.devicenotifier,org.kde.plasma.mediacontroller,org.kde.kscreen,org.kde.plasma.volume,org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.manage-inputmethod,org.kde.plasma.keyboardlayout,org.kde.plasma.notifications,org.kde.plasma.printmanager,org.kde.plasma.keyboardindicator,org.kde.plasma.nightcolorcontrol,org.kde.plasma.vault,org.kde.plasma.bluetooth,org.kde.plasma.networkmanagement,org.kde.kdeconnect
 scaleIconsToFit=true
 
 [Containments][3]
@@ -190,7 +163,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][3][Applets][12][Configuration]
-PreloadWeight=35
+PreloadWeight=39
 SystrayContainmentId=13
 
 [Containments][3][Applets][25]
@@ -243,6 +216,9 @@ favoritesPortedToKAstats=true
 immutability=1
 plugin=org.kde.plasma.showdesktop
 
+[Containments][3][Applets][5][Configuration]
+PreloadWeight=34
+
 [Containments][3][Applets][5][Configuration][General]
 icon=deepin-show-desktop
 
@@ -261,11 +237,37 @@ plugin=org.kde.latte.separator
 immutability=1
 plugin=org.kde.plasma.panelspacer
 
+[Containments][3][Applets][8][Configuration]
+PreloadWeight=34
+
+[Containments][3][Applets][83]
+immutability=1
+plugin=org.kde.plasma.kicker
+
+[Containments][3][Applets][83][Configuration]
+PreloadWeight=100
+
+[Containments][3][Applets][83][Configuration][ConfigDialog]
+DialogHeight=681
+DialogWidth=840
+
+[Containments][3][Applets][83][Configuration][General]
+favoritesPortedToKAstats=true
+icon=start-here
+
+[Containments][3][Applets][89]
+immutability=1
+plugin=org.kde.plasma.activitypager
+
+[Containments][3][Applets][89][Configuration]
+PreloadWeight=34
+
 [Containments][3][Applets][9]
 immutability=1
 plugin=org.kde.plasma.icontasks
 
 [Containments][3][Applets][9][Configuration]
+PreloadWeight=34
 launchers=
 
 [Containments][3][Applets][9][Configuration][General]
@@ -274,15 +276,32 @@ indicateAudioStreams=false
 launchers=applications:org.kde.dolphin.desktop,applications:firefox.desktop,applications:org.kde.discover.desktop,applications:org.kde.gwenview.desktop,applications:org.kde.konsole.desktop,applications:systemsettings.desktop,applications:okularApplication_comicbook.desktop,applications:org.inkscape.Inkscape.desktop,applications:libreoffice-writer.desktop
 maxStripes=1
 
+[Containments][3][Applets][90]
+immutability=1
+plugin=org.kde.plasma.pager
+
+[Containments][3][Applets][90][Configuration]
+PreloadWeight=34
+
+[Containments][3][Applets][90][Configuration][ConfigDialog]
+DialogHeight=540
+DialogWidth=720
+
+[Containments][3][Applets][90][Configuration][General]
+currentDesktopSelected=ShowDesktop
+displayedText=Name
+showOnlyCurrentScreen=true
+showWindowIcons=true
+
 [Containments][3][ConfigDialog]
-DialogHeight=100
+DialogHeight=84
 DialogWidth=2560
 
 [Containments][3][Configuration]
 PreloadWeight=0
 
 [Containments][3][General]
-AppletOrder=4;5;6;7;8;31;9;10;11;12;25;26
+AppletOrder=90;89;5;8;83;9;31;10;12;26
 
 [Containments][39]
 activityId=
@@ -298,6 +317,7 @@ immutability=1
 plugin=org.kde.plasma.icontasks
 
 [Containments][39][Applets][38][Configuration]
+PreloadWeight=34
 launchers=
 
 [Containments][39][Applets][38][Configuration][ConfigDialog]
@@ -317,52 +337,25 @@ sortingStrategy=4
 immutability=1
 plugin=org.kde.plasma.panelspacer
 
+[Containments][39][Applets][43][Configuration]
+PreloadWeight=34
+
 [Containments][39][Applets][44]
 immutability=1
 plugin=org.kde.plasma.panelspacer
+
+[Containments][39][Applets][44][Configuration]
+PreloadWeight=34
 
 [Containments][39][ConfigDialog]
 DialogHeight=84
 DialogWidth=3840
 
+[Containments][39][Configuration]
+PreloadWeight=34
+
 [Containments][39][General]
 AppletOrder=44;38;43
-
-[Containments][45]
-ItemGeometries-2688x1512=
-ItemGeometries-3840x2160=
-ItemGeometriesHorizontal=
-activityId=3946eec7-537c-4f2a-a54f-df62df3f00a3
-formfactor=0
-immutability=1
-lastScreen=1
-location=0
-plugin=org.kde.desktopcontainment
-wallpaperplugin=org.kde.image
-
-[Containments][45][ConfigDialog]
-DialogHeight=1507
-DialogWidth=1635
-
-[Containments][45][Configuration]
-PreloadWeight=42
-
-[Containments][45][General]
-ToolBoxButtonState=topcenter
-ToolBoxButtonX=565
-ToolBoxButtonY=50
-
-[Containments][45][Wallpaper][org.kde.image][General]
-Image=/home/stira/.local/share/wallpapers/shared/floating-world-in-space-3000x2357.jpg
-SlidePaths=/home/stira/.local/share/wallpapers/,/usr/share/wallpapers/
-
-[Containments][45][Wallpaper][org.kde.slideshow][General]
-Image=file:///home/stira/.local/share/wallpapers/shared/wallpapers-multimonitor/bokeh.jpg
-SlidePaths=/home/stira/.local/share/wallpapers/,/usr/share/wallpapers/
-
-[Containments][45][Wallpaper][org.kde.solarcyclewallpaper][General]
-FillMode=2
-SlidePaths=/home/stira/.local/share/wallpapers/,/usr/share/wallpapers/
 
 [Containments][47]
 activityId=
@@ -379,7 +372,7 @@ plugin=org.kde.plasma.systemmonitor.net
 
 [Containments][47][Applets][50][Configuration]
 CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=85
+PreloadWeight=79
 
 [Containments][47][Applets][50][Configuration][Appearance]
 chartFace=org.kde.ksysguard.linechart
@@ -403,7 +396,7 @@ plugin=org.kde.plasma.systemmonitor.cpucore
 
 [Containments][47][Applets][51][Configuration]
 CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=80
+PreloadWeight=64
 
 [Containments][47][Applets][51][Configuration][Appearance]
 chartFace=org.kde.ksysguard.linechart
@@ -469,7 +462,7 @@ plugin=org.kde.plasma.systemmonitor.cpu
 
 [Containments][47][Applets][52][Configuration]
 CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=85
+PreloadWeight=74
 
 [Containments][47][Applets][52][Configuration][Appearance]
 chartFace=org.kde.ksysguard.linechart
@@ -493,7 +486,7 @@ plugin=org.kde.plasma.systemmonitor.memory
 
 [Containments][47][Applets][53][Configuration]
 CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=90
+PreloadWeight=74
 
 [Containments][47][Applets][53][Configuration][Appearance]
 chartFace=org.kde.ksysguard.linechart
@@ -517,7 +510,7 @@ immutability=1
 plugin=org.kde.plasma.notifications
 
 [Containments][47][Applets][54][Configuration]
-PreloadWeight=55
+PreloadWeight=44
 popupHeight=576
 popupWidth=432
 
@@ -525,13 +518,16 @@ popupWidth=432
 immutability=1
 plugin=org.kde.plasma.panelspacer
 
+[Containments][47][Applets][56][Configuration]
+PreloadWeight=34
+
 [Containments][47][Applets][58]
 immutability=1
 plugin=org.kde.plasma.systemmonitor.cpucore
 
 [Containments][47][Applets][58][Configuration]
 CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=100
+PreloadWeight=89
 
 [Containments][47][Applets][58][Configuration][Appearance]
 chartFace=org.kde.ksysguard.barchart
@@ -563,6 +559,9 @@ totalSensors=["cpu/all/usage"]
 immutability=1
 plugin=org.kde.plasma.panelspacer
 
+[Containments][47][Applets][59][Configuration]
+PreloadWeight=34
+
 [Containments][47][Applets][59][Configuration][General]
 expanding=false
 length=10
@@ -573,7 +572,7 @@ plugin=org.kde.plasma.systemmonitor.diskactivity
 
 [Containments][47][Applets][67][Configuration]
 CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=80
+PreloadWeight=64
 
 [Containments][47][Applets][67][Configuration][Appearance]
 chartFace=org.kde.ksysguard.linechart
@@ -600,7 +599,7 @@ plugin=org.kde.plasma.systemmonitor.diskusage
 
 [Containments][47][Applets][68][Configuration]
 CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=90
+PreloadWeight=84
 
 [Containments][47][Applets][68][Configuration][Appearance]
 chartFace=org.kde.ksysguard.horizontalbars
@@ -613,9 +612,19 @@ DialogWidth=1061
 [Containments][47][Applets][68][Configuration][SensorColors]
 disk/10e02d94-3a76-4d9e-b11a-198feb3b6a44/usedPercent=120,61,233
 disk/36e98313-171d-48c8-a2ea-b4e962594af6/usedPercent=233,120,61
+disk/39418dfe-6627-4bba-bfac-eb1db020cd19/usedPercent=61,233,145
+disk/493ab539-fb32-4506-a046-754ef3d7adda/usedPercent=233,120,61
+disk/4b39fcd1-4cfe-45f9-883a-34063e642f85/usedPercent=206,61,233
+disk/63ce0568-2f63-49fd-89a7-7246a776bf25/usedPercent=61,174,233
+disk/661072ed-ad35-4125-a5b0-69079dbe347f/usedPercent=233,194,61
+disk/6f17f09f-8757-483f-a224-3fdd89629698/usedPercent=95,61,233
+disk/816b2744-d7b0-43ec-b97e-34d6b7ec6dca/usedPercent=77,61,233
+disk/984e64b8-30f9-478e-835e-2466454fca49/usedPercent=88,233,61
 disk/9d34e2a9-aa74-4b2b-ace3-5d7779795bfa/usedPercent=61,174,233
+disk/a60e26cb-e27d-4c18-93ed-dfe672ecef66/usedPercent=233,61,131
 disk/all/usedPercent=233,61,174
 disk/b5d3aa36-d46b-42b5-9819-d2434af013f7/usedPercent=61,233,120
+disk/b995237d-ead3-4d8a-a11b-bdb19fd6490b/usedPercent=61,233,163
 disk/e86a9007-626f-4a43-975c-6be4f4d88d8c/usedPercent=174,233,61
 
 [Containments][47][Applets][68][Configuration][Sensors]
@@ -628,7 +637,7 @@ immutability=1
 plugin=org.kde.plasma.weather
 
 [Containments][47][Applets][70][Configuration]
-PreloadWeight=65
+PreloadWeight=57
 configMigrated=true
 
 [Containments][47][Applets][70][Configuration][Appearance]
@@ -655,7 +664,7 @@ immutability=1
 plugin=org.kde.plasma.digitalclock
 
 [Containments][47][Applets][71][Configuration]
-PreloadWeight=100
+PreloadWeight=84
 popupHeight=600
 popupWidth=1080
 
@@ -673,14 +682,14 @@ immutability=1
 plugin=org.kde.plasma.printmanager
 
 [Containments][47][Applets][73][Configuration]
-PreloadWeight=60
+PreloadWeight=44
 
 [Containments][47][Applets][75]
 immutability=1
 plugin=org.kde.plasma.calculator
 
 [Containments][47][Applets][75][Configuration]
-PreloadWeight=55
+PreloadWeight=47
 
 [Containments][47][Applets][76]
 immutability=1
@@ -688,7 +697,7 @@ plugin=org.kde.plasma.systemmonitor
 
 [Containments][47][Applets][76][Configuration]
 CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=100
+PreloadWeight=89
 
 [Containments][47][Applets][76][Configuration][Appearance]
 chartFace=org.kde.ksysguard.barchart
@@ -733,6 +742,9 @@ groupByTotal=true
 immutability=1
 plugin=org.kde.plasma.panelspacer
 
+[Containments][47][Applets][77][Configuration]
+PreloadWeight=34
+
 [Containments][47][Applets][77][Configuration][General]
 expanding=false
 length=10
@@ -740,6 +752,9 @@ length=10
 [Containments][47][Applets][78]
 immutability=1
 plugin=org.kde.plasma.panelspacer
+
+[Containments][47][Applets][78][Configuration]
+PreloadWeight=34
 
 [Containments][47][Applets][78][Configuration][General]
 expanding=false
@@ -749,6 +764,9 @@ length=10
 immutability=1
 plugin=org.kde.plasma.panelspacer
 
+[Containments][47][Applets][79][Configuration]
+PreloadWeight=34
+
 [Containments][47][Applets][79][Configuration][General]
 expanding=false
 length=10
@@ -757,17 +775,129 @@ length=10
 immutability=1
 plugin=org.kde.plasma.panelspacer
 
+[Containments][47][Applets][80][Configuration]
+PreloadWeight=34
+
 [Containments][47][Applets][80][Configuration][General]
 expanding=false
 length=10
 
 [Containments][47][ConfigDialog]
-DialogHeight=100
-DialogWidth=2688
+DialogHeight=84
+DialogWidth=3413
+
+[Containments][47][Configuration]
+PreloadWeight=34
 
 [Containments][47][General]
-AppletOrder=54;73;75;77;76;78;52;51;58;79;53;50;80;67;68;59;70;56;71
+AppletOrder=54;73;77;76;78;52;51;58;79;53;50;80;67;68;59;56;71;70;75
+
+[Containments][81]
+ItemGeometries-2560x1080=
+ItemGeometriesHorizontal=
+activityId=7095c818-6a2e-4399-8eac-40206345ffc7
+formfactor=0
+immutability=1
+lastScreen=0
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.image
+
+[Containments][81][ConfigDialog]
+DialogHeight=725
+DialogWidth=991
+
+[Containments][81][Configuration]
+PreloadWeight=34
+
+[Containments][81][General]
+ToolBoxButtonState=topcenter
+ToolBoxButtonX=635
+
+[Containments][81][Wallpaper][org.kde.image][General]
+Image=/home/stira/.local/share/wallpapers/shared/blue-earth-2880x1800.jpg
+SlidePaths=/home/stira/.local/share/wallpapers/,/usr/share/wallpapers/
+
+[Containments][82]
+ItemGeometries-2560x1080=
+ItemGeometriesHorizontal=
+activityId=7095c818-6a2e-4399-8eac-40206345ffc7
+formfactor=0
+immutability=1
+lastScreen=1
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.image
+
+[Containments][82][ConfigDialog]
+DialogHeight=540
+DialogWidth=720
+
+[Containments][82][Configuration]
+PreloadWeight=34
+
+[Containments][82][Wallpaper][org.kde.image][General]
+Image=/home/stira/.local/share/wallpapers/shared/floating-world-in-space-3000x2357.jpg
+SlidePaths=/home/stira/.local/share/wallpapers/,/usr/share/wallpapers/
+
+[Containments][85]
+activityId=44db25c0-cc6b-4796-85bf-501c72f54470
+formfactor=0
+immutability=1
+lastScreen=0
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.image
+
+[Containments][85][Configuration]
+PreloadWeight=34
+
+[Containments][86]
+activityId=44db25c0-cc6b-4796-85bf-501c72f54470
+formfactor=0
+immutability=1
+lastScreen=1
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.image
+
+[Containments][86][Configuration]
+PreloadWeight=34
+
+[Containments][87]
+ItemGeometries-2560x1080=
+ItemGeometriesHorizontal=
+activityId=65a7866b-b5c1-4694-866e-d12f5e820dd1
+formfactor=0
+immutability=1
+lastScreen=0
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.image
+
+[Containments][87][Configuration]
+PreloadWeight=34
+
+[Containments][88]
+ItemGeometries-2560x1080=
+ItemGeometries-3413x1440=
+ItemGeometriesHorizontal=
+activityId=65a7866b-b5c1-4694-866e-d12f5e820dd1
+formfactor=0
+immutability=1
+lastScreen=1
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.image
+
+[Containments][88][Configuration]
+PreloadWeight=34
+
+[Containments][88][General]
+ToolBoxButtonState=topcenter
+ToolBoxButtonX=1062
+ToolBoxButtonY=50
 
 [ScreenMapping]
 itemsOnDisabledScreens=
-screenMapping=desktop:/xorg.conf,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/ansible.cfg,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/cv_debug.log,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/app-signed.apk,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Autodesk Fusion 360.desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Dokumente,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/DbVisualizer,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/virt-manager.desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Downloads,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/arcolinuxl-v23.04.03-x86_64.iso.torrent,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/steam.desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/dotfiles.code-workspace,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Abschlusszertifikat_Apache Kafka lernen.pdf,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Recordings,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/org.remmina.Remmina.desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/WORKSPACE,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/hp-check.log,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/dotTraceSnapshots,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Musik,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/README.md,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Bilder,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/mediacreationtool.exe,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/manjaro-gnome-22.0.5-230316-linux61.iso.torrent,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Videos,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Vorlagen,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/DataGripProjects,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/ranger_cd.XXX,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/go,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Public,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3
+screenMapping=desktop:/ansible.cfg,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Abschlusszertifikat_Apache Kafka lernen.pdf,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Downloads,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/dotfiles.code-workspace,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Dokumente,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/xorg.conf,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/hp-check.log,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/dotTraceSnapshots,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Videos,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Vorlagen,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Recordings,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Bilder,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Public,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/manjaro-gnome-22.0.5-230316-linux61.iso.torrent,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/DbVisualizer,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/mediacreationtool.exe,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/org.remmina.Remmina.desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/WORKSPACE,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/arcolinuxl-v23.04.03-x86_64.iso.torrent,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/README.md,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Musik,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/ranger_cd.XXX,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/go,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/Autodesk Fusion 360.desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/steam.desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/cv_debug.log,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/virt-manager.desktop,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/DataGripProjects,0,3946eec7-537c-4f2a-a54f-df62df3f00a3,desktop:/app-signed.apk,0,3946eec7-537c-4f2a-a54f-df62df3f00a3

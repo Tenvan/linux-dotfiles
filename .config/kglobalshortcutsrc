@@ -1,6 +1,9 @@
 [ActivityManager]
 _k_friendly_name=Aktivitätenverwaltung
 switch-to-activity-3946eec7-537c-4f2a-a54f-df62df3f00a3=none,none,Zu Aktivität „Standard“ wechseln
+switch-to-activity-44db25c0-cc6b-4796-85bf-501c72f54470=none,none,Zu Aktivität „Gaming“ wechseln
+switch-to-activity-65a7866b-b5c1-4694-866e-d12f5e820dd1=none,none,Zu Aktivität „Development“ wechseln
+switch-to-activity-7095c818-6a2e-4399-8eac-40206345ffc7=none,none,Zu Aktivität „Standard“ wechseln
 
 [KDE Keyboard Layout Switcher]
 Switch to Next Keyboard Layout=Meta+Alt+K,Meta+Alt+K,Auf nächste Tastaturbelegung umschalten
@@ -13,7 +16,7 @@ _k_friendly_name=Zugangshilfen
 [kcm_touchpad]
 Disable Touchpad=Touchpad Off,Touchpad Off,Touchpad abschalten
 Enable Touchpad=Touchpad On,Touchpad On,Touchpad aktivieren
-Toggle Touchpad=Meta+Ctrl+Zenkaku Hankaku\tTouchpad Toggle,Touchpad Toggle,Touchpad umschalten
+Toggle Touchpad=Meta+Ctrl+Zenkaku Hankaku\tTouchpad Toggle,Touchpad Toggle\tMeta+Ctrl+Zenkaku Hankaku,Touchpad umschalten
 _k_friendly_name=Touchpad
 
 [kded5]
@@ -271,11 +274,11 @@ view_zoom_out=Meta+-,Meta+-,Verkleinern
 
 [mediacontrol]
 _k_friendly_name=Mediensteuerung
-mediavolumedown=none,,Medienspieler leiser
-mediavolumeup=none,,Medienspieler lauter
+mediavolumedown=none,none,Medienspieler leiser
+mediavolumeup=none,none,Medienspieler lauter
 nextmedia=Media Next,Media Next,Nächstes Medium wiedergeben
 pausemedia=Media Pause,Media Pause,Medienwiedergabe anhalten
-playmedia=none,,Medienwiedergabe starten
+playmedia=none,none,Medienwiedergabe starten
 playpausemedia=Media Play,Media Play,Medienwiedergabe starten/anhalten
 previousmedia=Media Previous,Media Previous,Vorheriges Medium wiedergeben
 stopmedia=Media Stop,Media Stop,Medienwiedergabe anhalten
@@ -356,6 +359,7 @@ activate widget 45=none,none,Miniprogramm Anwendungsstarter aktivieren
 activate widget 64=none,none,Miniprogramm Anwendungsstarter aktivieren
 activate widget 71=none,none,Miniprogramm Digitale Uhr aktivieren
 activate widget 88=none,none,Miniprogramm Anwendungsstarter aktivieren
+activate widget 89=none,none,Miniprogramm Aktivitätenübersicht aktivieren
 clear-history=none,,Bisherigen Inhalt der Zwischenablage löschen
 clipboard_action=Meta+Ctrl+X,Meta+Ctrl+X,Automatisches Aufklappmenü für Aktionen
 cycle-panels=Meta+Alt+P,Meta+Alt+P,Tastaturfokus zwischen Kontrollleisten umschalten
@@ -388,3 +392,7 @@ _k_friendly_name=Vivaldi
 _launch=Meta+Shift+W,none,Vivaldi
 new-private-window=none,none,Neues privates Fenster
 new-window=none,none,Neues Fenster
+
+[yakuake]
+_k_friendly_name=Yakuake
+toggle-window-state=F12\tMeta+Ctrl+Return,F12,Yakuake einfahren/ausfahren
