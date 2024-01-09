@@ -42,6 +42,15 @@ screenrule=3
 wmclass=virt-manager
 wmclassmatch=1
 
+[32a93a42-d3e4-476f-8ea3-e1eb25af6448]
+Description=Programm-Einstellungen für code
+clientmachine=localhost
+desktops=51d3122a-3213-4d61-ad2e-fee2a9af5e0d
+desktopsrule=3
+screenrule=3
+wmclass=code
+wmclassmatch=1
+
 [4]
 Description=Plasma Settings
 desktops=76d0e9f4-b4c0-4e9a-98bd-9d08179ee3f0
@@ -120,8 +129,8 @@ wmclass=org.remmina.remmina
 wmclassmatch=1
 
 [General]
-count=7
-rules=1,2,3,4,5,6,7
+count=8
+rules=32a93a42-d3e4-476f-8ea3-e1eb25af6448,1,2,3,4,5,6,7
 
 [a1d46bd7-6fc9-4feb-8ee3-bc8bb7221b55]
 Description=Virt Manger Arbeitsbereich

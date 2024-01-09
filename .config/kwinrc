@@ -24,6 +24,11 @@ Name_8=System Tools
 Number=8
 Rows=4
 
+[NightColor]
+Active=true
+LatitudeAuto=51.4843
+LongitudeAuto=9.1544
+
 [Plugins]
 blurEnabled[$d]
 desktopchangeosdEnabled=true
@@ -37,7 +42,12 @@ mousemarkEnabled=true
 slidebackEnabled=true
 thumbnailasideEnabled=true
 touchpointsEnabled=true
+transparenttilesEnabled=false
 wobblywindowsEnabled=true
+
+[Script-forceblur]
+blurContent=true
+patterns=yakuake\nurxvt\nkeepassxc\nkitty
 
 [Script-krohnkite]
 enableFloatingLayout=true

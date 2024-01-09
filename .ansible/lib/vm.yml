@@ -20,6 +20,7 @@
       - iptables-nft
     
     fedora_init:
+      - @virtualization
       - bridge-utils
       - edk2-ovmf
       - swtpm

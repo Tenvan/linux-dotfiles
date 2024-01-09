@@ -1100,6 +1100,7 @@ DirSelectDialog Size[$d]
 History Items[$d]
 
 [General]
+AccentColor[$d]
 BrowserApplication[$d]
 ColorScheme[$d]
 ColorSchemeHash[$d]
