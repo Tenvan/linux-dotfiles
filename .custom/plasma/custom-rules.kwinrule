@@ -3,6 +3,7 @@ Description=CopyQ
 above=true
 aboverule=3
 screen=1
+title=REMOTE
 wmclass=copyq
 wmclassmatch=1
 
@@ -20,6 +21,7 @@ wmclassmatch=1
 
 [Edge REMOTE]
 Description=Edge REMOTE
+above=true
 clientmachine=localhost
 desktops=2a615702-c391-4d4b-9f8a-95e2e191e9d2
 desktopsrule=2
@@ -48,12 +50,14 @@ above=true
 desktops=9a00b74d-da11-4eeb-a665-55d8c1c6e194
 desktopsrule=3
 screenrule=3
+title=REMOTE
 types=1
 wmclass=jetbrains-*
 wmclassmatch=3
 
 [Plasma Settings]
 Description=Plasma Settings
+above=true
 desktops=76d0e9f4-b4c0-4e9a-98bd-9d08179ee3f0
 desktopsrule=3
 screenrule=3
@@ -62,6 +66,7 @@ wmclassmatch=1
 
 [Programm-Einstellungen für code]
 Description=Programm-Einstellungen für code
+above=true
 clientmachine=localhost
 desktops=51d3122a-3213-4d61-ad2e-fee2a9af5e0d
 desktopsrule=3
@@ -83,14 +88,35 @@ titlematch=3
 wmclass=kitty
 wmclassmatch=1
 
-[Remote Sessions]
-Description=Remote Sessions
-above=true
+[Programm-Einstellungen für shortwave]
+Description=Programm-Einstellungen für shortwave
+clientmachine=localhost
+desktops=9656537a-cd4c-4c06-8a6b-f2ef4b105428
+desktopsrule=2
+screen=1
+screenrule=2
+title=WORK
+wmclass=shortwave
+wmclassmatch=1
+
+[Programm-Einstellungen für teams-for-linux]
+Description=Programm-Einstellungen für teams-for-linux
+clientmachine=localhost
+desktops=3b6f50f3-8501-47fa-8332-bf00d0b7eeee
+desktopsrule=2
+screen=1
+screenrule=2
+title=WORK
+wmclass=teams-for-linux
+wmclassmatch=1
+
+[VM-DEV-PCSTIRA Remote Session]
+Description=VM-DEV-PCSTIRA Remote Session
 desktops=2a615702-c391-4d4b-9f8a-95e2e191e9d2
-desktopsrule=3
-screenrule=3
+desktopsrule=2
+screenrule=2
 title=VM-DEV-PCSTIRA
-titlematch=1
+titlematch=2
 wmclass=org.remmina.remmina
 wmclassmatch=1
 
@@ -105,7 +131,6 @@ wmclassmatch=1
 
 [Vivaldi Remote Work]
 Description=Vivaldi Remote Work
-desktops=2a615702-c391-4d4b-9f8a-95e2e191e9d2
 screen=1
 screenrule=3
 title=REMOTE
