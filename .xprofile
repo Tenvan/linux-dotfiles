@@ -18,6 +18,6 @@ export PICOM_CONF="$HOME/.config/picom/picom.conf"
 #rm -f ~/.config/awesome/customs
 #ln -s -f ~/.custom ~/.config/awesome/customs
 
-~/.bin/wallpaper.sh
+# ~/.bin/wallpaper.sh
 
 csource "$CUSTOMS/.xprofile"

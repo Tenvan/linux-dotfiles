@@ -47,7 +47,7 @@ autoload=true
 autoload=true
 
 [Module-kscreen]
-autoload=false
+autoload=true
 
 [Module-ksysguard]
 autoload=true
