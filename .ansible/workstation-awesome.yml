@@ -43,8 +43,5 @@
     - name: "=====> Install Apps <====="
       ansible.builtin.include_tasks: lib/apps.yml
 
-    #- name: "=====> Post Installation Finishing <====="
-    #  ansible.builtin.include_tasks: lib/displays.yml
-
     - name: "=====> Post Installation Finishing <====="
       ansible.builtin.include_tasks: lib/finish-workstation.yml

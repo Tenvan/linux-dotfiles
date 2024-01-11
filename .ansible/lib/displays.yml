@@ -22,6 +22,7 @@
 - ansible.builtin.debug: var=monitor2
 
 - name: Create default script
+  become: true
   ansible.builtin.blockinfile:
     path: "/opt/screenlayout.sh"
     marker: "# {mark} ANSIBLE MANAGED BLOCK screenlayout"
@@ -37,6 +38,7 @@
       sleep 1
 
 - name: Create system screenlayout script (for display managers)
+  become: true
   ansible.builtin.blockinfile:
     path: "/opt/screenlayout-system.sh"
     marker: "# {mark} ANSIBLE MANAGED BLOCK screenlayout"
@@ -44,44 +46,7 @@
     mode: u+rwx,g+rx,o+rx
     block: |
       #!/bin/sh
+      # MONITOR1={{ monitor1 }}
+      # MONITOR2={{ monitor2 }}
       sh /opt/screenlayout.sh 1 1
-      exit 0
-
-- name: Create low resultion screenlayout script on 4K displays (for games, etc.)
-  become: false
-  ansible.builtin.blockinfile:
-    path: "{{ home_dir }}/.screenlayout/screenlayout-low.sh"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK screenlayout"
-    create: true
-    mode: u+rwx,g+rx,o+rx
-    block: |
-      #!/bin/sh
-      sh /opt/screenlayout.sh 0.5 1
-      awesome-client 'awesome.restart()'
-      exit 0
-
-- name: Create medium resultion screenlayout script on 4K displays (for Coding, etc.)
-  become: false
-  ansible.builtin.blockinfile:
-    path: "{{ home_dir }}/.screenlayout/screenlayout-medium.sh"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK screenlayout"
-    create: true
-    mode: u+rwx,g+rx,o+rx
-    block: |
-      #!/bin/sh
-      sh /opt/screenlayout.sh 0.7 1
-      awesome-client 'awesome.restart()'
-      exit 0
-
-- name: Create full resultion screenlayout script on 4K displays (for CAD, etc.)
-  become: false
-  ansible.builtin.blockinfile:
-    path: "{{ home_dir }}/.screenlayout/screenlayout-high.sh"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK screenlayout"
-    create: true
-    mode: u+rwx,g+rx,o+rx
-    block: |
-      #!/bin/sh
-      sh /opt/screenlayout.sh 1 1
-      awesome-client 'awesome.restart()'
       exit 0

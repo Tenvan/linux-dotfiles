@@ -4,20 +4,7 @@
 #########################################
 export DOT="$DOT;~/.xprofile"
 
-csource() {
-    if [ -r "$@" ]; then
-        . "$@"
-    fi
-}
-
-export PICOM_CONF="$HOME/.config/picom/picom.conf"
-
-# fix "xdg-open fork-bomb" export your preferred browser from here
-
-# init customs folder
-#rm -f ~/.config/awesome/customs
-#ln -s -f ~/.custom ~/.config/awesome/customs
-
-# ~/.bin/wallpaper.sh
-
-csource "$CUSTOMS/.xprofile"
+CUSTOM="$CUSTOMS/.xprofile"
+if [ -r "$CUSTOM" ]; then
+    . "$CUSTOM"
+fi

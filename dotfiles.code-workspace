@@ -1,9 +1,6 @@
 {
 	"folders": [
 		{
-			"path": ".config/awesome"
-		},
-		{
 			"path": ".bin"
 		},
 		{
@@ -11,15 +8,6 @@
 		},
 		{
 			"path": ".custom"
-		},
-		{
-			"path": ".config/fontconfig"
-		},
-		{
-			"path": ".local/state/awesome"
-		},
-		{
-			"path": ".cache/awesome/spotify"
 		},
 		{
 			"path": ".ansible"
