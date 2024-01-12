@@ -28,7 +28,6 @@
       - python-pip
       - python-pipx
       - rust
-      - rustup
 
       # DotNet/Mono Setup
       - dotnet-sdk
@@ -37,23 +36,14 @@
 
     rhel_based_init:
       - rust
-      - rustup
 
       # DotNet/Mono Setup
-      - dotnet-sdk-6.0
-      - dotnet-sdk-7.0
       - dotnet-sdk-8.0
-
-      # missing python moduls
-      - python3-pip
-      - pipx
 
     debian_based_init:
       - rust-all
 
       # DotNet/Mono Setup
-      - dotnet-sdk-6.0
-      - dotnet-sdk-7.0
       - dotnet-sdk-8.0
 
       # missing python moduls
@@ -69,16 +59,19 @@
       - perl-CPAN
       - perl-JSON-Any
 
+      # missing python moduls
+      - python3-pip
+
     pip_init:
       - anybadge
       - boto3
 
   ansible.builtin.include_tasks: install.yml
 
-- name: init stable rust
-  ansible.builtin.shell: rustup default stable
-  become: false
-  ignore_errors: false
+#- name: init stable rust
+#  ansible.builtin.shell: rustup default stable
+#  become: false
+#  ignore_errors: false  
 
 - name: Install Powershell
   ansible.builtin.shell: dotnet tool install --global PowerShell

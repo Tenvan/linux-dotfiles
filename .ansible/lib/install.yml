@@ -113,24 +113,6 @@
         name: "{{ manjaro_combined_array }}"
 
 ####################################################################################################################
-# Cargo Apps
-####################################################################################################################
-- name: Install Cargo Apps
-  when: is_dry is false and is_debian_based is false and cargo_init is not undefined and cargo_init is not none and cargo_init|length > 0
-  block:
-    - ansible.builtin.set_fact:
-        cargo_combined_array: "{{ cargo_init }}"
-    - name: "[INSTALL][CARGO] GlobalCargoApps"
-      become: false
-      community.general.cargo:
-        state: present
-        name: "{{ cargo_combined_array }}"
-    - name: Copy cargo bins to /usr/bin
-      ansible.posix.synchronize:
-        src: "{{ home_dir }}/.cargo/bin/"
-        dest: /usr/bin
-
-####################################################################################################################
 # Pip Apps
 ####################################################################################################################
 - name: Install Pip Apps
@@ -148,9 +130,15 @@
       loop: "{{ pip_combined_array }}"
 
     - name: "[INSTALL][PIP] GlobalPipApps PIPX"
-      when: true
+      when: is_rhel is false
       become: false
       ansible.builtin.shell: "pipx install {{ item }} --include-deps"
+      loop: "{{ pip_combined_array }}"
+
+    - name: "[INSTALL][PIP] GlobalPipApps PIPX"
+      when: is_rhel is false
+      become: false
+      ansible.builtin.shell: "pip install {{ item }} --include-deps"
       loop: "{{ pip_combined_array }}"
 
 ####################################################################################################################
@@ -178,3 +166,21 @@
       community.general.flatpak:
         name: "{{ item }}"
       loop: "{{ flatpak_combined_array }}"
+
+####################################################################################################################
+# Cargo Apps
+####################################################################################################################
+- name: Install Cargo Apps
+  when: is_dry is false and is_debian_based is false and cargo_init is not undefined and cargo_init is not none and cargo_init|length > 0
+  block:
+    - ansible.builtin.set_fact:
+        cargo_combined_array: "{{ cargo_init }}"
+    - name: "[INSTALL][CARGO] GlobalCargoApps"
+      become: false
+      community.general.cargo:
+        state: present
+        name: "{{ cargo_combined_array }}"
+#    - name: Copy cargo bins to /usr/bin
+#      ansible.posix.synchronize:
+#        src: "{{ home_dir }}/.cargo/bin/"
+#        dest: /usr/bin
