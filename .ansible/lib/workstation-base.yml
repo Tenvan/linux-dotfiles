@@ -195,4 +195,4 @@
       - git-delta
       - tokei
 
-  ansible.builtin.include_tasks: install.yml
+  include_tasks: install.yml

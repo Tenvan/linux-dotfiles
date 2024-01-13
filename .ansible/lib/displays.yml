@@ -3,11 +3,11 @@
 # Install manuel setups from Github, etc.) #
 ############################################
 - name: Fetch display names
-  ansible.builtin.shell: "xrandr | grep -e ' connected [1-9|p]'"
+  shell: "xrandr | grep -e ' connected [1-9|p]'"
   register: monitors
 
 - name: Get primary monitor
-  ansible.builtin.set_fact:
+  set_fact:
     monitor1: "{{ monitors.stdout | regex_replace('^(?P<display>.*)\\sconnected primary .*$', '\\g<display>', multiline=True) | regex_replace('^(.*)\\sconnected \\d.*$', '', multiline=True) | regex_replace('(\\n)', '', multiline=False) }}"
 
 - assert:
@@ -16,14 +16,14 @@
     fail_msg: "no primary display detected!"
 
 - name: Get secondary monitor
-  ansible.builtin.set_fact:
+  set_fact:
     monitor2: "{{ monitors.stdout | regex_replace('^(?P<display>.*)\\sconnected \\d.*$', '\\g<display>', multiline=True) | regex_replace('^(.*)\\sconnected.*$', '', multiline=True) | regex_replace('(\\n)', '', multiline=False) }}"
 
-- ansible.builtin.debug: var=monitor2
+- debug: var=monitor2
 
 - name: Create default script
   become: true
-  ansible.builtin.blockinfile:
+  blockinfile:
     path: "/opt/screenlayout.sh"
     marker: "# {mark} ANSIBLE MANAGED BLOCK screenlayout"
     create: true
@@ -39,7 +39,7 @@
 
 - name: Create system screenlayout script (for display managers)
   become: true
-  ansible.builtin.blockinfile:
+  blockinfile:
     path: "/opt/screenlayout-system.sh"
     marker: "# {mark} ANSIBLE MANAGED BLOCK screenlayout"
     create: true

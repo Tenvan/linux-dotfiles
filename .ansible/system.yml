@@ -29,22 +29,22 @@
 
   tasks:
     - name: "=====> Initiate <====="
-      ansible.builtin.include_tasks: lib/inits.yml
+      include_tasks: lib/inits.yml
 
     - name: "=====> Pre Installation Prepare <====="
-      ansible.builtin.include_tasks: lib/prepare.yml
+      include_tasks: lib/prepare.yml
 
     - name: "=====> Install System Development Packages <====="
-      ansible.builtin.include_tasks: lib/system-develop.yml
+      include_tasks: lib/system-develop.yml
 
     - name: "=====> Install System Base Packages <====="
-      ansible.builtin.include_tasks: lib/system-base.yml
+      include_tasks: lib/system-base.yml
+      
+    - name: "=====> Post Installation Finishing <====="
+      include_tasks: lib/grub.yml
 
-#    - name: "=====> Install Vms Packages <====="
-#      ansible.builtin.include_tasks: lib/vm.yml
+    - name: "=====> Install Vms Packages <====="
+      include_tasks: lib/system-vm.yml
 
-#    - name: "=====> Post Installation Finishing <====="
-#      ansible.builtin.include_tasks: lib/grub.yml
-
-#    - name: "=====> Post Installation Finishing <====="
-#      ansible.builtin.include_tasks: lib/finish-system.yml
+    - name: "=====> Post Installation Finishing <====="
+      include_tasks: lib/system-finish.yml

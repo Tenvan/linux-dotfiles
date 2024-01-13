@@ -83,4 +83,4 @@
       - org.photoqt.PhotoQt
       - com.microsoft.Edge
 
-  ansible.builtin.include_tasks: install.yml
+  include_tasks: install.yml

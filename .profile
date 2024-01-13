@@ -59,8 +59,8 @@ do
 done
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && csource "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && csource "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+csource "$NVM_DIR/nvm.sh"  # This loads nvm
+csource "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 csource "$CUSTOMS/.profile"
-. "$HOME/.cargo/env"
+csource "$HOME/.cargo/env"

@@ -31,4 +31,4 @@
       - unixODBC-devel
       - unixODBC-gui-qt
 
-  ansible.builtin.include_tasks: install.yml
+  include_tasks: install.yml

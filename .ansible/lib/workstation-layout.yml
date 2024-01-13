@@ -148,7 +148,7 @@
           - "--include=VALYRIAN*/*"
 
     - name: Clone Catppuccin repository
-      ansible.builtin.git:
+      git:
         repo: "https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme.git"
         single_branch: true
         clone: true

@@ -22,7 +22,7 @@
 
   tasks:
     - name: "=====> Initiate <====="
-      ansible.builtin.include_tasks: lib/inits.yml
+      include_tasks: lib/inits.yml
 
     - name: Ad user to sudoers 
       community.general.sudoers:

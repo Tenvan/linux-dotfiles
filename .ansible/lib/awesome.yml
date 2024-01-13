@@ -55,25 +55,25 @@
     manjaro_init:
       - manjaro-awesome-settings
 
-  ansible.builtin.include_tasks: install.yml
+  include_tasks: install.yml
 
 - name: Install awesome-wm dependencies on Fedora
   when: is_rhel_based
   become: true
   block:
     - name: Clean awesome build dir
-      ansible.builtin.shell: sudo rm -fr {{ build_dir }}/awesome
+      shell: sudo rm -fr {{ build_dir }}/awesome
     - name: Clone awesome repository
       git:
         repo: "https://github.com/awesomeWM/awesome"
         clone: true
         dest: "{{ build_dir }}/awesome"
     - name: Build and install awesome source
-      ansible.builtin.shell: |
+      shell: |
         make package
         dnf localinstall -y build/*.rpm
       args:
         executable: /bin/bash
         chdir: "{{ build_dir }}/awesome"
     - name: Trust git repository
-      ansible.builtin.shell: git config --global --add safe.directory {{ build_dir }}/awesome
+      shell: git config --global --add safe.directory {{ build_dir }}/awesome

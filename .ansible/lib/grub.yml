@@ -1,52 +1,53 @@
 ---
 - name: Set powerline fonts in vconsole
-  ansible.builtin.lineinfile:
+  lineinfile:
     path: /etc/vconsole.conf
     regexp: "^FONT="
     line: FONT=ter-powerline-v12n
 
 - name: Grub config
+  when: lookup('env', 'DOCKER_CONTAINER') != "true"
   block:
     - name: Disable quiet mode
-      ansible.builtin.replace:
+      replace:
         path: /etc/default/grub
         regexp: '^GRUB_CMDLINE_LINUX=(.*)\squiet(.*)?$'
         replace: 'GRUB_CMDLINE_LINUX=\1\2'
 
     - name: Gfxmodes
-      ansible.builtin.lineinfile:
+      lineinfile:
         path: /etc/default/grub
         state: present
         regexp: "^.*GRUB_GFXMODE=(.*)?$"
         line: 'GRUB_GFXMODE="3840x2160,2560x1080,1920x1080,auto"'
 
     - name: Disable Terminal output
-      ansible.builtin.lineinfile:
+      lineinfile:
         path: /etc/default/grub
         state: present
         regexp: "^.*GRUB_TERMINAL_OUTPUT=(.*)$"
         line: "# GRUB_TERMINAL_OUTPUT=console"
 
     - name: Disable Terminal input
-      ansible.builtin.lineinfile:
+      lineinfile:
         path: /etc/default/grub
         regexp: "^.*GRUB_TERMINAL_INPUT=(.*)$"
         line: "# GRUB_TERMINAL_INPUT=console"
 
     - name: Menu 1
-      ansible.builtin.lineinfile:
+      lineinfile:
         path: /etc/default/grub
         regexp: "^.*GRUB_HIDDEN_TIMEOUT=(.*)$"
         line: "# GRUB_HIDDEN_TIMEOUT=10"
 
     - name: Menu 2
-      ansible.builtin.lineinfile:
+      lineinfile:
         path: /etc/default/grub
         regexp: "^.*GRUB_TIMEOUT_STYLE=(.*)$"
         line: "# GRUB_TIMEOUT_STYLE=hidden"
 
     - name: Grup Timeout to 10 sec
-      ansible.builtin.lineinfile:
+      lineinfile:
         path: /etc/default/grub
         regexp: "^.*GRUB_TIMEOUT=(.*)$"
         line: "GRUB_TIMEOUT=10"
@@ -60,13 +61,13 @@
             depth: 1
             dest: "{{ build_dir }}/darkmatter-grub-theme"
         - name: Uninstall old theme
-          ansible.builtin.shell: |
+          shell: |
             sudo python3 darkmatter-theme.py -u < <(echo y)
           args:
             executable: /bin/bash
             chdir: "{{ build_dir }}/darkmatter-grub-theme"
         - name: Install new theme
-          ansible.builtin.shell: |
+          shell: |
             echo 13 | sudo tee input.txt
             echo 2 | sudo tee -a input.txt
             echo 1 | sudo tee -a input.txt
@@ -78,18 +79,18 @@
       when: true
 
     - name: Grub-update MKCONFIG
-      ansible.builtin.shell: grub2-mkconfig --output=/boot/grub2/grub.cfg
+      shell: grub2-mkconfig --output=/boot/grub2/grub.cfg
       when: is_rhel_based is true
 
     - name: Grub-update UPDATE-GRUB
-      ansible.builtin.shell: update-grub
+      shell: update-grub
       when: is_arch_based is true
 
-    - ansible.builtin.set_fact:
+    - set_fact:
         grub: "{{ lookup('file', '/etc/default/grub') }}"
 
     - name: Write issue file
-      ansible.builtin.blockinfile:
+      blockinfile:
         path: /etc/issue
         create: true
         block: |

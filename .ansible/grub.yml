@@ -29,7 +29,7 @@
 
   tasks:
     - name: "=====> Initiate <====="
-      ansible.builtin.include_tasks: lib/inits.yml
+      include_tasks: lib/inits.yml
 
     - name: "=====> Post Installation Finishing <====="
-      ansible.builtin.include_tasks: lib/grub.yml
+      include_tasks: lib/grub.yml
