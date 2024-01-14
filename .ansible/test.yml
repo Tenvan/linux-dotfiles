@@ -31,14 +31,14 @@
     - name: "=====> Install System Development Packages <====="
       include_tasks: lib/workstation-develop.yml
 
-#    - name: "=====> Install Workstation Base Packages <====="
-#      include_tasks: lib/workstation-base.yml
+    - name: "=====> Install Workstation Base Packages <====="
+      include_tasks: lib/workstation-base.yml
 
-#    - name: "=====> Install Workstation Layout Packages <====="
-#      include_tasks: lib/workstation-layout.yml
+    - name: "=====> Install Workstation Layout Packages <====="
+      include_tasks: lib/workstation-layout.yml
 
-#    - name: "=====> Install Vms Packages <====="
-#      include_tasks: lib/workstation-vm.yml
+    - name: "=====> Install Vms Packages <====="
+      include_tasks: lib/workstation-vm.yml
 
 #    - name: "=====> Install Apps <====="
 #      include_tasks: lib/apps.yml

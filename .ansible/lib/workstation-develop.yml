@@ -19,6 +19,10 @@
       - pass
       - shellcheck
 
+  include_tasks: install.yml
+
+- name: Define Development Packages in docker not available
+  vars:
     rhel_based_init:
       - subversion
       - mingw32-nsis
@@ -32,3 +36,4 @@
       - unixODBC-gui-qt
 
   include_tasks: install.yml
+  when: lookup('env', 'DOCKER_CONTAINER') != "true"

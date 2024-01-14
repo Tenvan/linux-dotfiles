@@ -10,6 +10,16 @@
       - zsh
       - rsync
       - nano
+      - flatpak
+
+      # system tools
+      - cockpit
+      - cockpit-machines
+      - cockpit-networkmanager
+      - cockpit-packagekit
+      - cockpit-podman
+      - cockpit-storaged
+      - cockpit-system
 
     archlinux_based_init:
       - acpi
@@ -139,6 +149,9 @@
 
       # installation of important editors
       - cronie
+
+      # system tools
+      - subscription-manager-cockpit
 
     fedora_init:
       - acpi
