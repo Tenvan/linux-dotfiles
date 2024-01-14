@@ -40,8 +40,8 @@
     - name: "=====> Install Vms Packages <====="
       include_tasks: lib/workstation-vm.yml
 
-#    - name: "=====> Install Apps <====="
-#      include_tasks: lib/apps.yml
+    - name: "=====> Install Apps <====="
+      include_tasks: lib/apps.yml
 
-#    - name: "=====> Post Installation Finishing <====="
-#      include_tasks: lib/workstation-finish.yml
+    - name: "=====> Post Installation Finishing <====="
+      include_tasks: lib/workstation-finish.yml

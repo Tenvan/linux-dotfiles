@@ -40,16 +40,6 @@
       # DotNet/Mono Setup
       - dotnet-sdk-8.0
 
-    debian_based_init:
-      - rust-all
-
-      # DotNet/Mono Setup
-      - dotnet-sdk-8.0
-
-      # missing python moduls
-      - python3-pip
-      - pipx
-
     fedora_init:
       - colorgcc
       # - nuget
@@ -61,6 +51,17 @@
 
       # missing python moduls
       - python3-pip
+      - pipx
+
+    debian_based_init:
+      - rust-all
+
+      # DotNet/Mono Setup
+      - dotnet-sdk-8.0
+
+      # missing python moduls
+      - python3-pip
+      - pipx
 
     pip_init:
       - anybadge
