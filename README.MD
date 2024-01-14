@@ -14,7 +14,7 @@ Repository klonen und in den Home-Ordner verschieben:
 
 ```bash
 shopt -s dotglob
-eport repo=linux-dotfiles
+export repo=linux-dotfiles
 git clone https://github.com/Tenvan/$repo.git
 rsync -vrlptgo --include ".*" $repo/* ~/
 rm -fr $repo/
@@ -22,6 +22,7 @@ rm -fr $repo/
 
 Die benötigten Pakete werden mit folgenden Scripten installiert:
 ```bash
+~/.script/install_ansible
 ~/.script/install_system
 ~/.script/install_workstation
 ~/.script/install_theme
