@@ -8,6 +8,16 @@
 
 Alle Benötigten Paket werden mit mehreren Script - basierend auf Ansible - installiert.
 
+## Vorbereitungen
+### Debian
+
+In Debian den Main-User sudo Rechte geben
+```bash
+su -c "export $USERNAME=$USER; bash"
+echo "$USERNAME ALL=(ALL) NOPASSWD: ALL"  >> /etc/sudoers.d/mainuser
+```
+
+
 ## Installation
 
 Repository klonen und in den Home-Ordner verschieben:
