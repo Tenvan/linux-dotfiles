@@ -28,6 +28,9 @@
     global_init:
       - dnsmasq
       - libvirt
+    
+    debian_based_init:
+      - virt-manager     
       
   include_tasks: install.yml
   when: lookup('env', 'DOCKER_CONTAINER') != "true"

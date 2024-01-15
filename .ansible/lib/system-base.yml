@@ -142,7 +142,7 @@
       - mediainfo
       - odt2txt
       - w3m
-
+        
     rhel_based_init:
       - openssh
       - unzip
