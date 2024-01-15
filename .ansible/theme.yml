@@ -28,7 +28,3 @@
     - name: "=====> Post Installation Finishing <====="
       include_tasks: lib/displays.yml
       when: lookup('env', 'DOCKER_CONTAINER') != "true"
-      
-    - name: "=====> Install User Layout Packages <====="
-      include_tasks: lib/layout-user.yml
-      when: lookup('env', 'DOCKER_CONTAINER') != "true"
