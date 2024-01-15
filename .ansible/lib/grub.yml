@@ -2,6 +2,7 @@
 - name: Set powerline fonts in vconsole
   lineinfile:
     path: /etc/vconsole.conf
+    create: true
     regexp: "^FONT="
     line: FONT=ter-powerline-v12n
 

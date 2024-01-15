@@ -9,7 +9,7 @@
 - name: Get primary monitor
   set_fact:
     monitor1: "{{ monitors.stdout | regex_replace('^(?P<display>.*)\\sconnected primary .*$', '\\g<display>', multiline=True) | regex_replace('^(.*)\\sconnected \\d.*$', '', multiline=True) | regex_replace('(\\n)', '', multiline=False) }}"
-
+  
 - assert:
     that: monitor1 is not none
     success_msg: "primary display detected."

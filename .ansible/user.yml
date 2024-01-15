@@ -52,7 +52,7 @@
       include_tasks: lib/inits.yml
 
     - name: "=====> Set User Layout <====="
-      include_tasks: lib/layout-user.yml
+      include_tasks: lib/user-layout.yml
 
     - name: "=====> merge .gitconfig <====="
       blockinfile:

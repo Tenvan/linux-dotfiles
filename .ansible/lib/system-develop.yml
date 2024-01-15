@@ -63,16 +63,7 @@
       - python3-pip
       - pipx
 
-    pip_init:
-      - anybadge
-      - boto3
-
   include_tasks: install.yml
-
-#- name: init stable rust
-#  shell: rustup default stable
-#  become: false
-#  ignore_errors: false  
 
 - name: Install Powershell
   shell: dotnet tool install --global PowerShell

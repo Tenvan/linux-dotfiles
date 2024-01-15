@@ -1,10 +1,10 @@
 - name: DefineLayoutPackages
   vars:
-    global_init:
+
+    archlinux_based_init:
       # fonts
       - powerline-fonts
 
-    archlinux_based_init:
       # QT Tools
       - qt5gtk2
       - qt5-styleplugins
@@ -40,6 +40,7 @@
 
     rhel_based_init:
       # fonts
+      - powerline-fonts
       - gtk-murrine-engine
       - terminus-fonts
       - twitter-twemoji-fonts
@@ -118,6 +119,10 @@
       # Bootsplash (manjaro only)
       - bootsplash-systemd
       - bootsplash-theme-manjaro
+    
+    debian_based_init:
+      # fonts
+      - fonts-powerline
 
     flatpak_init:
       - org.gnome.FontManager

@@ -22,16 +22,17 @@
 
       # remmina
       - remmina
-      - freerdp
 
       # tools
-      - translate-shell
       - krusader
       - kdiff3
       - krename
 
     arch_based_init:
       - baobab-gtk3
+      
+      # remmina
+      - freerdp
 
       # Browser
       - vivaldi
@@ -54,6 +55,9 @@
     rhel_based_init:
       - baobab
 
+      # remmina
+      - freerdp
+
       # Browser
       - microsoft-edge-stable
       - vivaldi-stable
@@ -72,6 +76,11 @@
 
     manjaro_init:
       - imagemagick-full
+    
+    debian_based_init:
+      # remmina
+      - freerdp2-wayland
+      - freerdp2-x11
 
     flatpak_init:
       # Communication
@@ -81,6 +90,5 @@
       - com.spotify.Client
       - de.haeckerfelix.Shortwave
       - org.photoqt.PhotoQt
-      - com.microsoft.Edge
 
   include_tasks: install.yml

@@ -29,9 +29,7 @@
 
       # printer setup
       - foomatic-db
-      - foomatic-db-ppds
       - ghostscript
-      - gutenprint
       - hplip
 
       # utils for editors
@@ -57,6 +55,7 @@
       - net-snmp-devel
       - python3-devel
       - xsane
+      - gutenprint
       
       # display manager
       - gdm
@@ -162,6 +161,7 @@
       - foomatic-db-nonfree-ppds
       - gsfonts
       - print-manager
+      - gutenprint
 
       # installation of important editors
       - aur/visual-studio-code-bin
@@ -196,6 +196,9 @@
       # other Metas
       - plasma-meta
       - xfce4-meta
+    
+    debian_based_init:
+      - printer-driver-gutenprint
 
     flatpak_init:
       - com.bitwarden.desktop
@@ -209,7 +212,3 @@
       - tokei
 
   include_tasks: install.yml
-
-- name: Install KDE
-  shell: yum groupinstall -y 'X Window System' 'KDE'
-  when: is_rhel_based

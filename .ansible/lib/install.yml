@@ -122,24 +122,23 @@
         pip_combined_array: "{{ pip_init  }}"
 
     - name: "[INSTALL][PIP] GlobalPipApps PIP"
-      when: false
-      become: true
+      become: false
       pip:
         state: present
         name: "{{ item }}"
       loop: "{{ pip_combined_array }}"
 
-    - name: "[INSTALL][PIP] GlobalPipApps PIPX"
-      when: is_rhel is false
-      become: false
-      shell: "pipx install {{ item }} --include-deps"
-      loop: "{{ pip_combined_array }}"
-
-    - name: "[INSTALL][PIP] GlobalPipApps PIPX"
-      when: is_rhel is false
-      become: false
-      shell: "pip install {{ item }} --include-deps"
-      loop: "{{ pip_combined_array }}"
+#    - name: "[INSTALL][PIP] GlobalPipApps PIPX"
+#      when: is_rhel is false
+#      become: false
+#      shell: "pipx install {{ item }} --include-deps"
+#      loop: "{{ pip_combined_array }}"
+#
+#    - name: "[INSTALL][PIP] GlobalPipApps PIPX"
+#      when: is_rhel is false
+#      become: false
+#      shell: "pip install {{ item }} --include-deps"
+#      loop: "{{ pip_combined_array }}"
 
 ####################################################################################################################
 # Luarocks Libs
