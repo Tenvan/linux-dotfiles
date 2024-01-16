@@ -23,22 +23,25 @@
 
   tasks:
     - name: "=====> Initiate <====="
-      ansible.builtin.include_tasks: lib/inits.yml
+      include_tasks: lib/inits.yml
 
     - name: "=====> Pre Installation Prepare <====="
-      ansible.builtin.include_tasks: lib/prepare.yml
+      include_tasks: lib/prepare.yml
 
     - name: "=====> Install System Development Packages <====="
-      ansible.builtin.include_tasks: lib/develop-workstation.yml
+      include_tasks: lib/workstation-develop.yml
 
     - name: "=====> Install Workstation Base Packages <====="
-      ansible.builtin.include_tasks: lib/base-workstation.yml
+      include_tasks: lib/workstation-base.yml
 
     - name: "=====> Install Workstation Layout Packages <====="
-      ansible.builtin.include_tasks: lib/layout-workstation.yml
+      include_tasks: lib/workstation-layout.yml
+
+    - name: "=====> Install Vms Packages <====="
+      include_tasks: lib/workstation-vm.yml
 
     - name: "=====> Install Apps <====="
-      ansible.builtin.include_tasks: lib/apps.yml
+      include_tasks: lib/apps.yml
 
     - name: "=====> Post Installation Finishing <====="
-      ansible.builtin.include_tasks: lib/finish-workstation.yml
+      include_tasks: lib/workstation-finish.yml

@@ -22,9 +22,9 @@
 
   tasks:
     - name: "=====> Initiate <====="
-      ansible.builtin.include_tasks: lib/inits.yml
+      include_tasks: lib/inits.yml
 
-    - name: Allow the backup user to sudo /usr/local/bin/backup
+    - name: Ad user to sudoers 
       community.general.sudoers:
         name: 100-myrules
         state: present

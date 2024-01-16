@@ -1,10 +1,8 @@
 ---
-- name: DefineVmPackages
+- name: Define system vm packages
   vars:
     global_init:
       - dnsmasq
-      - libvirt
-      - virt-manager
 
     archlinux_based_init:
       - bridge-utils
@@ -13,7 +11,6 @@
       - qemu-arch-extra
       - qemu-desktop
       - vde2
-      - virtio-win
 
     rhel_based_init:
       - ebtables
@@ -23,5 +20,17 @@
       - bridge-utils
       - edk2-ovmf
       - swtpm
-
+  
   include_tasks: install.yml
+  
+- name: Define system vm packages when not in docker
+  vars:
+    global_init:
+      - dnsmasq
+      - libvirt
+    
+    debian_based_init:
+      - virt-manager     
+      
+  include_tasks: install.yml
+  when: lookup('env', 'DOCKER_CONTAINER') != "true"

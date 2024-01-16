@@ -36,19 +36,19 @@
 
   tasks:
     - name: "=====> Initiate <====="
-      ansible.builtin.include_tasks: inits.yml
+      include_tasks: inits.yml
 
     - name: Fedora nvidia
       when: is_fedora
       block:
 #        - name: Install nvidia driver
-#          ansible.builtin.dnf:
+#          dnf:
 #            state: present
 #            name:
 #              - akmod-nvidia-470xx
 
 #        - name: Remove nouveau driver
-#          ansible.builtin.blockinfile:
+#          blockinfile:
 #            path: /etc/modprobe.d/blacklist-nouveau.conf
 #            create: true
 #            block: |

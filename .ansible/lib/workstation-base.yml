@@ -1,7 +1,66 @@
 ---
+##########################
+# add some flatpak repos #
+##########################
+- name: Add the dl.flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: absent
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+- name: Add the flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+
 - name: Define Base System Packages
   vars:
     global_init:
+      # global
+      - xterm
+      - zsh
+
+      # utilities from gnome
+      - gnome-disk-utility
+      - gnome-system-monitor
+      - gnome-logs
+      - gnome-calculator
+
+      # printer setup
+      - foomatic-db
+      - ghostscript
+      - hplip
+
+      # utils for editors
+      - bash-completion
+      - clang
+      - gdb
+      - graphviz
+
+      # language files
+      - mythes-de
+
+      # NetworkManager Addons
+      - cockpit-networkmanager
+
+    rhel_based_init:
+      # printer setup
+      - foomatic
+      - foomatic-db
+      - foomatic-db-ppds
+      - cups-devel
+      - libusb1-devel
+      - sane-backends-devel
+      - net-snmp-devel
+      - python3-devel
+      - xsane
+      - gutenprint
+      
+      # display manager
+      - gdm
+
+    fedora_init:
       # global
       - ansible-lint
       - arandr
@@ -12,8 +71,12 @@
       - inotify-tools
       - kitty
       - qbittorrent
-      - xterm
-      - zsh
+
+      # utilities from gnome
+      - qt6ct
+
+      # utilities from kde
+      - kscreen
 
       # system tools
       - grub-customizer
@@ -21,16 +84,6 @@
 
       # config tools
       - lxappearance
-
-      # utilities from gnome
-      - gnome-disk-utility
-      - gnome-system-monitor
-      - gnome-logs
-      - gnome-calculator
-      - qt6ct
-
-      # utilities from kde
-      - kscreen
 
       # Nemo
       - cinnamon-translations
@@ -45,33 +98,20 @@
       - nemo-seahorse
 
       # other
-      - rofi
-      - rofimoji
       - bleachbit
       - python-notify2
 
       # printer setup
       - cups-pdf
-      - foomatic-db
-      - foomatic-db-ppds
-      - ghostscript
-      - gutenprint
-      - hplip
       - system-config-printer
 
       # utils for editors
-      - bash-completion
-      - clang
-      - gdb
-      - graphviz
       - shellcheck
 
       # language files
       - aspell-de
-      - mythes-de
 
       # NetworkManager Addons
-      - cockpit-networkmanager
       - NetworkManager-openconnect-gnome
       - NetworkManager-openvpn-gnome
       - NetworkManager-vpnc-gnome
@@ -80,6 +120,20 @@
       - NetworkManager-vpnc
       - NetworkManager-fortisslvpn
       - NetworkManager-fortisslvpn-gnome
+
+      # installation of important editors
+      - code
+
+      # utilities from gnome
+      - gnome-system-log
+
+      # printer setup
+      - kde-print-manager
+      - printer-driver-brlaser
+      - python3-PyQt4
+
+      # display manager
+      - sddm
 
     archlinux_based_init:
       # global
@@ -107,6 +161,7 @@
       - foomatic-db-nonfree-ppds
       - gsfonts
       - print-manager
+      - gutenprint
 
       # installation of important editors
       - aur/visual-studio-code-bin
@@ -116,32 +171,6 @@
 
       # language files
       - languagetool
-
-      # display manager
-      - gdm
-      - sddm
-
-    rhel_based_init:
-      # installation of important editors
-      - code
-
-      # utilities from gnome
-      - gnome-system-log
-
-      # printer setup
-      - kde-print-manager
-      - printer-driver-brlaser
-      - foomatic
-      - foomatic-db
-      - foomatic-db-ppds
-      - cups-devel
-      - hplip-gui
-      - libusb1-devel
-      - sane-backends-devel
-      - net-snmp-devel
-      - python3-devel
-      - xsane
-      - python3-PyQt4
 
       # display manager
       - gdm
@@ -167,6 +196,9 @@
       # other Metas
       - plasma-meta
       - xfce4-meta
+    
+    debian_based_init:
+      - printer-driver-gutenprint
 
     flatpak_init:
       - com.bitwarden.desktop
@@ -179,4 +211,4 @@
       - git-delta
       - tokei
 
-  ansible.builtin.include_tasks: install.yml
+  include_tasks: install.yml

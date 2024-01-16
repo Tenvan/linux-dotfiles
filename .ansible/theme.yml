@@ -23,10 +23,8 @@
 
   tasks:
     - name: "=====> Initiate <====="
-      ansible.builtin.include_tasks: lib/inits.yml
+      include_tasks: lib/inits.yml
 
     - name: "=====> Post Installation Finishing <====="
-      ansible.builtin.include_tasks: lib/displays.yml
-
-    - name: "=====> Install User Layout Packages <====="
-      ansible.builtin.include_tasks: lib/layout-user.yml
+      include_tasks: lib/displays.yml
+      when: lookup('env', 'DOCKER_CONTAINER') != "true"

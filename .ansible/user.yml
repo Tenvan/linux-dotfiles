@@ -37,7 +37,7 @@
 
     - name: user_short
       prompt: What is your user id?
-      default: "{{ lookup('ansible.builtin.env', 'USER') }}"
+      default: "{{ lookup('env', 'USER') }}"
 
     - name: browser
       prompt: What is your default browser?
@@ -45,17 +45,17 @@
 
     - name: home_store_dir
       prompt: What is path to the big-home folder?
-      default: "/srv/BIGDATA/HOME/{{ lookup('ansible.builtin.env', 'USER') }}"
+      default: "/srv/BIGDATA/HOME/{{ lookup('env', 'USER') }}"
 
   tasks:
     - name: "=====> Initiate <====="
-      ansible.builtin.include_tasks: lib/inits.yml
+      include_tasks: lib/inits.yml
 
     - name: "=====> Set User Layout <====="
-      ansible.builtin.include_tasks: lib/layout-user.yml
+      include_tasks: lib/user-layout.yml
 
     - name: "=====> merge .gitconfig <====="
-      ansible.builtin.blockinfile:
+      blockinfile:
         path: "{{ home_dir }}/.gitconfig"
         mode: u+rwx,g+rx,o+rx
         create: true
@@ -361,7 +361,7 @@
           browser = {{ browser }}
 
     - name: "=====> merge bookmarks <====="
-      ansible.builtin.blockinfile:
+      blockinfile:
         path: "{{ home_dir }}/.config/gtk-3.0/bookmarks"
         create: true
         mode: u+rwx,g+rx,o+rx
@@ -375,7 +375,7 @@
         marker: " # {mark} ANSIBLE MANAGED BLOCK"
 
     - name: "=====> merge user folder bookmarks <====="
-      ansible.builtin.blockinfile:
+      blockinfile:
         path: "{{ home_dir }}/.config/gtk-3.0/bookmarks"
         create: true
         mode: u+rwx,g+rx,o+rx
@@ -387,20 +387,20 @@
     - name: "=====> create desktop links <====="
       block:
         - name: Create target folder in home_store_dir if not exists
-          ansible.builtin.file:
+          file:
             path: "{{ home_store_dir }}/{{ item }}"
             mode: u+rwx,g+rx,o+rx
             state: directory
           loop: "{{ user_folder }}"
         - name: Create symbolic links in home_store_dir
-          ansible.builtin.file:
+          file:
             src: "{{ home_store_dir }}/{{ item }}"
             dest: "{{ home_dir }}/{{ item }}"
             state: link
           loop: "{{ user_folder }}"
 
     - name: Init flatpak themes
-      ansible.builtin.shell: |
+      shell: |
         sudo flatpak override --env=GTK_THEME=$MAIN_THEME
         sudo flatpak override --env=ICON_THEME=$MAIN_THEME
       register: my_output # <- Registers the command output.

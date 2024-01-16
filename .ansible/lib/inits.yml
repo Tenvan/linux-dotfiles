@@ -1,109 +1,108 @@
 - name: Set amd64 architecture
-  ansible.builtin.set_fact:
+  set_fact:
     docker_arch: amd64
   when: ansible_architecture == "x86_64"
 
 - name: Set arm64 architecture
-  ansible.builtin.set_fact:
+  set_fact:
     docker_arch: arm64
   when: ansible_architecture == "aarch64"
 
 - name: Set RedHat distribution
-  ansible.builtin.set_fact:
+  set_fact:
     rh_distribution: "{{ 'rhel' if ansible_distribution == 'RedHat' else ansible_distribution | lower }}"
 
 # is Arch based
 - name: Store User id
-  ansible.builtin.set_fact:
-    user_id: "{{ lookup('ansible.builtin.env', 'USER') }}"
+  set_fact:
+    user_id: "{{ lookup('env', 'USER') }}"
 
 - name: Store home dir
-  ansible.builtin.set_fact:
-    home_dir: "{{ lookup('ansible.builtin.env', 'HOME') }}"
+  set_fact:
+    home_dir: "{{ lookup('env', 'HOME') }}"
 
 - name: Store custom dir
-  ansible.builtin.set_fact:
+  set_fact:
     custom_dir: "{{ home_dir }}/.custom"
 
 - name: Store build dir
-  ansible.builtin.set_fact:
+  set_fact:
     build_dir: "{{ home_dir }}/.build"
 
 - name: Themes dir
-  ansible.builtin.set_fact:
+  set_fact:
     themes_dir: "{{ home_dir }}/.themes"
 
 # is Arch based
 - name: Detect ArchLinux Family
-  ansible.builtin.set_fact:
+  set_fact:
     is_arch_based: true
     grub_theme: 1
   when: ansible_os_family.lower() == "archlinux"
 
 # is Manjaro
 - name: Detect Manjaro
-  ansible.builtin.set_fact:
+  set_fact:
     is_manjaro: true
     grub_theme: 24
   when: ansible_distribution.lower() == 'manjaro'
 
 # is ArcoLinux
 - name: Detect ArcoLinux
-  ansible.builtin.set_fact:
+  set_fact:
     is_arcolinux: true
     grub_theme: 46
-  when: ansible_facts['lsb']['description'].lower() == 'arcolinux'
+  when: ansible_distribution.lower() == 'arcolinux'
 
 # is Redhat based
 - name: Detect Redhat Family
-  ansible.builtin.set_fact:
+  set_fact:
     is_rhel_based: true
     grub_theme: 30
   when: ansible_os_family.lower() == "redhat"
 
 # is RHEL
 - name: Detect RHEL (Red Hat Enterprise Linux)
-  ansible.builtin.set_fact:
+  set_fact:
     is_rhel: true
     grub_theme: 30
   when: ansible_distribution.lower() == 'redhat'
 
 # is Fedora
 - name: Detect Fedora
-  ansible.builtin.set_fact:
+  set_fact:
     is_fedora: true
     grub_theme: 13
   when: ansible_distribution.lower() == 'fedora'
 
 # is CentOS
 - name: Detect CentOS
-  ansible.builtin.set_fact:
+  set_fact:
     is_centos: true
     grub_theme: 6
   when: ansible_distribution.lower() == 'centos'
 
 # is Debian based
 - name: Detect Debian Family
-  ansible.builtin.set_fact:
+  set_fact:
     is_debian_based: true
     grub_theme: 8
   when: ansible_os_family.lower() == "debian"
 
 # is Debian
 - name: Detect Debian Family
-  ansible.builtin.set_fact:
+  set_fact:
     is_debian: true
     grub_theme: 8
   when: ansible_distribution.lower() == "debian"
 
 - name: Debug Diagnosis
-  ansible.builtin.debug:
+  debug:
     msg:
       - "ansible_facts['lsb'] = {{ ansible_facts['lsb'] }}"
       - "ansible_facts['os_family'] = {{ ansible_facts['os_family'] }}"
       - "ansible_facts['distribution'] = {{ ansible_facts['distribution'] }}"
       - "ansible_facts['distribution_major_version'] = {{ ansible_facts['distribution_major_version'] }}"
-      - "ansible_facts['lsb']['description'] = {{ ansible_facts['lsb']['description'] }}"
       - "ansible_distribution = {{ ansible_distribution }}"
       - "ansible_os_family = {{ ansible_os_family }}"
       - "is_arch_based = {{ is_arch_based }}"

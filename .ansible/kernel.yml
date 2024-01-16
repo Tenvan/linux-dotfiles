@@ -1,0 +1,65 @@
+---
+- hosts: localhost
+  connection: local
+  name: "==========> Install Test <=========="
+  become: false
+
+  vars:
+    is_dry: false
+    
+    is_arch_based: false
+    is_arch: false
+    is_arcolinux: false
+    is_manjaro: false
+
+    is_rhel_based: false
+    is_rhel: false
+    is_fedora: false
+    is_centos: false
+
+    is_debian_based: false
+    is_debian: false
+    is_ubuntu: false
+
+  tasks:
+    - name: "=====> Initiate <====="
+      include_tasks: lib/inits.yml
+
+#    - name: "=====> Pre Installation Prepare <====="
+#      include_tasks: lib/prepare.yml
+
+    - name: Install requirements and dependencies
+      vars:
+        rhel_based_init:
+          - fedpkg
+          - qt3-devel
+          - libXi-devel 
+          - gcc-c++
+          - ccache
+    
+      include_tasks: lib/install.yml
+
+    - name: clone kernel
+      shell: |
+        fedpkg clone -a kernel --depth 100
+        cd kernel
+        sudo dnf builddep kernel.spec -y
+        sudo /usr/libexec/pesign/pesign-authorize
+        
+      args:
+        executable: /bin/bash
+        chdir: "{{ home_dir }}"
+        
+    - name: secure boot config
+      become: true
+      shell: /usr/libexec/pesign/pesign-authorize
+        
+    - name: Create a new Machine Owner Key (MOK)
+      become: true
+      shell: |
+        openssl req -new -x509 -newkey rsa:2048 -keyout "key.pem" \
+          -outform DER -out "cert.der" -nodes -days 36500 \
+          -subj "/CN={{ user_id }}/"        
+        openssl pkcs12 -export -out key.p12 -inkey key.pem -in cert.der
+        certutil -A -i cert.der -n "{{ user_id }}" -d /etc/pki/pesign/ -t "Pu,Pu,Pu"
+        pk12util -i key.p12 -d /etc/pki/pesign

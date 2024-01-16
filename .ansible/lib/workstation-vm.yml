@@ -1,0 +1,10 @@
+---
+- name: Define vm workstation packages
+  vars:
+    global_init:
+      - virt-manager
+
+    archlinux_based_init:
+      - virtio-win
+
+  include_tasks: install.yml

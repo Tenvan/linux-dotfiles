@@ -2,139 +2,139 @@
 - name: "=====> set gtk2 settings <====="
   block:
     - name: Set cursor theme
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.gtkrc-2.0"
         regexp: "^.*gtk-cursor-theme-name=.*$"
-        replace: 'gtk-cursor-theme-name="{{ lookup(''ansible.builtin.env'', ''CURSOR_THEME'') }}"'
+        replace: 'gtk-cursor-theme-name="{{ lookup(''env'', ''CURSOR_THEME'') }}"'
 
     - name: Set cursor size
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.gtkrc-2.0"
         regexp: "^.*gtk-cursor-theme-size=.*$"
-        replace: "gtk-cursor-theme-size={{ lookup('ansible.builtin.env', 'CURSOR_SIZE') }}"
+        replace: "gtk-cursor-theme-size={{ lookup('env', 'CURSOR_SIZE') }}"
 
     - name: Set font
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.gtkrc-2.0"
         regexp: "^.*gtk-font-name=.*$"
-        replace: 'gtk-font-name="{{ lookup(''ansible.builtin.env'', ''THEME_FONT'') }}"'
+        replace: 'gtk-font-name="{{ lookup(''env'', ''THEME_FONT'') }}"'
 
     - name: Set icon theme
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.gtkrc-2.0"
         regexp: "^.*gtk-icon-theme-name=.*$"
-        replace: 'gtk-icon-theme-name="{{ lookup(''ansible.builtin.env'', ''ICON_THEME'') }}"'
+        replace: 'gtk-icon-theme-name="{{ lookup(''env'', ''ICON_THEME'') }}"'
 
     - name: Set sound theme
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.gtkrc-2.0"
         regexp: "^.*gtk-sound-theme-name=.*$"
-        replace: "gtk-sound-theme-name={{ lookup('ansible.builtin.env', 'SOUND_THEME') }}"
+        replace: "gtk-sound-theme-name={{ lookup('env', 'SOUND_THEME') }}"
 
     - name: Set main theme
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.gtkrc-2.0"
         regexp: "^.*gtk-theme-name=.*$"
-        replace: 'gtk-theme-name="{{ lookup(''ansible.builtin.env'', ''MAIN_THEME'') }}"'
+        replace: 'gtk-theme-name="{{ lookup(''env'', ''MAIN_THEME'') }}"'
 
 - name: "=====> set gtk3 settings <====="
   block:
     - name: Set cursor theme
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/gtk-3.0/settings.ini"
         regexp: "^.*gtk-cursor-theme-name=.*$"
-        replace: "gtk-cursor-theme-name={{ lookup('ansible.builtin.env', 'CURSOR_THEME') }}"
+        replace: "gtk-cursor-theme-name={{ lookup('env', 'CURSOR_THEME') }}"
 
     - name: Set cursor size
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/gtk-3.0/settings.ini"
         regexp: "^.*gtk-cursor-theme-size=.*$"
-        replace: "gtk-cursor-theme-size={{ lookup('ansible.builtin.env', 'CURSOR_SIZE') }}"
+        replace: "gtk-cursor-theme-size={{ lookup('env', 'CURSOR_SIZE') }}"
 
     - name: Set font
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/gtk-3.0/settings.ini"
         regexp: "^.*gtk-font-name=.*$"
-        replace: 'gtk-font-name={{ lookup(''ansible.builtin.env'', ''THEME_FONT'') }}'
+        replace: 'gtk-font-name={{ lookup(''env'', ''THEME_FONT'') }}'
 
     - name: Set icon theme
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/gtk-3.0/settings.ini"
         regexp: "^.*gtk-icon-theme-name=.*$"
-        replace: "gtk-icon-theme-name={{ lookup('ansible.builtin.env', 'ICON_THEME') }}"
+        replace: "gtk-icon-theme-name={{ lookup('env', 'ICON_THEME') }}"
 
     - name: Set sound theme
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/gtk-3.0/settings.ini"
         regexp: "^.*gtk-sound-theme-name=.*$"
-        replace: "gtk-sound-theme-name={{ lookup('ansible.builtin.env', 'SOUND_THEME') }}"
+        replace: "gtk-sound-theme-name={{ lookup('env', 'SOUND_THEME') }}"
 
     - name: Set main theme
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/gtk-3.0/settings.ini"
         regexp: "^.*gtk-theme-name=.*$"
-        replace: "gtk-theme-name={{ lookup('ansible.builtin.env', 'MAIN_THEME') }}"
+        replace: "gtk-theme-name={{ lookup('env', 'MAIN_THEME') }}"
 
 - name: "=====> set gtk4 settings <====="
   block:
     - name: Set cursor theme
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/gtk-4.0/settings.ini"
         regexp: "^.*gtk-cursor-theme-name=.*$"
-        replace: "gtk-cursor-theme-name={{ lookup('ansible.builtin.env', 'CURSOR_THEME') }}"
+        replace: "gtk-cursor-theme-name={{ lookup('env', 'CURSOR_THEME') }}"
 
     - name: Set cursor size
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/gtk-4.0/settings.ini"
         regexp: "^.*gtk-cursor-theme-size=.*$"
-        replace: "gtk-cursor-theme-size={{ lookup('ansible.builtin.env', 'CURSOR_SIZE') }}"
+        replace: "gtk-cursor-theme-size={{ lookup('env', 'CURSOR_SIZE') }}"
 
     - name: Set font
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/gtk-4.0/settings.ini"
         regexp: "^.*gtk-font-name=.*$"
-        replace: "gtk-font-name={{ lookup('ansible.builtin.env', 'THEME_FONT') }}"
+        replace: "gtk-font-name={{ lookup('env', 'THEME_FONT') }}"
 
     - name: Set icon theme
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/gtk-4.0/settings.ini"
         regexp: "^.*gtk-icon-theme-name=.*$"
-        replace: "gtk-icon-theme-name={{ lookup('ansible.builtin.env', 'ICON_THEME') }}"
+        replace: "gtk-icon-theme-name={{ lookup('env', 'ICON_THEME') }}"
 
     - name: Set sound theme
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/gtk-4.0/settings.ini"
         regexp: "^.*gtk-sound-theme-name=.*$"
-        replace: "gtk-sound-theme-name={{ lookup('ansible.builtin.env', 'SOUND_THEME') }}"
+        replace: "gtk-sound-theme-name={{ lookup('env', 'SOUND_THEME') }}"
 
     - name: Set main theme
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/gtk-4.0/settings.ini"
         regexp: "^.*gtk-theme-name=.*$"
-        replace: "gtk-theme-name={{ lookup('ansible.builtin.env', 'MAIN_THEME') }}"
+        replace: "gtk-theme-name={{ lookup('env', 'MAIN_THEME') }}"
 
 - name: "=====> set qt5 settings <====="
   block:
     - name: Set icon theme
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/qt5ct/qt5ct.conf"
         regexp: "^.*icon_theme=.*$"
-        replace: "icon_theme={{ lookup('ansible.builtin.env', 'ICON_THEME') }}"
+        replace: "icon_theme={{ lookup('env', 'ICON_THEME') }}"
 
     - name: Set dialogs
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/qt5ct/qt5ct.conf"
         regexp: "^.*standard_dialogs=.*$"
         replace: "standard_dialogs=gtk3"
 
     - name: Set style
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/qt5ct/qt5ct.conf"
         regexp: "^.*style=.*$"
         replace: "style=Adwaita-Dark"
 
     - name: Set palette
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/qt5ct/qt5ct.conf"
         regexp: "^.*custom_palette=.*$"
         replace: "custom_palette=false"
@@ -142,25 +142,25 @@
 - name: "=====> set qt6 settings <====="
   block:
     - name: Set icon theme
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/qt6ct/qt6ct.conf"
         regexp: "^.*icon_theme=.*$"
-        replace: "icon_theme={{ lookup('ansible.builtin.env', 'ICON_THEME') }}"
+        replace: "icon_theme={{ lookup('env', 'ICON_THEME') }}"
 
     - name: Set dialogs
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/qt6ct/qt6ct.conf"
         regexp: "^.*standard_dialogs=.*$"
         replace: "standard_dialogs=gtk3"
 
     - name: Set style
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/qt6ct/qt6ct.conf"
         regexp: "^.*style=.*$"
         replace: "style=Adwaita-Dark"
 
     - name: Set palette
-      ansible.builtin.replace:
+      replace:
         path: "{{ home_dir }}/.config/qt6ct/qt6ct.conf"
         regexp: "^.*custom_palette=.*$"
         replace: "custom_palette=false"
@@ -169,9 +169,9 @@
   become: true
   block:
     - name: Set theme folder
-      ansible.builtin.shell: "flatpak override --filesystem={{ home_dir }}/.themes"
+      shell: "flatpak override --filesystem={{ home_dir }}/.themes"
     - name: Set theme
-      ansible.builtin.shell: "sudo flatpak override --env=GTK_THEME={{ lookup('ansible.builtin.env', 'MAIN_THEME') }}"
+      shell: "sudo flatpak override --env=GTK_THEME={{ lookup('env', 'MAIN_THEME') }}"
 
 - name: Synchronization themes with root home
   become: true

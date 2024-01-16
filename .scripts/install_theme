@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. ~/.scripts/defs
+. "$HOME/.scripts/defs"
 
 csource "$HOME/.profile"
 

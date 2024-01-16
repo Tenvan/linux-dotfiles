@@ -22,20 +22,20 @@
 
   tasks:
     - name: "=====> Initiate <====="
-      ansible.builtin.include_tasks: inits.yml
+      include_tasks: inits.yml
 
     - name: Fedora nvidia
       when: is_fedora
       block:
 
 #        - name: Uninstall nvidia driver
-#          ansible.builtin.dnf:
+#          dnf:
 #            state: absent
 #            name:
 #              - akmod-nvidia*
 
         - name: Add nouveau driver    
-          ansible.builtin.file:
+          file:
             path: /etc/modprobe.d/blacklist-nouveau.conf
             state: absent
 

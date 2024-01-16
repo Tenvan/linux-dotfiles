@@ -1,14 +1,14 @@
 ---
 - name: Install hpuld
-  ansible.builtin.command: "{{ home_dir }}/.scripts/setup/uld/install.sh"
+  command: "{{ home_dir }}/.scripts/setup/uld/install.sh"
 
 - name: Install nvm
   become: false
-  ansible.builtin.shell: curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+  shell: curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
 - name: Set doku header in cronie config
   become: true
-  ansible.builtin.blockinfile:
+  blockinfile:
     path: "/var/spool/cron/{{ user_id }}"
     create: true
     marker: "# {mark} ANSIBLE MANAGED BLOCK cronie header"
@@ -42,14 +42,14 @@
 # see: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/cron_module.html#ansible-collections-ansible-builtin-cron-module
 #
 - name: Set cronie config for dwall
-  ansible.builtin.cron:
+  cron:
     user: "{{ user_id }}"
     name: "dwall job for hourly"
     special_time: hourly
     job: 'env PATH=/usr/local/bin:/usr/bin DISPLAY=:0 DESKTOP_SESSION=awesome DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" /usr/bin/dwall -s $WALLPAPER_THEME'''
 
 - name: Set cronie config for dwall
-  ansible.builtin.cron:
+  cron:
     user: "{{ user_id }}"
     name: "dwall job for reboot"
     special_time: reboot
@@ -59,11 +59,11 @@
   become: false
   block:
     - name: Remove old plugins
-      ansible.builtin.file:
+      file:
         state: absent
         path: "{{ home_dir }}/.config/ranger/plugins/ranger_devicons"
     - name: Clone devicons
-      ansible.builtin.git:
+      git:
         repo: "https://github.com/alexanderjeurissen/ranger_devicons"
         clone: true
         depth: 1
@@ -71,7 +71,7 @@
 
 - name: Install micro plugins
   become: false
-  ansible.builtin.shell: |
+  shell: |
     micro -plugin install comment editorconfig joinLines quoter filemanager jump \
       detectindent go snippets crystal quickfix wc manipulator diff ftoptions \
       linter literate status monokai-dark gotham-colors nordcolors
@@ -80,7 +80,7 @@
   changed_when: my_output.rc != 0
 
 - name: Write xinit-system file
-  ansible.builtin.copy:
+  copy:
     dest: /etc/X11/xinit/xinitrc.d/user-xinitrc.sh
     mode: u+rwx,g+rx,o+rx
     content: |
@@ -88,9 +88,10 @@
       if [ -f $HOME/.xinitrc ]; then
         . $HOME/.xinitrc
       fi
+  when: is_rhel_based
 
 - name: Write sddm config
-  ansible.builtin.copy:
+  copy:
     dest: /etc/sddm.conf.d/kde_settings.conf
     mode: u+rwx,g+rx,o+rx
     content: |
@@ -115,17 +116,65 @@
 
       [X11]
       EnableHiDPI=true
+  when: is_rhel_based
 
 - name: Xdg default setzen
-  ansible.builtin.command: xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+  command: xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
 
 - name: Create kwin kservices5 folder
-  ansible.builtin.file:
+  file:
     path: "{{ home_dir }}/.local/share/kservices5"
     state: directory
 
 - name: create symbolic link for krohnkite kwin script
-  ansible.builtin.file:
+  file:
     src: "{{ home_dir }}/.local/share/kwin/scripts/krohnkite/metadata.desktop"
     dest: "{{ home_dir }}/.local/share/kservices5/krohnkite.desktop"
     state: link
+
+- name: Install dynamic wallpaper (dwall)
+  block:
+    - name: clone https://github.com/adi1090x/dynamic-wallpaper.git
+      git:
+        repo: "https://github.com/adi1090x/dynamic-wallpaper.git"
+        clone: true
+        depth: 1
+        dest: "{{ build_dir }}/DynamicWallper"
+    - name: Install dwall
+      shell: |
+        ./install.sh -s island
+      args:
+        executable: /bin/bash
+        chdir: "{{ build_dir }}/DynamicWallper"
+
+- name: Create own xinit-compat script
+  blockinfile:
+    path: "/opt/xinit-compat"
+    create: true
+    marker: "# {mark} ANSIBLE MANAGED BLOCK xinit"
+    block: |
+      #!/bin/sh          
+      # ANSIBLE MANAGED BLOCK xinit"
+      exec ~/.xsession
+    mode: u+rwx,g+rx,o+rx
+
+- name: Add awesome session (fedora)
+  blockinfile:
+    create: true
+    path: /usr/share/xsessions/awesome-fedora.desktop
+    block: |
+      [Desktop Entry]
+      Name=AwesomeWM (Tenvan)
+      # awesome have to be execute in .xsession
+      Comment=This session runs ~/.xsession or ~/.Xclients if available
+      Exec=/opt/xinit-compat
+
+- name: Refresh icons on ArchLinux
+  become: true
+  command: gdk-pixbuf-query-loaders --update-cache
+  when: is_arch_based
+
+- name: refresh icons on RHEL
+  become: true
+  command: gdk-pixbuf-query-loaders-64 --update-cache
+  when: is_rhel_based

@@ -2,28 +2,24 @@
 - name: DefineBaseSystemPackages
   vars:
     global_init:
-      - acpid
       - at
       - curl
       - dnsutils
-      - flatpak
-      - iotop
       - jq
-      - ripgrep
-      - sysstat
       - time
       - zsh
-      # global
+      - rsync
+      - nano
+      - flatpak
 
       # system tools
       - cockpit
       - cockpit-machines
+      - cockpit-networkmanager
       - cockpit-packagekit
       - cockpit-podman
       - cockpit-storaged
-
-      # useful tools for ranger
-      - lynx
+      - cockpit-system
 
     archlinux_based_init:
       - acpi
@@ -146,15 +142,15 @@
       - mediainfo
       - odt2txt
       - w3m
-
+        
     rhel_based_init:
-      - gvfs-smb
       - openssh
+      - unzip
 
       # installation of important editors
       - cronie
-      - cockpit-networkmanager
-      - cockpit-system
+
+      # system tools
       - subscription-manager-cockpit
 
     fedora_init:
@@ -180,6 +176,16 @@
       - toilet
       - unclutter
       - unrar
+
+      # system tools
+      - cockpit
+      - cockpit-podman
+      - cockpit-machines
+      - cockpit-packagekit
+      - cockpit-storaged
+      - iotop
+      - ripgrep
+      - sysstat
 
       # podman + docker
       - podman-compose
@@ -216,21 +222,6 @@
       - procs
 
   include_tasks: install.yml
-
-##########################
-# add some flatpak repos #
-##########################
-- name: Add the dl.flathub flatpak repository remote to the user installation
-  community.general.flatpak_remote:
-    name: flathub
-    state: absent
-    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-
-- name: Add the flathub flatpak repository remote to the user installation
-  community.general.flatpak_remote:
-    name: flathub
-    state: present
-    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
 
 - block:
     - name: remove old Oh-My-Posh install script

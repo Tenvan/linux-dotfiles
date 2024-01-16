@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+. "$HOME/.scripts/defs"
+
+if [ "$IS_RHEL" = true ]; then
+  # Installieren Sie notwendige Pakete
+  sudo dnf install -y python3 python3-pip && \
+      pip3 install --upgrade pip setuptools pipx
+  
+  python3 -m pipx ensurepath
+  
+  # Installieren Sie Ansible über Python PIP
+  sudo pip3 install ansible
+fi
+
+if [ "$IS_FEDORA" = true ]; then
+	sudo dnf install -y ansible redhat-lsb-core dnf-plugins-core
+fi
+
+if [ "$IS_ARCH_BASED" = true ]; then
+	sudo pacman -Syy ansible lsb-release
+fi
+
+if [ "$IS_DEBIAN_BASED" = true ]; then
+	sudo apt install -y ansible
+fi
+
+errorCheck "install ansible"

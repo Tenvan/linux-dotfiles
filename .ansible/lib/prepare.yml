@@ -6,7 +6,7 @@
 # create build folder for some manuel installations
 - name: Create build directory
   become: true
-  ansible.builtin.file:
+  file:
     path: "{{ build_dir }}"
     state: directory
 
@@ -15,7 +15,7 @@
 ######################
 - name: Add Vivaldi Repository
   when: is_fedora
-  ansible.builtin.yum_repository:
+  yum_repository:
     name: vivaldi
     description: Vivaldi Yum Repo
     baseurl: https://repo.vivaldi.com/archive/rpm/$basearch
@@ -24,7 +24,7 @@
 
 - name: Add VSCode Repository
   when: is_fedora
-  ansible.builtin.yum_repository:
+  yum_repository:
     name: vscode
     description: Visual Studio Code
     baseurl: https://packages.microsoft.com/yumrepos/vscode
@@ -33,7 +33,7 @@
 
 - name: Add Microsoft Repository
   when: is_fedora
-  ansible.builtin.yum_repository:
+  yum_repository:
     name: packages-microsoft-com-prod
     description: Microsoft RedHat repository
     baseurl: https://packages.microsoft.com/rhel/9.0/prod/
@@ -43,7 +43,7 @@
 
 - name: Add Microsoft Edge Repository
   when: is_fedora
-  ansible.builtin.yum_repository:
+  yum_repository:
     name: packages-microsoft-com-prod
     description: Microsoft RedHat repository
     baseurl: https://packages.microsoft.com/yumrepos/edge
@@ -53,7 +53,7 @@
 
 - name: Add IBM Odbc
   when: is_fedora
-  ansible.builtin.yum_repository:
+  yum_repository:
     name: ibmi-acs
     description: IBM i Access Client Solutions Linux
     baseurl: https://public.dhe.ibm.com/software/ibmi/products/odbc/rpms
@@ -61,7 +61,7 @@
 
 - name: Add repository into repo.d list for yum
   when: is_fedora
-  ansible.builtin.yum_repository:
+  yum_repository:
     name: docker-ce
     description: Docker Stabel CE
     baseurl: "https://download.docker.com/linux/{{ rh_distribution }}/$releasever/$basearch/stable"
@@ -71,14 +71,14 @@
 
 - name: Update dnf packages
   when: is_fedora
-  ansible.builtin.dnf:
+  dnf:
     name: "*"
     state: latest
     update_only: true
 
 - name: Install dnf-utils if on Fedora
   when: is_fedora
-  ansible.builtin.package:
+  package:
     name: dnf-utils
     state: present
 
@@ -104,6 +104,6 @@
 # add some deb repos #
 ######################
 - name: "DEB => packages-microsoft-prod.deb"
-  ansible.builtin.apt:
+  apt:
     deb: https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb
   when: is_debian_based
