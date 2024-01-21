@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 . ./.configrc
 
-popd kernel/ || exit
+pushd kernel/ || exit
 
-make -j14
-make modules -j12
-make bzImage
+export PARAMS="-j $(( $(nproc) - 1 ))"
+
+make clean $PARAMS
+make $PARAMS
+make bzImage $PARAMS
+make modules $PARAMS
 
 popd || exit
