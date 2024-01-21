@@ -12,6 +12,7 @@
 # Ausnahmen Script Folder
 !.scripts
 !.scripts/**/*
+.scripts/linux/kernel
 
 # Ausnahmen Ansible Folder
 !.ansible/

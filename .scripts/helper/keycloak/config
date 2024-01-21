@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-# Konfiguration SQL Server
-export image_name=quay.io/keycloak/keycloak:20.0.3
-export container_name=LocalKeyCloak
-export data_dir=/srv/keycloak

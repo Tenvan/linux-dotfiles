@@ -1,0 +1,7 @@
+# BEGIN ANSIBLE MANAGED BLOCK screenlayout
+#!/bin/sh
+# MONITOR1=HDMI-0
+# MONITOR2=DP-0
+sh /opt/screenlayout.sh 1 1
+exit 0
+# END ANSIBLE MANAGED BLOCK screenlayout

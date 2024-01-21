@@ -1,8 +1,8 @@
 [General]
-ColorScheme=MateriaManjaroDarkHighContrast
+ColorScheme=BreezeDark
 
 [Icons]
-Theme=Materia-Manjaro-Breeze-Dark
+Theme=breeze-dark
 
 [KDE]
 widgetStyle=Breeze

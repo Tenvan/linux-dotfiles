@@ -36,17 +36,3 @@
       sleep 1
       xrandr --output "$MONITOR2" --auto --scale $2 --right-of "$MONITOR1"
       sleep 1
-
-- name: Create system screenlayout script (for display managers)
-  become: true
-  blockinfile:
-    path: "/opt/screenlayout-system.sh"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK screenlayout"
-    create: true
-    mode: u+rwx,g+rx,o+rx
-    block: |
-      #!/bin/sh
-      # MONITOR1={{ monitor1 }}
-      # MONITOR2={{ monitor2 }}
-      sh /opt/screenlayout.sh 1 1
-      exit 0

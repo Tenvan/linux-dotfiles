@@ -37,24 +37,6 @@
     group: "{{ user_id }}"
     mode: u+rwx,g+rx,o+rx
 
-#
-# define cron jobs
-# see: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/cron_module.html#ansible-collections-ansible-builtin-cron-module
-#
-- name: Set cronie config for dwall
-  cron:
-    user: "{{ user_id }}"
-    name: "dwall job for hourly"
-    special_time: hourly
-    job: 'env PATH=/usr/local/bin:/usr/bin DISPLAY=:0 DESKTOP_SESSION=awesome DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" /usr/bin/dwall -s $WALLPAPER_THEME'''
-
-- name: Set cronie config for dwall
-  cron:
-    user: "{{ user_id }}"
-    name: "dwall job for reboot"
-    special_time: reboot
-    job: 'env PATH=/usr/local/bin:/usr/bin DISPLAY=:0 DESKTOP_SESSION=awesome DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" /usr/bin/dwall -s $WALLPAPER_THEME'''
-
 - name: Install ranger DevIcons
   become: false
   block:
@@ -131,21 +113,6 @@
     src: "{{ home_dir }}/.local/share/kwin/scripts/krohnkite/metadata.desktop"
     dest: "{{ home_dir }}/.local/share/kservices5/krohnkite.desktop"
     state: link
-
-- name: Install dynamic wallpaper (dwall)
-  block:
-    - name: clone https://github.com/adi1090x/dynamic-wallpaper.git
-      git:
-        repo: "https://github.com/adi1090x/dynamic-wallpaper.git"
-        clone: true
-        depth: 1
-        dest: "{{ build_dir }}/DynamicWallper"
-    - name: Install dwall
-      shell: |
-        ./install.sh -s island
-      args:
-        executable: /bin/bash
-        chdir: "{{ build_dir }}/DynamicWallper"
 
 - name: Create own xinit-compat script
   blockinfile:

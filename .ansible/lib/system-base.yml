@@ -10,7 +10,7 @@
       - zsh
       - rsync
       - nano
-      - flatpak
+      - most
 
       # system tools
       - cockpit

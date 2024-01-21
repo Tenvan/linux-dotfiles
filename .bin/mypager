@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-highlight -O xterm256 $@ | less -R

@@ -1,3 +1,6 @@
+#
+# Source: https://www.linuxcapable.com/how-to-install-nvidia-drivers-on-fedora-linux/
+#
 ---
 - hosts: localhost
   connection: local
@@ -21,16 +24,22 @@
     is_ubuntu: false
 
     fedora_init:
-      - kernel-devel
-      - kernel-headers
-      - gcc
-      - make
+      - acpid 
+      - automake 
+      - bzip2 
       - dkms
-      - acpid
-      - libglvnd-glx
-      - libglvnd-opengl
-      - libglvnd-devel
-      - pkgconfig
+      - elfutils-libelf-devel 
+      - gcc 
+      - gcc-c++ 
+      - kernel-devel 
+      - kernel-headers 
+      - libglvnd-devel 
+      - libglvnd-glx 
+      - libglvnd-opengl 
+      - make 
+      - pciutils 
+      - pkgconfig 
+      - tar 
 
     include_tasks: install.yml
 
@@ -41,22 +50,31 @@
     - name: Fedora nvidia
       when: is_fedora
       block:
-#        - name: Install nvidia driver
-#          dnf:
-#            state: present
-#            name:
-#              - akmod-nvidia-470xx
+      - name: Add CUDA Repository for Fedora 37
+        when: is_fedora
+        yum_repository:
+          name: cuda-fedora37-x86_64vivaldi
+          description: CUDA Repository for Fedora 37
+          baseurl: https://developer.download.nvidia.com/compute/cuda/repos/fedora37/x86_64
+          gpgcheck: true
+          gpgkey: https://developer.download.nvidia.com/compute/cuda/repos/fedora37/x86_64/D42D0685.pub
+        
+      - name: Install nvidia driver
+        dnf:
+          state: present
+          name:
+          - "@nvidia-driver:latest-dkms"
 
-#        - name: Remove nouveau driver
-#          blockinfile:
-#            path: /etc/modprobe.d/blacklist-nouveau.conf
-#            create: true
-#            block: |
-#              blacklist nouveau
-#              options nouveau modeset=0
+      - name: Remove nouveau driver with blacklisting
+        blockinfile:
+          path: /etc/modprobe.d/blacklist-nouveau.conf
+          create: true
+          block: |
+            blacklist nouveau
+            options nouveau modeset=0
 
-        - name: Create new initramfrs with nvidia
-          shell: dracut /boot/initramfs-$(uname -r).img $(uname -r) --force -v
+      - name: Create new initramfrs with nvidia
+        shell: dracut /boot/initramfs-$(uname -r).img $(uname -r) --force -v
 
-        - name: Grub update
-          shell: sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+      - name: Grub update
+        shell: sudo grub2-mkconfig -o /boot/grub2/grub.cfg

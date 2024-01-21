@@ -19,6 +19,7 @@ export DISPLAYMANAGER=gdm
 export PAGER="most"
 export FILEMANAGER="nemo"
 export BROWSER=
+export COLORTERM=truecolor
 
 if [ -x "$(command -v fastfetch)" ]; then
 	export FETCHER=fastfetch

@@ -2,18 +2,6 @@
 ##########################
 # add some flatpak repos #
 ##########################
-- name: Add the dl.flathub flatpak repository remote to the user installation
-  community.general.flatpak_remote:
-    name: flathub
-    state: absent
-    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-
-- name: Add the flathub flatpak repository remote to the user installation
-  community.general.flatpak_remote:
-    name: flathub
-    state: present
-    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
-
 - name: Define Base System Packages
   vars:
     global_init:
@@ -43,6 +31,12 @@
 
       # NetworkManager Addons
       - cockpit-networkmanager
+
+      # Sonstiges
+      - yakuake
+
+      # Flatpak
+      - flatpak
 
     rhel_based_init:
       # printer setup
@@ -200,15 +194,32 @@
     debian_based_init:
       - printer-driver-gutenprint
 
-    flatpak_init:
-      - com.bitwarden.desktop
-      - com.diffingo.fwbackups
-      - org.fedoraproject.MediaWriter
-      - com.github.d4nj1.tlpui
-      - io.missioncenter.MissionCenter
-
     cargo_init:
       - git-delta
       - tokei
 
   include_tasks: install.yml
+
+- name: Add Flapaks
+  block:
+    - name: Add the dl.flathub flatpak repository remote to the user installation
+      community.general.flatpak_remote:
+        name: flathub
+        state: absent
+        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+    - name: Add the flathub flatpak repository remote to the user installation
+      community.general.flatpak_remote:
+        name: flathub
+        state: present
+        flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+
+    - name: Install Flatpaks
+      vars:
+        flatpak_init:
+          - com.bitwarden.desktop
+          - com.diffingo.fwbackups
+          - org.fedoraproject.MediaWriter
+          - io.missioncenter.MissionCenter
+
+      include_tasks: install.yml

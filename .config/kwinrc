@@ -67,6 +67,9 @@ count=0
 [Tiling]
 padding=4
 
+[Tiling][2c95023d-574c-5bae-8921-442fbf2c7817]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][323ff5e9-473d-5440-b394-42ae33780eb3]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
@@ -88,7 +91,16 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 [Tiling][ca182399-4a16-5ac3-914c-23936735ff87]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Tiling][cb3b15c8-b4d6-5d42-a65a-b54eb7222c91]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][cd8a1631-ba6b-5976-baf3-325e3dd4e803]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][d02c035d-eef0-5c68-aa2f-2e83d0ba08b1]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][f7d28c5c-8f55-577e-9599-c64da538c4c8]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Windows]
@@ -100,5 +112,3 @@ Scale=1
 [org.kde.kdecoration2]
 ButtonsOnLeft=SNF
 ButtonsOnRight=IAX
-library=org.kde.breeze
-theme=Breeze
