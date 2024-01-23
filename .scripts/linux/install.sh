@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 . ./.configrc
 
+#
+# Install Linux Kerbel with defined version
+# Source: https://kernelnewbies.org/KernelBuild
+#
 pushd kernel/ || exit
 
 sudo make modules_install

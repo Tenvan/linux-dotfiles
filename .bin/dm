@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# control current display manager
+MANAGER=sddm
+echo "control $MANAGER -> $1"
+sudo systemctl $1 $MANAGER.service
