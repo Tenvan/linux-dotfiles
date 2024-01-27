@@ -128,11 +128,3 @@ desktopsrule=3
 screenrule=3
 wmclass=virt-manager
 wmclassmatch=1
-
-[Vivaldi Remote Work]
-Description=Vivaldi Remote Work
-screen=1
-screenrule=3
-title=REMOTE
-wmclass=vivaldi-stable
-wmclassmatch=1

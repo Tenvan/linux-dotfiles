@@ -13,15 +13,6 @@
 ######################
 # add some yum repos #
 ######################
-- name: Add Vivaldi Repository
-  when: is_fedora
-  yum_repository:
-    name: vivaldi
-    description: Vivaldi Yum Repo
-    baseurl: https://repo.vivaldi.com/archive/rpm/$basearch
-    gpgcheck: true
-    gpgkey: https://repo.vivaldi.com/archive/linux_signing_key.pub
-
 - name: Add VSCode Repository
   when: is_fedora
   yum_repository:

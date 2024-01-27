@@ -35,8 +35,6 @@
       - freerdp
 
       # Browser
-      - vivaldi
-      - vivaldi-ffmpeg-codecs
       - firefox-i18n-de
 
       # Office
@@ -60,7 +58,6 @@
 
       # Browser
       - microsoft-edge-stable
-      - vivaldi-stable
       - firefox
       - firefox-langpacks
 
