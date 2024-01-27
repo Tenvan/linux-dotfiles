@@ -31,35 +31,17 @@
     - name: Install requirements and dependencies
       vars:
         rhel_based_init:
-          - fedpkg
-          - qt3-devel
-          - libXi-devel 
-          - gcc-c++
+          - bison
           - ccache
+          - ctags 
+          - flex
+          - gcc 
+          - gcc-c++
+          - git 
+          - libXi-devel
+          - make
+          - ncurses-devel 
+          - openssl-devel
+          - qt3-devel
     
       include_tasks: lib/install.yml
-
-    - name: clone kernel
-      shell: |
-        fedpkg clone -a kernel --depth 100
-        cd kernel
-        sudo dnf builddep kernel.spec -y
-        sudo /usr/libexec/pesign/pesign-authorize
-        
-      args:
-        executable: /bin/bash
-        chdir: "{{ home_dir }}"
-        
-    - name: secure boot config
-      become: true
-      shell: /usr/libexec/pesign/pesign-authorize
-        
-    - name: Create a new Machine Owner Key (MOK)
-      become: true
-      shell: |
-        openssl req -new -x509 -newkey rsa:2048 -keyout "key.pem" \
-          -outform DER -out "cert.der" -nodes -days 36500 \
-          -subj "/CN={{ user_id }}/"        
-        openssl pkcs12 -export -out key.p12 -inkey key.pem -in cert.der
-        certutil -A -i cert.der -n "{{ user_id }}" -d /etc/pki/pesign/ -t "Pu,Pu,Pu"
-        pk12util -i key.p12 -d /etc/pki/pesign

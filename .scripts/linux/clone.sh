@@ -10,8 +10,7 @@ echo clone current Kernel and checkout last stable
 git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git kernel
 pushd kernel/ || exit
 
-STABLE="$(git tag -l | less)"
-echo last version: $STABLE
-git checkout -b stable $STABLE
+echo last version: $VERSION
+git checkout stable/linux-rolling-stable
 
 popd || exit

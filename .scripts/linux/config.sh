@@ -7,7 +7,7 @@
 #
 pushd kernel/ || exit
 
-if [ ! -f .config ]
+if [ ! -f .config ]; then
     cp /boot/config-`uname -r`* .config
 fi
 
