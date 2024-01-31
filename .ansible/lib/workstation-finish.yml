@@ -72,33 +72,29 @@
       fi
   when: is_rhel_based
 
-- name: Write sddm config
+- name: Write lightdm config
   copy:
-    dest: /etc/sddm.conf.d/kde_settings.conf
+    dest: /etc/lightdm/lightdm.conf.d/settings.conf
     mode: u+rwx,g+rx,o+rx
     content: |
-      [Autologin]
-      Relogin=false
-      Session=plasmax11
-      User={{ user_id }}
+      [Seat:*]
+      greeter-session=lightdm-gtk-greeter
 
-      [General]
-      HaltCommand=
-      RebootCommand=
-
-      [Theme]
-      Current=01-breeze-fedora
-      CursorSize=40
-      CursorTheme=default
-      Font=Noto Sans,12,-1,5,50,0,0,0,0,0
-
-      [Users]
-      MaximumUid=60000
-      MinimumUid=1000
-
-      [X11]
-      EnableHiDPI=true
-  when: is_rhel_based
+- name: Write lightdm-gtk-greeter config
+  copy:
+    dest: /etc/lightdm/lightdm-gtk-greeter.conf
+    mode: u+rw,g+r,o+r
+    content: |
+      [greeter]
+      background = /usr/share/wallpapers/Materia-Dark/contents/images/3840x2160.png
+      theme-name = Materia-dark
+      icon-theme-name = Papirus-Dark
+      cursor-theme-name="Bibata-Modern-Ice"
+      font-name = Sans 12
+      position = 50%,center 50%,end
+      xft-antialias = false
+      xft-dpi = 
+      xft-hintstyle = hintnone
 
 - name: Xdg default setzen
   command: xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search

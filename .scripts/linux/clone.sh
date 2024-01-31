@@ -11,6 +11,6 @@ git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git 
 pushd kernel/ || exit
 
 echo last version: $VERSION
-git checkout stable/linux-rolling-stable
+git checkout stable/linux-rolling-lts
 
 popd || exit

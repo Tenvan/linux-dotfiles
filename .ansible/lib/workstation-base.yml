@@ -32,7 +32,9 @@
       # NetworkManager Addons
       - cockpit-networkmanager
 
-      # Sonstiges
+      # utilities for kde
+      - kscreen
+      - kcron
       - yakuake
 
       # Flatpak
@@ -68,9 +70,6 @@
 
       # utilities from gnome
       - qt6ct
-
-      # utilities from kde
-      - kscreen
 
       # system tools
       - grub-customizer
@@ -202,13 +201,13 @@
 
 - name: Add Flapaks
   block:
-    - name: Add the dl.flathub flatpak repository remote to the user installation
+    - name: Remove old dl.flathub flatpak repository
       community.general.flatpak_remote:
         name: flathub
         state: absent
         flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
 
-    - name: Add the flathub flatpak repository remote to the user installation
+    - name: Add the flathub flatpak repository remote
       community.general.flatpak_remote:
         name: flathub
         state: present

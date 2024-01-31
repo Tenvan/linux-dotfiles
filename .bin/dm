@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 # control current display manager
-MANAGER=sddm
+MANAGER=lightdm
+#MANAGER=kdm
 echo "control $MANAGER -> $1"
 sudo systemctl $1 $MANAGER.service
