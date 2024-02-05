@@ -49,12 +49,11 @@ patterns=yakuake\nurxvt\nkeepassxc\nkitty
 [Script-krohnkite]
 enableFloatingLayout=true
 enableQuarterLayout=true
-floatingClass=copyq
-screenGapBottom=10
-screenGapLeft=10
-screenGapRight=10
-screenGapTop=10
-tileLayoutGap=10
+screenGapBottom=5
+screenGapLeft=5
+screenGapRight=5
+screenGapTop=5
+tileLayoutGap=5
 
 [SubSession: 44db25c0-cc6b-4796-85bf-501c72f54470]
 active=-1
@@ -63,6 +62,16 @@ count=0
 [SubSession: 7095c818-6a2e-4399-8eac-40206345ffc7]
 active=-1
 count=0
+
+[TabBox]
+ApplicationsMode=1
+LayoutName=coverswitch
+MultiScreenMode=1
+ShowDesktopMode=1
+
+[TabBoxAlternative]
+ActivitiesMode=0
+DesktopMode=0
 
 [Tiling]
 padding=4

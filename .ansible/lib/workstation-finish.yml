@@ -78,7 +78,22 @@
     mode: u+rwx,g+rx,o+rx
     content: |
       [Seat:*]
-      greeter-session=lightdm-gtk-greeter
+      greeter-session=slick-greeter
+      greeter-hide-users=false
+      autologin-user={{ user_id }}
+
+- name: Write slick-greeter config (default lightdm greeter)
+  copy:
+    dest: /etc/lightdm/slick-greeter.conf
+    mode: u+rw,g+r,o+r
+    content: |
+      [Greeter]
+      theme-name={{ lookup('env', 'MAIN_THEME') }}
+      icon-theme-name={{ lookup('env', 'ICON_THEME') }}
+      cursor-theme-name={{ lookup('env', 'CURSOR_THEME') }}
+      background=/usr/share/wallpapers/Materia-Dark/contents/images/3840x2160.png
+      content-align=center
+      activate-numlock=true
 
 - name: Write lightdm-gtk-greeter config
   copy:
@@ -87,9 +102,8 @@
     content: |
       [greeter]
       background = /usr/share/wallpapers/Materia-Dark/contents/images/3840x2160.png
-      theme-name = Materia-dark
-      icon-theme-name = Papirus-Dark
-      cursor-theme-name="Bibata-Modern-Ice"
+      theme-name = {{ lookup('env', 'MAIN_THEME') }}
+      icon-theme-name = {{ lookup('env', 'ICON_THEME') }}
       font-name = Sans 12
       position = 50%,center 50%,end
       xft-antialias = false
