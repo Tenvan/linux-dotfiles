@@ -7,10 +7,15 @@
 #
 echo clone current Kernel and checkout last stable
 
-git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git kernel
+if [ ! -d kernel/ ]; then
+	git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git kernel
+fi
 pushd kernel/ || exit
 
 echo last version: $VERSION
-git checkout stable/linux-rolling-lts
+git switch master
+git pull
+git checkout linux-rolling-lts
+git pull
 
 popd || exit

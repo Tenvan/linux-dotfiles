@@ -126,7 +126,7 @@
       - python3-PyQt4
 
       # display manager
-      - sddm
+      - lightdm
 
     archlinux_based_init:
       # global
