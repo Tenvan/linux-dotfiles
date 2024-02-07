@@ -65,7 +65,6 @@ count=0
 
 [TabBox]
 ApplicationsMode=1
-LayoutName=coverswitch
 MultiScreenMode=1
 ShowDesktopMode=1
 
@@ -121,3 +120,4 @@ Scale=1
 [org.kde.kdecoration2]
 ButtonsOnLeft=SNF
 ButtonsOnRight=IAX
+theme=__aurorae__svg__Gradient-Blur-Dark-Aurorae
