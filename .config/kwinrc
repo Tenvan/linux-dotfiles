@@ -22,19 +22,38 @@ Name_7=System Tools
 Number=7
 Rows=7
 
+[Effect-blur]
+BlurStrength=13
+NoiseStrength=8
+
+[Effect-diminactive]
+Strength=5
+
+[Effect-kwin4_effect_translucency]
+ComboboxPopups=82
+Dialogs=82
+DropdownMenus=60
+Inactive=90
+Menus=82
+MoveResize=82
+PopupMenus=60
+TornOffMenus=59
+
 [NightColor]
 Active=true
-LatitudeAuto=51.4843
-LongitudeAuto=9.1544
+LatitudeAuto=51.7742
+LongitudeAuto=9.3858
 
 [Plugins]
-blurEnabled[$d]
+blurEnabled=true
+contrastEnabled=true
 desktopchangeosdEnabled=true
 diminactiveEnabled=true
-forceblurEnabled=false
+forceblurEnabled=true
+glideEnabled=true
 krohnkiteEnabled=true
 kwin4_effect_dimscreenEnabled=true
-kwin4_effect_translucencyEnabled=true
+kwin4_effect_scaleEnabled=false
 mousemarkEnabled=true
 slidebackEnabled=true
 thumbnailasideEnabled=true
@@ -44,7 +63,9 @@ wobblywindowsEnabled=true
 
 [Script-forceblur]
 blurContent=true
-patterns=yakuake\nurxvt\nkeepassxc\nkitty
+blurExceptMatching=true
+blurMatching=false
+patterns=
 
 [Script-krohnkite]
 enableFloatingLayout=true
