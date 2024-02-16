@@ -33,6 +33,7 @@
       - cockpit-networkmanager
 
       # utilities for kde
+      - "@kde-desktop"
       - kscreen
       - kcron
       - yakuake
