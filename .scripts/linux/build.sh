@@ -7,7 +7,7 @@
 #
 pushd kernel/ || exit
 
-export PARAMS="-j $(( $(nproc) - 1 ))"
+export PARAMS="-j $(( $(nproc) - 2 ))"
 
 make clean $PARAMS
 make $PARAMS
