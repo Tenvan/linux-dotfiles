@@ -6,5 +6,5 @@ source "$HOME/.scripts/helper/mssql/config"
 echo "Aktuell installierte Container:"
 sudo podman container ls
 
-echo "Stoppe: $container_name"
-sudo podman container stop $container_name
+echo "Stoppe service: $container_name.service"
+sudo systemctl stop --now $container_name.service

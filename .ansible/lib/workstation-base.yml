@@ -55,6 +55,7 @@
       
       # display manager
       - gdm
+      - xkill
 
     fedora_init:
       # global
