@@ -67,6 +67,11 @@
       # Office
       - libreoffice
       - libreoffice-help-de
+      - libreoffice-langpack-de
+      - libreoffice-icon-theme-papirus
+      - libreoffice-gtk4
+      - libreoffice-kf5
+      - libreoffice-pdfimport
 
       # Communication
       # - teams
