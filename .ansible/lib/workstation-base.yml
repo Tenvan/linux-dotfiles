@@ -1,4 +1,3 @@
----
 ##########################
 # add some flatpak repos #
 ##########################
@@ -31,12 +30,6 @@
 
       # NetworkManager Addons
       - cockpit-networkmanager
-
-      # utilities for kde
-      - "@kde-desktop"
-      - kscreen
-      - kcron
-      - yakuake
 
       # Flatpak
       - flatpak
@@ -129,6 +122,12 @@
 
       # display manager
       - lightdm
+      
+      # plasma desktop
+      - "@kde-desktop"
+      - kscreen
+      - kcron
+      - yakuake
 
     archlinux_based_init:
       # global

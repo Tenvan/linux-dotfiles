@@ -3,30 +3,25 @@
   vars:
     global_init:
       # graphics
-      - feh
       - gimp
-      - gimp-help-de
-      - imv
       - inkscape
 
-      # music
-      - mpc
-      - playerctl
 
-      # optional application packages
-      - aspell
-
+      
+    fedora_init:
       # Browser
       - chromium
       # - google-chrome
 
-      # remmina
-      - remmina
+      - gimp-help-de
 
       # tools
       - krusader
       - kdiff3
       - krename
+
+      # remmina
+      - remmina
 
     arch_based_init:
       - baobab-gtk3

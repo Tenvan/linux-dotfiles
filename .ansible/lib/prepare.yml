@@ -43,7 +43,6 @@
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
 
 - name: Add IBM Odbc
-  when: is_fedora
   yum_repository:
     name: ibmi-acs
     description: IBM i Access Client Solutions Linux
@@ -51,7 +50,6 @@
     gpgcheck: false
 
 - name: Add repository into repo.d list for yum
-  when: is_fedora
   yum_repository:
     name: docker-ce
     description: Docker Stabel CE
@@ -61,14 +59,12 @@
     gpgkey: "https://download.docker.com/linux/{{ rh_distribution }}/gpg"
 
 - name: Update dnf packages
-  when: is_fedora
   dnf:
     name: "*"
     state: latest
     update_only: true
 
 - name: Install dnf-utils if on Fedora
-  when: is_fedora
   package:
     name: dnf-utils
     state: present
@@ -85,11 +81,6 @@
   when: is_fedora
   community.general.copr:
     name: peterwu/rendezvous
-
-- name: Enable ponymix
-  when: is_fedora
-  community.general.copr:
-    name: en4aew/desktop-tools
 
 ######################
 # add some deb repos #

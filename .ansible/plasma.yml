@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   connection: local
-  name: "==========> Install Test <=========="
+  name: "==========> Install Plasma Desktop <=========="
   become: true
 
   vars:

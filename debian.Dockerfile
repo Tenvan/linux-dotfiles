@@ -6,8 +6,6 @@ ENV DOCKER_CONTAINER=true
 
 LABEL version=1.0
 
-MAINTAINER "Tenvan"
-
 RUN apt-get update && \
     apt-get -y install sudo
 

@@ -38,7 +38,7 @@
       - bibata-cursor-theme
       - bibata-cursor-translucent
 
-    rhel_based_init:
+    fedora_init:
       # fonts
       - powerline-fonts
       - gtk-murrine-engine
