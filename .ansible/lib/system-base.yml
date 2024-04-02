@@ -10,7 +10,6 @@
       - zsh
       - rsync
       - nano
-      - most
 
       # system tools
       - cockpit
