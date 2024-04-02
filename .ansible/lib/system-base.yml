@@ -237,3 +237,9 @@
 
     - name: Run Oh-My-Posh install script
       shell: "{{ build_dir }}/install_oh-my-posh.sh"
+
+    - name: Zsh set as default shell
+      user:
+        name: "{{ user_id }}"
+        shell: "/usr/bin/zsh"
+      become: true
