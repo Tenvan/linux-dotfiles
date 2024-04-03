@@ -42,6 +42,7 @@ Die benötigten Pakete werden mit folgenden Scripten installiert:
 Optional:
 
 ```bash
-~/.script/install_nvidia
-~/.script/install_workstation_awesome
+~/.scripts/install_nvidia
+ansible-playbook ~/.ansible/plasma.yml
+ansible-playbook ~/.ansible/jetbrains.yml
 ```
