@@ -32,11 +32,11 @@ rm -fr $repo/
 
 Die benötigten Pakete werden mit folgenden Scripten installiert:
 ```bash
-~/.script/install_ansible
-~/.script/install_system
-~/.script/install_workstation
-~/.script/install_theme
-~/.script/install_user
+~/.scripts/install_ansible
+~/.scripts/install_system
+~/.scripts/install_workstation
+~/.scripts/install_theme
+~/.scripts/install_user
 ```
 
 Optional:

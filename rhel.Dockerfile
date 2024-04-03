@@ -22,6 +22,7 @@ RUN echo "$USERNAME ALL=(ALL) NOPASSWD: ALL"  >> /etc/sudoers
 RUN useradd -ms /bin/bash $USERNAME
 USER $USERNAME
 WORKDIR /home/$USERNAME
+
 COPY --chown=$USERNAME:$USERNAME ../.scripts ./.scripts
 COPY --chown=$USERNAME:$USERNAME ../.bin ./.bin
 COPY --chown=$USERNAME:$USERNAME ../.config ./.config
