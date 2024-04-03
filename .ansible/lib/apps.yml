@@ -84,7 +84,6 @@
       - com.github.IsmaelMartinez.teams_for_linux
 
       # Media
-      - com.spotify.Client
       - de.haeckerfelix.Shortwave
       - org.photoqt.PhotoQt
 

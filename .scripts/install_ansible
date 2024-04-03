@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. "$HOME/.scripts/defs"
+. ~/.scripts/defs
 
 if [ "$IS_RHEL" = true ]; then
   # Installieren Sie notwendige Pakete

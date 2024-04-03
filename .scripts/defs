@@ -26,8 +26,9 @@ export IS_ARCO=false
 export IS_FEDORA=false
 export IS_CENTOS=false
 export IS_DEBIAN=false
+export IS_UBUNTU=false
 
-DEBUG=false
+DEBUG=true
 
 ERROR_PAKAGE_UNINST=
 ERROR_PAKAGE_INST=
@@ -46,7 +47,7 @@ if [ "$LINUX_BASED" = "fedora" ] || [ "$ID" = "fedora" ]; then
     PACTOOL=dnf
 fi
 
-if [ "$ID" = "debian" ]; then
+if [ "$ID" = "debian" ] || [ "$ID_LIKE" = "debian" ]; then
     IS_DEBIAN_BASED=true
     PACTOOL=apt
 fi
@@ -70,6 +71,10 @@ fi
 
 if [ "$ID" = "debian" ]; then
     IS_DEBIAN=true
+fi
+
+if [ "$ID" = "ubuntu" ]; then
+    IS_UBUNTU=true
 fi
 
 if [ "$LINUX_VERSION_NAME" = "Red Hat Enterprise Linux" ]; then

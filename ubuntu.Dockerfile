@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM ubuntu:latest
 
 ENV USERNAME=testuser
 ENV USER=$USERNAME
@@ -49,4 +49,4 @@ RUN .scripts/install_workstation
 
 # Führen Sie Ihr Haupt-Ansible-Skript aus (ersetzen Sie 'main.yml' durch den Namen Ihres Skripts)
 #CMD ["ansible-playbook", ".ansible/test.yml"]
-CMD ["zsh"]
+CMD ["bash"]
