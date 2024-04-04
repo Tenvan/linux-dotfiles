@@ -40,7 +40,7 @@
   block:
     - name: Ventoy version
       set_fact:
-        ventoy_version: "1.0.96"
+        ventoy_version: "1.0.97"
         
     - name: Remove archive
       file:
