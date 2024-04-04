@@ -196,7 +196,7 @@
       community.general.cargo:
         state: present
         name: "{{ cargo_combined_array }}"
-        locked: true
+#        locked: true
 #    - name: Copy cargo bins to /usr/bin
 #      ansible.posix.synchronize:
 #        src: "{{ home_dir }}/.cargo/bin/"

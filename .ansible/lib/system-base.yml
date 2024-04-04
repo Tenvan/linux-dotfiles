@@ -10,7 +10,6 @@
       - rsync
       - nano
       - unzip
-      - awk
 
       # system tools
       - cockpit
@@ -205,6 +204,7 @@
       - unclutter
       - unrar
       - ripgrep
+      - awk
 
       # system tools
       - cockpit
