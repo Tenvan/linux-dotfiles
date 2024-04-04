@@ -5,32 +5,11 @@
   become: true
 
   vars:
-    is_dry: false
+    is_dry: true
     
-    is_arch_based: false
-    is_arch: false
-    is_arcolinux: false
-    is_manjaro: false
-
-    is_rhel_based: false
-    is_rhel: false
-    is_fedora: false
-    is_centos: false
-
-    is_debian_based: false
-    is_debian: false
-    is_ubuntu: false
-
   tasks:
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
 
-    - name: "=====> Pre Installation Prepare <====="
-      include_tasks: lib/prepare.yml
-
-    - name: "==== get EPEL Paket"
-      shell: |
-        wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-        sudo dnf install epel-release-latest-8.noarch.rpm
-        sudo dnf update -y
-        sudo dnf install @kde-desktop --allowerasing --nobest --skip-broken -y
+    # - name: "=====> Pre Installation Prepare <====="
+    #   include_tasks: lib/prepare.yml

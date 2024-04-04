@@ -26,6 +26,9 @@
     is_debian: false
     is_ubuntu: false
 
+    is_suse_based: false
+    is_tumble: false
+
     grub_theme: 1
 
   tasks:

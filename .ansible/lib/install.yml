@@ -6,10 +6,12 @@
 #
 # Arrays:
 #   - global_init          => for all distros
-#   - rhel_based_init      => for all RHEL/CentOS/Fedora distros
+#   - rhel_based_init      => for all Redhat distros
+#   - suse_based_init      => for all OpenSUSE distros
 #   - archlinux_based_init => for all ArchLinux distro
 #   - debian_based_init    => for all Debian distro
 #   - fedora_init          => Fedora only packages
+#   - tumble_init          => OpenSUSE Tumbleweed only packages
 #   - arcolinux_init       => ArcoLinux only packages
 #   - manjaro_init         => Manjaro only packages
 ####################################################################################################################
@@ -45,6 +47,21 @@
         allowerasing: true
         name: "{{ rhel_combined_array }}"
       when: is_dry is false and rhel_combined_array|length > 0
+
+####################################################################################################################
+# OpenSUSE Based Part
+####################################################################################################################
+- name: Install OpenSUSE Based Part
+  when: is_suse_based
+  block:
+    - set_fact:
+        suse_combined_array: "{{ (global_init | default([])) + (suse_based_init | default([])) }}"
+    - name: "[INSTALL][ZYPPER] OpenSUSE Packages"
+      become: true
+      zypper:
+        state: present
+        name: "{{ suse_combined_array }}"
+      when: is_dry is false and suse_combined_array|length > 0
 
 ####################################################################################################################
 # Debian Based Part

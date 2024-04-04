@@ -25,4 +25,8 @@ if [ "$IS_DEBIAN_BASED" = true ]; then
 	sudo apt install -y ansible
 fi
 
+if [ "$IS_SUSE_BASED" = true ]; then
+	sudo zypper --non-interactive install ansible
+fi
+
 errorCheck "install ansible"

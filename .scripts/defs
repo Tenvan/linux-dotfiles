@@ -17,6 +17,7 @@ LINUX_BASED="$ID_LIKE"
 export IS_ARCH_BASED=false
 export IS_RHEL_BASED=false
 export IS_DEBIAN_BASED=false
+export IS_SUSE_BASED=false
 
 export IS_ARCH=false
 export IS_RHEL=false
@@ -27,6 +28,7 @@ export IS_FEDORA=false
 export IS_CENTOS=false
 export IS_DEBIAN=false
 export IS_UBUNTU=false
+export IS_TUMBLE=false
 
 DEBUG=true
 
@@ -52,6 +54,11 @@ if [ "$ID" = "debian" ] || [ "$ID_LIKE" = "debian" ]; then
     PACTOOL=apt
 fi
 
+if [ "$ID_LIKE" = "opensuse suse" ]; then
+    IS_SUSE_BASED=true
+    PACTOOL=zypper
+fi
+
 # Distro
 if [ "$LINUX_VERSION_NAME" = "Arch" ]; then
     IS_ARCH=true
@@ -75,6 +82,10 @@ fi
 
 if [ "$ID" = "ubuntu" ]; then
     IS_UBUNTU=true
+fi
+
+if [ "$ID" = "opensuse-tumbleweed" ]; then
+    IS_TUMBLE=true
 fi
 
 if [ "$LINUX_VERSION_NAME" = "Red Hat Enterprise Linux" ]; then
@@ -104,6 +115,7 @@ dumpVersion() {
     echo "Based on ArchLinux...: $IS_ARCH_BASED"
     echo "Based on Redhat......: $IS_RHEL_BASED"
     echo "Based on Debian......: $IS_DEBIAN_BASED"
+    echo "Based on OpenSUSE....: $IS_SUSE_BASED"
     echo "IsArch...............: $IS_ARCH"
     echo "IsArco...............: $IS_ARCO"
     echo "IsManjaro............: $IS_MANJARO"
@@ -111,6 +123,7 @@ dumpVersion() {
     echo "IsRHEL...............: $IS_RHEL"
     echo "IsCentOS.............: $IS_CENTOS"
     echo "IsDebian.............: $IS_DEBIAN"
+    echo "IsTumbleweed.........: $IS_TUMBLE"
     echo "Package Manager......: $PACTOOL"
     echo "AUR Manager..........: $PACKER"
     echo "Packer Params........: $PACKER_ALL"

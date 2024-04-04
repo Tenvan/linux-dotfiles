@@ -4,12 +4,13 @@
     global_init:
       - at
       - curl
-      - dnsutils
       - jq
       - time
       - zsh
       - rsync
       - nano
+      - unzip
+      - awk
 
       # system tools
       - cockpit
@@ -20,30 +21,23 @@
       - cockpit-storaged
       - cockpit-system
 
+      - cronie
+
     archlinux_based_init:
-      - acpi
       - arj
       - ark
-      - bpytop
       - clamav
-      - cronie
       - dpkg
       - fastfetch
       - figlet
       - fzf
       - grc
       - gvfs-smb
-      - htop
-      - hwinfo
-      - iftop
       - lsd
       - multitail
-      - numlockx
       - openconnect
       - openssh
       - p7zip
-      - python-mutagen
-      - stow
       - toilet
       - unclutter
       - unrar
@@ -94,25 +88,18 @@
       # installation of important editors
 
       # from archlinux
-      - acpi
       - arj
       - ark
-      - bpytop
       - clamav
       - dpkg
       - screenfetch
       - figlet
       - fzf
       - grc
-      - htop
-      - hwinfo
-      - iftop
       - lsd
       - multitail
-      - numlockx
       - openconnect
       - python3-mutagen
-      - stow
       - toilet
       - unclutter
       - unrar-free
@@ -143,36 +130,23 @@
       - w3m
         
     rhel_based_init:
-      - openssh
-      - unzip
-
-      # installation of important editors
-      - cronie
-
       # system tools
+      - openssh
       - subscription-manager-cockpit
 
     fedora_init:
-      - acpi
       - arj
       - ark
-      - bpytop
       - clamav
       - dpkg
       - fastfetch
       - figlet
       - fzf
       - grc
-      - htop
-      - hwinfo
-      - iftop
       - lsd
       - most
       - multitail
-      - numlockx
       - openconnect
-      - python-mutagen
-      - stow
       - toilet
       - unclutter
       - unrar
@@ -212,6 +186,56 @@
       # language files
       - man-pages-de
 
+    suse_based_init:
+      - openssh
+      - arj
+      - ark
+      - clamav
+      - dpkg
+      - fastfetch
+      - figlet
+      - fzf
+      - grc
+      - lsd
+      - most
+      - multitail
+      - openconnect
+      - p7zip
+      - toilet
+      - unclutter
+      - unrar
+      - ripgrep
+
+      # system tools
+      - cockpit
+      - cockpit-podman
+      - cockpit-machines
+      - cockpit-packagekit
+      - cockpit-storaged
+
+      # podman + docker
+      - docker
+      - docker-buildx
+      - docker-compose
+      - docker-zsh-completion
+      - yast2-docker
+      - podman
+
+      # file manager
+      - ranger
+
+      # useful tools for ranger
+      - atool
+      - elinks
+      - highlight
+      - libcaca
+      - mediainfo
+      - odt2txt
+      - w3m
+
+      # language files
+      - man-pages-de
+
     manjaro_init:
       - samba
       - manjaro-settings-samba
@@ -236,7 +260,7 @@
         mode: u+x,g+x,o+x
 
     - name: Run Oh-My-Posh install script
-      shell: "{{ build_dir }}/install_oh-my-posh.sh"
+      shell: "{{ build_dir }}/install_oh-my-posh.sh"      
 
     - name: Zsh set as default shell
       user:

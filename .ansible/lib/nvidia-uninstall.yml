@@ -20,6 +20,9 @@
     is_debian: false
     is_ubuntu: false
 
+    is_suse_based: false
+    is_tumble: false
+
   tasks:
     - name: "=====> Initiate <====="
       include_tasks: inits.yml
