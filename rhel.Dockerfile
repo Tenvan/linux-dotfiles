@@ -7,9 +7,6 @@ ENV DOCKER_CONTAINER=true
 ARG RHEL_USER
 ARG RHEL_PASSWORD
 
-ENV RHEL_USER=StiRa
-ENV RHEL_PASSWORD=Betty74#linux!
-
 RUN yum -y update && yum clean all
 RUN subscription-manager register --username $RHEL_USER --password $RHEL_PASSWORD --auto-attach
 
