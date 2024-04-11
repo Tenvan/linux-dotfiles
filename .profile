@@ -42,6 +42,7 @@ for path_candidate in \
   /opt/local/sbin \
   /usr/local/bin \
   /usr/local/sbin \
+  ~/.dotnet \
   ~/.cabal/bin \
   ~/.cargo/bin \
   ~/.rbenv/bin \

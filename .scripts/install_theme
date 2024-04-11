@@ -4,5 +4,5 @@
 
 csource "$HOME/.profile"
 
-ansible-playbook ~/.ansible/theme.yml
+ansible-playbook ~/.ansible/theme.yml --flush-cache
 errorCheck "run ansible playbook"

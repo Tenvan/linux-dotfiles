@@ -13,36 +13,57 @@
 ######################
 # add some yum repos #
 ######################
-- name: Add VSCode Repository
-  when: is_rhel_based
-  yum_repository:
-    name: vscode
-    description: Visual Studio Code
-    baseurl: https://packages.microsoft.com/yumrepos/vscode
-    gpgcheck: true
-    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+- block:
+  - name: Add VSCode Repository [RHEL]
+    when: is_rhel_based
+    yum_repository:
+      name: vscode
+      description: Visual Studio Code
+      baseurl: https://packages.microsoft.com/yumrepos/vscode
+      gpgcheck: true
+      gpgkey: https://packages.microsoft.com/keys/microsoft.asc
 
-- name: Add Microsoft Repository
-  when: is_rhel_based
-  yum_repository:
-    name: packages-microsoft-com-prod
-    description: Microsoft RedHat repository
-    baseurl: https://packages.microsoft.com/rhel/9.0/prod/
-    gpgcheck: true
-    enabled: true
-    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+  - name: Add VSCode Repository [OpenSUSE]
+    when: is_suse_based
+    community.general.zypper_repository:
+      name: vscode
+      runrefresh: true
+      auto_import_keys: true
+      description: Visual Studio Code
+      repo: https://packages.microsoft.com/yumrepos/vscode
 
-- name: Add Microsoft Edge Repository
-  when: is_rhel_based
-  yum_repository:
-    name: packages-microsoft-com-prod
-    description: Microsoft RedHat repository
-    baseurl: https://packages.microsoft.com/yumrepos/edge
-    gpgcheck: true
-    enabled: true
-    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+- block:
+  - name: Add Microsoft Dotnet Repository [RHEL]
+    when: is_rhel_based
+    yum_repository:
+      name: packages-microsoft-com-prod
+      description: Microsoft Prod repository (Dotnet)
+      baseurl: https://packages.microsoft.com/rhel/9.0/prod/
+      gpgcheck: true
+      enabled: true
+      gpgkey: https://packages.microsoft.com/keys/microsoft.asc
 
-- name: Add IBM Odbc
+- block:
+  - name: Add Microsoft Edge Repository [RHEL]
+    when: is_rhel_based
+    yum_repository:
+      name: packages-microsoft-com-prod
+      description: Microsoft Edge repository
+      baseurl: https://packages.microsoft.com/yumrepos/edge
+      gpgcheck: true
+      enabled: true
+      gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+
+  - name: Add Microsoft Edge Repository [OpenSUSE]
+    when: is_suse_based
+    community.general.zypper_repository:
+      name: microsoft-edge
+      runrefresh: true
+      auto_import_keys: true
+      description: Microsoft Edge repository
+      repo: https://packages.microsoft.com/yumrepos/edge
+
+- name: Add IBM Odbc [RHEL]
   when: is_rhel_based
   yum_repository:
     name: ibmi-acs
@@ -50,7 +71,7 @@
     baseurl: https://public.dhe.ibm.com/software/ibmi/products/odbc/rpms
     gpgcheck: false
 
-- name: Add repository into repo.d list for yum
+- name: Add repository into repo.d list for yum [RHEL]
   when: is_rhel_based
   yum_repository:
     name: docker-ce
@@ -60,14 +81,14 @@
     gpgcheck: true
     gpgkey: "https://download.docker.com/linux/{{ rh_distribution }}/gpg"
 
-- name: Update dnf packages
+- name: Update dnf packages [RHEL]
   when: is_rhel_based
   dnf:
     name: "*"
     state: latest
     update_only: true
 
-- name: Install dnf-utils if on Fedora
+- name: Install dnf-utils if on Fedora [RHEL]
   when: is_rhel_based
   package:
     name: dnf-utils

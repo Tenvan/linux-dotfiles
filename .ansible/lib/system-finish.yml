@@ -41,7 +41,7 @@
     - name: Ventoy version
       set_fact:
         ventoy_version: "1.0.97"
-        
+
     - name: Remove archive
       file:
         state: absent
@@ -106,12 +106,12 @@
     enabled: true
   when: is_arch_based
 
-- name: Enable and start libvirtd, if not started
-  service:
-    name: libvirtd
-    state: started
-    enabled: true
-  when: lookup('env', 'DOCKER_CONTAINER') != "true"
+#- name: Enable and start libvirtd, if not started
+#  service:
+#    name: libvirtd
+#    state: started
+#    enabled: true
+#  when: lookup('env', 'DOCKER_CONTAINER') != "true"
 
 - name: enable and start cups.socket, if not started
   service:

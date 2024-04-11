@@ -13,6 +13,10 @@
       # NetworkManager Addons
       - cockpit-networkmanager
 
+      # display manager
+      - lightdm
+      
+
     rhel_based_init:
       # printer setup
       - hplip
@@ -92,9 +96,6 @@
       - printer-driver-brlaser
       - python3-PyQt4
 
-      # display manager
-      - lightdm
-      
       # plasma desktop
       - "@kde-desktop"
       - kscreen

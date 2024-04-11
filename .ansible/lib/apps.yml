@@ -6,7 +6,37 @@
       - gimp
       - inkscape
 
+      # Browser
+      - microsoft-edge-stable
 
+    suse_based_init:
+      - baobab
+
+      # remmina
+      - freerdp
+
+      # Browser
+      - microsoft-edge-stable
+
+      # graphics
+      - GraphicsMagick
+
+      # Office
+      - libreoffice
+      - libreoffice-l10n-de
+      - libreoffice-icon-themes
+      - libreoffice-branding-openSUSE 
+      - libreoffice-gtk3
+      - libreoffice-qt5
+      - libreoffice-writer-extensions
+
+      # Development
+      - code
+
+      # tools
+      - krusader
+      - kdiff3
+      - krename
       
     fedora_init:
       # Browser
@@ -29,9 +59,6 @@
       # remmina
       - freerdp
 
-      # Browser
-      - firefox-i18n-de
-
       # Office
       - libreoffice-fresh
       - libreoffice-fresh-de
@@ -50,11 +77,6 @@
 
       # remmina
       - freerdp
-
-      # Browser
-      - microsoft-edge-stable
-      - firefox
-      - firefox-langpacks
 
       # graphics
       - GraphicsMagick

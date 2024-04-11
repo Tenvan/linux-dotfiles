@@ -22,24 +22,14 @@
       - ruby
       - tk
 
-    archlinux_based_init:
-      - base-devel
-      - colorgcc
-      - nuget
-      - python-pip
-      - python-pipx
+    suse_based_init:
       - rust
 
-      # DotNet/Mono Setup
-      - dotnet-sdk
-      - mono
-      - mono-msbuild
+      # - nuget
+      - mono-complete
 
     rhel_based_init:
       - rust
-
-      # DotNet/Mono Setup
-      - dotnet-sdk-8.0
 
     fedora_init:
       - colorgcc
@@ -54,11 +44,20 @@
       - python3-pip
       - pipx
 
-    debian_based_init:
-      - rust-all
+    archlinux_based_init:
+      - base-devel
+      - colorgcc
+      - nuget
+      - python-pip
+      - python-pipx
+      - rust
 
       # DotNet/Mono Setup
-      - dotnet-sdk-8.0
+      - mono
+      - mono-msbuild
+
+    debian_based_init:
+      - rust-all
 
       # missing python moduls
       - python3-pip
@@ -66,7 +65,16 @@
 
   include_tasks: install.yml
 
+- name: Install Dotnet
+  become: false
+  shell: |
+    wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+    sh dotnet-install.sh
+    rm dotnet-install.sh
+
 - name: Install Powershell
   shell: dotnet tool install --global PowerShell
   ignore_errors: true
+
+       
 

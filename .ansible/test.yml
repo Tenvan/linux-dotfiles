@@ -4,12 +4,19 @@
   name: "==========> Install Test <=========="
   become: true
 
-  vars:
-    is_dry: true
-    
   tasks:
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
 
-    # - name: "=====> Pre Installation Prepare <====="
-    #   include_tasks: lib/prepare.yml
+    - name: "=====> Pre Installation Prepare <====="
+      include_tasks: lib/prepare.yml
+
+    - name: Define testing packages
+      vars:
+        global_init:
+          # - chromium
+          # - google-chrome
+
+
+      include_tasks: lib/install.yml
+

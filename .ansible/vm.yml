@@ -10,3 +10,6 @@
 
     - name: "=====> Install Vms Packages <====="
       include_tasks: lib/system-vm.yml
+
+    - name: "=====> Install Vms Packages <====="
+      include_tasks: lib/workstation-vm.yml

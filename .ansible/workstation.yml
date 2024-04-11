@@ -20,8 +20,5 @@
     - name: "=====> Install Workstation Layout Packages <====="
       include_tasks: lib/workstation-layout.yml
 
-    - name: "=====> Install Vms Packages <====="
-      include_tasks: lib/workstation-vm.yml
-
     - name: "=====> Post Installation Finishing <====="
       include_tasks: lib/workstation-finish.yml

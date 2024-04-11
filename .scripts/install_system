@@ -12,6 +12,6 @@ errorCheck "install ansible-galaxy roles"
 ansible-playbook ~/.ansible/sudo.yml
 errorCheck "set sudoer rights"
 
-ansible-playbook ~/.ansible/system.yml
+ansible-playbook ~/.ansible/system.yml --flush-cache
 errorCheck "run ansible playbook"
 

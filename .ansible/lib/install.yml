@@ -60,6 +60,8 @@
       become: true
       zypper:
         state: present
+        update_cache: true
+        disable_recommends: false
         name: "{{ suse_combined_array }}"
       when: is_dry is false and suse_combined_array|length > 0
 

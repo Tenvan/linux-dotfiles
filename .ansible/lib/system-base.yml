@@ -132,7 +132,7 @@
       - mediainfo
       - odt2txt
       - w3m
-        
+ 
     rhel_based_init:
       # system tools
       - openssh
@@ -220,6 +220,9 @@
       - docker-zsh-completion
       - yast2-docker
       - podman
+
+      # editoren
+      - micro-editor
 
       # file manager
       - ranger
