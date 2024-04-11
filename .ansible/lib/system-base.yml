@@ -187,6 +187,9 @@
       - arj
       - ark
       - clamav
+      - cups
+      - cups-filters
+      - poppler-tools
       - dpkg
       - fastfetch
       - figlet

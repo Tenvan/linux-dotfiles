@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Konfiguration SQL Server
-export image_name=mcr.microsoft.com/mssql/rhel/server:2022-latest
+export image_name=mcr.microsoft.com/mssql/rhel/server:latest
 export container_name=LocalSqlServer
 export data_dir=/srv/mssql
 export sa_password=time123#
