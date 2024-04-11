@@ -118,14 +118,12 @@
     name: cups.socket
     state: started
     enabled: true
-  when: lookup('env', 'DOCKER_CONTAINER') != "true"
 
 - name: Enable and start cups.service, if not started
   service:
     name: cups.service
     state: started
     enabled: true
-  when: lookup('env', 'DOCKER_CONTAINER') != "true"
 
 - name: enable and start podman, if not started
   service:
@@ -140,3 +138,30 @@
     state: started
     enabled: true
   when: lookup('env', 'DOCKER_CONTAINER') != "true"
+
+- name: Zsh set as default shell
+  user:
+    name: "{{ user_id }}"
+    shell: "/usr/bin/zsh"
+  become: true
+
+- block:
+    - name: remove old Oh-My-Posh install script
+      file:
+        state: absent
+        path: "{{ build_dir }}/install_oh-my-posh.sh"
+
+    - name: Download Oh-My-Posh install script
+      uri:
+        url: https://ohmyposh.dev/install.sh
+        dest: "{{ build_dir }}/install_oh-my-posh.sh"
+        mode: u+x,g+x,o+x
+
+    - name: Run Oh-My-Posh install script
+      shell: "{{ build_dir }}/install_oh-my-posh.sh"      
+
+    - name: Zsh set as default shell
+      user:
+        name: "{{ user_id }}"
+        shell: "/usr/bin/zsh"
+      become: true

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+. "$HOME/.scripts/defs"
+
+csource "$HOME/.profile"
+
+ansible-playbook ~/.ansible/apps.yml --flush-cache
+errorCheck "run ansible playbook"

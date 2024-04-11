@@ -7,7 +7,6 @@ csource "$HOME/.profile"
 ansible-playbook ~/.ansible/workstation.yml --flush-cache
 errorCheck "run ansible playbook"
 
-exit 0
 # Init Install
 initInstall "install_printer"
 

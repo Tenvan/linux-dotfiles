@@ -21,6 +21,11 @@
       - cockpit-system
 
       - cronie
+      - cups
+      - cups-pdf
+
+      # Flatpak
+      - flatpak
 
     archlinux_based_init:
       - arj
@@ -167,14 +172,6 @@
       - containerd.io
       - docker-buildx-plugin
       - docker-compose-plugin
-
-      # installation of important editors
-      - micro
-
-      # file manager
-      - ranger
-
-      # useful tools for ranger
       - elinks
       - highlight
       - libcaca
@@ -246,24 +243,3 @@
       - procs
 
   include_tasks: install.yml
-
-- block:
-    - name: remove old Oh-My-Posh install script
-      file:
-        state: absent
-        path: "{{ build_dir }}/install_oh-my-posh.sh"
-
-    - name: Download Oh-My-Posh install script
-      uri:
-        url: https://ohmyposh.dev/install.sh
-        dest: "{{ build_dir }}/install_oh-my-posh.sh"
-        mode: u+x,g+x,o+x
-
-    - name: Run Oh-My-Posh install script
-      shell: "{{ build_dir }}/install_oh-my-posh.sh"      
-
-    - name: Zsh set as default shell
-      user:
-        name: "{{ user_id }}"
-        shell: "/usr/bin/zsh"
-      become: true

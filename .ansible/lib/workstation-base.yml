@@ -5,59 +5,35 @@
   vars:
     global_init:
       # global
-      - xterm
       - zsh
-
-      # utilities from gnome
-      - gnome-disk-utility
-      - gnome-system-monitor
-      - gnome-logs
-      - gnome-calculator
-
-      # printer setup
-      - foomatic-db
-      - ghostscript
-      - hplip
 
       # utils for editors
       - bash-completion
-      - clang
-      - gdb
-      - graphviz
-
-      # language files
-      - mythes-de
 
       # NetworkManager Addons
       - cockpit-networkmanager
 
-      # Flatpak
-      - flatpak
-
     rhel_based_init:
       # printer setup
+      - hplip
       - foomatic
       - foomatic-db
       - foomatic-db-ppds
-      - cups-devel
       - libusb1-devel
       - sane-backends-devel
       - net-snmp-devel
-      - python3-devel
-      - xsane
-      - gutenprint
+      - python3-devel      
+
       
       # display manager
       - gdm
       - xkill
 
-    fedora_init:
-      # global
-      - ansible-lint
-      - arandr
-      - clamtk
-      - copyq
-      - flameshot
+      # utils for editors
+      - clang
+      - gdb      
+      - graphviz
+
       - gparted
       - inotify-tools
       - kitty
@@ -68,7 +44,7 @@
 
       # system tools
       - grub-customizer
-      #- ponymix
+
 
       # config tools
       - lxappearance
@@ -90,7 +66,6 @@
       - python-notify2
 
       # printer setup
-      - cups-pdf
       - system-config-printer
 
       # utils for editors
@@ -111,9 +86,6 @@
 
       # installation of important editors
       - code
-
-      # utilities from gnome
-      - gnome-system-log
 
       # printer setup
       - kde-print-manager
@@ -138,9 +110,6 @@
       - docker-compose
       - xorg-xkill
 
-      # utilities from gnome
-      - gnome-system-tools
-
       # Nemo
       - nemo-media-columns
       - nemo-mediainfo-tab
@@ -148,6 +117,7 @@
       - nemo-share
 
       # printer setup
+      - hplip
       - brother-mfc-j4420dw
       - foomatic-db-engine
       - foomatic-db-gutenprint-ppds
@@ -166,6 +136,15 @@
       # language files
       - languagetool
 
+      # utils for editors
+      - clang
+      - gdb
+      - graphviz
+      # utils for editors
+      - clang
+      - gdb
+      - graphviz
+
       # display manager
       - gdm
       - sddm
@@ -173,7 +152,12 @@
     arcolinux_init:
       # Meta Packages
       - arcolinux-meta-log
-      - arcolinux-meta-fun
+      - arcolinux-meta-fun      
+      # utils for editors
+      - clang
+      - gdb
+      - graphviz
+
       - arcolinux-meta-samba
       - arcolinux-meta-utilities
 
@@ -192,7 +176,14 @@
       - xfce4-meta
     
     debian_based_init:
+      # printer setup
+      - hplip
       - printer-driver-gutenprint
+
+      # utils for editors
+      - clang
+      - gdb
+      - graphviz
 
     cargo_init:
       - git-delta

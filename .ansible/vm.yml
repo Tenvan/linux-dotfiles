@@ -8,5 +8,5 @@
     - name: "=====> Initiate <====="
       include_tasks: lib/inits.yml
 
-    - name: install JetBrains Toolbox
-      shell: "curl -fsSL https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash"
+    - name: "=====> Install Vms Packages <====="
+      include_tasks: lib/system-vm.yml

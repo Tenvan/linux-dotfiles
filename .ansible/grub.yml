@@ -9,25 +9,6 @@
     - role: robertdebock.bootstrap
 
   vars:
-    is_dry: false
-
-    is_arch_based: false
-    is_arch: false
-    is_arcolinux: false
-    is_manjaro: false
-
-    is_rhel_based: false
-    is_rhel: false
-    is_fedora: false
-    is_centos: false
-
-    is_debian_based: false
-    is_debian: false
-    is_ubuntu: false
-
-    is_suse_based: false
-    is_tumble: false
-
     grub_theme: 13
 
   tasks:
