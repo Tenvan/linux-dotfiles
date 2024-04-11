@@ -23,4 +23,4 @@ sudo podman ps -a
 echo "sa Passwort: $sa_password"
 
 # echo "Logge: $container_name"
-# sudo podman logs -f --tail 100 $container_name
+sudo podman logs -f --tail 100 $container_name
