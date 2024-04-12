@@ -56,6 +56,7 @@ alias userlist="cut -d: -f1 /etc/passwd"
 # pacman or pm
 alias pacman='sudo pacman --color auto'
 alias update-fc='sudo fc-cache -fv'
+alias upall="$HOME/.bin/update-all"
 
 #package manager
 if [ $IS_ARCH_BASED = true ]; then
@@ -64,7 +65,6 @@ if [ $IS_ARCH_BASED = true ]; then
 	alias uninst="$PACTOOL -Rcn"
 	alias search="$PACTOOL -Ss --bottomup"
 	alias upkeys="sudo pacman-key --refresh-keys"
-	alias upall="$HOME/.bin/update-all"
 fi
 
 if [ $IS_RHEL_BASED = true ]; then
@@ -72,7 +72,13 @@ if [ $IS_RHEL_BASED = true ]; then
 	alias inst="sudo $PACTOOL install -y"
 	alias uninst="sudo $PACTOOL remove"
 	alias search="sudo $PACTOOL search"
-	alias upall="$HOME/.bin/update-all"
+fi
+
+if [ $IS_SUSE_BASED = true ]; then
+	alias list="sudo $PACTOOL"
+	alias inst="sudo $PACTOOL install -y"
+	alias uninst="sudo $PACTOOL remove"
+	alias search="sudo $PACTOOL search"
 fi
 
 #get the error messages from journalctl

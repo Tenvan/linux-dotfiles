@@ -6,36 +6,6 @@
   become: false
   shell: curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
-- name: Set doku header in cronie config
-  become: true
-  blockinfile:
-    path: "/var/spool/cron/{{ user_id }}"
-    create: true
-    marker: "# {mark} ANSIBLE MANAGED BLOCK cronie header"
-    block: |
-      # In this section, we will show you different crontab syntax with examples.
-      #
-      # MIN HOUR  DOM MON     DOW  DESCRIPTION
-      #
-      # 10  09    05  02      *    Execute a job on 5th Feb 09:10 AM
-      # *   *     *   *       *    Execute a job on every minutes of every hour of every day
-      # 10  14    *   *       *    Execute a job on every day at 02:10 PM
-      # */5 *     *   *       *    Execute a job on every 5 minutes of every hour of every day
-      # 15  15    *   *       1-4  Execute a job at 03:15 PM on Monday to Friday
-      # 10  05    2   *       *    Execute a job on every month on 2nd date at 05:10 AM
-      # 00  08,11 *   *       *    Execute a job every day at 08:00 AM and 11:00 AM
-      # 00  10-18 *   *       *    Execute a job every day at every hours during 10AM to 06:00 PM
-      # 00  */2   *   *       *    Execute a job at every 2 hours every day
-      # 00  11    *   mar,dec *    Execute a job on March and December at 11:00 AM
-      # @hourly                    Execute a job once an hour
-      # @daily                     Execute a job once a day
-      # @weekly                    Execute a job once a week
-      # @monthly                   Execute a job once a month
-      # @yearly                    Execute a job once a year
-      # @reboot                    Execute the job when the system boots
-    owner: "{{ user_id }}"
-    group: "{{ user_id }}"
-    mode: u+rwx,g+rx,o+rx
 
 - name: Install ranger DevIcons
   become: false
@@ -162,3 +132,62 @@
   become: true
   command: gdk-pixbuf-query-loaders-64 --update-cache
   when: is_rhel_based
+
+- name: Add Printer Defs 
+  become: true
+  blockinfile:
+    path: "/usr/share/hplip/data/models/models.dat"
+    create: false
+    marker: "# {mark} ANSIBLE MANAGED BLOCK HP MFP 178"
+    block: |
+      [hp_color_laser_mfp_178_179]
+      align-type=0
+      clean-type=0
+      farbe-kal-typ=0
+      kopier-typ=0
+      eingebetteter-server-typ=1
+      fax-typ=7
+      fw-download=False
+      bild=hp_farbig_laserjet_cp2025.png
+      io-mfp-mode=1
+      io-modus=1
+      io-support=14
+      job-storage=0
+      zeilenvorschub-kal-typ=0
+      model1=Terrible HP Farblaser-MFP 178nwg
+      monitor-typ=0
+      panel-check-type=0
+      pcard-typ=0
+      plugin=0
+      plugin-grund=65
+      Strom-Einstellungen=0
+      pq-diag-typ=0
+      r-typ=0
+      r0-agent1-kind=4
+      r0-agent1-sku=CE311A
+      r0-agent1-typ=4
+      r0-agent2-kind=4
+      r0-agent2-sku=CE310A
+      r0-agent2-typ=1
+      r0-agent3-typ=4
+      r0-agent3-sku=CE313A
+      r0-agent3-typ=5
+      r0-agent4-kind=4
+      r0-agent4-sku=CE312A
+      r0-agent4-typ=6
+      scan-src=3
+      scannen-typ=5
+      status-batterie-check=0
+      status-dynamische-zähler=0
+      status-typ=10
+      support-released=True
+      unterstützung-subtype=219b2b
+      support-type=2
+      unterstützung-ver=3.13.11
+      tech-class=Hbpl1
+      familienklasse=PCLM-COLOR
+      tech-subclass=Color
+      tech-type=4
+      usb-pid=332a
+      usb-vid=3f0
+      wifi-config=3

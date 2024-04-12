@@ -1,6 +1,21 @@
 ---
 - name: DefineLayoutPackages
   vars:
+    suse_based_init:
+      # fonts
+      - powerline-fonts
+      - terminus-bitmap-fonts
+      - terminus-ttf-fonts
+      - twemoji-color-font
+      - symbols-only-nerd-fonts
+
+      # jetbrains fonts
+      - jetbrains-mono-fonts
+
+      # gtk-themes
+      - breeze-gtk
+      - materia-gtk-theme
+
 
     archlinux_based_init:
       # fonts
@@ -60,13 +75,9 @@
       # gtk-themes
       - arc-kde
       - adwaita-blue-gtk-theme
-      - adwaita-blue-gtk-theme
       - breeze-gtk
-      - deepin-gtk-theme
       - materia-gtk-theme
       - materia-kde
-      - numix-gtk-theme
-      - sweet-gtk-theme
 
     arcolinux_init:
       # wallpapers, themes and icons
@@ -127,50 +138,14 @@
 
   include_tasks: install.yml
 
-# install themes
-- name: install some gtk themes
-  block:
-    - name: Clone Valyrian repository
-      git:
-        repo: "https://github.com/rtlewis1/GTK.git"
-        single_branch: true
-        clone: yes
-        version: VALYRIAN
-        dest: "{{ build_dir }}/themes/Valyrian"
+- name: clone https://github.com/ryanoasis/nerd-fonts.git
+  git:
+    repo: "https://github.com/ryanoasis/nerd-fonts.git"
+    clone: true
+    depth: 1
+    dest: "{{ build_dir }}/nerd-fonts"
 
-    - name: Synchronization Valyrian themes
-      ansible.posix.synchronize:
-        src: "{{ build_dir }}/themes/Valyrian/"
-        dest: "{{ themes_dir }}/"
-        owner: true
-        rsync_opts:
-          - "--chown={{ user_id }}:{{ user_id }}"
-          - "--exclude=.git"
-          - "--exclude=README.md"
-          - "--exclude=VALYRIAN.conf"
-          - "--include=VALYRIAN*/*"
-
-    - name: Clone Catppuccin repository
-      git:
-        repo: "https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme.git"
-        single_branch: true
-        clone: true
-        dest: "{{ build_dir }}/themes/Catppuccin"
-
-    - name: Synchronization Catppuccin themes
-      ansible.posix.synchronize:
-        src: "{{ build_dir }}/themes/Catppuccin/themes/"
-        dest: "{{ themes_dir }}/"
-        owner: true
-        rsync_opts:
-          - "--chown={{ user_id }}:{{ user_id }}"
-          - "--exclude=.git"
-          - "--exclude=README.md"
-          - "--exclude=VALYRIAN.conf"
-          - "--include=VALYRIAN*/*"
-
-- name: Synchronization themes in /usr/share
-  become: true
-  ansible.posix.synchronize:
-    src: "{{ themes_dir }}/"
-    dest: "/usr/share/themes/"
+- name: Install Nerd Fonts
+  shell: |
+    cd "{{ build_dir }}/nerd-fonts"
+    sh install.sh

@@ -7,6 +7,9 @@
       - gtk3-devel
       - gtk4-devel
 
+    rhel_based_init:
+      - shellcheck
+
     archlinux_based_init:
       - gitflow-avh
       - gradle
@@ -18,6 +21,10 @@
       # DotNet/Mono Setup
       - pass
       - shellcheck
+    
+    suse_based_init:
+      # utils for editors
+      - ShellCheck
 
   include_tasks: install.yml
 

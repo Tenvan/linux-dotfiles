@@ -43,6 +43,7 @@ for path_candidate in \
   /usr/local/bin \
   /usr/local/sbin \
   ~/.dotnet \
+  ~/.dotnet/tools \
   ~/.cabal/bin \
   ~/.cargo/bin \
   ~/.rbenv/bin \

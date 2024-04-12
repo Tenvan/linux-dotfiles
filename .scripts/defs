@@ -30,7 +30,7 @@ export IS_DEBIAN=false
 export IS_UBUNTU=false
 export IS_TUMBLE=false
 
-DEBUG=true
+DEBUG=false
 
 ERROR_PAKAGE_UNINST=
 ERROR_PAKAGE_INST=

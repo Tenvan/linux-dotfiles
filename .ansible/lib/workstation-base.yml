@@ -15,7 +15,66 @@
 
       # display manager
       - lightdm
+
+      # remmina
+      - remmina
+      - remmina-lang
+      - remmina-plugin-kwallet
+      - remmina-plugin-rdp
+      - remmina-plugin-spice
+      - remmina-plugin-vnc
+
+      # remmina tools
+      - freerdp
+
+    suse_based_init:
+      # printer setup
+      - hplip
+      #- foomatic
+      #- foomatic-db
+      #- foomatic-db-ppds
       
+      # display manager
+      - gdm
+      - xkill
+
+      # utils for editors
+      - clang
+      - gdb      
+      - graphviz
+
+      - gparted
+      - inotify-tools
+      - kitty
+      - qbittorrent
+
+      # utilities from gnome
+      - qt6ct
+
+      # config tools
+      - lxappearance
+
+      # other
+      - bleachbit
+
+      # printer setup
+      - system-config-printer
+
+      # language files
+      - aspell-de
+
+      # NetworkManager Addons
+      - NetworkManager-openconnect
+      - NetworkManager-openvpn
+      - NetworkManager-vpnc
+      - NetworkManager-fortisslvpn
+
+      # printer setup
+      - printer-driver-brlaser
+
+      # plasma desktop
+      - kcron
+      - yakuake
 
     rhel_based_init:
       # printer setup
@@ -23,11 +82,6 @@
       - foomatic
       - foomatic-db
       - foomatic-db-ppds
-      - libusb1-devel
-      - sane-backends-devel
-      - net-snmp-devel
-      - python3-devel      
-
       
       # display manager
       - gdm
@@ -72,29 +126,20 @@
       # printer setup
       - system-config-printer
 
-      # utils for editors
-      - shellcheck
-
       # language files
       - aspell-de
 
       # NetworkManager Addons
-      - NetworkManager-openconnect-gnome
-      - NetworkManager-openvpn-gnome
-      - NetworkManager-vpnc-gnome
       - NetworkManager-openconnect
       - NetworkManager-openvpn
       - NetworkManager-vpnc
       - NetworkManager-fortisslvpn
-      - NetworkManager-fortisslvpn-gnome
 
       # installation of important editors
       - code
 
       # printer setup
-      - kde-print-manager
       - printer-driver-brlaser
-      - python3-PyQt4
 
       # plasma desktop
       - "@kde-desktop"
@@ -185,6 +230,10 @@
       - clang
       - gdb
       - graphviz
+
+      # remmina
+      - freerdp2-wayland
+      - freerdp2-x11
 
     cargo_init:
       - git-delta

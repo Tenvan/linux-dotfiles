@@ -23,6 +23,7 @@
       - cronie
       - cups
       - cups-pdf
+      - zoxide
 
       # Flatpak
       - flatpak

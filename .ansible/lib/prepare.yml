@@ -63,6 +63,21 @@
       description: Microsoft Edge repository
       repo: https://packages.microsoft.com/yumrepos/edge
 
+- block:
+  - name: Add grub-customizer Repository [OpenSUSE]
+    when: is_suse_based
+    community.general.zypper_repository:
+      runrefresh: true
+      auto_import_keys: true
+      repo: https://download.opensuse.org/repositories/home:ecsos/openSUSE_Tumbleweed/home:ecsos.repo
+
+  - name: Add copyq Repository [OpenSUSE]
+    when: is_suse_based
+    community.general.zypper_repository:
+      runrefresh: true
+      auto_import_keys: true
+      repo: https://download.opensuse.org/repositories/home:weearcm/openSUSE_Tumbleweed/home:weearcm.repo
+
 - name: Add IBM Odbc [RHEL]
   when: is_rhel_based
   yum_repository:

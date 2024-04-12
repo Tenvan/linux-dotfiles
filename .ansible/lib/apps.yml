@@ -12,9 +12,6 @@
     suse_based_init:
       - baobab
 
-      # remmina
-      - freerdp
-
       # Browser
       - microsoft-edge-stable
 
@@ -50,15 +47,9 @@
       - kdiff3
       - krename
 
-      # remmina
-      - remmina
-
     arch_based_init:
       - baobab-gtk3
       
-      # remmina
-      - freerdp
-
       # Office
       - libreoffice-fresh
       - libreoffice-fresh-de
@@ -74,9 +65,6 @@
 
     rhel_based_init:
       - baobab
-
-      # remmina
-      - freerdp
 
       # graphics
       - GraphicsMagick
@@ -96,11 +84,6 @@
     manjaro_init:
       - imagemagick-full
     
-    debian_based_init:
-      # remmina
-      - freerdp2-wayland
-      - freerdp2-x11
-
     flatpak_init:
       # Communication
       - com.github.IsmaelMartinez.teams_for_linux
