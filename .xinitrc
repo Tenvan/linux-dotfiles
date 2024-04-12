@@ -5,14 +5,13 @@
 export DOT="$DOT;~/.xinitrc"
 
 # Theme Definitionen
-export MAIN_THEME="Silvery-GTK"
-export ICON_THEME="Papirus-Dark"
-export CURSOR_THEME="Bibata-Modern-Ice"
+export MAIN_THEME="Breeze"
+export ICON_THEME="Breeze-Dark"
+export CURSOR_THEME="Breeze_Light"
 export CURSOR_SIZE=32
 export THEME_FONT="Noto Sans Medium, 12"
-export SOUND_THEME="Smooth"
+export SOUND_THEME="ocean"
 export KVANTUM_THEME="kvantum"
-export WALLPAPER_THEME="island"
 
 # Gtk Config
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
