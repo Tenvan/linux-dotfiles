@@ -8,12 +8,10 @@
 
       # Browser
       - microsoft-edge-stable
+      - chromium
 
     suse_based_init:
       - baobab
-
-      # Browser
-      - microsoft-edge-stable
 
       # graphics
       - GraphicsMagick
