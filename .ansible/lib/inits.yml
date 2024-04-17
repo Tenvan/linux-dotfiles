@@ -38,71 +38,85 @@
   set_fact:
     themes_dir: "{{ home_dir }}/.themes"
 
-# is Arch based
-- name: Detect ArchLinux Family
-  set_fact:
-    is_arch_based: "{{ ansible_os_family.lower() == 'archlinux' }}"
-    grub_theme: 1
-
 # is Suse based
 - name: Detect OpenSUSE Family
   set_fact:
     is_suse_based: "{{ ansible_os_family.lower() == 'suse' }}"
-    grub_theme: 1
 
 # is Suse Tumbleweed
 - name: Detect OpenSUSE Tumbleweed
   set_fact:
     is_tumble: "{{ ansible_distribution.lower() == 'opensuse tumbleweed' }}"
-    grub_theme: 24
 
-# is Manjaro
-- name: Detect Manjaro
+# is Arch based
+- name: Detect ArchLinux Family
   set_fact:
-    is_manjaro: "{{ ansible_distribution.lower() == 'manjaro' }}"
-    grub_theme: 24
+    is_arch_based: "{{ ansible_os_family.lower() == 'archlinux' }}"
 
 # is ArcoLinux
 - name: Detect ArcoLinux
   set_fact:
     is_arcolinux: "{{ ansible_distribution.lower() == 'arcolinux' }}"
-    grub_theme: 46
+
+# is Manjaro
+- name: Detect Manjaro
+  set_fact:
+    is_manjaro: "{{ ansible_distribution.lower() == 'manjaro' }}"
 
 # is Redhat based
 - name: Detect Redhat Family
   set_fact:
     is_rhel_based: "{{ ansible_os_family.lower() == 'redhat' }}"
-    grub_theme: 30
 
 # is RHEL
 - name: Detect RHEL (Red Hat Enterprise Linux)
   set_fact:
     is_rhel: "{{ ansible_distribution.lower() == 'redhat'}}"
-    grub_theme: 30
 
 # is Fedora
 - name: Detect Fedora
   set_fact:
     is_fedora: "{{ ansible_distribution.lower() == 'fedora' }}"
-    grub_theme: 13
-
-# is CentOS
-- name: Detect CentOS
-  set_fact:
-    is_centos: "{{ ansible_distribution.lower() == 'centos' }}"
-    grub_theme: 6
 
 # is Debian based
 - name: Detect Debian Family
   set_fact:
     is_debian_based: "{{ ansible_os_family.lower() == 'debian' }}"
-    grub_theme: 8
 
 # is Debian
 - name: Detect Debian Family
   set_fact:
     is_debian: "{{ ansible_distribution.lower() == 'debian' }}"
-    grub_theme: 8
+
+- block:
+  - name: OpenSUSE Theme
+    set_fact:
+      grub_theme: 26
+    when: is_tumble or is_suse_based
+  - name: ArchLinux Theme
+    set_fact:
+      grub_theme: 1
+    when: is_arch_based
+  - name: Manjaro Theme
+    set_fact:
+      grub_theme: 24
+    when: is_manjaro
+  - name: Arco Linux Theme
+    set_fact:
+      grub_theme: 46
+    when: is_arcolinux
+  - name: RHEL Theme
+    set_fact:
+      grub_theme: 30
+    when: is_rhel or is_rhel_based
+  - name: Fedora Theme
+    set_fact:
+      grub_theme: 13
+    when: is_fedora
+  - name: Debian Theme
+    set_fact:
+      grub_theme: 8
+    when: is_debian or is_debian_based
 
 - name: Debug Diagnosis
   debug:
@@ -119,11 +133,11 @@
       - "is_rhel_based = {{ is_rhel_based }}"
       - "is_rhel = {{ is_rhel }}"
       - "is_fedora = {{ is_fedora }}"
-      - "is_centos = {{ is_centos }}"
       - "is_debian_based = {{ is_debian_based }}"
       - "is_debian = {{ is_debian }}"
       - "is_suse_based = {{ is_suse_based }}"
       - "is_tumble = {{ is_tumble }}"
+      - "grub_theme = {{ grub_theme }}"
       - "user_id = {{ user_id }}"
       - "home_dir = {{ home_dir }}"
       - "build_dir = {{ build_dir }}"

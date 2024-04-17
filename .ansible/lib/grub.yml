@@ -69,7 +69,7 @@
             chdir: "{{ build_dir }}/darkmatter-grub-theme"
         - name: Install new theme
           shell: |
-            echo 13 | sudo tee input.txt
+            echo {{ grub_theme }} | sudo tee input.txt
             echo 2 | sudo tee -a input.txt
             echo 1 | sudo tee -a input.txt
             python3 darkmatter-theme.py -i < input.txt
@@ -81,11 +81,11 @@
 
     - name: Grub-update MKCONFIG
       shell: grub2-mkconfig --output=/boot/grub2/grub.cfg
-      when: is_rhel_based is true
+      when: is_rhel_based
 
     - name: Grub-update UPDATE-GRUB
       shell: update-grub
-      when: is_arch_based is true
+      when: is_arch_based
 
     - set_fact:
         grub: "{{ lookup('file', '/etc/default/grub') }}"
@@ -95,7 +95,7 @@
         path: /etc/issue
         create: true
         block: |
-          1: \e[37mWelcome to Fedora!
+          1: \e[37mWelcome to {{ ansible_facts['distribution'] }}!
           2: \e[34m\r \s
           3: \e[32m\t
           4: \e[32m\d

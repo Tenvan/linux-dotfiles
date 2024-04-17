@@ -14,9 +14,6 @@
     - name: Define testing packages
       vars:
         global_init:
-          - chromium
           # - google-chrome
-          - grub-customizer
-          - copyq
 
       include_tasks: lib/install.yml

@@ -10,9 +10,19 @@
     path: "{{ build_dir }}"
     state: directory
 
-######################
-# add some yum repos #
-######################
+##################
+# add some repos #
+##################
+- name: Add Microsoft Dotnet Repository [RHEL]
+  when: is_rhel_based
+  yum_repository:
+    name: packages-microsoft-com-prod
+    description: Microsoft Prod repository (Dotnet)
+    baseurl: https://packages.microsoft.com/rhel/9.0/prod/
+    gpgcheck: true
+    enabled: true
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+
 - block:
   - name: Add VSCode Repository [RHEL]
     when: is_rhel_based
@@ -25,23 +35,13 @@
 
   - name: Add VSCode Repository [OpenSUSE]
     when: is_suse_based
-    community.general.zypper_repository:
+    zypper_repository:
       name: vscode
       runrefresh: true
       auto_import_keys: true
       description: Visual Studio Code
       repo: https://packages.microsoft.com/yumrepos/vscode
 
-- block:
-  - name: Add Microsoft Dotnet Repository [RHEL]
-    when: is_rhel_based
-    yum_repository:
-      name: packages-microsoft-com-prod
-      description: Microsoft Prod repository (Dotnet)
-      baseurl: https://packages.microsoft.com/rhel/9.0/prod/
-      gpgcheck: true
-      enabled: true
-      gpgkey: https://packages.microsoft.com/keys/microsoft.asc
 
 - block:
   - name: Add Microsoft Edge Repository [RHEL]
@@ -56,27 +56,26 @@
 
   - name: Add Microsoft Edge Repository [OpenSUSE]
     when: is_suse_based
-    community.general.zypper_repository:
+    zypper_repository:
       name: microsoft-edge
       runrefresh: true
       auto_import_keys: true
       description: Microsoft Edge repository
       repo: https://packages.microsoft.com/yumrepos/edge
 
-- block:
-  - name: Add grub-customizer Repository [OpenSUSE]
-    when: is_suse_based
-    community.general.zypper_repository:
-      runrefresh: true
-      auto_import_keys: true
-      repo: https://download.opensuse.org/repositories/home:ecsos/openSUSE_Tumbleweed/home:ecsos.repo
+- name: Add grub-customizer Repository [OpenSUSE]
+  when: is_suse_based
+  zypper_repository:
+    runrefresh: true
+    auto_import_keys: true
+    repo: https://download.opensuse.org/repositories/home:ecsos/openSUSE_Tumbleweed/home:ecsos.repo
 
-  - name: Add copyq Repository [OpenSUSE]
-    when: is_suse_based
-    community.general.zypper_repository:
-      runrefresh: true
-      auto_import_keys: true
-      repo: https://download.opensuse.org/repositories/home:weearcm/openSUSE_Tumbleweed/home:weearcm.repo
+- name: Add copyq Repository [OpenSUSE]
+  when: is_suse_based
+  zypper_repository:
+    runrefresh: true
+    auto_import_keys: true
+    repo: https://download.opensuse.org/repositories/home:weearcm/openSUSE_Tumbleweed/home:weearcm.repo
 
 - name: Add IBM Odbc [RHEL]
   when: is_rhel_based
@@ -86,7 +85,7 @@
     baseurl: https://public.dhe.ibm.com/software/ibmi/products/odbc/rpms
     gpgcheck: false
 
-- name: Add repository into repo.d list for yum [RHEL]
+- name: Add docker-ce Repository [RHEL]
   when: is_rhel_based
   yum_repository:
     name: docker-ce
@@ -96,6 +95,12 @@
     gpgcheck: true
     gpgkey: "https://download.docker.com/linux/{{ rh_distribution }}/gpg"
 
+- name: Install dnf-utils if on Fedora [RHEL]
+  when: is_rhel_based
+  package:
+    name: dnf-utils
+    state: present
+
 - name: Update dnf packages [RHEL]
   when: is_rhel_based
   dnf:
@@ -103,11 +108,11 @@
     state: latest
     update_only: true
 
-- name: Install dnf-utils if on Fedora [RHEL]
-  when: is_rhel_based
-  package:
-    name: dnf-utils
-    state: present
+- name: Update zypper packages [OpenSUSE]
+  when: is_suse_based
+  zypper:
+    name: "*"
+    state: latest
 
 #######################
 # add some copr repos #

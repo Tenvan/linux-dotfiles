@@ -5,7 +5,8 @@
   vars:
     global_init:
       # global
-      - zsh
+      - grub-customizer
+      - copyq
 
       # utils for editors
       - bash-completion
