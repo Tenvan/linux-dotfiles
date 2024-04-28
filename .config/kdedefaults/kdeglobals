@@ -1,8 +1,14 @@
 [General]
-ColorScheme=BreezeClassic
+ColorScheme=openSUSEdark
+accentColorFromWallpaper=true
+AccentColor=71,142,142
+BrowserApplication=microsoft-edge.desktop
+ColorScheme=openSUSEdark
+fixed=MesloLGL Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 
 [Icons]
-Theme=breeze
+Theme=Papirus-Dark
 
 [KDE]
-widgetStyle=Breeze
+LookAndFeelPackage=org.openSUSE.desktop
+widgetStyle=qt6ct-style

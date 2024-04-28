@@ -3,14 +3,8 @@
   vars:
     suse_based_init:
       # fonts
-      - powerline-fonts
       - terminus-bitmap-fonts
-      - terminus-ttf-fonts
       - twemoji-color-font
-      - symbols-only-nerd-fonts
-
-      # jetbrains fonts
-      - jetbrains-mono-fonts
 
       # gtk-themes
       - breeze-gtk
@@ -18,22 +12,12 @@
 
 
     archlinux_based_init:
-      # fonts
-      - powerline-fonts
-
       # QT Tools
       - qt5gtk2
       - qt5-styleplugins
 
       # font apps
       - toilet-fonts
-
-      # powerline in linux console
-      - awesome-terminal-fonts
-      - nerd-fonts-source-code-pro
-      - powerline-console-fonts-git
-      - zsh-theme-powerlevel10k
-      - terminus-font
 
       # fonts
       - ttf-all-the-icons
@@ -43,12 +27,7 @@
       - ttf-font-awesome
       - ttf-iosevka
       - ttf-jetbrains-mono
-      - ttf-meslo-nerd-font-powerlevel10k
-      - ttf-terminus-nerd
       - ttf-twemoji
-
-      # nerd font symbols meta
-      - nerd-fonts
 
       # cursor
       - bibata-cursor-theme
@@ -56,9 +35,7 @@
 
     fedora_init:
       # fonts
-      - powerline-fonts
       - gtk-murrine-engine
-      - terminus-fonts
       - twitter-twemoji-fonts
 
       # cursor
@@ -109,9 +86,6 @@
       - arcolinux_repo_3party/grub-theme-vimix-color-4k-git
 
     manjaro_init:
-      # fonts
-      - nerd-fonts-noto-sans-mono
-
       # wallpapers, themes and icons
       - kvantum-manjaro
       - maia-console
@@ -132,10 +106,6 @@
       - bootsplash-systemd
       - bootsplash-theme-manjaro
     
-    debian_based_init:
-      # fonts
-      - fonts-powerline
-
   include_tasks: install.yml
 
 - name: clone https://github.com/ryanoasis/nerd-fonts.git
@@ -148,4 +118,4 @@
 - name: Install Nerd Fonts
   shell: |
     cd "{{ build_dir }}/nerd-fonts"
-    sh install.sh
+    sh install.sh --link

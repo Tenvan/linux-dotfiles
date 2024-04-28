@@ -4,7 +4,7 @@
     path: /etc/vconsole.conf
     create: true
     regexp: "^FONT="
-    line: FONT=ter-powerline-v12n
+    line: FONT=ter-v12n
 
 - name: Grub config
   when: lookup('env', 'DOCKER_CONTAINER') != "true"

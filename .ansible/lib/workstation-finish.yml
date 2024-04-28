@@ -47,7 +47,8 @@
     file:
       path: /etc/lightdm/lightdm.conf.d
       state: directory
-      mode: u+rw,g+r,o+r
+      mode: u+rw,g+r,o+r    
+    when: is_suse_based is false
 
   - name: Write lightdm config
     copy:
@@ -58,6 +59,7 @@
         greeter-session=slick-greeter
         greeter-hide-users=false
         autologin-user={{ user_id }}
+    when: is_suse_based is false
 
   - name: Write slick-greeter config (default lightdm greeter)
     copy:
@@ -71,6 +73,7 @@
         background=/usr/share/wallpapers/Materia-Dark/contents/images/3840x2160.png
         content-align=center
         activate-numlock=true
+    when: is_suse_based is false
 
   - name: Write lightdm-gtk-greeter config
     copy:
@@ -86,20 +89,17 @@
         xft-antialias = false
         xft-dpi = 
         xft-hintstyle = hintnone
+    when: is_suse_based is false
 
-- name: Xdg default setzen
-  command: xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
-
-- name: Create kwin kservices5 folder
+- name: remove kwin kservices5 folder
   file:
     path: "{{ home_dir }}/.local/share/kservices5"
-    state: directory
+    state: absent
 
-- name: create symbolic link for krohnkite kwin script
+- name: remove krohnkite kwin script
   file:
-    src: "{{ home_dir }}/.local/share/kwin/scripts/krohnkite/metadata.desktop"
-    dest: "{{ home_dir }}/.local/share/kservices5/krohnkite.desktop"
-    state: link
+    path: "{{ home_dir }}/.local/share/kwin/scripts/krohnkite"
+    state: absent
 
 - name: Create own xinit-compat script
   blockinfile:
@@ -112,16 +112,10 @@
       exec ~/.xsession
     mode: u+rwx,g+rx,o+rx
 
-- name: Add awesome session (fedora)
-  blockinfile:
-    create: true
+- name: remove awesome session (fedora)
+  file:
     path: /usr/share/xsessions/awesome-fedora.desktop
-    block: |
-      [Desktop Entry]
-      Name=AwesomeWM (Tenvan)
-      # awesome have to be execute in .xsession
-      Comment=This session runs ~/.xsession or ~/.Xclients if available
-      Exec=/opt/xinit-compat
+    state: absent
 
 - name: Refresh icons on ArchLinux
   become: true

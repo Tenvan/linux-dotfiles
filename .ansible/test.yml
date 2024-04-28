@@ -14,6 +14,24 @@
     - name: Define testing packages
       vars:
         global_init:
+          - git
           # - google-chrome
 
       include_tasks: lib/install.yml
+
+    - name: clone https://github.com/ryanoasis/nerd-fonts.git
+      git:
+        repo: "https://github.com/ryanoasis/nerd-fonts.git"
+        clone: true
+        depth: 1
+        dest: "{{ build_dir }}/nerd-fonts"
+
+    - name: Install Nerd Fonts
+      shell: |
+        cd "{{ build_dir }}/nerd-fonts"
+        sh install.sh --link
+
+    - name: Copy Terminus Fonts
+      shell: |
+        cd "{{ build_dir }}/nerd-fonts"
+        sh install.sh --link

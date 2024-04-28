@@ -25,20 +25,20 @@
 			"Rhel"
 		],
 		"workbench.colorCustomizations": {
-			"activityBar.activeBackground": "#fa1b49",
-			"activityBar.background": "#fa1b49",
-			"editorGroup.border": "#fa1b49",
-			"panel.border": "#fa1b49",
-			"sash.hoverBorder": "#fa1b49",
-			"sideBar.border": "#fa1b49",
-			"statusBar.background": "#dd0531",
-			"statusBar.debuggingBackground": "#05ddb1",
-			"statusBarItem.hoverBackground": "#fa1b49",
-			"statusBarItem.remoteBackground": "#dd0531",
-			"titleBar.activeBackground": "#dd0531",
-			"titleBar.inactiveBackground": "#dd053199"
+			"activityBar.activeBackground": "#ff6433",
+			"activityBar.background": "#ff6433",
+			"editorGroup.border": "#ff6433",
+			"panel.border": "#ff6433",
+			"sash.hoverBorder": "#ff6433",
+			"sideBar.border": "#ff6433",
+			"statusBar.background": "#ff3d00",
+			"statusBar.debuggingBackground": "#00c2ff",
+			"statusBarItem.hoverBackground": "#ff6433",
+			"statusBarItem.remoteBackground": "#ff3d00",
+			"titleBar.activeBackground": "#ff3d00",
+			"titleBar.inactiveBackground": "#ff3d0099"
 		},
-		"peacock.color": "#dd0531",
+		"peacock.color": "#ff3d00",
 		"files.exclude": {
 			"**/.git": true,
 			"**/.svn": true,
