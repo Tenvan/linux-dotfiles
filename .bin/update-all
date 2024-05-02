@@ -12,7 +12,8 @@ if [ $IS_RHEL_BASED = true ]; then
 fi
 
 if [ $IS_SUSE_BASED = true ]; then
-  sudo zypper update -y
+  sudo zypper up -y
+  sudo zypper rm -y $(zypper pa --unneeded | grep "i |" | awk '{print $5}')
 fi
 
 # Flatpak Update
