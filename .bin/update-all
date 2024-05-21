@@ -13,7 +13,7 @@ fi
 
 if [ $IS_SUSE_BASED = true ]; then
   sudo zypper up -y
-  sudo zypper rm -y $(zypper pa --unneeded | grep "i |" | awk '{print $5}')
+  sudo zypper rm -y $(sudo zypper pa --unneeded | grep "i |" | awk '{print $5}')
 fi
 
 # Flatpak Update
