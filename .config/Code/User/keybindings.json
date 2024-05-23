@@ -182,5 +182,13 @@
   {
     "key": "ctrl+[Comma]",
     "command": "workbench.action.openGlobalSettings"
+  },
+  {
+    "key": "shift+meta+u",
+    "command": "editor.action.transformToUppercase"
+  },
+  {
+    "key": "shift+meta+l",
+    "command": "editor.action.transformToLowercase"
   }
 ]
