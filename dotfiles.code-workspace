@@ -11,9 +11,6 @@
 		},
 		{
 			"path": ".ansible"
-		},
-		{
-			"path": ".config"
 		}
 	],
 	"settings": {
@@ -24,21 +21,6 @@
 		"cSpell.words": [
 			"Rhel"
 		],
-		"workbench.colorCustomizations": {
-			"activityBar.activeBackground": "#ff6433",
-			"activityBar.background": "#ff6433",
-			"editorGroup.border": "#ff6433",
-			"panel.border": "#ff6433",
-			"sash.hoverBorder": "#ff6433",
-			"sideBar.border": "#ff6433",
-			"statusBar.background": "#ff3d00",
-			"statusBar.debuggingBackground": "#00c2ff",
-			"statusBarItem.hoverBackground": "#ff6433",
-			"statusBarItem.remoteBackground": "#ff3d00",
-			"titleBar.activeBackground": "#ff3d00",
-			"titleBar.inactiveBackground": "#ff3d0099"
-		},
-		"peacock.color": "#ff3d00",
 		"files.exclude": {
 			"**/.git": true,
 			"**/.svn": true,
