@@ -190,5 +190,9 @@
   {
     "key": "shift+meta+l",
     "command": "editor.action.transformToLowercase"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "editor.action.duplicateSelection"
   }
 ]
