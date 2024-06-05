@@ -168,5 +168,31 @@
     "key": "ctrl+shift+[Equal]",
     "command": "-workbench.action.terminal.toggleTerminal",
     "when": "terminal.active"
+  },
+  {
+    "key": "shift+numpad_subtract",
+    "command": "editor.foldAllExcept",
+    "when": "editorTextFocus && foldingEnabled"
+  },
+  {
+    "key": "shift+numpad_add",
+    "command": "editor.unfoldAllExcept",
+    "when": "editorTextFocus && foldingEnabled"
+  },
+  {
+    "key": "ctrl+[Comma]",
+    "command": "workbench.action.openGlobalSettings"
+  },
+  {
+    "key": "shift+meta+u",
+    "command": "editor.action.transformToUppercase"
+  },
+  {
+    "key": "shift+meta+l",
+    "command": "editor.action.transformToLowercase"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "editor.action.duplicateSelection"
   }
 ]

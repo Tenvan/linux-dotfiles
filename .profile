@@ -61,9 +61,6 @@ do
   fi
 done
 
-export NVM_DIR="$HOME/.nvm"
-csource "$NVM_DIR/nvm.sh"  # This loads nvm
-csource "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 csource "$CUSTOMS/.profile"
+csource "$HOME/.xinitrc"
 csource "$HOME/.cargo/env"
