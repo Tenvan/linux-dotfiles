@@ -2,29 +2,41 @@
 
 # System Update
 if [ $IS_ARCH_BASED = true ]; then
+  figlet "ArchUpdate All"
   $PACTOOL -Syyu $PAKKER_ALL
 fi
 
 if [ $IS_RHEL_BASED = true ]; then
+  figlet "RHEL Upgrade"
   sudo dnf upgrade --refresh
+  figlet "RHEL Update"
   sudo dnf update
+  figlet "RHEL MkConfig"
   sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 fi
 
 if [ $IS_SUSE_BASED = true ]; then
-  sudo zypper up -y
+  figlet "Suse UP"
+  sudo zypper up
+  figlet "Suse DUP"
+  sudo zypper dup
+  figlet "Suse Remove"
   sudo zypper rm -y $(sudo zypper pa --unneeded | grep "i |" | awk '{print $5}')
 fi
 
 # Flatpak Update
+figlet "Flatpak Update"
 flatpak update -v --noninteractive
 
 # Zinit Self update
+figlet "Zinit Self Update"
 . "$HOME/.zinit/bin/zinit.zsh"
 zinit self-update
 
 # Zinit Plugin update
+figlet "Zinit Plugins Update"
 zinit update --parallel
 
 # oh-my-posh update
+figlet "OhMyPosh Update"
 curl -s https://ohmyposh.dev/install.sh | sudo bash -s
