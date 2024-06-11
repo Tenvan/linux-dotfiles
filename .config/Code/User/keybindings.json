@@ -194,5 +194,13 @@
   {
     "key": "ctrl+d",
     "command": "editor.action.duplicateSelection"
+  },
+  {
+    "key": "alt+b",
+    "command": "workbench.action.togglePanel"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "-workbench.action.togglePanel"
   }
 ]
