@@ -65,16 +65,6 @@
 
   include_tasks: install.yml
 
-- name: Install Dotnet
-  become: false
-  shell: |
-    wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
-    sh dotnet-install.sh
-    rm dotnet-install.sh
-
 - name: Install Powershell
   shell: dotnet tool install --global PowerShell
   ignore_errors: true
-
-       
-

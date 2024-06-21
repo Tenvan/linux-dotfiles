@@ -21,7 +21,7 @@
       # DotNet/Mono Setup
       - pass
       - shellcheck
-    
+
     suse_based_init:
       # utils for editors
       - ShellCheck
@@ -33,15 +33,20 @@
     rhel_based_init:
       - subversion
 
-    fedora_init:
-    # global
-    # DotNet/Mono Setup
-    - gitflow
+    suse_based_init:
+      - dotnet-sdk-8.0
+      - dotnet-runtime-deps-8.0 
+      - dotnet-runtime-8.0
 
-    # IBM Odbc
-    - ibm-iaccess
-    - unixODBC-devel
-    - unixODBC-gui-qt
+    fedora_init:
+      # global
+      # DotNet/Mono Setup
+      - gitflow
+
+      # IBM Odbc
+      - ibm-iaccess
+      - unixODBC-devel
+      - unixODBC-gui-qt
 
   include_tasks: install.yml
   when: lookup('env', 'DOCKER_CONTAINER') != "true"
