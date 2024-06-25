@@ -13,12 +13,8 @@
     archlinux_based_init:
       - gitflow-avh
       - gradle
-      - jdk-openjdk
-      - jdk17-openjdk
       - nsis
       - svn
-
-      # DotNet/Mono Setup
       - pass
       - shellcheck
 
@@ -33,14 +29,8 @@
     rhel_based_init:
       - subversion
 
-    suse_based_init:
-      - dotnet-sdk-8.0
-      - dotnet-runtime-deps-8.0 
-      - dotnet-runtime-8.0
-
     fedora_init:
       # global
-      # DotNet/Mono Setup
       - gitflow
 
       # IBM Odbc

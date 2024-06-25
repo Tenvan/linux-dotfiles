@@ -25,8 +25,12 @@
     suse_based_init:
       - rust
 
-      # - nuget
+      # DotNet/Mono Setup
       - mono-complete
+      - dotnet-sdk-8.0
+      - dotnet-runtime-deps-8.0 
+      - dotnet-runtime-8.0
+
 
     rhel_based_init:
       - rust
@@ -55,6 +59,10 @@
       # DotNet/Mono Setup
       - mono
       - mono-msbuild
+
+      # Java Setup 
+      - jdk-openjdk
+      - jdk17-openjdk
 
     debian_based_init:
       - rust-all
