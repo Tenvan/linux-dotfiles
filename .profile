@@ -42,6 +42,8 @@ for path_candidate in \
   /opt/local/sbin \
   /usr/local/bin \
   /usr/local/sbin \
+  /sbin \
+  /usr/sbin \
   ~/.dotnet \
   ~/.dotnet/tools \
   ~/.cabal/bin \
