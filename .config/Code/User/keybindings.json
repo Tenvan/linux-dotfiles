@@ -202,5 +202,9 @@
   {
     "key": "ctrl+j",
     "command": "-workbench.action.togglePanel"
+  },
+  {
+    "key": "ctrl+shift+b",
+    "command": "csdevkit.buildSolution"
   }
 ]
